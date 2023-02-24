@@ -3,8 +3,8 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../widget_toolkit.dart';
-import '../../base/builders/item_builder.dart';
-import '../../base/transitions/app_fade_transition.dart';
+import '../../base/models/item_builder.dart';
+import '../../base/utils/app_fade_transition.dart';
 import '../blocs/item_picker_bloc.dart';
 import '../di/item_picker_dependencies.dart';
 

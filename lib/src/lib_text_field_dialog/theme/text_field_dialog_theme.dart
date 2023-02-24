@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/design_system.dart';
 
 part 'text_field_dialog_theme.tailor.dart';
 
@@ -39,6 +39,7 @@ class _$TextFieldDialogTheme {
     PrimeDesignSystem.light().colors.mediumWhite,
     PrimeDesignSystem.dark().colors.darkGray,
   ];
+
   ///  endregion
 
   /// region PrimeLabelBoxWidget

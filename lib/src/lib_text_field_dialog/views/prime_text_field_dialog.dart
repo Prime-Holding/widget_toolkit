@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../asset_classes.dart';
+import '../../../common_ui_components.dart';
 import '../../base/extensions/data_type_extensions.dart';
-import '../../base/ui_components/app_modal_bottom_sheet.dart';
 import '../di/text_field_dialog_dependencies.dart';
 import '../services/prime_text_field_validator_use_case.dart';
 import '../theme/text_field_dialog_theme.dart';

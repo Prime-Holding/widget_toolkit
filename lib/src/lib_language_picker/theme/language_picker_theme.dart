@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/design_system.dart';
 
 part 'language_picker_theme.tailor.dart';
 
@@ -10,8 +10,8 @@ part 'language_picker_theme.tailor.dart';
 class _$LanguagePickerTheme {
   /// region EdgeInsets
   static List<EdgeInsets> changeLanguagePadding = [
-    const EdgeInsets.only(left: 16,right: 16,bottom: 16),
-    const EdgeInsets.only(left: 16,right: 16,bottom: 16),
+    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
   ];
 
   static List<EdgeInsets> chooseLanguagePadding = [
@@ -173,7 +173,6 @@ class _$LanguagePickerTheme {
   ];
 
   /// endregion
-
 }
 
 extension LanguagePickerThemeContextExtension on BuildContext {

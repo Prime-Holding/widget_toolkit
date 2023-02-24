@@ -6,9 +6,8 @@
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:rx_bloc/rx_bloc.dart' as _i7;
 import 'package:rxdart/rxdart.dart' as _i2;
-import 'package:widget_toolkit/src/base/models/common/language_model.dart'
-    as _i4;
 import 'package:widget_toolkit/src/base/models/errors/error_model.dart' as _i5;
+import 'package:widget_toolkit/src/base/models/language_model.dart' as _i4;
 import 'package:widget_toolkit/src/lib_language_picker/blocs/language_picker_bloc.dart'
     as _i3;
 import 'package:widget_toolkit/src/lib_language_picker/models/selected_language_model.dart'

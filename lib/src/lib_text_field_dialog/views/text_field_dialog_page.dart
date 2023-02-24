@@ -7,7 +7,7 @@ import 'package:rx_bloc/rx_bloc.dart';
 
 import '../../../widget_toolkit.dart';
 import '../../base/extensions/stream_translate_field_extension.dart';
-import '../../base/models/common/input_text_field_state.dart';
+import '../../base/models/input_text_field_state.dart';
 import '../blocs/text_field_dialog_bloc.dart';
 import '../ui_components/prime_input_text_field.dart';
 

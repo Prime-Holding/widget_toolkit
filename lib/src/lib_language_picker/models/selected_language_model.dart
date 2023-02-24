@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../base/models/common/language_model.dart';
+import '../../base/models/language_model.dart';
 
 part 'selected_language_model.g.dart';
 

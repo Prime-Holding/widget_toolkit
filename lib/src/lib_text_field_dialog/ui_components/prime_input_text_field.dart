@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../widget_toolkit.dart';
-import '../../base/models/common/input_text_field_state.dart';
+import '../../base/models/input_text_field_state.dart';
 
 const _kAppInputTextFieldMaxLines = 1;
 const double _kBorderWidth = 2;

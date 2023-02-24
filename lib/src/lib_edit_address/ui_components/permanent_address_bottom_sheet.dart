@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../common_ui_components.dart';
 import '../../../edit_address.dart';
 import '../../base/extensions/data_type_extensions.dart';
-import '../../base/ui_components/app_modal_bottom_sheet.dart';
 
 void showAppPermanentAddressBottomSheet(
   BuildContext context, {

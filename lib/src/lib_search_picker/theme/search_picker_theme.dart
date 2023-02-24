@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/design_system.dart';
 
 part 'search_picker_theme.tailor.dart';
 
@@ -38,7 +38,6 @@ class _$SearchPickerTheme {
   ];
 
   /// endregion
-
 }
 
 extension SearchPickerThemeContextExtension on BuildContext {
