@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - ".github/workflows/ci.yaml"
+      - "lib/**"
+
+  pull_request:
+    paths:
+      - ".github/workflows/ci.yaml"
+      - "lib/**"
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          channel: "stable"
+      - run: dart --version
+      - run: flutter --version 
+      - name: Install Dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze lib
+      - name: Run tests
+        run: |
+          if [ -d "test" ]; then
+            flutter test --coverage --exclude-tags=not-tests
+          fi
+      - name: Remove unnecessary files
+        run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart' coverage/lcov.info
+      - name: Check Code Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        with:
+          path: "coverage/lcov.info"
+          min_coverage: 89
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          directory: coverage
+  build:
+    needs: [run_tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: noop
+        run: echo 'noop'
