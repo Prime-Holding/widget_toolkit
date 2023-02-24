@@ -1,6 +1,6 @@
 name: widget_toolkit
 description: A collection of UI widgets developed by PrimeHolding JSC to help reduce development time
-version: 0.0.1
+version: 0.0.1-dev1
 homepage: https://primeholding.com/
 
 environment:
