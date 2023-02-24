@@ -1,3 +1,5 @@
+![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]
+
 # Widget Toolkit
 
 The Widget Toolkit package consists of several smaller lightweight UI modules to increase productivity and development time spent on those features.
@@ -89,6 +91,12 @@ extensions: [
 
 ---
 
+
+[ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
+[codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master/graph/badge.svg
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master
+[code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
 [shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/shimmer
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_item_picker
 [open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/open_url
