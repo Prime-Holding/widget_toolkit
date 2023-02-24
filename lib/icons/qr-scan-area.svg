@@ -1,0 +1,13 @@
+<svg width="253" height="253" viewBox="0 0 253 253" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M52 4H4v48" stroke="#D40E14" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="4" cy="64" r="3.5" fill="#FFE6E6" stroke="#D40E14"/>
+    <circle cx="64" cy="4" r="3.5" fill="#FFE6E6" stroke="#D40E14"/>
+    <path d="M52 249H4v-48" stroke="#D40E14" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle r="3.5" transform="matrix(1 0 0 -1 4 189)" fill="#FFE6E6" stroke="#D40E14"/>
+    <circle r="3.5" transform="matrix(1 0 0 -1 64 249)" fill="#FFE6E6" stroke="#D40E14"/>
+    <path d="M201 4h48v48" stroke="#D40E14" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle r="3.5" transform="matrix(-1 0 0 1 249 64)" fill="#FFE6E6" stroke="#D40E14"/>
+    <circle r="3.5" transform="matrix(-1 0 0 1 189 4)" fill="#FFE6E6" stroke="#D40E14"/>
+    <path d="M201 249h48v-48" stroke="#D40E14" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M245.5 189a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM185.5 249a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" fill="#FFE6E6" stroke="#D40E14"/>
+</svg>
