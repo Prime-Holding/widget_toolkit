@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:widget_toolkit/edit_address.dart';
 import 'package:widget_toolkit/language_picker.dart';
@@ -13,13 +12,6 @@ import '../service/edit_address_fields_service_mock.dart';
 import '../service/save_address_service_mock.dart';
 import '../service/search_country_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
-
-class FakeAssetBundle extends Fake implements AssetBundle {
-  final String svgStr = '''<svg viewBox="0 0 10 10"></svg>''';
-
-  @override
-  Future<String> loadString(String key, {bool cache = true}) async => svgStr;
-}
 
 /// Change the parameters according the the needs of the test
 Widget editAddressFactory({
@@ -34,54 +26,51 @@ Widget editAddressFactory({
   AddressModel? address,
   SaveAddressServiceMock? service,
 }) =>
-    DefaultAssetBundle(
-      bundle: FakeAssetBundle(),
-      child: Scaffold(
-        body: MultiProvider(
-          providers: [
-            RxBlocProvider<EditAddressBlocType>.value(
-              value: editAddressMockFactory(
-                showError: showError,
-                onAddressSet: onAddressSet,
-                isLoading: isLoading,
-                errors: errors,
-                street: street,
-                city: city,
-                isCountryEdited: isCountryEdited,
-                country: country,
-                address: address,
-                service: service,
-              ),
+    Scaffold(
+      body: MultiProvider(
+        providers: [
+          RxBlocProvider<EditAddressBlocType>.value(
+            value: editAddressMockFactory(
+              showError: showError,
+              onAddressSet: onAddressSet,
+              isLoading: isLoading,
+              errors: errors,
+              street: street,
+              city: city,
+              isCountryEdited: isCountryEdited,
+              country: country,
+              address: address,
+              service: service,
             ),
-            Provider<EditAddressFieldsServiceMock>(
-              create: (context) => EditAddressFieldsServiceMock(),
-            ),
-          ],
-          child: Builder(
-            builder: (context) => EditAddressPage(
-              addressModel: address ??
-                  const AddressModel(
-                    addressType: AddressTypeModel.correspondence,
-                    city: 'Sofia',
-                    streetAddress: 'str1',
-                    country: CountryModel(
-                        countryCode: 'BG', countryName: 'Bulgaria'),
-                  ),
-              cityErrorMapper: (obj, context) =>
-                  EditAddressErrorMapperUtil<String>()
-                      .cityErrorMapper(obj, context),
-              addressErrorMapper: (obj, context) =>
-                  EditAddressErrorMapperUtil<String>()
-                      .addressErrorMapper(obj, context),
-              validator: context.read<EditAddressFieldsServiceMock>(),
-              buttonText: 'Save',
-              headerText: 'Contact Address',
-              searchCountryService: SearchCountryServiceMock(
-                  SearchCountryRepositoryMock(), false),
-              editAddressService:
-                  SaveAddressServiceMock(showError: showError ?? false),
-              editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
-            ),
+          ),
+          Provider<EditAddressFieldsServiceMock>(
+            create: (context) => EditAddressFieldsServiceMock(),
+          ),
+        ],
+        child: Builder(
+          builder: (context) => EditAddressPage(
+            addressModel: address ??
+                const AddressModel(
+                  addressType: AddressTypeModel.correspondence,
+                  city: 'Sofia',
+                  streetAddress: 'str1',
+                  country:
+                      CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
+                ),
+            cityErrorMapper: (obj, context) =>
+                EditAddressErrorMapperUtil<String>()
+                    .cityErrorMapper(obj, context),
+            addressErrorMapper: (obj, context) =>
+                EditAddressErrorMapperUtil<String>()
+                    .addressErrorMapper(obj, context),
+            validator: context.read<EditAddressFieldsServiceMock>(),
+            buttonText: 'Save',
+            headerText: 'Contact Address',
+            searchCountryService:
+                SearchCountryServiceMock(SearchCountryRepositoryMock(), false),
+            editAddressService:
+                SaveAddressServiceMock(showError: showError ?? false),
+            editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
           ),
         ),
       ),
