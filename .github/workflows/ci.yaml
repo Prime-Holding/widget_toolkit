@@ -5,11 +5,13 @@ on:
     paths:
       - ".github/workflows/ci.yaml"
       - "lib/**"
+      - "test/**"
 
   pull_request:
     paths:
       - ".github/workflows/ci.yaml"
       - "lib/**"
+      - "test/**"
 
 jobs:
   run_tests:
