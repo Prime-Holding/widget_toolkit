@@ -20,9 +20,6 @@ your `pubspec.yaml` file.
 
 ```yaml
 widget_toolkit:
-  git:
-    url: https://gitlab.programista.pro/prime-reusable-components/flutter
-    path: packages/widget_toolkit
 ```
 
 After that you can import any of the specific packages into your file and start using the described functionalities. For more information on specific widgets or functionalities the packages provide, please check the packages in the `Contents` section above.
@@ -53,9 +50,6 @@ dependencies:
   flutter:
     sdk: flutter
   widget_toolkit:
-    git:
-      url: https://gitlab.programista.pro/prime-reusable-components/flutter
-      path: packages/widget_toolkit
 
 ```
 
@@ -95,12 +89,12 @@ extensions: [
 
 ---
 
-[shimmer_pkg]: https://gitlab.programista.pro/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/shimmer
-[item_picker_pkg]: https://gitlab.programista.pro/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_item_picker
-[open_url_pkg]: https://gitlab.programista.pro/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/open_url
-[item_picker_pkg]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_item_picker
-[language_picker_pkg]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_language_picker
-[common_utilities_pkg]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/common
-[edit_address]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_edit_address
-[text_field_dialog]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_text_field_dialog
-[search_picker]: https://gitlab.programista.pro/codebase/prime-reusable-components/flutter/-/tree/develop/packages/widget_toolkit/lib/src/lib_search_picker
+[shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/shimmer
+[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_item_picker
+[open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/open_url
+[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/src/lib_item_picker
+[language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_language_picker
+[common_utilities_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/common
+[edit_address]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
+[text_field_dialog]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
+[search_picker]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
