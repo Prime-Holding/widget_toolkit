@@ -69,13 +69,13 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     required this.appInputTextFieldPaddingError,
   });
 
-  final dynamic primeEditFieldSuccessBackground;
-  final dynamic primeEditFieldRegularBackground;
+  final Color primeEditFieldSuccessBackground;
+  final Color primeEditFieldRegularBackground;
   final double primeEditFieldBorderRadius;
-  final dynamic primeInputTextFieldSuccessBackground;
-  final dynamic primeInputTextFieldRegularBackground;
-  final dynamic primeLabelBoxOptionalBackground;
-  final dynamic primeLabelBoxFilledBackground;
+  final Color primeInputTextFieldSuccessBackground;
+  final Color primeInputTextFieldRegularBackground;
+  final Color primeLabelBoxOptionalBackground;
+  final Color primeLabelBoxFilledBackground;
   final double spacingXS;
   final double spacingXSS;
   final double spacingS;
@@ -88,22 +88,22 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
   final TextStyle descriptionBold;
   final TextStyle captionBold;
   final TextStyle smallThin;
-  final dynamic black;
-  final dynamic defaultWhite;
-  final dynamic white;
-  final dynamic blue;
-  final dynamic disabledFilledButtonBackgroundColor;
-  final dynamic gradientRedEnd;
-  final dynamic mediumWhite;
-  final dynamic gray;
-  final dynamic green;
-  final dynamic redLight;
-  final dynamic orangeLight;
-  final dynamic orange;
-  final dynamic transparent;
-  final dynamic greenLight;
-  final dynamic red;
-  final dynamic mediumBlack;
+  final Color black;
+  final Color defaultWhite;
+  final Color white;
+  final Color blue;
+  final Color disabledFilledButtonBackgroundColor;
+  final Color gradientRedEnd;
+  final Color mediumWhite;
+  final Color gray;
+  final Color green;
+  final Color redLight;
+  final Color orangeLight;
+  final Color orange;
+  final Color transparent;
+  final Color greenLight;
+  final Color red;
+  final Color mediumBlack;
   final SvgFile closeIcon;
   final SvgFile dangerIcon;
   final SvgFile addIcon;
@@ -290,13 +290,13 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
 
   @override
   TextFieldDialogTheme copyWith({
-    dynamic primeEditFieldSuccessBackground,
-    dynamic primeEditFieldRegularBackground,
+    Color? primeEditFieldSuccessBackground,
+    Color? primeEditFieldRegularBackground,
     double? primeEditFieldBorderRadius,
-    dynamic primeInputTextFieldSuccessBackground,
-    dynamic primeInputTextFieldRegularBackground,
-    dynamic primeLabelBoxOptionalBackground,
-    dynamic primeLabelBoxFilledBackground,
+    Color? primeInputTextFieldSuccessBackground,
+    Color? primeInputTextFieldRegularBackground,
+    Color? primeLabelBoxOptionalBackground,
+    Color? primeLabelBoxFilledBackground,
     double? spacingXS,
     double? spacingXSS,
     double? spacingS,
@@ -309,22 +309,22 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     TextStyle? descriptionBold,
     TextStyle? captionBold,
     TextStyle? smallThin,
-    dynamic black,
-    dynamic defaultWhite,
-    dynamic white,
-    dynamic blue,
-    dynamic disabledFilledButtonBackgroundColor,
-    dynamic gradientRedEnd,
-    dynamic mediumWhite,
-    dynamic gray,
-    dynamic green,
-    dynamic redLight,
-    dynamic orangeLight,
-    dynamic orange,
-    dynamic transparent,
-    dynamic greenLight,
-    dynamic red,
-    dynamic mediumBlack,
+    Color? black,
+    Color? defaultWhite,
+    Color? white,
+    Color? blue,
+    Color? disabledFilledButtonBackgroundColor,
+    Color? gradientRedEnd,
+    Color? mediumWhite,
+    Color? gray,
+    Color? green,
+    Color? redLight,
+    Color? orangeLight,
+    Color? orange,
+    Color? transparent,
+    Color? greenLight,
+    Color? red,
+    Color? mediumBlack,
     SvgFile? closeIcon,
     SvgFile? dangerIcon,
     SvgFile? addIcon,
@@ -436,27 +436,31 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       ThemeExtension<TextFieldDialogTheme>? other, double t) {
     if (other is! TextFieldDialogTheme) return this;
     return TextFieldDialogTheme(
-      primeEditFieldSuccessBackground: t < 0.5
-          ? primeEditFieldSuccessBackground
-          : other.primeEditFieldSuccessBackground,
-      primeEditFieldRegularBackground: t < 0.5
-          ? primeEditFieldRegularBackground
-          : other.primeEditFieldRegularBackground,
+      primeEditFieldSuccessBackground: Color.lerp(
+          primeEditFieldSuccessBackground,
+          other.primeEditFieldSuccessBackground,
+          t)!,
+      primeEditFieldRegularBackground: Color.lerp(
+          primeEditFieldRegularBackground,
+          other.primeEditFieldRegularBackground,
+          t)!,
       primeEditFieldBorderRadius: t < 0.5
           ? primeEditFieldBorderRadius
           : other.primeEditFieldBorderRadius,
-      primeInputTextFieldSuccessBackground: t < 0.5
-          ? primeInputTextFieldSuccessBackground
-          : other.primeInputTextFieldSuccessBackground,
-      primeInputTextFieldRegularBackground: t < 0.5
-          ? primeInputTextFieldRegularBackground
-          : other.primeInputTextFieldRegularBackground,
-      primeLabelBoxOptionalBackground: t < 0.5
-          ? primeLabelBoxOptionalBackground
-          : other.primeLabelBoxOptionalBackground,
-      primeLabelBoxFilledBackground: t < 0.5
-          ? primeLabelBoxFilledBackground
-          : other.primeLabelBoxFilledBackground,
+      primeInputTextFieldSuccessBackground: Color.lerp(
+          primeInputTextFieldSuccessBackground,
+          other.primeInputTextFieldSuccessBackground,
+          t)!,
+      primeInputTextFieldRegularBackground: Color.lerp(
+          primeInputTextFieldRegularBackground,
+          other.primeInputTextFieldRegularBackground,
+          t)!,
+      primeLabelBoxOptionalBackground: Color.lerp(
+          primeLabelBoxOptionalBackground,
+          other.primeLabelBoxOptionalBackground,
+          t)!,
+      primeLabelBoxFilledBackground: Color.lerp(primeLabelBoxFilledBackground,
+          other.primeLabelBoxFilledBackground, t)!,
       spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
       spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
@@ -471,24 +475,25 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
           TextStyle.lerp(descriptionBold, other.descriptionBold, t)!,
       captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
       smallThin: TextStyle.lerp(smallThin, other.smallThin, t)!,
-      black: t < 0.5 ? black : other.black,
-      defaultWhite: t < 0.5 ? defaultWhite : other.defaultWhite,
-      white: t < 0.5 ? white : other.white,
-      blue: t < 0.5 ? blue : other.blue,
-      disabledFilledButtonBackgroundColor: t < 0.5
-          ? disabledFilledButtonBackgroundColor
-          : other.disabledFilledButtonBackgroundColor,
-      gradientRedEnd: t < 0.5 ? gradientRedEnd : other.gradientRedEnd,
-      mediumWhite: t < 0.5 ? mediumWhite : other.mediumWhite,
-      gray: t < 0.5 ? gray : other.gray,
-      green: t < 0.5 ? green : other.green,
-      redLight: t < 0.5 ? redLight : other.redLight,
-      orangeLight: t < 0.5 ? orangeLight : other.orangeLight,
-      orange: t < 0.5 ? orange : other.orange,
-      transparent: t < 0.5 ? transparent : other.transparent,
-      greenLight: t < 0.5 ? greenLight : other.greenLight,
-      red: t < 0.5 ? red : other.red,
-      mediumBlack: t < 0.5 ? mediumBlack : other.mediumBlack,
+      black: Color.lerp(black, other.black, t)!,
+      defaultWhite: Color.lerp(defaultWhite, other.defaultWhite, t)!,
+      white: Color.lerp(white, other.white, t)!,
+      blue: Color.lerp(blue, other.blue, t)!,
+      disabledFilledButtonBackgroundColor: Color.lerp(
+          disabledFilledButtonBackgroundColor,
+          other.disabledFilledButtonBackgroundColor,
+          t)!,
+      gradientRedEnd: Color.lerp(gradientRedEnd, other.gradientRedEnd, t)!,
+      mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
+      gray: Color.lerp(gray, other.gray, t)!,
+      green: Color.lerp(green, other.green, t)!,
+      redLight: Color.lerp(redLight, other.redLight, t)!,
+      orangeLight: Color.lerp(orangeLight, other.orangeLight, t)!,
+      orange: Color.lerp(orange, other.orange, t)!,
+      transparent: Color.lerp(transparent, other.transparent, t)!,
+      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
+      red: Color.lerp(red, other.red, t)!,
+      mediumBlack: Color.lerp(mediumBlack, other.mediumBlack, t)!,
       closeIcon: t < 0.5 ? closeIcon : other.closeIcon,
       dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
       addIcon: t < 0.5 ? addIcon : other.addIcon,

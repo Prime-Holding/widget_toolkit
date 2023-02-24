@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:rxdart/rxdart.dart' as _i2;
 import 'package:widget_toolkit/language_picker.dart' as _i6;
 import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart'
     as _i3;
@@ -13,7 +14,6 @@ import 'package:widget_toolkit/src/lib_edit_address/models/address_model.dart'
     as _i5;
 import 'package:widget_toolkit/src/lib_edit_address/models/country_model.dart'
     as _i7;
-import 'package:rxdart/rxdart.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

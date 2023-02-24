@@ -36,15 +36,14 @@ Widget textFieldDialogFactory({
             ),
           ],
           child: TextFieldDialogPage<String>(
-            callback: (value) {
-              return '';
-            },
+            callback: (value) => '',
             label: 'Label',
             fillButtonText: 'Save',
-            errorMapper: (Object error, BuildContext context) {
-              return const RxFieldException(
-                  error: 'Error', fieldValue: 'exception');
-            },
+            errorMapper: (Object error, BuildContext context) =>
+                const RxFieldException(
+              error: 'Error',
+              fieldValue: 'exception',
+            ),
           ),
         ),
       ),

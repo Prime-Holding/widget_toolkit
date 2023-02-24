@@ -1,5 +1,4 @@
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../blocs/language_picker_bloc.dart';
@@ -18,7 +17,7 @@ class LanguagePickerDependencies {
     ..._blocs,
   ];
 
-  late final List<Provider> _services = [];
+  late final List<SingleChildStatelessWidget> _services = [];
 
   late final List<RxBlocProvider> _blocs = [
     RxBlocProvider<LanguagePickerBlocType>(

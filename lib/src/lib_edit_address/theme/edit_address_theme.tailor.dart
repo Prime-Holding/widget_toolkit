@@ -62,17 +62,17 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme> {
   final TextStyle captionBold;
   final TextStyle descriptionThin;
   final TextStyle titleBold;
-  final dynamic white;
-  final dynamic black;
-  final dynamic editAddressWidgetColor;
-  final dynamic mediumWhite;
-  final dynamic green;
-  final dynamic blue;
-  final dynamic editAddressPageBackgroundColor;
-  final dynamic permanentAddressBlueLightColor;
-  final dynamic disabledFilledButtonBackgroundColor;
-  final dynamic editAddressWidgetHighlightTransparent;
-  final dynamic editAddressWidgetSplashTransparent;
+  final Color white;
+  final Color black;
+  final Color editAddressWidgetColor;
+  final Color mediumWhite;
+  final Color green;
+  final Color blue;
+  final Color editAddressPageBackgroundColor;
+  final Color permanentAddressBlueLightColor;
+  final Color disabledFilledButtonBackgroundColor;
+  final Color editAddressWidgetHighlightTransparent;
+  final Color editAddressWidgetSplashTransparent;
   final EdgeInsets editAddressPageOuterMostPadding;
   final EdgeInsets editAddressPageOnAddressSavedPadding;
   final EdgeInsets editAddressPageErrorPanelPadding;
@@ -205,17 +205,17 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme> {
     TextStyle? captionBold,
     TextStyle? descriptionThin,
     TextStyle? titleBold,
-    dynamic white,
-    dynamic black,
-    dynamic editAddressWidgetColor,
-    dynamic mediumWhite,
-    dynamic green,
-    dynamic blue,
-    dynamic editAddressPageBackgroundColor,
-    dynamic permanentAddressBlueLightColor,
-    dynamic disabledFilledButtonBackgroundColor,
-    dynamic editAddressWidgetHighlightTransparent,
-    dynamic editAddressWidgetSplashTransparent,
+    Color? white,
+    Color? black,
+    Color? editAddressWidgetColor,
+    Color? mediumWhite,
+    Color? green,
+    Color? blue,
+    Color? editAddressPageBackgroundColor,
+    Color? permanentAddressBlueLightColor,
+    Color? disabledFilledButtonBackgroundColor,
+    Color? editAddressWidgetHighlightTransparent,
+    Color? editAddressWidgetSplashTransparent,
     EdgeInsets? editAddressPageOuterMostPadding,
     EdgeInsets? editAddressPageOnAddressSavedPadding,
     EdgeInsets? editAddressPageErrorPanelPadding,
@@ -314,28 +314,29 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme> {
       descriptionThin:
           TextStyle.lerp(descriptionThin, other.descriptionThin, t)!,
       titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
-      white: t < 0.5 ? white : other.white,
-      black: t < 0.5 ? black : other.black,
+      white: Color.lerp(white, other.white, t)!,
+      black: Color.lerp(black, other.black, t)!,
       editAddressWidgetColor:
-          t < 0.5 ? editAddressWidgetColor : other.editAddressWidgetColor,
-      mediumWhite: t < 0.5 ? mediumWhite : other.mediumWhite,
-      green: t < 0.5 ? green : other.green,
-      blue: t < 0.5 ? blue : other.blue,
-      editAddressPageBackgroundColor: t < 0.5
-          ? editAddressPageBackgroundColor
-          : other.editAddressPageBackgroundColor,
-      permanentAddressBlueLightColor: t < 0.5
-          ? permanentAddressBlueLightColor
-          : other.permanentAddressBlueLightColor,
-      disabledFilledButtonBackgroundColor: t < 0.5
-          ? disabledFilledButtonBackgroundColor
-          : other.disabledFilledButtonBackgroundColor,
-      editAddressWidgetHighlightTransparent: t < 0.5
-          ? editAddressWidgetHighlightTransparent
-          : other.editAddressWidgetHighlightTransparent,
-      editAddressWidgetSplashTransparent: t < 0.5
-          ? editAddressWidgetSplashTransparent
-          : other.editAddressWidgetSplashTransparent,
+          Color.lerp(editAddressWidgetColor, other.editAddressWidgetColor, t)!,
+      mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
+      green: Color.lerp(green, other.green, t)!,
+      blue: Color.lerp(blue, other.blue, t)!,
+      editAddressPageBackgroundColor: Color.lerp(editAddressPageBackgroundColor,
+          other.editAddressPageBackgroundColor, t)!,
+      permanentAddressBlueLightColor: Color.lerp(permanentAddressBlueLightColor,
+          other.permanentAddressBlueLightColor, t)!,
+      disabledFilledButtonBackgroundColor: Color.lerp(
+          disabledFilledButtonBackgroundColor,
+          other.disabledFilledButtonBackgroundColor,
+          t)!,
+      editAddressWidgetHighlightTransparent: Color.lerp(
+          editAddressWidgetHighlightTransparent,
+          other.editAddressWidgetHighlightTransparent,
+          t)!,
+      editAddressWidgetSplashTransparent: Color.lerp(
+          editAddressWidgetSplashTransparent,
+          other.editAddressWidgetSplashTransparent,
+          t)!,
       editAddressPageOuterMostPadding: t < 0.5
           ? editAddressPageOuterMostPadding
           : other.editAddressPageOuterMostPadding,

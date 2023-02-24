@@ -6,9 +6,9 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:rx_bloc/rx_bloc.dart' as _i4;
 import 'package:widget_toolkit/src/lib_text_field_dialog/blocs/text_field_dialog_bloc.dart'
     as _i2;
-import 'package:rx_bloc/rx_bloc.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

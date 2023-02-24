@@ -123,16 +123,16 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
     required this.messageIcon,
   });
 
-  final dynamic primaryColor;
-  final dynamic backgroundColor;
-  final dynamic scaffoldBackgroundColor;
-  final dynamic highlightColor;
-  final dynamic primaryGradientStart;
-  final dynamic primaryGradientEnd;
-  final dynamic searchTextFieldIconColor;
-  final dynamic searchTextFieldIconColorActive;
-  final dynamic searchTextFieldBackgroundColor;
-  final dynamic searchTextFieldBackgroundColorActive;
+  final Color primaryColor;
+  final Color backgroundColor;
+  final Color scaffoldBackgroundColor;
+  final Color highlightColor;
+  final Color primaryGradientStart;
+  final Color primaryGradientEnd;
+  final Color searchTextFieldIconColor;
+  final Color searchTextFieldIconColorActive;
+  final Color searchTextFieldBackgroundColor;
+  final Color searchTextFieldBackgroundColorActive;
   final double searchTextFieldBorderRadius;
   final BoxBorder searchTextFieldBorderType;
   final EdgeInsets searchTextFieldIconEdgeInsets;
@@ -141,75 +141,75 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
   final EdgeInsets pickerListItemInnerEdgeInsets;
   final EdgeInsets pickerListItemOuterEdgeInsets;
   final double pickerListItemBorderRadius;
-  final dynamic pickerListItemSelectedColor;
-  final dynamic pickerListItemUnselectedColor;
+  final Color pickerListItemSelectedColor;
+  final Color pickerListItemUnselectedColor;
   final TextStyle pickerListItemTextStyle;
   final TextStyle captionBold;
   final TextStyle textButtonTextStyle;
-  final dynamic appErrorCardIconColor;
-  final dynamic appErrorCardBackgroundColor;
-  final dynamic lightRed;
-  final dynamic blueLight;
-  final dynamic greenLight;
-  final dynamic appErrorCardTextColor;
+  final Color appErrorCardIconColor;
+  final Color appErrorCardBackgroundColor;
+  final Color lightRed;
+  final Color blueLight;
+  final Color greenLight;
+  final Color appErrorCardTextColor;
   final EdgeInsets bottomSheetHeaderPadding;
-  final dynamic bottomSheetBarrierColor;
-  final dynamic messagePanelBackgroundColor;
-  final dynamic bottomSheetLineColor;
-  final dynamic bottomSheetBackgroundColor;
-  final dynamic bottomSheetBorderColor;
-  final dynamic loadingIndicatorColor;
+  final Color bottomSheetBarrierColor;
+  final Color messagePanelBackgroundColor;
+  final Color bottomSheetLineColor;
+  final Color bottomSheetBackgroundColor;
+  final Color bottomSheetBorderColor;
+  final Color loadingIndicatorColor;
   final TextStyle descriptionBold;
   final TextStyle titleBold;
   final TextStyle descriptionThin;
   final TextStyle errorTitle;
-  final dynamic disabledFilledButtonBackgroundColor;
-  final dynamic gradientRedStart;
-  final dynamic gradientRedEnd;
-  final dynamic filledButtonBackgroundColorDisabled;
-  final dynamic appFilledButtonBackgroundColorDisabled;
-  final dynamic appFilledButtonTextColorDisabled;
-  final dynamic appTextButtonTextColorDisabled;
-  final dynamic appFilledButtonTextColorEnabled;
-  final dynamic appSmallButtonBackgroundColor;
-  final dynamic appButtonTextColor;
-  final dynamic buttonTextColor;
-  final dynamic shimmerBaseColor;
-  final dynamic shimmerHighlightColor;
-  final dynamic white;
-  final dynamic buttonBlueGradientEnd;
-  final dynamic elevatedButtonBackgroundColor;
-  final dynamic textColorWhite;
-  final dynamic bodyTextColor2;
-  final dynamic appSmallButtonFilledBackgroundColor;
-  final dynamic appSmallButtonOutlinedBorderColor;
-  final dynamic activeButtonLanguageTextColor;
-  final dynamic activeButtonTextColor;
-  final dynamic disabledButtonTextColor;
-  final dynamic black;
-  final dynamic activeGradientColorStart;
-  final dynamic activeGradientColorEnd;
-  final dynamic activeGradientRedEnd;
-  final dynamic boxShadowColor;
-  final dynamic red;
-  final dynamic orange;
-  final dynamic orangeLight;
-  final dynamic darkBlue;
-  final dynamic darkGreen;
-  final dynamic textButtonLoadingIndicatorColor;
-  final dynamic appOutlineButtonBackgroundColor;
-  final dynamic buttonShadowColor;
-  final dynamic buttonPressedColor;
-  final dynamic buttonBorderColor;
+  final Color disabledFilledButtonBackgroundColor;
+  final Color gradientRedStart;
+  final Color gradientRedEnd;
+  final Color filledButtonBackgroundColorDisabled;
+  final Color appFilledButtonBackgroundColorDisabled;
+  final Color appFilledButtonTextColorDisabled;
+  final Color appTextButtonTextColorDisabled;
+  final Color appFilledButtonTextColorEnabled;
+  final Color appSmallButtonBackgroundColor;
+  final Color appButtonTextColor;
+  final Color buttonTextColor;
+  final Color shimmerBaseColor;
+  final Color shimmerHighlightColor;
+  final Color white;
+  final Color buttonBlueGradientEnd;
+  final Color elevatedButtonBackgroundColor;
+  final Color textColorWhite;
+  final Color bodyTextColor2;
+  final Color appSmallButtonFilledBackgroundColor;
+  final Color appSmallButtonOutlinedBorderColor;
+  final Color activeButtonLanguageTextColor;
+  final Color activeButtonTextColor;
+  final Color disabledButtonTextColor;
+  final Color black;
+  final Color activeGradientColorStart;
+  final Color activeGradientColorEnd;
+  final Color activeGradientRedEnd;
+  final Color boxShadowColor;
+  final Color red;
+  final Color orange;
+  final Color orangeLight;
+  final Color darkBlue;
+  final Color darkGreen;
+  final Color textButtonLoadingIndicatorColor;
+  final Color appOutlineButtonBackgroundColor;
+  final Color buttonShadowColor;
+  final Color buttonPressedColor;
+  final Color buttonBorderColor;
   final EdgeInsets outlineButtonContentPadding;
   final TextStyle outlineButtonTextStyle;
   final TextStyle outlineButtonDescriptionTextStyle;
-  final dynamic outlineButtonBackgroundColor;
-  final dynamic outlineButtonForegroundColor;
-  final dynamic outlineButtonBorderColor;
-  final dynamic outlineButtonPressedColor;
-  final dynamic outlineButtonTextColor;
-  final dynamic outlineButtonTextColorDisabled;
+  final Color outlineButtonBackgroundColor;
+  final Color outlineButtonForegroundColor;
+  final Color outlineButtonBorderColor;
+  final Color outlineButtonPressedColor;
+  final Color outlineButtonTextColor;
+  final Color outlineButtonTextColorDisabled;
   final EdgeInsets messagePanelErrorEdgeInsets;
   final EdgeInsets smallEdgeInsets;
   final EdgeInsets mediumEdgeInsets;
@@ -552,16 +552,16 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
 
   @override
   PrimeComponentsTheme copyWith({
-    dynamic primaryColor,
-    dynamic backgroundColor,
-    dynamic scaffoldBackgroundColor,
-    dynamic highlightColor,
-    dynamic primaryGradientStart,
-    dynamic primaryGradientEnd,
-    dynamic searchTextFieldIconColor,
-    dynamic searchTextFieldIconColorActive,
-    dynamic searchTextFieldBackgroundColor,
-    dynamic searchTextFieldBackgroundColorActive,
+    Color? primaryColor,
+    Color? backgroundColor,
+    Color? scaffoldBackgroundColor,
+    Color? highlightColor,
+    Color? primaryGradientStart,
+    Color? primaryGradientEnd,
+    Color? searchTextFieldIconColor,
+    Color? searchTextFieldIconColorActive,
+    Color? searchTextFieldBackgroundColor,
+    Color? searchTextFieldBackgroundColorActive,
     double? searchTextFieldBorderRadius,
     BoxBorder? searchTextFieldBorderType,
     EdgeInsets? searchTextFieldIconEdgeInsets,
@@ -570,75 +570,75 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
     EdgeInsets? pickerListItemInnerEdgeInsets,
     EdgeInsets? pickerListItemOuterEdgeInsets,
     double? pickerListItemBorderRadius,
-    dynamic pickerListItemSelectedColor,
-    dynamic pickerListItemUnselectedColor,
+    Color? pickerListItemSelectedColor,
+    Color? pickerListItemUnselectedColor,
     TextStyle? pickerListItemTextStyle,
     TextStyle? captionBold,
     TextStyle? textButtonTextStyle,
-    dynamic appErrorCardIconColor,
-    dynamic appErrorCardBackgroundColor,
-    dynamic lightRed,
-    dynamic blueLight,
-    dynamic greenLight,
-    dynamic appErrorCardTextColor,
+    Color? appErrorCardIconColor,
+    Color? appErrorCardBackgroundColor,
+    Color? lightRed,
+    Color? blueLight,
+    Color? greenLight,
+    Color? appErrorCardTextColor,
     EdgeInsets? bottomSheetHeaderPadding,
-    dynamic bottomSheetBarrierColor,
-    dynamic messagePanelBackgroundColor,
-    dynamic bottomSheetLineColor,
-    dynamic bottomSheetBackgroundColor,
-    dynamic bottomSheetBorderColor,
-    dynamic loadingIndicatorColor,
+    Color? bottomSheetBarrierColor,
+    Color? messagePanelBackgroundColor,
+    Color? bottomSheetLineColor,
+    Color? bottomSheetBackgroundColor,
+    Color? bottomSheetBorderColor,
+    Color? loadingIndicatorColor,
     TextStyle? descriptionBold,
     TextStyle? titleBold,
     TextStyle? descriptionThin,
     TextStyle? errorTitle,
-    dynamic disabledFilledButtonBackgroundColor,
-    dynamic gradientRedStart,
-    dynamic gradientRedEnd,
-    dynamic filledButtonBackgroundColorDisabled,
-    dynamic appFilledButtonBackgroundColorDisabled,
-    dynamic appFilledButtonTextColorDisabled,
-    dynamic appTextButtonTextColorDisabled,
-    dynamic appFilledButtonTextColorEnabled,
-    dynamic appSmallButtonBackgroundColor,
-    dynamic appButtonTextColor,
-    dynamic buttonTextColor,
-    dynamic shimmerBaseColor,
-    dynamic shimmerHighlightColor,
-    dynamic white,
-    dynamic buttonBlueGradientEnd,
-    dynamic elevatedButtonBackgroundColor,
-    dynamic textColorWhite,
-    dynamic bodyTextColor2,
-    dynamic appSmallButtonFilledBackgroundColor,
-    dynamic appSmallButtonOutlinedBorderColor,
-    dynamic activeButtonLanguageTextColor,
-    dynamic activeButtonTextColor,
-    dynamic disabledButtonTextColor,
-    dynamic black,
-    dynamic activeGradientColorStart,
-    dynamic activeGradientColorEnd,
-    dynamic activeGradientRedEnd,
-    dynamic boxShadowColor,
-    dynamic red,
-    dynamic orange,
-    dynamic orangeLight,
-    dynamic darkBlue,
-    dynamic darkGreen,
-    dynamic textButtonLoadingIndicatorColor,
-    dynamic appOutlineButtonBackgroundColor,
-    dynamic buttonShadowColor,
-    dynamic buttonPressedColor,
-    dynamic buttonBorderColor,
+    Color? disabledFilledButtonBackgroundColor,
+    Color? gradientRedStart,
+    Color? gradientRedEnd,
+    Color? filledButtonBackgroundColorDisabled,
+    Color? appFilledButtonBackgroundColorDisabled,
+    Color? appFilledButtonTextColorDisabled,
+    Color? appTextButtonTextColorDisabled,
+    Color? appFilledButtonTextColorEnabled,
+    Color? appSmallButtonBackgroundColor,
+    Color? appButtonTextColor,
+    Color? buttonTextColor,
+    Color? shimmerBaseColor,
+    Color? shimmerHighlightColor,
+    Color? white,
+    Color? buttonBlueGradientEnd,
+    Color? elevatedButtonBackgroundColor,
+    Color? textColorWhite,
+    Color? bodyTextColor2,
+    Color? appSmallButtonFilledBackgroundColor,
+    Color? appSmallButtonOutlinedBorderColor,
+    Color? activeButtonLanguageTextColor,
+    Color? activeButtonTextColor,
+    Color? disabledButtonTextColor,
+    Color? black,
+    Color? activeGradientColorStart,
+    Color? activeGradientColorEnd,
+    Color? activeGradientRedEnd,
+    Color? boxShadowColor,
+    Color? red,
+    Color? orange,
+    Color? orangeLight,
+    Color? darkBlue,
+    Color? darkGreen,
+    Color? textButtonLoadingIndicatorColor,
+    Color? appOutlineButtonBackgroundColor,
+    Color? buttonShadowColor,
+    Color? buttonPressedColor,
+    Color? buttonBorderColor,
     EdgeInsets? outlineButtonContentPadding,
     TextStyle? outlineButtonTextStyle,
     TextStyle? outlineButtonDescriptionTextStyle,
-    dynamic outlineButtonBackgroundColor,
-    dynamic outlineButtonForegroundColor,
-    dynamic outlineButtonBorderColor,
-    dynamic outlineButtonPressedColor,
-    dynamic outlineButtonTextColor,
-    dynamic outlineButtonTextColorDisabled,
+    Color? outlineButtonBackgroundColor,
+    Color? outlineButtonForegroundColor,
+    Color? outlineButtonBorderColor,
+    Color? outlineButtonPressedColor,
+    Color? outlineButtonTextColor,
+    Color? outlineButtonTextColorDisabled,
     EdgeInsets? messagePanelErrorEdgeInsets,
     EdgeInsets? smallEdgeInsets,
     EdgeInsets? mediumEdgeInsets,
@@ -846,26 +846,25 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
       ThemeExtension<PrimeComponentsTheme>? other, double t) {
     if (other is! PrimeComponentsTheme) return this;
     return PrimeComponentsTheme(
-      primaryColor: t < 0.5 ? primaryColor : other.primaryColor,
-      backgroundColor: t < 0.5 ? backgroundColor : other.backgroundColor,
-      scaffoldBackgroundColor:
-          t < 0.5 ? scaffoldBackgroundColor : other.scaffoldBackgroundColor,
-      highlightColor: t < 0.5 ? highlightColor : other.highlightColor,
+      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      scaffoldBackgroundColor: Color.lerp(
+          scaffoldBackgroundColor, other.scaffoldBackgroundColor, t)!,
+      highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       primaryGradientStart:
-          t < 0.5 ? primaryGradientStart : other.primaryGradientStart,
+          Color.lerp(primaryGradientStart, other.primaryGradientStart, t)!,
       primaryGradientEnd:
-          t < 0.5 ? primaryGradientEnd : other.primaryGradientEnd,
-      searchTextFieldIconColor:
-          t < 0.5 ? searchTextFieldIconColor : other.searchTextFieldIconColor,
-      searchTextFieldIconColorActive: t < 0.5
-          ? searchTextFieldIconColorActive
-          : other.searchTextFieldIconColorActive,
-      searchTextFieldBackgroundColor: t < 0.5
-          ? searchTextFieldBackgroundColor
-          : other.searchTextFieldBackgroundColor,
-      searchTextFieldBackgroundColorActive: t < 0.5
-          ? searchTextFieldBackgroundColorActive
-          : other.searchTextFieldBackgroundColorActive,
+          Color.lerp(primaryGradientEnd, other.primaryGradientEnd, t)!,
+      searchTextFieldIconColor: Color.lerp(
+          searchTextFieldIconColor, other.searchTextFieldIconColor, t)!,
+      searchTextFieldIconColorActive: Color.lerp(searchTextFieldIconColorActive,
+          other.searchTextFieldIconColorActive, t)!,
+      searchTextFieldBackgroundColor: Color.lerp(searchTextFieldBackgroundColor,
+          other.searchTextFieldBackgroundColor, t)!,
+      searchTextFieldBackgroundColorActive: Color.lerp(
+          searchTextFieldBackgroundColorActive,
+          other.searchTextFieldBackgroundColorActive,
+          t)!,
       searchTextFieldBorderRadius: t < 0.5
           ? searchTextFieldBorderRadius
           : other.searchTextFieldBorderRadius,
@@ -887,122 +886,126 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
       pickerListItemBorderRadius: t < 0.5
           ? pickerListItemBorderRadius
           : other.pickerListItemBorderRadius,
-      pickerListItemSelectedColor: t < 0.5
-          ? pickerListItemSelectedColor
-          : other.pickerListItemSelectedColor,
-      pickerListItemUnselectedColor: t < 0.5
-          ? pickerListItemUnselectedColor
-          : other.pickerListItemUnselectedColor,
+      pickerListItemSelectedColor: Color.lerp(
+          pickerListItemSelectedColor, other.pickerListItemSelectedColor, t)!,
+      pickerListItemUnselectedColor: Color.lerp(pickerListItemUnselectedColor,
+          other.pickerListItemUnselectedColor, t)!,
       pickerListItemTextStyle: TextStyle.lerp(
           pickerListItemTextStyle, other.pickerListItemTextStyle, t)!,
       captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
       textButtonTextStyle:
           TextStyle.lerp(textButtonTextStyle, other.textButtonTextStyle, t)!,
       appErrorCardIconColor:
-          t < 0.5 ? appErrorCardIconColor : other.appErrorCardIconColor,
-      appErrorCardBackgroundColor: t < 0.5
-          ? appErrorCardBackgroundColor
-          : other.appErrorCardBackgroundColor,
-      lightRed: t < 0.5 ? lightRed : other.lightRed,
-      blueLight: t < 0.5 ? blueLight : other.blueLight,
-      greenLight: t < 0.5 ? greenLight : other.greenLight,
+          Color.lerp(appErrorCardIconColor, other.appErrorCardIconColor, t)!,
+      appErrorCardBackgroundColor: Color.lerp(
+          appErrorCardBackgroundColor, other.appErrorCardBackgroundColor, t)!,
+      lightRed: Color.lerp(lightRed, other.lightRed, t)!,
+      blueLight: Color.lerp(blueLight, other.blueLight, t)!,
+      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
       appErrorCardTextColor:
-          t < 0.5 ? appErrorCardTextColor : other.appErrorCardTextColor,
+          Color.lerp(appErrorCardTextColor, other.appErrorCardTextColor, t)!,
       bottomSheetHeaderPadding:
           t < 0.5 ? bottomSheetHeaderPadding : other.bottomSheetHeaderPadding,
-      bottomSheetBarrierColor:
-          t < 0.5 ? bottomSheetBarrierColor : other.bottomSheetBarrierColor,
-      messagePanelBackgroundColor: t < 0.5
-          ? messagePanelBackgroundColor
-          : other.messagePanelBackgroundColor,
+      bottomSheetBarrierColor: Color.lerp(
+          bottomSheetBarrierColor, other.bottomSheetBarrierColor, t)!,
+      messagePanelBackgroundColor: Color.lerp(
+          messagePanelBackgroundColor, other.messagePanelBackgroundColor, t)!,
       bottomSheetLineColor:
-          t < 0.5 ? bottomSheetLineColor : other.bottomSheetLineColor,
-      bottomSheetBackgroundColor: t < 0.5
-          ? bottomSheetBackgroundColor
-          : other.bottomSheetBackgroundColor,
+          Color.lerp(bottomSheetLineColor, other.bottomSheetLineColor, t)!,
+      bottomSheetBackgroundColor: Color.lerp(
+          bottomSheetBackgroundColor, other.bottomSheetBackgroundColor, t)!,
       bottomSheetBorderColor:
-          t < 0.5 ? bottomSheetBorderColor : other.bottomSheetBorderColor,
+          Color.lerp(bottomSheetBorderColor, other.bottomSheetBorderColor, t)!,
       loadingIndicatorColor:
-          t < 0.5 ? loadingIndicatorColor : other.loadingIndicatorColor,
+          Color.lerp(loadingIndicatorColor, other.loadingIndicatorColor, t)!,
       descriptionBold:
           TextStyle.lerp(descriptionBold, other.descriptionBold, t)!,
       titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
       descriptionThin:
           TextStyle.lerp(descriptionThin, other.descriptionThin, t)!,
       errorTitle: TextStyle.lerp(errorTitle, other.errorTitle, t)!,
-      disabledFilledButtonBackgroundColor: t < 0.5
-          ? disabledFilledButtonBackgroundColor
-          : other.disabledFilledButtonBackgroundColor,
-      gradientRedStart: t < 0.5 ? gradientRedStart : other.gradientRedStart,
-      gradientRedEnd: t < 0.5 ? gradientRedEnd : other.gradientRedEnd,
-      filledButtonBackgroundColorDisabled: t < 0.5
-          ? filledButtonBackgroundColorDisabled
-          : other.filledButtonBackgroundColorDisabled,
-      appFilledButtonBackgroundColorDisabled: t < 0.5
-          ? appFilledButtonBackgroundColorDisabled
-          : other.appFilledButtonBackgroundColorDisabled,
-      appFilledButtonTextColorDisabled: t < 0.5
-          ? appFilledButtonTextColorDisabled
-          : other.appFilledButtonTextColorDisabled,
-      appTextButtonTextColorDisabled: t < 0.5
-          ? appTextButtonTextColorDisabled
-          : other.appTextButtonTextColorDisabled,
-      appFilledButtonTextColorEnabled: t < 0.5
-          ? appFilledButtonTextColorEnabled
-          : other.appFilledButtonTextColorEnabled,
-      appSmallButtonBackgroundColor: t < 0.5
-          ? appSmallButtonBackgroundColor
-          : other.appSmallButtonBackgroundColor,
+      disabledFilledButtonBackgroundColor: Color.lerp(
+          disabledFilledButtonBackgroundColor,
+          other.disabledFilledButtonBackgroundColor,
+          t)!,
+      gradientRedStart:
+          Color.lerp(gradientRedStart, other.gradientRedStart, t)!,
+      gradientRedEnd: Color.lerp(gradientRedEnd, other.gradientRedEnd, t)!,
+      filledButtonBackgroundColorDisabled: Color.lerp(
+          filledButtonBackgroundColorDisabled,
+          other.filledButtonBackgroundColorDisabled,
+          t)!,
+      appFilledButtonBackgroundColorDisabled: Color.lerp(
+          appFilledButtonBackgroundColorDisabled,
+          other.appFilledButtonBackgroundColorDisabled,
+          t)!,
+      appFilledButtonTextColorDisabled: Color.lerp(
+          appFilledButtonTextColorDisabled,
+          other.appFilledButtonTextColorDisabled,
+          t)!,
+      appTextButtonTextColorDisabled: Color.lerp(appTextButtonTextColorDisabled,
+          other.appTextButtonTextColorDisabled, t)!,
+      appFilledButtonTextColorEnabled: Color.lerp(
+          appFilledButtonTextColorEnabled,
+          other.appFilledButtonTextColorEnabled,
+          t)!,
+      appSmallButtonBackgroundColor: Color.lerp(appSmallButtonBackgroundColor,
+          other.appSmallButtonBackgroundColor, t)!,
       appButtonTextColor:
-          t < 0.5 ? appButtonTextColor : other.appButtonTextColor,
-      buttonTextColor: t < 0.5 ? buttonTextColor : other.buttonTextColor,
-      shimmerBaseColor: t < 0.5 ? shimmerBaseColor : other.shimmerBaseColor,
+          Color.lerp(appButtonTextColor, other.appButtonTextColor, t)!,
+      buttonTextColor: Color.lerp(buttonTextColor, other.buttonTextColor, t)!,
+      shimmerBaseColor:
+          Color.lerp(shimmerBaseColor, other.shimmerBaseColor, t)!,
       shimmerHighlightColor:
-          t < 0.5 ? shimmerHighlightColor : other.shimmerHighlightColor,
-      white: t < 0.5 ? white : other.white,
+          Color.lerp(shimmerHighlightColor, other.shimmerHighlightColor, t)!,
+      white: Color.lerp(white, other.white, t)!,
       buttonBlueGradientEnd:
-          t < 0.5 ? buttonBlueGradientEnd : other.buttonBlueGradientEnd,
-      elevatedButtonBackgroundColor: t < 0.5
-          ? elevatedButtonBackgroundColor
-          : other.elevatedButtonBackgroundColor,
-      textColorWhite: t < 0.5 ? textColorWhite : other.textColorWhite,
-      bodyTextColor2: t < 0.5 ? bodyTextColor2 : other.bodyTextColor2,
-      appSmallButtonFilledBackgroundColor: t < 0.5
-          ? appSmallButtonFilledBackgroundColor
-          : other.appSmallButtonFilledBackgroundColor,
-      appSmallButtonOutlinedBorderColor: t < 0.5
-          ? appSmallButtonOutlinedBorderColor
-          : other.appSmallButtonOutlinedBorderColor,
-      activeButtonLanguageTextColor: t < 0.5
-          ? activeButtonLanguageTextColor
-          : other.activeButtonLanguageTextColor,
+          Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
+      elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
+          other.elevatedButtonBackgroundColor, t)!,
+      textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
+      bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
+      appSmallButtonFilledBackgroundColor: Color.lerp(
+          appSmallButtonFilledBackgroundColor,
+          other.appSmallButtonFilledBackgroundColor,
+          t)!,
+      appSmallButtonOutlinedBorderColor: Color.lerp(
+          appSmallButtonOutlinedBorderColor,
+          other.appSmallButtonOutlinedBorderColor,
+          t)!,
+      activeButtonLanguageTextColor: Color.lerp(activeButtonLanguageTextColor,
+          other.activeButtonLanguageTextColor, t)!,
       activeButtonTextColor:
-          t < 0.5 ? activeButtonTextColor : other.activeButtonTextColor,
-      disabledButtonTextColor:
-          t < 0.5 ? disabledButtonTextColor : other.disabledButtonTextColor,
-      black: t < 0.5 ? black : other.black,
-      activeGradientColorStart:
-          t < 0.5 ? activeGradientColorStart : other.activeGradientColorStart,
+          Color.lerp(activeButtonTextColor, other.activeButtonTextColor, t)!,
+      disabledButtonTextColor: Color.lerp(
+          disabledButtonTextColor, other.disabledButtonTextColor, t)!,
+      black: Color.lerp(black, other.black, t)!,
+      activeGradientColorStart: Color.lerp(
+          activeGradientColorStart, other.activeGradientColorStart, t)!,
       activeGradientColorEnd:
-          t < 0.5 ? activeGradientColorEnd : other.activeGradientColorEnd,
+          Color.lerp(activeGradientColorEnd, other.activeGradientColorEnd, t)!,
       activeGradientRedEnd:
-          t < 0.5 ? activeGradientRedEnd : other.activeGradientRedEnd,
-      boxShadowColor: t < 0.5 ? boxShadowColor : other.boxShadowColor,
-      red: t < 0.5 ? red : other.red,
-      orange: t < 0.5 ? orange : other.orange,
-      orangeLight: t < 0.5 ? orangeLight : other.orangeLight,
-      darkBlue: t < 0.5 ? darkBlue : other.darkBlue,
-      darkGreen: t < 0.5 ? darkGreen : other.darkGreen,
-      textButtonLoadingIndicatorColor: t < 0.5
-          ? textButtonLoadingIndicatorColor
-          : other.textButtonLoadingIndicatorColor,
-      appOutlineButtonBackgroundColor: t < 0.5
-          ? appOutlineButtonBackgroundColor
-          : other.appOutlineButtonBackgroundColor,
-      buttonShadowColor: t < 0.5 ? buttonShadowColor : other.buttonShadowColor,
+          Color.lerp(activeGradientRedEnd, other.activeGradientRedEnd, t)!,
+      boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
+      red: Color.lerp(red, other.red, t)!,
+      orange: Color.lerp(orange, other.orange, t)!,
+      orangeLight: Color.lerp(orangeLight, other.orangeLight, t)!,
+      darkBlue: Color.lerp(darkBlue, other.darkBlue, t)!,
+      darkGreen: Color.lerp(darkGreen, other.darkGreen, t)!,
+      textButtonLoadingIndicatorColor: Color.lerp(
+          textButtonLoadingIndicatorColor,
+          other.textButtonLoadingIndicatorColor,
+          t)!,
+      appOutlineButtonBackgroundColor: Color.lerp(
+          appOutlineButtonBackgroundColor,
+          other.appOutlineButtonBackgroundColor,
+          t)!,
+      buttonShadowColor:
+          Color.lerp(buttonShadowColor, other.buttonShadowColor, t)!,
       buttonPressedColor:
-          t < 0.5 ? buttonPressedColor : other.buttonPressedColor,
-      buttonBorderColor: t < 0.5 ? buttonBorderColor : other.buttonBorderColor,
+          Color.lerp(buttonPressedColor, other.buttonPressedColor, t)!,
+      buttonBorderColor:
+          Color.lerp(buttonBorderColor, other.buttonBorderColor, t)!,
       outlineButtonContentPadding: t < 0.5
           ? outlineButtonContentPadding
           : other.outlineButtonContentPadding,
@@ -1012,21 +1015,18 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
           outlineButtonDescriptionTextStyle,
           other.outlineButtonDescriptionTextStyle,
           t)!,
-      outlineButtonBackgroundColor: t < 0.5
-          ? outlineButtonBackgroundColor
-          : other.outlineButtonBackgroundColor,
-      outlineButtonForegroundColor: t < 0.5
-          ? outlineButtonForegroundColor
-          : other.outlineButtonForegroundColor,
-      outlineButtonBorderColor:
-          t < 0.5 ? outlineButtonBorderColor : other.outlineButtonBorderColor,
-      outlineButtonPressedColor:
-          t < 0.5 ? outlineButtonPressedColor : other.outlineButtonPressedColor,
+      outlineButtonBackgroundColor: Color.lerp(
+          outlineButtonBackgroundColor, other.outlineButtonBackgroundColor, t)!,
+      outlineButtonForegroundColor: Color.lerp(
+          outlineButtonForegroundColor, other.outlineButtonForegroundColor, t)!,
+      outlineButtonBorderColor: Color.lerp(
+          outlineButtonBorderColor, other.outlineButtonBorderColor, t)!,
+      outlineButtonPressedColor: Color.lerp(
+          outlineButtonPressedColor, other.outlineButtonPressedColor, t)!,
       outlineButtonTextColor:
-          t < 0.5 ? outlineButtonTextColor : other.outlineButtonTextColor,
-      outlineButtonTextColorDisabled: t < 0.5
-          ? outlineButtonTextColorDisabled
-          : other.outlineButtonTextColorDisabled,
+          Color.lerp(outlineButtonTextColor, other.outlineButtonTextColor, t)!,
+      outlineButtonTextColorDisabled: Color.lerp(outlineButtonTextColorDisabled,
+          other.outlineButtonTextColorDisabled, t)!,
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,

@@ -55,23 +55,23 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
   final double spacingM;
   final double spacingXXXXL1;
   final EdgeInsets messagePanelErrorEdgeInsets;
-  final dynamic activeButtonLanguageTextColor;
-  final dynamic disabledFilledButtonBackgroundColor;
-  final dynamic activeGradientRedEnd;
-  final dynamic languageGradientRedStart;
-  final dynamic languageGradientRedEnd;
-  final dynamic filledButtonBackgroundColorDisabled;
-  final dynamic buttonTextColor;
-  final dynamic appFilledButtonTextColorDisabled;
-  final dynamic textColorWhite;
-  final dynamic boxShadowColor;
-  final dynamic bodyTextColor2;
-  final dynamic textButtonLoadingIndicatorColor;
-  final dynamic buttonBlueGradientEnd;
-  final dynamic elevatedButtonBackgroundColor;
-  final dynamic appOutlineButtonBackgroundColor;
-  final dynamic errorTextBackgroundColor;
-  final dynamic errorTextColor;
+  final Color activeButtonLanguageTextColor;
+  final Color disabledFilledButtonBackgroundColor;
+  final Color activeGradientRedEnd;
+  final Color languageGradientRedStart;
+  final Color languageGradientRedEnd;
+  final Color filledButtonBackgroundColorDisabled;
+  final Color buttonTextColor;
+  final Color appFilledButtonTextColorDisabled;
+  final Color textColorWhite;
+  final Color boxShadowColor;
+  final Color bodyTextColor2;
+  final Color textButtonLoadingIndicatorColor;
+  final Color buttonBlueGradientEnd;
+  final Color elevatedButtonBackgroundColor;
+  final Color appOutlineButtonBackgroundColor;
+  final Color errorTextBackgroundColor;
+  final Color errorTextColor;
   final SvgFile checkIcon;
   final SvgFile dangerIcon;
 
@@ -184,23 +184,23 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     double? spacingM,
     double? spacingXXXXL1,
     EdgeInsets? messagePanelErrorEdgeInsets,
-    dynamic activeButtonLanguageTextColor,
-    dynamic disabledFilledButtonBackgroundColor,
-    dynamic activeGradientRedEnd,
-    dynamic languageGradientRedStart,
-    dynamic languageGradientRedEnd,
-    dynamic filledButtonBackgroundColorDisabled,
-    dynamic buttonTextColor,
-    dynamic appFilledButtonTextColorDisabled,
-    dynamic textColorWhite,
-    dynamic boxShadowColor,
-    dynamic bodyTextColor2,
-    dynamic textButtonLoadingIndicatorColor,
-    dynamic buttonBlueGradientEnd,
-    dynamic elevatedButtonBackgroundColor,
-    dynamic appOutlineButtonBackgroundColor,
-    dynamic errorTextBackgroundColor,
-    dynamic errorTextColor,
+    Color? activeButtonLanguageTextColor,
+    Color? disabledFilledButtonBackgroundColor,
+    Color? activeGradientRedEnd,
+    Color? languageGradientRedStart,
+    Color? languageGradientRedEnd,
+    Color? filledButtonBackgroundColorDisabled,
+    Color? buttonTextColor,
+    Color? appFilledButtonTextColorDisabled,
+    Color? textColorWhite,
+    Color? boxShadowColor,
+    Color? bodyTextColor2,
+    Color? textButtonLoadingIndicatorColor,
+    Color? buttonBlueGradientEnd,
+    Color? elevatedButtonBackgroundColor,
+    Color? appOutlineButtonBackgroundColor,
+    Color? errorTextBackgroundColor,
+    Color? errorTextColor,
     SvgFile? checkIcon,
     SvgFile? dangerIcon,
   }) {
@@ -290,42 +290,45 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,
-      activeButtonLanguageTextColor: t < 0.5
-          ? activeButtonLanguageTextColor
-          : other.activeButtonLanguageTextColor,
-      disabledFilledButtonBackgroundColor: t < 0.5
-          ? disabledFilledButtonBackgroundColor
-          : other.disabledFilledButtonBackgroundColor,
+      activeButtonLanguageTextColor: Color.lerp(activeButtonLanguageTextColor,
+          other.activeButtonLanguageTextColor, t)!,
+      disabledFilledButtonBackgroundColor: Color.lerp(
+          disabledFilledButtonBackgroundColor,
+          other.disabledFilledButtonBackgroundColor,
+          t)!,
       activeGradientRedEnd:
-          t < 0.5 ? activeGradientRedEnd : other.activeGradientRedEnd,
-      languageGradientRedStart:
-          t < 0.5 ? languageGradientRedStart : other.languageGradientRedStart,
+          Color.lerp(activeGradientRedEnd, other.activeGradientRedEnd, t)!,
+      languageGradientRedStart: Color.lerp(
+          languageGradientRedStart, other.languageGradientRedStart, t)!,
       languageGradientRedEnd:
-          t < 0.5 ? languageGradientRedEnd : other.languageGradientRedEnd,
-      filledButtonBackgroundColorDisabled: t < 0.5
-          ? filledButtonBackgroundColorDisabled
-          : other.filledButtonBackgroundColorDisabled,
-      buttonTextColor: t < 0.5 ? buttonTextColor : other.buttonTextColor,
-      appFilledButtonTextColorDisabled: t < 0.5
-          ? appFilledButtonTextColorDisabled
-          : other.appFilledButtonTextColorDisabled,
-      textColorWhite: t < 0.5 ? textColorWhite : other.textColorWhite,
-      boxShadowColor: t < 0.5 ? boxShadowColor : other.boxShadowColor,
-      bodyTextColor2: t < 0.5 ? bodyTextColor2 : other.bodyTextColor2,
-      textButtonLoadingIndicatorColor: t < 0.5
-          ? textButtonLoadingIndicatorColor
-          : other.textButtonLoadingIndicatorColor,
+          Color.lerp(languageGradientRedEnd, other.languageGradientRedEnd, t)!,
+      filledButtonBackgroundColorDisabled: Color.lerp(
+          filledButtonBackgroundColorDisabled,
+          other.filledButtonBackgroundColorDisabled,
+          t)!,
+      buttonTextColor: Color.lerp(buttonTextColor, other.buttonTextColor, t)!,
+      appFilledButtonTextColorDisabled: Color.lerp(
+          appFilledButtonTextColorDisabled,
+          other.appFilledButtonTextColorDisabled,
+          t)!,
+      textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
+      boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
+      bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
+      textButtonLoadingIndicatorColor: Color.lerp(
+          textButtonLoadingIndicatorColor,
+          other.textButtonLoadingIndicatorColor,
+          t)!,
       buttonBlueGradientEnd:
-          t < 0.5 ? buttonBlueGradientEnd : other.buttonBlueGradientEnd,
-      elevatedButtonBackgroundColor: t < 0.5
-          ? elevatedButtonBackgroundColor
-          : other.elevatedButtonBackgroundColor,
-      appOutlineButtonBackgroundColor: t < 0.5
-          ? appOutlineButtonBackgroundColor
-          : other.appOutlineButtonBackgroundColor,
-      errorTextBackgroundColor:
-          t < 0.5 ? errorTextBackgroundColor : other.errorTextBackgroundColor,
-      errorTextColor: t < 0.5 ? errorTextColor : other.errorTextColor,
+          Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
+      elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
+          other.elevatedButtonBackgroundColor, t)!,
+      appOutlineButtonBackgroundColor: Color.lerp(
+          appOutlineButtonBackgroundColor,
+          other.appOutlineButtonBackgroundColor,
+          t)!,
+      errorTextBackgroundColor: Color.lerp(
+          errorTextBackgroundColor, other.errorTextBackgroundColor, t)!,
+      errorTextColor: Color.lerp(errorTextColor, other.errorTextColor, t)!,
       checkIcon: t < 0.5 ? checkIcon : other.checkIcon,
       dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
     );

@@ -7,21 +7,20 @@ part of 'app_button_color_style.dart';
 // **************************************************************************
 
 abstract class _$PrimeButtonColorStyleCWProxy {
-  PrimeButtonColorStyle activeButtonTextColor(dynamic activeButtonTextColor);
+  PrimeButtonColorStyle activeButtonTextColor(Color activeButtonTextColor);
 
-  PrimeButtonColorStyle disabledButtonTextColor(
-      dynamic disabledButtonTextColor);
+  PrimeButtonColorStyle disabledButtonTextColor(Color disabledButtonTextColor);
 
   PrimeButtonColorStyle activeGradientColorStart(
-      dynamic activeGradientColorStart);
+      Color activeGradientColorStart);
 
-  PrimeButtonColorStyle activeGradientColorEnd(dynamic activeGradientColorEnd);
+  PrimeButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd);
 
-  PrimeButtonColorStyle shadowColor(dynamic shadowColor);
+  PrimeButtonColorStyle shadowColor(Color shadowColor);
 
-  PrimeButtonColorStyle pressedColor(dynamic pressedColor);
+  PrimeButtonColorStyle pressedColor(Color pressedColor);
 
-  PrimeButtonColorStyle borderColor(dynamic borderColor);
+  PrimeButtonColorStyle borderColor(Color borderColor);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PrimeButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -30,13 +29,13 @@ abstract class _$PrimeButtonColorStyleCWProxy {
   /// PrimeButtonColorStyle(...).copyWith(id: 12, name: "My name")
   /// ````
   PrimeButtonColorStyle call({
-    dynamic? activeButtonTextColor,
-    dynamic? disabledButtonTextColor,
-    dynamic? activeGradientColorStart,
-    dynamic? activeGradientColorEnd,
-    dynamic? shadowColor,
-    dynamic? pressedColor,
-    dynamic? borderColor,
+    Color? activeButtonTextColor,
+    Color? disabledButtonTextColor,
+    Color? activeGradientColorStart,
+    Color? activeGradientColorEnd,
+    Color? shadowColor,
+    Color? pressedColor,
+    Color? borderColor,
   });
 }
 
@@ -48,34 +47,33 @@ class _$PrimeButtonColorStyleCWProxyImpl
   final PrimeButtonColorStyle _value;
 
   @override
-  PrimeButtonColorStyle activeButtonTextColor(dynamic activeButtonTextColor) =>
+  PrimeButtonColorStyle activeButtonTextColor(Color activeButtonTextColor) =>
       this(activeButtonTextColor: activeButtonTextColor);
 
   @override
   PrimeButtonColorStyle disabledButtonTextColor(
-          dynamic disabledButtonTextColor) =>
+          Color disabledButtonTextColor) =>
       this(disabledButtonTextColor: disabledButtonTextColor);
 
   @override
   PrimeButtonColorStyle activeGradientColorStart(
-          dynamic activeGradientColorStart) =>
+          Color activeGradientColorStart) =>
       this(activeGradientColorStart: activeGradientColorStart);
 
   @override
-  PrimeButtonColorStyle activeGradientColorEnd(
-          dynamic activeGradientColorEnd) =>
+  PrimeButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd) =>
       this(activeGradientColorEnd: activeGradientColorEnd);
 
   @override
-  PrimeButtonColorStyle shadowColor(dynamic shadowColor) =>
+  PrimeButtonColorStyle shadowColor(Color shadowColor) =>
       this(shadowColor: shadowColor);
 
   @override
-  PrimeButtonColorStyle pressedColor(dynamic pressedColor) =>
+  PrimeButtonColorStyle pressedColor(Color pressedColor) =>
       this(pressedColor: pressedColor);
 
   @override
-  PrimeButtonColorStyle borderColor(dynamic borderColor) =>
+  PrimeButtonColorStyle borderColor(Color borderColor) =>
       this(borderColor: borderColor);
 
   @override
@@ -102,46 +100,46 @@ class _$PrimeButtonColorStyleCWProxyImpl
               // ignore: unnecessary_non_null_assertion
               ? _value.activeButtonTextColor!
               // ignore: cast_nullable_to_non_nullable
-              : activeButtonTextColor as dynamic,
+              : activeButtonTextColor as Color,
       disabledButtonTextColor:
           disabledButtonTextColor == const $CopyWithPlaceholder() ||
                   disabledButtonTextColor == null
               // ignore: unnecessary_non_null_assertion
               ? _value.disabledButtonTextColor!
               // ignore: cast_nullable_to_non_nullable
-              : disabledButtonTextColor as dynamic,
+              : disabledButtonTextColor as Color,
       activeGradientColorStart:
           activeGradientColorStart == const $CopyWithPlaceholder() ||
                   activeGradientColorStart == null
               // ignore: unnecessary_non_null_assertion
               ? _value.activeGradientColorStart!
               // ignore: cast_nullable_to_non_nullable
-              : activeGradientColorStart as dynamic,
+              : activeGradientColorStart as Color,
       activeGradientColorEnd:
           activeGradientColorEnd == const $CopyWithPlaceholder() ||
                   activeGradientColorEnd == null
               // ignore: unnecessary_non_null_assertion
               ? _value.activeGradientColorEnd!
               // ignore: cast_nullable_to_non_nullable
-              : activeGradientColorEnd as dynamic,
+              : activeGradientColorEnd as Color,
       shadowColor:
           shadowColor == const $CopyWithPlaceholder() || shadowColor == null
               // ignore: unnecessary_non_null_assertion
               ? _value.shadowColor!
               // ignore: cast_nullable_to_non_nullable
-              : shadowColor as dynamic,
+              : shadowColor as Color,
       pressedColor:
           pressedColor == const $CopyWithPlaceholder() || pressedColor == null
               // ignore: unnecessary_non_null_assertion
               ? _value.pressedColor!
               // ignore: cast_nullable_to_non_nullable
-              : pressedColor as dynamic,
+              : pressedColor as Color,
       borderColor:
           borderColor == const $CopyWithPlaceholder() || borderColor == null
               // ignore: unnecessary_non_null_assertion
               ? _value.borderColor!
               // ignore: cast_nullable_to_non_nullable
-              : borderColor as dynamic,
+              : borderColor as Color,
     );
   }
 }
