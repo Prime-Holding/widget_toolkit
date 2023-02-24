@@ -40,10 +40,7 @@ OpenUrlWidget.withDependencies(
 In order to start using this package you need to add the dependency to the `widget_toolkit` in your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
-    git:
-      url: https://gitlab.programista.pro/prime-reusable-components/flutter
-      path: packages/widget_toolkit
+widget_toolkit: any
 ```
 
 Before you actually import the package in your app you'll need to configure the mobile platforms first. For each of the platforms you'll need to specify the schemes your app is going to be using. For a list of all available schemes, please check [this page][url_launcher_supported_schemes].

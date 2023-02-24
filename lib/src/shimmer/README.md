@@ -6,7 +6,7 @@ As part of great UX there may be times where you want to occupy an area of your 
 
 ## Widgets
 
-As part of the shimmer package, there are two widgets that you can use right in your app: [`AppShimmerText`](#app-shimmer-text) and [`AppShimmer`](#app-shimmer). In order to see those widgets in action, check out the examples in the [storybook][storybook_ref].
+As part of the shimmer package, there are two widgets that you can use right in your app: [`AppShimmerText`](#app-shimmer-text) and [`AppShimmer`](#app-shimmer). 
 
 <div id="app-shimmer-text">
 
@@ -61,10 +61,7 @@ AppShimmer(
 In order to start using this package you need to add the dependency to the `widget_toolkit` in your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
-    git:
-      url: https://gitlab.programista.pro/prime-reusable-components/flutter
-      path: packages/widget_toolkit
+widget_toolkit: any
 ```
 
 After that you can import the package with the following line:
@@ -74,5 +71,3 @@ After that you can import the package with the following line:
 after which you are ready to start using the widgets in your app.
 
 ---
-
-[storybook_ref]: https://gitlab.programista.pro/prime-reusable-components/flutter/-/tree/develop/storybook

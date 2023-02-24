@@ -40,10 +40,7 @@ In order to start using this package you need to add the dependency to the `widg
 your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
-  git:
-    url: https://gitlab.programista.pro/prime-reusable-components/flutter
-    path: packages/widget_toolkit
+widget_toolkit: any
 ```
 
 The dependencies of the Language Picker should be provided in the root dependencies of the

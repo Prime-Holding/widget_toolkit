@@ -25,10 +25,7 @@ There are several helper or utility widget that developers would usually spend t
 In order to start using this package you need to add the dependency to the `widget_toolkit` in your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
-    git:
-      url: https://gitlab.programista.pro/prime-reusable-components/flutter
-      path: packages/widget_toolkit
+widget_toolkit: any
 ```
 
 After that you can import the package with the following line:
