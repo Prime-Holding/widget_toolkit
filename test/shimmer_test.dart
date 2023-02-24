@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
+import 'helpers/golden_helper.dart';
+
 void main() {
   group('Shimmer types tests', () {
     // Default values for shimmer types
@@ -162,9 +164,12 @@ void main() {
     testWidgets('App Shimmer with shimmer enabled', (tester) async {
       const childKey = Key('childKey');
       await tester.pumpWidget(
-        const AppShimmer(
-          showShimmer: true,
-          child: SizedBox(key: childKey),
+        MaterialApp(
+          theme: getThemeData(true),
+          home: const AppShimmer(
+            showShimmer: true,
+            child: SizedBox(key: childKey),
+          ),
         ),
       );
 
@@ -187,9 +192,12 @@ void main() {
     testWidgets('App Shimmer with shimmer disabled', (tester) async {
       const childKey = Key('childKey');
       await tester.pumpWidget(
-        const AppShimmer(
-          showShimmer: false,
-          child: SizedBox(key: childKey),
+        MaterialApp(
+          theme: getThemeData(true),
+          home: const AppShimmer(
+            showShimmer: false,
+            child: SizedBox(key: childKey),
+          ),
         ),
       );
 
@@ -208,8 +216,9 @@ void main() {
 
     testWidgets('App Shimmer Text with shimmer enabled', (tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: AppShimmerText(missingShimmerText),
+        MaterialApp(
+          theme: getThemeData(true),
+          home: const AppShimmerText(missingShimmerText),
         ),
       );
 
@@ -225,8 +234,9 @@ void main() {
 
     testWidgets('App Shimmer Text with shimmer disabled', (tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: AppShimmerText(shimmerText),
+        MaterialApp(
+          theme: getThemeData(true),
+          home: const AppShimmerText(shimmerText),
         ),
       );
 

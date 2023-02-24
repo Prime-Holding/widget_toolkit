@@ -91,10 +91,10 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
       localizations: [
         ...GlobalMaterialLocalizations.delegates,
       ],
-      theme: _getThemeData(theme == Themes.light),
+      theme: getThemeData(theme == Themes.light),
     );
 
-ThemeData _getThemeData(bool inLightMode) {
+ThemeData getThemeData(bool inLightMode) {
   final theme = inLightMode
       ? ThemeData.light().copyWith(extensions: [
           PrimeComponentsTheme.light,

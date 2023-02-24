@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:widget_toolkit/shimmer.dart';
 
 Future<void> testExecutable(FutureOr<void> Function() testMain) async =>
     GoldenToolkit.runWithConfiguration(
       () async {
         WidgetsApp.debugAllowBannerOverride = false;
+        ShimmerTypeRandom.leadingFlex = 3;
 
         await loadAppFonts();
         return testMain();
