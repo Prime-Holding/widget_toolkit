@@ -1,6 +1,6 @@
-# Prime UI Toolkit
+# Widget Toolkit
 
-Prime UI Toolkit package consists of several smaller lightweight UI modules to increase productivity and development time spent on those features.
+The Widget Toolkit package consists of several smaller lightweight UI modules to increase productivity and development time spent on those features.
 
 ## Contents:
 
