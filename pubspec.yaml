@@ -1,5 +1,5 @@
 name: widget_toolkit
-description: A collection of customazible widgets developed by PrimeHolding JSC to help reduce development time
+description: A collection of customisable widgets developed by PrimeHolding JSC to help reduce development time
 version: 0.0.1-dev1
 homepage: https://primeholding.com/
 
@@ -57,3 +57,23 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        
+ screenshots:
+  - description: Item picker (multi-select)
+    path: docs/multi-item-picker.gif
+  - description: Item picker (single-select)
+    path: docs/single-item-picker.gif
+  - description: Language Picker
+    path: docs/language-picker.gif
+  - description: Search Picker
+    path: docs/search-picker.gif
+  - description: Shimmer
+    path: docs/shimmer.gif
+   - description: URL Launcher
+    path: docs/url.gif
+  - description: Error Button Sheet
+    path: docs/error-bottom-sheet.gif
+  - description: Text Field Dialog
+    path: docs/text-field-dialog.gif
+  - description: Address Dialog
+    path: docs/address.gif
