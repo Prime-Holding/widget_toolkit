@@ -58,22 +58,22 @@ flutter:
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
         
- screenshots:
+screenshots:
   - description: Item picker (multi-select)
-    path: docs/multi-item-picker.gif
+    path: doc/assets/multi-item-picker.gif
   - description: Item picker (single-select)
-    path: docs/single-item-picker.gif
+    path: doc/assets/single-item-picker.gif
   - description: Language Picker
-    path: docs/language-picker.gif
+    path: doc/assets/language-picker.gif
   - description: Search Picker
-    path: docs/search-picker.gif
+    path: doc/assets/search-picker.gif
   - description: Shimmer
-    path: docs/shimmer.gif
-   - description: URL Launcher
-    path: docs/url.gif
+    path: doc/assets/shimmer.gif
+  - description: URL Launcher
+    path: doc/assets/url.gif
   - description: Error Button Sheet
-    path: docs/error-bottom-sheet.gif
+    path: doc/assets/error-bottom-sheet.gif
   - description: Text Field Dialog
-    path: docs/text-field-dialog.gif
+    path: doc/assets/text-field-dialog.gif
   - description: Address Dialog
-    path: docs/address.gif
+    path: doc/assets/address.gif
