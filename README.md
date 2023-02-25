@@ -15,6 +15,17 @@ The Widget Toolkit package consists of several smaller lightweight UI modules to
 - [Text Field Dialog][text_field_dialog]
 - [Search Picker][search_picker]
 
+## Demo
+
+| Item Picker (mutli-select)| Item Picker (single select)| Language Picker |
+|---------------------------------------|-----------------------------|-----------------------------|
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/language-picker.gif" alt="Language Picker"></img> |
+| Search Picker| Shimmer | Launch URL |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/url.gif" alt="Language Picker"></img> |
+| Error Bottom Sheet | Text Field Dialog | Address Dialog |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/docs/address.gif" alt="Language Picker"></img> |
+
+
 ## How to use
 
 In order to start using this package you need to add the dependency to the `widget_toolkit` in
