@@ -2,7 +2,7 @@
 
 # Widget Toolkit
 
-The Widget Toolkit package consists of several smaller lightweight UI modules to increase productivity and development time spent on those features.
+The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
 
 ## Contents:
 
@@ -32,7 +32,7 @@ In order to start using this package you need to add the dependency to the `widg
 your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
+widget_toolkit: any
 ```
 
 After that you can import any of the specific packages into your file and start using the described functionalities. For more information on specific widgets or functionalities the packages provide, please check the packages in the `Contents` section above.
