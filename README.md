@@ -1,6 +1,8 @@
+![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]
+
 # Widget Toolkit
 
-The Widget Toolkit package consists of several smaller lightweight UI modules to increase productivity and development time spent on those features.
+The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
 
 ## Contents:
 
@@ -13,13 +15,24 @@ The Widget Toolkit package consists of several smaller lightweight UI modules to
 - [Text Field Dialog][text_field_dialog]
 - [Search Picker][search_picker]
 
+## Demo
+
+| Item Picker (mutli-select)| Item Picker (single select)| Language Picker |
+|---------------------------------------|-----------------------------|-----------------------------|
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/language-picker.gif" alt="Language Picker"></img> |
+| Search Picker| Shimmer | Launch URL |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/url.gif" alt="Language Picker"></img> |
+| Error Bottom Sheet | Text Field Dialog | Address Dialog |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/address.gif" alt="Language Picker"></img> |
+
+
 ## How to use
 
 In order to start using this package you need to add the dependency to the `widget_toolkit` in
 your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit:
+widget_toolkit: any
 ```
 
 After that you can import any of the specific packages into your file and start using the described functionalities. For more information on specific widgets or functionalities the packages provide, please check the packages in the `Contents` section above.
@@ -89,6 +102,12 @@ extensions: [
 
 ---
 
+
+[ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
+[codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master/graph/badge.svg
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master
+[code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
 [shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/shimmer
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_item_picker
 [open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/open_url

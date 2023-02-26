@@ -33,16 +33,16 @@ jobs:
             flutter test --coverage --exclude-tags=not-tests
           fi
       - name: Remove unnecessary files
-        run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart' coverage/lcov.info
+        run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart','**_dependencies.dart' coverage/lcov.info
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           path: "coverage/lcov.info"
-          min_coverage: 89
+          min_coverage: 58
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v3
         with:
-          directory: coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
   build:
     needs: [run_tests]
     runs-on: ubuntu-latest

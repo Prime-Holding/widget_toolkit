@@ -1,11 +1,12 @@
 name: widget_toolkit
-description: A collection of UI widgets developed by Prime Holding JSC to help reduce development time
+description: A collection of customisable widgets developed by Prime Holding JSC to help reduce development time
 version: 0.0.1-dev1
-homepage: https://primeholding.com/
+repository: https://github.com/Prime-Holding/widget_toolkit
+issue_tracker: https://github.com/Prime-Holding/widget_toolkit/issues
+homepage: https://www.primeholding.com
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
-  flutter: ">=3.7.1"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   copy_with_extension: ^5.0.0
@@ -17,7 +18,6 @@ dependencies:
   flutter_rx_bloc: ^5.0.0
   flutter_svg: ^2.0.0
   json_annotation: ^4.8.0
-  json_serializable: ^6.6.0
   provider: ^6.0.0
   rx_bloc: ^4.0.0
   rxdart: ^0.27.7
@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   golden_toolkit: ^0.15.0
+  json_serializable: ^6.6.0
   mockito: ^5.3.2
   r_flutter: ^0.9.0
   rx_bloc_generator: ^6.0.1
@@ -57,3 +58,23 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        
+screenshots:
+  - description: Item picker (multi-select)
+    path: doc/assets/multi-item-picker.gif
+  - description: Item picker (single-select)
+    path: doc/assets/single-item-picker.gif
+  - description: Language Picker
+    path: doc/assets/language-picker.gif
+  - description: Search Picker
+    path: doc/assets/search-picker.gif
+  - description: Shimmer
+    path: doc/assets/shimmer.gif
+  - description: URL Launcher
+    path: doc/assets/url.gif
+  - description: Error Button Sheet
+    path: doc/assets/error-bottom-sheet.gif
+  - description: Text Field Dialog
+    path: doc/assets/text-field-dialog.gif
+  - description: Address Dialog
+    path: doc/assets/address.gif
