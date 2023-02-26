@@ -44,7 +44,7 @@ Future<T?> showModal<T>({
   }
   return showModalBottomSheet(
     backgroundColor: Colors.transparent,
-    barrierColor: context.primeComponentsTheme.bottomSheetBarrierColor,
+    barrierColor: context.widgetToolkitTheme.bottomSheetBarrierColor,
     context: context,
     isScrollControlled: true,
     isDismissible: configuration.isDismissible,
@@ -153,7 +153,7 @@ class _ModalContent extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     final builderContent = Container(
-      color: context.primeComponentsTheme.bottomSheetBackgroundColor,
+      color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
       child: builder(context),
     );
 
@@ -208,7 +208,7 @@ class _ModalContent extends StatelessWidget {
                     width: 32,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: context.primeComponentsTheme.bottomSheetLineColor,
+                      color: context.widgetToolkitTheme.bottomSheetLineColor,
                       borderRadius: const BorderRadius.all(
                         Radius.circular(3),
                       ),
@@ -219,8 +219,7 @@ class _ModalContent extends StatelessWidget {
             if (headerBuilder != null)
               Positioned(
                 child: Padding(
-                  padding:
-                      context.primeComponentsTheme.bottomSheetHeaderPadding,
+                  padding: context.widgetToolkitTheme.bottomSheetHeaderPadding,
                   child: headerBuilder?.call(context),
                 ),
               ),
@@ -229,7 +228,7 @@ class _ModalContent extends StatelessWidget {
       );
 
   BoxDecoration _buildDecoration(BuildContext context) => BoxDecoration(
-        color: context.primeComponentsTheme.bottomSheetBackgroundColor,
+        color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
         border: Border.all(
           color: Colors.transparent,
           width: 0,
@@ -242,17 +241,17 @@ class _ModalContent extends StatelessWidget {
 
   Widget _buildCloseButton(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        color: context.primeComponentsTheme.bottomSheetBackgroundColor,
+        color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
         child: SmallButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: Icons.close,
           type: SmallButtonType.outline,
           colorStyle: ButtonColorStyle.fromContext(
             context,
-            activeGradientColorStart: context
-                .primeComponentsTheme.disabledFilledButtonBackgroundColor,
+            activeGradientColorStart:
+                context.widgetToolkitTheme.disabledFilledButtonBackgroundColor,
             activeGradientColorEnd:
-                context.primeComponentsTheme.primaryGradientEnd,
+                context.widgetToolkitTheme.primaryGradientEnd,
           ),
         ),
       );

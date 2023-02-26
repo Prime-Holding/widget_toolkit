@@ -9,9 +9,9 @@ part 'text_field_dialog_theme.tailor.dart';
 @Tailor(themeGetter: ThemeGetter.none)
 class _$TextFieldDialogTheme {
   //TODO: The properties of the theme extension should be almost always specific just like in the example below.
-  // The colors, sizes etc from design system should be used to fill in the values (take for reference PrimeComponentsTheme, ItemPickerTheme, SearchPickerTheme).
+  // The colors, sizes etc from design system should be used to fill in the values (take for reference WidgetToolkitTheme, ItemPickerTheme, SearchPickerTheme).
 
-  /// region PrimeEditFieldWidget
+  /// region EditFieldWidget
   static List<Color> primeEditFieldSuccessBackground = [
     DesignSystem.light().colors.greenLight,
     DesignSystem.dark().colors.green,

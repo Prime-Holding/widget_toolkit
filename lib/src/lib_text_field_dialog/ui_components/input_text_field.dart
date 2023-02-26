@@ -360,7 +360,7 @@ extension _InputTextFieldStateModelX on InputTextFieldStateModel {
       case InputTextFieldStateModel.disabled:
         return context.textFieldDialogTheme.gray;
       default:
-        return context.primeComponentsTheme.highlightColor;
+        return context.widgetToolkitTheme.highlightColor;
     }
   }
 }

@@ -30,19 +30,19 @@ class ButtonColorStyle {
   }) =>
       ButtonColorStyle(
         activeButtonTextColor: activeButtonTextColor ??
-            context.primeComponentsTheme.activeButtonTextColor,
+            context.widgetToolkitTheme.activeButtonTextColor,
         disabledButtonTextColor: disabledButtonTextColor ??
-            context.primeComponentsTheme.disabledButtonTextColor,
+            context.widgetToolkitTheme.disabledButtonTextColor,
         activeGradientColorStart: activeGradientColorStart ??
-            context.primeComponentsTheme.activeGradientColorStart,
+            context.widgetToolkitTheme.activeGradientColorStart,
         activeGradientColorEnd: activeGradientColorEnd ??
-            context.primeComponentsTheme.activeGradientColorEnd,
+            context.widgetToolkitTheme.activeGradientColorEnd,
         shadowColor:
-            shadowColor ?? context.primeComponentsTheme.buttonShadowColor,
+            shadowColor ?? context.widgetToolkitTheme.buttonShadowColor,
         pressedColor:
-            pressedColor ?? context.primeComponentsTheme.buttonPressedColor,
+            pressedColor ?? context.widgetToolkitTheme.buttonPressedColor,
         borderColor:
-            borderColor ?? context.primeComponentsTheme.buttonBorderColor,
+            borderColor ?? context.widgetToolkitTheme.buttonBorderColor,
       );
 
   final Color activeButtonTextColor;

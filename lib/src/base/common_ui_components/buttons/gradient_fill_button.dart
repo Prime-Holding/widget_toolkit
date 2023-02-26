@@ -72,14 +72,14 @@ class GradientFillButton extends StatelessWidget {
             transform: const GradientRotation((16.94 * math.pi) / 180),
           )
         : LinearGradient(colors: [
-            context.primeComponentsTheme.appFilledButtonBackgroundColorDisabled,
-            context.primeComponentsTheme.appFilledButtonBackgroundColorDisabled,
+            context.widgetToolkitTheme.appFilledButtonBackgroundColorDisabled,
+            context.widgetToolkitTheme.appFilledButtonBackgroundColorDisabled,
           ]);
 
     final textColor = activeState()
         ? colorStyle?.activeButtonTextColor ??
-            context.primeComponentsTheme.appFilledButtonTextColorEnabled
-        : context.primeComponentsTheme.appFilledButtonTextColorDisabled;
+            context.widgetToolkitTheme.appFilledButtonTextColorEnabled
+        : context.widgetToolkitTheme.appFilledButtonTextColorDisabled;
 
     final textWidget = Ink(
       decoration: BoxDecoration(
@@ -91,7 +91,7 @@ class GradientFillButton extends StatelessWidget {
       child: Container(
         padding: padding != null
             ? EdgeInsets.zero
-            : context.primeComponentsTheme.mediumEdgeInsets,
+            : context.widgetToolkitTheme.mediumEdgeInsets,
         color: state == ButtonStateModel.pressed
             ? getPressedInnerBackgroundColor(context)
             : Colors.transparent,
@@ -137,7 +137,7 @@ class GradientFillButton extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         style: textStyle?.copyWith(color: color) ??
-            context.primeComponentsTheme.descriptionBold.copyWith(
+            context.widgetToolkitTheme.descriptionBold.copyWith(
               color: color,
             ),
       );
@@ -164,11 +164,11 @@ class GradientFillButton extends StatelessWidget {
 
   Color activeGradientColorStart(BuildContext context) =>
       colorStyle?.activeGradientColorStart ??
-      context.primeComponentsTheme.primaryGradientStart;
+      context.widgetToolkitTheme.primaryGradientStart;
 
   Color activeGradientColorEnd(BuildContext context) =>
       colorStyle?.activeGradientColorEnd ??
-      context.primeComponentsTheme.primaryGradientEnd;
+      context.widgetToolkitTheme.primaryGradientEnd;
 
   bool activeState() =>
       state != ButtonStateModel.disabled && state != ButtonStateModel.loading;

@@ -46,7 +46,7 @@ class SizedLoadingIndicator extends StatelessWidget {
         width: size.width,
         height: size.height,
         child: CircularProgressIndicator(
-          color: color ?? context.primeComponentsTheme.loadingIndicatorColor,
+          color: color ?? context.widgetToolkitTheme.loadingIndicatorColor,
           strokeWidth: strokeWidth,
         ),
       );

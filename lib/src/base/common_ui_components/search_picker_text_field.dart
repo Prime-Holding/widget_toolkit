@@ -41,12 +41,12 @@ class _SearchPickerTextFieldState extends State<SearchPickerTextField> {
     if (controller != null) {
       setState(() {
         iconColor = controller.text.isEmpty
-            ? context.primeComponentsTheme.searchTextFieldIconColor
-            : context.primeComponentsTheme.searchTextFieldIconColorActive;
+            ? context.widgetToolkitTheme.searchTextFieldIconColor
+            : context.widgetToolkitTheme.searchTextFieldIconColorActive;
 
         backgroundColor = controller.text.isEmpty
-            ? context.primeComponentsTheme.searchTextFieldBackgroundColor
-            : context.primeComponentsTheme.searchTextFieldBackgroundColorActive;
+            ? context.widgetToolkitTheme.searchTextFieldBackgroundColor
+            : context.widgetToolkitTheme.searchTextFieldBackgroundColorActive;
       });
     }
   }
@@ -59,35 +59,35 @@ class _SearchPickerTextFieldState extends State<SearchPickerTextField> {
 
   @override
   Widget build(BuildContext context) {
-    iconColor = context.primeComponentsTheme.searchTextFieldIconColor;
+    iconColor = context.widgetToolkitTheme.searchTextFieldIconColor;
     backgroundColor =
-        context.primeComponentsTheme.searchTextFieldBackgroundColorActive;
+        context.widgetToolkitTheme.searchTextFieldBackgroundColorActive;
 
     return RxIgnoreUnfocuser(
       child: Container(
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(
-            context.primeComponentsTheme.searchTextFieldBorderRadius,
+            context.widgetToolkitTheme.searchTextFieldBorderRadius,
           ),
-          border: context.primeComponentsTheme.searchTextFieldBorderType,
+          border: context.widgetToolkitTheme.searchTextFieldBorderType,
         ),
         child: Material(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(
-            context.primeComponentsTheme.searchTextFieldBorderRadius,
+            context.widgetToolkitTheme.searchTextFieldBorderRadius,
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(
-              context.primeComponentsTheme.searchTextFieldBorderRadius,
+              context.widgetToolkitTheme.searchTextFieldBorderRadius,
             ),
             onTap: widget.onTap,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: context
-                      .primeComponentsTheme.searchTextFieldIconEdgeInsets,
+                  padding:
+                      context.widgetToolkitTheme.searchTextFieldIconEdgeInsets,
                   child: Icon(
                     Icons.search,
                     color: iconColor,
@@ -104,17 +104,17 @@ class _SearchPickerTextFieldState extends State<SearchPickerTextField> {
                             autofocus: widget.isFocused,
                             decoration: InputDecoration.collapsed(
                               hintText: widget.hintText,
-                              hintStyle: context.primeComponentsTheme
-                                  .searchTextFieldHintStyle,
+                              hintStyle: context
+                                  .widgetToolkitTheme.searchTextFieldHintStyle,
                             ),
                             style: context
-                                .primeComponentsTheme.searchTextFieldTextStyle,
+                                .widgetToolkitTheme.searchTextFieldTextStyle,
                             onChanged: widget.onChanged,
                           )
                         : Text(
                             widget.hintText ?? '',
                             style: context
-                                .primeComponentsTheme.searchTextFieldHintStyle,
+                                .widgetToolkitTheme.searchTextFieldHintStyle,
                           ),
                   ),
                 ),

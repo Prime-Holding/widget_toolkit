@@ -85,9 +85,9 @@ class ShimmerWrapper extends StatelessWidget {
         ),
         alignment: alignment,
         child: Shimmer.fromColors(
-          baseColor: baseColor ?? context.primeComponentsTheme.shimmerBaseColor,
+          baseColor: baseColor ?? context.widgetToolkitTheme.shimmerBaseColor,
           highlightColor: highlightColor ??
-              context.primeComponentsTheme.shimmerHighlightColor,
+              context.widgetToolkitTheme.shimmerHighlightColor,
           child: child,
         ),
       );

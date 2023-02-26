@@ -44,17 +44,17 @@ class SmallButton extends StatelessWidget {
         ?
         //pressed or normal
         (colorStyle?.activeGradientColorStart ??
-                context.primeComponentsTheme.primaryGradientStart)
+                context.widgetToolkitTheme.primaryGradientStart)
             .withOpacity(state == ButtonStateModel.pressed ? 0.5 : 1.0)
 
         //disabled
-        : context.primeComponentsTheme.appFilledButtonTextColorDisabled;
+        : context.widgetToolkitTheme.appFilledButtonTextColorDisabled;
 
     final colorGradientEnd = state != ButtonStateModel.disabled
         ? (colorStyle?.activeGradientColorEnd ??
-                context.primeComponentsTheme.primaryGradientEnd)
+                context.widgetToolkitTheme.primaryGradientEnd)
             .withOpacity(state == ButtonStateModel.pressed ? 0.5 : 1.0)
-        : context.primeComponentsTheme.appFilledButtonTextColorDisabled;
+        : context.widgetToolkitTheme.appFilledButtonTextColorDisabled;
 
     var gradient = LinearGradient(colors: [
       color,
@@ -62,10 +62,10 @@ class SmallButton extends StatelessWidget {
     ]);
 
     final text = Ink(
-      padding: context.primeComponentsTheme.smallEdgeInsets,
+      padding: context.widgetToolkitTheme.smallEdgeInsets,
       decoration: BoxDecoration(
         color: state != ButtonStateModel.disabled
-            ? context.primeComponentsTheme.appSmallButtonBackgroundColor
+            ? context.widgetToolkitTheme.appSmallButtonBackgroundColor
             : null,
         shape: BoxShape.circle,
         border: type == SmallButtonType.outline
@@ -99,8 +99,8 @@ class SmallButton extends StatelessWidget {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             foregroundColor: primaryColor,
-            backgroundColor: context
-                .primeComponentsTheme.appSmallButtonFilledBackgroundColor,
+            backgroundColor:
+                context.widgetToolkitTheme.appSmallButtonFilledBackgroundColor,
             padding: const EdgeInsets.all(0),
             shape: const CircleBorder(),
             fixedSize: const Size(48, 48),
@@ -114,8 +114,8 @@ class SmallButton extends StatelessWidget {
             padding: const EdgeInsets.all(0),
             side: BorderSide(
               width: 2,
-              color: context
-                  .primeComponentsTheme.appSmallButtonOutlinedBorderColor,
+              color:
+                  context.widgetToolkitTheme.appSmallButtonOutlinedBorderColor,
             ),
             shape: const CircleBorder(),
             fixedSize: const Size(48, 48),
@@ -128,6 +128,6 @@ class SmallButton extends StatelessWidget {
 
   Color getColorByType(Color color, BuildContext context) =>
       type == SmallButtonType.filled
-          ? context.primeComponentsTheme.appButtonTextColor
+          ? context.widgetToolkitTheme.appButtonTextColor
           : color;
 }

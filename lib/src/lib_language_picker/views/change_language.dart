@@ -28,7 +28,7 @@ import '../theme/language_picker_theme.dart';
 /// right end of every language widget. There is a default checkIcon if the parameter
 /// is not specified.
 ///
-///  With [configuration] we can change the configuration of the showAppModalBottomSheet().
+///  With [configuration] we can change the configuration of the showModal().
 ///  There are default configurations provided. Changing [fullScreen] to true, makes
 ///  the modal sheet appear to the top of the screen. With [showHeaderPill] set to
 ///  true displays a header pill at the top of the modal sheet. Changing [safeAreaBottom]
@@ -42,7 +42,7 @@ import '../theme/language_picker_theme.dart';
 /// the language list. In order to use it, you should specify that the message
 /// state is [MessagePanelState.custom].
 ///
-void showAppChangeLanguageBottomSheet({
+void showChangeLanguageBottomSheet({
   required BuildContext context,
   Widget Function(ErrorModel?)? errorBuilder,
   required Widget Function(BuildContext)? headerBuilder,
@@ -116,7 +116,7 @@ class _ChangeLanguageWidget extends StatelessWidget {
                 ),
                 ...(snapshot.data ?? [])
                     .map(
-                      (language) => _AppChooseLanguage(
+                      (language) => _ChooseLanguage(
                         languageModel: language,
                         padding:
                             context.languagePickerTheme.chooseLanguagePadding,
@@ -153,8 +153,8 @@ class _ChangeLanguageWidget extends StatelessWidget {
       );
 }
 
-class _AppChooseLanguage extends StatelessWidget {
-  const _AppChooseLanguage({
+class _ChooseLanguage extends StatelessWidget {
+  const _ChooseLanguage({
     required this.languageModel,
     this.onPressed,
     this.isLoading = false,

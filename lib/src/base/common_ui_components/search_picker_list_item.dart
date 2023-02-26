@@ -26,13 +26,13 @@ class SearchPickerListItem extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: overrideStyle
             ? null
-            : context.primeComponentsTheme.pickerListItemOuterEdgeInsets,
+            : context.widgetToolkitTheme.pickerListItemOuterEdgeInsets,
         child: Material(
           color: overrideStyle
-              ? context.primeComponentsTheme.pickerListItemUnselectedColor
+              ? context.widgetToolkitTheme.pickerListItemUnselectedColor
               : isSelected
-                  ? context.primeComponentsTheme.pickerListItemSelectedColor
-                  : context.primeComponentsTheme.pickerListItemUnselectedColor,
+                  ? context.widgetToolkitTheme.pickerListItemSelectedColor
+                  : context.widgetToolkitTheme.pickerListItemUnselectedColor,
           borderRadius: _radius(context),
           child: InkWell(
             onTap: onTap == null ? null : () => onTap!.call(),
@@ -40,11 +40,11 @@ class SearchPickerListItem extends StatelessWidget {
             child: Container(
               padding: overrideStyle
                   ? null
-                  : context.primeComponentsTheme.pickerListItemInnerEdgeInsets,
+                  : context.widgetToolkitTheme.pickerListItemInnerEdgeInsets,
               child: child ??
                   ShimmerText(
                     isLoading ? null : text,
-                    style: context.primeComponentsTheme.pickerListItemTextStyle,
+                    style: context.widgetToolkitTheme.pickerListItemTextStyle,
                   ),
             ),
           ),
@@ -54,6 +54,6 @@ class SearchPickerListItem extends StatelessWidget {
   BorderRadius _radius(BuildContext context) => BorderRadius.circular(
         overrideStyle
             ? 0
-            : context.primeComponentsTheme.pickerListItemBorderRadius,
+            : context.widgetToolkitTheme.pickerListItemBorderRadius,
       );
 }

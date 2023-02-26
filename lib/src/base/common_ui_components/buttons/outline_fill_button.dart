@@ -44,26 +44,26 @@ class OutlineFillButton extends StatelessWidget {
     final textColor = getTextColor(context);
 
     final textWidget = Container(
-        padding: context.primeComponentsTheme.outlineButtonContentPadding,
+        padding: context.widgetToolkitTheme.outlineButtonContentPadding,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (iconLeft != null) DynamicIcon(iconLeft, color: textColor),
             if (areIconsClose)
               SizedBox(
-                width: context.primeComponentsTheme.spacingS,
+                width: context.widgetToolkitTheme.spacingS,
               ),
             if (areIconsClose)
               Text(text,
                   textAlign: TextAlign.center,
-                  style: context.primeComponentsTheme.outlineButtonTextStyle
+                  style: context.widgetToolkitTheme.outlineButtonTextStyle
                       .copyWith(color: textColor, letterSpacing: 0))
             else
               Expanded(
                   child: Text(text,
                       textAlign: TextAlign.center,
-                      style: context.primeComponentsTheme
-                          .outlineButtonDescriptionTextStyle
+                      style: context
+                          .widgetToolkitTheme.outlineButtonDescriptionTextStyle
                           .copyWith(color: textColor, letterSpacing: 0))),
             if (iconRight != null) DynamicIcon(iconRight, color: textColor),
           ],
@@ -83,15 +83,15 @@ class OutlineFillButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: colorStyle?.pressedColor ??
-            context.primeComponentsTheme.outlineButtonForegroundColor,
+            context.widgetToolkitTheme.outlineButtonForegroundColor,
         backgroundColor: colorStyle?.activeGradientColorStart ??
-            context.primeComponentsTheme.outlineButtonBackgroundColor,
+            context.widgetToolkitTheme.outlineButtonBackgroundColor,
         padding: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
           side: BorderSide(
             color: colorStyle?.borderColor ??
-                context.primeComponentsTheme.outlineButtonBorderColor,
+                context.widgetToolkitTheme.outlineButtonBorderColor,
             width: 2.0,
           ),
         ),
@@ -106,22 +106,22 @@ class OutlineFillButton extends StatelessWidget {
     if (state != ButtonStateModel.disabled) {
       if (state == ButtonStateModel.pressed) {
         return colorStyle?.pressedColor ??
-            context.primeComponentsTheme.outlineButtonPressedColor;
+            context.widgetToolkitTheme.outlineButtonPressedColor;
       } else {
-        return context.primeComponentsTheme.outlineButtonBackgroundColor;
+        return context.widgetToolkitTheme.outlineButtonBackgroundColor;
       }
     } else {
       return colorStyle?.activeGradientColorEnd ??
-          context.primeComponentsTheme.outlineButtonBackgroundColor;
+          context.widgetToolkitTheme.outlineButtonBackgroundColor;
     }
   }
 
   Color getTextColor(BuildContext context) {
     if (state != ButtonStateModel.disabled) {
       return colorStyle?.activeButtonTextColor ??
-          context.primeComponentsTheme.outlineButtonTextColor;
+          context.widgetToolkitTheme.outlineButtonTextColor;
     } else {
-      return context.primeComponentsTheme.outlineButtonTextColorDisabled;
+      return context.widgetToolkitTheme.outlineButtonTextColorDisabled;
     }
   }
 }

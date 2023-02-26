@@ -116,7 +116,7 @@ class EditFieldWidget extends StatelessWidget {
         return context.textFieldDialogTheme.gray;
       case EditFieldState.notEditedYet:
       case EditFieldState.success:
-        return context.primeComponentsTheme.highlightColor;
+        return context.widgetToolkitTheme.highlightColor;
     }
   }
 

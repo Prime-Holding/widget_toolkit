@@ -5,7 +5,7 @@ import 'buttons/button_color_style.dart';
 import 'buttons/button_state.dart';
 import 'buttons/gradient_fill_button.dart';
 
-/// PrimeErrorCardWidget is an error widget presenting an error as a widget.
+/// ErrorCardWidget is an error widget presenting an error as a widget.
 /// It provides an option to display a retry button in case the user wants to
 /// repeat an operation.
 ///
@@ -46,7 +46,7 @@ class ErrorCardWidget extends StatelessWidget {
     super.key,
   }) : assert(
           text != null || exception != null,
-          'Either text or an exception is required for the PrimeErrorCardWidget'
+          'Either text or an exception is required for the ErrorCardWidget'
           ' widget to display an error message.',
         );
 
@@ -96,7 +96,7 @@ class ErrorCardWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: context.primeComponentsTheme.appErrorCardBackgroundColor,
+              color: context.widgetToolkitTheme.appErrorCardBackgroundColor,
               borderRadius: BorderRadius.circular(
                 16,
               ),
@@ -114,8 +114,7 @@ class ErrorCardWidget extends StatelessWidget {
                   child: header ??
                       Icon(
                         Icons.warning,
-                        color:
-                            context.primeComponentsTheme.appErrorCardIconColor,
+                        color: context.widgetToolkitTheme.appErrorCardIconColor,
                       ),
                 ),
                 Padding(
@@ -126,9 +125,8 @@ class ErrorCardWidget extends StatelessWidget {
                   ),
                   child: Text(
                     _buildErrorText(context),
-                    style:
-                        context.primeComponentsTheme.descriptionBold.copyWith(
-                      color: context.primeComponentsTheme.appErrorCardTextColor,
+                    style: context.widgetToolkitTheme.descriptionBold.copyWith(
+                      color: context.widgetToolkitTheme.appErrorCardTextColor,
                       letterSpacing: 1.1,
                     ),
                     textAlign: TextAlign.center,

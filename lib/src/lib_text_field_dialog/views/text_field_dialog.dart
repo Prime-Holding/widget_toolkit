@@ -41,7 +41,7 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 /// RxFieldException error and translate the error to the correct language.
 /// You can check also the translateErrors() method in the [TextFieldDialogPage] widget
 ///
-/// Set [editFieldType] to AppEditFieldType.custom if you want to set custom edit icon
+/// Set [editFieldType] to EditFieldType.custom if you want to set custom edit icon
 /// and provide the icon to [editFieldCustomIcon]
 ///
 /// [value] is the value bellow the label text value, which has been inputted
@@ -54,7 +54,7 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 ///
 /// [editFieldType] is used in the [EditFieldWidget] and from its type,
 /// one of the preconfigured icons are loaded or if the type is set to
-/// AppEditFieldType.custom, you can set a custom icon. In this case, you should
+/// EditFieldType.custom, you can set a custom icon. In this case, you should
 /// provide a custom icon to [editFieldCustomIcon]
 ///
 /// [dialogHasBottomPadding] by default is should be true, which moves the dialog

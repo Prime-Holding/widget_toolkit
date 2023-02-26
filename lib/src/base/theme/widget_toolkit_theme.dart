@@ -586,11 +586,11 @@ class _$WidgetToolkitTheme {
 
 extension ThemeContextExtension on BuildContext {
   /// Returns a reference to the [WidgetToolkitTheme] theme extension of the current [Theme]
-  WidgetToolkitTheme get primeComponentsTheme {
+  WidgetToolkitTheme get widgetToolkitTheme {
     final theme = Theme.of(this).extension<WidgetToolkitTheme>();
     if (theme == null) {
       throw UnimplementedError(
-        'Not Implemented PrimeComponentsTheme. '
+        'Not Implemented WidgetToolkitTheme. '
         'Please add it as extension to the MaterialApp -> ThemeData',
       );
     }

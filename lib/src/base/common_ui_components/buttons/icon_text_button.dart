@@ -56,10 +56,10 @@ class IconTextButton extends StatelessWidget {
         if (states.contains(MaterialState.pressed) ||
             state == ButtonStateModel.pressed) {
           return colorStyle?.pressedColor ??
-              context.primeComponentsTheme.gradientRedEnd;
+              context.widgetToolkitTheme.gradientRedEnd;
         }
         return colorStyle?.activeGradientColorStart ??
-            context.primeComponentsTheme.backgroundColor;
+            context.widgetToolkitTheme.backgroundColor;
       }),
     );
     final button = TextButton(
@@ -74,7 +74,7 @@ class IconTextButton extends StatelessWidget {
     if (appearance == IconTextButtonAppearance.appBar) {
       return Padding(
         padding: EdgeInsets.only(
-            right: context.primeComponentsTheme.appBarTextButtonPadding),
+            right: context.widgetToolkitTheme.appBarTextButtonPadding),
         child: button,
       );
     }
@@ -90,7 +90,7 @@ class IconTextButton extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: context.primeComponentsTheme.textButtonPadding),
+          horizontal: context.widgetToolkitTheme.textButtonPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -102,15 +102,15 @@ class IconTextButton extends StatelessWidget {
           if (icon != null && icon is! IconData) icon,
           if (icon != null)
             SizedBox(
-              width: context.primeComponentsTheme.textButtonIconRightPadding,
+              width: context.widgetToolkitTheme.textButtonIconRightPadding,
             ),
           Text(text,
               textAlign: appearance == IconTextButtonAppearance.appBar
                   ? TextAlign.right
                   : TextAlign.center,
-              style: (textStyle ??
-                      context.primeComponentsTheme.textButtonTextStyle)
-                  .copyWith(color: getTextColor(context)))
+              style:
+                  (textStyle ?? context.widgetToolkitTheme.textButtonTextStyle)
+                      .copyWith(color: getTextColor(context)))
         ],
       ),
     );
@@ -119,10 +119,10 @@ class IconTextButton extends StatelessWidget {
   Color getTextColor(BuildContext context) {
     if (state != ButtonStateModel.disabled) {
       return colorStyle?.activeButtonTextColor ??
-          context.primeComponentsTheme.activeButtonTextColor;
+          context.widgetToolkitTheme.activeButtonTextColor;
     } else {
       return colorStyle?.disabledButtonTextColor ??
-          context.primeComponentsTheme.appTextButtonTextColorDisabled;
+          context.widgetToolkitTheme.appTextButtonTextColorDisabled;
     }
   }
 

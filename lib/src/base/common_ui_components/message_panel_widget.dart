@@ -31,7 +31,7 @@ class MessagePanelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: context.primeComponentsTheme.messagePanelEdgeInsets,
+        padding: context.widgetToolkitTheme.messagePanelEdgeInsets,
         decoration: BoxDecoration(
           color: _backgroundColor(context),
           borderRadius: BorderRadius.all(
@@ -45,16 +45,16 @@ class MessagePanelWidget extends StatelessWidget {
             isLoading
                 ? ShimmerWrapper(
                     showShimmer: true,
-                    baseColor: context.primeComponentsTheme.shimmerBaseColor,
+                    baseColor: context.widgetToolkitTheme.shimmerBaseColor,
                     highlightColor:
-                        context.primeComponentsTheme.shimmerHighlightColor,
+                        context.widgetToolkitTheme.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: context.primeComponentsTheme.shimmerBaseColor,
+                          color: context.widgetToolkitTheme.shimmerBaseColor,
                           borderRadius: BorderRadius.all(Radius.circular(
-                              context.primeComponentsTheme.spacingXL))),
-                      width: context.primeComponentsTheme.spacingXXL,
-                      height: context.primeComponentsTheme.spacingXXL,
+                              context.widgetToolkitTheme.spacingXL))),
+                      width: context.widgetToolkitTheme.spacingXXL,
+                      height: context.widgetToolkitTheme.spacingXXL,
                     ))
                 : const SizedBox(),
             _IconWidget(
@@ -72,7 +72,7 @@ class MessagePanelWidget extends StatelessWidget {
                 children: [
                   ShimmerText(
                     isLoading ? null : message.toUpperCase(),
-                    style: context.primeComponentsTheme.captionBold.copyWith(
+                    style: context.widgetToolkitTheme.captionBold.copyWith(
                       color: color ?? messageState.getColor(context),
                       letterSpacing: 0.8,
                       decoration: textDecoration,
@@ -81,41 +81,39 @@ class MessagePanelWidget extends StatelessWidget {
                     textHeightBehavior: const TextHeightBehavior(
                       leadingDistribution: TextLeadingDistribution.even,
                     ),
-                    baseColor: context.primeComponentsTheme.shimmerBaseColor,
+                    baseColor: context.widgetToolkitTheme.shimmerBaseColor,
                     highlightColor:
-                        context.primeComponentsTheme.shimmerHighlightColor,
+                        context.widgetToolkitTheme.shimmerHighlightColor,
                     type: ShimmerType.fixed(placeholderLength: 20),
                   ),
                   if (isLoading) ...[
                     SizedBox(
-                      height: context.primeComponentsTheme.spacingXS1,
+                      height: context.widgetToolkitTheme.spacingXS1,
                     ),
                     if (body == null)
                       ShimmerText(
                         null,
-                        style:
-                            context.primeComponentsTheme.captionBold.copyWith(
+                        style: context.widgetToolkitTheme.captionBold.copyWith(
                           color: color ?? messageState.getColor(context),
                           letterSpacing: 0.8,
                           height: 2.2,
                         ),
-                        baseColor:
-                            context.primeComponentsTheme.shimmerBaseColor,
+                        baseColor: context.widgetToolkitTheme.shimmerBaseColor,
                         highlightColor:
-                            context.primeComponentsTheme.shimmerHighlightColor,
+                            context.widgetToolkitTheme.shimmerHighlightColor,
                         type: ShimmerType.fixed(placeholderLength: 20),
                       )
                   ],
                   if (body != null)
                     ShimmerText(
                       isLoading ? null : body!.toUpperCase(),
-                      style: context.primeComponentsTheme.captionBold.copyWith(
-                        color: context.primeComponentsTheme.black,
+                      style: context.widgetToolkitTheme.captionBold.copyWith(
+                        color: context.widgetToolkitTheme.black,
                         height: 2.2,
                       ),
-                      baseColor: context.primeComponentsTheme.shimmerBaseColor,
+                      baseColor: context.widgetToolkitTheme.shimmerBaseColor,
                       highlightColor:
-                          context.primeComponentsTheme.shimmerHighlightColor,
+                          context.widgetToolkitTheme.shimmerHighlightColor,
                     ),
                 ],
               ),
@@ -126,7 +124,7 @@ class MessagePanelWidget extends StatelessWidget {
 
   Color _backgroundColor(BuildContext context) {
     if (isLoading) {
-      return context.primeComponentsTheme.messagePanelBackgroundColor;
+      return context.widgetToolkitTheme.messagePanelBackgroundColor;
     }
     return bgColor ?? messageState.getBackgroundColor(context);
   }
@@ -148,22 +146,22 @@ class _IconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (state) {
       case MessagePanelState.important:
-        return context.primeComponentsTheme.dangerIcon
+        return context.widgetToolkitTheme.dangerIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.informative:
-        return context.primeComponentsTheme.educateIcon
+        return context.widgetToolkitTheme.educateIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.positive:
-        return context.primeComponentsTheme.messageIcon
+        return context.widgetToolkitTheme.messageIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.positiveCheck:
-        return context.primeComponentsTheme.checkCircleIcon
+        return context.widgetToolkitTheme.checkCircleIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.neutral:
-        return context.primeComponentsTheme.greatNewsIcon
+        return context.widgetToolkitTheme.greatNewsIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.lessImportant:
-        return context.primeComponentsTheme.infoCircleIcon
+        return context.widgetToolkitTheme.infoCircleIcon
             .copyWith(color: color ?? state.getColor(context));
       case MessagePanelState.custom:
         return errorPanelIcon;
@@ -175,36 +173,36 @@ extension _MessagePanelStateX on MessagePanelState {
   Color getBackgroundColor(BuildContext context) {
     switch (this) {
       case MessagePanelState.important:
-        return context.primeComponentsTheme.lightRed;
+        return context.widgetToolkitTheme.lightRed;
       case MessagePanelState.informative:
-        return context.primeComponentsTheme.blueLight;
+        return context.widgetToolkitTheme.blueLight;
       case MessagePanelState.positive:
       case MessagePanelState.positiveCheck:
-        return context.primeComponentsTheme.greenLight;
+        return context.widgetToolkitTheme.greenLight;
       case MessagePanelState.neutral:
-        return context.primeComponentsTheme.red;
+        return context.widgetToolkitTheme.red;
       case MessagePanelState.lessImportant:
-        return context.primeComponentsTheme.orangeLight;
+        return context.widgetToolkitTheme.orangeLight;
       case MessagePanelState.custom:
-        return context.primeComponentsTheme.lightRed;
+        return context.widgetToolkitTheme.lightRed;
     }
   }
 
   Color getColor(BuildContext context) {
     switch (this) {
       case MessagePanelState.important:
-        return context.primeComponentsTheme.red;
+        return context.widgetToolkitTheme.red;
       case MessagePanelState.informative:
-        return context.primeComponentsTheme.darkBlue;
+        return context.widgetToolkitTheme.darkBlue;
       case MessagePanelState.positive:
       case MessagePanelState.positiveCheck:
-        return context.primeComponentsTheme.darkGreen;
+        return context.widgetToolkitTheme.darkGreen;
       case MessagePanelState.neutral:
-        return context.primeComponentsTheme.white;
+        return context.widgetToolkitTheme.white;
       case MessagePanelState.lessImportant:
-        return context.primeComponentsTheme.orange;
+        return context.widgetToolkitTheme.orange;
       case MessagePanelState.custom:
-        return context.primeComponentsTheme.red;
+        return context.widgetToolkitTheme.red;
     }
   }
 }

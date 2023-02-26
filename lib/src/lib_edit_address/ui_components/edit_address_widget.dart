@@ -32,15 +32,15 @@ import 'permanent_address_bottom_sheet.dart';
 ///
 /// [countryCustomIcon] receives a custom icon for the country widget. To use a
 /// custom icon, the [editCountryFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [cityCustomIcon] receives a custom icon for the city button. To use a
 /// custom icon, the [editCityFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [addressCustomIcon] receives a custom icon for the city button. To use a
 /// custom icon, the [editAddressFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [configuration] is a configuration for the edit address bottom sheet.
 ///
@@ -230,14 +230,14 @@ class _IconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (type) {
       case UserProfileCardTypes.permanentAddress:
-        return context.primeComponentsTheme.infoCircleIcon.copyWith(
+        return context.widgetToolkitTheme.infoCircleIcon.copyWith(
           color: type.getColor(context),
         );
       case UserProfileCardTypes.mailingAddress:
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return context.editAddressTheme.editPenIcon
-            .copyWith(color: context.primeComponentsTheme.highlightColor);
+            .copyWith(color: context.widgetToolkitTheme.highlightColor);
     }
   }
 }
