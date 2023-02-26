@@ -31,11 +31,11 @@ exception to a RxFieldException.
 `validator` is a service validator class, which provides methods with validation implementation for 
 the input values of the city and address input values.
 `countryCustomIcon` receives a custom icon for the country widget. To use a custom icon, the 
-`editCountryFieldType` should be of type PrimeEditFieldType.custom.
+`editCountryFieldType` should be of type EditFieldType.custom.
 `cityCustomIcon` receives a custom icon for the city button. To use a custom icon, the 
-`editCityFieldType` should be of type PrimeEditFieldType.custom.
+`editCityFieldType` should be of type EditFieldType.custom.
 `addressCustomIcon` receives a custom icon for the city button. To use a custom icon, the
-`editAddressFieldType` should be of type PrimeEditFieldType.custom.
+`editAddressFieldType` should be of type EditFieldType.custom.
 `configuration` is a configuration for the edit address bottom sheet.
 `editAddressService` received an extension class of `EditAddressService` with implementation of the 
 logic for the main edit contact address save button logic.
@@ -90,7 +90,7 @@ as an example:
 //theme
 //...
 extensions: [
-    darkMode ? PrimeComponentsTheme.dark : PrimeComponentsTheme.light,
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
     darkMode ? EditAddressTheme.dark : EditAddressTheme.light,
 ]
 //..
@@ -118,11 +118,11 @@ EditAddressWidget<CountryModel>(
       heightFactor: null,
       fullScreen: false),
     countryCustomIcon: Assets.deliveryBlack,
-    editCountryFieldType: PrimeEditFieldType.custom,
+    editCountryFieldType: EditFieldType.custom,
     cityCustomIcon: Assets.deliveryBlack,
-    editCityFieldType: PrimeEditFieldType.custom,
+    editCityFieldType: EditFieldType.custom,
     addressCustomIcon: Assets.deliveryBlack,
-    editAddressFieldType: PrimeEditFieldType.custom,
+    editAddressFieldType: EditFieldType.custom,
     searchCountryService: SearchCountryService(
       SearchCountryRepository(),
       true,

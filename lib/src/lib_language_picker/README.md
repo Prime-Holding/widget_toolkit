@@ -5,12 +5,12 @@ There are possible customizations such as passing a custom title, language servi
 
 ## Widgets
 
-Within the `language_picker` package you can call the `showAppChangeLanguageBottomSheet` function in order
+Within the `language_picker` package you can call the `showChangeLanguageBottomSheet` function in order
 to show your language list.
 
-### `showAppChangeLanguageBottomSheet`
+### `showChangeLanguageBottomSheet`
 
-The `showAppChangeLanguageBottomSheet` function is a convenience function for displaying a 
+The `showChangeLanguageBottomSheet` function is a convenience function for displaying a 
 `ChangeLanguageWidget` modal sheet with some pre-configured options. 
 
 With the `errorBuilder` parameter you can provide a function, which receives an exception model,
@@ -20,7 +20,7 @@ with handling of the error.
 With `iconRight` parameter, you can provide the icon, displayed on the 
 right end of every language widget. There is a default icon if the parameter is not specified.
 The `headerBuilder` parameter receives the title widget of the language picker.
-With the `configuration` we can change the default configuration of the showAppModalBottomSheet().
+With the `configuration` we can change the default configuration of the showModalBottomSheet().
 To do that should provide a LanguagePickerConfiguration() instance to override the default values.
 There are different styles for the error message widget. The default state is MessagePanelState.important.
 With the `messageState` you can provide one of the enum values. With the MessagePanelState.custom
@@ -69,15 +69,15 @@ as an example:
 //theme 
 //...
 extensions: [
-    darkMode ? PrimeComponentsTheme.dark : PrimeComponentsTheme.light,
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
     darkMode ? LanguagePickerTheme.dark : LanguagePickerTheme.light,
 ]
 //..
 ```
 
-Complete example for showAppItemPickerBottomSheet usage:
+Complete example for showItemPickerBottomSheet usage:
 ```dart
-showAppChangeLanguageBottomSheet(
+showChangeLanguageBottomSheet(
   context: context,
   headerBuilder: (context) => Text(
     context.l10n.languagePicker.changeLanguage,

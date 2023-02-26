@@ -6,24 +6,24 @@ As part of great UX there may be times where you want to occupy an area of your 
 
 ## Widgets
 
-As part of the shimmer package, there are two widgets that you can use right in your app: [`AppShimmerText`](#app-shimmer-text) and [`AppShimmer`](#app-shimmer). 
+As part of the shimmer package, there are two widgets that you can use right in your app: [`ShimmerText`](#shimmer-text) and [`ShimmerWrapper`](#shimmer-wrapper). 
 
-<div id="app-shimmer-text">
+<div id="shimmer-text">
 
-### AppShimmerText
+### ShimmerText
 
-The `AppShimmerText` is a widget that can be used to display a container with a shimmer effect while we are waiting for the text to be fetched. It acts as a wrapper around the `Text` widget where as long the provided string is not null the text will be displayed. In case the text is null (we still don't have it), a shimmer container will be displayed in the place where the text should be.
+The `ShimmerText` is a widget that can be used to display a container with a shimmer effect while we are waiting for the text to be fetched. It acts as a wrapper around the `Text` widget where as long the provided string is not null the text will be displayed. In case the text is null (we still don't have it), a shimmer container will be displayed in the place where the text should be.
 
 ```dart
-AppShimmerText(
+ShimmerText(
   _textToBeBuilt,
   type: ShimmerType.random(),
 )
 ```
 
-A great use case when working with `AppShimmerText` is to wrap the widget with a builder widget (for example a `RxBlocBuilder` or a `StreamBuilder`) where the listened state can be used as the parameter in the widget itself. By manipulating the stream, we can provide a value after our calculations or requests are done.
+A great use case when working with `ShimmerText` is to wrap the widget with a builder widget (for example a `RxBlocBuilder` or a `StreamBuilder`) where the listened state can be used as the parameter in the widget itself. By manipulating the stream, we can provide a value after our calculations or requests are done.
 
-Also, the `AppShimmerText` widget benefits from a `type` field where you can specify the type of the shimmer animation. Currently, there are three different shimmer types, each of them coming with a preset that you can customize:
+Also, the `ShimmerText` widget benefits from a `type` field where you can specify the type of the shimmer animation. Currently, there are three different shimmer types, each of them coming with a preset that you can customize:
 
 - `ShimmerType.fixed()` : Defines a shimmer with a fixed length that will always remain the same size.
 
@@ -31,24 +31,24 @@ Also, the `AppShimmerText` widget benefits from a `type` field where you can spe
 
 - `ShimmerType.random()` : Defines a shimmer that can take a custom amount of space by defining a range of values within [min,max) for the leading flex and a value for the trailing flex. You can also define a static `ShimmerTypeRandom.leadingFlex` that will be used instead of a randomly generated one for all the random shimmer type configurations. If no static leading flex is defined, the size of the shimer will have a different size every time it is rebuilt.
 
-<div id="app-shimmer">
+<div id="shimmer-wrapper">
 
 
-### AppShimmer
+### Shimmer
 
-Unlike the `AppShimmerText` widget, the `AppShimmer` widget is more versatile and provides control over when you want to display the shimmer effect on top of your child widget. By specifying a widget by itself, the shimmer effect will be rendered on top of it, which can be great for decorative widgets.
+Unlike the `ShimmerText` widget, the `ShimmerWrapper` widget is more versatile and provides control over when you want to display the shimmer effect on top of your child widget. By specifying a widget by itself, the shimmer effect will be rendered on top of it, which can be great for decorative widgets.
 
 ```dart
-AppShimmer(
+Shimmer(
   showShimmer: _showShimmerEffect,
   child: childWidget,
 )
 ```
 
-A great combination with the `AppShimmer` is a builder widget (`RxBlocBuilder`,`StreamBuilder`,etc) which consumes data from a stream, which can be used to conditionally manipulate and display the target child widget. So for example, we can grab data from a stream, check if that data is still loading or has not yet met our conditions and display a placeholder widget while we are still waiting for our data. Once we have our data, we can stop displaying the shimmer effect and render out widget.
+A great combination with the `Shimmer` is a builder widget (`RxBlocBuilder`,`StreamBuilder`,etc) which consumes data from a stream, which can be used to conditionally manipulate and display the target child widget. So for example, we can grab data from a stream, check if that data is still loading or has not yet met our conditions and display a placeholder widget while we are still waiting for our data. Once we have our data, we can stop displaying the shimmer effect and render out widget.
 
 ```dart
-AppShimmer(
+Shimmer(
   showShimmer: _showShimmerEffect,
   child: _showShimmerEffect ? widgetWithShimmer : targetChildWidget,
 )

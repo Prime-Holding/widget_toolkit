@@ -14,7 +14,7 @@ to show your picker list.
 The `showItemPickerBottomSheet` function is a convenience function for displaying an ItemPicker
 modal sheet with some pre-configured options. It requires a `context`, `title`, list
 of `selectedItems`, function that return a list of generic type `callback`, `service`. The package
-provide even more optional customizations as part of AppItemPickerConfiguration. There you can set some
+provide even more optional customizations as part of ItemPickerConfiguration. There you can set some
 properties like `isMultiSelect`, `isItemSelectionRequired`, `isStatic`, `itemHeight`, `fullScreen`.
 Another optional customization can be applied by using the `itemBuilder`, `separatorBuilder`,`footerBuilder`,
 'errorBuilder' or `emptyBuilder`.
@@ -32,14 +32,14 @@ After that you can import the package with the following line:
 
 `import 'package:widget_toolkit/item_picker.dart';`
 
-additional step is the requirement to add the PrimeComponentsTheme and ItemPickerTheme as a extension to your ThemeData.
+additional step is the requirement to add the WidgetToolkitTheme and ItemPickerTheme as a extension to your ThemeData.
 
 as an example:
 ```dart
 //theme 
 //...
 extensions: [
-    darkMode ? PrimeComponentsTheme.dark : PrimeComponentsTheme.light,
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
     darkMode ? ItemPickerTheme.dark : ItemPickerTheme.light,
 ]
 //..
@@ -61,7 +61,7 @@ showItemPickerBottomSheet<DataModel>(
     service: DataService(
         data: [DataModel(), DataModel(), DataModel()],
     ),
-    configuration: AppItemPickerConfiguration(
+    configuration: ItemPickerConfiguration(
         isItemSelectionRequired: false,
         fullScreen: false,
         isMultiSelect: true,

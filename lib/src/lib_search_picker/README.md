@@ -27,14 +27,14 @@ After that you can import the package with the following line:
 
 `import 'package:widget_toolkit/search_picker.dart';`
 
-additional step is the requirement to add the PrimeComponentsTheme and SearchPickerTheme as a extension to your ThemeData.
+additional step is the requirement to add the WidgetToolkitTheme and SearchPickerTheme as a extension to your ThemeData.
 
 as an example:
 ```dart
 //theme 
 //...
 extensions: [
-    darkMode ? PrimeComponentsTheme.dark : PrimeComponentsTheme.light,
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
     darkMode ? SearchPickerTheme.dark : SearchPickerTheme.light,
 ]
 //..
