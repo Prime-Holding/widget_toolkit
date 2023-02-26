@@ -122,7 +122,7 @@ class IconTextButton extends StatelessWidget {
           context.widgetToolkitTheme.activeButtonTextColor;
     } else {
       return colorStyle?.disabledButtonTextColor ??
-          context.widgetToolkitTheme.appTextButtonTextColorDisabled;
+          context.widgetToolkitTheme.textButtonTextColorDisabled;
     }
   }
 

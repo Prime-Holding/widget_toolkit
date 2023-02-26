@@ -33,12 +33,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.pickerListItemTextStyle,
     required this.captionBold,
     required this.textButtonTextStyle,
-    required this.appErrorCardIconColor,
-    required this.appErrorCardBackgroundColor,
+    required this.errorCardIconColor,
+    required this.errorCardBackgroundColor,
     required this.lightRed,
     required this.blueLight,
     required this.greenLight,
-    required this.appErrorCardTextColor,
+    required this.errorCardTextColor,
     required this.bottomSheetHeaderPadding,
     required this.bottomSheetBarrierColor,
     required this.messagePanelBackgroundColor,
@@ -54,12 +54,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.gradientRedStart,
     required this.gradientRedEnd,
     required this.filledButtonBackgroundColorDisabled,
-    required this.appFilledButtonBackgroundColorDisabled,
-    required this.appFilledButtonTextColorDisabled,
-    required this.appTextButtonTextColorDisabled,
-    required this.appFilledButtonTextColorEnabled,
-    required this.appSmallButtonBackgroundColor,
-    required this.appButtonTextColor,
+    required this.filledButtonTextColorDisabled,
+    required this.textButtonTextColorDisabled,
+    required this.filledButtonTextColorEnabled,
+    required this.smallButtonBackgroundColor,
     required this.buttonTextColor,
     required this.shimmerBaseColor,
     required this.shimmerHighlightColor,
@@ -68,8 +66,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.elevatedButtonBackgroundColor,
     required this.textColorWhite,
     required this.bodyTextColor2,
-    required this.appSmallButtonFilledBackgroundColor,
-    required this.appSmallButtonOutlinedBorderColor,
+    required this.smallButtonFilledBackgroundColor,
+    required this.smallButtonOutlinedBorderColor,
     required this.activeButtonLanguageTextColor,
     required this.activeButtonTextColor,
     required this.disabledButtonTextColor,
@@ -84,7 +82,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.darkBlue,
     required this.darkGreen,
     required this.textButtonLoadingIndicatorColor,
-    required this.appOutlineButtonBackgroundColor,
     required this.buttonShadowColor,
     required this.buttonPressedColor,
     required this.buttonBorderColor,
@@ -146,12 +143,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final TextStyle pickerListItemTextStyle;
   final TextStyle captionBold;
   final TextStyle textButtonTextStyle;
-  final Color appErrorCardIconColor;
-  final Color appErrorCardBackgroundColor;
+  final Color errorCardIconColor;
+  final Color errorCardBackgroundColor;
   final Color lightRed;
   final Color blueLight;
   final Color greenLight;
-  final Color appErrorCardTextColor;
+  final Color errorCardTextColor;
   final EdgeInsets bottomSheetHeaderPadding;
   final Color bottomSheetBarrierColor;
   final Color messagePanelBackgroundColor;
@@ -167,12 +164,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color gradientRedStart;
   final Color gradientRedEnd;
   final Color filledButtonBackgroundColorDisabled;
-  final Color appFilledButtonBackgroundColorDisabled;
-  final Color appFilledButtonTextColorDisabled;
-  final Color appTextButtonTextColorDisabled;
-  final Color appFilledButtonTextColorEnabled;
-  final Color appSmallButtonBackgroundColor;
-  final Color appButtonTextColor;
+  final Color filledButtonTextColorDisabled;
+  final Color textButtonTextColorDisabled;
+  final Color filledButtonTextColorEnabled;
+  final Color smallButtonBackgroundColor;
   final Color buttonTextColor;
   final Color shimmerBaseColor;
   final Color shimmerHighlightColor;
@@ -181,8 +176,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color elevatedButtonBackgroundColor;
   final Color textColorWhite;
   final Color bodyTextColor2;
-  final Color appSmallButtonFilledBackgroundColor;
-  final Color appSmallButtonOutlinedBorderColor;
+  final Color smallButtonFilledBackgroundColor;
+  final Color smallButtonOutlinedBorderColor;
   final Color activeButtonLanguageTextColor;
   final Color activeButtonTextColor;
   final Color disabledButtonTextColor;
@@ -197,7 +192,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color darkBlue;
   final Color darkGreen;
   final Color textButtonLoadingIndicatorColor;
-  final Color appOutlineButtonBackgroundColor;
   final Color buttonShadowColor;
   final Color buttonPressedColor;
   final Color buttonBorderColor;
@@ -270,13 +264,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     pickerListItemTextStyle: _$WidgetToolkitTheme.pickerListItemTextStyle[0],
     captionBold: _$WidgetToolkitTheme.captionBold[0],
     textButtonTextStyle: _$WidgetToolkitTheme.textButtonTextStyle[0],
-    appErrorCardIconColor: _$WidgetToolkitTheme.appErrorCardIconColor[0],
-    appErrorCardBackgroundColor:
-        _$WidgetToolkitTheme.appErrorCardBackgroundColor[0],
+    errorCardIconColor: _$WidgetToolkitTheme.errorCardIconColor[0],
+    errorCardBackgroundColor: _$WidgetToolkitTheme.errorCardBackgroundColor[0],
     lightRed: _$WidgetToolkitTheme.lightRed[0],
     blueLight: _$WidgetToolkitTheme.blueLight[0],
     greenLight: _$WidgetToolkitTheme.greenLight[0],
-    appErrorCardTextColor: _$WidgetToolkitTheme.appErrorCardTextColor[0],
+    errorCardTextColor: _$WidgetToolkitTheme.errorCardTextColor[0],
     bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[0],
     bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[0],
     messagePanelBackgroundColor:
@@ -296,17 +289,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[0],
     filledButtonBackgroundColorDisabled:
         _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[0],
-    appFilledButtonBackgroundColorDisabled:
-        _$WidgetToolkitTheme.appFilledButtonBackgroundColorDisabled[0],
-    appFilledButtonTextColorDisabled:
-        _$WidgetToolkitTheme.appFilledButtonTextColorDisabled[0],
-    appTextButtonTextColorDisabled:
-        _$WidgetToolkitTheme.appTextButtonTextColorDisabled[0],
-    appFilledButtonTextColorEnabled:
-        _$WidgetToolkitTheme.appFilledButtonTextColorEnabled[0],
-    appSmallButtonBackgroundColor:
-        _$WidgetToolkitTheme.appSmallButtonBackgroundColor[0],
-    appButtonTextColor: _$WidgetToolkitTheme.appButtonTextColor[0],
+    filledButtonTextColorDisabled:
+        _$WidgetToolkitTheme.filledButtonTextColorDisabled[0],
+    textButtonTextColorDisabled:
+        _$WidgetToolkitTheme.textButtonTextColorDisabled[0],
+    filledButtonTextColorEnabled:
+        _$WidgetToolkitTheme.filledButtonTextColorEnabled[0],
+    smallButtonBackgroundColor:
+        _$WidgetToolkitTheme.smallButtonBackgroundColor[0],
     buttonTextColor: _$WidgetToolkitTheme.buttonTextColor[0],
     shimmerBaseColor: _$WidgetToolkitTheme.shimmerBaseColor[0],
     shimmerHighlightColor: _$WidgetToolkitTheme.shimmerHighlightColor[0],
@@ -316,10 +306,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.elevatedButtonBackgroundColor[0],
     textColorWhite: _$WidgetToolkitTheme.textColorWhite[0],
     bodyTextColor2: _$WidgetToolkitTheme.bodyTextColor2[0],
-    appSmallButtonFilledBackgroundColor:
-        _$WidgetToolkitTheme.appSmallButtonFilledBackgroundColor[0],
-    appSmallButtonOutlinedBorderColor:
-        _$WidgetToolkitTheme.appSmallButtonOutlinedBorderColor[0],
+    smallButtonFilledBackgroundColor:
+        _$WidgetToolkitTheme.smallButtonFilledBackgroundColor[0],
+    smallButtonOutlinedBorderColor:
+        _$WidgetToolkitTheme.smallButtonOutlinedBorderColor[0],
     activeButtonLanguageTextColor:
         _$WidgetToolkitTheme.activeButtonLanguageTextColor[0],
     activeButtonTextColor: _$WidgetToolkitTheme.activeButtonTextColor[0],
@@ -336,8 +326,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     darkGreen: _$WidgetToolkitTheme.darkGreen[0],
     textButtonLoadingIndicatorColor:
         _$WidgetToolkitTheme.textButtonLoadingIndicatorColor[0],
-    appOutlineButtonBackgroundColor:
-        _$WidgetToolkitTheme.appOutlineButtonBackgroundColor[0],
     buttonShadowColor: _$WidgetToolkitTheme.buttonShadowColor[0],
     buttonPressedColor: _$WidgetToolkitTheme.buttonPressedColor[0],
     buttonBorderColor: _$WidgetToolkitTheme.buttonBorderColor[0],
@@ -419,13 +407,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     pickerListItemTextStyle: _$WidgetToolkitTheme.pickerListItemTextStyle[1],
     captionBold: _$WidgetToolkitTheme.captionBold[1],
     textButtonTextStyle: _$WidgetToolkitTheme.textButtonTextStyle[1],
-    appErrorCardIconColor: _$WidgetToolkitTheme.appErrorCardIconColor[1],
-    appErrorCardBackgroundColor:
-        _$WidgetToolkitTheme.appErrorCardBackgroundColor[1],
+    errorCardIconColor: _$WidgetToolkitTheme.errorCardIconColor[1],
+    errorCardBackgroundColor: _$WidgetToolkitTheme.errorCardBackgroundColor[1],
     lightRed: _$WidgetToolkitTheme.lightRed[1],
     blueLight: _$WidgetToolkitTheme.blueLight[1],
     greenLight: _$WidgetToolkitTheme.greenLight[1],
-    appErrorCardTextColor: _$WidgetToolkitTheme.appErrorCardTextColor[1],
+    errorCardTextColor: _$WidgetToolkitTheme.errorCardTextColor[1],
     bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[1],
     bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[1],
     messagePanelBackgroundColor:
@@ -445,17 +432,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[1],
     filledButtonBackgroundColorDisabled:
         _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[1],
-    appFilledButtonBackgroundColorDisabled:
-        _$WidgetToolkitTheme.appFilledButtonBackgroundColorDisabled[1],
-    appFilledButtonTextColorDisabled:
-        _$WidgetToolkitTheme.appFilledButtonTextColorDisabled[1],
-    appTextButtonTextColorDisabled:
-        _$WidgetToolkitTheme.appTextButtonTextColorDisabled[1],
-    appFilledButtonTextColorEnabled:
-        _$WidgetToolkitTheme.appFilledButtonTextColorEnabled[1],
-    appSmallButtonBackgroundColor:
-        _$WidgetToolkitTheme.appSmallButtonBackgroundColor[1],
-    appButtonTextColor: _$WidgetToolkitTheme.appButtonTextColor[1],
+    filledButtonTextColorDisabled:
+        _$WidgetToolkitTheme.filledButtonTextColorDisabled[1],
+    textButtonTextColorDisabled:
+        _$WidgetToolkitTheme.textButtonTextColorDisabled[1],
+    filledButtonTextColorEnabled:
+        _$WidgetToolkitTheme.filledButtonTextColorEnabled[1],
+    smallButtonBackgroundColor:
+        _$WidgetToolkitTheme.smallButtonBackgroundColor[1],
     buttonTextColor: _$WidgetToolkitTheme.buttonTextColor[1],
     shimmerBaseColor: _$WidgetToolkitTheme.shimmerBaseColor[1],
     shimmerHighlightColor: _$WidgetToolkitTheme.shimmerHighlightColor[1],
@@ -465,10 +449,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.elevatedButtonBackgroundColor[1],
     textColorWhite: _$WidgetToolkitTheme.textColorWhite[1],
     bodyTextColor2: _$WidgetToolkitTheme.bodyTextColor2[1],
-    appSmallButtonFilledBackgroundColor:
-        _$WidgetToolkitTheme.appSmallButtonFilledBackgroundColor[1],
-    appSmallButtonOutlinedBorderColor:
-        _$WidgetToolkitTheme.appSmallButtonOutlinedBorderColor[1],
+    smallButtonFilledBackgroundColor:
+        _$WidgetToolkitTheme.smallButtonFilledBackgroundColor[1],
+    smallButtonOutlinedBorderColor:
+        _$WidgetToolkitTheme.smallButtonOutlinedBorderColor[1],
     activeButtonLanguageTextColor:
         _$WidgetToolkitTheme.activeButtonLanguageTextColor[1],
     activeButtonTextColor: _$WidgetToolkitTheme.activeButtonTextColor[1],
@@ -485,8 +469,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     darkGreen: _$WidgetToolkitTheme.darkGreen[1],
     textButtonLoadingIndicatorColor:
         _$WidgetToolkitTheme.textButtonLoadingIndicatorColor[1],
-    appOutlineButtonBackgroundColor:
-        _$WidgetToolkitTheme.appOutlineButtonBackgroundColor[1],
     buttonShadowColor: _$WidgetToolkitTheme.buttonShadowColor[1],
     buttonPressedColor: _$WidgetToolkitTheme.buttonPressedColor[1],
     buttonBorderColor: _$WidgetToolkitTheme.buttonBorderColor[1],
@@ -563,12 +545,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     TextStyle? pickerListItemTextStyle,
     TextStyle? captionBold,
     TextStyle? textButtonTextStyle,
-    Color? appErrorCardIconColor,
-    Color? appErrorCardBackgroundColor,
+    Color? errorCardIconColor,
+    Color? errorCardBackgroundColor,
     Color? lightRed,
     Color? blueLight,
     Color? greenLight,
-    Color? appErrorCardTextColor,
+    Color? errorCardTextColor,
     EdgeInsets? bottomSheetHeaderPadding,
     Color? bottomSheetBarrierColor,
     Color? messagePanelBackgroundColor,
@@ -584,12 +566,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? gradientRedStart,
     Color? gradientRedEnd,
     Color? filledButtonBackgroundColorDisabled,
-    Color? appFilledButtonBackgroundColorDisabled,
-    Color? appFilledButtonTextColorDisabled,
-    Color? appTextButtonTextColorDisabled,
-    Color? appFilledButtonTextColorEnabled,
-    Color? appSmallButtonBackgroundColor,
-    Color? appButtonTextColor,
+    Color? filledButtonTextColorDisabled,
+    Color? textButtonTextColorDisabled,
+    Color? filledButtonTextColorEnabled,
+    Color? smallButtonBackgroundColor,
     Color? buttonTextColor,
     Color? shimmerBaseColor,
     Color? shimmerHighlightColor,
@@ -598,8 +578,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? elevatedButtonBackgroundColor,
     Color? textColorWhite,
     Color? bodyTextColor2,
-    Color? appSmallButtonFilledBackgroundColor,
-    Color? appSmallButtonOutlinedBorderColor,
+    Color? smallButtonFilledBackgroundColor,
+    Color? smallButtonOutlinedBorderColor,
     Color? activeButtonLanguageTextColor,
     Color? activeButtonTextColor,
     Color? disabledButtonTextColor,
@@ -614,7 +594,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? darkBlue,
     Color? darkGreen,
     Color? textButtonLoadingIndicatorColor,
-    Color? appOutlineButtonBackgroundColor,
     Color? buttonShadowColor,
     Color? buttonPressedColor,
     Color? buttonBorderColor,
@@ -693,15 +672,13 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           pickerListItemTextStyle ?? this.pickerListItemTextStyle,
       captionBold: captionBold ?? this.captionBold,
       textButtonTextStyle: textButtonTextStyle ?? this.textButtonTextStyle,
-      appErrorCardIconColor:
-          appErrorCardIconColor ?? this.appErrorCardIconColor,
-      appErrorCardBackgroundColor:
-          appErrorCardBackgroundColor ?? this.appErrorCardBackgroundColor,
+      errorCardIconColor: errorCardIconColor ?? this.errorCardIconColor,
+      errorCardBackgroundColor:
+          errorCardBackgroundColor ?? this.errorCardBackgroundColor,
       lightRed: lightRed ?? this.lightRed,
       blueLight: blueLight ?? this.blueLight,
       greenLight: greenLight ?? this.greenLight,
-      appErrorCardTextColor:
-          appErrorCardTextColor ?? this.appErrorCardTextColor,
+      errorCardTextColor: errorCardTextColor ?? this.errorCardTextColor,
       bottomSheetHeaderPadding:
           bottomSheetHeaderPadding ?? this.bottomSheetHeaderPadding,
       bottomSheetBarrierColor:
@@ -727,18 +704,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       filledButtonBackgroundColorDisabled:
           filledButtonBackgroundColorDisabled ??
               this.filledButtonBackgroundColorDisabled,
-      appFilledButtonBackgroundColorDisabled:
-          appFilledButtonBackgroundColorDisabled ??
-              this.appFilledButtonBackgroundColorDisabled,
-      appFilledButtonTextColorDisabled: appFilledButtonTextColorDisabled ??
-          this.appFilledButtonTextColorDisabled,
-      appTextButtonTextColorDisabled:
-          appTextButtonTextColorDisabled ?? this.appTextButtonTextColorDisabled,
-      appFilledButtonTextColorEnabled: appFilledButtonTextColorEnabled ??
-          this.appFilledButtonTextColorEnabled,
-      appSmallButtonBackgroundColor:
-          appSmallButtonBackgroundColor ?? this.appSmallButtonBackgroundColor,
-      appButtonTextColor: appButtonTextColor ?? this.appButtonTextColor,
+      filledButtonTextColorDisabled:
+          filledButtonTextColorDisabled ?? this.filledButtonTextColorDisabled,
+      textButtonTextColorDisabled:
+          textButtonTextColorDisabled ?? this.textButtonTextColorDisabled,
+      filledButtonTextColorEnabled:
+          filledButtonTextColorEnabled ?? this.filledButtonTextColorEnabled,
+      smallButtonBackgroundColor:
+          smallButtonBackgroundColor ?? this.smallButtonBackgroundColor,
       buttonTextColor: buttonTextColor ?? this.buttonTextColor,
       shimmerBaseColor: shimmerBaseColor ?? this.shimmerBaseColor,
       shimmerHighlightColor:
@@ -750,11 +723,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           elevatedButtonBackgroundColor ?? this.elevatedButtonBackgroundColor,
       textColorWhite: textColorWhite ?? this.textColorWhite,
       bodyTextColor2: bodyTextColor2 ?? this.bodyTextColor2,
-      appSmallButtonFilledBackgroundColor:
-          appSmallButtonFilledBackgroundColor ??
-              this.appSmallButtonFilledBackgroundColor,
-      appSmallButtonOutlinedBorderColor: appSmallButtonOutlinedBorderColor ??
-          this.appSmallButtonOutlinedBorderColor,
+      smallButtonFilledBackgroundColor: smallButtonFilledBackgroundColor ??
+          this.smallButtonFilledBackgroundColor,
+      smallButtonOutlinedBorderColor:
+          smallButtonOutlinedBorderColor ?? this.smallButtonOutlinedBorderColor,
       activeButtonLanguageTextColor:
           activeButtonLanguageTextColor ?? this.activeButtonLanguageTextColor,
       activeButtonTextColor:
@@ -775,8 +747,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       darkGreen: darkGreen ?? this.darkGreen,
       textButtonLoadingIndicatorColor: textButtonLoadingIndicatorColor ??
           this.textButtonLoadingIndicatorColor,
-      appOutlineButtonBackgroundColor: appOutlineButtonBackgroundColor ??
-          this.appOutlineButtonBackgroundColor,
       buttonShadowColor: buttonShadowColor ?? this.buttonShadowColor,
       buttonPressedColor: buttonPressedColor ?? this.buttonPressedColor,
       buttonBorderColor: buttonBorderColor ?? this.buttonBorderColor,
@@ -882,15 +852,15 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
       textButtonTextStyle:
           TextStyle.lerp(textButtonTextStyle, other.textButtonTextStyle, t)!,
-      appErrorCardIconColor:
-          Color.lerp(appErrorCardIconColor, other.appErrorCardIconColor, t)!,
-      appErrorCardBackgroundColor: Color.lerp(
-          appErrorCardBackgroundColor, other.appErrorCardBackgroundColor, t)!,
+      errorCardIconColor:
+          Color.lerp(errorCardIconColor, other.errorCardIconColor, t)!,
+      errorCardBackgroundColor: Color.lerp(
+          errorCardBackgroundColor, other.errorCardBackgroundColor, t)!,
       lightRed: Color.lerp(lightRed, other.lightRed, t)!,
       blueLight: Color.lerp(blueLight, other.blueLight, t)!,
       greenLight: Color.lerp(greenLight, other.greenLight, t)!,
-      appErrorCardTextColor:
-          Color.lerp(appErrorCardTextColor, other.appErrorCardTextColor, t)!,
+      errorCardTextColor:
+          Color.lerp(errorCardTextColor, other.errorCardTextColor, t)!,
       bottomSheetHeaderPadding:
           t < 0.5 ? bottomSheetHeaderPadding : other.bottomSheetHeaderPadding,
       bottomSheetBarrierColor: Color.lerp(
@@ -922,24 +892,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           filledButtonBackgroundColorDisabled,
           other.filledButtonBackgroundColorDisabled,
           t)!,
-      appFilledButtonBackgroundColorDisabled: Color.lerp(
-          appFilledButtonBackgroundColorDisabled,
-          other.appFilledButtonBackgroundColorDisabled,
-          t)!,
-      appFilledButtonTextColorDisabled: Color.lerp(
-          appFilledButtonTextColorDisabled,
-          other.appFilledButtonTextColorDisabled,
-          t)!,
-      appTextButtonTextColorDisabled: Color.lerp(appTextButtonTextColorDisabled,
-          other.appTextButtonTextColorDisabled, t)!,
-      appFilledButtonTextColorEnabled: Color.lerp(
-          appFilledButtonTextColorEnabled,
-          other.appFilledButtonTextColorEnabled,
-          t)!,
-      appSmallButtonBackgroundColor: Color.lerp(appSmallButtonBackgroundColor,
-          other.appSmallButtonBackgroundColor, t)!,
-      appButtonTextColor:
-          Color.lerp(appButtonTextColor, other.appButtonTextColor, t)!,
+      filledButtonTextColorDisabled: Color.lerp(filledButtonTextColorDisabled,
+          other.filledButtonTextColorDisabled, t)!,
+      textButtonTextColorDisabled: Color.lerp(
+          textButtonTextColorDisabled, other.textButtonTextColorDisabled, t)!,
+      filledButtonTextColorEnabled: Color.lerp(
+          filledButtonTextColorEnabled, other.filledButtonTextColorEnabled, t)!,
+      smallButtonBackgroundColor: Color.lerp(
+          smallButtonBackgroundColor, other.smallButtonBackgroundColor, t)!,
       buttonTextColor: Color.lerp(buttonTextColor, other.buttonTextColor, t)!,
       shimmerBaseColor:
           Color.lerp(shimmerBaseColor, other.shimmerBaseColor, t)!,
@@ -952,14 +912,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           other.elevatedButtonBackgroundColor, t)!,
       textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
       bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
-      appSmallButtonFilledBackgroundColor: Color.lerp(
-          appSmallButtonFilledBackgroundColor,
-          other.appSmallButtonFilledBackgroundColor,
+      smallButtonFilledBackgroundColor: Color.lerp(
+          smallButtonFilledBackgroundColor,
+          other.smallButtonFilledBackgroundColor,
           t)!,
-      appSmallButtonOutlinedBorderColor: Color.lerp(
-          appSmallButtonOutlinedBorderColor,
-          other.appSmallButtonOutlinedBorderColor,
-          t)!,
+      smallButtonOutlinedBorderColor: Color.lerp(smallButtonOutlinedBorderColor,
+          other.smallButtonOutlinedBorderColor, t)!,
       activeButtonLanguageTextColor: Color.lerp(activeButtonLanguageTextColor,
           other.activeButtonLanguageTextColor, t)!,
       activeButtonTextColor:
@@ -982,10 +940,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       textButtonLoadingIndicatorColor: Color.lerp(
           textButtonLoadingIndicatorColor,
           other.textButtonLoadingIndicatorColor,
-          t)!,
-      appOutlineButtonBackgroundColor: Color.lerp(
-          appOutlineButtonBackgroundColor,
-          other.appOutlineButtonBackgroundColor,
           t)!,
       buttonShadowColor:
           Color.lerp(buttonShadowColor, other.buttonShadowColor, t)!,
@@ -1096,12 +1050,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(pickerListItemTextStyle, other.pickerListItemTextStyle) &&
             const DeepCollectionEquality().equals(captionBold, other.captionBold) &&
             const DeepCollectionEquality().equals(textButtonTextStyle, other.textButtonTextStyle) &&
-            const DeepCollectionEquality().equals(appErrorCardIconColor, other.appErrorCardIconColor) &&
-            const DeepCollectionEquality().equals(appErrorCardBackgroundColor, other.appErrorCardBackgroundColor) &&
+            const DeepCollectionEquality().equals(errorCardIconColor, other.errorCardIconColor) &&
+            const DeepCollectionEquality().equals(errorCardBackgroundColor, other.errorCardBackgroundColor) &&
             const DeepCollectionEquality().equals(lightRed, other.lightRed) &&
             const DeepCollectionEquality().equals(blueLight, other.blueLight) &&
             const DeepCollectionEquality().equals(greenLight, other.greenLight) &&
-            const DeepCollectionEquality().equals(appErrorCardTextColor, other.appErrorCardTextColor) &&
+            const DeepCollectionEquality().equals(errorCardTextColor, other.errorCardTextColor) &&
             const DeepCollectionEquality().equals(bottomSheetHeaderPadding, other.bottomSheetHeaderPadding) &&
             const DeepCollectionEquality().equals(bottomSheetBarrierColor, other.bottomSheetBarrierColor) &&
             const DeepCollectionEquality().equals(messagePanelBackgroundColor, other.messagePanelBackgroundColor) &&
@@ -1117,12 +1071,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(gradientRedStart, other.gradientRedStart) &&
             const DeepCollectionEquality().equals(gradientRedEnd, other.gradientRedEnd) &&
             const DeepCollectionEquality().equals(filledButtonBackgroundColorDisabled, other.filledButtonBackgroundColorDisabled) &&
-            const DeepCollectionEquality().equals(appFilledButtonBackgroundColorDisabled, other.appFilledButtonBackgroundColorDisabled) &&
-            const DeepCollectionEquality().equals(appFilledButtonTextColorDisabled, other.appFilledButtonTextColorDisabled) &&
-            const DeepCollectionEquality().equals(appTextButtonTextColorDisabled, other.appTextButtonTextColorDisabled) &&
-            const DeepCollectionEquality().equals(appFilledButtonTextColorEnabled, other.appFilledButtonTextColorEnabled) &&
-            const DeepCollectionEquality().equals(appSmallButtonBackgroundColor, other.appSmallButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(appButtonTextColor, other.appButtonTextColor) &&
+            const DeepCollectionEquality().equals(filledButtonTextColorDisabled, other.filledButtonTextColorDisabled) &&
+            const DeepCollectionEquality().equals(textButtonTextColorDisabled, other.textButtonTextColorDisabled) &&
+            const DeepCollectionEquality().equals(filledButtonTextColorEnabled, other.filledButtonTextColorEnabled) &&
+            const DeepCollectionEquality().equals(smallButtonBackgroundColor, other.smallButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(buttonTextColor, other.buttonTextColor) &&
             const DeepCollectionEquality().equals(shimmerBaseColor, other.shimmerBaseColor) &&
             const DeepCollectionEquality().equals(shimmerHighlightColor, other.shimmerHighlightColor) &&
@@ -1131,8 +1083,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(textColorWhite, other.textColorWhite) &&
             const DeepCollectionEquality().equals(bodyTextColor2, other.bodyTextColor2) &&
-            const DeepCollectionEquality().equals(appSmallButtonFilledBackgroundColor, other.appSmallButtonFilledBackgroundColor) &&
-            const DeepCollectionEquality().equals(appSmallButtonOutlinedBorderColor, other.appSmallButtonOutlinedBorderColor) &&
+            const DeepCollectionEquality().equals(smallButtonFilledBackgroundColor, other.smallButtonFilledBackgroundColor) &&
+            const DeepCollectionEquality().equals(smallButtonOutlinedBorderColor, other.smallButtonOutlinedBorderColor) &&
             const DeepCollectionEquality().equals(activeButtonLanguageTextColor, other.activeButtonLanguageTextColor) &&
             const DeepCollectionEquality().equals(activeButtonTextColor, other.activeButtonTextColor) &&
             const DeepCollectionEquality().equals(disabledButtonTextColor, other.disabledButtonTextColor) &&
@@ -1147,7 +1099,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(darkBlue, other.darkBlue) &&
             const DeepCollectionEquality().equals(darkGreen, other.darkGreen) &&
             const DeepCollectionEquality().equals(textButtonLoadingIndicatorColor, other.textButtonLoadingIndicatorColor) &&
-            const DeepCollectionEquality().equals(appOutlineButtonBackgroundColor, other.appOutlineButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(buttonShadowColor, other.buttonShadowColor) &&
             const DeepCollectionEquality().equals(buttonPressedColor, other.buttonPressedColor) &&
             const DeepCollectionEquality().equals(buttonBorderColor, other.buttonBorderColor) &&
@@ -1213,12 +1164,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(pickerListItemTextStyle),
       const DeepCollectionEquality().hash(captionBold),
       const DeepCollectionEquality().hash(textButtonTextStyle),
-      const DeepCollectionEquality().hash(appErrorCardIconColor),
-      const DeepCollectionEquality().hash(appErrorCardBackgroundColor),
+      const DeepCollectionEquality().hash(errorCardIconColor),
+      const DeepCollectionEquality().hash(errorCardBackgroundColor),
       const DeepCollectionEquality().hash(lightRed),
       const DeepCollectionEquality().hash(blueLight),
       const DeepCollectionEquality().hash(greenLight),
-      const DeepCollectionEquality().hash(appErrorCardTextColor),
+      const DeepCollectionEquality().hash(errorCardTextColor),
       const DeepCollectionEquality().hash(bottomSheetHeaderPadding),
       const DeepCollectionEquality().hash(bottomSheetBarrierColor),
       const DeepCollectionEquality().hash(messagePanelBackgroundColor),
@@ -1234,13 +1185,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(gradientRedStart),
       const DeepCollectionEquality().hash(gradientRedEnd),
       const DeepCollectionEquality().hash(filledButtonBackgroundColorDisabled),
-      const DeepCollectionEquality()
-          .hash(appFilledButtonBackgroundColorDisabled),
-      const DeepCollectionEquality().hash(appFilledButtonTextColorDisabled),
-      const DeepCollectionEquality().hash(appTextButtonTextColorDisabled),
-      const DeepCollectionEquality().hash(appFilledButtonTextColorEnabled),
-      const DeepCollectionEquality().hash(appSmallButtonBackgroundColor),
-      const DeepCollectionEquality().hash(appButtonTextColor),
+      const DeepCollectionEquality().hash(filledButtonTextColorDisabled),
+      const DeepCollectionEquality().hash(textButtonTextColorDisabled),
+      const DeepCollectionEquality().hash(filledButtonTextColorEnabled),
+      const DeepCollectionEquality().hash(smallButtonBackgroundColor),
       const DeepCollectionEquality().hash(buttonTextColor),
       const DeepCollectionEquality().hash(shimmerBaseColor),
       const DeepCollectionEquality().hash(shimmerHighlightColor),
@@ -1249,8 +1197,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
       const DeepCollectionEquality().hash(textColorWhite),
       const DeepCollectionEquality().hash(bodyTextColor2),
-      const DeepCollectionEquality().hash(appSmallButtonFilledBackgroundColor),
-      const DeepCollectionEquality().hash(appSmallButtonOutlinedBorderColor),
+      const DeepCollectionEquality().hash(smallButtonFilledBackgroundColor),
+      const DeepCollectionEquality().hash(smallButtonOutlinedBorderColor),
       const DeepCollectionEquality().hash(activeButtonLanguageTextColor),
       const DeepCollectionEquality().hash(activeButtonTextColor),
       const DeepCollectionEquality().hash(disabledButtonTextColor),
@@ -1265,7 +1213,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(darkBlue),
       const DeepCollectionEquality().hash(darkGreen),
       const DeepCollectionEquality().hash(textButtonLoadingIndicatorColor),
-      const DeepCollectionEquality().hash(appOutlineButtonBackgroundColor),
       const DeepCollectionEquality().hash(buttonShadowColor),
       const DeepCollectionEquality().hash(buttonPressedColor),
       const DeepCollectionEquality().hash(buttonBorderColor),

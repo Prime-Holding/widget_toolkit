@@ -27,7 +27,7 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 /// [emptyLabel] is the text value, displayed when there is no initially set text
 /// value for the widget
 ///
-/// [validator] received a service, which extends [AppTextFieldValidator] and
+/// [validator] received a service, which extends [TextFieldValidator] and
 /// implements its validation methods for the frontend and backend checks
 ///
 /// [onChanged] after the field service validation is successful the onChanged

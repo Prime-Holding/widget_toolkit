@@ -159,8 +159,7 @@ class InputTextFieldState extends State<InputTextField> {
               if (currentState == InputTextFieldStateModel.error &&
                   widget.errorMessage != null)
                 Padding(
-                  padding:
-                      context.textFieldDialogTheme.appInputTextFieldPadding1,
+                  padding: context.textFieldDialogTheme.inputTextFieldPadding1,
                   child: Text(
                     widget.errorMessage ?? '',
                     textAlign: TextAlign.start,
@@ -318,23 +317,17 @@ extension _InputTextFieldStateModelX on InputTextFieldStateModel {
   Color _getBackgroundColor(BuildContext context) {
     switch (this) {
       case InputTextFieldStateModel.filled:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
       case InputTextFieldStateModel.success:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldSuccessBackground;
+        return context.textFieldDialogTheme.inputTextFieldSuccessBackground;
       case InputTextFieldStateModel.defaultField:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
       case InputTextFieldStateModel.defaultDisabled:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
       case InputTextFieldStateModel.plain:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
       default:
-        return context
-            .textFieldDialogTheme.primeInputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
     }
   }
 
@@ -378,12 +371,12 @@ class _PrefixIconWidget extends StatelessWidget {
     switch (state) {
       case InputTextFieldStateModel.defaultField:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPadding2,
+          padding: context.textFieldDialogTheme.inputTextFieldPadding2,
           child: context.textFieldDialogTheme.addIcon,
         );
       case InputTextFieldStateModel.defaultDisabled:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPadding3,
+          padding: context.textFieldDialogTheme.inputTextFieldPadding3,
           child: context.textFieldDialogTheme.addDisabledIcon,
         );
       default:
@@ -405,22 +398,22 @@ class _SuffixIconWidget extends StatelessWidget {
     switch (state) {
       case InputTextFieldStateModel.loading:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPaddingLoading,
+          padding: context.textFieldDialogTheme.inputTextFieldPaddingLoading,
           child: context.textFieldDialogTheme.loadingIcon,
         );
       case InputTextFieldStateModel.success:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPaddingSuccess,
+          padding: context.textFieldDialogTheme.inputTextFieldPaddingSuccess,
           child: context.textFieldDialogTheme.tickCircleSuccessIcon,
         );
       case InputTextFieldStateModel.error:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPaddingError,
+          padding: context.textFieldDialogTheme.inputTextFieldPaddingError,
           child: context.textFieldDialogTheme.dangerIcon,
         );
       case InputTextFieldStateModel.warning:
         return Padding(
-          padding: context.textFieldDialogTheme.appInputTextFieldPaddingWarning,
+          padding: context.textFieldDialogTheme.inputTextFieldPaddingWarning,
           child: context.textFieldDialogTheme.infoCircleIcon,
         );
       default:

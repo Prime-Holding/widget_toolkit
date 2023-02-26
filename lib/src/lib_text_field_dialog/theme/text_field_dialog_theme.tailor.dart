@@ -10,13 +10,13 @@ part of 'text_field_dialog_theme.dart';
 
 class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
   const TextFieldDialogTheme({
-    required this.primeEditFieldSuccessBackground,
-    required this.primeEditFieldRegularBackground,
-    required this.primeEditFieldBorderRadius,
-    required this.primeInputTextFieldSuccessBackground,
-    required this.primeInputTextFieldRegularBackground,
-    required this.primeLabelBoxOptionalBackground,
-    required this.primeLabelBoxFilledBackground,
+    required this.editFieldSuccessBackground,
+    required this.editFieldRegularBackground,
+    required this.editFieldBorderRadius,
+    required this.inputTextFieldSuccessBackground,
+    required this.inputTextFieldRegularBackground,
+    required this.labelBoxOptionalBackground,
+    required this.labelBoxFilledBackground,
     required this.spacingXS,
     required this.spacingXSS,
     required this.spacingS,
@@ -57,25 +57,25 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     required this.textFieldDialog2,
     required this.textFieldDialog4,
     required this.textFieldDialog3,
-    required this.appLabeledBoxWidgetPadding1,
-    required this.appLabeledBoxWidgetPadding2,
-    required this.appLabeledBoxWidgetPadding3,
-    required this.appInputTextFieldPadding1,
-    required this.appInputTextFieldPadding2,
-    required this.appInputTextFieldPadding3,
-    required this.appInputTextFieldPaddingLoading,
-    required this.appInputTextFieldPaddingSuccess,
-    required this.appInputTextFieldPaddingWarning,
-    required this.appInputTextFieldPaddingError,
+    required this.labeledBoxWidgetPadding1,
+    required this.labeledBoxWidgetPadding2,
+    required this.labeledBoxWidgetPadding3,
+    required this.inputTextFieldPadding1,
+    required this.inputTextFieldPadding2,
+    required this.inputTextFieldPadding3,
+    required this.inputTextFieldPaddingLoading,
+    required this.inputTextFieldPaddingSuccess,
+    required this.inputTextFieldPaddingWarning,
+    required this.inputTextFieldPaddingError,
   });
 
-  final Color primeEditFieldSuccessBackground;
-  final Color primeEditFieldRegularBackground;
-  final double primeEditFieldBorderRadius;
-  final Color primeInputTextFieldSuccessBackground;
-  final Color primeInputTextFieldRegularBackground;
-  final Color primeLabelBoxOptionalBackground;
-  final Color primeLabelBoxFilledBackground;
+  final Color editFieldSuccessBackground;
+  final Color editFieldRegularBackground;
+  final double editFieldBorderRadius;
+  final Color inputTextFieldSuccessBackground;
+  final Color inputTextFieldRegularBackground;
+  final Color labelBoxOptionalBackground;
+  final Color labelBoxFilledBackground;
   final double spacingXS;
   final double spacingXSS;
   final double spacingS;
@@ -116,32 +116,31 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
   final EdgeInsets textFieldDialog2;
   final EdgeInsets textFieldDialog4;
   final EdgeInsets textFieldDialog3;
-  final EdgeInsets appLabeledBoxWidgetPadding1;
-  final EdgeInsets appLabeledBoxWidgetPadding2;
-  final EdgeInsets appLabeledBoxWidgetPadding3;
-  final EdgeInsets appInputTextFieldPadding1;
-  final EdgeInsets appInputTextFieldPadding2;
-  final EdgeInsets appInputTextFieldPadding3;
-  final EdgeInsets appInputTextFieldPaddingLoading;
-  final EdgeInsets appInputTextFieldPaddingSuccess;
-  final EdgeInsets appInputTextFieldPaddingWarning;
-  final EdgeInsets appInputTextFieldPaddingError;
+  final EdgeInsets labeledBoxWidgetPadding1;
+  final EdgeInsets labeledBoxWidgetPadding2;
+  final EdgeInsets labeledBoxWidgetPadding3;
+  final EdgeInsets inputTextFieldPadding1;
+  final EdgeInsets inputTextFieldPadding2;
+  final EdgeInsets inputTextFieldPadding3;
+  final EdgeInsets inputTextFieldPaddingLoading;
+  final EdgeInsets inputTextFieldPaddingSuccess;
+  final EdgeInsets inputTextFieldPaddingWarning;
+  final EdgeInsets inputTextFieldPaddingError;
 
   static final TextFieldDialogTheme light = TextFieldDialogTheme(
-    primeEditFieldSuccessBackground:
-        _$TextFieldDialogTheme.primeEditFieldSuccessBackground[0],
-    primeEditFieldRegularBackground:
-        _$TextFieldDialogTheme.primeEditFieldRegularBackground[0],
-    primeEditFieldBorderRadius:
-        _$TextFieldDialogTheme.primeEditFieldBorderRadius[0],
-    primeInputTextFieldSuccessBackground:
-        _$TextFieldDialogTheme.primeInputTextFieldSuccessBackground[0],
-    primeInputTextFieldRegularBackground:
-        _$TextFieldDialogTheme.primeInputTextFieldRegularBackground[0],
-    primeLabelBoxOptionalBackground:
-        _$TextFieldDialogTheme.primeLabelBoxOptionalBackground[0],
-    primeLabelBoxFilledBackground:
-        _$TextFieldDialogTheme.primeLabelBoxFilledBackground[0],
+    editFieldSuccessBackground:
+        _$TextFieldDialogTheme.editFieldSuccessBackground[0],
+    editFieldRegularBackground:
+        _$TextFieldDialogTheme.editFieldRegularBackground[0],
+    editFieldBorderRadius: _$TextFieldDialogTheme.editFieldBorderRadius[0],
+    inputTextFieldSuccessBackground:
+        _$TextFieldDialogTheme.inputTextFieldSuccessBackground[0],
+    inputTextFieldRegularBackground:
+        _$TextFieldDialogTheme.inputTextFieldRegularBackground[0],
+    labelBoxOptionalBackground:
+        _$TextFieldDialogTheme.labelBoxOptionalBackground[0],
+    labelBoxFilledBackground:
+        _$TextFieldDialogTheme.labelBoxFilledBackground[0],
     spacingXS: _$TextFieldDialogTheme.spacingXS[0],
     spacingXSS: _$TextFieldDialogTheme.spacingXSS[0],
     spacingS: _$TextFieldDialogTheme.spacingS[0],
@@ -183,43 +182,39 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     textFieldDialog2: _$TextFieldDialogTheme.textFieldDialog2[0],
     textFieldDialog4: _$TextFieldDialogTheme.textFieldDialog4[0],
     textFieldDialog3: _$TextFieldDialogTheme.textFieldDialog3[0],
-    appLabeledBoxWidgetPadding1:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding1[0],
-    appLabeledBoxWidgetPadding2:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding2[0],
-    appLabeledBoxWidgetPadding3:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding3[0],
-    appInputTextFieldPadding1:
-        _$TextFieldDialogTheme.appInputTextFieldPadding1[0],
-    appInputTextFieldPadding2:
-        _$TextFieldDialogTheme.appInputTextFieldPadding2[0],
-    appInputTextFieldPadding3:
-        _$TextFieldDialogTheme.appInputTextFieldPadding3[0],
-    appInputTextFieldPaddingLoading:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingLoading[0],
-    appInputTextFieldPaddingSuccess:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingSuccess[0],
-    appInputTextFieldPaddingWarning:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingWarning[0],
-    appInputTextFieldPaddingError:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingError[0],
+    labeledBoxWidgetPadding1:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding1[0],
+    labeledBoxWidgetPadding2:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding2[0],
+    labeledBoxWidgetPadding3:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding3[0],
+    inputTextFieldPadding1: _$TextFieldDialogTheme.inputTextFieldPadding1[0],
+    inputTextFieldPadding2: _$TextFieldDialogTheme.inputTextFieldPadding2[0],
+    inputTextFieldPadding3: _$TextFieldDialogTheme.inputTextFieldPadding3[0],
+    inputTextFieldPaddingLoading:
+        _$TextFieldDialogTheme.inputTextFieldPaddingLoading[0],
+    inputTextFieldPaddingSuccess:
+        _$TextFieldDialogTheme.inputTextFieldPaddingSuccess[0],
+    inputTextFieldPaddingWarning:
+        _$TextFieldDialogTheme.inputTextFieldPaddingWarning[0],
+    inputTextFieldPaddingError:
+        _$TextFieldDialogTheme.inputTextFieldPaddingError[0],
   );
 
   static final TextFieldDialogTheme dark = TextFieldDialogTheme(
-    primeEditFieldSuccessBackground:
-        _$TextFieldDialogTheme.primeEditFieldSuccessBackground[1],
-    primeEditFieldRegularBackground:
-        _$TextFieldDialogTheme.primeEditFieldRegularBackground[1],
-    primeEditFieldBorderRadius:
-        _$TextFieldDialogTheme.primeEditFieldBorderRadius[1],
-    primeInputTextFieldSuccessBackground:
-        _$TextFieldDialogTheme.primeInputTextFieldSuccessBackground[1],
-    primeInputTextFieldRegularBackground:
-        _$TextFieldDialogTheme.primeInputTextFieldRegularBackground[1],
-    primeLabelBoxOptionalBackground:
-        _$TextFieldDialogTheme.primeLabelBoxOptionalBackground[1],
-    primeLabelBoxFilledBackground:
-        _$TextFieldDialogTheme.primeLabelBoxFilledBackground[1],
+    editFieldSuccessBackground:
+        _$TextFieldDialogTheme.editFieldSuccessBackground[1],
+    editFieldRegularBackground:
+        _$TextFieldDialogTheme.editFieldRegularBackground[1],
+    editFieldBorderRadius: _$TextFieldDialogTheme.editFieldBorderRadius[1],
+    inputTextFieldSuccessBackground:
+        _$TextFieldDialogTheme.inputTextFieldSuccessBackground[1],
+    inputTextFieldRegularBackground:
+        _$TextFieldDialogTheme.inputTextFieldRegularBackground[1],
+    labelBoxOptionalBackground:
+        _$TextFieldDialogTheme.labelBoxOptionalBackground[1],
+    labelBoxFilledBackground:
+        _$TextFieldDialogTheme.labelBoxFilledBackground[1],
     spacingXS: _$TextFieldDialogTheme.spacingXS[1],
     spacingXSS: _$TextFieldDialogTheme.spacingXSS[1],
     spacingS: _$TextFieldDialogTheme.spacingS[1],
@@ -261,26 +256,23 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     textFieldDialog2: _$TextFieldDialogTheme.textFieldDialog2[1],
     textFieldDialog4: _$TextFieldDialogTheme.textFieldDialog4[1],
     textFieldDialog3: _$TextFieldDialogTheme.textFieldDialog3[1],
-    appLabeledBoxWidgetPadding1:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding1[1],
-    appLabeledBoxWidgetPadding2:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding2[1],
-    appLabeledBoxWidgetPadding3:
-        _$TextFieldDialogTheme.appLabeledBoxWidgetPadding3[1],
-    appInputTextFieldPadding1:
-        _$TextFieldDialogTheme.appInputTextFieldPadding1[1],
-    appInputTextFieldPadding2:
-        _$TextFieldDialogTheme.appInputTextFieldPadding2[1],
-    appInputTextFieldPadding3:
-        _$TextFieldDialogTheme.appInputTextFieldPadding3[1],
-    appInputTextFieldPaddingLoading:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingLoading[1],
-    appInputTextFieldPaddingSuccess:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingSuccess[1],
-    appInputTextFieldPaddingWarning:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingWarning[1],
-    appInputTextFieldPaddingError:
-        _$TextFieldDialogTheme.appInputTextFieldPaddingError[1],
+    labeledBoxWidgetPadding1:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding1[1],
+    labeledBoxWidgetPadding2:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding2[1],
+    labeledBoxWidgetPadding3:
+        _$TextFieldDialogTheme.labeledBoxWidgetPadding3[1],
+    inputTextFieldPadding1: _$TextFieldDialogTheme.inputTextFieldPadding1[1],
+    inputTextFieldPadding2: _$TextFieldDialogTheme.inputTextFieldPadding2[1],
+    inputTextFieldPadding3: _$TextFieldDialogTheme.inputTextFieldPadding3[1],
+    inputTextFieldPaddingLoading:
+        _$TextFieldDialogTheme.inputTextFieldPaddingLoading[1],
+    inputTextFieldPaddingSuccess:
+        _$TextFieldDialogTheme.inputTextFieldPaddingSuccess[1],
+    inputTextFieldPaddingWarning:
+        _$TextFieldDialogTheme.inputTextFieldPaddingWarning[1],
+    inputTextFieldPaddingError:
+        _$TextFieldDialogTheme.inputTextFieldPaddingError[1],
   );
 
   static final themes = [
@@ -290,13 +282,13 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
 
   @override
   TextFieldDialogTheme copyWith({
-    Color? primeEditFieldSuccessBackground,
-    Color? primeEditFieldRegularBackground,
-    double? primeEditFieldBorderRadius,
-    Color? primeInputTextFieldSuccessBackground,
-    Color? primeInputTextFieldRegularBackground,
-    Color? primeLabelBoxOptionalBackground,
-    Color? primeLabelBoxFilledBackground,
+    Color? editFieldSuccessBackground,
+    Color? editFieldRegularBackground,
+    double? editFieldBorderRadius,
+    Color? inputTextFieldSuccessBackground,
+    Color? inputTextFieldRegularBackground,
+    Color? labelBoxOptionalBackground,
+    Color? labelBoxFilledBackground,
     double? spacingXS,
     double? spacingXSS,
     double? spacingS,
@@ -337,34 +329,32 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     EdgeInsets? textFieldDialog2,
     EdgeInsets? textFieldDialog4,
     EdgeInsets? textFieldDialog3,
-    EdgeInsets? appLabeledBoxWidgetPadding1,
-    EdgeInsets? appLabeledBoxWidgetPadding2,
-    EdgeInsets? appLabeledBoxWidgetPadding3,
-    EdgeInsets? appInputTextFieldPadding1,
-    EdgeInsets? appInputTextFieldPadding2,
-    EdgeInsets? appInputTextFieldPadding3,
-    EdgeInsets? appInputTextFieldPaddingLoading,
-    EdgeInsets? appInputTextFieldPaddingSuccess,
-    EdgeInsets? appInputTextFieldPaddingWarning,
-    EdgeInsets? appInputTextFieldPaddingError,
+    EdgeInsets? labeledBoxWidgetPadding1,
+    EdgeInsets? labeledBoxWidgetPadding2,
+    EdgeInsets? labeledBoxWidgetPadding3,
+    EdgeInsets? inputTextFieldPadding1,
+    EdgeInsets? inputTextFieldPadding2,
+    EdgeInsets? inputTextFieldPadding3,
+    EdgeInsets? inputTextFieldPaddingLoading,
+    EdgeInsets? inputTextFieldPaddingSuccess,
+    EdgeInsets? inputTextFieldPaddingWarning,
+    EdgeInsets? inputTextFieldPaddingError,
   }) {
     return TextFieldDialogTheme(
-      primeEditFieldSuccessBackground: primeEditFieldSuccessBackground ??
-          this.primeEditFieldSuccessBackground,
-      primeEditFieldRegularBackground: primeEditFieldRegularBackground ??
-          this.primeEditFieldRegularBackground,
-      primeEditFieldBorderRadius:
-          primeEditFieldBorderRadius ?? this.primeEditFieldBorderRadius,
-      primeInputTextFieldSuccessBackground:
-          primeInputTextFieldSuccessBackground ??
-              this.primeInputTextFieldSuccessBackground,
-      primeInputTextFieldRegularBackground:
-          primeInputTextFieldRegularBackground ??
-              this.primeInputTextFieldRegularBackground,
-      primeLabelBoxOptionalBackground: primeLabelBoxOptionalBackground ??
-          this.primeLabelBoxOptionalBackground,
-      primeLabelBoxFilledBackground:
-          primeLabelBoxFilledBackground ?? this.primeLabelBoxFilledBackground,
+      editFieldSuccessBackground:
+          editFieldSuccessBackground ?? this.editFieldSuccessBackground,
+      editFieldRegularBackground:
+          editFieldRegularBackground ?? this.editFieldRegularBackground,
+      editFieldBorderRadius:
+          editFieldBorderRadius ?? this.editFieldBorderRadius,
+      inputTextFieldSuccessBackground: inputTextFieldSuccessBackground ??
+          this.inputTextFieldSuccessBackground,
+      inputTextFieldRegularBackground: inputTextFieldRegularBackground ??
+          this.inputTextFieldRegularBackground,
+      labelBoxOptionalBackground:
+          labelBoxOptionalBackground ?? this.labelBoxOptionalBackground,
+      labelBoxFilledBackground:
+          labelBoxFilledBackground ?? this.labelBoxFilledBackground,
       spacingXS: spacingXS ?? this.spacingXS,
       spacingXSS: spacingXSS ?? this.spacingXSS,
       spacingS: spacingS ?? this.spacingS,
@@ -408,26 +398,26 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       textFieldDialog2: textFieldDialog2 ?? this.textFieldDialog2,
       textFieldDialog4: textFieldDialog4 ?? this.textFieldDialog4,
       textFieldDialog3: textFieldDialog3 ?? this.textFieldDialog3,
-      appLabeledBoxWidgetPadding1:
-          appLabeledBoxWidgetPadding1 ?? this.appLabeledBoxWidgetPadding1,
-      appLabeledBoxWidgetPadding2:
-          appLabeledBoxWidgetPadding2 ?? this.appLabeledBoxWidgetPadding2,
-      appLabeledBoxWidgetPadding3:
-          appLabeledBoxWidgetPadding3 ?? this.appLabeledBoxWidgetPadding3,
-      appInputTextFieldPadding1:
-          appInputTextFieldPadding1 ?? this.appInputTextFieldPadding1,
-      appInputTextFieldPadding2:
-          appInputTextFieldPadding2 ?? this.appInputTextFieldPadding2,
-      appInputTextFieldPadding3:
-          appInputTextFieldPadding3 ?? this.appInputTextFieldPadding3,
-      appInputTextFieldPaddingLoading: appInputTextFieldPaddingLoading ??
-          this.appInputTextFieldPaddingLoading,
-      appInputTextFieldPaddingSuccess: appInputTextFieldPaddingSuccess ??
-          this.appInputTextFieldPaddingSuccess,
-      appInputTextFieldPaddingWarning: appInputTextFieldPaddingWarning ??
-          this.appInputTextFieldPaddingWarning,
-      appInputTextFieldPaddingError:
-          appInputTextFieldPaddingError ?? this.appInputTextFieldPaddingError,
+      labeledBoxWidgetPadding1:
+          labeledBoxWidgetPadding1 ?? this.labeledBoxWidgetPadding1,
+      labeledBoxWidgetPadding2:
+          labeledBoxWidgetPadding2 ?? this.labeledBoxWidgetPadding2,
+      labeledBoxWidgetPadding3:
+          labeledBoxWidgetPadding3 ?? this.labeledBoxWidgetPadding3,
+      inputTextFieldPadding1:
+          inputTextFieldPadding1 ?? this.inputTextFieldPadding1,
+      inputTextFieldPadding2:
+          inputTextFieldPadding2 ?? this.inputTextFieldPadding2,
+      inputTextFieldPadding3:
+          inputTextFieldPadding3 ?? this.inputTextFieldPadding3,
+      inputTextFieldPaddingLoading:
+          inputTextFieldPaddingLoading ?? this.inputTextFieldPaddingLoading,
+      inputTextFieldPaddingSuccess:
+          inputTextFieldPaddingSuccess ?? this.inputTextFieldPaddingSuccess,
+      inputTextFieldPaddingWarning:
+          inputTextFieldPaddingWarning ?? this.inputTextFieldPaddingWarning,
+      inputTextFieldPaddingError:
+          inputTextFieldPaddingError ?? this.inputTextFieldPaddingError,
     );
   }
 
@@ -436,31 +426,24 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       ThemeExtension<TextFieldDialogTheme>? other, double t) {
     if (other is! TextFieldDialogTheme) return this;
     return TextFieldDialogTheme(
-      primeEditFieldSuccessBackground: Color.lerp(
-          primeEditFieldSuccessBackground,
-          other.primeEditFieldSuccessBackground,
+      editFieldSuccessBackground: Color.lerp(
+          editFieldSuccessBackground, other.editFieldSuccessBackground, t)!,
+      editFieldRegularBackground: Color.lerp(
+          editFieldRegularBackground, other.editFieldRegularBackground, t)!,
+      editFieldBorderRadius:
+          t < 0.5 ? editFieldBorderRadius : other.editFieldBorderRadius,
+      inputTextFieldSuccessBackground: Color.lerp(
+          inputTextFieldSuccessBackground,
+          other.inputTextFieldSuccessBackground,
           t)!,
-      primeEditFieldRegularBackground: Color.lerp(
-          primeEditFieldRegularBackground,
-          other.primeEditFieldRegularBackground,
+      inputTextFieldRegularBackground: Color.lerp(
+          inputTextFieldRegularBackground,
+          other.inputTextFieldRegularBackground,
           t)!,
-      primeEditFieldBorderRadius: t < 0.5
-          ? primeEditFieldBorderRadius
-          : other.primeEditFieldBorderRadius,
-      primeInputTextFieldSuccessBackground: Color.lerp(
-          primeInputTextFieldSuccessBackground,
-          other.primeInputTextFieldSuccessBackground,
-          t)!,
-      primeInputTextFieldRegularBackground: Color.lerp(
-          primeInputTextFieldRegularBackground,
-          other.primeInputTextFieldRegularBackground,
-          t)!,
-      primeLabelBoxOptionalBackground: Color.lerp(
-          primeLabelBoxOptionalBackground,
-          other.primeLabelBoxOptionalBackground,
-          t)!,
-      primeLabelBoxFilledBackground: Color.lerp(primeLabelBoxFilledBackground,
-          other.primeLabelBoxFilledBackground, t)!,
+      labelBoxOptionalBackground: Color.lerp(
+          labelBoxOptionalBackground, other.labelBoxOptionalBackground, t)!,
+      labelBoxFilledBackground: Color.lerp(
+          labelBoxFilledBackground, other.labelBoxFilledBackground, t)!,
       spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
       spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
@@ -508,33 +491,30 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       textFieldDialog2: t < 0.5 ? textFieldDialog2 : other.textFieldDialog2,
       textFieldDialog4: t < 0.5 ? textFieldDialog4 : other.textFieldDialog4,
       textFieldDialog3: t < 0.5 ? textFieldDialog3 : other.textFieldDialog3,
-      appLabeledBoxWidgetPadding1: t < 0.5
-          ? appLabeledBoxWidgetPadding1
-          : other.appLabeledBoxWidgetPadding1,
-      appLabeledBoxWidgetPadding2: t < 0.5
-          ? appLabeledBoxWidgetPadding2
-          : other.appLabeledBoxWidgetPadding2,
-      appLabeledBoxWidgetPadding3: t < 0.5
-          ? appLabeledBoxWidgetPadding3
-          : other.appLabeledBoxWidgetPadding3,
-      appInputTextFieldPadding1:
-          t < 0.5 ? appInputTextFieldPadding1 : other.appInputTextFieldPadding1,
-      appInputTextFieldPadding2:
-          t < 0.5 ? appInputTextFieldPadding2 : other.appInputTextFieldPadding2,
-      appInputTextFieldPadding3:
-          t < 0.5 ? appInputTextFieldPadding3 : other.appInputTextFieldPadding3,
-      appInputTextFieldPaddingLoading: t < 0.5
-          ? appInputTextFieldPaddingLoading
-          : other.appInputTextFieldPaddingLoading,
-      appInputTextFieldPaddingSuccess: t < 0.5
-          ? appInputTextFieldPaddingSuccess
-          : other.appInputTextFieldPaddingSuccess,
-      appInputTextFieldPaddingWarning: t < 0.5
-          ? appInputTextFieldPaddingWarning
-          : other.appInputTextFieldPaddingWarning,
-      appInputTextFieldPaddingError: t < 0.5
-          ? appInputTextFieldPaddingError
-          : other.appInputTextFieldPaddingError,
+      labeledBoxWidgetPadding1:
+          t < 0.5 ? labeledBoxWidgetPadding1 : other.labeledBoxWidgetPadding1,
+      labeledBoxWidgetPadding2:
+          t < 0.5 ? labeledBoxWidgetPadding2 : other.labeledBoxWidgetPadding2,
+      labeledBoxWidgetPadding3:
+          t < 0.5 ? labeledBoxWidgetPadding3 : other.labeledBoxWidgetPadding3,
+      inputTextFieldPadding1:
+          t < 0.5 ? inputTextFieldPadding1 : other.inputTextFieldPadding1,
+      inputTextFieldPadding2:
+          t < 0.5 ? inputTextFieldPadding2 : other.inputTextFieldPadding2,
+      inputTextFieldPadding3:
+          t < 0.5 ? inputTextFieldPadding3 : other.inputTextFieldPadding3,
+      inputTextFieldPaddingLoading: t < 0.5
+          ? inputTextFieldPaddingLoading
+          : other.inputTextFieldPaddingLoading,
+      inputTextFieldPaddingSuccess: t < 0.5
+          ? inputTextFieldPaddingSuccess
+          : other.inputTextFieldPaddingSuccess,
+      inputTextFieldPaddingWarning: t < 0.5
+          ? inputTextFieldPaddingWarning
+          : other.inputTextFieldPaddingWarning,
+      inputTextFieldPaddingError: t < 0.5
+          ? inputTextFieldPaddingError
+          : other.inputTextFieldPaddingError,
     );
   }
 
@@ -544,24 +524,21 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
         (other.runtimeType == runtimeType &&
             other is TextFieldDialogTheme &&
             const DeepCollectionEquality().equals(
-                primeEditFieldSuccessBackground,
-                other.primeEditFieldSuccessBackground) &&
+                editFieldSuccessBackground, other.editFieldSuccessBackground) &&
             const DeepCollectionEquality().equals(
-                primeEditFieldRegularBackground,
-                other.primeEditFieldRegularBackground) &&
+                editFieldRegularBackground, other.editFieldRegularBackground) &&
+            const DeepCollectionEquality()
+                .equals(editFieldBorderRadius, other.editFieldBorderRadius) &&
             const DeepCollectionEquality().equals(
-                primeEditFieldBorderRadius, other.primeEditFieldBorderRadius) &&
+                inputTextFieldSuccessBackground,
+                other.inputTextFieldSuccessBackground) &&
             const DeepCollectionEquality().equals(
-                primeInputTextFieldSuccessBackground,
-                other.primeInputTextFieldSuccessBackground) &&
+                inputTextFieldRegularBackground,
+                other.inputTextFieldRegularBackground) &&
             const DeepCollectionEquality().equals(
-                primeInputTextFieldRegularBackground,
-                other.primeInputTextFieldRegularBackground) &&
+                labelBoxOptionalBackground, other.labelBoxOptionalBackground) &&
             const DeepCollectionEquality().equals(
-                primeLabelBoxOptionalBackground,
-                other.primeLabelBoxOptionalBackground) &&
-            const DeepCollectionEquality().equals(primeLabelBoxFilledBackground,
-                other.primeLabelBoxFilledBackground) &&
+                labelBoxFilledBackground, other.labelBoxFilledBackground) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
             const DeepCollectionEquality()
                 .equals(spacingXSS, other.spacingXSS) &&
@@ -585,23 +562,33 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
             const DeepCollectionEquality().equals(white, other.white) &&
             const DeepCollectionEquality().equals(blue, other.blue) &&
             const DeepCollectionEquality().equals(
-                disabledFilledButtonBackgroundColor, other.disabledFilledButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(gradientRedEnd, other.gradientRedEnd) &&
-            const DeepCollectionEquality().equals(mediumWhite, other.mediumWhite) &&
+                disabledFilledButtonBackgroundColor,
+                other.disabledFilledButtonBackgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(gradientRedEnd, other.gradientRedEnd) &&
+            const DeepCollectionEquality()
+                .equals(mediumWhite, other.mediumWhite) &&
             const DeepCollectionEquality().equals(gray, other.gray) &&
             const DeepCollectionEquality().equals(green, other.green) &&
             const DeepCollectionEquality().equals(redLight, other.redLight) &&
-            const DeepCollectionEquality().equals(orangeLight, other.orangeLight) &&
+            const DeepCollectionEquality()
+                .equals(orangeLight, other.orangeLight) &&
             const DeepCollectionEquality().equals(orange, other.orange) &&
-            const DeepCollectionEquality().equals(transparent, other.transparent) &&
-            const DeepCollectionEquality().equals(greenLight, other.greenLight) &&
+            const DeepCollectionEquality()
+                .equals(transparent, other.transparent) &&
+            const DeepCollectionEquality()
+                .equals(greenLight, other.greenLight) &&
             const DeepCollectionEquality().equals(red, other.red) &&
-            const DeepCollectionEquality().equals(mediumBlack, other.mediumBlack) &&
+            const DeepCollectionEquality()
+                .equals(mediumBlack, other.mediumBlack) &&
             const DeepCollectionEquality().equals(closeIcon, other.closeIcon) &&
-            const DeepCollectionEquality().equals(dangerIcon, other.dangerIcon) &&
+            const DeepCollectionEquality()
+                .equals(dangerIcon, other.dangerIcon) &&
             const DeepCollectionEquality().equals(addIcon, other.addIcon) &&
-            const DeepCollectionEquality().equals(addDisabledIcon, other.addDisabledIcon) &&
-            const DeepCollectionEquality().equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
+            const DeepCollectionEquality()
+                .equals(addDisabledIcon, other.addDisabledIcon) &&
+            const DeepCollectionEquality()
+                .equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
             const DeepCollectionEquality().equals(editPenIcon, other.editPenIcon) &&
             const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
             const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
@@ -609,29 +596,29 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
             const DeepCollectionEquality().equals(textFieldDialog2, other.textFieldDialog2) &&
             const DeepCollectionEquality().equals(textFieldDialog4, other.textFieldDialog4) &&
             const DeepCollectionEquality().equals(textFieldDialog3, other.textFieldDialog3) &&
-            const DeepCollectionEquality().equals(appLabeledBoxWidgetPadding1, other.appLabeledBoxWidgetPadding1) &&
-            const DeepCollectionEquality().equals(appLabeledBoxWidgetPadding2, other.appLabeledBoxWidgetPadding2) &&
-            const DeepCollectionEquality().equals(appLabeledBoxWidgetPadding3, other.appLabeledBoxWidgetPadding3) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPadding1, other.appInputTextFieldPadding1) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPadding2, other.appInputTextFieldPadding2) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPadding3, other.appInputTextFieldPadding3) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPaddingLoading, other.appInputTextFieldPaddingLoading) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPaddingSuccess, other.appInputTextFieldPaddingSuccess) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPaddingWarning, other.appInputTextFieldPaddingWarning) &&
-            const DeepCollectionEquality().equals(appInputTextFieldPaddingError, other.appInputTextFieldPaddingError));
+            const DeepCollectionEquality().equals(labeledBoxWidgetPadding1, other.labeledBoxWidgetPadding1) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetPadding2, other.labeledBoxWidgetPadding2) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetPadding3, other.labeledBoxWidgetPadding3) &&
+            const DeepCollectionEquality().equals(inputTextFieldPadding1, other.inputTextFieldPadding1) &&
+            const DeepCollectionEquality().equals(inputTextFieldPadding2, other.inputTextFieldPadding2) &&
+            const DeepCollectionEquality().equals(inputTextFieldPadding3, other.inputTextFieldPadding3) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingLoading, other.inputTextFieldPaddingLoading) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingSuccess, other.inputTextFieldPaddingSuccess) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingWarning, other.inputTextFieldPaddingWarning) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingError, other.inputTextFieldPaddingError));
   }
 
   @override
   int get hashCode {
     return Object.hashAll([
       runtimeType,
-      const DeepCollectionEquality().hash(primeEditFieldSuccessBackground),
-      const DeepCollectionEquality().hash(primeEditFieldRegularBackground),
-      const DeepCollectionEquality().hash(primeEditFieldBorderRadius),
-      const DeepCollectionEquality().hash(primeInputTextFieldSuccessBackground),
-      const DeepCollectionEquality().hash(primeInputTextFieldRegularBackground),
-      const DeepCollectionEquality().hash(primeLabelBoxOptionalBackground),
-      const DeepCollectionEquality().hash(primeLabelBoxFilledBackground),
+      const DeepCollectionEquality().hash(editFieldSuccessBackground),
+      const DeepCollectionEquality().hash(editFieldRegularBackground),
+      const DeepCollectionEquality().hash(editFieldBorderRadius),
+      const DeepCollectionEquality().hash(inputTextFieldSuccessBackground),
+      const DeepCollectionEquality().hash(inputTextFieldRegularBackground),
+      const DeepCollectionEquality().hash(labelBoxOptionalBackground),
+      const DeepCollectionEquality().hash(labelBoxFilledBackground),
       const DeepCollectionEquality().hash(spacingXS),
       const DeepCollectionEquality().hash(spacingXSS),
       const DeepCollectionEquality().hash(spacingS),
@@ -672,16 +659,16 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       const DeepCollectionEquality().hash(textFieldDialog2),
       const DeepCollectionEquality().hash(textFieldDialog4),
       const DeepCollectionEquality().hash(textFieldDialog3),
-      const DeepCollectionEquality().hash(appLabeledBoxWidgetPadding1),
-      const DeepCollectionEquality().hash(appLabeledBoxWidgetPadding2),
-      const DeepCollectionEquality().hash(appLabeledBoxWidgetPadding3),
-      const DeepCollectionEquality().hash(appInputTextFieldPadding1),
-      const DeepCollectionEquality().hash(appInputTextFieldPadding2),
-      const DeepCollectionEquality().hash(appInputTextFieldPadding3),
-      const DeepCollectionEquality().hash(appInputTextFieldPaddingLoading),
-      const DeepCollectionEquality().hash(appInputTextFieldPaddingSuccess),
-      const DeepCollectionEquality().hash(appInputTextFieldPaddingWarning),
-      const DeepCollectionEquality().hash(appInputTextFieldPaddingError)
+      const DeepCollectionEquality().hash(labeledBoxWidgetPadding1),
+      const DeepCollectionEquality().hash(labeledBoxWidgetPadding2),
+      const DeepCollectionEquality().hash(labeledBoxWidgetPadding3),
+      const DeepCollectionEquality().hash(inputTextFieldPadding1),
+      const DeepCollectionEquality().hash(inputTextFieldPadding2),
+      const DeepCollectionEquality().hash(inputTextFieldPadding3),
+      const DeepCollectionEquality().hash(inputTextFieldPaddingLoading),
+      const DeepCollectionEquality().hash(inputTextFieldPaddingSuccess),
+      const DeepCollectionEquality().hash(inputTextFieldPaddingWarning),
+      const DeepCollectionEquality().hash(inputTextFieldPaddingError)
     ]);
   }
 }

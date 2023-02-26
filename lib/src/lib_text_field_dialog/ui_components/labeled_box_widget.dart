@@ -59,13 +59,13 @@ class LabeledBoxWidget extends StatelessWidget {
           ),
           onTap: onTap,
           child: Ink(
-            padding: context.textFieldDialogTheme.appLabeledBoxWidgetPadding1,
+            padding: context.textFieldDialogTheme.labeledBoxWidgetPadding1,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding:
-                      context.textFieldDialogTheme.appLabeledBoxWidgetPadding2,
+                      context.textFieldDialogTheme.labeledBoxWidgetPadding2,
                   child: leadingIcon != null && leadingIcon is IconData
                       ? Icon(
                           leadingIcon,
@@ -87,8 +87,8 @@ class LabeledBoxWidget extends StatelessWidget {
                 ),
                 if (type == LabeledBoxType.optional)
                   Padding(
-                    padding: context
-                        .textFieldDialogTheme.appLabeledBoxWidgetPadding3,
+                    padding:
+                        context.textFieldDialogTheme.labeledBoxWidgetPadding3,
                     child: Text(
                       optionalString,
                       style: context.textFieldDialogTheme.captionBold.copyWith(
@@ -126,9 +126,9 @@ extension LabeledBoxTypeX on LabeledBoxType {
   Color getBackgroundColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.primeLabelBoxOptionalBackground;
+        return context.textFieldDialogTheme.labelBoxOptionalBackground;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.primeLabelBoxFilledBackground;
+        return context.textFieldDialogTheme.labelBoxFilledBackground;
     }
   }
 

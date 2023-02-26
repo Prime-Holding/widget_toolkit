@@ -72,14 +72,14 @@ class GradientFillButton extends StatelessWidget {
             transform: const GradientRotation((16.94 * math.pi) / 180),
           )
         : LinearGradient(colors: [
-            context.widgetToolkitTheme.appFilledButtonBackgroundColorDisabled,
-            context.widgetToolkitTheme.appFilledButtonBackgroundColorDisabled,
+            context.widgetToolkitTheme.filledButtonBackgroundColorDisabled,
+            context.widgetToolkitTheme.filledButtonBackgroundColorDisabled,
           ]);
 
     final textColor = activeState()
         ? colorStyle?.activeButtonTextColor ??
-            context.widgetToolkitTheme.appFilledButtonTextColorEnabled
-        : context.widgetToolkitTheme.appFilledButtonTextColorDisabled;
+            context.widgetToolkitTheme.filledButtonTextColorEnabled
+        : context.widgetToolkitTheme.filledButtonTextColorDisabled;
 
     final textWidget = Ink(
       decoration: BoxDecoration(

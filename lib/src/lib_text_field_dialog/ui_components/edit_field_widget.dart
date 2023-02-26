@@ -31,10 +31,10 @@ class EditFieldWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: state == EditFieldState.success
-                ? context.textFieldDialogTheme.primeEditFieldSuccessBackground
-                : context.textFieldDialogTheme.primeEditFieldRegularBackground,
+                ? context.textFieldDialogTheme.editFieldSuccessBackground
+                : context.textFieldDialogTheme.editFieldRegularBackground,
             borderRadius: BorderRadius.circular(
-              context.textFieldDialogTheme.primeEditFieldBorderRadius,
+              context.textFieldDialogTheme.editFieldBorderRadius,
             ),
           ),
           child: Padding(

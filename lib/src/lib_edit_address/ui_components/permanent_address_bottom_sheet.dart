@@ -4,7 +4,7 @@ import '../../../common_ui_components.dart';
 import '../../../edit_address.dart';
 import '../../base/extensions/data_type_extensions.dart';
 
-void showAppPermanentAddressBottomSheet(
+void showPermanentAddressBottomSheet(
   BuildContext context, {
   required String headerText,
   required EditAddressConfiguration configuration,

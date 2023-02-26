@@ -12,43 +12,43 @@ class _$TextFieldDialogTheme {
   // The colors, sizes etc from design system should be used to fill in the values (take for reference WidgetToolkitTheme, ItemPickerTheme, SearchPickerTheme).
 
   /// region EditFieldWidget
-  static List<Color> primeEditFieldSuccessBackground = [
+  static List<Color> editFieldSuccessBackground = [
     DesignSystem.light().colors.greenLight,
     DesignSystem.dark().colors.green,
   ];
 
-  static List<Color> primeEditFieldRegularBackground = [
+  static List<Color> editFieldRegularBackground = [
     DesignSystem.light().colors.mediumWhite,
-    DesignSystem.dark().colors.primeEditFieldWidget,
+    DesignSystem.dark().colors.black45,
   ];
 
-  static List<double> primeEditFieldBorderRadius = [
+  static List<double> editFieldBorderRadius = [
     DesignSystem.light().spacings.xss,
     DesignSystem.light().spacings.xss,
   ];
 
   /// endregion
 
-  ///  region PrimeInputTextField
-  static List<Color> primeInputTextFieldSuccessBackground = [
+  ///  region InputTextField
+  static List<Color> inputTextFieldSuccessBackground = [
     DesignSystem.light().colors.greenLight,
     DesignSystem.dark().colors.green,
   ];
 
-  static List<Color> primeInputTextFieldRegularBackground = [
+  static List<Color> inputTextFieldRegularBackground = [
     DesignSystem.light().colors.mediumWhite,
     DesignSystem.dark().colors.darkGray,
   ];
 
   ///  endregion
 
-  /// region PrimeLabelBoxWidget
-  static List<Color> primeLabelBoxOptionalBackground = [
+  /// region LabelBoxWidget
+  static List<Color> labelBoxOptionalBackground = [
     DesignSystem.light().colors.white,
     DesignSystem.dark().colors.darkGray,
   ];
 
-  static List<Color> primeLabelBoxFilledBackground = [
+  static List<Color> labelBoxFilledBackground = [
     DesignSystem.light().colors.mediumWhite,
     DesignSystem.dark().colors.darkGray,
   ];
@@ -139,8 +139,8 @@ class _$TextFieldDialogTheme {
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    DesignSystem.light().colors.disabledFilledButtonBackgroundColor,
-    DesignSystem.dark().colors.disabledFilledButtonBackgroundColor,
+    DesignSystem.light().colors.gray,
+    DesignSystem.dark().colors.gray,
   ];
 
   static List<Color> gradientRedEnd = [
@@ -286,7 +286,7 @@ class _$TextFieldDialogTheme {
     )
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding1 = [
+  static List<EdgeInsets> labeledBoxWidgetPadding1 = [
     EdgeInsets.symmetric(
       vertical: DesignSystem.light().spacings.m,
       horizontal: DesignSystem.light().spacings.s,
@@ -297,17 +297,17 @@ class _$TextFieldDialogTheme {
     )
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding2 = [
+  static List<EdgeInsets> labeledBoxWidgetPadding2 = [
     EdgeInsets.only(right: DesignSystem.dark().spacings.xs),
     EdgeInsets.only(right: DesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding3 = [
+  static List<EdgeInsets> labeledBoxWidgetPadding3 = [
     EdgeInsets.only(right: DesignSystem.light().spacings.m),
     EdgeInsets.only(right: DesignSystem.dark().spacings.m)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPadding1 = [
+  static List<EdgeInsets> inputTextFieldPadding1 = [
     EdgeInsets.only(
       left: DesignSystem.light().spacings.m,
       top: DesignSystem.light().spacings.xxxs,
@@ -317,32 +317,32 @@ class _$TextFieldDialogTheme {
       top: DesignSystem.dark().spacings.xxxs,
     )
   ];
-  static List<EdgeInsets> appInputTextFieldPadding2 = [
+  static List<EdgeInsets> inputTextFieldPadding2 = [
     EdgeInsets.only(right: DesignSystem.light().spacings.xs),
     EdgeInsets.only(right: DesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPadding3 = [
+  static List<EdgeInsets> inputTextFieldPadding3 = [
     EdgeInsets.only(right: DesignSystem.light().spacings.xs),
     EdgeInsets.only(right: DesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingLoading = [
+  static List<EdgeInsets> inputTextFieldPaddingLoading = [
     EdgeInsets.only(right: DesignSystem.light().spacings.s),
     EdgeInsets.only(right: DesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingSuccess = [
+  static List<EdgeInsets> inputTextFieldPaddingSuccess = [
     EdgeInsets.only(right: DesignSystem.light().spacings.s),
     EdgeInsets.only(right: DesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingWarning = [
+  static List<EdgeInsets> inputTextFieldPaddingWarning = [
     EdgeInsets.only(right: DesignSystem.light().spacings.s),
     EdgeInsets.only(right: DesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingError = [
+  static List<EdgeInsets> inputTextFieldPaddingError = [
     EdgeInsets.only(right: DesignSystem.light().spacings.s),
     EdgeInsets.only(right: DesignSystem.dark().spacings.s)
   ];

@@ -143,12 +143,12 @@ class _$WidgetToolkitTheme {
 
   static List<TextStyle> textButtonTextStyle = captionBold;
 
-  static List<Color> appErrorCardIconColor = [
+  static List<Color> errorCardIconColor = [
     DesignSystem.light().colors.black87,
     DesignSystem.dark().colors.mediumWhite,
   ];
 
-  static List<Color> appErrorCardBackgroundColor = [
+  static List<Color> errorCardBackgroundColor = [
     DesignSystem.light().colors.lightRed,
     DesignSystem.dark().colors.redDark,
   ];
@@ -167,7 +167,7 @@ class _$WidgetToolkitTheme {
     DesignSystem.light().colors.greenLight,
     DesignSystem.dark().colors.greenLight,
   ];
-  static List<Color> appErrorCardTextColor = [
+  static List<Color> errorCardTextColor = [
     DesignSystem.light().colors.black87,
     DesignSystem.dark().colors.white,
   ];
@@ -249,41 +249,31 @@ class _$WidgetToolkitTheme {
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
-    DesignSystem.light().colors.filledButtonBackgroundColorDisabled,
-    DesignSystem.dark().colors.filledButtonBackgroundColorDisabled,
-  ];
-
-  static List<Color> appFilledButtonBackgroundColorDisabled = [
     DesignSystem.light().colors.lightGray,
     DesignSystem.dark().colors.lightGray,
   ];
 
-  static List<Color> appFilledButtonTextColorDisabled = [
+  static List<Color> filledButtonTextColorDisabled = [
     DesignSystem.light().colors.gray,
     DesignSystem.dark().colors.gray,
   ];
 
-  static List<Color> appTextButtonTextColorDisabled =
-      appFilledButtonTextColorDisabled;
+  static List<Color> textButtonTextColorDisabled =
+      filledButtonTextColorDisabled;
 
-  static List<Color> appFilledButtonTextColorEnabled = [
+  static List<Color> filledButtonTextColorEnabled = [
     DesignSystem.light().colors.activeButtonTextColor,
     DesignSystem.dark().colors.activeButtonTextColor,
   ];
 
-  static List<Color> appSmallButtonBackgroundColor = [
+  static List<Color> smallButtonBackgroundColor = [
     DesignSystem.light().colors.white,
     DesignSystem.dark().colors.darkGray,
   ];
 
-  static List<Color> appButtonTextColor = [
+  static List<Color> buttonTextColor = [
     DesignSystem.light().colors.black,
     DesignSystem.dark().colors.white,
-  ];
-
-  static List<Color> buttonTextColor = [
-    DesignSystem.light().colors.textColorWhite,
-    DesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> shimmerBaseColor = [
@@ -301,8 +291,8 @@ class _$WidgetToolkitTheme {
     DesignSystem.dark().colors.textColorWhite,
   ];
   static List<Color> buttonBlueGradientEnd = [
-    DesignSystem.light().colors.appButtonBlueGradientEnd,
-    DesignSystem.dark().colors.appButtonBlueGradientEnd,
+    DesignSystem.light().colors.buttonBlueGradientEnd,
+    DesignSystem.dark().colors.buttonBlueGradientEnd,
   ];
   static List<Color> elevatedButtonBackgroundColor = [
     DesignSystem.light().colors.lightGray,
@@ -319,12 +309,12 @@ class _$WidgetToolkitTheme {
     DesignSystem.dark().colors.activeButtonTextColor,
   ];
 
-  static List<Color> appSmallButtonFilledBackgroundColor = [
+  static List<Color> smallButtonFilledBackgroundColor = [
     DesignSystem.light().colors.white,
     DesignSystem.dark().colors.mediumWhite,
   ];
 
-  static List<Color> appSmallButtonOutlinedBorderColor = [
+  static List<Color> smallButtonOutlinedBorderColor = [
     DesignSystem.light().colors.mediumWhite,
     DesignSystem.dark().colors.mediumWhite,
   ];
@@ -398,11 +388,6 @@ class _$WidgetToolkitTheme {
     DesignSystem.dark().colors.redDark,
   ];
 
-  static List<Color> appOutlineButtonBackgroundColor = [
-    DesignSystem.light().colors.white,
-    DesignSystem.dark().colors.white,
-  ];
-
   static List<Color> buttonShadowColor = [
     DesignSystem.light().colors.white,
     DesignSystem.dark().colors.white,
@@ -439,8 +424,8 @@ class _$WidgetToolkitTheme {
   ];
 
   static List<Color> outlineButtonForegroundColor = [
-    DesignSystem.light().colors.appButtonBlueGradientEnd,
-    DesignSystem.light().colors.appButtonBlueGradientEnd
+    DesignSystem.light().colors.buttonBlueGradientEnd,
+    DesignSystem.light().colors.buttonBlueGradientEnd
   ];
 
   static List<Color> outlineButtonBorderColor = [
@@ -449,8 +434,8 @@ class _$WidgetToolkitTheme {
   ];
 
   static List<Color> outlineButtonPressedColor = [
-    DesignSystem.light().colors.appButtonBlueGradientEnd,
-    DesignSystem.light().colors.appButtonBlueGradientEnd
+    DesignSystem.light().colors.buttonBlueGradientEnd,
+    DesignSystem.light().colors.buttonBlueGradientEnd
   ];
 
   static List<Color> outlineButtonTextColor = [

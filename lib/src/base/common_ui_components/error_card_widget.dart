@@ -96,7 +96,7 @@ class ErrorCardWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: context.widgetToolkitTheme.appErrorCardBackgroundColor,
+              color: context.widgetToolkitTheme.errorCardBackgroundColor,
               borderRadius: BorderRadius.circular(
                 16,
               ),
@@ -114,7 +114,7 @@ class ErrorCardWidget extends StatelessWidget {
                   child: header ??
                       Icon(
                         Icons.warning,
-                        color: context.widgetToolkitTheme.appErrorCardIconColor,
+                        color: context.widgetToolkitTheme.errorCardIconColor,
                       ),
                 ),
                 Padding(
@@ -126,7 +126,7 @@ class ErrorCardWidget extends StatelessWidget {
                   child: Text(
                     _buildErrorText(context),
                     style: context.widgetToolkitTheme.descriptionBold.copyWith(
-                      color: context.widgetToolkitTheme.appErrorCardTextColor,
+                      color: context.widgetToolkitTheme.errorCardTextColor,
                       letterSpacing: 1.1,
                     ),
                     textAlign: TextAlign.center,

@@ -104,8 +104,8 @@ class _$LanguagePickerTheme {
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
-    DesignSystem.light().colors.filledButtonBackgroundColorDisabled,
-    DesignSystem.dark().colors.filledButtonBackgroundColorDisabled,
+    DesignSystem.light().colors.gray,
+    DesignSystem.dark().colors.gray,
   ];
 
   static List<Color> buttonTextColor = [
@@ -113,7 +113,7 @@ class _$LanguagePickerTheme {
     DesignSystem.dark().colors.textColorWhite,
   ];
 
-  static List<Color> appFilledButtonTextColorDisabled = [
+  static List<Color> filledButtonTextColorDisabled = [
     DesignSystem.light().colors.gray,
     DesignSystem.dark().colors.gray,
   ];
@@ -139,8 +139,8 @@ class _$LanguagePickerTheme {
   ];
 
   static List<Color> buttonBlueGradientEnd = [
-    DesignSystem.light().colors.appButtonBlueGradientEnd,
-    DesignSystem.dark().colors.appButtonBlueGradientEnd,
+    DesignSystem.light().colors.buttonBlueGradientEnd,
+    DesignSystem.dark().colors.buttonBlueGradientEnd,
   ];
 
   static List<Color> elevatedButtonBackgroundColor = [
@@ -148,7 +148,7 @@ class _$LanguagePickerTheme {
     DesignSystem.dark().colors.gray,
   ];
 
-  static List<Color> appOutlineButtonBackgroundColor = [
+  static List<Color> outlineButtonBackgroundColor = [
     DesignSystem.light().colors.white,
     DesignSystem.dark().colors.white,
   ];

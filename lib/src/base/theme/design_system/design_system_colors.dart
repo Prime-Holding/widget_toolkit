@@ -61,7 +61,7 @@ class DesignSystemColors {
 
   final activeButtonLanguageTextColor = const Color(0xff212526);
 
-  final appButtonBlueGradientEnd = _HexColor('BFE1FF');
+  final buttonBlueGradientEnd = _HexColor('BFE1FF');
 
   final Color shimmerBaseColor;
 
@@ -143,8 +143,6 @@ class DesignSystemColors {
 
   final gradientRedStart = _HexColor('D40E14');
 
-  final filledButtonBackgroundColorDisabled = _HexColor('F0F0F2');
-
   final textColorWhite = const Color(0xfffafafc);
 
   final transparent = const Color(0x00000000);
@@ -159,7 +157,7 @@ class DesignSystemColors {
 
   final darkGray = const Color(0xff393E46);
 
-  final primeEditFieldWidget = Colors.black45;
+  final black45 = Colors.black45;
 
   final lightGray = const Color(0xffF0F0F2);
 
@@ -188,8 +186,8 @@ class DesignSystemColors {
   final orangeLight = const Color(0xffffe9d9);
 
   final darkBlue = const Color(0xff004f95);
-
-  final disabledFilledButtonBackgroundColor = const Color(0xff9da2a6);
+  //
+  // final disabledFilledButtonBackgroundColor = const Color(0xff9da2a6);
 
   final darkGreen = const Color(0xff008559);
 

@@ -176,7 +176,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   }) {
     switch (type) {
       case UserProfileCardTypes.permanentAddress:
-        return () => showAppPermanentAddressBottomSheet(
+        return () => showPermanentAddressBottomSheet(
               context,
               headerText: editAddressLocalizedStrings?.headerTitle ??
                   context.getEditAddressLocalizedStrings.headerTitle,

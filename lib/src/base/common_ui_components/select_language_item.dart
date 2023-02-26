@@ -202,7 +202,7 @@ class SelectLanguageItem extends StatelessWidget {
 
   Color _getTextColor(BuildContext context) =>
       state == ButtonStateModel.disabled
-          ? context.languagePickerTheme.appFilledButtonTextColorDisabled
+          ? context.languagePickerTheme.filledButtonTextColorDisabled
           : colorStyle?.activeButtonTextColor ??
               (isSelected
                   ? context.languagePickerTheme.buttonTextColor
@@ -217,9 +217,9 @@ class SelectLanguageItem extends StatelessWidget {
           ? (state == ButtonStateModel.pressed)
               ? colorStyle?.pressedColor ??
                   context.languagePickerTheme.buttonBlueGradientEnd
-              : context.languagePickerTheme.appOutlineButtonBackgroundColor
+              : context.languagePickerTheme.outlineButtonBackgroundColor
           : colorStyle?.activeGradientColorEnd ??
-              context.languagePickerTheme.appOutlineButtonBackgroundColor;
+              context.languagePickerTheme.outlineButtonBackgroundColor;
 
   Widget _buildInactiveChild(BuildContext context, Widget text) =>
       ElevatedButton(
