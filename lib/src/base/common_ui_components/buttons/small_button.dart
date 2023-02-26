@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../asset_classes.dart';
-import '../../theme/prime_components_theme.dart';
-import '../app_icon.dart';
-import '../app_loading_indicator.dart';
-import 'app_button_color_style.dart';
+import '../../theme/widget_toolkit_theme.dart';
+import '../dynamic_icon.dart';
+import '../sized_loading_indicator.dart';
+import 'button_color_style.dart';
 import 'button_state.dart';
 
 enum SmallButtonType { filled, outline }
 
-class AppSmallButton extends StatelessWidget {
+class SmallButton extends StatelessWidget {
   final String? tooltip;
   final VoidCallback onPressed;
 
   /// Provide an IconData or SvgPicture
   final dynamic icon;
   final ButtonStateModel state;
-  final PrimeButtonColorStyle? colorStyle;
+  final ButtonColorStyle? colorStyle;
   final SmallButtonType type;
 
-  AppSmallButton(
+  SmallButton(
       {Key? key,
       this.tooltip,
       required this.onPressed,
@@ -75,7 +75,7 @@ class AppSmallButton extends StatelessWidget {
             : null,
         gradient: type == SmallButtonType.filled ? gradient : null,
       ),
-      child: AppIcon(
+      child: DynamicIcon(
         icon,
         color:
             colorStyle?.activeButtonTextColor ?? getColorByType(color, context),
@@ -91,7 +91,7 @@ class AppSmallButton extends StatelessWidget {
 
   Widget _buildChild(BuildContext context, Widget icon, Color primaryColor) {
     if (state == ButtonStateModel.loading) {
-      return AppLoadingIndicator.textButtonValue();
+      return SizedLoadingIndicator.textButtonValue();
     }
 
     switch (type) {

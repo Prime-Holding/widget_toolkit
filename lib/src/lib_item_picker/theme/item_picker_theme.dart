@@ -15,13 +15,13 @@ class _$ItemPickerTheme {
   ];
 
   static List<TextStyle> titleStyle = [
-    PrimeDesignSystem.light().typography.titleStyle,
-    PrimeDesignSystem.dark().typography.titleStyle,
+    DesignSystem.light().typography.titleStyle,
+    DesignSystem.dark().typography.titleStyle,
   ];
 
   static List<EdgeInsets> errorPadding = [
-    PrimeDesignSystem.light().spacings.largeHorizontalEdgeInsets,
-    PrimeDesignSystem.dark().spacings.largeHorizontalEdgeInsets,
+    DesignSystem.light().spacings.largeHorizontalEdgeInsets,
+    DesignSystem.dark().spacings.largeHorizontalEdgeInsets,
   ];
 
   /// endregion

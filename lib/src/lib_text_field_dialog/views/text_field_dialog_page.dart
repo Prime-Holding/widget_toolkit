@@ -9,9 +9,9 @@ import '../../../widget_toolkit.dart';
 import '../../base/extensions/stream_translate_field_extension.dart';
 import '../../base/models/input_text_field_state.dart';
 import '../blocs/text_field_dialog_bloc.dart';
-import '../ui_components/prime_input_text_field.dart';
+import '../ui_components/input_text_field.dart';
 
-/// This widget shows the content the [PrimeTextFieldDialog]
+/// This widget shows the content the [TextFieldDialog]
 /// [callback] the function, which receives the ResultSuccess value from the bloc's
 /// submittedValue state, after the save button has been pressed and the value
 /// has been validated
@@ -26,7 +26,7 @@ import '../ui_components/prime_input_text_field.dart';
 ///
 /// [header] is a value displayed above the text field in the dialog
 ///
-/// [maxLines] is the value of maximum lines the [PrimeInputTextField] widget
+/// [maxLines] is the value of maximum lines the [InputTextField] widget
 /// can have, if the number is increased, the input field becomes bigger.
 ///
 /// [dialogHasBottomPadding] by default is should be true, which moves the dialog
@@ -96,7 +96,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
             showErrorState: (bloc) => bloc.states.isErrorVisible,
             onChanged: (bloc, value) => bloc.events.setText(value),
             cursorBehaviour: RxTextFormFieldCursorBehaviour.end,
-            builder: (fieldState) => PrimeInputTextField(
+            builder: (fieldState) => InputTextField(
               isFocused: true,
               keyBoardType: keyBoardType,
               label: label,
@@ -117,7 +117,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
             padding: context.textFieldDialogTheme.textFieldDialog4,
             child: RxBlocBuilder<TextFieldDialogBlocType, Result<T>>(
               state: (bloc) => bloc.states.submittedValue as Stream<Result<T>>,
-              builder: (context, snapshot, bloc) => AppFillButton(
+              builder: (context, snapshot, bloc) => GradientFillButton(
                 elevation: 0,
                 text: fillButtonText,
                 state: snapshot.data is ResultLoading<T>

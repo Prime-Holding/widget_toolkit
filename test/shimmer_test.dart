@@ -166,7 +166,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: getThemeData(true),
-          home: const AppShimmer(
+          home: const ShimmerWrapper(
             showShimmer: true,
             child: SizedBox(key: childKey),
           ),
@@ -184,7 +184,8 @@ void main() {
       // Make sure we are performing the shimmer animation (the shimmer
       // container exists in the widget tree).
       expect(
-        tester.widget<Container>(find.byKey(AppShimmer.shimmerContainerKey)),
+        tester
+            .widget<Container>(find.byKey(ShimmerWrapper.shimmerContainerKey)),
         isNotNull,
       );
     });
@@ -194,7 +195,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: getThemeData(true),
-          home: const AppShimmer(
+          home: const ShimmerWrapper(
             showShimmer: false,
             child: SizedBox(key: childKey),
           ),
@@ -211,14 +212,14 @@ void main() {
 
       // Make sure we are NOT performing the shimmer animation (the shimmer
       // container does not exist in the widget tree).
-      expect(find.byKey(AppShimmer.shimmerContainerKey), findsNothing);
+      expect(find.byKey(ShimmerWrapper.shimmerContainerKey), findsNothing);
     });
 
     testWidgets('App Shimmer Text with shimmer enabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: getThemeData(true),
-          home: const AppShimmerText(missingShimmerText),
+          home: const ShimmerText(missingShimmerText),
         ),
       );
 
@@ -227,7 +228,8 @@ void main() {
       // Whenever the AppShimmerText text field is null, we display the shimmer
       // animation.
       expect(
-        tester.widget<Container>(find.byKey(AppShimmer.shimmerContainerKey)),
+        tester
+            .widget<Container>(find.byKey(ShimmerWrapper.shimmerContainerKey)),
         isNotNull,
       );
     });
@@ -236,14 +238,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: getThemeData(true),
-          home: const AppShimmerText(shimmerText),
+          home: const ShimmerText(shimmerText),
         ),
       );
 
       await tester.pump(pumpDuration);
 
       expect(tester.widget<Text>(find.text(shimmerText)), isNotNull);
-      expect(find.byKey(AppShimmer.shimmerContainerKey), findsNothing);
+      expect(find.byKey(ShimmerWrapper.shimmerContainerKey), findsNothing);
     });
   });
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-// import '../../app_extensions.dart';
 import '../../../asset_classes.dart';
 import '../theme/text_field_dialog_theme.dart';
 
@@ -10,8 +9,8 @@ enum LabeledBoxType {
   filled,
 }
 
-class PrimeLabeledBoxWidget extends StatelessWidget {
-  const PrimeLabeledBoxWidget({
+class LabeledBoxWidget extends StatelessWidget {
+  const LabeledBoxWidget({
     required this.label,
     required this.onTap,
     required this.optionalString,
@@ -32,11 +31,11 @@ class PrimeLabeledBoxWidget extends StatelessWidget {
   final LabeledBoxType type;
   final String optionalString;
 
-  PrimeLabeledBoxWidget withDependencies(BuildContext context,
+  LabeledBoxWidget withDependencies(BuildContext context,
           {required String label,
           required Function() onTap,
           required String optionalString}) =>
-      PrimeLabeledBoxWidget(
+      LabeledBoxWidget(
         label: label,
         onTap: onTap,
         optionalString: optionalString,

@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element
 
-part of 'prime_components_theme.dart';
+part of 'widget_toolkit_theme.dart';
 
 // **************************************************************************
 // ThemeTailorGenerator
 // **************************************************************************
 
-class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
-  const PrimeComponentsTheme({
+class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
+  const WidgetToolkitTheme({
     required this.primaryColor,
     required this.backgroundColor,
     required this.scaffoldBackgroundColor,
@@ -235,314 +235,302 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
   final SvgFile infoCircleIcon;
   final SvgFile messageIcon;
 
-  static final PrimeComponentsTheme light = PrimeComponentsTheme(
-    primaryColor: _$PrimeComponentsTheme.primaryColor[0],
-    backgroundColor: _$PrimeComponentsTheme.backgroundColor[0],
-    scaffoldBackgroundColor: _$PrimeComponentsTheme.scaffoldBackgroundColor[0],
-    highlightColor: _$PrimeComponentsTheme.highlightColor[0],
-    primaryGradientStart: _$PrimeComponentsTheme.primaryGradientStart[0],
-    primaryGradientEnd: _$PrimeComponentsTheme.primaryGradientEnd[0],
-    searchTextFieldIconColor:
-        _$PrimeComponentsTheme.searchTextFieldIconColor[0],
+  static final WidgetToolkitTheme light = WidgetToolkitTheme(
+    primaryColor: _$WidgetToolkitTheme.primaryColor[0],
+    backgroundColor: _$WidgetToolkitTheme.backgroundColor[0],
+    scaffoldBackgroundColor: _$WidgetToolkitTheme.scaffoldBackgroundColor[0],
+    highlightColor: _$WidgetToolkitTheme.highlightColor[0],
+    primaryGradientStart: _$WidgetToolkitTheme.primaryGradientStart[0],
+    primaryGradientEnd: _$WidgetToolkitTheme.primaryGradientEnd[0],
+    searchTextFieldIconColor: _$WidgetToolkitTheme.searchTextFieldIconColor[0],
     searchTextFieldIconColorActive:
-        _$PrimeComponentsTheme.searchTextFieldIconColorActive[0],
+        _$WidgetToolkitTheme.searchTextFieldIconColorActive[0],
     searchTextFieldBackgroundColor:
-        _$PrimeComponentsTheme.searchTextFieldBackgroundColor[0],
+        _$WidgetToolkitTheme.searchTextFieldBackgroundColor[0],
     searchTextFieldBackgroundColorActive:
-        _$PrimeComponentsTheme.searchTextFieldBackgroundColorActive[0],
+        _$WidgetToolkitTheme.searchTextFieldBackgroundColorActive[0],
     searchTextFieldBorderRadius:
-        _$PrimeComponentsTheme.searchTextFieldBorderRadius[0],
+        _$WidgetToolkitTheme.searchTextFieldBorderRadius[0],
     searchTextFieldBorderType:
-        _$PrimeComponentsTheme.searchTextFieldBorderType[0],
+        _$WidgetToolkitTheme.searchTextFieldBorderType[0],
     searchTextFieldIconEdgeInsets:
-        _$PrimeComponentsTheme.searchTextFieldIconEdgeInsets[0],
-    searchTextFieldHintStyle:
-        _$PrimeComponentsTheme.searchTextFieldHintStyle[0],
-    searchTextFieldTextStyle:
-        _$PrimeComponentsTheme.searchTextFieldTextStyle[0],
+        _$WidgetToolkitTheme.searchTextFieldIconEdgeInsets[0],
+    searchTextFieldHintStyle: _$WidgetToolkitTheme.searchTextFieldHintStyle[0],
+    searchTextFieldTextStyle: _$WidgetToolkitTheme.searchTextFieldTextStyle[0],
     pickerListItemInnerEdgeInsets:
-        _$PrimeComponentsTheme.pickerListItemInnerEdgeInsets[0],
+        _$WidgetToolkitTheme.pickerListItemInnerEdgeInsets[0],
     pickerListItemOuterEdgeInsets:
-        _$PrimeComponentsTheme.pickerListItemOuterEdgeInsets[0],
+        _$WidgetToolkitTheme.pickerListItemOuterEdgeInsets[0],
     pickerListItemBorderRadius:
-        _$PrimeComponentsTheme.pickerListItemBorderRadius[0],
+        _$WidgetToolkitTheme.pickerListItemBorderRadius[0],
     pickerListItemSelectedColor:
-        _$PrimeComponentsTheme.pickerListItemSelectedColor[0],
+        _$WidgetToolkitTheme.pickerListItemSelectedColor[0],
     pickerListItemUnselectedColor:
-        _$PrimeComponentsTheme.pickerListItemUnselectedColor[0],
-    pickerListItemTextStyle: _$PrimeComponentsTheme.pickerListItemTextStyle[0],
-    captionBold: _$PrimeComponentsTheme.captionBold[0],
-    textButtonTextStyle: _$PrimeComponentsTheme.textButtonTextStyle[0],
-    appErrorCardIconColor: _$PrimeComponentsTheme.appErrorCardIconColor[0],
+        _$WidgetToolkitTheme.pickerListItemUnselectedColor[0],
+    pickerListItemTextStyle: _$WidgetToolkitTheme.pickerListItemTextStyle[0],
+    captionBold: _$WidgetToolkitTheme.captionBold[0],
+    textButtonTextStyle: _$WidgetToolkitTheme.textButtonTextStyle[0],
+    appErrorCardIconColor: _$WidgetToolkitTheme.appErrorCardIconColor[0],
     appErrorCardBackgroundColor:
-        _$PrimeComponentsTheme.appErrorCardBackgroundColor[0],
-    lightRed: _$PrimeComponentsTheme.lightRed[0],
-    blueLight: _$PrimeComponentsTheme.blueLight[0],
-    greenLight: _$PrimeComponentsTheme.greenLight[0],
-    appErrorCardTextColor: _$PrimeComponentsTheme.appErrorCardTextColor[0],
-    bottomSheetHeaderPadding:
-        _$PrimeComponentsTheme.bottomSheetHeaderPadding[0],
-    bottomSheetBarrierColor: _$PrimeComponentsTheme.bottomSheetBarrierColor[0],
+        _$WidgetToolkitTheme.appErrorCardBackgroundColor[0],
+    lightRed: _$WidgetToolkitTheme.lightRed[0],
+    blueLight: _$WidgetToolkitTheme.blueLight[0],
+    greenLight: _$WidgetToolkitTheme.greenLight[0],
+    appErrorCardTextColor: _$WidgetToolkitTheme.appErrorCardTextColor[0],
+    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[0],
+    bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[0],
     messagePanelBackgroundColor:
-        _$PrimeComponentsTheme.messagePanelBackgroundColor[0],
-    bottomSheetLineColor: _$PrimeComponentsTheme.bottomSheetLineColor[0],
+        _$WidgetToolkitTheme.messagePanelBackgroundColor[0],
+    bottomSheetLineColor: _$WidgetToolkitTheme.bottomSheetLineColor[0],
     bottomSheetBackgroundColor:
-        _$PrimeComponentsTheme.bottomSheetBackgroundColor[0],
-    bottomSheetBorderColor: _$PrimeComponentsTheme.bottomSheetBorderColor[0],
-    loadingIndicatorColor: _$PrimeComponentsTheme.loadingIndicatorColor[0],
-    descriptionBold: _$PrimeComponentsTheme.descriptionBold[0],
-    titleBold: _$PrimeComponentsTheme.titleBold[0],
-    descriptionThin: _$PrimeComponentsTheme.descriptionThin[0],
-    errorTitle: _$PrimeComponentsTheme.errorTitle[0],
+        _$WidgetToolkitTheme.bottomSheetBackgroundColor[0],
+    bottomSheetBorderColor: _$WidgetToolkitTheme.bottomSheetBorderColor[0],
+    loadingIndicatorColor: _$WidgetToolkitTheme.loadingIndicatorColor[0],
+    descriptionBold: _$WidgetToolkitTheme.descriptionBold[0],
+    titleBold: _$WidgetToolkitTheme.titleBold[0],
+    descriptionThin: _$WidgetToolkitTheme.descriptionThin[0],
+    errorTitle: _$WidgetToolkitTheme.errorTitle[0],
     disabledFilledButtonBackgroundColor:
-        _$PrimeComponentsTheme.disabledFilledButtonBackgroundColor[0],
-    gradientRedStart: _$PrimeComponentsTheme.gradientRedStart[0],
-    gradientRedEnd: _$PrimeComponentsTheme.gradientRedEnd[0],
+        _$WidgetToolkitTheme.disabledFilledButtonBackgroundColor[0],
+    gradientRedStart: _$WidgetToolkitTheme.gradientRedStart[0],
+    gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[0],
     filledButtonBackgroundColorDisabled:
-        _$PrimeComponentsTheme.filledButtonBackgroundColorDisabled[0],
+        _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[0],
     appFilledButtonBackgroundColorDisabled:
-        _$PrimeComponentsTheme.appFilledButtonBackgroundColorDisabled[0],
+        _$WidgetToolkitTheme.appFilledButtonBackgroundColorDisabled[0],
     appFilledButtonTextColorDisabled:
-        _$PrimeComponentsTheme.appFilledButtonTextColorDisabled[0],
+        _$WidgetToolkitTheme.appFilledButtonTextColorDisabled[0],
     appTextButtonTextColorDisabled:
-        _$PrimeComponentsTheme.appTextButtonTextColorDisabled[0],
+        _$WidgetToolkitTheme.appTextButtonTextColorDisabled[0],
     appFilledButtonTextColorEnabled:
-        _$PrimeComponentsTheme.appFilledButtonTextColorEnabled[0],
+        _$WidgetToolkitTheme.appFilledButtonTextColorEnabled[0],
     appSmallButtonBackgroundColor:
-        _$PrimeComponentsTheme.appSmallButtonBackgroundColor[0],
-    appButtonTextColor: _$PrimeComponentsTheme.appButtonTextColor[0],
-    buttonTextColor: _$PrimeComponentsTheme.buttonTextColor[0],
-    shimmerBaseColor: _$PrimeComponentsTheme.shimmerBaseColor[0],
-    shimmerHighlightColor: _$PrimeComponentsTheme.shimmerHighlightColor[0],
-    white: _$PrimeComponentsTheme.white[0],
-    buttonBlueGradientEnd: _$PrimeComponentsTheme.buttonBlueGradientEnd[0],
+        _$WidgetToolkitTheme.appSmallButtonBackgroundColor[0],
+    appButtonTextColor: _$WidgetToolkitTheme.appButtonTextColor[0],
+    buttonTextColor: _$WidgetToolkitTheme.buttonTextColor[0],
+    shimmerBaseColor: _$WidgetToolkitTheme.shimmerBaseColor[0],
+    shimmerHighlightColor: _$WidgetToolkitTheme.shimmerHighlightColor[0],
+    white: _$WidgetToolkitTheme.white[0],
+    buttonBlueGradientEnd: _$WidgetToolkitTheme.buttonBlueGradientEnd[0],
     elevatedButtonBackgroundColor:
-        _$PrimeComponentsTheme.elevatedButtonBackgroundColor[0],
-    textColorWhite: _$PrimeComponentsTheme.textColorWhite[0],
-    bodyTextColor2: _$PrimeComponentsTheme.bodyTextColor2[0],
+        _$WidgetToolkitTheme.elevatedButtonBackgroundColor[0],
+    textColorWhite: _$WidgetToolkitTheme.textColorWhite[0],
+    bodyTextColor2: _$WidgetToolkitTheme.bodyTextColor2[0],
     appSmallButtonFilledBackgroundColor:
-        _$PrimeComponentsTheme.appSmallButtonFilledBackgroundColor[0],
+        _$WidgetToolkitTheme.appSmallButtonFilledBackgroundColor[0],
     appSmallButtonOutlinedBorderColor:
-        _$PrimeComponentsTheme.appSmallButtonOutlinedBorderColor[0],
+        _$WidgetToolkitTheme.appSmallButtonOutlinedBorderColor[0],
     activeButtonLanguageTextColor:
-        _$PrimeComponentsTheme.activeButtonLanguageTextColor[0],
-    activeButtonTextColor: _$PrimeComponentsTheme.activeButtonTextColor[0],
-    disabledButtonTextColor: _$PrimeComponentsTheme.disabledButtonTextColor[0],
-    black: _$PrimeComponentsTheme.black[0],
-    activeGradientColorStart:
-        _$PrimeComponentsTheme.activeGradientColorStart[0],
-    activeGradientColorEnd: _$PrimeComponentsTheme.activeGradientColorEnd[0],
-    activeGradientRedEnd: _$PrimeComponentsTheme.activeGradientRedEnd[0],
-    boxShadowColor: _$PrimeComponentsTheme.boxShadowColor[0],
-    red: _$PrimeComponentsTheme.red[0],
-    orange: _$PrimeComponentsTheme.orange[0],
-    orangeLight: _$PrimeComponentsTheme.orangeLight[0],
-    darkBlue: _$PrimeComponentsTheme.darkBlue[0],
-    darkGreen: _$PrimeComponentsTheme.darkGreen[0],
+        _$WidgetToolkitTheme.activeButtonLanguageTextColor[0],
+    activeButtonTextColor: _$WidgetToolkitTheme.activeButtonTextColor[0],
+    disabledButtonTextColor: _$WidgetToolkitTheme.disabledButtonTextColor[0],
+    black: _$WidgetToolkitTheme.black[0],
+    activeGradientColorStart: _$WidgetToolkitTheme.activeGradientColorStart[0],
+    activeGradientColorEnd: _$WidgetToolkitTheme.activeGradientColorEnd[0],
+    activeGradientRedEnd: _$WidgetToolkitTheme.activeGradientRedEnd[0],
+    boxShadowColor: _$WidgetToolkitTheme.boxShadowColor[0],
+    red: _$WidgetToolkitTheme.red[0],
+    orange: _$WidgetToolkitTheme.orange[0],
+    orangeLight: _$WidgetToolkitTheme.orangeLight[0],
+    darkBlue: _$WidgetToolkitTheme.darkBlue[0],
+    darkGreen: _$WidgetToolkitTheme.darkGreen[0],
     textButtonLoadingIndicatorColor:
-        _$PrimeComponentsTheme.textButtonLoadingIndicatorColor[0],
+        _$WidgetToolkitTheme.textButtonLoadingIndicatorColor[0],
     appOutlineButtonBackgroundColor:
-        _$PrimeComponentsTheme.appOutlineButtonBackgroundColor[0],
-    buttonShadowColor: _$PrimeComponentsTheme.buttonShadowColor[0],
-    buttonPressedColor: _$PrimeComponentsTheme.buttonPressedColor[0],
-    buttonBorderColor: _$PrimeComponentsTheme.buttonBorderColor[0],
+        _$WidgetToolkitTheme.appOutlineButtonBackgroundColor[0],
+    buttonShadowColor: _$WidgetToolkitTheme.buttonShadowColor[0],
+    buttonPressedColor: _$WidgetToolkitTheme.buttonPressedColor[0],
+    buttonBorderColor: _$WidgetToolkitTheme.buttonBorderColor[0],
     outlineButtonContentPadding:
-        _$PrimeComponentsTheme.outlineButtonContentPadding[0],
-    outlineButtonTextStyle: _$PrimeComponentsTheme.outlineButtonTextStyle[0],
+        _$WidgetToolkitTheme.outlineButtonContentPadding[0],
+    outlineButtonTextStyle: _$WidgetToolkitTheme.outlineButtonTextStyle[0],
     outlineButtonDescriptionTextStyle:
-        _$PrimeComponentsTheme.outlineButtonDescriptionTextStyle[0],
+        _$WidgetToolkitTheme.outlineButtonDescriptionTextStyle[0],
     outlineButtonBackgroundColor:
-        _$PrimeComponentsTheme.outlineButtonBackgroundColor[0],
+        _$WidgetToolkitTheme.outlineButtonBackgroundColor[0],
     outlineButtonForegroundColor:
-        _$PrimeComponentsTheme.outlineButtonForegroundColor[0],
-    outlineButtonBorderColor:
-        _$PrimeComponentsTheme.outlineButtonBorderColor[0],
+        _$WidgetToolkitTheme.outlineButtonForegroundColor[0],
+    outlineButtonBorderColor: _$WidgetToolkitTheme.outlineButtonBorderColor[0],
     outlineButtonPressedColor:
-        _$PrimeComponentsTheme.outlineButtonPressedColor[0],
-    outlineButtonTextColor: _$PrimeComponentsTheme.outlineButtonTextColor[0],
+        _$WidgetToolkitTheme.outlineButtonPressedColor[0],
+    outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[0],
     outlineButtonTextColorDisabled:
-        _$PrimeComponentsTheme.outlineButtonTextColorDisabled[0],
+        _$WidgetToolkitTheme.outlineButtonTextColorDisabled[0],
     messagePanelErrorEdgeInsets:
-        _$PrimeComponentsTheme.messagePanelErrorEdgeInsets[0],
-    smallEdgeInsets: _$PrimeComponentsTheme.smallEdgeInsets[0],
-    mediumEdgeInsets: _$PrimeComponentsTheme.mediumEdgeInsets[0],
-    largeEdgeInsets: _$PrimeComponentsTheme.largeEdgeInsets[0],
-    messagePanelEdgeInsets: _$PrimeComponentsTheme.messagePanelEdgeInsets[0],
-    spacingXS1: _$PrimeComponentsTheme.spacingXS1[0],
-    spacingXS: _$PrimeComponentsTheme.spacingXS[0],
-    spacingXSS: _$PrimeComponentsTheme.spacingXSS[0],
-    spacingS: _$PrimeComponentsTheme.spacingS[0],
-    spacingM: _$PrimeComponentsTheme.spacingM[0],
-    spacingXL: _$PrimeComponentsTheme.spacingXL[0],
-    spacingXXL: _$PrimeComponentsTheme.spacingXXL[0],
-    spacingXXXXL1: _$PrimeComponentsTheme.spacingXXXXL1[0],
+        _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[0],
+    smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[0],
+    mediumEdgeInsets: _$WidgetToolkitTheme.mediumEdgeInsets[0],
+    largeEdgeInsets: _$WidgetToolkitTheme.largeEdgeInsets[0],
+    messagePanelEdgeInsets: _$WidgetToolkitTheme.messagePanelEdgeInsets[0],
+    spacingXS1: _$WidgetToolkitTheme.spacingXS1[0],
+    spacingXS: _$WidgetToolkitTheme.spacingXS[0],
+    spacingXSS: _$WidgetToolkitTheme.spacingXSS[0],
+    spacingS: _$WidgetToolkitTheme.spacingS[0],
+    spacingM: _$WidgetToolkitTheme.spacingM[0],
+    spacingXL: _$WidgetToolkitTheme.spacingXL[0],
+    spacingXXL: _$WidgetToolkitTheme.spacingXXL[0],
+    spacingXXXXL1: _$WidgetToolkitTheme.spacingXXXXL1[0],
     textButtonIconRightPadding:
-        _$PrimeComponentsTheme.textButtonIconRightPadding[0],
-    textButtonPadding: _$PrimeComponentsTheme.textButtonPadding[0],
-    appBarTextButtonPadding: _$PrimeComponentsTheme.appBarTextButtonPadding[0],
-    checkIcon: _$PrimeComponentsTheme.checkIcon[0],
-    checkCircleIcon: _$PrimeComponentsTheme.checkCircleIcon[0],
-    closeIcon: _$PrimeComponentsTheme.closeIcon[0],
-    dangerIcon: _$PrimeComponentsTheme.dangerIcon[0],
-    educateIcon: _$PrimeComponentsTheme.educateIcon[0],
-    greatNewsIcon: _$PrimeComponentsTheme.greatNewsIcon[0],
-    infoCircleIcon: _$PrimeComponentsTheme.infoCircleIcon[0],
-    messageIcon: _$PrimeComponentsTheme.messageIcon[0],
+        _$WidgetToolkitTheme.textButtonIconRightPadding[0],
+    textButtonPadding: _$WidgetToolkitTheme.textButtonPadding[0],
+    appBarTextButtonPadding: _$WidgetToolkitTheme.appBarTextButtonPadding[0],
+    checkIcon: _$WidgetToolkitTheme.checkIcon[0],
+    checkCircleIcon: _$WidgetToolkitTheme.checkCircleIcon[0],
+    closeIcon: _$WidgetToolkitTheme.closeIcon[0],
+    dangerIcon: _$WidgetToolkitTheme.dangerIcon[0],
+    educateIcon: _$WidgetToolkitTheme.educateIcon[0],
+    greatNewsIcon: _$WidgetToolkitTheme.greatNewsIcon[0],
+    infoCircleIcon: _$WidgetToolkitTheme.infoCircleIcon[0],
+    messageIcon: _$WidgetToolkitTheme.messageIcon[0],
   );
 
-  static final PrimeComponentsTheme dark = PrimeComponentsTheme(
-    primaryColor: _$PrimeComponentsTheme.primaryColor[1],
-    backgroundColor: _$PrimeComponentsTheme.backgroundColor[1],
-    scaffoldBackgroundColor: _$PrimeComponentsTheme.scaffoldBackgroundColor[1],
-    highlightColor: _$PrimeComponentsTheme.highlightColor[1],
-    primaryGradientStart: _$PrimeComponentsTheme.primaryGradientStart[1],
-    primaryGradientEnd: _$PrimeComponentsTheme.primaryGradientEnd[1],
-    searchTextFieldIconColor:
-        _$PrimeComponentsTheme.searchTextFieldIconColor[1],
+  static final WidgetToolkitTheme dark = WidgetToolkitTheme(
+    primaryColor: _$WidgetToolkitTheme.primaryColor[1],
+    backgroundColor: _$WidgetToolkitTheme.backgroundColor[1],
+    scaffoldBackgroundColor: _$WidgetToolkitTheme.scaffoldBackgroundColor[1],
+    highlightColor: _$WidgetToolkitTheme.highlightColor[1],
+    primaryGradientStart: _$WidgetToolkitTheme.primaryGradientStart[1],
+    primaryGradientEnd: _$WidgetToolkitTheme.primaryGradientEnd[1],
+    searchTextFieldIconColor: _$WidgetToolkitTheme.searchTextFieldIconColor[1],
     searchTextFieldIconColorActive:
-        _$PrimeComponentsTheme.searchTextFieldIconColorActive[1],
+        _$WidgetToolkitTheme.searchTextFieldIconColorActive[1],
     searchTextFieldBackgroundColor:
-        _$PrimeComponentsTheme.searchTextFieldBackgroundColor[1],
+        _$WidgetToolkitTheme.searchTextFieldBackgroundColor[1],
     searchTextFieldBackgroundColorActive:
-        _$PrimeComponentsTheme.searchTextFieldBackgroundColorActive[1],
+        _$WidgetToolkitTheme.searchTextFieldBackgroundColorActive[1],
     searchTextFieldBorderRadius:
-        _$PrimeComponentsTheme.searchTextFieldBorderRadius[1],
+        _$WidgetToolkitTheme.searchTextFieldBorderRadius[1],
     searchTextFieldBorderType:
-        _$PrimeComponentsTheme.searchTextFieldBorderType[1],
+        _$WidgetToolkitTheme.searchTextFieldBorderType[1],
     searchTextFieldIconEdgeInsets:
-        _$PrimeComponentsTheme.searchTextFieldIconEdgeInsets[1],
-    searchTextFieldHintStyle:
-        _$PrimeComponentsTheme.searchTextFieldHintStyle[1],
-    searchTextFieldTextStyle:
-        _$PrimeComponentsTheme.searchTextFieldTextStyle[1],
+        _$WidgetToolkitTheme.searchTextFieldIconEdgeInsets[1],
+    searchTextFieldHintStyle: _$WidgetToolkitTheme.searchTextFieldHintStyle[1],
+    searchTextFieldTextStyle: _$WidgetToolkitTheme.searchTextFieldTextStyle[1],
     pickerListItemInnerEdgeInsets:
-        _$PrimeComponentsTheme.pickerListItemInnerEdgeInsets[1],
+        _$WidgetToolkitTheme.pickerListItemInnerEdgeInsets[1],
     pickerListItemOuterEdgeInsets:
-        _$PrimeComponentsTheme.pickerListItemOuterEdgeInsets[1],
+        _$WidgetToolkitTheme.pickerListItemOuterEdgeInsets[1],
     pickerListItemBorderRadius:
-        _$PrimeComponentsTheme.pickerListItemBorderRadius[1],
+        _$WidgetToolkitTheme.pickerListItemBorderRadius[1],
     pickerListItemSelectedColor:
-        _$PrimeComponentsTheme.pickerListItemSelectedColor[1],
+        _$WidgetToolkitTheme.pickerListItemSelectedColor[1],
     pickerListItemUnselectedColor:
-        _$PrimeComponentsTheme.pickerListItemUnselectedColor[1],
-    pickerListItemTextStyle: _$PrimeComponentsTheme.pickerListItemTextStyle[1],
-    captionBold: _$PrimeComponentsTheme.captionBold[1],
-    textButtonTextStyle: _$PrimeComponentsTheme.textButtonTextStyle[1],
-    appErrorCardIconColor: _$PrimeComponentsTheme.appErrorCardIconColor[1],
+        _$WidgetToolkitTheme.pickerListItemUnselectedColor[1],
+    pickerListItemTextStyle: _$WidgetToolkitTheme.pickerListItemTextStyle[1],
+    captionBold: _$WidgetToolkitTheme.captionBold[1],
+    textButtonTextStyle: _$WidgetToolkitTheme.textButtonTextStyle[1],
+    appErrorCardIconColor: _$WidgetToolkitTheme.appErrorCardIconColor[1],
     appErrorCardBackgroundColor:
-        _$PrimeComponentsTheme.appErrorCardBackgroundColor[1],
-    lightRed: _$PrimeComponentsTheme.lightRed[1],
-    blueLight: _$PrimeComponentsTheme.blueLight[1],
-    greenLight: _$PrimeComponentsTheme.greenLight[1],
-    appErrorCardTextColor: _$PrimeComponentsTheme.appErrorCardTextColor[1],
-    bottomSheetHeaderPadding:
-        _$PrimeComponentsTheme.bottomSheetHeaderPadding[1],
-    bottomSheetBarrierColor: _$PrimeComponentsTheme.bottomSheetBarrierColor[1],
+        _$WidgetToolkitTheme.appErrorCardBackgroundColor[1],
+    lightRed: _$WidgetToolkitTheme.lightRed[1],
+    blueLight: _$WidgetToolkitTheme.blueLight[1],
+    greenLight: _$WidgetToolkitTheme.greenLight[1],
+    appErrorCardTextColor: _$WidgetToolkitTheme.appErrorCardTextColor[1],
+    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[1],
+    bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[1],
     messagePanelBackgroundColor:
-        _$PrimeComponentsTheme.messagePanelBackgroundColor[1],
-    bottomSheetLineColor: _$PrimeComponentsTheme.bottomSheetLineColor[1],
+        _$WidgetToolkitTheme.messagePanelBackgroundColor[1],
+    bottomSheetLineColor: _$WidgetToolkitTheme.bottomSheetLineColor[1],
     bottomSheetBackgroundColor:
-        _$PrimeComponentsTheme.bottomSheetBackgroundColor[1],
-    bottomSheetBorderColor: _$PrimeComponentsTheme.bottomSheetBorderColor[1],
-    loadingIndicatorColor: _$PrimeComponentsTheme.loadingIndicatorColor[1],
-    descriptionBold: _$PrimeComponentsTheme.descriptionBold[1],
-    titleBold: _$PrimeComponentsTheme.titleBold[1],
-    descriptionThin: _$PrimeComponentsTheme.descriptionThin[1],
-    errorTitle: _$PrimeComponentsTheme.errorTitle[1],
+        _$WidgetToolkitTheme.bottomSheetBackgroundColor[1],
+    bottomSheetBorderColor: _$WidgetToolkitTheme.bottomSheetBorderColor[1],
+    loadingIndicatorColor: _$WidgetToolkitTheme.loadingIndicatorColor[1],
+    descriptionBold: _$WidgetToolkitTheme.descriptionBold[1],
+    titleBold: _$WidgetToolkitTheme.titleBold[1],
+    descriptionThin: _$WidgetToolkitTheme.descriptionThin[1],
+    errorTitle: _$WidgetToolkitTheme.errorTitle[1],
     disabledFilledButtonBackgroundColor:
-        _$PrimeComponentsTheme.disabledFilledButtonBackgroundColor[1],
-    gradientRedStart: _$PrimeComponentsTheme.gradientRedStart[1],
-    gradientRedEnd: _$PrimeComponentsTheme.gradientRedEnd[1],
+        _$WidgetToolkitTheme.disabledFilledButtonBackgroundColor[1],
+    gradientRedStart: _$WidgetToolkitTheme.gradientRedStart[1],
+    gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[1],
     filledButtonBackgroundColorDisabled:
-        _$PrimeComponentsTheme.filledButtonBackgroundColorDisabled[1],
+        _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[1],
     appFilledButtonBackgroundColorDisabled:
-        _$PrimeComponentsTheme.appFilledButtonBackgroundColorDisabled[1],
+        _$WidgetToolkitTheme.appFilledButtonBackgroundColorDisabled[1],
     appFilledButtonTextColorDisabled:
-        _$PrimeComponentsTheme.appFilledButtonTextColorDisabled[1],
+        _$WidgetToolkitTheme.appFilledButtonTextColorDisabled[1],
     appTextButtonTextColorDisabled:
-        _$PrimeComponentsTheme.appTextButtonTextColorDisabled[1],
+        _$WidgetToolkitTheme.appTextButtonTextColorDisabled[1],
     appFilledButtonTextColorEnabled:
-        _$PrimeComponentsTheme.appFilledButtonTextColorEnabled[1],
+        _$WidgetToolkitTheme.appFilledButtonTextColorEnabled[1],
     appSmallButtonBackgroundColor:
-        _$PrimeComponentsTheme.appSmallButtonBackgroundColor[1],
-    appButtonTextColor: _$PrimeComponentsTheme.appButtonTextColor[1],
-    buttonTextColor: _$PrimeComponentsTheme.buttonTextColor[1],
-    shimmerBaseColor: _$PrimeComponentsTheme.shimmerBaseColor[1],
-    shimmerHighlightColor: _$PrimeComponentsTheme.shimmerHighlightColor[1],
-    white: _$PrimeComponentsTheme.white[1],
-    buttonBlueGradientEnd: _$PrimeComponentsTheme.buttonBlueGradientEnd[1],
+        _$WidgetToolkitTheme.appSmallButtonBackgroundColor[1],
+    appButtonTextColor: _$WidgetToolkitTheme.appButtonTextColor[1],
+    buttonTextColor: _$WidgetToolkitTheme.buttonTextColor[1],
+    shimmerBaseColor: _$WidgetToolkitTheme.shimmerBaseColor[1],
+    shimmerHighlightColor: _$WidgetToolkitTheme.shimmerHighlightColor[1],
+    white: _$WidgetToolkitTheme.white[1],
+    buttonBlueGradientEnd: _$WidgetToolkitTheme.buttonBlueGradientEnd[1],
     elevatedButtonBackgroundColor:
-        _$PrimeComponentsTheme.elevatedButtonBackgroundColor[1],
-    textColorWhite: _$PrimeComponentsTheme.textColorWhite[1],
-    bodyTextColor2: _$PrimeComponentsTheme.bodyTextColor2[1],
+        _$WidgetToolkitTheme.elevatedButtonBackgroundColor[1],
+    textColorWhite: _$WidgetToolkitTheme.textColorWhite[1],
+    bodyTextColor2: _$WidgetToolkitTheme.bodyTextColor2[1],
     appSmallButtonFilledBackgroundColor:
-        _$PrimeComponentsTheme.appSmallButtonFilledBackgroundColor[1],
+        _$WidgetToolkitTheme.appSmallButtonFilledBackgroundColor[1],
     appSmallButtonOutlinedBorderColor:
-        _$PrimeComponentsTheme.appSmallButtonOutlinedBorderColor[1],
+        _$WidgetToolkitTheme.appSmallButtonOutlinedBorderColor[1],
     activeButtonLanguageTextColor:
-        _$PrimeComponentsTheme.activeButtonLanguageTextColor[1],
-    activeButtonTextColor: _$PrimeComponentsTheme.activeButtonTextColor[1],
-    disabledButtonTextColor: _$PrimeComponentsTheme.disabledButtonTextColor[1],
-    black: _$PrimeComponentsTheme.black[1],
-    activeGradientColorStart:
-        _$PrimeComponentsTheme.activeGradientColorStart[1],
-    activeGradientColorEnd: _$PrimeComponentsTheme.activeGradientColorEnd[1],
-    activeGradientRedEnd: _$PrimeComponentsTheme.activeGradientRedEnd[1],
-    boxShadowColor: _$PrimeComponentsTheme.boxShadowColor[1],
-    red: _$PrimeComponentsTheme.red[1],
-    orange: _$PrimeComponentsTheme.orange[1],
-    orangeLight: _$PrimeComponentsTheme.orangeLight[1],
-    darkBlue: _$PrimeComponentsTheme.darkBlue[1],
-    darkGreen: _$PrimeComponentsTheme.darkGreen[1],
+        _$WidgetToolkitTheme.activeButtonLanguageTextColor[1],
+    activeButtonTextColor: _$WidgetToolkitTheme.activeButtonTextColor[1],
+    disabledButtonTextColor: _$WidgetToolkitTheme.disabledButtonTextColor[1],
+    black: _$WidgetToolkitTheme.black[1],
+    activeGradientColorStart: _$WidgetToolkitTheme.activeGradientColorStart[1],
+    activeGradientColorEnd: _$WidgetToolkitTheme.activeGradientColorEnd[1],
+    activeGradientRedEnd: _$WidgetToolkitTheme.activeGradientRedEnd[1],
+    boxShadowColor: _$WidgetToolkitTheme.boxShadowColor[1],
+    red: _$WidgetToolkitTheme.red[1],
+    orange: _$WidgetToolkitTheme.orange[1],
+    orangeLight: _$WidgetToolkitTheme.orangeLight[1],
+    darkBlue: _$WidgetToolkitTheme.darkBlue[1],
+    darkGreen: _$WidgetToolkitTheme.darkGreen[1],
     textButtonLoadingIndicatorColor:
-        _$PrimeComponentsTheme.textButtonLoadingIndicatorColor[1],
+        _$WidgetToolkitTheme.textButtonLoadingIndicatorColor[1],
     appOutlineButtonBackgroundColor:
-        _$PrimeComponentsTheme.appOutlineButtonBackgroundColor[1],
-    buttonShadowColor: _$PrimeComponentsTheme.buttonShadowColor[1],
-    buttonPressedColor: _$PrimeComponentsTheme.buttonPressedColor[1],
-    buttonBorderColor: _$PrimeComponentsTheme.buttonBorderColor[1],
+        _$WidgetToolkitTheme.appOutlineButtonBackgroundColor[1],
+    buttonShadowColor: _$WidgetToolkitTheme.buttonShadowColor[1],
+    buttonPressedColor: _$WidgetToolkitTheme.buttonPressedColor[1],
+    buttonBorderColor: _$WidgetToolkitTheme.buttonBorderColor[1],
     outlineButtonContentPadding:
-        _$PrimeComponentsTheme.outlineButtonContentPadding[1],
-    outlineButtonTextStyle: _$PrimeComponentsTheme.outlineButtonTextStyle[1],
+        _$WidgetToolkitTheme.outlineButtonContentPadding[1],
+    outlineButtonTextStyle: _$WidgetToolkitTheme.outlineButtonTextStyle[1],
     outlineButtonDescriptionTextStyle:
-        _$PrimeComponentsTheme.outlineButtonDescriptionTextStyle[1],
+        _$WidgetToolkitTheme.outlineButtonDescriptionTextStyle[1],
     outlineButtonBackgroundColor:
-        _$PrimeComponentsTheme.outlineButtonBackgroundColor[1],
+        _$WidgetToolkitTheme.outlineButtonBackgroundColor[1],
     outlineButtonForegroundColor:
-        _$PrimeComponentsTheme.outlineButtonForegroundColor[1],
-    outlineButtonBorderColor:
-        _$PrimeComponentsTheme.outlineButtonBorderColor[1],
+        _$WidgetToolkitTheme.outlineButtonForegroundColor[1],
+    outlineButtonBorderColor: _$WidgetToolkitTheme.outlineButtonBorderColor[1],
     outlineButtonPressedColor:
-        _$PrimeComponentsTheme.outlineButtonPressedColor[1],
-    outlineButtonTextColor: _$PrimeComponentsTheme.outlineButtonTextColor[1],
+        _$WidgetToolkitTheme.outlineButtonPressedColor[1],
+    outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[1],
     outlineButtonTextColorDisabled:
-        _$PrimeComponentsTheme.outlineButtonTextColorDisabled[1],
+        _$WidgetToolkitTheme.outlineButtonTextColorDisabled[1],
     messagePanelErrorEdgeInsets:
-        _$PrimeComponentsTheme.messagePanelErrorEdgeInsets[1],
-    smallEdgeInsets: _$PrimeComponentsTheme.smallEdgeInsets[1],
-    mediumEdgeInsets: _$PrimeComponentsTheme.mediumEdgeInsets[1],
-    largeEdgeInsets: _$PrimeComponentsTheme.largeEdgeInsets[1],
-    messagePanelEdgeInsets: _$PrimeComponentsTheme.messagePanelEdgeInsets[1],
-    spacingXS1: _$PrimeComponentsTheme.spacingXS1[1],
-    spacingXS: _$PrimeComponentsTheme.spacingXS[1],
-    spacingXSS: _$PrimeComponentsTheme.spacingXSS[1],
-    spacingS: _$PrimeComponentsTheme.spacingS[1],
-    spacingM: _$PrimeComponentsTheme.spacingM[1],
-    spacingXL: _$PrimeComponentsTheme.spacingXL[1],
-    spacingXXL: _$PrimeComponentsTheme.spacingXXL[1],
-    spacingXXXXL1: _$PrimeComponentsTheme.spacingXXXXL1[1],
+        _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[1],
+    smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[1],
+    mediumEdgeInsets: _$WidgetToolkitTheme.mediumEdgeInsets[1],
+    largeEdgeInsets: _$WidgetToolkitTheme.largeEdgeInsets[1],
+    messagePanelEdgeInsets: _$WidgetToolkitTheme.messagePanelEdgeInsets[1],
+    spacingXS1: _$WidgetToolkitTheme.spacingXS1[1],
+    spacingXS: _$WidgetToolkitTheme.spacingXS[1],
+    spacingXSS: _$WidgetToolkitTheme.spacingXSS[1],
+    spacingS: _$WidgetToolkitTheme.spacingS[1],
+    spacingM: _$WidgetToolkitTheme.spacingM[1],
+    spacingXL: _$WidgetToolkitTheme.spacingXL[1],
+    spacingXXL: _$WidgetToolkitTheme.spacingXXL[1],
+    spacingXXXXL1: _$WidgetToolkitTheme.spacingXXXXL1[1],
     textButtonIconRightPadding:
-        _$PrimeComponentsTheme.textButtonIconRightPadding[1],
-    textButtonPadding: _$PrimeComponentsTheme.textButtonPadding[1],
-    appBarTextButtonPadding: _$PrimeComponentsTheme.appBarTextButtonPadding[1],
-    checkIcon: _$PrimeComponentsTheme.checkIcon[1],
-    checkCircleIcon: _$PrimeComponentsTheme.checkCircleIcon[1],
-    closeIcon: _$PrimeComponentsTheme.closeIcon[1],
-    dangerIcon: _$PrimeComponentsTheme.dangerIcon[1],
-    educateIcon: _$PrimeComponentsTheme.educateIcon[1],
-    greatNewsIcon: _$PrimeComponentsTheme.greatNewsIcon[1],
-    infoCircleIcon: _$PrimeComponentsTheme.infoCircleIcon[1],
-    messageIcon: _$PrimeComponentsTheme.messageIcon[1],
+        _$WidgetToolkitTheme.textButtonIconRightPadding[1],
+    textButtonPadding: _$WidgetToolkitTheme.textButtonPadding[1],
+    appBarTextButtonPadding: _$WidgetToolkitTheme.appBarTextButtonPadding[1],
+    checkIcon: _$WidgetToolkitTheme.checkIcon[1],
+    checkCircleIcon: _$WidgetToolkitTheme.checkCircleIcon[1],
+    closeIcon: _$WidgetToolkitTheme.closeIcon[1],
+    dangerIcon: _$WidgetToolkitTheme.dangerIcon[1],
+    educateIcon: _$WidgetToolkitTheme.educateIcon[1],
+    greatNewsIcon: _$WidgetToolkitTheme.greatNewsIcon[1],
+    infoCircleIcon: _$WidgetToolkitTheme.infoCircleIcon[1],
+    messageIcon: _$WidgetToolkitTheme.messageIcon[1],
   );
 
   static final themes = [
@@ -551,7 +539,7 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
   ];
 
   @override
-  PrimeComponentsTheme copyWith({
+  WidgetToolkitTheme copyWith({
     Color? primaryColor,
     Color? backgroundColor,
     Color? scaffoldBackgroundColor,
@@ -664,7 +652,7 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
     SvgFile? infoCircleIcon,
     SvgFile? messageIcon,
   }) {
-    return PrimeComponentsTheme(
+    return WidgetToolkitTheme(
       primaryColor: primaryColor ?? this.primaryColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       scaffoldBackgroundColor:
@@ -842,10 +830,9 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
   }
 
   @override
-  PrimeComponentsTheme lerp(
-      ThemeExtension<PrimeComponentsTheme>? other, double t) {
-    if (other is! PrimeComponentsTheme) return this;
-    return PrimeComponentsTheme(
+  WidgetToolkitTheme lerp(ThemeExtension<WidgetToolkitTheme>? other, double t) {
+    if (other is! WidgetToolkitTheme) return this;
+    return WidgetToolkitTheme(
       primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       scaffoldBackgroundColor: Color.lerp(
@@ -1064,7 +1051,7 @@ class PrimeComponentsTheme extends ThemeExtension<PrimeComponentsTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PrimeComponentsTheme &&
+            other is WidgetToolkitTheme &&
             const DeepCollectionEquality()
                 .equals(primaryColor, other.primaryColor) &&
             const DeepCollectionEquality()

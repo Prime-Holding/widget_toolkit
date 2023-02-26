@@ -31,9 +31,9 @@ void showItemPickerBottomSheet<T extends PickerItemModel>({
   ItemPickerConfiguration configuration = const ItemPickerConfiguration(),
   String? saveButtonText,
 }) {
-  showAppModalBottomSheet(
+  showModal(
     context: context,
-    configuration: AppModalBottomSheetConfiguration(
+    configuration: ModalConfiguration(
       fullScreen: configuration.fullScreen,
       showCloseButton: true,
       showHeaderPill: true,

@@ -2,7 +2,7 @@ import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../base/extensions/error_model_extensions.dart';
-import '../services/prime_text_field_validator_use_case.dart';
+import '../services/text_field_validator.dart';
 
 part 'text_field_dialog_bloc.rxb.g.dart';
 

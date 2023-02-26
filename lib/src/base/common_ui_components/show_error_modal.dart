@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common_ui_components/app_modal_bottom_sheet.dart';
-import 'prime_error_card_widget.dart';
+import '../common_ui_components/show_modal.dart';
+import 'error_card_widget.dart';
 
 /// Displays a customizable modal sheet with a background blur effect. Requires
 /// an [error] which will be presented on the modal sheet, with an optional
@@ -27,7 +27,7 @@ import 'prime_error_card_widget.dart';
 ///
 /// The [image] is a widget that will be placed on top of the error message in
 /// the error message box.
-Future<T?> showErrorBottomSheet<T>({
+Future<T?> showErrorModal<T>({
   required BuildContext context,
   required String error,
   Widget? headerWidget,
@@ -40,10 +40,10 @@ Future<T?> showErrorBottomSheet<T>({
   bool showHeaderPill = true,
   String retryButtonText = 'Retry',
 }) =>
-    showAppModalBottomSheet<T>(
+    showModal<T>(
       context: context,
       onCancelPressed: onCancelCallback,
-      configuration: AppModalBottomSheetConfiguration(
+      configuration: ModalConfiguration(
         applySafeArea: true,
         safeAreaBottom: safeAreaBottom,
         showCloseButton: showCloseButton,
@@ -52,7 +52,7 @@ Future<T?> showErrorBottomSheet<T>({
       ),
       builder: (ctx) => WillPopScope(
         onWillPop: () => Future.value(false),
-        child: _ErrorModalBottomSheet(
+        child: _ErrorModalContent(
           error: error,
           titleWidget: headerWidget,
           footerWidget: footerWidget,
@@ -63,8 +63,8 @@ Future<T?> showErrorBottomSheet<T>({
       ),
     );
 
-class _ErrorModalBottomSheet extends StatelessWidget {
-  const _ErrorModalBottomSheet({
+class _ErrorModalContent extends StatelessWidget {
+  const _ErrorModalContent({
     required this.error,
     required this.retryButtonText,
     this.titleWidget,
@@ -104,7 +104,7 @@ class _ErrorModalBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: titleWidget!,
               ),
-            PrimeErrorCardWidget(
+            ErrorCardWidget(
               text: error,
               header: messageHeader,
               retryButtonVisible: tryAgainCallback != null,

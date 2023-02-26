@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/prime_components_theme.dart';
-import '../app_loading_indicator.dart';
-import 'app_button_color_style.dart';
+import '../../theme/widget_toolkit_theme.dart';
+import '../sized_loading_indicator.dart';
+import 'button_color_style.dart';
 import 'button_state.dart';
 
-enum PrimeTextButtonAppearance { regular, appBar }
+enum IconTextButtonAppearance { regular, appBar }
 
-class PrimeTextButton extends StatelessWidget {
-  const PrimeTextButton({
+class IconTextButton extends StatelessWidget {
+  const IconTextButton({
     required this.text,
     required this.onPressed,
     this.colorStyle,
     this.textStyle,
     this.icon,
     this.iconColor,
-    this.appearance = PrimeTextButtonAppearance.regular,
+    this.appearance = IconTextButtonAppearance.regular,
     this.state = ButtonStateModel.enabled,
     this.splashEffectEnabled = false,
     super.key,
@@ -31,7 +31,7 @@ class PrimeTextButton extends StatelessWidget {
   final ButtonStateModel state;
 
   /// The color style of the button
-  final PrimeButtonColorStyle? colorStyle;
+  final ButtonColorStyle? colorStyle;
 
   /// The text style of the [text]
   final TextStyle? textStyle;
@@ -43,7 +43,7 @@ class PrimeTextButton extends StatelessWidget {
   final dynamic icon;
 
   /// The appearance of the button
-  final PrimeTextButtonAppearance appearance;
+  final IconTextButtonAppearance appearance;
 
   /// Flag indicating the displaying of the splash effect
   final bool splashEffectEnabled;
@@ -71,7 +71,7 @@ class PrimeTextButton extends StatelessWidget {
       ),
     );
 
-    if (appearance == PrimeTextButtonAppearance.appBar) {
+    if (appearance == IconTextButtonAppearance.appBar) {
       return Padding(
         padding: EdgeInsets.only(
             right: context.primeComponentsTheme.appBarTextButtonPadding),
@@ -83,7 +83,7 @@ class PrimeTextButton extends StatelessWidget {
 
   Widget _buildChild(BuildContext context) {
     if (state == ButtonStateModel.loading) {
-      return AppLoadingIndicator.textButtonValue(
+      return SizedLoadingIndicator.textButtonValue(
         color: iconColor ?? getTextColor(context),
       );
     }
@@ -105,7 +105,7 @@ class PrimeTextButton extends StatelessWidget {
               width: context.primeComponentsTheme.textButtonIconRightPadding,
             ),
           Text(text,
-              textAlign: appearance == PrimeTextButtonAppearance.appBar
+              textAlign: appearance == IconTextButtonAppearance.appBar
                   ? TextAlign.right
                   : TextAlign.center,
               style: (textStyle ??

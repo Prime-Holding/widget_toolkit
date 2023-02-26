@@ -67,11 +67,11 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
     this.type = UserProfileCardTypes.mailingAddress,
     this.configuration = const EditAddressConfiguration(),
     this.countryCustomIcon,
-    this.editCountryFieldType = PrimeEditFieldType.dropdown,
+    this.editCountryFieldType = EditFieldType.dropdown,
     this.cityCustomIcon,
-    this.editCityFieldType = PrimeEditFieldType.editfield,
+    this.editCityFieldType = EditFieldType.editfield,
     this.addressCustomIcon,
-    this.editAddressFieldType = PrimeEditFieldType.editfield,
+    this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
     Key? key,
@@ -89,11 +89,11 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   final SearchPickerService<T> searchCountryService;
   final EditAddressService editAddressService;
   final dynamic countryCustomIcon;
-  final PrimeEditFieldType editCountryFieldType;
+  final EditFieldType editCountryFieldType;
   final dynamic cityCustomIcon;
-  final PrimeEditFieldType editCityFieldType;
+  final EditFieldType editCityFieldType;
   final dynamic addressCustomIcon;
-  final PrimeEditFieldType editAddressFieldType;
+  final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
 
@@ -135,7 +135,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                           Padding(
                             padding: context
                                 .editAddressTheme.editAddressWidgetPadding3,
-                            child: AppShimmerText(
+                            child: ShimmerText(
                               editAddressLocalizedStrings?.cardFieldLabel ??
                                   context.getEditAddressLocalizedStrings
                                       .cardFieldLabel,
@@ -256,7 +256,7 @@ class _AddressWidget extends StatelessWidget {
                   ? double.minPositive
                   : context.editAddressTheme.addressWidgetSpacingXS,
             ),
-            child: AppShimmerText(
+            child: ShimmerText(
               address?.countryAndCity,
               style: context.editAddressTheme.descriptionThin,
               maxLines: 1,
@@ -265,7 +265,7 @@ class _AddressWidget extends StatelessWidget {
               highlightColor: context.editAddressTheme.mediumWhite,
             ),
           ),
-          AppShimmerText(
+          ShimmerText(
             address?.streetAddress,
             style: context.editAddressTheme.descriptionThin,
             maxLines: 1,

@@ -1,0 +1,274 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../asset_classes.dart';
+import '../../lib_language_picker/models/selected_language_model.dart';
+import '../../lib_language_picker/theme/language_picker_theme.dart';
+import 'buttons/button_color_style.dart';
+import 'buttons/button_state.dart';
+import 'dynamic_icon.dart';
+import 'sized_loading_indicator.dart';
+
+/// The class is used to display the [languageModel] in the list
+/// of languages
+///
+/// The [onPressed] VoidCallback should be used to set the selected language
+/// as the currently selected one in the LanguagePickerBloc
+///
+/// [code] is the shortly written language code, for example: for 'English', should be 'EN'
+///
+/// [iconLeft] can receive an icon, which should stay on the left side of the widget.
+/// By default there is no such icon, for example, it can be a check icon.
+///
+/// [iconRight] can receive an icon, which should stay on the right side of the widget
+/// By default there is no such icon.
+///
+/// [state] receives the state of the button, it can be used to check whether the
+/// button is loading and display a loading indicator instead of the right icon from
+/// ButtonStateModel.loading
+///
+/// [languageModel] receives a selected language model, which has a language model
+/// inside it. By the LanguageModel translate() method override in you project
+/// you provide the logic to translate the name of the provided language in this
+/// widget
+///
+/// [colorStyle] receives the color style of the button.
+///
+/// [radius] is the border radius of the button
+class SelectLanguageItem extends StatelessWidget {
+  final String languageKey;
+  final String code;
+  final VoidCallback? onPressed;
+  final dynamic iconLeft;
+  final dynamic iconRight;
+  final ButtonStateModel state;
+  final ButtonColorStyle? colorStyle;
+  final double radius;
+  final SelectedLanguageModel languageModel;
+  final bool isSelected;
+
+  SelectLanguageItem._(
+      {Key? key,
+      required this.languageKey,
+      required this.code,
+      required this.languageModel,
+      required this.isSelected,
+      this.onPressed,
+      this.radius = 8,
+      this.iconLeft,
+      this.iconRight,
+      this.state = ButtonStateModel.enabled,
+      this.colorStyle})
+      : super(key: key) {
+    assert(iconLeft == null || iconLeft is IconData || iconLeft is SvgPicture);
+    assert(iconRight == null ||
+        iconRight is IconData ||
+        iconRight is SvgPicture ||
+        iconRight is SvgFile);
+  }
+
+  factory SelectLanguageItem.selected(
+          {Key? key,
+          required String languageKey,
+          required String code,
+          required SelectedLanguageModel languageModel,
+          VoidCallback? onPressed,
+          double radius = 8,
+
+          /// Provide an IconData or SvgPicture
+          dynamic iconLeft,
+
+          /// Provide an IconData or SvgPicture
+          dynamic iconRight,
+          ButtonStateModel state = ButtonStateModel.enabled,
+          ButtonColorStyle? colorStyle}) =>
+      SelectLanguageItem._(
+        languageKey: languageKey,
+        code: code,
+        languageModel: languageModel,
+        isSelected: true,
+        onPressed: onPressed,
+        state: state,
+        radius: radius,
+        colorStyle: colorStyle,
+        iconLeft: iconLeft,
+        iconRight: iconRight,
+        key: key,
+      );
+
+  factory SelectLanguageItem.unSelected(
+          {Key? key,
+          required String languageKey,
+          required String code,
+          required SelectedLanguageModel languageModel,
+          VoidCallback? onPressed,
+          double radius = 8,
+
+          /// Provide an IconData or SvgPicture
+          dynamic iconLeft,
+
+          /// Provide an IconData or SvgPicture
+          dynamic iconRight,
+          ButtonStateModel state = ButtonStateModel.enabled,
+          ButtonColorStyle? colorStyle}) =>
+      SelectLanguageItem._(
+        languageKey: languageKey,
+        code: code,
+        languageModel: languageModel,
+        isSelected: false,
+        onPressed: onPressed,
+        state: state,
+        radius: radius,
+        colorStyle: colorStyle,
+        iconLeft: iconLeft,
+        iconRight: iconRight,
+        key: key,
+      );
+
+  @override
+  Widget build(BuildContext context) => AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: isSelected
+            ? _buildActiveChild(context, _getTextWidget(context))
+            : _buildInactiveChild(context, _getTextWidget(context)),
+      );
+
+  Widget _getTextWidget(BuildContext context) => isSelected
+      ? Ink(
+          decoration: BoxDecoration(
+              gradient: _getGradient(context),
+              borderRadius: BorderRadius.all(Radius.circular(radius))),
+          child: Container(
+            padding: context.languagePickerTheme.chooseLanguageActiveEdgeInsets,
+            color: state == ButtonStateModel.pressed
+                ? getPressedInnerBackgroundColor(context)
+                : Colors.transparent,
+            child: _buildContent(context),
+          ))
+      : Container(
+          height: context.languagePickerTheme.spacingXXXXL1,
+          padding: context.languagePickerTheme.chooseLanguageInactiveEdgeInsets,
+          child: _buildContent(context),
+        );
+
+  Widget _buildContent(BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (iconLeft != null)
+            DynamicIcon(
+              iconLeft,
+              color: _getTextColor(context),
+            ),
+          Text(
+            code,
+            style: context
+                .languagePickerTheme.languageCodeInLanguagePickerTitleBold
+                .copyWith(color: _getTextColor(context)),
+          ),
+          SizedBox(
+            width: context.languagePickerTheme.spacingM,
+          ),
+          Expanded(
+            child: Text(languageModel.language.translate(context),
+                textAlign: TextAlign.left,
+                style: context.languagePickerTheme.descriptionThin.copyWith(
+                  color: _getTextColor(context),
+                )),
+          ),
+          if (state == ButtonStateModel.loading)
+            SizedLoadingIndicator.textButtonValue(
+                color: context.languagePickerTheme.textColorWhite),
+          if (state != ButtonStateModel.loading && isSelected)
+            DynamicIcon(
+              iconRight,
+              color: _getTextColor(context),
+            ),
+        ],
+      );
+
+  LinearGradient _getGradient(BuildContext context) =>
+      state != ButtonStateModel.disabled
+          ? LinearGradient(colors: [
+              colorStyle?.activeGradientColorStart ??
+                  context.languagePickerTheme.languageGradientRedStart,
+              colorStyle?.activeGradientColorEnd ??
+                  context.languagePickerTheme.languageGradientRedEnd,
+            ])
+          : LinearGradient(colors: [
+              context.languagePickerTheme.filledButtonBackgroundColorDisabled,
+              context.languagePickerTheme.filledButtonBackgroundColorDisabled,
+            ]);
+
+  Color _getTextColor(BuildContext context) =>
+      state == ButtonStateModel.disabled
+          ? context.languagePickerTheme.appFilledButtonTextColorDisabled
+          : colorStyle?.activeButtonTextColor ??
+              (isSelected
+                  ? context.languagePickerTheme.buttonTextColor
+                  : context.languagePickerTheme.bodyTextColor2);
+
+  Color getPressedInnerBackgroundColor(context) => (colorStyle?.pressedColor ??
+          context.designSystem.colors.procreditGradientRedEnd)
+      .withOpacity(0.5);
+
+  Color getInnerButtonColor(BuildContext context) =>
+      (state != ButtonStateModel.disabled)
+          ? (state == ButtonStateModel.pressed)
+              ? colorStyle?.pressedColor ??
+                  context.languagePickerTheme.buttonBlueGradientEnd
+              : context.languagePickerTheme.appOutlineButtonBackgroundColor
+          : colorStyle?.activeGradientColorEnd ??
+              context.languagePickerTheme.appOutlineButtonBackgroundColor;
+
+  Widget _buildInactiveChild(BuildContext context, Widget text) =>
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: colorStyle?.pressedColor ??
+              context.languagePickerTheme.buttonBlueGradientEnd,
+          backgroundColor:
+              context.languagePickerTheme.elevatedButtonBackgroundColor,
+          padding: const EdgeInsets.all(0),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius),
+              side: BorderSide(
+                color:
+                    context.languagePickerTheme.elevatedButtonBackgroundColor,
+                width: 2.0,
+              )),
+          elevation: 0,
+        ),
+        onPressed: onPressed,
+        child: text,
+      );
+
+  Widget _buildActiveChild(BuildContext context, Widget text) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: colorStyle?.shadowColor == Colors.transparent
+            ? null
+            : [
+                BoxShadow(
+                  color: colorStyle?.shadowColor ??
+                      context.languagePickerTheme.boxShadowColor
+                          .withOpacity(0.2),
+                  blurRadius: context.languagePickerTheme.spacingS,
+                  spreadRadius: 0,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+      ),
+      child: TextButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+          ),
+        ),
+        onPressed: null,
+        child: text,
+      ),
+    );
+  }
+}

@@ -2,9 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../theme/prime_components_theme.dart';
-import '../app_loading_indicator.dart';
-import 'app_button_color_style.dart';
+import '../../theme/widget_toolkit_theme.dart';
+import '../sized_loading_indicator.dart';
+import 'button_color_style.dart';
 import 'button_state.dart';
 
 /// Button widget which can be used as a regular button or one with a gradient.
@@ -12,8 +12,8 @@ import 'button_state.dart';
 /// Besides the [text] and the [onPressed] method, you can also include one icon
 /// on the left and right of the button by providing the [iconLeft] and the
 /// [iconRight] parameters respectively.
-class AppFillButton extends StatelessWidget {
-  const AppFillButton({
+class GradientFillButton extends StatelessWidget {
+  const GradientFillButton({
     required this.text,
     required this.onPressed,
     this.radius = 32,
@@ -44,7 +44,7 @@ class AppFillButton extends StatelessWidget {
   final ButtonStateModel state;
 
   /// The [colorStyle] of the button
-  final PrimeButtonColorStyle? colorStyle;
+  final ButtonColorStyle? colorStyle;
 
   /// The [elevation] of the button
   final double elevation;
@@ -67,8 +67,7 @@ class AppFillButton extends StatelessWidget {
         ? LinearGradient(
             colors: [
               activeGradientColorStart(context),
-              colorStyle?.activeGradientColorEnd ??
-                  context.primeComponentsTheme.primaryGradientEnd,
+              activeGradientColorEnd(context),
             ],
             transform: const GradientRotation((16.94 * math.pi) / 180),
           )
@@ -102,7 +101,7 @@ class AppFillButton extends StatelessWidget {
           mainAxisSize: padding != null ? MainAxisSize.min : MainAxisSize.max,
           children: [
             if (state == ButtonStateModel.loading)
-              AppLoadingIndicator.textButtonValue(color: textColor),
+              SizedLoadingIndicator.textButtonValue(color: textColor),
             if (state == ButtonStateModel.loading) const SizedBox(width: 12),
             if (iconLeft != null &&
                 iconLeft is IconData &&
@@ -166,6 +165,10 @@ class AppFillButton extends StatelessWidget {
   Color activeGradientColorStart(BuildContext context) =>
       colorStyle?.activeGradientColorStart ??
       context.primeComponentsTheme.primaryGradientStart;
+
+  Color activeGradientColorEnd(BuildContext context) =>
+      colorStyle?.activeGradientColorEnd ??
+      context.primeComponentsTheme.primaryGradientEnd;
 
   bool activeState() =>
       state != ButtonStateModel.disabled && state != ButtonStateModel.loading;

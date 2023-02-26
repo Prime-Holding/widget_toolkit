@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../theme/prime_components_theme.dart';
+import '../theme/widget_toolkit_theme.dart';
 
-class AppLoadingIndicator extends StatelessWidget {
-  const AppLoadingIndicator({
+class SizedLoadingIndicator extends StatelessWidget {
+  const SizedLoadingIndicator({
     this.alignment = Alignment.center,
     this.padding = const EdgeInsets.symmetric(vertical: 16),
     this.size = const Size(68, 68),
@@ -12,22 +12,22 @@ class AppLoadingIndicator extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  factory AppLoadingIndicator.innerCircleValue(BuildContext context) =>
-      const AppLoadingIndicator(
+  factory SizedLoadingIndicator.innerCircleValue(BuildContext context) =>
+      const SizedLoadingIndicator(
         padding: EdgeInsets.zero,
         size: Size(20, 20),
         strokeWidth: 1.5,
       );
 
-  factory AppLoadingIndicator.textButtonValue({Color? color}) =>
-      const AppLoadingIndicator(
+  factory SizedLoadingIndicator.textButtonValue({Color? color}) =>
+      const SizedLoadingIndicator(
         padding: EdgeInsets.zero,
         size: Size(20, 20),
         strokeWidth: 2,
       );
 
-  factory AppLoadingIndicator.taskValue({required Color color}) =>
-      const AppLoadingIndicator(
+  factory SizedLoadingIndicator.taskValue({required Color color}) =>
+      const SizedLoadingIndicator(
         padding: EdgeInsets.zero,
         strokeWidth: 2,
         size: Size(32, 32),

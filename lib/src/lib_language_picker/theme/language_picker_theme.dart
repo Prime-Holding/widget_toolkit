@@ -33,40 +33,40 @@ class _$LanguagePickerTheme {
 
   /// region TextStyle
   static List<TextStyle> descriptionThin = [
-    PrimeDesignSystem.light().typography.descriptionThin,
-    PrimeDesignSystem.dark().typography.descriptionThin,
+    DesignSystem.light().typography.descriptionThin,
+    DesignSystem.dark().typography.descriptionThin,
   ];
 
   static List<TextStyle> titleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    DesignSystem.light().typography.titleBold,
+    DesignSystem.dark().typography.titleBold,
   ];
 
   static List<TextStyle> languageCodeInLanguagePickerTitleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    DesignSystem.light().typography.titleBold,
+    DesignSystem.dark().typography.titleBold,
   ];
 
   /// endregion
   /// region spacings
   static List<double> spacingS = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    DesignSystem.light().spacings.s,
+    DesignSystem.dark().spacings.s,
   ];
 
   static List<double> changeLanguageSizedBox = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    DesignSystem.light().spacings.s,
+    DesignSystem.dark().spacings.s,
   ];
 
   static List<double> spacingM = [
-    PrimeDesignSystem.light().spacings.m,
-    PrimeDesignSystem.dark().spacings.m,
+    DesignSystem.light().spacings.m,
+    DesignSystem.dark().spacings.m,
   ];
 
   static List<double> spacingXXXXL1 = [
-    PrimeDesignSystem.light().spacings.xxxxl1,
-    PrimeDesignSystem.dark().spacings.xxxxl1,
+    DesignSystem.light().spacings.xxxxl1,
+    DesignSystem.dark().spacings.xxxxl1,
   ];
 
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [
@@ -79,97 +79,97 @@ class _$LanguagePickerTheme {
   /// region Color
 
   static List<Color> activeButtonLanguageTextColor = [
-    PrimeDesignSystem.light().colors.activeButtonLanguageTextColor,
-    PrimeDesignSystem.dark().colors.activeButtonLanguageTextColor,
+    DesignSystem.light().colors.activeButtonLanguageTextColor,
+    DesignSystem.dark().colors.activeButtonLanguageTextColor,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.gray,
-    PrimeDesignSystem.dark().colors.gray,
+    DesignSystem.light().colors.gray,
+    DesignSystem.dark().colors.gray,
   ];
 
   static List<Color> activeGradientRedEnd = [
-    PrimeDesignSystem.light().colors.gradientRedEnd,
-    PrimeDesignSystem.dark().colors.gradientRedEnd,
+    DesignSystem.light().colors.gradientRedEnd,
+    DesignSystem.dark().colors.gradientRedEnd,
   ];
 
   static List<Color> languageGradientRedStart = [
-    PrimeDesignSystem.light().colors.gradientRedStart,
-    PrimeDesignSystem.dark().colors.redDark,
+    DesignSystem.light().colors.gradientRedStart,
+    DesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> languageGradientRedEnd = [
-    PrimeDesignSystem.light().colors.gradientRedEnd,
-    PrimeDesignSystem.dark().colors.gradientRedStart,
+    DesignSystem.light().colors.gradientRedEnd,
+    DesignSystem.dark().colors.gradientRedStart,
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
-    PrimeDesignSystem.light().colors.filledButtonBackgroundColorDisabled,
-    PrimeDesignSystem.dark().colors.filledButtonBackgroundColorDisabled,
+    DesignSystem.light().colors.filledButtonBackgroundColorDisabled,
+    DesignSystem.dark().colors.filledButtonBackgroundColorDisabled,
   ];
 
   static List<Color> buttonTextColor = [
-    PrimeDesignSystem.light().colors.textColorWhite,
-    PrimeDesignSystem.dark().colors.textColorWhite,
+    DesignSystem.light().colors.textColorWhite,
+    DesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> appFilledButtonTextColorDisabled = [
-    PrimeDesignSystem.light().colors.gray,
-    PrimeDesignSystem.dark().colors.gray,
+    DesignSystem.light().colors.gray,
+    DesignSystem.dark().colors.gray,
   ];
 
   static List<Color> textColorWhite = [
-    PrimeDesignSystem.light().colors.textColorWhite,
-    PrimeDesignSystem.dark().colors.textColorWhite,
+    DesignSystem.light().colors.textColorWhite,
+    DesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> boxShadowColor = [
-    PrimeDesignSystem.light().colors.red,
-    PrimeDesignSystem.dark().colors.red,
+    DesignSystem.light().colors.red,
+    DesignSystem.dark().colors.red,
   ];
 
   static List<Color> bodyTextColor2 = [
-    PrimeDesignSystem.light().colors.black,
-    PrimeDesignSystem.dark().colors.activeButtonTextColor,
+    DesignSystem.light().colors.black,
+    DesignSystem.dark().colors.activeButtonTextColor,
   ];
 
   static List<Color> textButtonLoadingIndicatorColor = [
-    PrimeDesignSystem.light().colors.redDark,
-    PrimeDesignSystem.dark().colors.redDark,
+    DesignSystem.light().colors.redDark,
+    DesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> buttonBlueGradientEnd = [
-    PrimeDesignSystem.light().colors.appButtonBlueGradientEnd,
-    PrimeDesignSystem.dark().colors.appButtonBlueGradientEnd,
+    DesignSystem.light().colors.appButtonBlueGradientEnd,
+    DesignSystem.dark().colors.appButtonBlueGradientEnd,
   ];
 
   static List<Color> elevatedButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.lightGray,
-    PrimeDesignSystem.dark().colors.gray,
+    DesignSystem.light().colors.lightGray,
+    DesignSystem.dark().colors.gray,
   ];
 
   static List<Color> appOutlineButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.white,
-    PrimeDesignSystem.dark().colors.white,
+    DesignSystem.light().colors.white,
+    DesignSystem.dark().colors.white,
   ];
   static List<Color> errorTextBackgroundColor = [
-    PrimeDesignSystem.light().colors.green,
-    PrimeDesignSystem.dark().colors.green,
+    DesignSystem.light().colors.green,
+    DesignSystem.dark().colors.green,
   ];
 
   static List<Color> errorTextColor = [
-    PrimeDesignSystem.light().colors.black,
-    PrimeDesignSystem.dark().colors.black,
+    DesignSystem.light().colors.black,
+    DesignSystem.dark().colors.black,
   ];
 
   static List<SvgFile> checkIcon = [
-    PrimeDesignSystem.dark().icons.checkIcon,
-    PrimeDesignSystem.light().icons.checkIcon,
+    DesignSystem.dark().icons.checkIcon,
+    DesignSystem.light().icons.checkIcon,
   ];
 
   static List<SvgFile> dangerIcon = [
-    PrimeDesignSystem.dark().icons.dangerIcon,
-    PrimeDesignSystem.light().icons.dangerIcon,
+    DesignSystem.dark().icons.dangerIcon,
+    DesignSystem.light().icons.dangerIcon,
   ];
 
   /// endregion

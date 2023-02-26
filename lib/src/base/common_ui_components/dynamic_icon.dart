@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../asset_classes.dart';
 
-class AppIcon extends StatelessWidget {
-  const AppIcon(
+class DynamicIcon extends StatelessWidget {
+  const DynamicIcon(
     this.icon, {
     this.color,
     this.semanticLabel,

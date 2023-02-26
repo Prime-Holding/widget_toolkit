@@ -3,27 +3,27 @@ import 'design_system_icons.dart';
 import 'design_system_spacings.dart';
 import 'design_system_typography.dart';
 
-class PrimeDesignSystem {
-  const PrimeDesignSystem({
+class DesignSystem {
+  const DesignSystem({
     required this.colors,
     required this.icons,
     required this.typography,
     required this.spacings,
   });
 
-  PrimeDesignSystem.light()
-      : colors =  DesignSystemColors.light(),
-        icons =  DesignSystemIcons(),
+  DesignSystem.light()
+      : colors = DesignSystemColors.light(),
+        icons = DesignSystemIcons(),
         typography = DesignSystemTypography.withColor(
-           DesignSystemColors.light(),
+          DesignSystemColors.light(),
         ),
         spacings = const DesignSystemSpacings();
 
-  PrimeDesignSystem.dark()
-      : colors =  DesignSystemColors.dark(),
-        icons =  DesignSystemIcons(),
+  DesignSystem.dark()
+      : colors = DesignSystemColors.dark(),
+        icons = DesignSystemIcons(),
         typography = DesignSystemTypography.withColor(
-           DesignSystemColors.dark(),
+          DesignSystemColors.dark(),
         ),
         spacings = const DesignSystemSpacings();
 

@@ -12,9 +12,8 @@ import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
 
-class PrimeEditAddressWidget<T extends PickerItemModel>
-    extends StatelessWidget {
-  const PrimeEditAddressWidget({
+class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
+  const EditAddressForm({
     required this.onAddressChange,
     required this.cityErrorMapper,
     required this.addressErrorMapper,
@@ -22,11 +21,11 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
     required this.searchCountryService,
     required this.editAddressLocalizedStrings,
     this.countryCustomIcon,
-    this.editCountryFieldType = PrimeEditFieldType.dropdown,
+    this.editCountryFieldType = EditFieldType.dropdown,
     this.cityCustomIcon,
-    this.editCityFieldType = PrimeEditFieldType.editfield,
+    this.editCityFieldType = EditFieldType.editfield,
     this.addressCustomIcon,
-    this.editAddressFieldType = PrimeEditFieldType.editfield,
+    this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
     Key? key,
   }) : super(key: key);
@@ -39,11 +38,11 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
       addressErrorMapper;
   final TextFieldValidator<String> validator;
   final dynamic countryCustomIcon;
-  final PrimeEditFieldType editCountryFieldType;
+  final EditFieldType editCountryFieldType;
   final dynamic cityCustomIcon;
-  final PrimeEditFieldType editCityFieldType;
+  final EditFieldType editCityFieldType;
   final dynamic addressCustomIcon;
-  final PrimeEditFieldType editAddressFieldType;
+  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
 
@@ -61,7 +60,7 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
             children: [
               RxBlocBuilder<EditAddressBlocType, bool>(
                 state: (bloc) => bloc.states.isCountryEdited,
-                builder: (context, snapshot, bloc) => PrimeEditFieldWidget(
+                builder: (context, snapshot, bloc) => EditFieldWidget(
                   label: editAddressLocalizedStrings?.countryLabelText ??
                       context.getEditAddressLocalizedStrings.countryLabelText,
                   value: address.data?.country.countryName ?? '',
@@ -101,10 +100,9 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
               SizedBox(
                 height: context.editAddressTheme.spacingM,
               ),
-              PrimeTextFieldDialog<String>(
-                appFillButtonText:
-                    editAddressLocalizedStrings?.cityButtonText ??
-                        context.getEditAddressLocalizedStrings.cityButtonText,
+              TextFieldDialog<String>(
+                fillButtonText: editAddressLocalizedStrings?.cityButtonText ??
+                    context.getEditAddressLocalizedStrings.cityButtonText,
                 errorMapper: cityErrorMapper,
                 label: editAddressLocalizedStrings?.cityLabelText ??
                     context.getEditAddressLocalizedStrings.cityLabelText,
@@ -113,8 +111,8 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
                 value: address.data?.city,
                 onChanged: (city) => bloc.events.setCity(city),
                 validator: validator,
-                appEditFieldCustomIcon: cityCustomIcon,
-                appEditFieldType: editCityFieldType,
+                editFieldCustomIcon: cityCustomIcon,
+                editFieldType: editCityFieldType,
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
@@ -123,8 +121,8 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
               SizedBox(
                 height: context.editAddressTheme.spacingM,
               ),
-              PrimeTextFieldDialog<String>(
-                appFillButtonText: editAddressLocalizedStrings
+              TextFieldDialog<String>(
+                fillButtonText: editAddressLocalizedStrings
                         ?.addressButtonText ??
                     context.getEditAddressLocalizedStrings.addressButtonText,
                 errorMapper: addressErrorMapper,
@@ -135,8 +133,8 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
                 value: address.data?.streetAddress,
                 onChanged: (street) => bloc.events.setStreet(street),
                 validator: validator,
-                appEditFieldCustomIcon: addressCustomIcon,
-                appEditFieldType: editAddressFieldType,
+                editFieldCustomIcon: addressCustomIcon,
+                editFieldType: editAddressFieldType,
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
@@ -162,19 +160,18 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
     required final EditAddressService editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final dynamic countryCustomIcon,
-    final PrimeEditFieldType editCountryFieldType = PrimeEditFieldType.dropdown,
+    final EditFieldType editCountryFieldType = EditFieldType.dropdown,
     final dynamic cityCustomIcon,
-    final PrimeEditFieldType editCityFieldType = PrimeEditFieldType.editfield,
+    final EditFieldType editCityFieldType = EditFieldType.editfield,
     final dynamic addressCustomIcon,
-    final PrimeEditFieldType editAddressFieldType =
-        PrimeEditFieldType.editfield,
+    final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
                 context, addressModel, editAddressService)
             .providers,
-        child: PrimeEditAddressWidget<T>(
+        child: EditAddressForm<T>(
           onAddressChange: onAddressChange,
           cityErrorMapper: cityErrorMapper,
           addressErrorMapper: addressErrorMapper,
@@ -191,18 +188,18 @@ class PrimeEditAddressWidget<T extends PickerItemModel>
         ),
       );
 
-  PrimeEditFieldState _getProfileFieldState(
+  EditFieldState _getProfileFieldState(
     bool? isEdited,
     bool? isLoading,
   ) {
     if (isLoading != null && isLoading) {
-      return PrimeEditFieldState.loading;
+      return EditFieldState.loading;
     }
 
     if (isEdited != null && isEdited) {
-      return PrimeEditFieldState.edited;
+      return EditFieldState.edited;
     }
 
-    return PrimeEditFieldState.notEditedYet;
+    return EditFieldState.notEditedYet;
   }
 }

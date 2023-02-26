@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
-import '../../base/utils/app_fade_transition.dart';
+import '../../base/utils/easy_fade_transition.dart';
 import '../blocs/item_picker_bloc.dart';
 import '../di/item_picker_dependencies.dart';
 
@@ -146,7 +146,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
             child: widget.errorBuilder?.call(error) ??
 
                 /// TODO (david.djordjevic): Find a way to pass an error message directly
-                PrimeErrorCardWidget(
+                ErrorCardWidget(
                   text: GenericErrorModel().toString(),
                   retryButtonVisible: true,
                   onRetryPressed: () => bloc.events.loadItems(),
@@ -161,7 +161,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
                   child: widget.emptyBuilder?.call() ??
 
                       /// TODO (david.djordjevic): Find a way to pass an error message directly
-                      PrimeErrorCardWidget(
+                      ErrorCardWidget(
                         text: EmptyListErrorModel().toString(),
                       ),
                 )
@@ -190,7 +190,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 900),
       transitionBuilder: (child, animation) =>
-          appFadeTransition(child: child, animation: animation),
+          easyFadeTransition(child: child, animation: animation),
       child: SizedBox(
         key: Key('appItemSizedBox-$height'),
         height: height,
@@ -201,7 +201,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
           itemBuilder: (context, index) {
             final model = list.isEmpty ? null : list[index];
 
-            return AppPickerListItem(
+            return SearchPickerListItem(
               text: model?.itemDisplayName,
               onTap: isLoading ? null : () => _onTap(model),
               isSelected: selectedItems.contains(model),
@@ -235,7 +235,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
                 top: 12,
                 bottom: 2,
               ),
-              child: AppFillButton(
+              child: GradientFillButton(
                 elevation: 0,
                 state: _saveState(isLoading: isLoading),
                 text: widget.saveButtonText ?? 'Save',

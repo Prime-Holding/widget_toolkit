@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../theme/prime_components_theme.dart';
-import 'buttons/app_button_color_style.dart';
-import 'buttons/app_fill_button.dart';
+import '../theme/widget_toolkit_theme.dart';
+import 'buttons/button_color_style.dart';
 import 'buttons/button_state.dart';
+import 'buttons/gradient_fill_button.dart';
 
 /// PrimeErrorCardWidget is an error widget presenting an error as a widget.
 /// It provides an option to display a retry button in case the user wants to
@@ -31,8 +31,8 @@ import 'buttons/button_state.dart';
 /// Once the button is pressed, the [onRetryPressed] callback is executed. Also,
 /// you can set the state of the button with the [retryButtonState] in case you
 /// want to disable it or display an inactive state.
-class PrimeErrorCardWidget extends StatelessWidget {
-  const PrimeErrorCardWidget({
+class ErrorCardWidget extends StatelessWidget {
+  const ErrorCardWidget({
     this.text,
     this.exception,
     this.exceptionTextBuilder,
@@ -69,7 +69,7 @@ class PrimeErrorCardWidget extends StatelessWidget {
   final Widget? header;
 
   /// The color style of the retry button
-  final PrimeButtonColorStyle? retryButtonColorStyle;
+  final ButtonColorStyle? retryButtonColorStyle;
 
   /// Flag indicating whether or not to display the retry button
   final bool retryButtonVisible;
@@ -140,7 +140,7 @@ class PrimeErrorCardWidget extends StatelessWidget {
           if (retryButtonVisible)
             Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: AppFillButton(
+              child: GradientFillButton(
                 text: retryButtonText,
                 onPressed: onRetryPressed,
                 colorStyle: retryButtonColorStyle,

@@ -5,11 +5,11 @@ import 'package:flutter_rx_bloc/rx_form.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/input_text_field_state.dart';
 
-const _kAppInputTextFieldMaxLines = 1;
+const _kInputTextFieldMaxLines = 1;
 const double _kBorderWidth = 2;
 
-class PrimeInputTextField extends StatefulWidget {
-  const PrimeInputTextField({
+class InputTextField extends StatefulWidget {
+  const InputTextField({
     required this.label,
     required this.state,
     this.unFocusedState,
@@ -56,10 +56,10 @@ class PrimeInputTextField extends StatefulWidget {
   final VoidCallback? obBlurCallback;
 
   @override
-  PrimeInputTextFieldState createState() => PrimeInputTextFieldState();
+  InputTextFieldState createState() => InputTextFieldState();
 }
 
-class PrimeInputTextFieldState extends State<PrimeInputTextField> {
+class InputTextFieldState extends State<InputTextField> {
   late bool _writeMode;
   final FocusNode _focusNode = FocusNode();
   late InputTextFieldStateModel currentState;
@@ -98,7 +98,7 @@ class PrimeInputTextFieldState extends State<PrimeInputTextField> {
   }
 
   @override
-  void didUpdateWidget(covariant PrimeInputTextField oldWidget) {
+  void didUpdateWidget(covariant InputTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (currentState != widget.state || widget.unFocusedState != null) {
@@ -211,7 +211,7 @@ class PrimeInputTextFieldState extends State<PrimeInputTextField> {
                 readOnly: currentState == InputTextFieldStateModel.disabled,
                 maxLines: _isMultiLineFiled()
                     ? widget.maxLines
-                    : _kAppInputTextFieldMaxLines,
+                    : _kInputTextFieldMaxLines,
                 initialValue:
                     widget.controller == null ? widget.value ?? '' : null,
                 style: context.textFieldDialogTheme.descriptionBold.copyWith(

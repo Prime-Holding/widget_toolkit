@@ -1,15 +1,14 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme/prime_components_theme.dart';
+import '../../theme/widget_toolkit_theme.dart';
 
-part 'app_button_color_style.g.dart';
+part 'button_color_style.g.dart';
 
-/// Config class used for setting up colors of the different states of the
-/// Prime buttons
+/// Config class used for setting up colors of the different states of the buttons
 @CopyWith()
-class PrimeButtonColorStyle {
-  const PrimeButtonColorStyle({
+class ButtonColorStyle {
+  const ButtonColorStyle({
     required this.activeButtonTextColor,
     required this.disabledButtonTextColor,
     required this.activeGradientColorStart,
@@ -19,7 +18,7 @@ class PrimeButtonColorStyle {
     required this.borderColor,
   });
 
-  factory PrimeButtonColorStyle.fromContext(
+  factory ButtonColorStyle.fromContext(
     BuildContext context, {
     Color? activeButtonTextColor,
     Color? disabledButtonTextColor,
@@ -29,7 +28,7 @@ class PrimeButtonColorStyle {
     Color? pressedColor,
     Color? borderColor,
   }) =>
-      PrimeButtonColorStyle(
+      ButtonColorStyle(
         activeButtonTextColor: activeButtonTextColor ??
             context.primeComponentsTheme.activeButtonTextColor,
         disabledButtonTextColor: disabledButtonTextColor ??

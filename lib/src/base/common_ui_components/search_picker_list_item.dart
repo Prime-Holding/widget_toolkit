@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../lib_shimmer/views/app_shimmer_text.dart';
-import '../theme/prime_components_theme.dart';
+import '../../lib_shimmer/views/shimmer_text.dart';
+import '../theme/widget_toolkit_theme.dart';
 
-class AppPickerListItem extends StatelessWidget {
-  const AppPickerListItem({
+class SearchPickerListItem extends StatelessWidget {
+  const SearchPickerListItem({
     this.text,
     this.child,
     this.onTap,
@@ -42,7 +42,7 @@ class AppPickerListItem extends StatelessWidget {
                   ? null
                   : context.primeComponentsTheme.pickerListItemInnerEdgeInsets,
               child: child ??
-                  AppShimmerText(
+                  ShimmerText(
                     isLoading ? null : text,
                     style: context.primeComponentsTheme.pickerListItemTextStyle,
                   ),

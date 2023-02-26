@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../theme/prime_components_theme.dart';
-import '../app_loading_indicator.dart';
-import 'app_button_color_style.dart';
+import '../../theme/widget_toolkit_theme.dart';
+import '../dynamic_icon.dart';
+import '../sized_loading_indicator.dart';
+import 'button_color_style.dart';
 import 'button_state.dart';
 
-class PrimeOutlineButton extends StatelessWidget {
+class OutlineFillButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final dynamic iconLeft;
   final dynamic iconRight;
   final ButtonStateModel state;
-  final PrimeButtonColorStyle? colorStyle;
+  final ButtonColorStyle? colorStyle;
   final double radius;
   final bool areIconsClose;
   final double elevation;
 
-  PrimeOutlineButton({
+  OutlineFillButton({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -47,9 +48,7 @@ class PrimeOutlineButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (iconLeft != null && iconLeft is IconData)
-              Icon(iconLeft, color: textColor),
-            if (iconLeft != null && iconLeft is SvgPicture) iconLeft,
+            if (iconLeft != null) DynamicIcon(iconLeft, color: textColor),
             if (areIconsClose)
               SizedBox(
                 width: context.primeComponentsTheme.spacingS,
@@ -66,9 +65,7 @@ class PrimeOutlineButton extends StatelessWidget {
                       style: context.primeComponentsTheme
                           .outlineButtonDescriptionTextStyle
                           .copyWith(color: textColor, letterSpacing: 0))),
-            if (iconRight != null && iconRight is IconData)
-              Icon(iconRight, color: textColor),
-            if (iconRight != null && iconRight is SvgPicture) iconRight,
+            if (iconRight != null) DynamicIcon(iconRight, color: textColor),
           ],
         ));
 
@@ -80,7 +77,7 @@ class PrimeOutlineButton extends StatelessWidget {
 
   Widget _buildChild(BuildContext context, Widget text) {
     if (state == ButtonStateModel.loading) {
-      return AppLoadingIndicator.textButtonValue();
+      return SizedLoadingIndicator.textButtonValue();
     }
 
     return ElevatedButton(

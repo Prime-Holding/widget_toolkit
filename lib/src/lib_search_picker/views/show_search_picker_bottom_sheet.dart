@@ -38,9 +38,9 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   double loadingItemHeight = 60,
   SearchPickerConfiguration configuration = const SearchPickerConfiguration(),
 }) {
-  showAppModalBottomSheet(
+  showModal(
     context: context,
-    configuration: AppModalBottomSheetConfiguration(
+    configuration: ModalConfiguration(
       showCloseButton: false,
       showHeaderPill: false,
       haveOnlyOneSheet: configuration.haveOnlyOneSheet,

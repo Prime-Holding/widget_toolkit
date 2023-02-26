@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
-import '../theme/prime_components_theme.dart';
+import '../theme/widget_toolkit_theme.dart';
 
-class AppSearchTextField extends StatefulWidget {
-  const AppSearchTextField({
+class SearchPickerTextField extends StatefulWidget {
+  const SearchPickerTextField({
     this.hintText,
     this.onChanged,
     this.isFocused = false,
@@ -22,10 +22,10 @@ class AppSearchTextField extends StatefulWidget {
   final VoidCallback? onTap;
 
   @override
-  State<AppSearchTextField> createState() => _AppSearchTextFieldState();
+  State<SearchPickerTextField> createState() => _SearchPickerTextFieldState();
 }
 
-class _AppSearchTextFieldState extends State<AppSearchTextField> {
+class _SearchPickerTextFieldState extends State<SearchPickerTextField> {
   late Color iconColor;
   late Color backgroundColor;
 

@@ -1,34 +1,33 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_button_color_style.dart';
+part of 'button_color_style.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$PrimeButtonColorStyleCWProxy {
-  PrimeButtonColorStyle activeButtonTextColor(Color activeButtonTextColor);
+abstract class _$ButtonColorStyleCWProxy {
+  ButtonColorStyle activeButtonTextColor(Color activeButtonTextColor);
 
-  PrimeButtonColorStyle disabledButtonTextColor(Color disabledButtonTextColor);
+  ButtonColorStyle disabledButtonTextColor(Color disabledButtonTextColor);
 
-  PrimeButtonColorStyle activeGradientColorStart(
-      Color activeGradientColorStart);
+  ButtonColorStyle activeGradientColorStart(Color activeGradientColorStart);
 
-  PrimeButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd);
+  ButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd);
 
-  PrimeButtonColorStyle shadowColor(Color shadowColor);
+  ButtonColorStyle shadowColor(Color shadowColor);
 
-  PrimeButtonColorStyle pressedColor(Color pressedColor);
+  ButtonColorStyle pressedColor(Color pressedColor);
 
-  PrimeButtonColorStyle borderColor(Color borderColor);
+  ButtonColorStyle borderColor(Color borderColor);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PrimeButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// PrimeButtonColorStyle(...).copyWith(id: 12, name: "My name")
+  /// ButtonColorStyle(...).copyWith(id: 12, name: "My name")
   /// ````
-  PrimeButtonColorStyle call({
+  ButtonColorStyle call({
     Color? activeButtonTextColor,
     Color? disabledButtonTextColor,
     Color? activeGradientColorStart,
@@ -39,52 +38,49 @@ abstract class _$PrimeButtonColorStyleCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPrimeButtonColorStyle.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPrimeButtonColorStyle.copyWith.fieldName(...)`
-class _$PrimeButtonColorStyleCWProxyImpl
-    implements _$PrimeButtonColorStyleCWProxy {
-  const _$PrimeButtonColorStyleCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfButtonColorStyle.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfButtonColorStyle.copyWith.fieldName(...)`
+class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
+  const _$ButtonColorStyleCWProxyImpl(this._value);
 
-  final PrimeButtonColorStyle _value;
+  final ButtonColorStyle _value;
 
   @override
-  PrimeButtonColorStyle activeButtonTextColor(Color activeButtonTextColor) =>
+  ButtonColorStyle activeButtonTextColor(Color activeButtonTextColor) =>
       this(activeButtonTextColor: activeButtonTextColor);
 
   @override
-  PrimeButtonColorStyle disabledButtonTextColor(
-          Color disabledButtonTextColor) =>
+  ButtonColorStyle disabledButtonTextColor(Color disabledButtonTextColor) =>
       this(disabledButtonTextColor: disabledButtonTextColor);
 
   @override
-  PrimeButtonColorStyle activeGradientColorStart(
-          Color activeGradientColorStart) =>
+  ButtonColorStyle activeGradientColorStart(Color activeGradientColorStart) =>
       this(activeGradientColorStart: activeGradientColorStart);
 
   @override
-  PrimeButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd) =>
+  ButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd) =>
       this(activeGradientColorEnd: activeGradientColorEnd);
 
   @override
-  PrimeButtonColorStyle shadowColor(Color shadowColor) =>
+  ButtonColorStyle shadowColor(Color shadowColor) =>
       this(shadowColor: shadowColor);
 
   @override
-  PrimeButtonColorStyle pressedColor(Color pressedColor) =>
+  ButtonColorStyle pressedColor(Color pressedColor) =>
       this(pressedColor: pressedColor);
 
   @override
-  PrimeButtonColorStyle borderColor(Color borderColor) =>
+  ButtonColorStyle borderColor(Color borderColor) =>
       this(borderColor: borderColor);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PrimeButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
-  /// PrimeButtonColorStyle(...).copyWith(id: 12, name: "My name")
+  /// ButtonColorStyle(...).copyWith(id: 12, name: "My name")
   /// ````
-  PrimeButtonColorStyle call({
+  ButtonColorStyle call({
     Object? activeButtonTextColor = const $CopyWithPlaceholder(),
     Object? disabledButtonTextColor = const $CopyWithPlaceholder(),
     Object? activeGradientColorStart = const $CopyWithPlaceholder(),
@@ -93,7 +89,7 @@ class _$PrimeButtonColorStyleCWProxyImpl
     Object? pressedColor = const $CopyWithPlaceholder(),
     Object? borderColor = const $CopyWithPlaceholder(),
   }) {
-    return PrimeButtonColorStyle(
+    return ButtonColorStyle(
       activeButtonTextColor:
           activeButtonTextColor == const $CopyWithPlaceholder() ||
                   activeButtonTextColor == null
@@ -144,9 +140,8 @@ class _$PrimeButtonColorStyleCWProxyImpl
   }
 }
 
-extension $PrimeButtonColorStyleCopyWith on PrimeButtonColorStyle {
-  /// Returns a callable class that can be used as follows: `instanceOfPrimeButtonColorStyle.copyWith(...)` or like so:`instanceOfPrimeButtonColorStyle.copyWith.fieldName(...)`.
+extension $ButtonColorStyleCopyWith on ButtonColorStyle {
+  /// Returns a callable class that can be used as follows: `instanceOfButtonColorStyle.copyWith(...)` or like so:`instanceOfButtonColorStyle.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$PrimeButtonColorStyleCWProxy get copyWith =>
-      _$PrimeButtonColorStyleCWProxyImpl(this);
+  _$ButtonColorStyleCWProxy get copyWith => _$ButtonColorStyleCWProxyImpl(this);
 }

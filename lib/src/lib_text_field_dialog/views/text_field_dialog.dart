@@ -8,15 +8,15 @@ import '../../../asset_classes.dart';
 import '../../../common_ui_components.dart';
 import '../../base/extensions/data_type_extensions.dart';
 import '../di/text_field_dialog_dependencies.dart';
-import '../services/prime_text_field_validator_use_case.dart';
+import '../services/text_field_validator.dart';
 import '../theme/text_field_dialog_theme.dart';
-import '../ui_components/prime_edit_field_widget.dart';
-import '../ui_components/prime_labeled_box_widget.dart';
+import '../ui_components/edit_field_widget.dart';
+import '../ui_components/labeled_box_widget.dart';
 import 'text_field_dialog_page.dart';
 
 typedef FilledWidgetBuilder<T> = Widget Function(
   T value,
-  PrimeEditFieldState fieldState,
+  EditFieldState fieldState,
   Function showDialogCallback,
 );
 
@@ -35,27 +35,27 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 /// for sending the value as an event to a bloc, for example as:
 /// onChanged: (street) => bloc.events.setStreet(street);
 ///
-/// [appFillButtonText] is the text value in the button in the dialog
+/// [fillButtonText] is the text value in the button in the dialog
 ///
 /// [errorMapper] function, which implementation should map the form error to
 /// RxFieldException error and translate the error to the correct language.
 /// You can check also the translateErrors() method in the [TextFieldDialogPage] widget
 ///
-/// Set [appEditFieldType] to AppEditFieldType.custom if you want to set custom edit icon
-/// and provide the icon to [appEditFieldCustomIcon]
+/// Set [editFieldType] to AppEditFieldType.custom if you want to set custom edit icon
+/// and provide the icon to [editFieldCustomIcon]
 ///
 /// [value] is the value bellow the label text value, which has been inputted
 /// as text field value
 ///
 /// [header] is a value displayed above the text field in the dialog
 ///
-/// [maxLines] is the value of maximum lines the [AppInputTextField] widget
+/// [maxLines] is the value of maximum lines the [InputTextField] widget
 /// can have, if the number is increased, the input field becomes bigger.
 ///
-/// [appEditFieldType] is used in the [PrimeEditFieldWidget] and from its type,
+/// [editFieldType] is used in the [EditFieldWidget] and from its type,
 /// one of the preconfigured icons are loaded or if the type is set to
 /// AppEditFieldType.custom, you can set a custom icon. In this case, you should
-/// provide a custom icon to [appEditFieldCustomIcon]
+/// provide a custom icon to [editFieldCustomIcon]
 ///
 /// [dialogHasBottomPadding] by default is should be true, which moves the dialog
 /// up with the height of the keyboard, when it is visible, so the dialog appears
@@ -69,14 +69,14 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 ///
 /// When we use this widget in a form, we may want to lock fields to be read only
 /// for some users and editable for others. In such cases set [enabled] property to false.
-class PrimeTextFieldDialog<T> extends StatefulWidget {
-  const PrimeTextFieldDialog({
+class TextFieldDialog<T> extends StatefulWidget {
+  const TextFieldDialog({
     required this.validator,
     required this.errorMapper,
     this.onChanged,
     this.label = 'Describe your value',
     this.emptyLabel = 'Enter text here',
-    this.appFillButtonText = 'Save',
+    this.fillButtonText = 'Save',
     this.isLoading = false,
     this.isSuccess = false,
     this.filledWidgetBuilder,
@@ -86,16 +86,16 @@ class PrimeTextFieldDialog<T> extends StatefulWidget {
     this.inputFormatters,
     this.isMultiLinedInputField = false,
     this.maxLines,
-    this.appEditFieldCustomIcon,
-    this.appEditFieldType = PrimeEditFieldType.editfield,
+    this.editFieldCustomIcon,
+    this.editFieldType = EditFieldType.editfield,
     this.dialogHasBottomPadding = true,
     this.configuration = const TextFieldConfiguration(),
     this.enabled = true,
     Key? key,
-  })  : assert(appEditFieldCustomIcon == null ||
-            appEditFieldCustomIcon is IconData ||
-            appEditFieldCustomIcon is SvgPicture ||
-            appEditFieldCustomIcon is SvgFile),
+  })  : assert(editFieldCustomIcon == null ||
+            editFieldCustomIcon is IconData ||
+            editFieldCustomIcon is SvgPicture ||
+            editFieldCustomIcon is SvgFile),
         super(key: key);
 
   final T? value;
@@ -111,26 +111,25 @@ class PrimeTextFieldDialog<T> extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isMultiLinedInputField;
   final int? maxLines;
-  final String appFillButtonText;
+  final String fillButtonText;
   final RxFieldException<T> Function(Object error, BuildContext context)
       errorMapper;
-  final dynamic appEditFieldCustomIcon;
-  final PrimeEditFieldType appEditFieldType;
+  final dynamic editFieldCustomIcon;
+  final EditFieldType editFieldType;
   final bool dialogHasBottomPadding;
   final TextFieldConfiguration configuration;
   final bool enabled;
 
   @override
-  State<PrimeTextFieldDialog<T>> createState() =>
-      _PrimeTextFieldDialogState<T>();
+  State<TextFieldDialog<T>> createState() => _TextFieldDialogState<T>();
 }
 
-class _PrimeTextFieldDialogState<T> extends State<PrimeTextFieldDialog<T>> {
+class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
   T? _value;
   T? _initialValue;
 
   @override
-  void didUpdateWidget(covariant PrimeTextFieldDialog<T> oldWidget) {
+  void didUpdateWidget(covariant TextFieldDialog<T> oldWidget) {
     if (_initialValue == null && widget.value != null) {
       setState(() => _initialValue = widget.value);
     }
@@ -153,7 +152,7 @@ class _PrimeTextFieldDialogState<T> extends State<PrimeTextFieldDialog<T>> {
   @override
   Widget build(BuildContext context) {
     if (_value == null || _value!.toString().isEmpty) {
-      return PrimeLabeledBoxWidget(
+      return LabeledBoxWidget(
         label: widget.emptyLabel,
         onTap: () => _showModalText(context),
         leadingIcon: context.textFieldDialogTheme.addIcon.copyWith(
@@ -172,20 +171,20 @@ class _PrimeTextFieldDialogState<T> extends State<PrimeTextFieldDialog<T>> {
       );
     }
 
-    return PrimeEditFieldWidget(
+    return EditFieldWidget(
       label: widget.label,
       onTap: () => _showModalText(context),
       value: _value?.toString() ?? '',
       state: _getFieldState(),
-      type: widget.appEditFieldType,
-      customIcon: widget.appEditFieldCustomIcon,
+      type: widget.editFieldType,
+      customIcon: widget.editFieldCustomIcon,
     );
   }
 
   Future<void> _showModalText(BuildContext context) async => widget.enabled
-      ? showAppModalBottomSheet(
+      ? showModal(
           context: context,
-          configuration: AppModalBottomSheetConfiguration(
+          configuration: ModalConfiguration(
             fullScreen: widget.configuration.fullScreen,
             heightFactor: widget.configuration.heightFactor,
             isDismissible: widget.configuration.isDismissible,
@@ -211,24 +210,24 @@ class _PrimeTextFieldDialogState<T> extends State<PrimeTextFieldDialog<T>> {
               inputFormatters: widget.inputFormatters,
               isMultiLinedInputField: widget.isMultiLinedInputField,
               maxLines: widget.maxLines,
-              fillButtonText: widget.appFillButtonText,
+              fillButtonText: widget.fillButtonText,
             ),
           ),
           onCancelPressed: () => Navigator.of(context).pop(),
         )
       : null;
 
-  PrimeEditFieldState _getFieldState() {
+  EditFieldState _getFieldState() {
     if (widget.isLoading) {
-      return PrimeEditFieldState.loading;
+      return EditFieldState.loading;
     } else {
       if (_value?.toString() == _initialValue?.toString()) {
-        return PrimeEditFieldState.notEditedYet;
+        return EditFieldState.notEditedYet;
       } else {
         if (widget.isSuccess) {
-          return PrimeEditFieldState.success;
+          return EditFieldState.success;
         } else {
-          return PrimeEditFieldState.edited;
+          return EditFieldState.edited;
         }
       }
     }

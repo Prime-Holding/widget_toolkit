@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../extensions.dart';
 import '../../../language_picker.dart';
 import '../../lib_shimmer/models/shimmer_type.dart';
-import '../../lib_shimmer/views/app_shimmer.dart';
-import '../../lib_shimmer/views/app_shimmer_text.dart';
-import '../theme/prime_components_theme.dart';
+import '../../lib_shimmer/views/shimmer_text.dart';
+import '../../lib_shimmer/views/shimmer_wrapper.dart';
+import '../theme/widget_toolkit_theme.dart';
 
-class AppMessagePanelWidget extends StatelessWidget {
-  const AppMessagePanelWidget({
+class MessagePanelWidget extends StatelessWidget {
+  const MessagePanelWidget({
     required this.message,
     required this.messageState,
     this.body,
@@ -43,7 +43,7 @@ class AppMessagePanelWidget extends StatelessWidget {
         child: Row(
           children: [
             isLoading
-                ? AppShimmer(
+                ? ShimmerWrapper(
                     showShimmer: true,
                     baseColor: context.primeComponentsTheme.shimmerBaseColor,
                     highlightColor:
@@ -70,7 +70,7 @@ class AppMessagePanelWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AppShimmerText(
+                  ShimmerText(
                     isLoading ? null : message.toUpperCase(),
                     style: context.primeComponentsTheme.captionBold.copyWith(
                       color: color ?? messageState.getColor(context),
@@ -91,7 +91,7 @@ class AppMessagePanelWidget extends StatelessWidget {
                       height: context.primeComponentsTheme.spacingXS1,
                     ),
                     if (body == null)
-                      AppShimmerText(
+                      ShimmerText(
                         null,
                         style:
                             context.primeComponentsTheme.captionBold.copyWith(
@@ -107,7 +107,7 @@ class AppMessagePanelWidget extends StatelessWidget {
                       )
                   ],
                   if (body != null)
-                    AppShimmerText(
+                    ShimmerText(
                       isLoading ? null : body!.toUpperCase(),
                       style: context.primeComponentsTheme.captionBold.copyWith(
                         color: context.primeComponentsTheme.black,

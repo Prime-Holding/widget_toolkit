@@ -97,7 +97,7 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
 ThemeData getThemeData(bool inLightMode) {
   final theme = inLightMode
       ? ThemeData.light().copyWith(extensions: [
-          PrimeComponentsTheme.light,
+          WidgetToolkitTheme.light,
           ItemPickerTheme.light,
           LanguagePickerTheme.light,
           SearchPickerTheme.light,
@@ -117,7 +117,7 @@ ThemeData getThemeData(bool inLightMode) {
           ),
         ])
       : ThemeData.dark().copyWith(extensions: [
-          PrimeComponentsTheme.dark,
+          WidgetToolkitTheme.dark,
           ItemPickerTheme.dark,
           LanguagePickerTheme.dark,
           SearchPickerTheme.dark,

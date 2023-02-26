@@ -11,5 +11,5 @@ export 'open_url.dart';
 export 'shimmer.dart';
 // Export specific files
 export 'src/base/theme/design_system/design_system.dart';
-export 'src/base/theme/prime_components_theme.dart';
+export 'src/base/theme/widget_toolkit_theme.dart';
 export 'text_field_dialog.dart';

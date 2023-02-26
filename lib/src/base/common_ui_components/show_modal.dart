@@ -3,9 +3,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../theme/prime_components_theme.dart';
-import 'buttons/app_button_color_style.dart';
-import 'buttons/app_small_button.dart';
+import '../theme/widget_toolkit_theme.dart';
+import 'buttons/button_color_style.dart';
+import 'buttons/small_button.dart';
 
 /// Flag controlling the state of whether a modal sheet is shown in case we want
 /// to limit the number of modal sheets shown. It will be updated automatically
@@ -26,11 +26,10 @@ bool _isBottomSheetShown = false;
 ///
 /// With the modal sheet [configuration], you can define or toggle different
 /// aspects of the modal sheet.
-Future<T?> showAppModalBottomSheet<T>({
+Future<T?> showModal<T>({
   required BuildContext context,
   required WidgetBuilder builder,
-  AppModalBottomSheetConfiguration configuration =
-      const AppModalBottomSheetConfiguration(),
+  ModalConfiguration configuration = const ModalConfiguration(),
   WidgetBuilder? headerBuilder,
   VoidCallback? onCancelPressed,
   bool dialogHasBottomPadding = false,
@@ -64,7 +63,7 @@ Future<T?> showAppModalBottomSheet<T>({
       },
       duration: const Duration(milliseconds: 200),
       tween: Tween(begin: 0.0, end: 5.0),
-      child: _AppModalBottomSheet(
+      child: _ModalContent(
         heightFactor: (configuration.fullScreen ?? false)
             ? _calculateFullScreenRatio()
             : configuration.heightFactor,
@@ -88,8 +87,8 @@ Future<T?> showAppModalBottomSheet<T>({
 
 /// Widget used to represent the inner state of the app bottom modal sheet whose
 /// contents are being rendered on screen.
-class _AppModalBottomSheet extends StatelessWidget {
-  const _AppModalBottomSheet({
+class _ModalContent extends StatelessWidget {
+  const _ModalContent({
     Key? key,
     required this.builder,
     required this.showCloseButton,
@@ -244,11 +243,11 @@ class _AppModalBottomSheet extends StatelessWidget {
   Widget _buildCloseButton(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         color: context.primeComponentsTheme.bottomSheetBackgroundColor,
-        child: AppSmallButton(
+        child: SmallButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: Icons.close,
           type: SmallButtonType.outline,
-          colorStyle: PrimeButtonColorStyle.fromContext(
+          colorStyle: ButtonColorStyle.fromContext(
             context,
             activeGradientColorStart: context
                 .primeComponentsTheme.disabledFilledButtonBackgroundColor,
@@ -262,8 +261,8 @@ class _AppModalBottomSheet extends StatelessWidget {
 /// App Modal sheet configuration used for controlling different parts and
 /// options of a modal sheet, such as height factor, header pill or the close
 /// button.
-class AppModalBottomSheetConfiguration {
-  const AppModalBottomSheetConfiguration({
+class ModalConfiguration {
+  const ModalConfiguration({
     this.fullScreen,
     this.heightFactor,
     this.showCloseButton = true,

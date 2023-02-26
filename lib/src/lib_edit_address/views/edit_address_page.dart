@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
-import '../../lib_edit_address/ui_components/prime_edit_address_widget.dart';
+import '../../lib_edit_address/ui_components/edit_address_form.dart';
 import '../blocs/edit_address_bloc.dart';
 import '../di/edit_address_dependencies.dart';
 
@@ -23,11 +23,11 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressLocalizedStrings,
     this.saveAddress,
     this.countryCustomIcon,
-    this.editCountryFieldType = PrimeEditFieldType.dropdown,
+    this.editCountryFieldType = EditFieldType.dropdown,
     this.cityCustomIcon,
-    this.editCityFieldType = PrimeEditFieldType.editfield,
+    this.editCityFieldType = EditFieldType.editfield,
     this.addressCustomIcon,
-    this.editAddressFieldType = PrimeEditFieldType.editfield,
+    this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
     Key? key,
@@ -43,11 +43,11 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
       addressErrorMapper;
   final TextFieldValidator<String> validator;
   final dynamic countryCustomIcon;
-  final PrimeEditFieldType editCountryFieldType;
+  final EditFieldType editCountryFieldType;
   final dynamic cityCustomIcon;
-  final PrimeEditFieldType editCityFieldType;
+  final EditFieldType editCityFieldType;
   final dynamic addressCustomIcon;
-  final PrimeEditFieldType editAddressFieldType;
+  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final EditAddressService editAddressService;
@@ -71,12 +71,11 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final Function(AddressModel)? saveAddress,
     final dynamic countryCustomIcon,
-    final PrimeEditFieldType editCountryFieldType = PrimeEditFieldType.dropdown,
+    final EditFieldType editCountryFieldType = EditFieldType.dropdown,
     final dynamic cityCustomIcon,
-    final PrimeEditFieldType editCityFieldType = PrimeEditFieldType.editfield,
+    final EditFieldType editCityFieldType = EditFieldType.editfield,
     final dynamic addressCustomIcon,
-    final PrimeEditFieldType editAddressFieldType =
-        PrimeEditFieldType.editfield,
+    final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
@@ -131,21 +130,21 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                     ),
                   ),
                   if (snapshot.hasData)
-                    AppMessagePanelWidget(
+                    MessagePanelWidget(
                       message:
                           editAddressLocalizedStrings?.addressChangedMessage ??
                               context.getEditAddressLocalizedStrings
                                   .addressChangedMessage,
                       messageState: MessagePanelState.positiveCheck,
                     ),
-                  AppMessagePanelError<EditAddressBlocType>(
+                  MessagePanelError<EditAddressBlocType>(
                     errorState: (bloc) => bloc.states.errors,
                     errorBuilder: editContactAddressErrorBuilder,
                     padding: context
                         .editAddressTheme.editAddressPageErrorPanelPadding,
                   ),
                   if (!snapshot.hasData)
-                    PrimeEditAddressWidget.withDependencies<T>(
+                    EditAddressForm.withDependencies<T>(
                       context,
                       addressModel,
                       (addressModel) => context
@@ -174,7 +173,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                       builder: (context, isLoadingSnapshot, bloc) =>
                           RxBlocBuilder<EditAddressBlocType, AddressModel>(
                         state: (bloc) => bloc.states.onAddressSet,
-                        builder: (context, address, bloc) => AppFillButton(
+                        builder: (context, address, bloc) => GradientFillButton(
                           elevation: 0,
                           text: buttonText,
                           state: isLoadingSnapshot.data ?? false

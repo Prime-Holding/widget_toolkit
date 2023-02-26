@@ -10,17 +10,17 @@ part 'edit_address_theme.tailor.dart';
 class _$EditAddressTheme {
   /// region spacings
   static List<double> spacingM = [
-    PrimeDesignSystem.light().spacings.m,
-    PrimeDesignSystem.dark().spacings.m,
+    DesignSystem.light().spacings.m,
+    DesignSystem.dark().spacings.m,
   ];
   static List<double> spacingXSS = [
-    PrimeDesignSystem.light().spacings.xss,
-    PrimeDesignSystem.dark().spacings.xss,
+    DesignSystem.light().spacings.xss,
+    DesignSystem.dark().spacings.xss,
   ];
 
   static List<double> spacingXS = [
-    PrimeDesignSystem.light().spacings.xs,
-    PrimeDesignSystem.dark().spacings.xs,
+    DesignSystem.light().spacings.xs,
+    DesignSystem.dark().spacings.xs,
   ];
 
   static List<double> editAddressWidgetSpacingXS = spacingXS;
@@ -28,224 +28,224 @@ class _$EditAddressTheme {
   static List<double> addressWidgetSpacingXS = spacingXS;
 
   static List<double> spacingS = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    DesignSystem.light().spacings.s,
+    DesignSystem.dark().spacings.s,
   ];
   static List<double> spacingL = [
-    PrimeDesignSystem.light().spacings.l,
-    PrimeDesignSystem.dark().spacings.l,
+    DesignSystem.light().spacings.l,
+    DesignSystem.dark().spacings.l,
   ];
 
   static List<double> spacingXL = [
-    PrimeDesignSystem.light().spacings.xl,
-    PrimeDesignSystem.dark().spacings.xl,
+    DesignSystem.light().spacings.xl,
+    DesignSystem.dark().spacings.xl,
   ];
 
   static List<double> spacingXXL = [
-    PrimeDesignSystem.light().spacings.xxl,
-    PrimeDesignSystem.dark().spacings.xxl,
+    DesignSystem.light().spacings.xxl,
+    DesignSystem.dark().spacings.xxl,
   ];
 
   static List<double> spacingXXXL = [
-    PrimeDesignSystem.light().spacings.xxxl,
-    PrimeDesignSystem.dark().spacings.xxxl,
+    DesignSystem.light().spacings.xxxl,
+    DesignSystem.dark().spacings.xxxl,
   ];
 
   ///endregion
   /// region TextStyle
   static List<TextStyle> captionBold = [
-    PrimeDesignSystem.light().typography.captionBold,
-    PrimeDesignSystem.dark().typography.captionBold,
+    DesignSystem.light().typography.captionBold,
+    DesignSystem.dark().typography.captionBold,
   ];
   static List<TextStyle> descriptionThin = [
-    PrimeDesignSystem.light().typography.descriptionThin,
-    PrimeDesignSystem.dark().typography.descriptionThin,
+    DesignSystem.light().typography.descriptionThin,
+    DesignSystem.dark().typography.descriptionThin,
   ];
   static List<TextStyle> titleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    DesignSystem.light().typography.titleBold,
+    DesignSystem.dark().typography.titleBold,
   ];
 
   /// endregion
   ///region Color
   static List<Color> white = [
-    PrimeDesignSystem.light().colors.editAddressWhite,
-    PrimeDesignSystem.dark().colors.editAddressWhite,
+    DesignSystem.light().colors.editAddressWhite,
+    DesignSystem.dark().colors.editAddressWhite,
   ];
   static List<Color> black = [
-    PrimeDesignSystem.light().colors.editAddressBlack,
-    PrimeDesignSystem.dark().colors.editAddressBlack,
+    DesignSystem.light().colors.editAddressBlack,
+    DesignSystem.dark().colors.editAddressBlack,
   ];
 
   static List<Color> editAddressWidgetColor = [
-    PrimeDesignSystem.light().colors.editAddressMediumWhite,
-    PrimeDesignSystem.dark().colors.editAddressWidget,
+    DesignSystem.light().colors.editAddressMediumWhite,
+    DesignSystem.dark().colors.editAddressWidget,
   ];
 
   static List<Color> mediumWhite = [
-    PrimeDesignSystem.light().colors.editAddressMediumWhite,
-    PrimeDesignSystem.dark().colors.editAddressMediumWhite,
+    DesignSystem.light().colors.editAddressMediumWhite,
+    DesignSystem.dark().colors.editAddressMediumWhite,
   ];
   static List<Color> green = [
-    PrimeDesignSystem.light().colors.editAddressGreen,
-    PrimeDesignSystem.dark().colors.editAddressGreen,
+    DesignSystem.light().colors.editAddressGreen,
+    DesignSystem.dark().colors.editAddressGreen,
   ];
 
   static List<Color> blue = [
-    PrimeDesignSystem.light().colors.editAddressBlue,
-    PrimeDesignSystem.dark().colors.editAddressBlue,
+    DesignSystem.light().colors.editAddressBlue,
+    DesignSystem.dark().colors.editAddressBlue,
   ];
 
   static List<Color> editAddressPageBackgroundColor = [
-    PrimeDesignSystem.light().colors.white,
-    PrimeDesignSystem.dark().colors.editAddressBackground,
+    DesignSystem.light().colors.white,
+    DesignSystem.dark().colors.editAddressBackground,
   ];
 
   static List<Color> permanentAddressBlueLightColor = [
-    PrimeDesignSystem.light().colors.permanentAddressBlueLight,
-    PrimeDesignSystem.dark().colors.permanentAddressBlueLight,
+    DesignSystem.light().colors.permanentAddressBlueLight,
+    DesignSystem.dark().colors.permanentAddressBlueLight,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    PrimeDesignSystem.light()
+    DesignSystem.light()
         .colors
         .permanentAddressDisabledFilledButtonBackgroundColor,
-    PrimeDesignSystem.dark()
+    DesignSystem.dark()
         .colors
         .permanentAddressDisabledFilledButtonBackgroundColor,
   ];
 
   static List<Color> editAddressWidgetHighlightTransparent = [
-    PrimeDesignSystem.light().colors.editAddressWidgetHighlightColor,
-    PrimeDesignSystem.dark().colors.editAddressWidgetHighlightColor,
+    DesignSystem.light().colors.editAddressWidgetHighlightColor,
+    DesignSystem.dark().colors.editAddressWidgetHighlightColor,
   ];
 
   static List<Color> editAddressWidgetSplashTransparent = [
-    PrimeDesignSystem.light().colors.editAddressWidgetSplashColor,
-    PrimeDesignSystem.dark().colors.editAddressWidgetSplashColor,
+    DesignSystem.light().colors.editAddressWidgetSplashColor,
+    DesignSystem.dark().colors.editAddressWidgetSplashColor,
   ];
 
   /// endregion
   ///region EdgeInsets
   static List<EdgeInsets> editAddressPageOuterMostPadding = [
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.light().spacings.s2,
-      horizontal: PrimeDesignSystem.light().spacings.m,
+      vertical: DesignSystem.light().spacings.s2,
+      horizontal: DesignSystem.light().spacings.m,
     ),
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.dark().spacings.s2,
-      horizontal: PrimeDesignSystem.dark().spacings.m,
+      vertical: DesignSystem.dark().spacings.s2,
+      horizontal: DesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressPageOnAddressSavedPadding = [
     EdgeInsets.only(
-        left: PrimeDesignSystem.light().spacings.xs,
-        bottom: PrimeDesignSystem.light().spacings.xxl),
+        left: DesignSystem.light().spacings.xs,
+        bottom: DesignSystem.light().spacings.xxl),
     EdgeInsets.only(
-        left: PrimeDesignSystem.dark().spacings.xs,
-        bottom: PrimeDesignSystem.dark().spacings.xxl),
+        left: DesignSystem.dark().spacings.xs,
+        bottom: DesignSystem.dark().spacings.xxl),
   ];
 
   static List<EdgeInsets> editAddressPageErrorPanelPadding = [
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.m,
+      bottom: DesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.dark().spacings.m,
+      bottom: DesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> permanentAddressPadding1 = [
     EdgeInsets.only(
-      left: PrimeDesignSystem.light().spacings.m,
-      top: PrimeDesignSystem.light().spacings.s1,
-      right: PrimeDesignSystem.light().spacings.m,
-      bottom: PrimeDesignSystem.light().spacings.l,
+      left: DesignSystem.light().spacings.m,
+      top: DesignSystem.light().spacings.s1,
+      right: DesignSystem.light().spacings.m,
+      bottom: DesignSystem.light().spacings.l,
     ),
     EdgeInsets.only(
-      left: PrimeDesignSystem.light().spacings.m,
-      top: PrimeDesignSystem.light().spacings.s1,
-      right: PrimeDesignSystem.light().spacings.m,
-      bottom: PrimeDesignSystem.light().spacings.l,
+      left: DesignSystem.light().spacings.m,
+      top: DesignSystem.light().spacings.s1,
+      right: DesignSystem.light().spacings.m,
+      bottom: DesignSystem.light().spacings.l,
     )
   ];
 
   static List<EdgeInsets> permanentAddressPadding2 = [
     EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl1,
+      top: DesignSystem.light().spacings.xl1,
     ),
     EdgeInsets.only(
-      top: PrimeDesignSystem.dark().spacings.xl1,
+      top: DesignSystem.dark().spacings.xl1,
     )
   ];
 
   static List<EdgeInsets> permanentAddressPadding3 = [
     EdgeInsets.only(
-      left: PrimeDesignSystem.light().spacings.m,
-      right: PrimeDesignSystem.light().spacings.m,
-      top: PrimeDesignSystem.light().spacings.l,
-      bottom: PrimeDesignSystem.light().spacings.l,
+      left: DesignSystem.light().spacings.m,
+      right: DesignSystem.light().spacings.m,
+      top: DesignSystem.light().spacings.l,
+      bottom: DesignSystem.light().spacings.l,
     ),
     EdgeInsets.only(
-      left: PrimeDesignSystem.dark().spacings.m,
-      right: PrimeDesignSystem.dark().spacings.m,
-      top: PrimeDesignSystem.dark().spacings.l,
-      bottom: PrimeDesignSystem.dark().spacings.l,
+      left: DesignSystem.dark().spacings.m,
+      right: DesignSystem.dark().spacings.m,
+      top: DesignSystem.dark().spacings.l,
+      bottom: DesignSystem.dark().spacings.l,
     ),
   ];
 
   static List<EdgeInsets> permanentAddressPadding4 = [
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.m,
+      bottom: DesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.dark().spacings.m,
+      bottom: DesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding1 = [
-    EdgeInsets.only(bottom: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(bottom: PrimeDesignSystem.dark().spacings.s),
+    EdgeInsets.only(bottom: DesignSystem.light().spacings.s),
+    EdgeInsets.only(bottom: DesignSystem.dark().spacings.s),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding2 = [
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.light().spacings.s,
-      horizontal: PrimeDesignSystem.light().spacings.m,
+      vertical: DesignSystem.light().spacings.s,
+      horizontal: DesignSystem.light().spacings.m,
     ),
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.dark().spacings.s,
-      horizontal: PrimeDesignSystem.dark().spacings.m,
+      vertical: DesignSystem.dark().spacings.s,
+      horizontal: DesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding3 = [
     EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xss,
-      bottom: PrimeDesignSystem.light().spacings.xss,
+      top: DesignSystem.light().spacings.xss,
+      bottom: DesignSystem.light().spacings.xss,
     ),
     EdgeInsets.only(
-      top: PrimeDesignSystem.dark().spacings.xss,
-      bottom: PrimeDesignSystem.dark().spacings.xss,
+      top: DesignSystem.dark().spacings.xss,
+      bottom: DesignSystem.dark().spacings.xss,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding4 = [
-    EdgeInsets.only(left: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(left: PrimeDesignSystem.dark().spacings.s),
+    EdgeInsets.only(left: DesignSystem.light().spacings.s),
+    EdgeInsets.only(left: DesignSystem.dark().spacings.s),
   ];
 
   /// endregion
   /// region Icons
   static List<SvgFile> editPenIcon = [
-    PrimeDesignSystem.dark().icons.editPenIcon,
-    PrimeDesignSystem.light().icons.editPenIcon,
+    DesignSystem.dark().icons.editPenIcon,
+    DesignSystem.light().icons.editPenIcon,
   ];
 
   static List<SvgFile> infoCircleIcon = [
-    PrimeDesignSystem.dark().icons.infoCircleIcon,
-    PrimeDesignSystem.light().icons.infoCircleIcon,
+    DesignSystem.dark().icons.infoCircleIcon,
+    DesignSystem.light().icons.infoCircleIcon,
   ];
 
   /// endregion

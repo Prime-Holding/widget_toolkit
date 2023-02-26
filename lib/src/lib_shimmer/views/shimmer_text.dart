@@ -4,7 +4,7 @@ import '../models/shimmer_type.dart';
 import '../ui_components/shimmer_placeholder_widget.dart';
 import '../ui_components/shimmer_proportional_placeholder_widget.dart';
 import '../ui_components/shimmer_random_placeholder_widget.dart';
-import 'app_shimmer.dart';
+import 'shimmer_wrapper.dart';
 
 /// Wrapper widget on top of the Text widget that will display a shimmer effect
 /// whenever the provided text is null. If the provided text is not null, it
@@ -29,8 +29,8 @@ import 'app_shimmer.dart';
 /// of space by defining a range of values for the leading flex and a value for
 /// the trailing flex.
 ///
-class AppShimmerText extends StatelessWidget {
-  const AppShimmerText(
+class ShimmerText extends StatelessWidget {
+  const ShimmerText(
     this.text, {
     this.style,
     this.type,
@@ -80,7 +80,7 @@ class AppShimmerText extends StatelessWidget {
   final TextHeightBehavior? textHeightBehavior;
 
   @override
-  Widget build(BuildContext context) => AppShimmer(
+  Widget build(BuildContext context) => ShimmerWrapper(
         showShimmer: text == null,
         alignment: alignment,
         fadeTransition: false,

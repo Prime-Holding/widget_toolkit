@@ -11,30 +11,30 @@ class _$SearchPickerTheme {
 
   static List<EdgeInsets> titlePadding = [
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.xs,
-      top: PrimeDesignSystem.light().spacings.l,
-      left: PrimeDesignSystem.light().spacings.xl,
+      bottom: DesignSystem.light().spacings.xs,
+      top: DesignSystem.light().spacings.l,
+      left: DesignSystem.light().spacings.xl,
     ),
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.xs,
-      top: PrimeDesignSystem.light().spacings.l,
-      left: PrimeDesignSystem.light().spacings.xl,
+      bottom: DesignSystem.light().spacings.xs,
+      top: DesignSystem.light().spacings.l,
+      left: DesignSystem.light().spacings.xl,
     ),
   ];
 
   static List<TextStyle> titleStyle = [
-    PrimeDesignSystem.light().typography.titleStyle,
-    PrimeDesignSystem.dark().typography.titleStyle,
+    DesignSystem.light().typography.titleStyle,
+    DesignSystem.dark().typography.titleStyle,
   ];
 
   static List<EdgeInsets> searchFieldOuterEdgeInsets = [
-    PrimeDesignSystem.light().spacings.mediumEdgeInsets,
-    PrimeDesignSystem.dark().spacings.mediumEdgeInsets,
+    DesignSystem.light().spacings.mediumEdgeInsets,
+    DesignSystem.dark().spacings.mediumEdgeInsets,
   ];
 
   static List<EdgeInsets> errorEdgeInsets = [
-    PrimeDesignSystem.light().spacings.mediumEdgeInsets,
-    PrimeDesignSystem.dark().spacings.mediumEdgeInsets,
+    DesignSystem.light().spacings.mediumEdgeInsets,
+    DesignSystem.dark().spacings.mediumEdgeInsets,
   ];
 
   /// endregion

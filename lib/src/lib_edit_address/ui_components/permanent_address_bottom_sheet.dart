@@ -10,9 +10,9 @@ void showAppPermanentAddressBottomSheet(
   required EditAddressConfiguration configuration,
   required String permanentAddressContentMessage,
 }) =>
-    showAppModalBottomSheet(
+    showModal(
       context: context,
-      configuration: AppModalBottomSheetConfiguration(
+      configuration: ModalConfiguration(
         fullScreen: configuration.fullScreen,
         heightFactor: configuration.heightFactor,
         isDismissible: configuration.isDismissible,

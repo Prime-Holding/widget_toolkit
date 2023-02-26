@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-SingleChildRenderObjectWidget appFadeTransition({
+SingleChildRenderObjectWidget easyFadeTransition({
   required Animation<double> animation,
   required Widget child,
 }) =>

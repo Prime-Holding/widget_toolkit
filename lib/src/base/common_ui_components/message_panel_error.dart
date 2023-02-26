@@ -4,14 +4,14 @@ import 'package:rx_bloc/rx_bloc.dart';
 
 import '../models/errors/error_model.dart';
 import '../models/message_panel_state.dart';
-import 'app_message_panel_widget.dart';
+import 'message_panel_widget.dart';
 
 typedef ErrorStateCallback<BlocType extends RxBlocTypeBase>
     = Stream<ErrorModel?> Function(BlocType bloc);
 
-class AppMessagePanelError<BlocType extends RxBlocTypeBase>
+class MessagePanelError<BlocType extends RxBlocTypeBase>
     extends StatelessWidget {
-  const AppMessagePanelError({
+  const MessagePanelError({
     required this.errorState,
     this.errorPanelIcon,
     this.padding = EdgeInsets.zero,
@@ -36,7 +36,7 @@ class AppMessagePanelError<BlocType extends RxBlocTypeBase>
               : Padding(
                   padding: padding,
                   child: errorBuilder?.call(snapshot.data) ??
-                      AppMessagePanelWidget(
+                      MessagePanelWidget(
                         message: snapshot.data.toString(),
                         messageState: messageState,
                         errorPanelIcon: errorPanelIcon,

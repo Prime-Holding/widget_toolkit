@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/theme/prime_components_theme.dart';
+import '../../base/theme/widget_toolkit_theme.dart';
 
 /// A widget that can be used a placeholder for any other widget. Contains a
 /// placeholder text that will be displayed within that widget.

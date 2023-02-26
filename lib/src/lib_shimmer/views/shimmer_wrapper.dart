@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../base/theme/prime_components_theme.dart';
+import '../../base/theme/widget_toolkit_theme.dart';
 
 /// The AppShimmer is a versatile widget that provides control over when you
 /// want to display the shimmer effect on top of your [child] widget.
@@ -24,8 +24,8 @@ import '../../base/theme/prime_components_theme.dart';
 /// )
 /// ```
 ///
-class AppShimmer extends StatelessWidget {
-  const AppShimmer({
+class ShimmerWrapper extends StatelessWidget {
+  const ShimmerWrapper({
     required this.child,
     required this.showShimmer,
     this.alignment = Alignment.centerLeft,
@@ -65,7 +65,7 @@ class AppShimmer extends StatelessWidget {
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         transitionBuilder: (child, animation) =>
-            fadeTransition || child.key == AppShimmer.shimmerContainerKey
+            fadeTransition || child.key == ShimmerWrapper.shimmerContainerKey
                 ? FadeTransition(
                     opacity: animation,
                     child: child,
@@ -77,7 +77,7 @@ class AppShimmer extends StatelessWidget {
   Widget _buildChild(BuildContext context) {
     if (showShimmer) {
       return Container(
-        key: AppShimmer.shimmerContainerKey,
+        key: ShimmerWrapper.shimmerContainerKey,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(radius),

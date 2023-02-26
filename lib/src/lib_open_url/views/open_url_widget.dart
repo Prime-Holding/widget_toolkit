@@ -3,7 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 
-import '../../base/common_ui_components/error_modal_sheet.dart';
+import '../../base/common_ui_components/show_error_modal.dart';
 import '../bloc/open_uri_bloc.dart';
 import '../di/open_url_dependencies.dart';
 import '../enums/uri_type_enum.dart';
@@ -108,7 +108,7 @@ class OpenUrlWidget extends StatelessWidget {
                 translateError?.call(context, error) ?? error.toString();
 
             onError?.call(context, error);
-            showErrorBottomSheet(
+            showErrorModal(
               context: context,
               error: errorMsg,
               safeAreaBottom: errorModalSafeBottom,

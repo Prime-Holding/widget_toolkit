@@ -22,16 +22,16 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
   required EditAddressService editAddressService,
   dynamic countryCustomIcon,
   final EditAddressLocalizedStrings? editAddressLocalizedStrings,
-  final PrimeEditFieldType editCountryFieldType = PrimeEditFieldType.dropdown,
+  final EditFieldType editCountryFieldType = EditFieldType.dropdown,
   final dynamic cityCustomIcon,
-  final PrimeEditFieldType editCityFieldType = PrimeEditFieldType.editfield,
+  final EditFieldType editCityFieldType = EditFieldType.editfield,
   final dynamic addressCustomIcon,
-  final PrimeEditFieldType editAddressFieldType = PrimeEditFieldType.editfield,
+  final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
 }) =>
-    showAppModalBottomSheet(
-      configuration: AppModalBottomSheetConfiguration(
+    showModal(
+      configuration: ModalConfiguration(
         fullScreen: configuration.fullScreen,
         heightFactor: configuration.heightFactor,
         isDismissible: configuration.isDismissible,
