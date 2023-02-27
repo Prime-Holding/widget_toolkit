@@ -1,3 +1,6 @@
+## [0.0.1-dev4] - February 27, 2023
+- Fix screenshots
+
 ## [0.0.1-dev2] - February 27, 2023
  - Fix static analysis issues
 

@@ -1,6 +1,6 @@
 name: widget_toolkit
 description: The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
-version: 0.0.1-dev2
+version: 0.0.1-dev4
 repository: https://github.com/Prime-Holding/widget_toolkit
 issue_tracker: https://github.com/Prime-Holding/widget_toolkit/issues
 homepage: https://www.primeholding.com
@@ -60,21 +60,21 @@ flutter:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
         
 screenshots:
-  - description: Item picker (multi-select)
-    path: doc/assets/multi-item-picker.gif
-  - description: Item picker (single-select)
-    path: doc/assets/single-item-picker.gif
-  - description: Language Picker
-    path: doc/assets/language-picker.gif
-  - description: Search Picker
-    path: doc/assets/search-picker.gif
-  - description: Shimmer Widget
-    path: doc/assets/shimmer.gif
-  - description: URL Launcher
-    path: doc/assets/url.gif
-  - description: Error Buttom Sheet
-    path: doc/assets/error-bottom-sheet.gif
-  - description: Text Field Dialog
-    path: doc/assets/text-field-dialog.gif
-  - description: Address Dialog
-    path: doc/assets/address.gif
+  - description: "Item picker (multi-select)"
+    path: doc/assets/multi-item-picker.webp
+  - description: "Item picker (single-select)"
+    path: doc/assets/single-item-picker.webp
+  - description: "Language Picker"
+    path: doc/assets/language-picker.webp
+  - description: "Search Picker"
+    path: doc/assets/search-picker.webp
+  - description: "Shimmer Widget"
+    path: doc/assets/shimmer.webp
+  - description: "URL Launcher"
+    path: doc/assets/url.webp
+  - description: "Error Bottom Sheet"
+    path: doc/assets/error-bottom-sheet.webp
+  - description: "Text Field Dialog"
+    path: doc/assets/text-field-dialog.webp
+  - description: "Address Dialog"
+    path: doc/assets/address.webp
