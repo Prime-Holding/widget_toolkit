@@ -16,7 +16,10 @@ abstract class ItemPickerBlocType<T> extends RxBlocTypeBase {
 /// [$ItemPickerBloc<T>] extended by the [ItemPickerBloc<T>]
 /// {@nodoc}
 abstract class $ItemPickerBloc<T> extends RxBlocBase
-    implements ItemPickerBlocEvents, ItemPickerBlocStates<T>, ItemPickerBlocType<T> {
+    implements
+        ItemPickerBlocEvents,
+        ItemPickerBlocStates<T>,
+        ItemPickerBlocType<T> {
   final _compositeSubscription = CompositeSubscription();
 
   /// Тhe [Subject] where events sink to by calling [loadItems]

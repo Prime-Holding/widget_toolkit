@@ -1,4 +1,7 @@
-## [0.0.1-dev1]
+## [0.0.1-dev2] - February 27, 2023
+ - Fix static analysis issues
+
+## [0.0.1-dev1] - February 27, 2023
 - Initial release of the following libraries
   -  [Shimmer](https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/shimmer.md)
   -  [Item Picker](https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/item-picker.md)
