@@ -3,7 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../blocs/text_field_dialog_bloc.dart';
-import '../services/prime_text_field_validator_use_case.dart';
+import '../services/text_field_validator.dart';
 
 class TextFieldDialogDependencies<T> {
   TextFieldDialogDependencies._(

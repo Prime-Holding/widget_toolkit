@@ -6,39 +6,39 @@ text field validation service,input text field maximum lines, custom edit icon a
 
 ## Widgets
 
-Within the `text_field_dialog` package you can create a `PrimeTextFieldDialog` widget in order
+Within the `text_field_dialog` package you can create a `TextFieldDialog` widget in order
 to show a text field dialog. 
 
-### `PrimeTextFieldDialog`
+### `TextFieldDialog`
 
-The `PrimeTextFieldDialog` is a widget for displaying a text field modal sheet with some
+The `TextFieldDialog` is a widget for displaying a text field modal sheet with some
 pre-configured options.
 
 `label` is the value of the text label of the widget, which when pressed loads the
 text field dialog.
 `emptyLabel` is the text value, displayed when there is no initially set text
 value for the widget.
-`validator` received a service, which extends `AppTextFieldValidator` and
+`validator` received a service, which extends `TextFieldValidator` and
 implements its validation methods for the frontend and backend checks.
 `onChanged` after the field service validation is successful the onChanged
 function is called with the value from the text input field. It can be used
 for sending the value as an event to a bloc, for example as:
 `onChanged: (street) => bloc.events.setStreet(street);`
-`appFillButtonText` is the text value in the button in the dialog.
+`fillButtonText` is the text value in the button in the dialog.
 `errorMapper` function, which implementation should map the form error to
 RxFieldException error and translate the error to the correct language.
 You can check also the translateErrors() method in the `TextFieldDialog` widget
-Set `appEditFieldType` to `AppEditFieldType.custom` if you want to set custom edit icon
-and provide the icon to `appEditFieldCustomIcon`.
+Set `editFieldType` to `editFieldType.custom` if you want to set custom edit icon
+and provide the icon to `editFieldCustomIcon`.
 `value` is the value bellow the label text value, which has been inputted
 as text field value.
 `header` is a value displayed above the text field in the dialog.
-`maxLines` is the value of maximum lines the `AppInputTextField` widget
+`maxLines` is the value of maximum lines the `InputTextField` widget
 can have, if the number is increased, the input field becomes bigger.
-`appEditFieldType` is used in the `PrimeEditFieldWidget` and from its type,
+`editFieldType` is used in the `EditFieldWidget` and from its type,
 one of the preconfigured icons are loaded or if the type is set to
-AppEditFieldType.custom, you can set a custom icon. In this case, you should
-provide a custom icon to `appEditFieldCustomIcon`.
+EditFieldType.custom, you can set a custom icon. In this case, you should
+provide a custom icon to `editFieldCustomIcon`.
 `dialogHasBottomPadding` by default is should be true, which moves the dialog
 up with the height of the keyboard, when it is visible, so the dialog appears
 above it.
@@ -46,7 +46,7 @@ above it.
 of it.
 `heightFactor` sets a custom heightFactor, setting, how high the modal sheet
 is displayed.
-`optionalString` a string which should be provided, when the `PrimeLabeledBoxWidget`'s
+`optionalString` a string which should be provided, when the `LabeledBoxWidget`'s
 type is set to optional: `LabeledBoxType.optional` and the `value` is null.
 
 ## How to use
@@ -70,28 +70,28 @@ as an example:
 //theme 
 //...
 extensions: [
-    darkMode ? PrimeComponentsTheme.dark : PrimeComponentsTheme.light,
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
     darkMode ? TextFieldDialogTheme.dark : TextFieldDialogTheme.light,
 ]
 //..
 ```
 
-Complete example for PrimeTextFieldDialog usage:
+Complete example for TextFieldDialog usage:
 ```dart
-PrimeTextFieldDialog<String>(
+TextFieldDialog<String>(
     optionalString: 'Optional',
     errorMapper: (obj, context) =>
     ErrorMapperUtil<String>().errorMapper(obj, context),
     label: 'Label text',
     value: 'Some value',
     emptyLabel: 'Empty label',
-    appEditFieldCustomIcon: Assets.deliveryBlack,
-    appEditFieldType: hasCustomIcon
-    ? PrimeEditFieldType.custom
-        : PrimeEditFieldType.editfield,
+    editFieldCustomIcon: Assets.deliveryBlack,
+    editFieldType: hasCustomIcon
+    ? EditFieldType.custom
+        : EditFieldType.editfield,
     onChanged: (street) => bloc.events.setStreet(street),
     validator: context.read<LocalAddressFieldService>(),
-    appFillButtonText: 'Save',
+    fillButtonText: 'Save',
     dialogHasBottomPadding: false,
     header: 'Header text',
     maxLines: 3,

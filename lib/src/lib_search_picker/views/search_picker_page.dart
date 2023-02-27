@@ -3,12 +3,11 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:provider/provider.dart';
 
-import '../../base/builders/item_builder.dart';
-import '../../base/transitions/app_fade_transition.dart';
-import '../../base/ui_components/app_search_text_field.dart';
-import '../../base/ui_components/list/app_picker_list_item.dart';
-import '../../common/models/picker_item_model.dart';
-import '../../common/ui_components/prime_error_card_widget.dart';
+import '../../../common_ui_components.dart';
+import '../../base/common_ui_components/search_picker_text_field.dart';
+import '../../base/models/item_builder.dart';
+import '../../base/models/picker_item_model.dart';
+import '../../base/utils/easy_fade_transition.dart';
 import '../blocs/search_picker_bloc.dart';
 import '../di/search_picker_dependencies.dart';
 import '../services/search_picker_service.dart';
@@ -120,7 +119,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
               showErrorState: (bloc) => Stream.value(true),
               onChanged: (bloc, value) =>
                   bloc.events.filterByQuery(query: value),
-              builder: (fieldState) => AppSearchTextField(
+              builder: (fieldState) => SearchPickerTextField(
                 isFocused: true,
                 hintText: hintText,
                 controller: fieldState.controller,
@@ -134,7 +133,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
                   errorBuilder?.call(error) ??
                   Padding(
                     padding: context.searchPickerTheme.errorEdgeInsets,
-                    child: PrimeErrorCardWidget(
+                    child: ErrorCardWidget(
                       text: error.toString(),
                       retryButtonVisible: true,
                       retryButtonText: retryText,
@@ -146,7 +145,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
                       ? emptyBuilder?.call() ??
                           Padding(
                             padding: context.searchPickerTheme.errorEdgeInsets,
-                            child: const PrimeErrorCardWidget(
+                            child: const ErrorCardWidget(
                               text: 'No results',
                             ),
                           )
@@ -165,7 +164,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 900),
       transitionBuilder: (child, animation) =>
-          appFadeTransition(child: child, animation: animation),
+          easyFadeTransition(child: child, animation: animation),
       child: SizedBox(
         key: Key('appItemSizedBox-$height'),
         height: height,
@@ -175,7 +174,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
           itemBuilder: (context, index) {
             final model = list.isEmpty ? null : list[index];
 
-            return AppPickerListItem(
+            return SearchPickerListItem(
               isSelected: model == selectedItem,
               onTap: isLoading ? null : () => onItemTap?.call(model),
               isLoading: isLoading,

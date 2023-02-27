@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../../common_ui_components.dart';
 import '../../../search_picker.dart';
-import '../../base/builders/item_builder.dart';
-import '../../base/ui_components/app_modal_bottom_sheet.dart';
-import '../../common/models/picker_item_model.dart';
+import '../../base/models/item_builder.dart';
+import '../../base/models/picker_item_model.dart';
 
 /// Displays search field and a list inside modal bottom sheet with a background blur effect.
 ///
@@ -38,9 +38,9 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   double loadingItemHeight = 60,
   SearchPickerConfiguration configuration = const SearchPickerConfiguration(),
 }) {
-  showAppModalBottomSheet(
+  showModal(
     context: context,
-    configuration: AppModalBottomSheetConfiguration(
+    configuration: ModalConfiguration(
       showCloseButton: false,
       showHeaderPill: false,
       haveOnlyOneSheet: configuration.haveOnlyOneSheet,

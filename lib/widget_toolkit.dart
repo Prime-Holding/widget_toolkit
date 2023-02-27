@@ -10,6 +10,6 @@ export 'models.dart';
 export 'open_url.dart';
 export 'shimmer.dart';
 // Export specific files
-export 'src/utils/design_system/design_system.dart';
-export 'src/utils/theme/prime_components_theme.dart';
+export 'src/base/theme/design_system/widget_toolkit_design_system.dart';
+export 'src/base/theme/widget_toolkit_theme.dart';
 export 'text_field_dialog.dart';

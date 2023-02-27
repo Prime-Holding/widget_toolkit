@@ -47,7 +47,7 @@ after which you are ready to start using the widgets in your app.
 ## Setup
 
 List of available themes:
-- PrimeComponentsTheme
+- WidgetToolkitTheme
 - ItemPickerTheme
 - LanguagePickerTheme
 - SearchPickerTheme

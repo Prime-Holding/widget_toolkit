@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widget_toolkit.dart';
+import '../../../models.dart';
+import '../../base/common_ui_components/buttons/button_color_style.dart';
+import '../../base/common_ui_components/buttons/button_state.dart';
+import '../../base/common_ui_components/buttons/small_button.dart';
+import '../../base/common_ui_components/message_panel_error.dart';
+import '../../base/common_ui_components/select_language_item.dart';
+import '../../base/common_ui_components/show_modal.dart';
+import '../blocs/language_picker_bloc.dart';
+import '../models/selected_language_model.dart';
+import '../theme/language_picker_theme.dart';
 
 /// Display a bottom modal sheet, designed to display a list of available languages,
 /// from which to choose one to be set as the language Locale() to your MaterialApp()
@@ -19,7 +28,7 @@ import '../../../widget_toolkit.dart';
 /// right end of every language widget. There is a default checkIcon if the parameter
 /// is not specified.
 ///
-///  With [configuration] we can change the configuration of the showAppModalBottomSheet().
+///  With [configuration] we can change the configuration of the showModal().
 ///  There are default configurations provided. Changing [fullScreen] to true, makes
 ///  the modal sheet appear to the top of the screen. With [showHeaderPill] set to
 ///  true displays a header pill at the top of the modal sheet. Changing [safeAreaBottom]
@@ -33,7 +42,7 @@ import '../../../widget_toolkit.dart';
 /// the language list. In order to use it, you should specify that the message
 /// state is [MessagePanelState.custom].
 ///
-void showAppChangeLanguageBottomSheet({
+void showChangeLanguageBottomSheet({
   required BuildContext context,
   Widget Function(ErrorModel?)? errorBuilder,
   required Widget Function(BuildContext)? headerBuilder,
@@ -43,7 +52,7 @@ void showAppChangeLanguageBottomSheet({
   final MessagePanelState messageState = MessagePanelState.important,
   dynamic errorPanelIcon,
 }) =>
-    showAppModalBottomSheet(
+    showModal(
       context: context,
       builder: (context) => _ChangeLanguageWidget(
         iconRight: iconRight,
@@ -53,7 +62,7 @@ void showAppChangeLanguageBottomSheet({
       ),
       headerBuilder: headerBuilder,
       onCancelPressed: () => Navigator.of(context).pop(),
-      configuration: AppModalBottomSheetConfiguration(
+      configuration: ModalConfiguration(
         fullScreen: configuration.fullScreen,
         showCloseButton: false,
         showHeaderPill: configuration.showHeaderPill,
@@ -97,7 +106,7 @@ class _ChangeLanguageWidget extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                AppMessagePanelError<LanguagePickerBlocType>(
+                MessagePanelError<LanguagePickerBlocType>(
                   errorState: (bloc) => bloc.states.errors,
                   padding:
                       context.languagePickerTheme.messagePanelErrorEdgeInsets,
@@ -107,7 +116,7 @@ class _ChangeLanguageWidget extends StatelessWidget {
                 ),
                 ...(snapshot.data ?? [])
                     .map(
-                      (language) => _AppChooseLanguage(
+                      (language) => _ChooseLanguage(
                         languageModel: language,
                         padding:
                             context.languagePickerTheme.chooseLanguagePadding,
@@ -125,11 +134,11 @@ class _ChangeLanguageWidget extends StatelessWidget {
                 SizedBox(
                   height: context.languagePickerTheme.changeLanguageSizedBox,
                 ),
-                AppSmallButton(
+                SmallButton(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: Icons.close,
                   type: SmallButtonType.outline,
-                  colorStyle: PrimeButtonColorStyle.fromContext(
+                  colorStyle: ButtonColorStyle.fromContext(
                     context,
                     activeGradientColorStart: context.languagePickerTheme
                         .disabledFilledButtonBackgroundColor,
@@ -144,8 +153,8 @@ class _ChangeLanguageWidget extends StatelessWidget {
       );
 }
 
-class _AppChooseLanguage extends StatelessWidget {
-  const _AppChooseLanguage({
+class _ChooseLanguage extends StatelessWidget {
+  const _ChooseLanguage({
     required this.languageModel,
     this.onPressed,
     this.isLoading = false,
@@ -169,7 +178,7 @@ class _AppChooseLanguage extends StatelessWidget {
     if (languageModel.selected) {
       return Padding(
         padding: padding,
-        child: AppChooseLanguage(
+        child: SelectLanguageItem.selected(
           languageModel: languageModel,
           languageKey: languageModel.language.key,
           code: languageModel.language.languageCode.toUpperCase(),
@@ -183,14 +192,14 @@ class _AppChooseLanguage extends StatelessWidget {
 
     return Padding(
       padding: padding,
-      child: AppChooseLanguageInactive(
+      child: SelectLanguageItem.unSelected(
         languageKey: languageModel.language.key,
         code: languageModel.language.languageCode.toUpperCase(),
         iconRight: iconRight ?? context.languagePickerTheme.checkIcon,
         onPressed:
             onPressed == null ? null : () => onPressed?.call(languageModel),
         state: buttonState,
-        colorStyle: PrimeButtonColorStyle.fromContext(
+        colorStyle: ButtonColorStyle.fromContext(
           context,
           activeButtonTextColor:
               context.languagePickerTheme.activeButtonLanguageTextColor,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'item_picker_theme.tailor.dart';
 
@@ -15,17 +15,16 @@ class _$ItemPickerTheme {
   ];
 
   static List<TextStyle> titleStyle = [
-    PrimeDesignSystem.light().typography.titleStyle,
-    PrimeDesignSystem.dark().typography.titleStyle,
+    WidgetToolkitDesignSystem.light().typography.titleStyle,
+    WidgetToolkitDesignSystem.dark().typography.titleStyle,
   ];
 
   static List<EdgeInsets> errorPadding = [
-    PrimeDesignSystem.light().spacings.largeHorizontalEdgeInsets,
-    PrimeDesignSystem.dark().spacings.largeHorizontalEdgeInsets,
+    WidgetToolkitDesignSystem.light().spacings.largeHorizontalEdgeInsets,
+    WidgetToolkitDesignSystem.dark().spacings.largeHorizontalEdgeInsets,
   ];
 
   /// endregion
-
 }
 
 extension ItemPickerThemeContextExtension on BuildContext {

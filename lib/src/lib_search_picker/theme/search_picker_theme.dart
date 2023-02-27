@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'search_picker_theme.tailor.dart';
 
@@ -11,34 +11,33 @@ class _$SearchPickerTheme {
 
   static List<EdgeInsets> titlePadding = [
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.xs,
-      top: PrimeDesignSystem.light().spacings.l,
-      left: PrimeDesignSystem.light().spacings.xl,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xs,
+      top: WidgetToolkitDesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.xl,
     ),
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.xs,
-      top: PrimeDesignSystem.light().spacings.l,
-      left: PrimeDesignSystem.light().spacings.xl,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xs,
+      top: WidgetToolkitDesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.xl,
     ),
   ];
 
   static List<TextStyle> titleStyle = [
-    PrimeDesignSystem.light().typography.titleStyle,
-    PrimeDesignSystem.dark().typography.titleStyle,
+    WidgetToolkitDesignSystem.light().typography.titleStyle,
+    WidgetToolkitDesignSystem.dark().typography.titleStyle,
   ];
 
   static List<EdgeInsets> searchFieldOuterEdgeInsets = [
-    PrimeDesignSystem.light().spacings.mediumEdgeInsets,
-    PrimeDesignSystem.dark().spacings.mediumEdgeInsets,
+    WidgetToolkitDesignSystem.light().spacings.mediumEdgeInsets,
+    WidgetToolkitDesignSystem.dark().spacings.mediumEdgeInsets,
   ];
 
   static List<EdgeInsets> errorEdgeInsets = [
-    PrimeDesignSystem.light().spacings.mediumEdgeInsets,
-    PrimeDesignSystem.dark().spacings.mediumEdgeInsets,
+    WidgetToolkitDesignSystem.light().spacings.mediumEdgeInsets,
+    WidgetToolkitDesignSystem.dark().spacings.mediumEdgeInsets,
   ];
 
   /// endregion
-
 }
 
 extension SearchPickerThemeContextExtension on BuildContext {

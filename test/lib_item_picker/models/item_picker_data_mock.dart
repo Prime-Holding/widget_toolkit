@@ -1,4 +1,4 @@
-import 'package:widget_toolkit/src/common/models/picker_item_model.dart';
+import 'package:widget_toolkit/src/base/models/picker_item_model.dart';
 
 class ItemPickerDataMock extends PickerItemModel {
   ItemPickerDataMock(this.value);

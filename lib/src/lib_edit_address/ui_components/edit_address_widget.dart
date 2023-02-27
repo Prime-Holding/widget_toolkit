@@ -4,7 +4,7 @@ import 'package:flutter_rx_bloc/rx_form.dart';
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
-import '../../base/builders/item_builder.dart';
+import '../../base/models/item_builder.dart';
 import '../extensions/user_profile_card_types_extension.dart';
 import 'permanent_address_bottom_sheet.dart';
 
@@ -32,15 +32,15 @@ import 'permanent_address_bottom_sheet.dart';
 ///
 /// [countryCustomIcon] receives a custom icon for the country widget. To use a
 /// custom icon, the [editCountryFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [cityCustomIcon] receives a custom icon for the city button. To use a
 /// custom icon, the [editCityFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [addressCustomIcon] receives a custom icon for the city button. To use a
 /// custom icon, the [editAddressFieldType] should be of type
-/// PrimeEditFieldType.custom
+/// EditFieldType.custom
 ///
 /// [configuration] is a configuration for the edit address bottom sheet.
 ///
@@ -67,11 +67,11 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
     this.type = UserProfileCardTypes.mailingAddress,
     this.configuration = const EditAddressConfiguration(),
     this.countryCustomIcon,
-    this.editCountryFieldType = PrimeEditFieldType.dropdown,
+    this.editCountryFieldType = EditFieldType.dropdown,
     this.cityCustomIcon,
-    this.editCityFieldType = PrimeEditFieldType.editfield,
+    this.editCityFieldType = EditFieldType.editfield,
     this.addressCustomIcon,
-    this.editAddressFieldType = PrimeEditFieldType.editfield,
+    this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
     Key? key,
@@ -89,11 +89,11 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   final SearchPickerService<T> searchCountryService;
   final EditAddressService editAddressService;
   final dynamic countryCustomIcon;
-  final PrimeEditFieldType editCountryFieldType;
+  final EditFieldType editCountryFieldType;
   final dynamic cityCustomIcon;
-  final PrimeEditFieldType editCityFieldType;
+  final EditFieldType editCityFieldType;
   final dynamic addressCustomIcon;
-  final PrimeEditFieldType editAddressFieldType;
+  final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
 
@@ -135,7 +135,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                           Padding(
                             padding: context
                                 .editAddressTheme.editAddressWidgetPadding3,
-                            child: AppShimmerText(
+                            child: ShimmerText(
                               editAddressLocalizedStrings?.cardFieldLabel ??
                                   context.getEditAddressLocalizedStrings
                                       .cardFieldLabel,
@@ -176,7 +176,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   }) {
     switch (type) {
       case UserProfileCardTypes.permanentAddress:
-        return () => showAppPermanentAddressBottomSheet(
+        return () => showPermanentAddressBottomSheet(
               context,
               headerText: editAddressLocalizedStrings?.headerTitle ??
                   context.getEditAddressLocalizedStrings.headerTitle,
@@ -230,14 +230,14 @@ class _IconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (type) {
       case UserProfileCardTypes.permanentAddress:
-        return context.primeComponentsTheme.infoCircleIcon.copyWith(
+        return context.widgetToolkitTheme.infoCircleIcon.copyWith(
           color: type.getColor(context),
         );
       case UserProfileCardTypes.mailingAddress:
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return context.editAddressTheme.editPenIcon
-            .copyWith(color: context.primeComponentsTheme.highlightColor);
+            .copyWith(color: context.widgetToolkitTheme.highlightColor);
     }
   }
 }
@@ -256,7 +256,7 @@ class _AddressWidget extends StatelessWidget {
                   ? double.minPositive
                   : context.editAddressTheme.addressWidgetSpacingXS,
             ),
-            child: AppShimmerText(
+            child: ShimmerText(
               address?.countryAndCity,
               style: context.editAddressTheme.descriptionThin,
               maxLines: 1,
@@ -265,7 +265,7 @@ class _AddressWidget extends StatelessWidget {
               highlightColor: context.editAddressTheme.mediumWhite,
             ),
           ),
-          AppShimmerText(
+          ShimmerText(
             address?.streetAddress,
             style: context.editAddressTheme.descriptionThin,
             maxLines: 1,

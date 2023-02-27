@@ -1,7 +1,7 @@
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../common/models/picker_item_model.dart';
+import '../../base/models/picker_item_model.dart';
 import '../service/item_picker_service.dart';
 
 part 'item_picker_bloc.rxb_g.dart';

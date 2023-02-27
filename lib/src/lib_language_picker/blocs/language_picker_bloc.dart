@@ -2,8 +2,8 @@ import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../base/extensions/error_model_extensions.dart';
-import '../../base/models/common/language_model.dart';
 import '../../base/models/errors/error_model.dart';
+import '../../base/models/language_model.dart';
 import '../models/selected_language_model.dart';
 import '../services/language_service.dart';
 
@@ -11,14 +11,12 @@ part 'language_picker_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the LanguagePickerBloC.
 abstract class LanguagePickerBlocEvents {
-
   /// Sets the current language and updates the [currentLanguage] state
   void setCurrent(LanguageModel language);
 }
 
 /// A contract class containing all states of the LanguagePickerBloC.
 abstract class LanguagePickerBlocStates {
-
   /// Selected language state
   ConnectableStream<LanguageModel> get currentLanguage;
 

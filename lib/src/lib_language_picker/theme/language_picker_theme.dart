@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'language_picker_theme.tailor.dart';
 
@@ -10,8 +10,8 @@ part 'language_picker_theme.tailor.dart';
 class _$LanguagePickerTheme {
   /// region EdgeInsets
   static List<EdgeInsets> changeLanguagePadding = [
-    const EdgeInsets.only(left: 16,right: 16,bottom: 16),
-    const EdgeInsets.only(left: 16,right: 16,bottom: 16),
+    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
   ];
 
   static List<EdgeInsets> chooseLanguagePadding = [
@@ -33,40 +33,40 @@ class _$LanguagePickerTheme {
 
   /// region TextStyle
   static List<TextStyle> descriptionThin = [
-    PrimeDesignSystem.light().typography.descriptionThin,
-    PrimeDesignSystem.dark().typography.descriptionThin,
+    WidgetToolkitDesignSystem.light().typography.descriptionThin,
+    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
   ];
 
   static List<TextStyle> titleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   static List<TextStyle> languageCodeInLanguagePickerTitleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   /// endregion
   /// region spacings
   static List<double> spacingS = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
 
   static List<double> changeLanguageSizedBox = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
 
   static List<double> spacingM = [
-    PrimeDesignSystem.light().spacings.m,
-    PrimeDesignSystem.dark().spacings.m,
+    WidgetToolkitDesignSystem.light().spacings.m,
+    WidgetToolkitDesignSystem.dark().spacings.m,
   ];
 
   static List<double> spacingXXXXL1 = [
-    PrimeDesignSystem.light().spacings.xxxxl1,
-    PrimeDesignSystem.dark().spacings.xxxxl1,
+    WidgetToolkitDesignSystem.light().spacings.xxxxl1,
+    WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
   ];
 
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [
@@ -79,101 +79,100 @@ class _$LanguagePickerTheme {
   /// region Color
 
   static List<Color> activeButtonLanguageTextColor = [
-    PrimeDesignSystem.light().colors.activeButtonLanguageTextColor,
-    PrimeDesignSystem.dark().colors.activeButtonLanguageTextColor,
+    WidgetToolkitDesignSystem.light().colors.activeButtonLanguageTextColor,
+    WidgetToolkitDesignSystem.dark().colors.activeButtonLanguageTextColor,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.gray,
-    PrimeDesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> activeGradientRedEnd = [
-    PrimeDesignSystem.light().colors.gradientRedEnd,
-    PrimeDesignSystem.dark().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
   ];
 
   static List<Color> languageGradientRedStart = [
-    PrimeDesignSystem.light().colors.gradientRedStart,
-    PrimeDesignSystem.dark().colors.redDark,
+    WidgetToolkitDesignSystem.light().colors.gradientRedStart,
+    WidgetToolkitDesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> languageGradientRedEnd = [
-    PrimeDesignSystem.light().colors.gradientRedEnd,
-    PrimeDesignSystem.dark().colors.gradientRedStart,
+    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.dark().colors.gradientRedStart,
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
-    PrimeDesignSystem.light().colors.filledButtonBackgroundColorDisabled,
-    PrimeDesignSystem.dark().colors.filledButtonBackgroundColorDisabled,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> buttonTextColor = [
-    PrimeDesignSystem.light().colors.textColorWhite,
-    PrimeDesignSystem.dark().colors.textColorWhite,
+    WidgetToolkitDesignSystem.light().colors.textColorWhite,
+    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
   ];
 
-  static List<Color> appFilledButtonTextColorDisabled = [
-    PrimeDesignSystem.light().colors.gray,
-    PrimeDesignSystem.dark().colors.gray,
+  static List<Color> filledButtonTextColorDisabled = [
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> textColorWhite = [
-    PrimeDesignSystem.light().colors.textColorWhite,
-    PrimeDesignSystem.dark().colors.textColorWhite,
+    WidgetToolkitDesignSystem.light().colors.textColorWhite,
+    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> boxShadowColor = [
-    PrimeDesignSystem.light().colors.red,
-    PrimeDesignSystem.dark().colors.red,
+    WidgetToolkitDesignSystem.light().colors.red,
+    WidgetToolkitDesignSystem.dark().colors.red,
   ];
 
   static List<Color> bodyTextColor2 = [
-    PrimeDesignSystem.light().colors.black,
-    PrimeDesignSystem.dark().colors.activeButtonTextColor,
+    WidgetToolkitDesignSystem.light().colors.black,
+    WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
   ];
 
   static List<Color> textButtonLoadingIndicatorColor = [
-    PrimeDesignSystem.light().colors.redDark,
-    PrimeDesignSystem.dark().colors.redDark,
+    WidgetToolkitDesignSystem.light().colors.redDark,
+    WidgetToolkitDesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> buttonBlueGradientEnd = [
-    PrimeDesignSystem.light().colors.appButtonBlueGradientEnd,
-    PrimeDesignSystem.dark().colors.appButtonBlueGradientEnd,
+    WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
+    WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
   ];
 
   static List<Color> elevatedButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.lightGray,
-    PrimeDesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.lightGray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
-  static List<Color> appOutlineButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.white,
-    PrimeDesignSystem.dark().colors.white,
+  static List<Color> outlineButtonBackgroundColor = [
+    WidgetToolkitDesignSystem.light().colors.white,
+    WidgetToolkitDesignSystem.dark().colors.white,
   ];
   static List<Color> errorTextBackgroundColor = [
-    PrimeDesignSystem.light().colors.green,
-    PrimeDesignSystem.dark().colors.green,
+    WidgetToolkitDesignSystem.light().colors.green,
+    WidgetToolkitDesignSystem.dark().colors.green,
   ];
 
   static List<Color> errorTextColor = [
-    PrimeDesignSystem.light().colors.black,
-    PrimeDesignSystem.dark().colors.black,
+    WidgetToolkitDesignSystem.light().colors.black,
+    WidgetToolkitDesignSystem.dark().colors.black,
   ];
 
   static List<SvgFile> checkIcon = [
-    PrimeDesignSystem.dark().icons.checkIcon,
-    PrimeDesignSystem.light().icons.checkIcon,
+    WidgetToolkitDesignSystem.dark().icons.checkIcon,
+    WidgetToolkitDesignSystem.light().icons.checkIcon,
   ];
 
   static List<SvgFile> dangerIcon = [
-    PrimeDesignSystem.dark().icons.dangerIcon,
-    PrimeDesignSystem.light().icons.dangerIcon,
+    WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+    WidgetToolkitDesignSystem.light().icons.dangerIcon,
   ];
 
   /// endregion
-
 }
 
 extension LanguagePickerThemeContextExtension on BuildContext {

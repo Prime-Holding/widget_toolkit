@@ -2,247 +2,248 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../utils/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'text_field_dialog_theme.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.none)
 class _$TextFieldDialogTheme {
   //TODO: The properties of the theme extension should be almost always specific just like in the example below.
-  // The colors, sizes etc from design system should be used to fill in the values (take for reference PrimeComponentsTheme, ItemPickerTheme, SearchPickerTheme).
+  // The colors, sizes etc from design system should be used to fill in the values (take for reference WidgetToolkitTheme, ItemPickerTheme, SearchPickerTheme).
 
-  /// region PrimeEditFieldWidget
-  static List<Color> primeEditFieldSuccessBackground = [
-    PrimeDesignSystem.light().colors.greenLight,
-    PrimeDesignSystem.dark().colors.green,
+  /// region EditFieldWidget
+  static List<Color> editFieldSuccessBackground = [
+    WidgetToolkitDesignSystem.light().colors.greenLight,
+    WidgetToolkitDesignSystem.dark().colors.green,
   ];
 
-  static List<Color> primeEditFieldRegularBackground = [
-    PrimeDesignSystem.light().colors.mediumWhite,
-    PrimeDesignSystem.dark().colors.primeEditFieldWidget,
+  static List<Color> editFieldRegularBackground = [
+    WidgetToolkitDesignSystem.light().colors.mediumWhite,
+    WidgetToolkitDesignSystem.dark().colors.black45,
   ];
 
-  static List<double> primeEditFieldBorderRadius = [
-    PrimeDesignSystem.light().spacings.xss,
-    PrimeDesignSystem.light().spacings.xss,
+  static List<double> editFieldBorderRadius = [
+    WidgetToolkitDesignSystem.light().spacings.xss,
+    WidgetToolkitDesignSystem.light().spacings.xss,
   ];
 
   /// endregion
 
-  ///  region PrimeInputTextField
-  static List<Color> primeInputTextFieldSuccessBackground = [
-    PrimeDesignSystem.light().colors.greenLight,
-    PrimeDesignSystem.dark().colors.green,
+  ///  region InputTextField
+  static List<Color> inputTextFieldSuccessBackground = [
+    WidgetToolkitDesignSystem.light().colors.greenLight,
+    WidgetToolkitDesignSystem.dark().colors.green,
   ];
 
-  static List<Color> primeInputTextFieldRegularBackground = [
-    PrimeDesignSystem.light().colors.mediumWhite,
-    PrimeDesignSystem.dark().colors.darkGray,
+  static List<Color> inputTextFieldRegularBackground = [
+    WidgetToolkitDesignSystem.light().colors.mediumWhite,
+    WidgetToolkitDesignSystem.dark().colors.darkGray,
   ];
+
   ///  endregion
 
-  /// region PrimeLabelBoxWidget
-  static List<Color> primeLabelBoxOptionalBackground = [
-    PrimeDesignSystem.light().colors.white,
-    PrimeDesignSystem.dark().colors.darkGray,
+  /// region LabelBoxWidget
+  static List<Color> labelBoxOptionalBackground = [
+    WidgetToolkitDesignSystem.light().colors.white,
+    WidgetToolkitDesignSystem.dark().colors.darkGray,
   ];
 
-  static List<Color> primeLabelBoxFilledBackground = [
-    PrimeDesignSystem.light().colors.mediumWhite,
-    PrimeDesignSystem.dark().colors.darkGray,
+  static List<Color> labelBoxFilledBackground = [
+    WidgetToolkitDesignSystem.light().colors.mediumWhite,
+    WidgetToolkitDesignSystem.dark().colors.darkGray,
   ];
 
   /// endregion
 
   /// region spacings
   static List<double> spacingXS = [
-    PrimeDesignSystem.light().spacings.xs,
-    PrimeDesignSystem.dark().spacings.xs,
+    WidgetToolkitDesignSystem.light().spacings.xs,
+    WidgetToolkitDesignSystem.dark().spacings.xs,
   ];
 
   static List<double> spacingXSS = [
-    PrimeDesignSystem.light().spacings.xss,
-    PrimeDesignSystem.dark().spacings.xss,
+    WidgetToolkitDesignSystem.light().spacings.xss,
+    WidgetToolkitDesignSystem.dark().spacings.xss,
   ];
   static List<double> spacingS = [
-    PrimeDesignSystem.light().spacings.s,
-    PrimeDesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
 
   static List<double> spacingM = [
-    PrimeDesignSystem.light().spacings.m,
-    PrimeDesignSystem.dark().spacings.m,
+    WidgetToolkitDesignSystem.light().spacings.m,
+    WidgetToolkitDesignSystem.dark().spacings.m,
   ];
   static List<double> spacingL = [
-    PrimeDesignSystem.light().spacings.l,
-    PrimeDesignSystem.dark().spacings.l,
+    WidgetToolkitDesignSystem.light().spacings.l,
+    WidgetToolkitDesignSystem.dark().spacings.l,
   ];
 
   static List<double> spacingXL = [
-    PrimeDesignSystem.light().spacings.xl,
-    PrimeDesignSystem.dark().spacings.xl,
+    WidgetToolkitDesignSystem.light().spacings.xl,
+    WidgetToolkitDesignSystem.dark().spacings.xl,
   ];
   static List<double> spacingXXXS = [
-    PrimeDesignSystem.light().spacings.xxxs,
-    PrimeDesignSystem.dark().spacings.xxxs,
+    WidgetToolkitDesignSystem.light().spacings.xxxs,
+    WidgetToolkitDesignSystem.dark().spacings.xxxs,
   ];
 
   ///endregion
   /// region TextStyle
   static List<TextStyle> descriptionThin = [
-    PrimeDesignSystem.light().typography.descriptionThin,
-    PrimeDesignSystem.dark().typography.descriptionThin,
+    WidgetToolkitDesignSystem.light().typography.descriptionThin,
+    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
   ];
 
   static List<TextStyle> titleBold = [
-    PrimeDesignSystem.light().typography.titleBold,
-    PrimeDesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   static List<TextStyle> descriptionBold = [
-    PrimeDesignSystem.light().typography.descriptionBold,
-    PrimeDesignSystem.dark().typography.descriptionBold,
+    WidgetToolkitDesignSystem.light().typography.descriptionBold,
+    WidgetToolkitDesignSystem.dark().typography.descriptionBold,
   ];
 
   static List<TextStyle> captionBold = [
-    PrimeDesignSystem.light().typography.captionBold,
-    PrimeDesignSystem.dark().typography.captionBold,
+    WidgetToolkitDesignSystem.light().typography.captionBold,
+    WidgetToolkitDesignSystem.dark().typography.captionBold,
   ];
 
   static List<TextStyle> smallThin = [
-    PrimeDesignSystem.light().typography.smallThin,
-    PrimeDesignSystem.dark().typography.smallThin,
+    WidgetToolkitDesignSystem.light().typography.smallThin,
+    WidgetToolkitDesignSystem.dark().typography.smallThin,
   ];
 
   ///endregion
 
   ///region Color
   static List<Color> black = [
-    PrimeDesignSystem.light().colors.textFieldDialogBlack,
-    PrimeDesignSystem.dark().colors.textFieldDialogBlack,
+    WidgetToolkitDesignSystem.light().colors.textFieldDialogBlack,
+    WidgetToolkitDesignSystem.dark().colors.textFieldDialogBlack,
   ];
 
   static List<Color> defaultWhite = [
-    PrimeDesignSystem.light().colors.white,
-    PrimeDesignSystem.dark().colors.white,
+    WidgetToolkitDesignSystem.light().colors.white,
+    WidgetToolkitDesignSystem.dark().colors.white,
   ];
 
   static List<Color> white = [
-    PrimeDesignSystem.light().colors.textFieldDialogWhite,
-    PrimeDesignSystem.dark().colors.textFieldDialogWhite,
+    WidgetToolkitDesignSystem.light().colors.textFieldDialogWhite,
+    WidgetToolkitDesignSystem.dark().colors.textFieldDialogWhite,
   ];
 
   static List<Color> blue = [
-    PrimeDesignSystem.light().colors.darkBlue,
-    PrimeDesignSystem.dark().colors.blue,
+    WidgetToolkitDesignSystem.light().colors.darkBlue,
+    WidgetToolkitDesignSystem.dark().colors.blue,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    PrimeDesignSystem.light().colors.disabledFilledButtonBackgroundColor,
-    PrimeDesignSystem.dark().colors.disabledFilledButtonBackgroundColor,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> gradientRedEnd = [
-    PrimeDesignSystem.light().colors.gradientRedEnd,
-    PrimeDesignSystem.dark().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
   ];
 
   static List<Color> mediumWhite = [
-    PrimeDesignSystem.light().colors.lightGray,
-    PrimeDesignSystem.dark().colors.lightGray,
+    WidgetToolkitDesignSystem.light().colors.lightGray,
+    WidgetToolkitDesignSystem.dark().colors.lightGray,
   ];
 
   static List<Color> gray = [
-    PrimeDesignSystem.light().colors.gray,
-    PrimeDesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> green = [
-    PrimeDesignSystem.light().colors.darkGreen,
-    PrimeDesignSystem.dark().colors.darkGreen,
+    WidgetToolkitDesignSystem.light().colors.darkGreen,
+    WidgetToolkitDesignSystem.dark().colors.darkGreen,
   ];
 
   static List<Color> redLight = [
-    PrimeDesignSystem.light().colors.lightRed,
-    PrimeDesignSystem.dark().colors.lightRed,
+    WidgetToolkitDesignSystem.light().colors.lightRed,
+    WidgetToolkitDesignSystem.dark().colors.lightRed,
   ];
 
   static List<Color> orangeLight = [
-    PrimeDesignSystem.light().colors.orangeLight,
-    PrimeDesignSystem.dark().colors.orangeLight,
+    WidgetToolkitDesignSystem.light().colors.orangeLight,
+    WidgetToolkitDesignSystem.dark().colors.orangeLight,
   ];
 
   static List<Color> orange = [
-    PrimeDesignSystem.light().colors.orange,
-    PrimeDesignSystem.dark().colors.orange,
+    WidgetToolkitDesignSystem.light().colors.orange,
+    WidgetToolkitDesignSystem.dark().colors.orange,
   ];
 
   static List<Color> transparent = [
-    PrimeDesignSystem.light().colors.textFieldDialogTransparent,
-    PrimeDesignSystem.dark().colors.textFieldDialogTransparent,
+    WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
+    WidgetToolkitDesignSystem.dark().colors.textFieldDialogTransparent,
   ];
 
   static List<Color> greenLight = [
-    PrimeDesignSystem.light().colors.greenLight,
-    PrimeDesignSystem.dark().colors.greenLight,
+    WidgetToolkitDesignSystem.light().colors.greenLight,
+    WidgetToolkitDesignSystem.dark().colors.greenLight,
   ];
 
   static List<Color> red = [
-    PrimeDesignSystem.light().colors.red,
-    PrimeDesignSystem.dark().colors.red,
+    WidgetToolkitDesignSystem.light().colors.red,
+    WidgetToolkitDesignSystem.dark().colors.red,
   ];
 
   static List<Color> mediumBlack = [
-    PrimeDesignSystem.light().colors.mediumBlack,
-    PrimeDesignSystem.dark().colors.mediumBlack,
+    WidgetToolkitDesignSystem.light().colors.mediumBlack,
+    WidgetToolkitDesignSystem.dark().colors.mediumBlack,
   ];
 
   ///endregion
 
   ///region SvgFile
   static List<SvgFile> closeIcon = [
-    PrimeDesignSystem.dark().icons.closeIcon,
-    PrimeDesignSystem.light().icons.closeIcon,
+    WidgetToolkitDesignSystem.dark().icons.closeIcon,
+    WidgetToolkitDesignSystem.light().icons.closeIcon,
   ];
 
   static List<SvgFile> dangerIcon = [
-    PrimeDesignSystem.dark().icons.dangerIcon,
-    PrimeDesignSystem.light().icons.dangerIcon,
+    WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+    WidgetToolkitDesignSystem.light().icons.dangerIcon,
   ];
 
   static List<SvgFile> addIcon = [
-    PrimeDesignSystem.dark().icons.addIcon,
-    PrimeDesignSystem.light().icons.addIcon,
+    WidgetToolkitDesignSystem.dark().icons.addIcon,
+    WidgetToolkitDesignSystem.light().icons.addIcon,
   ];
 
   static List<SvgFile> addDisabledIcon = [
-    PrimeDesignSystem.dark().icons.addDisabledIcon,
-    PrimeDesignSystem.light().icons.addDisabledIcon,
+    WidgetToolkitDesignSystem.dark().icons.addDisabledIcon,
+    WidgetToolkitDesignSystem.light().icons.addDisabledIcon,
   ];
 
   static List<SvgFile> arrowRightSquareIcon = [
-    PrimeDesignSystem.dark().icons.arrowRightSquareIcon,
-    PrimeDesignSystem.light().icons.arrowRightSquareIcon,
+    WidgetToolkitDesignSystem.dark().icons.arrowRightSquareIcon,
+    WidgetToolkitDesignSystem.light().icons.arrowRightSquareIcon,
   ];
 
   static List<SvgFile> editPenIcon = [
-    PrimeDesignSystem.dark().icons.editPenIcon,
-    PrimeDesignSystem.light().icons.editPenIcon,
+    WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+    WidgetToolkitDesignSystem.light().icons.editPenIcon,
   ];
 
   static List<SvgFile> infoCircleIcon = [
-    PrimeDesignSystem.dark().icons.infoCircleIcon,
-    PrimeDesignSystem.light().icons.infoCircleIcon,
+    WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+    WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
   ];
 
   static List<SvgFile> loadingIcon = [
-    PrimeDesignSystem.dark().icons.loadingIcon,
-    PrimeDesignSystem.light().icons.loadingIcon,
+    WidgetToolkitDesignSystem.dark().icons.loadingIcon,
+    WidgetToolkitDesignSystem.light().icons.loadingIcon,
   ];
 
   static List<SvgFile> tickCircleSuccessIcon = [
-    PrimeDesignSystem.dark().icons.tickCircleSuccessIcon,
-    PrimeDesignSystem.light().icons.tickCircleSuccessIcon,
+    WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
+    WidgetToolkitDesignSystem.light().icons.tickCircleSuccessIcon,
   ];
 
   ///endregion
@@ -250,100 +251,100 @@ class _$TextFieldDialogTheme {
 
   static List<EdgeInsets> textFieldDialog2 = [
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.light().spacings.xs1,
-      top: PrimeDesignSystem.light().spacings.l,
-      left: PrimeDesignSystem.light().spacings.m,
-      right: PrimeDesignSystem.light().spacings.m,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xs1,
+      top: WidgetToolkitDesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.m,
+      right: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      bottom: PrimeDesignSystem.dark().spacings.xs1,
-      top: PrimeDesignSystem.dark().spacings.l,
-      left: PrimeDesignSystem.dark().spacings.m,
-      right: PrimeDesignSystem.dark().spacings.m,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.xs1,
+      top: WidgetToolkitDesignSystem.dark().spacings.l,
+      left: WidgetToolkitDesignSystem.dark().spacings.m,
+      right: WidgetToolkitDesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> textFieldDialog4 = [
     EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl,
-      bottom: PrimeDesignSystem.light().spacings.xxxxs,
+      top: WidgetToolkitDesignSystem.light().spacings.xl,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
     ),
     EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl,
-      bottom: PrimeDesignSystem.light().spacings.xxxxs,
+      top: WidgetToolkitDesignSystem.light().spacings.xl,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
     ),
   ];
 
   static List<EdgeInsets> textFieldDialog3 = [
     EdgeInsets.only(
-      left: PrimeDesignSystem.light().spacings.xs,
-      bottom: PrimeDesignSystem.light().spacings.m,
+      left: WidgetToolkitDesignSystem.light().spacings.xs,
+      bottom: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      left: PrimeDesignSystem.dark().spacings.xs,
-      bottom: PrimeDesignSystem.dark().spacings.m,
+      left: WidgetToolkitDesignSystem.dark().spacings.xs,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
     )
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding1 = [
+  static List<EdgeInsets> labeledBoxWidgetPadding1 = [
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.light().spacings.m,
-      horizontal: PrimeDesignSystem.light().spacings.s,
+      vertical: WidgetToolkitDesignSystem.light().spacings.m,
+      horizontal: WidgetToolkitDesignSystem.light().spacings.s,
     ),
     EdgeInsets.symmetric(
-      vertical: PrimeDesignSystem.dark().spacings.m,
-      horizontal: PrimeDesignSystem.dark().spacings.s,
+      vertical: WidgetToolkitDesignSystem.dark().spacings.m,
+      horizontal: WidgetToolkitDesignSystem.dark().spacings.s,
     )
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding2 = [
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.xs),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.xs)
+  static List<EdgeInsets> labeledBoxWidgetPadding2 = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appLabeledBoxWidgetPadding3 = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.m),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.m)
+  static List<EdgeInsets> labeledBoxWidgetPadding3 = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.m),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.m)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPadding1 = [
+  static List<EdgeInsets> inputTextFieldPadding1 = [
     EdgeInsets.only(
-      left: PrimeDesignSystem.light().spacings.m,
-      top: PrimeDesignSystem.light().spacings.xxxs,
+      left: WidgetToolkitDesignSystem.light().spacings.m,
+      top: WidgetToolkitDesignSystem.light().spacings.xxxs,
     ),
     EdgeInsets.only(
-      left: PrimeDesignSystem.dark().spacings.m,
-      top: PrimeDesignSystem.dark().spacings.xxxs,
+      left: WidgetToolkitDesignSystem.dark().spacings.m,
+      top: WidgetToolkitDesignSystem.dark().spacings.xxxs,
     )
   ];
-  static List<EdgeInsets> appInputTextFieldPadding2 = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.xs),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.xs)
+  static List<EdgeInsets> inputTextFieldPadding2 = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.xs),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPadding3 = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.xs),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.xs)
+  static List<EdgeInsets> inputTextFieldPadding3 = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.xs),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingLoading = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.s)
+  static List<EdgeInsets> inputTextFieldPaddingLoading = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingSuccess = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.s)
+  static List<EdgeInsets> inputTextFieldPaddingSuccess = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingWarning = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.s)
+  static List<EdgeInsets> inputTextFieldPaddingWarning = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
   ];
 
-  static List<EdgeInsets> appInputTextFieldPaddingError = [
-    EdgeInsets.only(right: PrimeDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: PrimeDesignSystem.dark().spacings.s)
+  static List<EdgeInsets> inputTextFieldPaddingError = [
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
   ];
 
   ///endregion
