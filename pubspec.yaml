@@ -1,5 +1,5 @@
 name: widget_toolkit
-description: A collection of customisable widgets developed by Prime Holding JSC to help reduce development time
+description: The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
 version: 0.0.1-dev1
 repository: https://github.com/Prime-Holding/widget_toolkit
 issue_tracker: https://github.com/Prime-Holding/widget_toolkit/issues
