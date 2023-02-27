@@ -1,38 +1,38 @@
 dartdoc:
   categories:
-    "Edit address":
+    "Edit Address":
       markdown: doc/edit-address.md
-      name: Edit address
-    "Item picker":
+      name: Edit Address
+    "Item Picker":
       markdown: doc/item-picker.md
-      name: Item picker
-    "Language picker":
+      name: Item Picker
+    "Language Picker":
       markdown: doc/language-picker.md
-      name: Language picker
-    "Open url":
+      name: Language Picker
+    "URL Launcher":
       markdown: doc/open-url.md
-      name: Open url
-    "Search picker":
+      name: URL Launcher
+    "Search Picker":
       markdown: doc/search-picker.md
-      name: Search picker
+      name: Search Picker
     "Shimmer":
       markdown: doc/shimmer.md
       name: Shimmer
-    "Text field dialog":
+    "Text Field Dialog":
       markdown: doc/text-field-dialog.md
-      name: Text field dialog
-    "Ui components":
+      name: Text Field Dialog
+    "UI Components":
       markdown: doc/ui-components.md
-      name: Ui components
+      name: UI Components
   categoryOrder:
-    - "Ui components"
+    - "UI Components"
     - "Shimmer"
-    - "Open url"
-    - "Item picker"
-    - "Language picker"
-    - "Search picker"
-    - "Text field dialog"
-    - "Edit address"
+    - "URL Launcher"
+    - "Item Picker"
+    - "Language Picker"
+    - "Search Picker"
+    - "Text Field Dialog"
+    - "Edit Address"
   showUndocumentedCategories: true
   ignore:
     - broken-link
