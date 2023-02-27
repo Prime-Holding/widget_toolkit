@@ -6,14 +6,14 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 
 ## Contents:
 
-- [Shimmer][shimmer_pkg]
-- [Item Picker][item_picker_pkg]
-- [Open Url][open_url_pkg]
-- [Language Picker][language_picker_pkg]
-- [Ui_Components][ui_components_pkg]
-- [Edit Address][edit_address_pkg]
-- [Text Field Dialog][text_field_dialog_pkg]
-- [Search Picker][search_picker_pkg]
+- [UI Components][ui_components_doc]
+- [Shimmer][shimmer_doc]
+- [URL Launcher][open_url_doc]
+- [Item Picker][item_picker_doc]
+- [Language Picker][language_picker_doc]
+- [Search Picker][search_picker-_doc]
+- [Text Field Dialog][text_field_dialog_doc]
+- [Edit Address][edit_address_doc]
 
 ## Demo
 
@@ -99,21 +99,6 @@ extensions: [
     ],
 ...
 ```
-
-## Documentation
-
-See the API documentation for details on the following topics:
-
-- [Ui components][ui_components_doc]
-- [Shimmer][shimmer_doc]
-- [Open url][open_url_doc]
-- [Item picker][item_picker_doc]
-- [Language picker][language_picker_doc]
-- [Search picker][search_picker-_doc]
-- [Text field dialog][text_field_dialog_doc]
-- [Edit address][edit_address_doc]
-
----
 
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
