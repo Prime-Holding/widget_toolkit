@@ -125,5 +125,4 @@ class DesignSystemTypography {
       fontStyle: FontStyle.normal,
       letterSpacing: 0.8,
       fontSize: 10.0);
-
 }

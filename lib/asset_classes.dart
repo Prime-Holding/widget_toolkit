@@ -13,4 +13,3 @@ class SvgFile extends StatelessWidget {
     return SvgPicture.asset(path);
   }
 }
-
