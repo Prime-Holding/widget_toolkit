@@ -68,8 +68,8 @@ screenshots:
     path: doc/assets/language-picker.gif
   - description: Search Picker
     path: doc/assets/search-picker.gif
-  - description: Shimmer
-    path: doc/assets/shimmer.gif
+  - description: Shimmer Widget
+    path: doc/assets/shimmeritem_picker_bloc.gif
   - description: URL Launcher
     path: doc/assets/url.gif
   - description: Error Buttom Sheet
