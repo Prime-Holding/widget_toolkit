@@ -11,9 +11,9 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 - [Open Url][open_url_pkg]
 - [Language Picker][language_picker_pkg]
 - [Ui_Components][ui_components_pkg]
-- [Edit Address][edit_address]
-- [Text Field Dialog][text_field_dialog]
-- [Search Picker][search_picker]
+- [Edit Address][edit_address_pkg]
+- [Text Field Dialog][text_field_dialog_pkg]
+- [Search Picker][search_picker_pkg]
 
 ## Demo
 
@@ -100,6 +100,19 @@ extensions: [
 ...
 ```
 
+## Documentation
+
+See the API documentation for details on the following topics:
+
+- [Ui components][ui_components_doc]
+- [Shimmer][shimmer_doc]
+- [Open url][open_url_doc]
+- [Item picker][item_picker_doc]
+- [Language picker][language_picker_doc]
+- [Search picker][search_picker-_doc]
+- [Text field dialog][text_field_dialog_doc]
+- [Edit address][edit_address_doc]
+
 ---
 
 
@@ -114,6 +127,14 @@ extensions: [
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/src/lib_item_picker
 [language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_language_picker
 [ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_ui_components
-[edit_address]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
-[text_field_dialog]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
-[search_picker]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
+[edit_address_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
+[text_field_dialog_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
+[search_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
+[ui_components_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/ui-components.md
+[shimmer_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/shimmer.md
+[open_url_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/open-url.md
+[item_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/item-picker.md
+[language_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/language-picker.md
+[search_picker-_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/search-picker.md
+[text_field_dialog_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/text-field-dialog.md
+[edit_address_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/edit-address.md
