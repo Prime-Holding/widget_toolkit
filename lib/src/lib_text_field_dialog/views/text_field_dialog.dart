@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../asset_classes.dart';
-import '../../../common_ui_components.dart';
+import '../../../ui_components.dart';
 import '../../base/extensions/data_type_extensions.dart';
 import '../di/text_field_dialog_dependencies.dart';
 import '../services/text_field_validator.dart';

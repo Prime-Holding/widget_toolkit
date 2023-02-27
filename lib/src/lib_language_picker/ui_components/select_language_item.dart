@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../asset_classes.dart';
-import '../../lib_language_picker/models/selected_language_model.dart';
-import '../../lib_language_picker/theme/language_picker_theme.dart';
-import 'buttons/button_color_style.dart';
-import 'buttons/button_state.dart';
-import 'dynamic_icon.dart';
-import 'sized_loading_indicator.dart';
+import '../../lib_ui_components/buttons/button_color_style.dart';
+import '../../lib_ui_components/buttons/button_state.dart';
+import '../../lib_ui_components/dynamic_icon.dart';
+import '../../lib_ui_components/sized_loading_indicator.dart';
+import '../models/selected_language_model.dart';
+import '../theme/language_picker_theme.dart';
 
 /// The class is used to display the [languageModel] in the list
 /// of languages

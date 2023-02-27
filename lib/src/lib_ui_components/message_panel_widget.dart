@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../extensions.dart';
-import '../../../language_picker.dart';
-import '../../lib_shimmer/models/shimmer_type.dart';
-import '../../lib_shimmer/views/shimmer_text.dart';
-import '../../lib_shimmer/views/shimmer_wrapper.dart';
-import '../theme/widget_toolkit_theme.dart';
+import '../../extensions.dart';
+import '../base/models/message_panel_state.dart';
+import '../base/theme/widget_toolkit_theme.dart';
+import '../lib_language_picker/theme/language_picker_theme.dart';
+import '../lib_shimmer/models/shimmer_type.dart';
+import '../lib_shimmer/views/shimmer_text.dart';
+import '../lib_shimmer/views/shimmer_wrapper.dart';
 
 class MessagePanelWidget extends StatelessWidget {
   const MessagePanelWidget({

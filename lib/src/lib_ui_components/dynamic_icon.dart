@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../asset_classes.dart';
+import '../../asset_classes.dart';
 
 class DynamicIcon extends StatelessWidget {
   const DynamicIcon(

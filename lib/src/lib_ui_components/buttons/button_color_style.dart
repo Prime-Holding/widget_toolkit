@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme/widget_toolkit_theme.dart';
+import '../../base/theme/widget_toolkit_theme.dart';
 
 part 'button_color_style.g.dart';
 
