@@ -72,7 +72,7 @@ screenshots:
     path: doc/assets/shimmer.gif
   - description: URL Launcher
     path: doc/assets/url.gif
-  - description: Error Button Sheet
+  - description: Error Buttom Sheet
     path: doc/assets/error-bottom-sheet.gif
   - description: Text Field Dialog
     path: doc/assets/text-field-dialog.gif
