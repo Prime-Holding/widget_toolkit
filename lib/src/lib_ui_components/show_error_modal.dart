@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common_ui_components/show_modal.dart';
 import 'error_card_widget.dart';
+import 'show_modal.dart';
 
 /// Displays a customizable modal sheet with a background blur effect. Requires
 /// an [error] which will be presented on the modal sheet, with an optional

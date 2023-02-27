@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../asset_classes.dart';
-import '../../theme/widget_toolkit_theme.dart';
+import '../../base/theme/widget_toolkit_theme.dart';
 import '../dynamic_icon.dart';
 import '../sized_loading_indicator.dart';
 import 'button_color_style.dart';

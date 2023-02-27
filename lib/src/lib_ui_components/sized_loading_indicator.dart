@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/widget_toolkit_theme.dart';
+import '../base/theme/widget_toolkit_theme.dart';
 
 class SizedLoadingIndicator extends StatelessWidget {
   const SizedLoadingIndicator({

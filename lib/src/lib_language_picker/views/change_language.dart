@@ -3,15 +3,15 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models.dart';
-import '../../base/common_ui_components/buttons/button_color_style.dart';
-import '../../base/common_ui_components/buttons/button_state.dart';
-import '../../base/common_ui_components/buttons/small_button.dart';
-import '../../base/common_ui_components/message_panel_error.dart';
-import '../../base/common_ui_components/select_language_item.dart';
-import '../../base/common_ui_components/show_modal.dart';
+import '../../lib_ui_components/buttons/button_color_style.dart';
+import '../../lib_ui_components/buttons/button_state.dart';
+import '../../lib_ui_components/buttons/small_button.dart';
+import '../../lib_ui_components/message_panel_error.dart';
+import '../../lib_ui_components/show_modal.dart';
 import '../blocs/language_picker_bloc.dart';
 import '../models/selected_language_model.dart';
 import '../theme/language_picker_theme.dart';
+import '../ui_components/select_language_item.dart';
 
 /// Display a bottom modal sheet, designed to display a list of available languages,
 /// from which to choose one to be set as the language Locale() to your MaterialApp()

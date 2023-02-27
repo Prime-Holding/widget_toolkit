@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../base/theme/widget_toolkit_theme.dart';
 import '../../lib_shimmer/views/shimmer_text.dart';
-import '../theme/widget_toolkit_theme.dart';
 
-class SearchPickerListItem extends StatelessWidget {
-  const SearchPickerListItem({
+class PickerListItem extends StatelessWidget {
+  const PickerListItem({
     this.text,
     this.child,
     this.onTap,

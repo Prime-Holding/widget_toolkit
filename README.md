@@ -10,7 +10,7 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 - [Item Picker][item_picker_pkg]
 - [Open Url][open_url_pkg]
 - [Language Picker][language_picker_pkg]
-- [Common Utilities][common_utilities_pkg]
+- [Ui_Components][ui_components_pkg]
 - [Edit Address][edit_address]
 - [Text Field Dialog][text_field_dialog]
 - [Search Picker][search_picker]
@@ -113,7 +113,7 @@ extensions: [
 [open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_open_url
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/src/lib_item_picker
 [language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_language_picker
-[common_utilities_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/common
+[ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_ui_components
 [edit_address]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
 [text_field_dialog]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
 [search_picker]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker

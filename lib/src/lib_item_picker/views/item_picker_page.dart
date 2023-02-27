@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widget_toolkit.dart';
+import '../../base/models/errors/error_model.dart';
 import '../../base/models/item_builder.dart';
+import '../../base/models/picker_item_model.dart';
 import '../../base/utils/easy_fade_transition.dart';
+import '../../lib_ui_components/buttons/button_state.dart';
+import '../../lib_ui_components/buttons/gradient_fill_button.dart';
+import '../../lib_ui_components/error_card_widget.dart';
 import '../blocs/item_picker_bloc.dart';
 import '../di/item_picker_dependencies.dart';
+import '../service/item_picker_service.dart';
+import '../theme/item_picker_theme.dart';
+import '../ui_components/picker_list_item.dart';
 
 class ItemPickerPage<T extends PickerItemModel> extends StatefulWidget {
   const ItemPickerPage({
@@ -201,7 +208,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
           itemBuilder: (context, index) {
             final model = list.isEmpty ? null : list[index];
 
-            return SearchPickerListItem(
+            return PickerListItem(
               text: model?.itemDisplayName,
               onTap: isLoading ? null : () => _onTap(model),
               isSelected: selectedItems.contains(model),

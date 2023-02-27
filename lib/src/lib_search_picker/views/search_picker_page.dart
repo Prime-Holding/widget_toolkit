@@ -3,15 +3,16 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common_ui_components.dart';
-import '../../base/common_ui_components/search_picker_text_field.dart';
+import '../../../ui_components.dart';
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
 import '../../base/utils/easy_fade_transition.dart';
+import '../../lib_item_picker/ui_components/picker_list_item.dart';
 import '../blocs/search_picker_bloc.dart';
 import '../di/search_picker_dependencies.dart';
 import '../services/search_picker_service.dart';
 import '../theme/search_picker_theme.dart';
+import '../ui_components/search_picker_text_field.dart';
 
 class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
   const SearchPickerPage({
@@ -174,7 +175,7 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
           itemBuilder: (context, index) {
             final model = list.isEmpty ? null : list[index];
 
-            return SearchPickerListItem(
+            return PickerListItem(
               isSelected: model == selectedItem,
               onTap: isLoading ? null : () => onItemTap?.call(model),
               isLoading: isLoading,
