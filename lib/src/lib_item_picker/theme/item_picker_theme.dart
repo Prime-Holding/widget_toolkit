@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import '../../base/theme/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'item_picker_theme.tailor.dart';
 
@@ -15,13 +15,13 @@ class _$ItemPickerTheme {
   ];
 
   static List<TextStyle> titleStyle = [
-    DesignSystem.light().typography.titleStyle,
-    DesignSystem.dark().typography.titleStyle,
+    WidgetToolkitDesignSystem.light().typography.titleStyle,
+    WidgetToolkitDesignSystem.dark().typography.titleStyle,
   ];
 
   static List<EdgeInsets> errorPadding = [
-    DesignSystem.light().spacings.largeHorizontalEdgeInsets,
-    DesignSystem.dark().spacings.largeHorizontalEdgeInsets,
+    WidgetToolkitDesignSystem.light().spacings.largeHorizontalEdgeInsets,
+    WidgetToolkitDesignSystem.dark().spacings.largeHorizontalEdgeInsets,
   ];
 
   /// endregion

@@ -1,4 +1,4 @@
-library common_common_ui_components;
+library common_ui_components;
 
 export 'src/base/common_ui_components/buttons/button_color_style.dart';
 export 'src/base/common_ui_components/buttons/button_state.dart';

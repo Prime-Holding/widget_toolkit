@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../base/theme/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'language_picker_theme.tailor.dart';
 
@@ -33,40 +33,40 @@ class _$LanguagePickerTheme {
 
   /// region TextStyle
   static List<TextStyle> descriptionThin = [
-    DesignSystem.light().typography.descriptionThin,
-    DesignSystem.dark().typography.descriptionThin,
+    WidgetToolkitDesignSystem.light().typography.descriptionThin,
+    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
   ];
 
   static List<TextStyle> titleBold = [
-    DesignSystem.light().typography.titleBold,
-    DesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   static List<TextStyle> languageCodeInLanguagePickerTitleBold = [
-    DesignSystem.light().typography.titleBold,
-    DesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   /// endregion
   /// region spacings
   static List<double> spacingS = [
-    DesignSystem.light().spacings.s,
-    DesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
 
   static List<double> changeLanguageSizedBox = [
-    DesignSystem.light().spacings.s,
-    DesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
 
   static List<double> spacingM = [
-    DesignSystem.light().spacings.m,
-    DesignSystem.dark().spacings.m,
+    WidgetToolkitDesignSystem.light().spacings.m,
+    WidgetToolkitDesignSystem.dark().spacings.m,
   ];
 
   static List<double> spacingXXXXL1 = [
-    DesignSystem.light().spacings.xxxxl1,
-    DesignSystem.dark().spacings.xxxxl1,
+    WidgetToolkitDesignSystem.light().spacings.xxxxl1,
+    WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
   ];
 
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [
@@ -79,97 +79,97 @@ class _$LanguagePickerTheme {
   /// region Color
 
   static List<Color> activeButtonLanguageTextColor = [
-    DesignSystem.light().colors.activeButtonLanguageTextColor,
-    DesignSystem.dark().colors.activeButtonLanguageTextColor,
+    WidgetToolkitDesignSystem.light().colors.activeButtonLanguageTextColor,
+    WidgetToolkitDesignSystem.dark().colors.activeButtonLanguageTextColor,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    DesignSystem.light().colors.gray,
-    DesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> activeGradientRedEnd = [
-    DesignSystem.light().colors.gradientRedEnd,
-    DesignSystem.dark().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
   ];
 
   static List<Color> languageGradientRedStart = [
-    DesignSystem.light().colors.gradientRedStart,
-    DesignSystem.dark().colors.redDark,
+    WidgetToolkitDesignSystem.light().colors.gradientRedStart,
+    WidgetToolkitDesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> languageGradientRedEnd = [
-    DesignSystem.light().colors.gradientRedEnd,
-    DesignSystem.dark().colors.gradientRedStart,
+    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
+    WidgetToolkitDesignSystem.dark().colors.gradientRedStart,
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
-    DesignSystem.light().colors.gray,
-    DesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> buttonTextColor = [
-    DesignSystem.light().colors.textColorWhite,
-    DesignSystem.dark().colors.textColorWhite,
+    WidgetToolkitDesignSystem.light().colors.textColorWhite,
+    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> filledButtonTextColorDisabled = [
-    DesignSystem.light().colors.gray,
-    DesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.gray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> textColorWhite = [
-    DesignSystem.light().colors.textColorWhite,
-    DesignSystem.dark().colors.textColorWhite,
+    WidgetToolkitDesignSystem.light().colors.textColorWhite,
+    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
   ];
 
   static List<Color> boxShadowColor = [
-    DesignSystem.light().colors.red,
-    DesignSystem.dark().colors.red,
+    WidgetToolkitDesignSystem.light().colors.red,
+    WidgetToolkitDesignSystem.dark().colors.red,
   ];
 
   static List<Color> bodyTextColor2 = [
-    DesignSystem.light().colors.black,
-    DesignSystem.dark().colors.activeButtonTextColor,
+    WidgetToolkitDesignSystem.light().colors.black,
+    WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
   ];
 
   static List<Color> textButtonLoadingIndicatorColor = [
-    DesignSystem.light().colors.redDark,
-    DesignSystem.dark().colors.redDark,
+    WidgetToolkitDesignSystem.light().colors.redDark,
+    WidgetToolkitDesignSystem.dark().colors.redDark,
   ];
 
   static List<Color> buttonBlueGradientEnd = [
-    DesignSystem.light().colors.buttonBlueGradientEnd,
-    DesignSystem.dark().colors.buttonBlueGradientEnd,
+    WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
+    WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
   ];
 
   static List<Color> elevatedButtonBackgroundColor = [
-    DesignSystem.light().colors.lightGray,
-    DesignSystem.dark().colors.gray,
+    WidgetToolkitDesignSystem.light().colors.lightGray,
+    WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
   static List<Color> outlineButtonBackgroundColor = [
-    DesignSystem.light().colors.white,
-    DesignSystem.dark().colors.white,
+    WidgetToolkitDesignSystem.light().colors.white,
+    WidgetToolkitDesignSystem.dark().colors.white,
   ];
   static List<Color> errorTextBackgroundColor = [
-    DesignSystem.light().colors.green,
-    DesignSystem.dark().colors.green,
+    WidgetToolkitDesignSystem.light().colors.green,
+    WidgetToolkitDesignSystem.dark().colors.green,
   ];
 
   static List<Color> errorTextColor = [
-    DesignSystem.light().colors.black,
-    DesignSystem.dark().colors.black,
+    WidgetToolkitDesignSystem.light().colors.black,
+    WidgetToolkitDesignSystem.dark().colors.black,
   ];
 
   static List<SvgFile> checkIcon = [
-    DesignSystem.dark().icons.checkIcon,
-    DesignSystem.light().icons.checkIcon,
+    WidgetToolkitDesignSystem.dark().icons.checkIcon,
+    WidgetToolkitDesignSystem.light().icons.checkIcon,
   ];
 
   static List<SvgFile> dangerIcon = [
-    DesignSystem.dark().icons.dangerIcon,
-    DesignSystem.light().icons.dangerIcon,
+    WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+    WidgetToolkitDesignSystem.light().icons.dangerIcon,
   ];
 
   /// endregion

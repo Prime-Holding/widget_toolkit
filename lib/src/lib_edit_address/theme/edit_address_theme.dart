@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../../../asset_classes.dart';
-import '../../base/theme/design_system/design_system.dart';
+import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'edit_address_theme.tailor.dart';
 
@@ -10,17 +10,17 @@ part 'edit_address_theme.tailor.dart';
 class _$EditAddressTheme {
   /// region spacings
   static List<double> spacingM = [
-    DesignSystem.light().spacings.m,
-    DesignSystem.dark().spacings.m,
+    WidgetToolkitDesignSystem.light().spacings.m,
+    WidgetToolkitDesignSystem.dark().spacings.m,
   ];
   static List<double> spacingXSS = [
-    DesignSystem.light().spacings.xss,
-    DesignSystem.dark().spacings.xss,
+    WidgetToolkitDesignSystem.light().spacings.xss,
+    WidgetToolkitDesignSystem.dark().spacings.xss,
   ];
 
   static List<double> spacingXS = [
-    DesignSystem.light().spacings.xs,
-    DesignSystem.dark().spacings.xs,
+    WidgetToolkitDesignSystem.light().spacings.xs,
+    WidgetToolkitDesignSystem.dark().spacings.xs,
   ];
 
   static List<double> editAddressWidgetSpacingXS = spacingXS;
@@ -28,224 +28,224 @@ class _$EditAddressTheme {
   static List<double> addressWidgetSpacingXS = spacingXS;
 
   static List<double> spacingS = [
-    DesignSystem.light().spacings.s,
-    DesignSystem.dark().spacings.s,
+    WidgetToolkitDesignSystem.light().spacings.s,
+    WidgetToolkitDesignSystem.dark().spacings.s,
   ];
   static List<double> spacingL = [
-    DesignSystem.light().spacings.l,
-    DesignSystem.dark().spacings.l,
+    WidgetToolkitDesignSystem.light().spacings.l,
+    WidgetToolkitDesignSystem.dark().spacings.l,
   ];
 
   static List<double> spacingXL = [
-    DesignSystem.light().spacings.xl,
-    DesignSystem.dark().spacings.xl,
+    WidgetToolkitDesignSystem.light().spacings.xl,
+    WidgetToolkitDesignSystem.dark().spacings.xl,
   ];
 
   static List<double> spacingXXL = [
-    DesignSystem.light().spacings.xxl,
-    DesignSystem.dark().spacings.xxl,
+    WidgetToolkitDesignSystem.light().spacings.xxl,
+    WidgetToolkitDesignSystem.dark().spacings.xxl,
   ];
 
   static List<double> spacingXXXL = [
-    DesignSystem.light().spacings.xxxl,
-    DesignSystem.dark().spacings.xxxl,
+    WidgetToolkitDesignSystem.light().spacings.xxxl,
+    WidgetToolkitDesignSystem.dark().spacings.xxxl,
   ];
 
   ///endregion
   /// region TextStyle
   static List<TextStyle> captionBold = [
-    DesignSystem.light().typography.captionBold,
-    DesignSystem.dark().typography.captionBold,
+    WidgetToolkitDesignSystem.light().typography.captionBold,
+    WidgetToolkitDesignSystem.dark().typography.captionBold,
   ];
   static List<TextStyle> descriptionThin = [
-    DesignSystem.light().typography.descriptionThin,
-    DesignSystem.dark().typography.descriptionThin,
+    WidgetToolkitDesignSystem.light().typography.descriptionThin,
+    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
   ];
   static List<TextStyle> titleBold = [
-    DesignSystem.light().typography.titleBold,
-    DesignSystem.dark().typography.titleBold,
+    WidgetToolkitDesignSystem.light().typography.titleBold,
+    WidgetToolkitDesignSystem.dark().typography.titleBold,
   ];
 
   /// endregion
   ///region Color
   static List<Color> white = [
-    DesignSystem.light().colors.editAddressWhite,
-    DesignSystem.dark().colors.editAddressWhite,
+    WidgetToolkitDesignSystem.light().colors.editAddressWhite,
+    WidgetToolkitDesignSystem.dark().colors.editAddressWhite,
   ];
   static List<Color> black = [
-    DesignSystem.light().colors.editAddressBlack,
-    DesignSystem.dark().colors.editAddressBlack,
+    WidgetToolkitDesignSystem.light().colors.editAddressBlack,
+    WidgetToolkitDesignSystem.dark().colors.editAddressBlack,
   ];
 
   static List<Color> editAddressWidgetColor = [
-    DesignSystem.light().colors.editAddressMediumWhite,
-    DesignSystem.dark().colors.editAddressWidget,
+    WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
+    WidgetToolkitDesignSystem.dark().colors.editAddressWidget,
   ];
 
   static List<Color> mediumWhite = [
-    DesignSystem.light().colors.editAddressMediumWhite,
-    DesignSystem.dark().colors.editAddressMediumWhite,
+    WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
+    WidgetToolkitDesignSystem.dark().colors.editAddressMediumWhite,
   ];
   static List<Color> green = [
-    DesignSystem.light().colors.editAddressGreen,
-    DesignSystem.dark().colors.editAddressGreen,
+    WidgetToolkitDesignSystem.light().colors.editAddressGreen,
+    WidgetToolkitDesignSystem.dark().colors.editAddressGreen,
   ];
 
   static List<Color> blue = [
-    DesignSystem.light().colors.editAddressBlue,
-    DesignSystem.dark().colors.editAddressBlue,
+    WidgetToolkitDesignSystem.light().colors.editAddressBlue,
+    WidgetToolkitDesignSystem.dark().colors.editAddressBlue,
   ];
 
   static List<Color> editAddressPageBackgroundColor = [
-    DesignSystem.light().colors.white,
-    DesignSystem.dark().colors.editAddressBackground,
+    WidgetToolkitDesignSystem.light().colors.white,
+    WidgetToolkitDesignSystem.dark().colors.editAddressBackground,
   ];
 
   static List<Color> permanentAddressBlueLightColor = [
-    DesignSystem.light().colors.permanentAddressBlueLight,
-    DesignSystem.dark().colors.permanentAddressBlueLight,
+    WidgetToolkitDesignSystem.light().colors.permanentAddressBlueLight,
+    WidgetToolkitDesignSystem.dark().colors.permanentAddressBlueLight,
   ];
 
   static List<Color> disabledFilledButtonBackgroundColor = [
-    DesignSystem.light()
+    WidgetToolkitDesignSystem.light()
         .colors
         .permanentAddressDisabledFilledButtonBackgroundColor,
-    DesignSystem.dark()
+    WidgetToolkitDesignSystem.dark()
         .colors
         .permanentAddressDisabledFilledButtonBackgroundColor,
   ];
 
   static List<Color> editAddressWidgetHighlightTransparent = [
-    DesignSystem.light().colors.editAddressWidgetHighlightColor,
-    DesignSystem.dark().colors.editAddressWidgetHighlightColor,
+    WidgetToolkitDesignSystem.light().colors.editAddressWidgetHighlightColor,
+    WidgetToolkitDesignSystem.dark().colors.editAddressWidgetHighlightColor,
   ];
 
   static List<Color> editAddressWidgetSplashTransparent = [
-    DesignSystem.light().colors.editAddressWidgetSplashColor,
-    DesignSystem.dark().colors.editAddressWidgetSplashColor,
+    WidgetToolkitDesignSystem.light().colors.editAddressWidgetSplashColor,
+    WidgetToolkitDesignSystem.dark().colors.editAddressWidgetSplashColor,
   ];
 
   /// endregion
   ///region EdgeInsets
   static List<EdgeInsets> editAddressPageOuterMostPadding = [
     EdgeInsets.symmetric(
-      vertical: DesignSystem.light().spacings.s2,
-      horizontal: DesignSystem.light().spacings.m,
+      vertical: WidgetToolkitDesignSystem.light().spacings.s2,
+      horizontal: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.symmetric(
-      vertical: DesignSystem.dark().spacings.s2,
-      horizontal: DesignSystem.dark().spacings.m,
+      vertical: WidgetToolkitDesignSystem.dark().spacings.s2,
+      horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressPageOnAddressSavedPadding = [
     EdgeInsets.only(
-        left: DesignSystem.light().spacings.xs,
-        bottom: DesignSystem.light().spacings.xxl),
+        left: WidgetToolkitDesignSystem.light().spacings.xs,
+        bottom: WidgetToolkitDesignSystem.light().spacings.xxl),
     EdgeInsets.only(
-        left: DesignSystem.dark().spacings.xs,
-        bottom: DesignSystem.dark().spacings.xxl),
+        left: WidgetToolkitDesignSystem.dark().spacings.xs,
+        bottom: WidgetToolkitDesignSystem.dark().spacings.xxl),
   ];
 
   static List<EdgeInsets> editAddressPageErrorPanelPadding = [
     EdgeInsets.only(
-      bottom: DesignSystem.light().spacings.m,
+      bottom: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      bottom: DesignSystem.dark().spacings.m,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> permanentAddressPadding1 = [
     EdgeInsets.only(
-      left: DesignSystem.light().spacings.m,
-      top: DesignSystem.light().spacings.s1,
-      right: DesignSystem.light().spacings.m,
-      bottom: DesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.m,
+      top: WidgetToolkitDesignSystem.light().spacings.s1,
+      right: WidgetToolkitDesignSystem.light().spacings.m,
+      bottom: WidgetToolkitDesignSystem.light().spacings.l,
     ),
     EdgeInsets.only(
-      left: DesignSystem.light().spacings.m,
-      top: DesignSystem.light().spacings.s1,
-      right: DesignSystem.light().spacings.m,
-      bottom: DesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.m,
+      top: WidgetToolkitDesignSystem.light().spacings.s1,
+      right: WidgetToolkitDesignSystem.light().spacings.m,
+      bottom: WidgetToolkitDesignSystem.light().spacings.l,
     )
   ];
 
   static List<EdgeInsets> permanentAddressPadding2 = [
     EdgeInsets.only(
-      top: DesignSystem.light().spacings.xl1,
+      top: WidgetToolkitDesignSystem.light().spacings.xl1,
     ),
     EdgeInsets.only(
-      top: DesignSystem.dark().spacings.xl1,
+      top: WidgetToolkitDesignSystem.dark().spacings.xl1,
     )
   ];
 
   static List<EdgeInsets> permanentAddressPadding3 = [
     EdgeInsets.only(
-      left: DesignSystem.light().spacings.m,
-      right: DesignSystem.light().spacings.m,
-      top: DesignSystem.light().spacings.l,
-      bottom: DesignSystem.light().spacings.l,
+      left: WidgetToolkitDesignSystem.light().spacings.m,
+      right: WidgetToolkitDesignSystem.light().spacings.m,
+      top: WidgetToolkitDesignSystem.light().spacings.l,
+      bottom: WidgetToolkitDesignSystem.light().spacings.l,
     ),
     EdgeInsets.only(
-      left: DesignSystem.dark().spacings.m,
-      right: DesignSystem.dark().spacings.m,
-      top: DesignSystem.dark().spacings.l,
-      bottom: DesignSystem.dark().spacings.l,
+      left: WidgetToolkitDesignSystem.dark().spacings.m,
+      right: WidgetToolkitDesignSystem.dark().spacings.m,
+      top: WidgetToolkitDesignSystem.dark().spacings.l,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.l,
     ),
   ];
 
   static List<EdgeInsets> permanentAddressPadding4 = [
     EdgeInsets.only(
-      bottom: DesignSystem.light().spacings.m,
+      bottom: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.only(
-      bottom: DesignSystem.dark().spacings.m,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding1 = [
-    EdgeInsets.only(bottom: DesignSystem.light().spacings.s),
-    EdgeInsets.only(bottom: DesignSystem.dark().spacings.s),
+    EdgeInsets.only(bottom: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(bottom: WidgetToolkitDesignSystem.dark().spacings.s),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding2 = [
     EdgeInsets.symmetric(
-      vertical: DesignSystem.light().spacings.s,
-      horizontal: DesignSystem.light().spacings.m,
+      vertical: WidgetToolkitDesignSystem.light().spacings.s,
+      horizontal: WidgetToolkitDesignSystem.light().spacings.m,
     ),
     EdgeInsets.symmetric(
-      vertical: DesignSystem.dark().spacings.s,
-      horizontal: DesignSystem.dark().spacings.m,
+      vertical: WidgetToolkitDesignSystem.dark().spacings.s,
+      horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding3 = [
     EdgeInsets.only(
-      top: DesignSystem.light().spacings.xss,
-      bottom: DesignSystem.light().spacings.xss,
+      top: WidgetToolkitDesignSystem.light().spacings.xss,
+      bottom: WidgetToolkitDesignSystem.light().spacings.xss,
     ),
     EdgeInsets.only(
-      top: DesignSystem.dark().spacings.xss,
-      bottom: DesignSystem.dark().spacings.xss,
+      top: WidgetToolkitDesignSystem.dark().spacings.xss,
+      bottom: WidgetToolkitDesignSystem.dark().spacings.xss,
     ),
   ];
 
   static List<EdgeInsets> editAddressWidgetPadding4 = [
-    EdgeInsets.only(left: DesignSystem.light().spacings.s),
-    EdgeInsets.only(left: DesignSystem.dark().spacings.s),
+    EdgeInsets.only(left: WidgetToolkitDesignSystem.light().spacings.s),
+    EdgeInsets.only(left: WidgetToolkitDesignSystem.dark().spacings.s),
   ];
 
   /// endregion
   /// region Icons
   static List<SvgFile> editPenIcon = [
-    DesignSystem.dark().icons.editPenIcon,
-    DesignSystem.light().icons.editPenIcon,
+    WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+    WidgetToolkitDesignSystem.light().icons.editPenIcon,
   ];
 
   static List<SvgFile> infoCircleIcon = [
-    DesignSystem.dark().icons.infoCircleIcon,
-    DesignSystem.light().icons.infoCircleIcon,
+    WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+    WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
   ];
 
   /// endregion

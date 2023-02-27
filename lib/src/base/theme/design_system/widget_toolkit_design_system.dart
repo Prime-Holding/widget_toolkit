@@ -3,15 +3,15 @@ import 'design_system_icons.dart';
 import 'design_system_spacings.dart';
 import 'design_system_typography.dart';
 
-class DesignSystem {
-  const DesignSystem({
+class WidgetToolkitDesignSystem {
+  const WidgetToolkitDesignSystem({
     required this.colors,
     required this.icons,
     required this.typography,
     required this.spacings,
   });
 
-  DesignSystem.light()
+  WidgetToolkitDesignSystem.light()
       : colors = DesignSystemColors.light(),
         icons = DesignSystemIcons(),
         typography = DesignSystemTypography.withColor(
@@ -19,7 +19,7 @@ class DesignSystem {
         ),
         spacings = const DesignSystemSpacings();
 
-  DesignSystem.dark()
+  WidgetToolkitDesignSystem.dark()
       : colors = DesignSystemColors.dark(),
         icons = DesignSystemIcons(),
         typography = DesignSystemTypography.withColor(
