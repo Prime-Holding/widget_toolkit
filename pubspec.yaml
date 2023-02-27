@@ -69,7 +69,7 @@ screenshots:
   - description: Search Picker
     path: doc/assets/search-picker.gif
   - description: Shimmer Widget
-    path: doc/assets/shimmeritem_picker_bloc.gif
+    path: doc/assets/shimmer.gif
   - description: URL Launcher
     path: doc/assets/url.gif
   - description: Error Buttom Sheet
