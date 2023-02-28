@@ -2,12 +2,12 @@
   <configuration default="false" name="Build Runner Build" type="ShConfigurationType">
     <option name="SCRIPT_TEXT" value="" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/../packages/prime_pin_code/bin/build_runner_build.sh" />
-    <option name="SCRIPT_OPTIONS" value="" />
+    <option name="SCRIPT_PATH" value="/opt/homebrew/Caskroom/flutter/3.0.0/flutter/bin/flutter" />
+    <option name="SCRIPT_OPTIONS" value="pub run build_runner build --delete-conflicting-outputs" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/../packages/prime_pin_code" />
+    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-    <option name="INTERPRETER_PATH" value="/bin/zsh" />
+    <option name="INTERPRETER_PATH" value="/bin/bash" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="EXECUTE_IN_TERMINAL" value="true" />
     <option name="EXECUTE_SCRIPT_FILE" value="true" />
