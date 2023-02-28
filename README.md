@@ -6,14 +6,14 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 
 ## Contents:
 
-- [Shimmer][shimmer_pkg]
-- [Item Picker][item_picker_pkg]
-- [Open Url][open_url_pkg]
-- [Language Picker][language_picker_pkg]
-- [Common Utilities][common_utilities_pkg]
-- [Edit Address][edit_address]
-- [Text Field Dialog][text_field_dialog]
-- [Search Picker][search_picker]
+- [UI Components][ui_components_doc]
+- [Shimmer][shimmer_doc]
+- [URL Launcher][open_url_doc]
+- [Item Picker][item_picker_doc]
+- [Language Picker][language_picker_doc]
+- [Search Picker][search_picker-_doc]
+- [Text Field Dialog][text_field_dialog_doc]
+- [Edit Address][edit_address_doc]
 
 ## Demo
 
@@ -100,8 +100,6 @@ extensions: [
 ...
 ```
 
----
-
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master/graph/badge.svg
@@ -113,7 +111,15 @@ extensions: [
 [open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_open_url
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/src/lib_item_picker
 [language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_language_picker
-[common_utilities_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/common
-[edit_address]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
-[text_field_dialog]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
-[search_picker]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
+[ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_ui_components
+[edit_address_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
+[text_field_dialog_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
+[search_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
+[ui_components_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/ui-components.md
+[shimmer_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/shimmer.md
+[open_url_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/open-url.md
+[item_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/item-picker.md
+[language_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/language-picker.md
+[search_picker-_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/search-picker.md
+[text_field_dialog_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/text-field-dialog.md
+[edit_address_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/edit-address.md

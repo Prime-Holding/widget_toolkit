@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 
-import '../models/errors/error_model.dart';
-import '../models/message_panel_state.dart';
+import '../base/models/errors/error_model.dart';
+import '../base/models/message_panel_state.dart';
 import 'message_panel_widget.dart';
 
 typedef ErrorStateCallback<BlocType extends RxBlocTypeBase>
