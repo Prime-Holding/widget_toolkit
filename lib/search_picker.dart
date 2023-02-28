@@ -1,3 +1,4 @@
+/// {@category Search Picker}
 library search_picker;
 
 export 'src/lib_search_picker/services/search_picker_service.dart';

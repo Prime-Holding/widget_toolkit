@@ -1,3 +1,4 @@
+/// {@category URL Launcher}
 library open_url;
 
 export 'src/base/models/errors/error_model.dart';
