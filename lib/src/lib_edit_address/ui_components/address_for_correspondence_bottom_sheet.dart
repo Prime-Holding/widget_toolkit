@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
+import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
+import '../blocs/edit_address_bloc.dart';
 import '../views/edit_address_page.dart';
 
 void showAppAddressForCorrespondence<T extends PickerItemModel>(
@@ -29,37 +31,40 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-}) =>
-    showModal(
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        heightFactor: configuration.heightFactor,
-        isDismissible: configuration.isDismissible,
-        safeAreaBottom: false,
-      ),
-      context: context,
-      builder: (ctx) => EditAddressPage.withDependencies<T>(
-        context,
-        buttonText: buttonText,
-        headerText: headerText,
-        addressModel: addressModel,
-        cityErrorMapper: cityErrorMapper,
-        addressErrorMapper: addressErrorMapper,
-        validator: validator,
-        countryCustomIcon: countryCustomIcon,
-        editCountryFieldType: editCountryFieldType,
-        cityCustomIcon: cityCustomIcon,
-        editCityFieldType: editCityFieldType,
-        addressCustomIcon: addressCustomIcon,
-        editAddressFieldType: editAddressFieldType,
-        searchCountryService: searchCountryService,
-        editAddressLocalizedStrings: editAddressLocalizedStrings,
-        editAddressService: editAddressService,
-        editContactAddressErrorBuilder: editContactAddressErrorBuilder,
-        searchCountryCustomBuilders: searchCountryCustomBuilders,
-      ),
-      onCancelPressed: () => Navigator.of(context).pop(),
-    );
+}) {
+  var editAddressBlocType = context.read<EditAddressBlocType>();
+  showModal(
+    configuration: ModalConfiguration(
+      fullScreen: configuration.fullScreen,
+      heightFactor: configuration.heightFactor,
+      isDismissible: configuration.isDismissible,
+      safeAreaBottom: false,
+    ),
+    context: context,
+    builder: (ctx) => EditAddressPage.withDependencies<T>(
+      context,
+      editAddressBlocType: editAddressBlocType,
+      buttonText: buttonText,
+      headerText: headerText,
+      addressModel: addressModel,
+      cityErrorMapper: cityErrorMapper,
+      addressErrorMapper: addressErrorMapper,
+      validator: validator,
+      countryCustomIcon: countryCustomIcon,
+      editCountryFieldType: editCountryFieldType,
+      cityCustomIcon: cityCustomIcon,
+      editCityFieldType: editCityFieldType,
+      addressCustomIcon: addressCustomIcon,
+      editAddressFieldType: editAddressFieldType,
+      searchCountryService: searchCountryService,
+      editAddressLocalizedStrings: editAddressLocalizedStrings,
+      editAddressService: editAddressService,
+      editContactAddressErrorBuilder: editContactAddressErrorBuilder,
+      searchCountryCustomBuilders: searchCountryCustomBuilders,
+    ),
+    onCancelPressed: () => Navigator.of(context).pop(),
+  );
+}
 
 /// [countrySearchPickerTitle] is the text at the top of the country search
 /// picker page

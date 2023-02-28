@@ -13,6 +13,7 @@ class MessagePanelError<BlocType extends RxBlocTypeBase>
     extends StatelessWidget {
   const MessagePanelError({
     required this.errorState,
+    this.bloc,
     this.errorPanelIcon,
     this.padding = EdgeInsets.zero,
     this.errorBuilder,
@@ -20,6 +21,7 @@ class MessagePanelError<BlocType extends RxBlocTypeBase>
     Key? key,
   }) : super(key: key);
 
+  final BlocType? bloc;
   final ErrorStateCallback<BlocType> errorState;
   final EdgeInsets padding;
   final Widget Function(ErrorModel?)? errorBuilder;
@@ -28,6 +30,7 @@ class MessagePanelError<BlocType extends RxBlocTypeBase>
 
   @override
   Widget build(BuildContext context) => RxBlocBuilder<BlocType, ErrorModel?>(
+        bloc: bloc,
         state: (bloc) => errorState(bloc),
         builder: (context, snapshot, bloc) => AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),

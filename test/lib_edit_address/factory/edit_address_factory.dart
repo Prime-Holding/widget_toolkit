@@ -49,6 +49,7 @@ Widget editAddressFactory({
         ],
         child: Builder(
           builder: (context) => EditAddressPage(
+            editAddressBlocType: context.read<EditAddressBlocType>(),
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,

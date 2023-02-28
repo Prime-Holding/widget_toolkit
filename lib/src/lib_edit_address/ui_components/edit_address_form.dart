@@ -14,6 +14,7 @@ typedef OnAddressChange = Function(AddressModel addressModel);
 
 class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressForm({
+    required this.blocType,
     required this.onAddressChange,
     required this.cityErrorMapper,
     required this.addressErrorMapper,
@@ -30,6 +31,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  final EditAddressBlocType blocType;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final OnAddressChange onAddressChange;
   final RxFieldException<String> Function(Object error, BuildContext context)
@@ -49,16 +51,19 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       RxBlocListener<EditAddressBlocType, AddressModel>(
+        bloc: blocType,
         state: (bloc) => bloc.states.address,
         listener: (context, state) {
           onAddressChange(state);
         },
         child: RxBlocBuilder<EditAddressBlocType, AddressModel>(
+            bloc: blocType,
           state: (bloc) => bloc.states.address,
           builder: (context, address, bloc) => Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               RxBlocBuilder<EditAddressBlocType, bool>(
+                bloc: blocType,
                 state: (bloc) => bloc.states.isCountryEdited,
                 builder: (context, snapshot, bloc) => EditFieldWidget(
                   label: editAddressLocalizedStrings?.countryLabelText ??
@@ -149,6 +154,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     BuildContext context,
     AddressModel addressModel,
     OnAddressChange onAddressChange, {
+        required EditAddressBlocType blocType,
     required RxFieldException<String> Function(
             Object error, BuildContext context)
         cityErrorMapper,
@@ -172,6 +178,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 context, addressModel, editAddressService)
             .providers,
         child: EditAddressForm<T>(
+          blocType: blocType,
           onAddressChange: onAddressChange,
           cityErrorMapper: cityErrorMapper,
           addressErrorMapper: addressErrorMapper,

@@ -12,6 +12,7 @@ import '../di/edit_address_dependencies.dart';
 
 class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressPage({
+    required this.editAddressBlocType,
     required this.addressModel,
     required this.cityErrorMapper,
     required this.addressErrorMapper,
@@ -33,6 +34,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  final EditAddressBlocType editAddressBlocType;
   final AddressModel addressModel;
   final String buttonText;
   final String headerText;
@@ -56,6 +58,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
+    required EditAddressBlocType editAddressBlocType,
     required String buttonText,
     required String headerText,
     required AddressModel addressModel,
@@ -86,6 +89,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           editAddressService,
         ).providers,
         child: EditAddressPage<T>(
+          editAddressBlocType: editAddressBlocType,
           buttonText: buttonText,
           headerText: headerText,
           addressModel: addressModel,
@@ -115,6 +119,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             padding: context.editAddressTheme.editAddressPageOuterMostPadding,
             color: context.editAddressTheme.editAddressPageBackgroundColor,
             child: RxBlocBuilder<EditAddressBlocType, void>(
+              bloc: editAddressBlocType,
               state: (bloc) => bloc.states.onAddressSaved,
               builder: (context, snapshot, bloc) => Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -138,6 +143,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                       messageState: MessagePanelState.positiveCheck,
                     ),
                   MessagePanelError<EditAddressBlocType>(
+                    bloc: editAddressBlocType,
                     errorState: (bloc) => bloc.states.errors,
                     errorBuilder: editContactAddressErrorBuilder,
                     padding: context
@@ -147,10 +153,9 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                     EditAddressForm.withDependencies<T>(
                       context,
                       addressModel,
-                      (addressModel) => context
-                          .read<EditAddressBlocType>()
-                          .events
-                          .setAddress(addressModel),
+                      (addressModel) =>
+                          editAddressBlocType.events.setAddress(addressModel),
+                      blocType: editAddressBlocType,
                       cityErrorMapper: cityErrorMapper,
                       addressErrorMapper: addressErrorMapper,
                       validator: validator,
@@ -169,9 +174,11 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                     SizedBox(height: context.editAddressTheme.spacingXL),
                   if (!snapshot.hasData)
                     RxBlocBuilder<EditAddressBlocType, bool>(
+                      bloc: editAddressBlocType,
                       state: (bloc) => bloc.states.isLoading,
                       builder: (context, isLoadingSnapshot, bloc) =>
                           RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                        bloc: editAddressBlocType,
                         state: (bloc) => bloc.states.onAddressSet,
                         builder: (context, address, bloc) => GradientFillButton(
                           elevation: 0,
@@ -182,10 +189,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                           areIconsClose: true,
                           onPressed: () async {
                             if (saveAddress == null) {
-                              context
-                                  .read<EditAddressBlocType>()
-                                  .events
-                                  .saveAddress();
+                              editAddressBlocType.events.saveAddress();
                             } else {
                               if (address.hasData) {
                                 saveAddress?.call(address.data!);
