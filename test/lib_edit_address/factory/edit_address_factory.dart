@@ -7,6 +7,7 @@ import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart
 import 'package:widget_toolkit/src/lib_edit_address/views/edit_address_page.dart';
 
 import '../mock/edit_address_mock.dart';
+import '../mock/edit_address_mock.mocks.dart';
 import '../repository/search_country_repository_mock.dart';
 import '../service/edit_address_fields_service_mock.dart';
 import '../service/save_address_service_mock.dart';
