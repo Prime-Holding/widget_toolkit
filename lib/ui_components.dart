@@ -1,3 +1,4 @@
+/// {@category UI Components}
 library ui_components;
 
 export 'src/lib_ui_components/buttons/button_color_style.dart';

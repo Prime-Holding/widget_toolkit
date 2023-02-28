@@ -1,3 +1,4 @@
+/// {@category Text Field Dialog}
 library text_field_dialog;
 
 export 'asset_classes.dart';

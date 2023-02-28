@@ -1,3 +1,4 @@
+/// {@category Language Picker}
 library language_picker;
 
 export 'asset_classes.dart';
