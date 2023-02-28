@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
@@ -57,7 +55,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
           onAddressChange(state);
         },
         child: RxBlocBuilder<EditAddressBlocType, AddressModel>(
-            bloc: blocType,
+          bloc: blocType,
           state: (bloc) => bloc.states.address,
           builder: (context, address, bloc) => Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -154,7 +152,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     BuildContext context,
     AddressModel addressModel,
     OnAddressChange onAddressChange, {
-        required EditAddressBlocType blocType,
+    required EditAddressBlocType blocType,
     required RxFieldException<String> Function(
             Object error, BuildContext context)
         cityErrorMapper,
@@ -173,26 +171,21 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-                context, addressModel, editAddressService)
-            .providers,
-        child: EditAddressForm<T>(
-          blocType: blocType,
-          onAddressChange: onAddressChange,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-        ),
+      EditAddressForm<T>(
+        blocType: blocType,
+        onAddressChange: onAddressChange,
+        cityErrorMapper: cityErrorMapper,
+        addressErrorMapper: addressErrorMapper,
+        validator: validator,
+        countryCustomIcon: countryCustomIcon,
+        editCountryFieldType: editCountryFieldType,
+        cityCustomIcon: cityCustomIcon,
+        editCityFieldType: editCityFieldType,
+        addressCustomIcon: addressCustomIcon,
+        editAddressFieldType: editAddressFieldType,
+        searchCountryService: searchCountryService,
+        editAddressLocalizedStrings: editAddressLocalizedStrings,
+        searchCountryCustomBuilders: searchCountryCustomBuilders,
       );
 
   EditFieldState _getProfileFieldState(

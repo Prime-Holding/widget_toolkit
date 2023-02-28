@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../lib_edit_address/ui_components/edit_address_form.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 
 class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressPage({
@@ -82,32 +80,25 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-          context,
-          addressModel,
-          editAddressService,
-        ).providers,
-        child: EditAddressPage<T>(
-          editAddressBlocType: editAddressBlocType,
-          buttonText: buttonText,
-          headerText: headerText,
-          addressModel: addressModel,
-          saveAddress: saveAddress,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          editAddressService: editAddressService,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-        ),
+      EditAddressPage<T>(
+        editAddressBlocType: editAddressBlocType,
+        buttonText: buttonText,
+        headerText: headerText,
+        addressModel: addressModel,
+        saveAddress: saveAddress,
+        cityErrorMapper: cityErrorMapper,
+        addressErrorMapper: addressErrorMapper,
+        validator: validator,
+        countryCustomIcon: countryCustomIcon,
+        editCountryFieldType: editCountryFieldType,
+        cityCustomIcon: cityCustomIcon,
+        editCityFieldType: editCityFieldType,
+        addressCustomIcon: addressCustomIcon,
+        editAddressFieldType: editAddressFieldType,
+        searchCountryService: searchCountryService,
+        editAddressLocalizedStrings: editAddressLocalizedStrings,
+        editAddressService: editAddressService,
+        searchCountryCustomBuilders: searchCountryCustomBuilders,
       );
 
   @override
