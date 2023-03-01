@@ -1,3 +1,4 @@
+/// {@category Item Picker}
 library item_picker;
 
 export 'src/lib_item_picker/service/item_picker_service.dart';
