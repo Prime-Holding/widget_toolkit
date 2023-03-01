@@ -97,6 +97,9 @@ class EditAddressBloc extends $EditAddressBloc {
   @override
   ConnectableStream<String> _mapToStreetState() => _$setStreetEvent
       .startWith(_addressSubject.value.streetAddress)
+  .doOnData((event) {
+    print('setEvent: $event');
+  })
       .publishReplay(maxSize: 1);
 
   @override
