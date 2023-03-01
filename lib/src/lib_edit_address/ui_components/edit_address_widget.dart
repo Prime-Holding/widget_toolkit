@@ -109,13 +109,16 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: EditAddressDependencies.from(
-          context,
-          addressModel,
-          editAddressService,
-        ).providers,
-        child: Builder(
+  Widget build(BuildContext context) =>
+      // MultiProvider(
+      //   providers: EditAddressDependencies.from(
+      //     context,
+      //     addressModel,
+      //     editAddressService,
+      //   ).providers,
+      //   child:
+
+        Builder(
           builder: (builderContext) => Material(
             child: InkWell(
               splashColor:
@@ -186,7 +189,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        // ),
       );
 
   VoidCallback _onWidgetIconTab({

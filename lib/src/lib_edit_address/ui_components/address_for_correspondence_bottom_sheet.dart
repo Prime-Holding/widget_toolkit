@@ -32,7 +32,7 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
 }) {
-  var editAddressBlocType = context.read<EditAddressBlocType>();
+  // var editAddressBlocType = context.read<EditAddressBlocType>();
   showModal(
     configuration: ModalConfiguration(
       fullScreen: configuration.fullScreen,
@@ -43,7 +43,7 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
     context: context,
     builder: (ctx) => EditAddressPage.withDependencies<T>(
       context,
-      editAddressBlocType: editAddressBlocType,
+      // editAddressBlocType: editAddressBlocType,
       buttonText: buttonText,
       headerText: headerText,
       addressModel: addressModel,
