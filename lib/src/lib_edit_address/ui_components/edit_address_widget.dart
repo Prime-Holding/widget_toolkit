@@ -118,15 +118,16 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
       //   ).providers,
       //   child:
 
-        Builder(
-          builder: (builderContext) => Material(
+        // Builder(
+        //   builder: (builderContext) =>
+              Material(
             child: InkWell(
               splashColor:
                   context.editAddressTheme.editAddressWidgetSplashTransparent,
               highlightColor: context
                   .editAddressTheme.editAddressWidgetHighlightTransparent,
               onTap: _onWidgetIconTab(
-                context: builderContext,
+                context: context,
                 type: type,
               ),
               child: Padding(
@@ -163,15 +164,15 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                                       context.editAddressTheme.mediumWhite,
                                 ),
                               ),
-                              RxBlocBuilder<EditAddressBlocType, AddressModel>(
-                                bloc:
-                                    builderContext.read<EditAddressBlocType>(),
-                                state: (bloc) => bloc.states.address,
-                                builder: (context, address, bloc) =>
+                              // RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                              //   bloc:
+                              //       builderContext.read<EditAddressBlocType>(),
+                              //   state: (bloc) => bloc.states.address,
+                              //   builder: (context, address, bloc) =>
                                     _AddressWidget(
-                                  address: address.data,
+                                  address: addressModel,
                                 ),
-                              ),
+                              // ),
                             ],
                           ),
                         ),
@@ -188,7 +189,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          // ),
         // ),
       );
 
