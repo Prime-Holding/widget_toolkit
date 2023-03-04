@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
-import '../../../edit_address.dart';
-import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
 import '../extensions/user_profile_card_types_extension.dart';

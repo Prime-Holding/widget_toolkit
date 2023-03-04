@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../edit_address.dart';
+import '../../../models.dart';
 import '../../../search_picker.dart';
-import '../../../widget_toolkit.dart';
+import '../../../text_field_dialog.dart';
+import '../../../ui_components.dart';
 import '../views/edit_address_page.dart';
 
 void showAppAddressForCorrespondence<T extends PickerItemModel>(
