@@ -12,7 +12,6 @@ import '../di/edit_address_dependencies.dart';
 
 class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressPage({
-    // required this.editAddressBlocType,
     required this.addressModel,
     required this.cityErrorMapper,
     required this.addressErrorMapper,
@@ -31,10 +30,10 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.dialogsHaveBottomPadding,
     Key? key,
   }) : super(key: key);
 
-  // final EditAddressBlocType editAddressBlocType;
   final AddressModel addressModel;
   final String buttonText;
   final String headerText;
@@ -55,10 +54,10 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressService editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool? dialogsHaveBottomPadding;
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
-    // required EditAddressBlocType editAddressBlocType,
     required String buttonText,
     required String headerText,
     required AddressModel addressModel,
@@ -81,144 +80,130 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final bool? dialogsHaveBottomPadding = false,
   }) =>
-      EditAddressPage<T>(
-        // editAddressBlocType: editAddressBlocType,
-        buttonText: buttonText,
-        headerText: headerText,
-        addressModel: addressModel,
-        saveAddress: saveAddress,
-        cityErrorMapper: cityErrorMapper,
-        addressErrorMapper: addressErrorMapper,
-        validator: validator,
-        countryCustomIcon: countryCustomIcon,
-        editCountryFieldType: editCountryFieldType,
-        cityCustomIcon: cityCustomIcon,
-        editCityFieldType: editCityFieldType,
-        addressCustomIcon: addressCustomIcon,
-        editAddressFieldType: editAddressFieldType,
-        searchCountryService: searchCountryService,
-        editAddressLocalizedStrings: editAddressLocalizedStrings,
-        editAddressService: editAddressService,
-        searchCountryCustomBuilders: searchCountryCustomBuilders,
-      );
-
-  @override
-  Widget build(BuildContext context) => MultiProvider(
+      MultiProvider(
         providers: EditAddressDependencies.from(
           context,
           addressModel,
           editAddressService,
         ).providers,
-        child: Builder(
-          builder: (builderContext) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: Container(
-                  padding:
-                      context.editAddressTheme.editAddressPageOuterMostPadding,
-                  color:
-                      context.editAddressTheme.editAddressPageBackgroundColor,
-                  child: RxBlocBuilder<EditAddressBlocType, void>(
-                    bloc: builderContext.read<EditAddressBlocType>(),
-                    state: (bloc) => bloc.states.onAddressSaved,
-                    builder: (context, snapshot, bloc) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: context.editAddressTheme
-                              .editAddressPageOnAddressSavedPadding,
-                          child: Text(
-                            headerText,
-                            textAlign: TextAlign.start,
-                            style: context.editAddressTheme.titleBold,
-                          ),
-                        ),
-                        if (snapshot.hasData)
-                          MessagePanelWidget(
-                            message: editAddressLocalizedStrings
-                                    ?.addressChangedMessage ??
-                                context.getEditAddressLocalizedStrings
-                                    .addressChangedMessage,
-                            messageState: MessagePanelState.positiveCheck,
-                          ),
-                        MessagePanelError<EditAddressBlocType>(
-                          bloc: builderContext.read<EditAddressBlocType>(),
-                          errorState: (bloc) => bloc.states.errors,
-                          errorBuilder: editContactAddressErrorBuilder,
-                          padding: context.editAddressTheme
-                              .editAddressPageErrorPanelPadding,
-                        ),
-                        if (!snapshot.hasData)
-                          EditAddressForm.withDependencies<T>(
-                            context,
-                            addressModel,
-                            (addressModel) => builderContext
-                                .read<EditAddressBlocType>()
-                                .events
-                                .setAddress(addressModel),
-                            blocType:
-                                builderContext.read<EditAddressBlocType>(),
-                            cityErrorMapper: cityErrorMapper,
-                            addressErrorMapper: addressErrorMapper,
-                            validator: validator,
-                            countryCustomIcon: countryCustomIcon,
-                            editCountryFieldType: editCountryFieldType,
-                            cityCustomIcon: cityCustomIcon,
-                            editCityFieldType: editCityFieldType,
-                            addressCustomIcon: addressCustomIcon,
-                            editAddressFieldType: editAddressFieldType,
-                            searchCountryService: searchCountryService,
-                            editAddressLocalizedStrings:
-                                editAddressLocalizedStrings,
-                            editAddressService: editAddressService,
-                            searchCountryCustomBuilders:
-                                searchCountryCustomBuilders,
-                          ),
-                        if (!snapshot.hasData)
-                          SizedBox(height: context.editAddressTheme.spacingXL),
-                        if (!snapshot.hasData)
-                          RxBlocBuilder<EditAddressBlocType, bool>(
-                            bloc: builderContext.read<EditAddressBlocType>(),
-                            state: (bloc) => bloc.states.isLoading,
-                            builder: (context, isLoadingSnapshot, bloc) =>
-                                RxBlocBuilder<EditAddressBlocType,
-                                    AddressModel>(
-                              bloc: builderContext.read<EditAddressBlocType>(),
-                              state: (bloc) => bloc.states.onAddressSet,
-                              builder: (context, address, bloc) =>
-                                  GradientFillButton(
-                                elevation: 0,
-                                text: buttonText,
-                                state: isLoadingSnapshot.data ?? false
-                                    ? ButtonStateModel.loading
-                                    : ButtonStateModel.enabled,
-                                areIconsClose: true,
-                                onPressed: () async {
-                                  if (saveAddress == null) {
-                                    builderContext
-                                        .read<EditAddressBlocType>()
-                                        .events
-                                        .saveAddress();
-                                  } else {
-                                    if (address.hasData) {
-                                      saveAddress?.call(address.data!);
-                                    }
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                      ],
+        child: EditAddressPage<T>(
+          buttonText: buttonText,
+          headerText: headerText,
+          addressModel: addressModel,
+          saveAddress: saveAddress,
+          cityErrorMapper: cityErrorMapper,
+          addressErrorMapper: addressErrorMapper,
+          validator: validator,
+          countryCustomIcon: countryCustomIcon,
+          editCountryFieldType: editCountryFieldType,
+          cityCustomIcon: cityCustomIcon,
+          editCityFieldType: editCityFieldType,
+          addressCustomIcon: addressCustomIcon,
+          editAddressFieldType: editAddressFieldType,
+          searchCountryService: searchCountryService,
+          editAddressLocalizedStrings: editAddressLocalizedStrings,
+          editAddressService: editAddressService,
+          searchCountryCustomBuilders: searchCountryCustomBuilders,
+          dialogsHaveBottomPadding: dialogsHaveBottomPadding,
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            padding: context.editAddressTheme.editAddressPageOuterMostPadding,
+            color: context.editAddressTheme.editAddressPageBackgroundColor,
+            child: RxBlocBuilder<EditAddressBlocType, void>(
+              state: (bloc) => bloc.states.onAddressSaved,
+              builder: (context, snapshot, bloc) => Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: context
+                        .editAddressTheme.editAddressPageOnAddressSavedPadding,
+                    child: Text(
+                      headerText,
+                      textAlign: TextAlign.start,
+                      style: context.editAddressTheme.titleBold,
                     ),
                   ),
-                ),
+                  if (snapshot.hasData)
+                    MessagePanelWidget(
+                      message:
+                          editAddressLocalizedStrings?.addressChangedMessage ??
+                              context.getEditAddressLocalizedStrings
+                                  .addressChangedMessage,
+                      messageState: MessagePanelState.positiveCheck,
+                    ),
+                  MessagePanelError<EditAddressBlocType>(
+                    errorState: (bloc) => bloc.states.errors,
+                    errorBuilder: editContactAddressErrorBuilder,
+                    padding: context
+                        .editAddressTheme.editAddressPageErrorPanelPadding,
+                  ),
+                  if (!snapshot.hasData)
+                    EditAddressForm.withDependencies<T>(
+                      context,
+                      addressModel,
+                      (addressModel) => context
+                          .read<EditAddressBlocType>()
+                          .events
+                          .setAddress(addressModel),
+                      cityErrorMapper: cityErrorMapper,
+                      addressErrorMapper: addressErrorMapper,
+                      validator: validator,
+                      countryCustomIcon: countryCustomIcon,
+                      editCountryFieldType: editCountryFieldType,
+                      cityCustomIcon: cityCustomIcon,
+                      editCityFieldType: editCityFieldType,
+                      addressCustomIcon: addressCustomIcon,
+                      editAddressFieldType: editAddressFieldType,
+                      searchCountryService: searchCountryService,
+                      editAddressLocalizedStrings: editAddressLocalizedStrings,
+                      editAddressService: editAddressService,
+                      searchCountryCustomBuilders: searchCountryCustomBuilders,
+                      dialogsHaveBottomPadding: dialogsHaveBottomPadding,
+                    ),
+                  if (!snapshot.hasData)
+                    SizedBox(height: context.editAddressTheme.spacingXL),
+                  if (!snapshot.hasData)
+                    RxBlocBuilder<EditAddressBlocType, bool>(
+                      state: (bloc) => bloc.states.isLoading,
+                      builder: (context, isLoadingSnapshot, bloc) =>
+                          RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                        state: (bloc) => bloc.states.onAddressSet,
+                        builder: (context, address, bloc) => GradientFillButton(
+                          elevation: 0,
+                          text: buttonText,
+                          state: isLoadingSnapshot.data ?? false
+                              ? ButtonStateModel.loading
+                              : ButtonStateModel.enabled,
+                          areIconsClose: true,
+                          onPressed: () async {
+                            if (saveAddress == null) {
+                              context
+                                  .read<EditAddressBlocType>()
+                                  .events
+                                  .saveAddress();
+                            } else {
+                              if (address.hasData) {
+                                saveAddress?.call(address.data!);
+                              }
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                ],
               ),
-            );
-          },
+            ),
+          ),
         ),
       );
 }

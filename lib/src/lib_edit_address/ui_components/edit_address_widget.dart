@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
-import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 import '../extensions/user_profile_card_types_extension.dart';
 import 'permanent_address_bottom_sheet.dart';
 
@@ -59,6 +55,10 @@ import 'permanent_address_bottom_sheet.dart';
 /// showEmptyWidgetWhenNoResultsAreFound, custom item builder,
 /// error builder, empty builder, separator builder for the search country item
 /// picker
+///
+/// [dialogHasBottomPadding] is a parameter, which moves the city and street dialogs
+/// up with the height of the keyboard, when they are visible, so the dialog appears
+/// above it
 class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressWidget({
     required this.cityErrorMapper,
@@ -78,6 +78,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.dialogsHaveBottomPadding = false,
     Key? key,
   }) : super(key: key);
 
@@ -100,6 +101,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool? dialogsHaveBottomPadding;
 
   static const _defaultAddressModel = AddressModel(
     addressType: AddressTypeModel.correspondence,
@@ -109,88 +111,76 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) =>
-      // MultiProvider(
-      //   providers: EditAddressDependencies.from(
-      //     context,
-      //     addressModel,
-      //     editAddressService,
-      //   ).providers,
-      //   child:
-
-        // Builder(
-        //   builder: (builderContext) =>
-              Material(
-            child: InkWell(
-              splashColor:
-                  context.editAddressTheme.editAddressWidgetSplashTransparent,
-              highlightColor: context
-                  .editAddressTheme.editAddressWidgetHighlightTransparent,
-              onTap: _onWidgetIconTab(
-                context: context,
-                type: type,
+  Widget build(BuildContext context) => Material(
+        child: InkWell(
+          splashColor:
+              context.editAddressTheme.editAddressWidgetSplashTransparent,
+          highlightColor:
+              context.editAddressTheme.editAddressWidgetHighlightTransparent,
+          onTap: _onWidgetIconTab(
+            context: context,
+            type: type,
+          ),
+          child: Padding(
+            padding: context.editAddressTheme.editAddressWidgetPadding1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: context.editAddressTheme.editAddressWidgetColor,
+                borderRadius: BorderRadius.circular(
+                    context.editAddressTheme.editAddressWidgetSpacingXS),
               ),
               child: Padding(
-                padding: context.editAddressTheme.editAddressWidgetPadding1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: context.editAddressTheme.editAddressWidgetColor,
-                    borderRadius: BorderRadius.circular(
-                        context.editAddressTheme.editAddressWidgetSpacingXS),
-                  ),
-                  child: Padding(
-                    padding: context.editAddressTheme.editAddressWidgetPadding2,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: context
-                                    .editAddressTheme.editAddressWidgetPadding3,
-                                child: ShimmerText(
-                                  editAddressLocalizedStrings?.cardFieldLabel ??
-                                      context.getEditAddressLocalizedStrings
-                                          .cardFieldLabel,
-                                  style: context.editAddressTheme.captionBold
-                                      .copyWith(color: type.getColor(context)),
-                                  maxLines: 1,
-                                  type: ShimmerType.proportional(
-                                      trailingFlex: 3, leadingFlex: 4),
-                                  baseColor: context.editAddressTheme.white,
-                                  highlightColor:
-                                      context.editAddressTheme.mediumWhite,
-                                ),
-                              ),
-                              // RxBlocBuilder<EditAddressBlocType, AddressModel>(
-                              //   bloc:
-                              //       builderContext.read<EditAddressBlocType>(),
-                              //   state: (bloc) => bloc.states.address,
-                              //   builder: (context, address, bloc) =>
-                                    _AddressWidget(
-                                  address: addressModel,
-                                ),
-                              // ),
-                            ],
+                padding: context.editAddressTheme.editAddressWidgetPadding2,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: context
+                                .editAddressTheme.editAddressWidgetPadding3,
+                            child: ShimmerText(
+                              editAddressLocalizedStrings?.cardFieldLabel ??
+                                  context.getEditAddressLocalizedStrings
+                                      .cardFieldLabel,
+                              style: context.editAddressTheme.captionBold
+                                  .copyWith(color: type.getColor(context)),
+                              maxLines: 1,
+                              type: ShimmerType.proportional(
+                                  trailingFlex: 3, leadingFlex: 4),
+                              baseColor: context.editAddressTheme.white,
+                              highlightColor:
+                                  context.editAddressTheme.mediumWhite,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: context
-                              .editAddressTheme.editAddressWidgetPadding4,
-                          child: _IconWidget(
-                            type: type,
-                          ),
-                        ),
-                      ],
+                          //TODO  provide the update address to the _AddressWidget
+                          // TODO remove the bottom padding from the saved address
+                          // bottom modal sheet
+                          // RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                          //   state: (bloc) => bloc.states.address,
+                          //   builder: (context, address, bloc) =>
+                                _AddressWidget(
+                              address: addressModel,
+                            ),
+                          // ),
+                        ],
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding:
+                          context.editAddressTheme.editAddressWidgetPadding4,
+                      child: _IconWidget(
+                        type: type,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          // ),
-        // ),
+          ),
+        ),
       );
 
   VoidCallback _onWidgetIconTab({
@@ -213,7 +203,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () {
-          showAppAddressForCorrespondence<T>(
+          showEditAddressBottomSheet<T>(
             context,
             countryCustomIcon: countryCustomIcon,
             editCountryFieldType: editCountryFieldType,
@@ -235,6 +225,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
             editAddressService: editAddressService,
             editContactAddressErrorBuilder: editContactAddressErrorBuilder,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
+            dialogsHaveBottomPadding: dialogsHaveBottomPadding,
           );
         };
     }
