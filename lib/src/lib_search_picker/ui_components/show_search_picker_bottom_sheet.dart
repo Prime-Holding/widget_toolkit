@@ -42,10 +42,10 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   showModal(
     context: context,
     configuration: ModalConfiguration(
-      showCloseButton: false,
-      showHeaderPill: false,
+      showCloseButton: configuration.showCloseButton,
+      showHeaderPill: configuration.showHeaderPill,
       haveOnlyOneSheet: configuration.haveOnlyOneSheet,
-      safeAreaBottom: false,
+      safeAreaBottom: configuration.safeAreaBottom,
       fullScreen: fullScreen,
     ),
     onCancelPressed: () => Navigator.of(context).pop(),
@@ -74,7 +74,13 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
 class SearchPickerConfiguration {
   const SearchPickerConfiguration({
     this.haveOnlyOneSheet = true,
+    this.showCloseButton = false,
+    this.showHeaderPill = false,
+    this.safeAreaBottom = false,
   });
 
   final bool haveOnlyOneSheet;
+  final bool showCloseButton;
+  final bool showHeaderPill;
+  final bool safeAreaBottom;
 }

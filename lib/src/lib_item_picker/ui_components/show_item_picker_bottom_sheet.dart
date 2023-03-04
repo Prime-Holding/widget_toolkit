@@ -35,10 +35,10 @@ void showItemPickerBottomSheet<T extends PickerItemModel>({
     context: context,
     configuration: ModalConfiguration(
       fullScreen: configuration.fullScreen,
-      showCloseButton: true,
-      showHeaderPill: true,
-      haveOnlyOneSheet: true,
-      safeAreaBottom: false,
+      showCloseButton: configuration.showCloseButton,
+      showHeaderPill: configuration.showHeaderPill,
+      haveOnlyOneSheet: configuration.haveOnlyOneSheet,
+      safeAreaBottom: configuration.safeAreaBottom,
     ),
     onCancelPressed: () => Navigator.of(context).pop(),
     builder: (context) => ItemPickerPage.withDependencies<T>(
@@ -77,6 +77,10 @@ class ItemPickerConfiguration {
     this.fullScreen = false,
     this.loadingItemsCount = 3,
     this.loadingItemHeight = 60,
+    this.showCloseButton = true,
+    this.showHeaderPill = true,
+    this.haveOnlyOneSheet = true,
+    this.safeAreaBottom = false,
   });
 
   /// Toggle between single select and multi select
@@ -96,4 +100,16 @@ class ItemPickerConfiguration {
 
   /// If the loading items height doesn't match the design you can specify custom height
   final double loadingItemHeight;
+
+  /// Flag indicating whether or not to show the close button
+  final bool showCloseButton;
+
+  /// Flag indicating whether to show the header pill-cutout on the modal sheet
+  final bool showHeaderPill;
+
+  /// Flag allowing only to have one modal sheet open at a time
+  final bool haveOnlyOneSheet;
+
+  /// Flag indicating whether or not to apply safe area at the bottom
+  final bool safeAreaBottom;
 }
