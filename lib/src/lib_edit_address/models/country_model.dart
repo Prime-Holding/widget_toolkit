@@ -42,5 +42,5 @@ class CountryModel with EquatableMixin implements PickerItemModel {
   List<Object?> get props => [countryName, countryCode];
 
   @override
-  String? get itemDisplayName => countryName;
+  String get itemDisplayName => countryName;
 }

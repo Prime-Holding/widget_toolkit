@@ -243,12 +243,12 @@ List<Widget> _buildButtons(BuildContext context) => [
                 onPressed: () {},
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               child: GradientFillButton(
                 text: 'GradientFillButton - disabled',
                 state: ButtonStateModel.disabled,
-                onPressed: () {},
+                onPressed: null,
               ),
             ),
             Padding(
@@ -324,11 +324,13 @@ Widget _buildMultiSelectItemPicker(BuildContext context) => WidgetSection(
     );
 
 class UpdateStateOnSelection<T> extends StatefulWidget {
-  const UpdateStateOnSelection({required this.builder, Key? key})
+  const UpdateStateOnSelection(
+      {required this.builder, this.getString, Key? key})
       : super(key: key);
 
   final Widget Function(
       List<T> data, void Function(List<T> newData) updateState) builder;
+  final String Function(T element)? getString;
 
   @override
   State<UpdateStateOnSelection<T>> createState() =>
@@ -372,7 +374,7 @@ class _UpdateStateOnSelectionState<T> extends State<UpdateStateOnSelection<T>> {
                       ...localData
                           .map(
                             (e) => Text(
-                              '${e.toString()} ',
+                              '${widget.getString?.call(e) ?? e.toString()} ',
                               style: const TextStyle(fontSize: 10),
                             ),
                           )
@@ -421,6 +423,9 @@ class DataModel extends PickerItemModel {
 
   @override
   int get hashCode => name.hashCode ^ description.hashCode ^ color.hashCode;
+
+  @override
+  String toString() => name;
 }
 
 class DataService extends ItemPickerService<DataModel> {
@@ -440,6 +445,7 @@ class DataService extends ItemPickerService<DataModel> {
 Widget _buildSearchPicker(BuildContext context) => WidgetSection(
       description: 'Search Picker',
       child: UpdateStateOnSelection<CountryModel>(
+        getString: (CountryModel element) => element.itemDisplayName,
         builder: (updatedData, updateFunction) => OutlineFillButton(
           text: 'Select an item from a long list',
           onPressed: () => showSearchPickerBottomSheet<CountryModel>(
@@ -485,7 +491,7 @@ class SearchService extends SearchPickerService<CountryModel> {
     }
 
     return list
-        .where((item) => (item.itemDisplayName ?? '')
+        .where((item) => (item.itemDisplayName)
             .toLowerCase()
             .contains(searchParam.toLowerCase()))
         .toList();
