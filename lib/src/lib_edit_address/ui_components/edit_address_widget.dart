@@ -197,7 +197,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () {
-          showAppAddressForCorrespondence<T>(
+          showEditAddressBottomSheet<T>(
             context,
             countryCustomIcon: countryCustomIcon,
             editCountryFieldType: editCountryFieldType,

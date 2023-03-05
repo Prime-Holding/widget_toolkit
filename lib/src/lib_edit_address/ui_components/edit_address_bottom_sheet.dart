@@ -7,7 +7,7 @@ import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../views/edit_address_page.dart';
 
-void showAppAddressForCorrespondence<T extends PickerItemModel>(
+void showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
   required String buttonText,
   required String headerText,
