@@ -527,11 +527,22 @@ Widget _buildTextFieldItem(BuildContext context) => WidgetSection(
 
 class ErrorMapperUtil<T> {
   RxFieldException<T> errorMapper(Object error, BuildContext context) {
-    if (error is String) {
-      throw Exception(error);
+    if (error is ErrorFormFieldModel) {
+      throw RxFieldExceptionFatory.fromFormField<T>(error, context);
     }
     throw error;
   }
+}
+
+extension RxFieldExceptionFatory on RxFieldException {
+  static RxFieldException<T> fromFormField<T>(
+    ErrorFormFieldModel formFieldModel,
+    BuildContext context,
+  ) =>
+      RxFieldException<T>(
+        error: formFieldModel.error,
+        fieldValue: formFieldModel.fieldValue,
+      );
 }
 
 class LocalAddressFieldService extends TextFieldValidator<String> {
@@ -543,7 +554,7 @@ class LocalAddressFieldService extends TextFieldValidator<String> {
     await Future.delayed(const Duration(seconds: 1));
     if (text.length >= maxLengthRequired) {
       await Future.delayed(const Duration(seconds: 1));
-      throw RxFieldException<String>(
+      throw ErrorFormFieldModel<String>(
           error: 'Please enter at max $maxLengthRequired symbols',
           fieldValue: text);
     }
@@ -553,12 +564,27 @@ class LocalAddressFieldService extends TextFieldValidator<String> {
   @override
   void validateOnType(String text) {
     if (text.length < minLengthRequired) {
-      throw RxFieldException<String>(
+      throw ErrorFormFieldModel<String>(
           error: 'Please enter at least $minLengthRequired symbols',
           fieldValue: text);
     }
   }
 }
+
+class ErrorFormFieldModel<T> extends ErrorModel {
+  ErrorFormFieldModel({
+    required this.error,
+    required this.fieldValue,
+  });
+
+  final String error;
+  final T fieldValue;
+
+  @override
+  String toString() =>
+      'ErrorRequiredField. Translation Key: $error. Value: $fieldValue.';
+}
+
 //# endregion
 
 //# region EditAddress
@@ -566,10 +592,9 @@ Widget _buildEditAddressItem(BuildContext context) => WidgetSection(
       description: 'EditAddress',
       child: EditAddressWidget<CountryModel>(
         cityErrorMapper: (obj, context) =>
-            EditAddressErrorMapperUtil<String>().cityErrorMapper(obj, context),
+            ErrorMapperUtil<String>().errorMapper(obj, context),
         addressErrorMapper: (obj, context) =>
-            EditAddressErrorMapperUtil<String>()
-                .addressErrorMapper(obj, context),
+            ErrorMapperUtil<String>().errorMapper(obj, context),
         validator: LocalAddressFieldService(),
         searchCountryService: SearchService(
           SearchCountryRepository(),
@@ -577,21 +602,6 @@ Widget _buildEditAddressItem(BuildContext context) => WidgetSection(
       ),
     );
 
-class EditAddressErrorMapperUtil<T> {
-  RxFieldException<T> cityErrorMapper(Object error, BuildContext context) {
-    if (error is String) {
-      throw Exception(error);
-    }
-    throw error;
-  }
-
-  RxFieldException<T> addressErrorMapper(Object error, BuildContext context) {
-    if (error is String) {
-      throw Exception(error);
-    }
-    throw error;
-  }
-}
 //# endregion
 //# endregion
 

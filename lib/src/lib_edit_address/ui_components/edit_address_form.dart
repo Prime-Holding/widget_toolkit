@@ -117,7 +117,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: false,
+                dialogHasBottomPadding: true,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -139,7 +139,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: false,
+                dialogHasBottomPadding: true,
               ),
             ],
           ),
