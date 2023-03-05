@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
@@ -27,6 +25,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.addressCustomIcon,
     this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
+    this.dialogHasBottomPadding,
     Key? key,
   }) : super(key: key);
 
@@ -45,6 +44,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool? dialogHasBottomPadding;
 
   @override
   Widget build(BuildContext context) =>
@@ -116,7 +116,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: false,
+                dialogHasBottomPadding: dialogHasBottomPadding ?? true,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -138,7 +138,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: false,
+                dialogHasBottomPadding: dialogHasBottomPadding ?? true,
               ),
             ],
           ),
@@ -166,26 +166,23 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final bool? dialogHasBottomPadding,
   }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-                context, addressModel, editAddressService)
-            .providers,
-        child: EditAddressForm<T>(
-          onAddressChange: onAddressChange,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-        ),
+      EditAddressForm<T>(
+        onAddressChange: onAddressChange,
+        cityErrorMapper: cityErrorMapper,
+        addressErrorMapper: addressErrorMapper,
+        validator: validator,
+        countryCustomIcon: countryCustomIcon,
+        editCountryFieldType: editCountryFieldType,
+        cityCustomIcon: cityCustomIcon,
+        editCityFieldType: editCityFieldType,
+        addressCustomIcon: addressCustomIcon,
+        editAddressFieldType: editAddressFieldType,
+        searchCountryService: searchCountryService,
+        editAddressLocalizedStrings: editAddressLocalizedStrings,
+        searchCountryCustomBuilders: searchCountryCustomBuilders,
+        dialogHasBottomPadding: dialogHasBottomPadding,
       );
 
   EditFieldState _getProfileFieldState(
