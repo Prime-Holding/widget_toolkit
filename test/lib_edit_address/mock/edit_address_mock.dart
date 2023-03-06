@@ -5,13 +5,11 @@ import 'package:widget_toolkit/edit_address.dart';
 import 'package:widget_toolkit/language_picker.dart';
 import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart';
 
-import '../service/save_address_service_mock.dart';
 import 'edit_address_mock.mocks.dart';
 
 @GenerateMocks(
     [EditAddressBlocStates, EditAddressBlocEvents, EditAddressBlocType])
 EditAddressBlocType editAddressMockFactory({
-  bool? showError,
   AddressModel? onAddressSet,
   bool? isLoading,
   ErrorModel? errors,
@@ -20,7 +18,6 @@ EditAddressBlocType editAddressMockFactory({
   bool? isCountryEdited,
   CountryModel? country,
   AddressModel? address,
-  SaveAddressServiceMock? service,
 }) {
   final blocMock = MockEditAddressBlocType();
   final eventsMock = MockEditAddressBlocEvents();

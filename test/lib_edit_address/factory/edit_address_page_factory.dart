@@ -14,7 +14,7 @@ import '../service/search_country_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
 
 /// Change the parameters according the the needs of the test
-Widget editAddressFactory({
+Widget editAddressPageFactory({
   bool? showError,
   AddressModel? onAddressSet,
   bool? isLoading,
@@ -24,14 +24,12 @@ Widget editAddressFactory({
   bool? isCountryEdited,
   CountryModel? country,
   AddressModel? address,
-  SaveAddressServiceMock? service,
 }) =>
     Scaffold(
       body: MultiProvider(
         providers: [
           RxBlocProvider<EditAddressBlocType>.value(
             value: editAddressMockFactory(
-              showError: showError,
               onAddressSet: onAddressSet,
               isLoading: isLoading,
               errors: errors,
@@ -40,7 +38,6 @@ Widget editAddressFactory({
               isCountryEdited: isCountryEdited,
               country: country,
               address: address,
-              service: service,
             ),
           ),
           Provider<EditAddressFieldsServiceMock>(

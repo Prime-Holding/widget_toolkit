@@ -66,24 +66,20 @@ class _$AddressModelCWProxyImpl implements _$AddressModelCWProxy {
     return AddressModel(
       addressType:
           addressType == const $CopyWithPlaceholder() || addressType == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.addressType!
+              ? _value.addressType
               // ignore: cast_nullable_to_non_nullable
               : addressType as AddressTypeModel,
       city: city == const $CopyWithPlaceholder() || city == null
-          // ignore: unnecessary_non_null_assertion
-          ? _value.city!
+          ? _value.city
           // ignore: cast_nullable_to_non_nullable
           : city as String,
       streetAddress:
           streetAddress == const $CopyWithPlaceholder() || streetAddress == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.streetAddress!
+              ? _value.streetAddress
               // ignore: cast_nullable_to_non_nullable
               : streetAddress as String,
       country: country == const $CopyWithPlaceholder() || country == null
-          // ignore: unnecessary_non_null_assertion
-          ? _value.country!
+          ? _value.country
           // ignore: cast_nullable_to_non_nullable
           : country as CountryModel,
     );
