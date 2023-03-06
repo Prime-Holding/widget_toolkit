@@ -71,6 +71,7 @@ Widget editAddressFactory({
             editAddressService:
                 SaveAddressServiceMock(showError: showError ?? false),
             editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
+            onAddressSaved: (AddressModel addressModel) {  },
           ),
         ),
       ),

@@ -9,6 +9,7 @@ import '../views/edit_address_page.dart';
 
 void showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
+  required OnAddressSaved onAddressSaved,
   required String buttonText,
   required String headerText,
   required AddressModel addressModel,
@@ -40,6 +41,7 @@ void showEditAddressBottomSheet<T extends PickerItemModel>(
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(
         context,
+        onAddressSaved: onAddressSaved,
         buttonText: buttonText,
         headerText: headerText,
         addressModel: addressModel,

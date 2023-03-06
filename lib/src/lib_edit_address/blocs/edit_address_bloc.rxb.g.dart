@@ -51,7 +51,7 @@ abstract class $EditAddressBloc extends RxBlocBase
   late final ConnectableStream<ErrorModel?> _errorsState = _mapToErrorsState();
 
   /// The state of [onAddressSaved] implemented in [_mapToOnAddressSavedState]
-  late final ConnectableStream<void> _onAddressSavedState =
+  late final ConnectableStream<AddressModel> _onAddressSavedState =
       _mapToOnAddressSavedState();
 
   /// The state of [street] implemented in [_mapToStreetState]
@@ -101,7 +101,7 @@ abstract class $EditAddressBloc extends RxBlocBase
   ConnectableStream<ErrorModel?> get errors => _errorsState;
 
   @override
-  ConnectableStream<void> get onAddressSaved => _onAddressSavedState;
+  ConnectableStream<AddressModel> get onAddressSaved => _onAddressSavedState;
 
   @override
   ConnectableStream<String> get street => _streetState;
@@ -124,7 +124,7 @@ abstract class $EditAddressBloc extends RxBlocBase
 
   ConnectableStream<ErrorModel?> _mapToErrorsState();
 
-  ConnectableStream<void> _mapToOnAddressSavedState();
+  ConnectableStream<AddressModel> _mapToOnAddressSavedState();
 
   ConnectableStream<String> _mapToStreetState();
 

@@ -46,7 +46,9 @@ EditAddressBlocType editAddressMockFactory({
   );
 
   when(statesMock.onAddressSaved).thenAnswer(
-    (_) => const Stream<void>.empty().publish(),
+    (_) => address != null
+        ? Stream.value(address).publish()
+        : const Stream<AddressModel>.empty().publish(),
   );
 
   when(statesMock.street).thenAnswer(
