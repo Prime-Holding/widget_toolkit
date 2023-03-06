@@ -1,6 +1,6 @@
-## [0.0.1-dev5] - March 06, 2023
+## [0.0.1-dev5] - TBS
+- Documentation improvements
 - Add example project
-- Add categories to the API documentation
 - CountryModel name getter returns non nullable String
 - SearchPickerService provides default implementation of method 'filteredListByName'
 - IconTextButton now has transparent background

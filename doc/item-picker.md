@@ -45,22 +45,37 @@ extensions: [
 //..
 ```
 
-Complete example for showItemPickerBottomSheet usage:
+In order to fetch the models you want to present in the bottom sheet dialog you need to implement your `Service` as follows:
+
+```dart
+class MyModel implements PickerItemModel {
+    String? get itemDisplayName => 'The $title of the model, presented however you like';
+}
+
+class MyCustomService implements ItemPickerService<MyModel> {
+    Future<List<MyModel>> getItems() async => [...list of models];
+}
+```
+
+Once you register the `MyCustomService` as part of your DI then you can call the `showItemPickerBottomSheet` anywhere in your app with the following minimal configuration: 
+```dart
+showItemPickerBottomSheet<MyModel>(
+    context: context,
+    service: context.read<MyCustomService>
+);
+```
+
+The showItemPickerBottomSheet provides a lot of customization options such as:
 ```dart
 showItemPickerBottomSheet<DataModel>(
     context: context,
     title: title,
     separatorBuilder: (ctx, index) => _buildCustomSeparator(index),
     footerBuilder: (ctx) => _buildCustomFooter(),
-    itemBuilder: (ctx, model, isSelected, isLoading) =>
-    _buildCustomListItem(model, isSelected, isLoading),
+    itemBuilder: (ctx, model, isSelected, isLoading) => _buildCustomListItem(model, isSelected, isLoading),
     selectedItems: _selectedDataArray,
-    callback: (data) => setState(() {
-    _selectedDataArray = data;
-    }),
-    service: DataService(
-        data: [DataModel(), DataModel(), DataModel()],
-    ),
+    callback: (data) => setState(() => _selectedDataArray = data),
+    service: DataService(data: [DataModel(), DataModel(), DataModel()]),
     configuration: ItemPickerConfiguration(
         isItemSelectionRequired: false,
         fullScreen: false,
