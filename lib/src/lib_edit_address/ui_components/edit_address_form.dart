@@ -25,7 +25,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.addressCustomIcon,
     this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
-    this.dialogHasBottomPadding,
     Key? key,
   }) : super(key: key);
 
@@ -44,7 +43,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
-  final bool? dialogHasBottomPadding;
 
   @override
   Widget build(BuildContext context) =>
@@ -116,7 +114,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: dialogHasBottomPadding ?? true,
+                dialogHasBottomPadding: true,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -138,7 +136,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: dialogHasBottomPadding ?? true,
+                dialogHasBottomPadding: true,
               ),
             ],
           ),
@@ -166,7 +164,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final bool? dialogHasBottomPadding,
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
@@ -182,7 +179,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         searchCountryService: searchCountryService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
-        dialogHasBottomPadding: dialogHasBottomPadding,
       );
 
   EditFieldState _getProfileFieldState(

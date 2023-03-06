@@ -30,7 +30,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
-    this.dialogHasBottomPadding,
     Key? key,
   }) : super(key: key);
 
@@ -54,7 +53,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressService editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
-  final bool? dialogHasBottomPadding;
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
@@ -80,7 +78,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final bool? dialogHasBottomPadding,
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
@@ -106,7 +103,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           editAddressLocalizedStrings: editAddressLocalizedStrings,
           editAddressService: editAddressService,
           searchCountryCustomBuilders: searchCountryCustomBuilders,
-          dialogHasBottomPadding: dialogHasBottomPadding,
         ),
       );
 
@@ -168,7 +164,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                       editAddressLocalizedStrings: editAddressLocalizedStrings,
                       editAddressService: editAddressService,
                       searchCountryCustomBuilders: searchCountryCustomBuilders,
-                      dialogHasBottomPadding: dialogHasBottomPadding,
                     ),
                   if (!snapshot.hasData)
                     SizedBox(height: context.editAddressTheme.spacingXL),

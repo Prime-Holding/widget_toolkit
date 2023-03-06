@@ -55,11 +55,6 @@ import 'permanent_address_bottom_sheet.dart';
 /// showEmptyWidgetWhenNoResultsAreFound, custom item builder,
 /// error builder, empty builder, separator builder for the search country item
 /// picker
-///
-/// [dialogHasBottomPadding] if it is true, it moves the dialog content
-/// up with the height of the keyboard, when the keyboard is visible, so the
-/// city and street dialogs appear above the keyboard
-///
 class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressWidget({
     required this.cityErrorMapper,
@@ -79,7 +74,6 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
-    this.dialogHasBottomPadding,
     Key? key,
   }) : super(key: key);
 
@@ -102,7 +96,6 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
-  final bool? dialogHasBottomPadding;
 
   static const _defaultAddressModel = AddressModel(
     addressType: AddressTypeModel.correspondence,
@@ -219,7 +212,6 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
             editAddressService: editAddressService,
             editContactAddressErrorBuilder: editContactAddressErrorBuilder,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
-            dialogHasBottomPadding: dialogHasBottomPadding,
           );
         };
     }

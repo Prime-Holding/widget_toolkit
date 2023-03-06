@@ -29,7 +29,6 @@ void showEditAddressBottomSheet<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-  final bool? dialogHasBottomPadding,
 }) =>
     showModal(
       configuration: ModalConfiguration(
@@ -58,7 +57,6 @@ void showEditAddressBottomSheet<T extends PickerItemModel>(
         editAddressService: editAddressService,
         editContactAddressErrorBuilder: editContactAddressErrorBuilder,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
-        dialogHasBottomPadding: dialogHasBottomPadding,
       ),
       onCancelPressed: () => Navigator.of(context).pop(),
     );
