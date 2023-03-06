@@ -26,7 +26,7 @@ bool _isBottomSheetShown = false;
 ///
 /// With the modal sheet [configuration], you can define or toggle different
 /// aspects of the modal sheet.
-Future<T?> showModal<T>({
+Future<T?> showBlurredBottomSheet<T>({
   required BuildContext context,
   required WidgetBuilder builder,
   ModalConfiguration configuration = const ModalConfiguration(),

@@ -7,7 +7,7 @@ import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/buttons/small_button.dart';
 import '../../lib_ui_components/message_panel_error.dart';
-import '../../lib_ui_components/show_modal.dart';
+import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../blocs/language_picker_bloc.dart';
 import '../models/selected_language_model.dart';
 import '../theme/language_picker_theme.dart';
@@ -52,7 +52,7 @@ void showChangeLanguageBottomSheet({
   final MessagePanelState messageState = MessagePanelState.important,
   dynamic errorPanelIcon,
 }) =>
-    showModal(
+    showBlurredBottomSheet(
       context: context,
       builder: (context) => _ChangeLanguageWidget(
         iconRight: iconRight,

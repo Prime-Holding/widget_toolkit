@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'error_card_widget.dart';
-import 'show_modal.dart';
+import 'show_blurred_bottom_sheet.dart';
 
 /// Displays a customizable modal sheet with a background blur effect. Requires
 /// an [error] which will be presented on the modal sheet, with an optional
@@ -27,7 +27,7 @@ import 'show_modal.dart';
 ///
 /// The [image] is a widget that will be placed on top of the error message in
 /// the error message box.
-Future<T?> showErrorModal<T>({
+Future<T?> showErrorBlurredBottomSheet<T>({
   required BuildContext context,
   required String error,
   Widget? headerWidget,
@@ -40,7 +40,7 @@ Future<T?> showErrorModal<T>({
   bool showHeaderPill = true,
   String retryButtonText = 'Retry',
 }) =>
-    showModal<T>(
+    showBlurredBottomSheet<T>(
       context: context,
       onCancelPressed: onCancelCallback,
       configuration: ModalConfiguration(

@@ -182,7 +182,7 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
   }
 
   Future<void> _showModalText(BuildContext context) async => widget.enabled
-      ? showModal(
+      ? showBlurredBottomSheet(
           context: context,
           configuration: ModalConfiguration(
             fullScreen: widget.configuration.fullScreen,

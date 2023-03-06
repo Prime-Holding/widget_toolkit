@@ -32,6 +32,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.editFieldsHaveBottomPadding = true,
     Key? key,
   }) : super(key: key);
 
@@ -55,6 +56,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressService editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool? editFieldsHaveBottomPadding;
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
@@ -80,6 +82,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final bool? editFieldsHaveBottomPadding,
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
@@ -105,6 +108,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           editAddressLocalizedStrings: editAddressLocalizedStrings,
           editAddressService: editAddressService,
           searchCountryCustomBuilders: searchCountryCustomBuilders,
+          editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
         ),
       );
 
@@ -166,6 +170,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                       editAddressLocalizedStrings: editAddressLocalizedStrings,
                       editAddressService: editAddressService,
                       searchCountryCustomBuilders: searchCountryCustomBuilders,
+                      editFieldsHaveBottomPadding:
+                          editFieldsHaveBottomPadding ?? true,
                     ),
                   if (!snapshot.hasData)
                     SizedBox(height: context.editAddressTheme.spacingXL),

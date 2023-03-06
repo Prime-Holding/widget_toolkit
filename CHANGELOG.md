@@ -1,3 +1,14 @@
+## [0.0.1-dev5] - March 06, 2023
+- Add example project
+- Add categories to the API documentation
+- CountryModel name getter returns non nullable String
+- SearchPickerService provides default implementation of method 'filteredListByName'
+- IconTextButton now has transparent background
+- showSearchPickerBottomSheet and showItemPickerBottomSheet get more configurable
+### Breaking Changes:
+- showModal is renamed to showBlurredBottomSheet
+- showErrorModal is renamed to showErrorBlurredBottomSheet
+
 ## [0.0.1-dev4] - February 27, 2023
 - Fix screenshots
 

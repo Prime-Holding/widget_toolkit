@@ -28,6 +28,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.addressCustomIcon,
     this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
+    this.editFieldsHaveBottomPadding = true,
     Key? key,
   }) : super(key: key);
 
@@ -46,6 +47,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool editFieldsHaveBottomPadding;
 
   @override
   Widget build(BuildContext context) =>
@@ -117,7 +119,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: true,
+                dialogHasBottomPadding: editFieldsHaveBottomPadding,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -139,7 +141,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
-                dialogHasBottomPadding: true,
+                dialogHasBottomPadding: editFieldsHaveBottomPadding,
               ),
             ],
           ),
@@ -167,6 +169,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final bool editFieldsHaveBottomPadding = true,
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
@@ -186,6 +189,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
           searchCountryService: searchCountryService,
           editAddressLocalizedStrings: editAddressLocalizedStrings,
           searchCountryCustomBuilders: searchCountryCustomBuilders,
+          editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
         ),
       );
 

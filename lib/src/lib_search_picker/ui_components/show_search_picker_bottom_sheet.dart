@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
-import '../../lib_ui_components/show_modal.dart';
+import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../services/search_picker_service.dart';
 import '../views/search_picker_page.dart';
 
@@ -39,7 +39,7 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   double loadingItemHeight = 60,
   SearchPickerConfiguration configuration = const SearchPickerConfiguration(),
 }) {
-  showModal(
+  showBlurredBottomSheet(
     context: context,
     configuration: ModalConfiguration(
       showCloseButton: configuration.showCloseButton,

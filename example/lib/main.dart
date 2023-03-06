@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:example/search_country_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 void main() {
@@ -17,33 +15,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Widget Toolkit Demo',
-      theme: ThemeData.light().copyWith(
-          colorScheme: ColorScheme.fromSwatch(),
-          extensions: _widgetToolkitThemeExtensions(true)),
-      darkTheme: ThemeData.dark().copyWith(
-          colorScheme: ColorScheme.fromSwatch(),
-          extensions: _widgetToolkitThemeExtensions(false)),
+      theme: ThemeData.light()
+          .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
+        WidgetToolkitTheme.light,
+        ItemPickerTheme.light,
+        SearchPickerTheme.light,
+        TextFieldDialogTheme.light,
+        EditAddressTheme.light,
+      ]),
+      darkTheme: ThemeData.dark()
+          .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
+        WidgetToolkitTheme.dark,
+        ItemPickerTheme.dark,
+        SearchPickerTheme.dark,
+        TextFieldDialogTheme.dark,
+        EditAddressTheme.dark,
+      ]),
       home: const MyHomePage(),
     );
   }
 }
-
-List<ThemeExtension> _widgetToolkitThemeExtensions(bool inLightMode) =>
-    inLightMode
-        ? [
-            WidgetToolkitTheme.light,
-            ItemPickerTheme.light,
-            SearchPickerTheme.light,
-            TextFieldDialogTheme.light,
-            EditAddressTheme.light,
-          ]
-        : [
-            WidgetToolkitTheme.dark,
-            ItemPickerTheme.dark,
-            SearchPickerTheme.dark,
-            TextFieldDialogTheme.dark,
-            EditAddressTheme.dark,
-          ];
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -53,25 +44,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final boolStream = BehaviorSubject<bool>();
+  late PageController pageController;
+
+  @override
+  void initState() {
+    pageController = PageController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController();
     return Scaffold(
       appBar: AppBar(title: const Text('Widget Toolkit Example')),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: PageView(
-          controller: controller,
-          children: <Widget>[
-            _buildShowcasePage(context,
-                title: 'Common Components',
-                child: _buildCommonComponents(context, boolStream)),
-            _buildShowcasePage(context,
-                title: 'Pickers', child: _buildItemPicker(context)),
-            _buildShowcasePage(context,
-                title: 'Edit Fields', child: _buildTextField(context)),
+          controller: pageController,
+          children: const <Widget>[
+            CommonComponentsPage(),
+            PickersPage(),
+            EditFieldsPage(),
           ],
         ),
       ),
@@ -80,248 +72,264 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    boolStream.close();
+    pageController.dispose();
     super.dispose();
   }
 }
 
 //# region Common components
-Widget _buildCommonComponents(
-        BuildContext context, BehaviorSubject<bool> boolStream) =>
-    SingleChildScrollView(
-      child: Column(
+class CommonComponentsPage extends StatelessWidget {
+  const CommonComponentsPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => PageViewNamedPage(
+        title: 'Common Components',
         children: [
-          ..._buildUrlLauncherWidgets(context),
-          ..._buildShimmerWidgets(context, boolStream),
-          ..._buildModalWidgets(context),
-          ..._buildButtons(context),
-        ],
-      ),
-    );
-
-List<Widget> _buildUrlLauncherWidgets(BuildContext context) => [
-      WidgetSection(
-        description: 'Open Url widget - URL',
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          children: [
-            const Text('The following link can be opened: '),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: OpenUrlWidget.withDependencies(
-                url: Constants.primeHoldingUrl,
-                translateError: translateError,
-                child: const Text(
-                  Constants.primeHoldingUrl,
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                  ),
-                  textAlign: TextAlign.center,
+          WidgetSection(
+            description: 'OpenUrlWidget - launch URL link',
+            child: OpenUrlWidget.withDependencies(
+              url: 'https://www.primeholding.com/',
+              translateError: translateError,
+              child: const Text(
+                'https://www.primeholding.com/',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
                 ),
+                textAlign: TextAlign.center,
               ),
-            ),
-          ],
-        ),
-      ),
-      WidgetSection(
-        description: 'Open Url widget - phone number',
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          children: [
-            const Text('The following phone number can be opened: '),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: OpenUrlWidget.withDependencies(
-                url: Constants.mobileNumberUrl,
-                uriType: UriType.telephone,
-                errorModalSafeBottom: false,
-                translateError: translateError,
-                child: const Text(
-                  Constants.mobileNumberUrl,
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ];
-
-List<Widget> _buildShimmerWidgets(
-        BuildContext context, BehaviorSubject<bool> boolStream) =>
-    [
-      WidgetSection(
-        description: 'Shimmer Wrapper',
-        onRefresh: () => slapAfterThreeSeconds(true, boolStream),
-        child: Center(
-          child: SizedBox(
-            width: 180,
-            height: 120,
-            child: StreamBuilder(
-              stream: boolStream.stream,
-              initialData: true,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                startStreamOnInitialBuild(boolStream);
-                return ShimmerWrapper(
-                  showShimmer: snapshot.data ?? true,
-                  fadeTransition: true,
-                  alignment: Alignment.center,
-                  child: Image.network(
-                    Constants.imageUrl,
-                    // fit: BoxFit.cover,
-                  ),
-                );
-              },
             ),
           ),
-        ),
-      ),
-      WidgetSection(
-        description: 'Shimmer Text',
-        childSize: Constants.suggestedChildSize,
-        onRefresh: () => slapAfterThreeSeconds(true, boolStream),
-        child: StreamBuilder(
-            stream: boolStream.stream,
-            initialData: true,
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              startStreamOnInitialBuild(boolStream);
-              return ShimmerText(
-                (snapshot.data ?? true) ? null : 'Displays Text after loaded',
+          WidgetSection(
+            description: 'OpenUrlWidget - call a phone number',
+            child: OpenUrlWidget.withDependencies(
+              url: '+123456789012',
+              uriType: UriType.telephone,
+              translateError: translateError,
+              child: const Text(
+                '+123456789012',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          LoadingStateSwitcher(
+            builder: (isLoading, simulateLoading) => WidgetSection(
+              description: 'Shimmer Wrapper',
+              childSize: const Size(180, 120),
+              onRefresh: () => simulateLoading.call(true),
+              child: ShimmerWrapper(
+                showShimmer: isLoading,
+                fadeTransition: true,
+                alignment: Alignment.center,
+                child: Image.network(
+                    'https://www.btsbg.org/sites/default/files/obekti/stobski-piramidi-selo-stob.jpg'),
+              ),
+            ),
+          ),
+          LoadingStateSwitcher(
+            builder: (isLoading, simulateLoading) => WidgetSection(
+              description: 'Text Shimmer',
+              childSize: const Size(320, 32),
+              onRefresh: () => simulateLoading.call(true),
+              child: ShimmerText(
+                isLoading ? null : 'Displays Text after loaded',
                 alignment: Alignment.center,
                 type: ShimmerType.random(),
-              );
-            }),
-      ),
-    ];
+              ),
+            ),
+          ),
+          WidgetSection(
+            description: 'Modal Sheet with message',
+            child: OutlineFillButton(
+              text: 'Open modal sheet',
+              onPressed: () => showBlurredBottomSheet(
+                context: context,
+                builder: (BuildContext context) => const MessagePanelWidget(
+                    message: 'This is an informative message',
+                    messageState: MessagePanelState.informative),
+              ),
+            ),
+          ),
+          WidgetSection(
+            description: 'Error Modal Sheet',
+            child: GradientFillButton(
+              text: 'Present error in modal',
+              onPressed: () => showErrorBlurredBottomSheet(
+                  error: 'This is an error message',
+                  context: context,
+                  retryCallback: (context) {},
+                  showCloseButton: true),
+            ),
+          ),
+          WidgetSection(
+            description: 'Buttons',
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: OutlineFillButton(
+                    text: 'OutlineFillButton',
+                    onPressed: () {},
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: GradientFillButton(
+                    text: 'GradientFillButton',
+                    onPressed: () {},
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: GradientFillButton(
+                    text: 'GradientFillButton - disabled',
+                    state: ButtonStateModel.disabled,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: IconTextButton(
+                    text: 'IconTextButton',
+                    icon: Icons.send_time_extension_outlined,
+                    onPressed: () {},
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: SmallButton(
+                    onPressed: () {},
+                    icon: Icons.home_work_outlined,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+}
 
-List<Widget> _buildModalWidgets(BuildContext context) => [
-      WidgetSection(
-        description: 'Modal Sheet with message',
-        child: OutlineFillButton(
-          text: 'Open modal sheet',
-          onPressed: () => showModal(
-              context: context,
-              builder: (BuildContext context) => const MessagePanelWidget(
-                  message: 'This is an informative message',
-                  messageState: MessagePanelState.informative)),
-        ),
-      ),
-      WidgetSection(
-        description: 'Error Modal Sheet',
-        child: GradientFillButton(
-          text: 'Present error in modal',
-          onPressed: () => showErrorModal(
-              error: 'This is an error message',
-              context: context,
-              retryCallback: (context) {},
-              showCloseButton: true),
-        ),
-      ),
-    ];
+class LoadingStateSwitcher extends StatefulWidget {
+  const LoadingStateSwitcher({required this.builder, Key? key})
+      : super(key: key);
 
-List<Widget> _buildButtons(BuildContext context) => [
-      WidgetSection(
-        description: 'Buttons',
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: OutlineFillButton(
-                text: 'OutlineFillButton',
-                onPressed: () {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: GradientFillButton(
-                text: 'GradientFillButton',
-                onPressed: () {},
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: GradientFillButton(
-                text: 'GradientFillButton - disabled',
-                state: ButtonStateModel.disabled,
-                onPressed: null,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: IconTextButton(
-                text: 'IconTextButton',
-                icon: Icons.send_time_extension_outlined,
-                onPressed: () {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: SmallButton(
-                onPressed: () {},
-                icon: Icons.home_work_outlined,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ];
+  final Widget Function(bool isDataLoading, void Function(bool value)) builder;
+
+  @override
+  State<LoadingStateSwitcher> createState() => _LoadingStateSwitcherState();
+}
+
+class _LoadingStateSwitcherState extends State<LoadingStateSwitcher> {
+  late bool isLoading;
+
+  @override
+  void initState() {
+    _slapAfterThreeSeconds(true);
+    super.initState();
+  }
+
+  Future<void> _slapAfterThreeSeconds(bool initial) async {
+    setState(() {
+      isLoading = initial;
+    });
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      isLoading = !initial;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      widget.builder.call(isLoading, _slapAfterThreeSeconds);
+}
+
+String translateError(BuildContext context, Exception exception) {
+  if (exception is ErrorAccessDeniedModel) {
+    return 'Unable to open link on this device. Perhaps you are missing the'
+        ' right application to open the link.';
+  }
+  return exception.toString();
+}
 //# endregion
 
 //# region Pickers
-//# region ItemPicker
-Widget _buildItemPicker(BuildContext context) => SingleChildScrollView(
-      child: Column(
+class PickersPage extends StatelessWidget {
+  const PickersPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => PageViewNamedPage(
+        title: 'Pickers',
         children: [
-          _buildSingleSelectItemPicker(context),
-          _buildMultiSelectItemPicker(context),
-          _buildSearchPicker(context),
-        ],
-      ),
-    );
-
-Widget _buildSingleSelectItemPicker(BuildContext context) => WidgetSection(
-      description: 'ItemPicker - single select',
-      child: UpdateStateOnSelection<DataModel>(
-        builder: (updatedData, updateFunction) => OutlineFillButton(
-          text: 'Select one item',
-          onPressed: () => showItemPickerBottomSheet<DataModel>(
-            context: context,
-            title: 'Select a single item',
-            selectedItems: updatedData,
-            callback: (data) => updateFunction.call(data),
-            service: DataService(
-              data: _generateData(18),
-            ),
-            configuration: const ItemPickerConfiguration(
-                isMultiSelect: false, safeAreaBottom: true),
-          ),
-        ),
-      ),
-    );
-
-Widget _buildMultiSelectItemPicker(BuildContext context) => WidgetSection(
-      description: 'ItemPicker - multi select',
-      child: UpdateStateOnSelection<DataModel>(
-        builder: (updatedData, updateFunction) => OutlineFillButton(
-          text: 'Select a few items',
-          onPressed: () => showItemPickerBottomSheet<DataModel>(
-              context: context,
-              title: 'Select a few items',
-              selectedItems: updatedData,
-              callback: (data) => updateFunction.call(data),
-              service: DataService(
-                data: _generateData(18),
+          WidgetSection(
+            description: 'ItemPicker - single select',
+            child: UpdateStateOnSelection<DataModel>(
+              builder: (updatedData, updateFunction) => OutlineFillButton(
+                text: 'Select one item',
+                onPressed: () => showItemPickerBottomSheet<DataModel>(
+                  context: context,
+                  title: 'Select a single item',
+                  selectedItems: updatedData,
+                  callback: (data) => updateFunction.call(data),
+                  service: DataService(),
+                  configuration: const ItemPickerConfiguration(
+                      isMultiSelect: false, safeAreaBottom: true),
+                ),
               ),
-              configuration: const ItemPickerConfiguration(
-                  isMultiSelect: true, safeAreaBottom: true)),
-        ),
-      ),
-    );
+            ),
+          ),
+          WidgetSection(
+            description: 'ItemPicker - multi select',
+            child: UpdateStateOnSelection<DataModel>(
+              builder: (updatedData, updateFunction) => OutlineFillButton(
+                text: 'Select a few items',
+                onPressed: () => showItemPickerBottomSheet<DataModel>(
+                    context: context,
+                    title: 'Select a few items',
+                    selectedItems: updatedData,
+                    callback: (data) => updateFunction.call(data),
+                    service: DataService(),
+                    configuration: const ItemPickerConfiguration(
+                        isMultiSelect: true, safeAreaBottom: true)),
+              ),
+            ),
+          ),
+          WidgetSection(
+            description: 'Search Picker',
+            child: UpdateStateOnSelection<CountryModel>(
+              getString: (CountryModel element) => element.itemDisplayName,
+              builder: (updatedData, updateFunction) => OutlineFillButton(
+                text: 'Select an item from a long list',
+                onPressed: () => showSearchPickerBottomSheet<CountryModel>(
+                    context: context,
+                    title: 'Select country',
+                    hintText: 'Type substring',
+                    retryText: 'Retry',
+                    selectedItem:
+                        updatedData.isNotEmpty ? updatedData[0] : null,
+                    onItemTap: (item) =>
+                        updateFunction.call(item != null ? [item] : []),
+                    service: SearchService(SearchCountryRepository()),
+                    emptyBuilder: () => const MessagePanelWidget(
+                          message:
+                              'There is no results for the searched query!',
+                          messageState: MessagePanelState.neutral,
+                        ),
+                    configuration:
+                        const SearchPickerConfiguration(safeAreaBottom: true)),
+              ),
+            ),
+          ),
+        ],
+      );
+}
 
 class UpdateStateOnSelection<T> extends StatefulWidget {
   const UpdateStateOnSelection(
@@ -388,26 +396,14 @@ class _UpdateStateOnSelectionState<T> extends State<UpdateStateOnSelection<T>> {
       );
 }
 
-List<DataModel> _generateData(int count) => List.generate(
-      count,
-      (index) => DataModel(
-        name: 'Person $index',
-        description:
-            'This may be very long description for user named Person $index',
-        color: index % 2 == 0 ? 0xFF42A5F5 : 0xFFF4511E,
-      ),
-    );
-
 class DataModel extends PickerItemModel {
   DataModel({
     required this.name,
     required this.description,
-    required this.color,
   });
 
   final String name;
   final String description;
-  final int color;
 
   @override
   String get itemDisplayName => name;
@@ -418,84 +414,36 @@ class DataModel extends PickerItemModel {
       other is DataModel &&
           runtimeType == other.runtimeType &&
           other.name == name &&
-          other.description == description &&
-          other.color == color;
+          other.description == description;
 
   @override
-  int get hashCode => name.hashCode ^ description.hashCode ^ color.hashCode;
+  int get hashCode => name.hashCode ^ description.hashCode;
 
   @override
   String toString() => name;
 }
 
 class DataService extends ItemPickerService<DataModel> {
-  DataService({
-    required this.data,
-  });
-
-  final List<DataModel> data;
+  DataService();
 
   @override
-  Future<List<DataModel>> getItems() =>
-      Future.delayed(Constants.threeSec, () => data);
+  Future<List<DataModel>> getItems() => Future.delayed(
+        const Duration(seconds: 3),
+        () => List.generate(
+          20,
+          (index) => DataModel(
+            name: 'Person $index',
+            description:
+                'This may be very long description for user named Person $index',
+          ),
+        ),
+      );
 }
-//# endregion
-
-//# region SearchPicker
-Widget _buildSearchPicker(BuildContext context) => WidgetSection(
-      description: 'Search Picker',
-      child: UpdateStateOnSelection<CountryModel>(
-        getString: (CountryModel element) => element.itemDisplayName,
-        builder: (updatedData, updateFunction) => OutlineFillButton(
-          text: 'Select an item from a long list',
-          onPressed: () => showSearchPickerBottomSheet<CountryModel>(
-              context: context,
-              title: 'Select country',
-              hintText: 'Type substring',
-              retryText: 'Retry',
-              selectedItem: updatedData.isNotEmpty ? updatedData[0] : null,
-              onItemTap: (item) =>
-                  updateFunction.call(item != null ? [item] : []),
-              service: SearchService(SearchCountryRepository()),
-              emptyBuilder: _buildSearchPickerCustomEmpty,
-              configuration:
-                  const SearchPickerConfiguration(safeAreaBottom: true)),
-        ),
-      ),
-    );
-
-Widget _buildSearchPickerCustomEmpty() =>
-    Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      Center(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              color: Colors.blueGrey[300],
-              borderRadius: BorderRadius.circular(20)),
-          child: const Text('There is no results for the searched query !'),
-        ),
-      ),
-    ]);
 
 class SearchService extends SearchPickerService<CountryModel> {
   SearchService(this._searchRepository);
 
   final SearchCountryRepository _searchRepository;
-
-  @override
-  Future<List<CountryModel>> filteredListByName(
-      List<CountryModel> list, String? searchParam) async {
-    if (searchParam == null) {
-      return list;
-    }
-
-    return list
-        .where((item) => (item.itemDisplayName)
-            .toLowerCase()
-            .contains(searchParam.toLowerCase()))
-        .toList();
-  }
 
   @override
   Future<List<CountryModel>> getItems() => _searchRepository.searchList;
@@ -505,31 +453,44 @@ class SearchService extends SearchPickerService<CountryModel> {
       List.generate(5, (index) => CountryModel.empty());
 }
 //# endregion
-//# endregion
 
 //# region EditFields
-Widget _buildTextField(BuildContext context) => SingleChildScrollView(
-      child: Column(
-        children: [
-          _buildTextFieldItem(context),
-          _buildEditAddressItem(context),
-        ],
-      ),
-    );
-//# region TextField
+class EditFieldsPage extends StatelessWidget {
+  const EditFieldsPage({Key? key}) : super(key: key);
 
-Widget _buildTextFieldItem(BuildContext context) => WidgetSection(
-      description: 'TextFieldDialog',
-      child: TextFieldDialog<String>(
-        errorMapper: (obj, context) =>
-            ErrorMapperUtil<String>().errorMapper(obj, context),
-        label: 'First Name',
-        value: 'John',
-        validator: LocalAddressFieldService(),
-        dialogHasBottomPadding: true,
-        header: 'Enter your data',
-      ),
-    );
+  @override
+  Widget build(BuildContext context) => PageViewNamedPage(
+        title: 'Edit Fields',
+        children: [
+          WidgetSection(
+            description: 'TextFieldDialog',
+            child: TextFieldDialog<String>(
+              errorMapper: (obj, context) =>
+                  ErrorMapperUtil<String>().errorMapper(obj, context),
+              label: 'First Name',
+              value: 'John',
+              validator: LocalAddressFieldService(),
+              dialogHasBottomPadding: true,
+              header: 'Enter your data',
+            ),
+          ),
+          WidgetSection(
+            description: 'EditAddress',
+            child: EditAddressWidget<CountryModel>(
+              cityErrorMapper: (obj, context) =>
+                  ErrorMapperUtil<String>().errorMapper(obj, context),
+              addressErrorMapper: (obj, context) =>
+                  ErrorMapperUtil<String>().errorMapper(obj, context),
+              validator: LocalAddressFieldService(),
+              searchCountryService: SearchService(
+                SearchCountryRepository(),
+              ),
+              editFieldsHaveBottomPadding: true,
+            ),
+          ),
+        ],
+      );
+}
 
 class ErrorMapperUtil<T> {
   RxFieldException<T> errorMapper(Object error, BuildContext context) {
@@ -591,43 +552,48 @@ class ErrorFormFieldModel<T> extends ErrorModel {
       'ErrorRequiredField. Translation Key: $error. Value: $fieldValue.';
 }
 
-//# endregion
+class SearchCountryRepository {
+  Future<List<CountryModel>> get searchList => Future.delayed(
+        const Duration(seconds: 1),
+        () => _countriesList
+            .map((country) =>
+                CountryModel(countryCode: 'US', countryName: country))
+            .toList(),
+      );
 
-//# region EditAddress
-Widget _buildEditAddressItem(BuildContext context) => WidgetSection(
-      description: 'EditAddress',
-      child: EditAddressWidget<CountryModel>(
-        cityErrorMapper: (obj, context) =>
-            ErrorMapperUtil<String>().errorMapper(obj, context),
-        addressErrorMapper: (obj, context) =>
-            ErrorMapperUtil<String>().errorMapper(obj, context),
-        validator: LocalAddressFieldService(),
-        searchCountryService: SearchService(
-          SearchCountryRepository(),
-        ),
-      ),
-    );
-
-//# endregion
+  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
+}
 //# endregion
 
 //# region Helper Methods and Classes
-Widget _buildShowcasePage(BuildContext context,
-        {required String title, required Widget child}) =>
-    Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ),
-        Expanded(child: child),
-      ],
-    );
 
-/// Widget section that displays a single widget which is part of the page
+class PageViewNamedPage extends StatelessWidget {
+  const PageViewNamedPage(
+      {required this.title, required this.children, Key? key})
+      : super(key: key);
+
+  final String title;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(children: [...children]),
+            ),
+          ),
+        ],
+      );
+}
+
 class WidgetSection extends StatelessWidget {
   const WidgetSection({
     required this.child,
@@ -680,36 +646,4 @@ class WidgetSection extends StatelessWidget {
         ),
       );
 }
-
-void startStreamOnInitialBuild(BehaviorSubject<bool> boolStream) async {
-  if (!boolStream.hasValue) {
-    boolStream.add(true);
-    await Future.delayed(Constants.threeSec);
-    boolStream.add(false);
-  }
-}
-
-Future<void> slapAfterThreeSeconds(
-    bool initial, BehaviorSubject<bool> boolStream) async {
-  boolStream.add(initial);
-  await Future.delayed(Constants.threeSec);
-  boolStream.add(!initial);
-}
-
-String translateError(BuildContext context, Exception exception) {
-  if (exception is ErrorAccessDeniedModel) {
-    return 'Unable to open link on this device. Perhaps you are missing the'
-        ' right application to open the link.';
-  }
-  return exception.toString();
-}
 //# endregion
-
-class Constants {
-  static const primeHoldingUrl = 'https://www.primeholding.com/';
-  static const mobileNumberUrl = '+123456789012';
-  static const Size suggestedChildSize = Size(320, 32);
-  static const imageUrl =
-      'https://www.btsbg.org/sites/default/files/obekti/stobski-piramidi-selo-stob.jpg';
-  static const threeSec = Duration(seconds: 3);
-}

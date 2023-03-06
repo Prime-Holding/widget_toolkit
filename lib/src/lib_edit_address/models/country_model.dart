@@ -8,7 +8,7 @@ part 'country_model.g.dart';
 
 @JsonSerializable()
 @CopyWith()
-class CountryModel with EquatableMixin implements PickerItemModel {
+class CountryModel extends PickerItemModel with EquatableMixin {
   const CountryModel({
     required this.countryCode,
     required this.countryName,

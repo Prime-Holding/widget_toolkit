@@ -72,6 +72,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.editFieldsHaveBottomPadding,
     Key? key,
   }) : super(key: key);
 
@@ -94,6 +95,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final bool? editFieldsHaveBottomPadding;
 
   static const _defaultAddressModel = AddressModel(
     addressType: AddressTypeModel.correspondence,
@@ -188,29 +190,28 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () {
-          showAppAddressForCorrespondence<T>(
-            context,
-            countryCustomIcon: countryCustomIcon,
-            editCountryFieldType: editCountryFieldType,
-            cityCustomIcon: cityCustomIcon,
-            editCityFieldType: editCityFieldType,
-            addressCustomIcon: addressCustomIcon,
-            editAddressFieldType: editAddressFieldType,
-            buttonText: editAddressLocalizedStrings?.saveButtonText ??
-                context.getEditAddressLocalizedStrings.saveButtonText,
-            headerText: editAddressLocalizedStrings?.headerTitle ??
-                context.getEditAddressLocalizedStrings.headerTitle,
-            addressModel: addressModel,
-            configuration: configuration,
-            cityErrorMapper: cityErrorMapper,
-            addressErrorMapper: addressErrorMapper,
-            validator: validator,
-            searchCountryService: searchCountryService,
-            editAddressLocalizedStrings: editAddressLocalizedStrings,
-            editAddressService: editAddressService,
-            editContactAddressErrorBuilder: editContactAddressErrorBuilder,
-            searchCountryCustomBuilders: searchCountryCustomBuilders,
-          );
+          showAppAddressForCorrespondence<T>(context,
+              countryCustomIcon: countryCustomIcon,
+              editCountryFieldType: editCountryFieldType,
+              cityCustomIcon: cityCustomIcon,
+              editCityFieldType: editCityFieldType,
+              addressCustomIcon: addressCustomIcon,
+              editAddressFieldType: editAddressFieldType,
+              buttonText: editAddressLocalizedStrings?.saveButtonText ??
+                  context.getEditAddressLocalizedStrings.saveButtonText,
+              headerText: editAddressLocalizedStrings?.headerTitle ??
+                  context.getEditAddressLocalizedStrings.headerTitle,
+              addressModel: addressModel,
+              configuration: configuration,
+              cityErrorMapper: cityErrorMapper,
+              addressErrorMapper: addressErrorMapper,
+              validator: validator,
+              searchCountryService: searchCountryService,
+              editAddressLocalizedStrings: editAddressLocalizedStrings,
+              editAddressService: editAddressService,
+              editContactAddressErrorBuilder: editContactAddressErrorBuilder,
+              searchCountryCustomBuilders: searchCountryCustomBuilders,
+              editFieldsHaveBottomPadding: editFieldsHaveBottomPadding);
         };
     }
   }
