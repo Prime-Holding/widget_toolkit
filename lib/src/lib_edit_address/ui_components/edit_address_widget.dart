@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
-import '../../../edit_address.dart';
-import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
 import '../extensions/user_profile_card_types_extension.dart';
@@ -208,31 +206,29 @@ class _EditAddressWidgetState<T extends PickerItemModel>
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () async {
-          final savedAddress = await showEditAddressBottomSheet<T>(
-            context,
-            countryCustomIcon: widget.countryCustomIcon,
-            editCountryFieldType: widget.editCountryFieldType,
-            cityCustomIcon: widget.cityCustomIcon,
-            editCityFieldType: widget.editCityFieldType,
-            addressCustomIcon: widget.addressCustomIcon,
-            editAddressFieldType: widget.editAddressFieldType,
-            buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
-                context.getEditAddressLocalizedStrings.saveButtonText,
-            headerText: widget.editAddressLocalizedStrings?.headerTitle ??
-                context.getEditAddressLocalizedStrings.headerTitle,
-            addressModel: savedModel ?? widget.addressModel,
-            configuration: widget.configuration,
-            cityErrorMapper: widget.cityErrorMapper,
-            addressErrorMapper: widget.addressErrorMapper,
-            validator: widget.validator,
-            searchCountryService: widget.searchCountryService,
-            editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
-            editAddressService: widget.editAddressService,
-            editContactAddressErrorBuilder:
-                widget.editContactAddressErrorBuilder,
-            searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
-              editFieldsHaveBottomPadding: editFieldsHaveBottomPadding
-          );
+          final savedAddress = await showEditAddressBottomSheet<T>(context,
+              countryCustomIcon: widget.countryCustomIcon,
+              editCountryFieldType: widget.editCountryFieldType,
+              cityCustomIcon: widget.cityCustomIcon,
+              editCityFieldType: widget.editCityFieldType,
+              addressCustomIcon: widget.addressCustomIcon,
+              editAddressFieldType: widget.editAddressFieldType,
+              buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
+                  context.getEditAddressLocalizedStrings.saveButtonText,
+              headerText: widget.editAddressLocalizedStrings?.headerTitle ??
+                  context.getEditAddressLocalizedStrings.headerTitle,
+              addressModel: savedModel ?? widget.addressModel,
+              configuration: widget.configuration,
+              cityErrorMapper: widget.cityErrorMapper,
+              addressErrorMapper: widget.addressErrorMapper,
+              validator: widget.validator,
+              searchCountryService: widget.searchCountryService,
+              editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
+              editAddressService: widget.editAddressService,
+              editContactAddressErrorBuilder:
+                  widget.editContactAddressErrorBuilder,
+              searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
+              editFieldsHaveBottomPadding: widget.editFieldsHaveBottomPadding);
           if (savedAddress != null) {
             setState(() {
               savedModel = savedAddress;

@@ -176,7 +176,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                         searchCountryCustomBuilders:
                             searchCountryCustomBuilders,
                         editFieldsHaveBottomPadding:
-                        editFieldsHaveBottomPadding ?? true,
+                            editFieldsHaveBottomPadding ?? true,
                       ),
                     if (!snapshot.hasData)
                       SizedBox(height: context.editAddressTheme.spacingXL),
