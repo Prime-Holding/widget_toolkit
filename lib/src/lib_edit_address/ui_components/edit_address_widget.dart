@@ -112,9 +112,9 @@ class _EditAddressWidgetState<T extends PickerItemModel>
     extends State<EditAddressWidget<T>> {
   AddressModel? savedModel;
 
-  void _onAddressSaved(AddressModel model) => setState(() {
-        savedModel = model;
-      });
+  // void _onAddressSaved(AddressModel model) => setState(() {
+  //       savedModel = model;
+  //     });
 
   @override
   Widget build(BuildContext context) => Material(
@@ -203,10 +203,10 @@ class _EditAddressWidgetState<T extends PickerItemModel>
       case UserProfileCardTypes.mailingAddress:
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
-        return () {
-          showEditAddressBottomSheet<T>(
+        return () async {
+          final savedAddress = await showEditAddressBottomSheet<T>(
             context,
-            onAddressSaved: _onAddressSaved,
+            // onAddressSaved: _onAddressSaved,
             countryCustomIcon: widget.countryCustomIcon,
             editCountryFieldType: widget.editCountryFieldType,
             cityCustomIcon: widget.cityCustomIcon,
@@ -229,6 +229,9 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                 widget.editContactAddressErrorBuilder,
             searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
           );
+
+///todo setState(){{}}
+          print('bottomSheetReturnedValue1 $savedAddress');
         };
     }
   }

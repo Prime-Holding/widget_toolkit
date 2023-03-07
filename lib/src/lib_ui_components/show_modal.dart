@@ -243,7 +243,7 @@ class _ModalContent extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
         child: SmallButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: onClosePressed ?? () => Navigator.of(context).pop(),
           icon: Icons.close,
           type: SmallButtonType.outline,
           colorStyle: ButtonColorStyle.fromContext(

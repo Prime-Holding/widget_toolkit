@@ -7,9 +7,10 @@ import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../views/edit_address_page.dart';
 
-void showEditAddressBottomSheet<T extends PickerItemModel>(
+
+Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
-  required OnAddressSaved onAddressSaved,
+  // required OnAddressSaved onAddressSaved,
   required String buttonText,
   required String headerText,
   required AddressModel addressModel,
@@ -30,18 +31,23 @@ void showEditAddressBottomSheet<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-}) =>
-    showModal(
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        heightFactor: configuration.heightFactor,
-        isDismissible: configuration.isDismissible,
-        safeAreaBottom: false,
-      ),
-      context: context,
-      builder: (ctx) => EditAddressPage.withDependencies<T>(
+}) async {
+  print('showEditAddress6:$addressModel');
+  // late var finalAddress;
+  var savedAddressModel = await showModal<AddressModel>(
+    configuration: ModalConfiguration(
+      fullScreen: configuration.fullScreen,
+      heightFactor: configuration.heightFactor,
+      isDismissible: configuration.isDismissible,
+      safeAreaBottom: false,
+    ),
+    context: context,
+    builder: (ctx) {
+      return EditAddressPage.withDependencies<T>(
         context,
-        onAddressSaved: onAddressSaved,
+        onAddressSaved: (AddressModel address) {
+          Navigator.of(ctx).pop(address); // pass the updated address model to pop
+        },
         buttonText: buttonText,
         headerText: headerText,
         addressModel: addressModel,
@@ -59,9 +65,28 @@ void showEditAddressBottomSheet<T extends PickerItemModel>(
         editAddressService: editAddressService,
         editContactAddressErrorBuilder: editContactAddressErrorBuilder,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
-      ),
-      onCancelPressed: () => Navigator.of(context).pop(),
-    );
+      );
+    },
+    onCancelPressed: () => Navigator.of(context).pop(),// TODO cannot return addressModel
+
+    // use a `then` clause to get the result of the Future returned by showModal
+  ).then((result) {
+    return result;
+    // set the savedAddressModel to the result of showModal
+    // savedAddressModel = result;
+    // Navigator.of(ctx).pop(address);
+  });
+
+  print('bottomSheetReturnedValue2: $savedAddressModel');
+}
+
+
+AddressModel _onAddressSaved(AddressModel model) {
+  return model;
+// setState(() {
+// savedModel = model;
+// });
+}
 
 /// [countrySearchPickerTitle] is the text at the top of the country search
 /// picker page
