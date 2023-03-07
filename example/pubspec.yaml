@@ -11,13 +11,16 @@ dependencies:
     sdk: flutter
   flutter_rx_bloc: ^5.0.2
   rxdart:
-  widget_toolkit:
-    path: ../../widget_toolkit
+  widget_toolkit: ^0.0.1-dev5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  widget_toolkit:
+    path: ../../widget_toolkit
 
 flutter:
   assets:

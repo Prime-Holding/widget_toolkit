@@ -48,19 +48,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Widget Toolkit Example')),
-      resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: PageView(
-          controller: pageController,
-          children: const <Widget>[
-            CommonComponentsPage(),
-            PickersPage(),
-            EditFieldsPage(),
-          ],
+    return PageView(
+      controller: pageController,
+      children: <Widget>[
+        CommonComponentsPage(
+          pageController: pageController,
         ),
-      ),
+        PickersPage(
+          pageController: pageController,
+        ),
+        EditFieldsPage(
+          pageController: pageController,
+        ),
+      ],
     );
   }
 
@@ -73,11 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //# region Showcase Pages
 class CommonComponentsPage extends StatelessWidget {
-  const CommonComponentsPage({Key? key}) : super(key: key);
+  const CommonComponentsPage({required this.pageController, Key? key})
+      : super(key: key);
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) => PageViewNamedPage(
         title: 'Common Components',
+        pageController: pageController,
+        nextPageIndex: 1,
         children: [
           WidgetSection(
             description: 'OpenUrlWidget - launch URL link',
@@ -153,10 +158,13 @@ class CommonComponentsPage extends StatelessWidget {
             child: GradientFillButton(
               text: 'Present error in modal',
               onPressed: () => showErrorBlurredBottomSheet(
-                  error: 'This is an error message',
-                  context: context,
-                  retryCallback: (context) {},
-                  showCloseButton: true),
+                error: 'This is an error message',
+                context: context,
+                retryCallback: (context) async {
+                  await Future.delayed(const Duration(seconds: 2));
+                  return;
+                },
+              ),
             ),
           ),
           WidgetSection(
@@ -212,11 +220,15 @@ class CommonComponentsPage extends StatelessWidget {
 }
 
 class PickersPage extends StatelessWidget {
-  const PickersPage({Key? key}) : super(key: key);
+  const PickersPage({required this.pageController, Key? key}) : super(key: key);
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) => PageViewNamedPage(
         title: 'Pickers',
+        pageController: pageController,
+        nextPageIndex: 2,
         children: [
           WidgetSection(
             description: 'ItemPicker - single select',
@@ -282,11 +294,16 @@ class PickersPage extends StatelessWidget {
 }
 
 class EditFieldsPage extends StatelessWidget {
-  const EditFieldsPage({Key? key}) : super(key: key);
+  const EditFieldsPage({required this.pageController, Key? key})
+      : super(key: key);
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) => PageViewNamedPage(
         title: 'Edit Fields',
+        pageController: pageController,
+        nextPageIndex: 0,
         children: [
           WidgetSection(
             description: 'TextFieldDialog',
@@ -297,6 +314,7 @@ class EditFieldsPage extends StatelessWidget {
               value: 'John',
               validator: LocalAddressFieldService(),
               dialogHasBottomPadding: true,
+              configuration: TextFieldConfiguration(),
               header: 'Enter your data',
             ),
           ),
@@ -322,28 +340,36 @@ class EditFieldsPage extends StatelessWidget {
 //# region Helper Methods and Classes
 class PageViewNamedPage extends StatelessWidget {
   const PageViewNamedPage(
-      {required this.title, required this.children, Key? key})
+      {required this.title,
+      required this.children,
+      required this.pageController,
+      required this.nextPageIndex,
+      Key? key})
       : super(key: key);
 
   final String title;
   final List<Widget> children;
+  final PageController pageController;
+  final int nextPageIndex;
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(children: [...children]),
-            ),
-          ),
-        ],
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(title),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  pageController.animateToPage(nextPageIndex,
+                      duration: const Duration(milliseconds: 800),
+                      curve: Curves.ease);
+                },
+                icon: const Icon(Icons.arrow_forward))
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(children: [...children]),
+        ),
       );
 }
 
@@ -633,6 +659,22 @@ class SearchCountryRepository {
             .toList(),
       );
 
-  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
+  final _countriesList = [
+    'Angola',
+    'Bulgaria',
+    'Cuba',
+    'Egypt',
+    'Italy',
+    'Angola',
+    'Bulgaria',
+    'Cuba',
+    'Egypt',
+    'Italy',
+    'Angola',
+    'Bulgaria',
+    'Cuba',
+    'Egypt',
+    'Italy'
+  ];
 }
 //# endregion
