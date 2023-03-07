@@ -2,9 +2,9 @@ import '../../helpers/golden_helper.dart';
 import '../../helpers/models/scenario.dart';
 import '../../mocks/stubs.dart';
 import '../factory/edit_address_page_factory.dart';
-import '../factory/edit_address_widget.dart';
 
 void main() {
+  /// TODO add golden tests tests for the not-empty cases
   runGoldenTests([
     generateDeviceBuilder(
         widget: editAddressPageFactory(
@@ -33,7 +33,7 @@ void main() {
         ), //loading
         scenario: Scenario(name: 'edit_address_loading')),
     generateDeviceBuilder(
-        widget: editAddressWidget(
+        widget: createEditAddressWidget(
           isLoading: false,
           onAddressSet: Stubs.addressModel,
           address: Stubs.addressModel,
