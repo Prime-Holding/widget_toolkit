@@ -63,13 +63,6 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
       onCancelPressed: () => Navigator.of(context).pop(),
     );
 
-AddressModel _onAddressSaved(AddressModel model) {
-  return model;
-// setState(() {
-// savedModel = model;
-// });
-}
-
 /// [countrySearchPickerTitle] is the text at the top of the country search
 /// picker page
 ///

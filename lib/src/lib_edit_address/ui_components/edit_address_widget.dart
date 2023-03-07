@@ -110,11 +110,13 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
 
 class _EditAddressWidgetState<T extends PickerItemModel>
     extends State<EditAddressWidget<T>> {
-  AddressModel? savedModel;
+  late AddressModel? savedModel;
 
-  // void _onAddressSaved(AddressModel model) => setState(() {
-  //       savedModel = model;
-  //     });
+  @override
+  void initState() {
+    savedModel = widget.addressModel;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Material(
@@ -164,7 +166,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                             ),
                           ),
                           _AddressWidget(
-                            address: savedModel ?? widget.addressModel,
+                            address: savedModel,
                           )
                         ],
                       ),
@@ -206,7 +208,6 @@ class _EditAddressWidgetState<T extends PickerItemModel>
         return () async {
           final savedAddress = await showEditAddressBottomSheet<T>(
             context,
-            // onAddressSaved: _onAddressSaved,
             countryCustomIcon: widget.countryCustomIcon,
             editCountryFieldType: widget.editCountryFieldType,
             cityCustomIcon: widget.cityCustomIcon,
@@ -217,7 +218,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                 context.getEditAddressLocalizedStrings.saveButtonText,
             headerText: widget.editAddressLocalizedStrings?.headerTitle ??
                 context.getEditAddressLocalizedStrings.headerTitle,
-            addressModel: widget.addressModel,
+            addressModel: savedModel ?? widget.addressModel,
             configuration: widget.configuration,
             cityErrorMapper: widget.cityErrorMapper,
             addressErrorMapper: widget.addressErrorMapper,
@@ -229,9 +230,11 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                 widget.editContactAddressErrorBuilder,
             searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
           );
-
-///todo setState(){{}}
-          print('bottomSheetReturnedValue1 $savedAddress');
+          if (savedAddress != null) {
+            setState(() {
+              savedModel = savedAddress;
+            });
+          }
         };
     }
   }
