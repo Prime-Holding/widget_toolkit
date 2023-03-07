@@ -93,47 +93,40 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
       activeButtonTextColor:
           activeButtonTextColor == const $CopyWithPlaceholder() ||
                   activeButtonTextColor == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.activeButtonTextColor!
+              ? _value.activeButtonTextColor
               // ignore: cast_nullable_to_non_nullable
               : activeButtonTextColor as Color,
       disabledButtonTextColor:
           disabledButtonTextColor == const $CopyWithPlaceholder() ||
                   disabledButtonTextColor == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.disabledButtonTextColor!
+              ? _value.disabledButtonTextColor
               // ignore: cast_nullable_to_non_nullable
               : disabledButtonTextColor as Color,
       activeGradientColorStart:
           activeGradientColorStart == const $CopyWithPlaceholder() ||
                   activeGradientColorStart == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.activeGradientColorStart!
+              ? _value.activeGradientColorStart
               // ignore: cast_nullable_to_non_nullable
               : activeGradientColorStart as Color,
       activeGradientColorEnd:
           activeGradientColorEnd == const $CopyWithPlaceholder() ||
                   activeGradientColorEnd == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.activeGradientColorEnd!
+              ? _value.activeGradientColorEnd
               // ignore: cast_nullable_to_non_nullable
               : activeGradientColorEnd as Color,
       shadowColor:
           shadowColor == const $CopyWithPlaceholder() || shadowColor == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.shadowColor!
+              ? _value.shadowColor
               // ignore: cast_nullable_to_non_nullable
               : shadowColor as Color,
       pressedColor:
           pressedColor == const $CopyWithPlaceholder() || pressedColor == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.pressedColor!
+              ? _value.pressedColor
               // ignore: cast_nullable_to_non_nullable
               : pressedColor as Color,
       borderColor:
           borderColor == const $CopyWithPlaceholder() || borderColor == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.borderColor!
+              ? _value.borderColor
               // ignore: cast_nullable_to_non_nullable
               : borderColor as Color,
     );

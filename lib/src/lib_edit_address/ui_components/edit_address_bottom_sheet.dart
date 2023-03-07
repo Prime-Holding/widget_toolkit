@@ -7,7 +7,7 @@ import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../views/edit_address_page.dart';
 
-void showAppAddressForCorrespondence<T extends PickerItemModel>(
+Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
   required String buttonText,
   required String headerText,
@@ -29,8 +29,8 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-}) =>
-    showModal(
+}) async =>
+    await showModal<AddressModel?>(
       configuration: ModalConfiguration(
         fullScreen: configuration.fullScreen,
         heightFactor: configuration.heightFactor,
@@ -40,6 +40,8 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(
         context,
+        onAddressSaved: (AddressModel address) =>
+            Navigator.of(ctx).pop(address),
         buttonText: buttonText,
         headerText: headerText,
         addressModel: addressModel,
