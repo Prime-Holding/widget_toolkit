@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'buttons/button_state.dart';
 import 'error_card_widget.dart';
 import 'show_blurred_bottom_sheet.dart';
 
@@ -19,11 +20,9 @@ import 'show_blurred_bottom_sheet.dart';
 /// retry button is visible, the [footerWidget] will be build below the retry
 /// button.
 ///
-/// if [showCloseButton] is set to `true`, the defined [onCancelCallback] (if
-/// any) will be called before the modal sheet is closed.
-///
-/// The [showHeaderPill] flag toggles the visibility of the pill cutout at the
-/// top of the modal sheet.
+/// With [configuration] property you can set up how the ModalBottomSheet will
+/// appear. It refers to the default ModalConfiguration, but doesn't show
+/// close button and allows more then one sheets.
 ///
 /// The [image] is a widget that will be placed on top of the error message in
 /// the error message box.
@@ -35,21 +34,17 @@ Future<T?> showErrorBlurredBottomSheet<T>({
   Widget? image,
   Function(BuildContext)? retryCallback,
   Function()? onCancelCallback,
-  bool showCloseButton = false,
-  bool safeAreaBottom = true,
-  bool showHeaderPill = true,
+  ModalConfiguration? configuration = const ModalConfiguration(
+    showCloseButton: false,
+    haveOnlyOneSheet: false,
+  ),
   String retryButtonText = 'Retry',
+  ButtonStateModel? retryButtonState,
 }) =>
     showBlurredBottomSheet<T>(
       context: context,
       onCancelPressed: onCancelCallback,
-      configuration: ModalConfiguration(
-        applySafeArea: true,
-        safeAreaBottom: safeAreaBottom,
-        showCloseButton: showCloseButton,
-        haveOnlyOneSheet: false,
-        showHeaderPill: showHeaderPill,
-      ),
+      configuration: configuration,
       builder: (ctx) => WillPopScope(
         onWillPop: () => Future.value(false),
         child: _ErrorModalContent(
@@ -59,6 +54,7 @@ Future<T?> showErrorBlurredBottomSheet<T>({
           tryAgainCallback: retryCallback,
           messageHeader: image,
           retryButtonText: retryButtonText,
+          retryButtonState: retryButtonState,
         ),
       ),
     );
@@ -71,6 +67,7 @@ class _ErrorModalContent extends StatelessWidget {
     this.footerWidget,
     this.messageHeader,
     this.tryAgainCallback,
+    this.retryButtonState,
   });
 
   /// The error to be handled
@@ -92,6 +89,10 @@ class _ErrorModalContent extends StatelessWidget {
   /// The text displayed on the retry button
   final String retryButtonText;
 
+  /// Use [retryButtonState] to toggle the state of the retry button. Defaults to
+  /// ButtonStateModel.enabled
+  final ButtonStateModel? retryButtonState;
+
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -112,6 +113,7 @@ class _ErrorModalContent extends StatelessWidget {
                 tryAgainCallback?.call(context);
                 Navigator.of(context).pop();
               },
+              retryButtonState: retryButtonState ?? ButtonStateModel.enabled,
               retryButtonText: retryButtonText,
             ),
             if (footerWidget != null) footerWidget!,

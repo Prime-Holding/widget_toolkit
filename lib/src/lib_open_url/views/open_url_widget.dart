@@ -3,7 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 
-import '../../lib_ui_components/show_error_blurred_bottom_sheet.dart';
+import '../../../ui_components.dart';
 import '../bloc/open_uri_bloc.dart';
 import '../di/open_url_dependencies.dart';
 import '../enums/uri_type_enum.dart';
@@ -28,7 +28,7 @@ import '../enums/uri_type_enum.dart';
 /// When an error happens, a modal sheet will be displayed with that particular
 /// error. By default that modal sheet will apply a safe area bottom padding, to
 /// stay away from device-specific intrusions. You can turn this behaviour off
-/// by setting the [errorModalSafeBottom] to `false`.
+/// by setting the [errorModalConfiguration] to `false`.
 class OpenUrlWidget extends StatelessWidget {
   const OpenUrlWidget({
     required this.child,
@@ -37,7 +37,7 @@ class OpenUrlWidget extends StatelessWidget {
     this.onError,
     this.translateError,
     this.uriType = UriType.https,
-    this.errorModalSafeBottom = true,
+    this.errorModalConfiguration,
     super.key,
   });
 
@@ -59,9 +59,10 @@ class OpenUrlWidget extends StatelessWidget {
   /// Function used for translating/localizing errors
   final String Function(BuildContext context, Exception)? translateError;
 
-  /// Flag indicating whether the error modal should use a safe bottom inset
-  /// or not (defaults to true)
-  final bool errorModalSafeBottom;
+  /// With [configuration] property you can set up how the ModalBottomSheet in
+  /// the default implementation of onError will appear. It refers to the default
+  /// ModalConfiguration, but doesn't show close button and allows more then one sheets.
+  final ModalConfiguration? errorModalConfiguration;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -81,7 +82,7 @@ class OpenUrlWidget extends StatelessWidget {
     Function(BuildContext, Exception)? onError,
     String Function(BuildContext, Exception)? translateError,
     UriType uriType = UriType.https,
-    bool errorModalSafeBottom = true,
+    ModalConfiguration? modalConfiguration,
     Key? key,
   }) =>
       MultiProvider(
@@ -93,7 +94,7 @@ class OpenUrlWidget extends StatelessWidget {
           onTap: onTap,
           onError: onError,
           translateError: translateError,
-          errorModalSafeBottom: errorModalSafeBottom,
+          errorModalConfiguration: modalConfiguration,
           child: child,
         ),
       );
@@ -111,7 +112,7 @@ class OpenUrlWidget extends StatelessWidget {
             showErrorBlurredBottomSheet(
               context: context,
               error: errorMsg,
-              safeAreaBottom: errorModalSafeBottom,
+              configuration: errorModalConfiguration,
             );
           }
         },

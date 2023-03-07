@@ -75,8 +75,8 @@ class SearchPickerConfiguration {
   const SearchPickerConfiguration({
     this.haveOnlyOneSheet = true,
     this.showCloseButton = false,
-    this.showHeaderPill = false,
-    this.safeAreaBottom = false,
+    this.showHeaderPill = true,
+    this.safeAreaBottom = true,
   });
 
   final bool haveOnlyOneSheet;

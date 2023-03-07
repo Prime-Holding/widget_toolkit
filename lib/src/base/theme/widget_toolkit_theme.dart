@@ -458,8 +458,8 @@ class _$WidgetToolkitTheme {
   /// region Common Spacings
 
   static List<EdgeInsets> bottomSheetCloseButtonPadding = [
-    const EdgeInsets.symmetric(vertical: 20),
-    const EdgeInsets.symmetric(vertical: 20)
+    const EdgeInsets.only(top: 20),
+    const EdgeInsets.only(top: 20)
   ];
 
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [

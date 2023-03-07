@@ -314,7 +314,7 @@ class EditFieldsPage extends StatelessWidget {
               value: 'John',
               validator: LocalAddressFieldService(),
               dialogHasBottomPadding: true,
-              configuration: TextFieldConfiguration(),
+              configuration: const TextFieldConfiguration(),
               header: 'Enter your data',
             ),
           ),

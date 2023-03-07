@@ -38,7 +38,7 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
         fullScreen: configuration.fullScreen,
         heightFactor: configuration.heightFactor,
         isDismissible: configuration.isDismissible,
-        safeAreaBottom: false,
+        safeAreaBottom: true,
       ),
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(context,

@@ -167,7 +167,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final bool editFieldsHaveBottomPadding = true,
+    final bool? editFieldsHaveBottomPadding = true,
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
@@ -183,7 +183,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         searchCountryService: searchCountryService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
-        editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
+        editFieldsHaveBottomPadding: editFieldsHaveBottomPadding ?? true,
       );
 
   EditFieldState _getProfileFieldState(

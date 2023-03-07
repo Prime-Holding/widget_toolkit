@@ -190,8 +190,8 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
             isDismissible: widget.configuration.isDismissible,
             safeAreaBottom: false,
             haveOnlyOneSheet: widget.configuration.haveOnlyOneSheet,
+            dialogHasBottomPadding: true,
           ),
-          dialogHasBottomPadding: widget.dialogHasBottomPadding,
           builder: (ctx) => MultiProvider(
             providers: TextFieldDialogDependencies<T>.from(
               context,
