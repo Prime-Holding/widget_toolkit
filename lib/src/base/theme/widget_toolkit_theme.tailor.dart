@@ -95,6 +95,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.outlineButtonPressedColor,
     required this.outlineButtonTextColor,
     required this.outlineButtonTextColorDisabled,
+    required this.bottomSheetCloseButtonPadding,
     required this.messagePanelErrorEdgeInsets,
     required this.smallEdgeInsets,
     required this.mediumEdgeInsets,
@@ -206,6 +207,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color outlineButtonPressedColor;
   final Color outlineButtonTextColor;
   final Color outlineButtonTextColorDisabled;
+  final EdgeInsets bottomSheetCloseButtonPadding;
   final EdgeInsets messagePanelErrorEdgeInsets;
   final EdgeInsets smallEdgeInsets;
   final EdgeInsets mediumEdgeInsets;
@@ -348,6 +350,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[0],
     outlineButtonTextColorDisabled:
         _$WidgetToolkitTheme.outlineButtonTextColorDisabled[0],
+    bottomSheetCloseButtonPadding:
+        _$WidgetToolkitTheme.bottomSheetCloseButtonPadding[0],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[0],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[0],
@@ -493,6 +497,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[1],
     outlineButtonTextColorDisabled:
         _$WidgetToolkitTheme.outlineButtonTextColorDisabled[1],
+    bottomSheetCloseButtonPadding:
+        _$WidgetToolkitTheme.bottomSheetCloseButtonPadding[1],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[1],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[1],
@@ -613,6 +619,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? outlineButtonPressedColor,
     Color? outlineButtonTextColor,
     Color? outlineButtonTextColorDisabled,
+    EdgeInsets? bottomSheetCloseButtonPadding,
     EdgeInsets? messagePanelErrorEdgeInsets,
     EdgeInsets? smallEdgeInsets,
     EdgeInsets? mediumEdgeInsets,
@@ -777,6 +784,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           outlineButtonTextColor ?? this.outlineButtonTextColor,
       outlineButtonTextColorDisabled:
           outlineButtonTextColorDisabled ?? this.outlineButtonTextColorDisabled,
+      bottomSheetCloseButtonPadding:
+          bottomSheetCloseButtonPadding ?? this.bottomSheetCloseButtonPadding,
       messagePanelErrorEdgeInsets:
           messagePanelErrorEdgeInsets ?? this.messagePanelErrorEdgeInsets,
       smallEdgeInsets: smallEdgeInsets ?? this.smallEdgeInsets,
@@ -979,6 +988,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(outlineButtonTextColor, other.outlineButtonTextColor, t)!,
       outlineButtonTextColorDisabled: Color.lerp(outlineButtonTextColorDisabled,
           other.outlineButtonTextColorDisabled, t)!,
+      bottomSheetCloseButtonPadding: t < 0.5
+          ? bottomSheetCloseButtonPadding
+          : other.bottomSheetCloseButtonPadding,
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,
@@ -1123,6 +1135,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(outlineButtonPressedColor, other.outlineButtonPressedColor) &&
             const DeepCollectionEquality().equals(outlineButtonTextColor, other.outlineButtonTextColor) &&
             const DeepCollectionEquality().equals(outlineButtonTextColorDisabled, other.outlineButtonTextColorDisabled) &&
+            const DeepCollectionEquality().equals(bottomSheetCloseButtonPadding, other.bottomSheetCloseButtonPadding) &&
             const DeepCollectionEquality().equals(messagePanelErrorEdgeInsets, other.messagePanelErrorEdgeInsets) &&
             const DeepCollectionEquality().equals(smallEdgeInsets, other.smallEdgeInsets) &&
             const DeepCollectionEquality().equals(mediumEdgeInsets, other.mediumEdgeInsets) &&
@@ -1238,6 +1251,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(outlineButtonPressedColor),
       const DeepCollectionEquality().hash(outlineButtonTextColor),
       const DeepCollectionEquality().hash(outlineButtonTextColorDisabled),
+      const DeepCollectionEquality().hash(bottomSheetCloseButtonPadding),
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
       const DeepCollectionEquality().hash(smallEdgeInsets),
       const DeepCollectionEquality().hash(mediumEdgeInsets),

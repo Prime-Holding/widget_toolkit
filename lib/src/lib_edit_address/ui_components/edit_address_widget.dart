@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
+import '../../../edit_address.dart';
+import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
 import '../extensions/user_profile_card_types_extension.dart';
@@ -53,7 +55,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// showEmptyWidgetWhenNoResultsAreFound, custom item builder,
 /// error builder, empty builder, separator builder for the search country item
 /// picker
-class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
+class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   const EditAddressWidget({
     required this.cityErrorMapper,
     required this.addressErrorMapper,
@@ -105,6 +107,20 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
   );
 
   @override
+  State<EditAddressWidget> createState() => _EditAddressWidgetState();
+}
+
+class _EditAddressWidgetState<T extends PickerItemModel>
+    extends State<EditAddressWidget<T>> {
+  late AddressModel? savedModel;
+
+  @override
+  void initState() {
+    savedModel = widget.addressModel;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) => Material(
         child: InkWell(
           splashColor:
@@ -113,7 +129,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
               context.editAddressTheme.editAddressWidgetHighlightTransparent,
           onTap: _onWidgetIconTab(
             context: context,
-            type: type,
+            type: widget.type,
           ),
           child: Padding(
             padding: context.editAddressTheme.editAddressWidgetPadding1,
@@ -136,11 +152,13 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                             padding: context
                                 .editAddressTheme.editAddressWidgetPadding3,
                             child: ShimmerText(
-                              editAddressLocalizedStrings?.cardFieldLabel ??
+                              widget.editAddressLocalizedStrings
+                                      ?.cardFieldLabel ??
                                   context.getEditAddressLocalizedStrings
                                       .cardFieldLabel,
                               style: context.editAddressTheme.captionBold
-                                  .copyWith(color: type.getColor(context)),
+                                  .copyWith(
+                                      color: widget.type.getColor(context)),
                               maxLines: 1,
                               type: ShimmerType.proportional(
                                   trailingFlex: 3, leadingFlex: 4),
@@ -150,7 +168,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                             ),
                           ),
                           _AddressWidget(
-                            address: addressModel,
+                            address: savedModel,
                           )
                         ],
                       ),
@@ -159,7 +177,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
                       padding:
                           context.editAddressTheme.editAddressWidgetPadding4,
                       child: _IconWidget(
-                        type: type,
+                        type: widget.type,
                       ),
                     ),
                   ],
@@ -178,40 +196,48 @@ class EditAddressWidget<T extends PickerItemModel> extends StatelessWidget {
       case UserProfileCardTypes.permanentAddress:
         return () => showPermanentAddressBottomSheet(
               context,
-              headerText: editAddressLocalizedStrings?.headerTitle ??
+              headerText: widget.editAddressLocalizedStrings?.headerTitle ??
                   context.getEditAddressLocalizedStrings.headerTitle,
-              permanentAddressContentMessage:
-                  editAddressLocalizedStrings?.permanentAddressContentMessage ??
-                      context.getEditAddressLocalizedStrings
-                          .permanentAddressContentMessage,
-              configuration: configuration,
+              permanentAddressContentMessage: widget.editAddressLocalizedStrings
+                      ?.permanentAddressContentMessage ??
+                  context.getEditAddressLocalizedStrings
+                      .permanentAddressContentMessage,
+              configuration: widget.configuration,
             );
       case UserProfileCardTypes.mailingAddress:
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
-        return () {
-          showAppAddressForCorrespondence<T>(context,
-              countryCustomIcon: countryCustomIcon,
-              editCountryFieldType: editCountryFieldType,
-              cityCustomIcon: cityCustomIcon,
-              editCityFieldType: editCityFieldType,
-              addressCustomIcon: addressCustomIcon,
-              editAddressFieldType: editAddressFieldType,
-              buttonText: editAddressLocalizedStrings?.saveButtonText ??
-                  context.getEditAddressLocalizedStrings.saveButtonText,
-              headerText: editAddressLocalizedStrings?.headerTitle ??
-                  context.getEditAddressLocalizedStrings.headerTitle,
-              addressModel: addressModel,
-              configuration: configuration,
-              cityErrorMapper: cityErrorMapper,
-              addressErrorMapper: addressErrorMapper,
-              validator: validator,
-              searchCountryService: searchCountryService,
-              editAddressLocalizedStrings: editAddressLocalizedStrings,
-              editAddressService: editAddressService,
-              editContactAddressErrorBuilder: editContactAddressErrorBuilder,
-              searchCountryCustomBuilders: searchCountryCustomBuilders,
-              editFieldsHaveBottomPadding: editFieldsHaveBottomPadding);
+        return () async {
+          final savedAddress = await showEditAddressBottomSheet<T>(
+            context,
+            countryCustomIcon: widget.countryCustomIcon,
+            editCountryFieldType: widget.editCountryFieldType,
+            cityCustomIcon: widget.cityCustomIcon,
+            editCityFieldType: widget.editCityFieldType,
+            addressCustomIcon: widget.addressCustomIcon,
+            editAddressFieldType: widget.editAddressFieldType,
+            buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
+                context.getEditAddressLocalizedStrings.saveButtonText,
+            headerText: widget.editAddressLocalizedStrings?.headerTitle ??
+                context.getEditAddressLocalizedStrings.headerTitle,
+            addressModel: savedModel ?? widget.addressModel,
+            configuration: widget.configuration,
+            cityErrorMapper: widget.cityErrorMapper,
+            addressErrorMapper: widget.addressErrorMapper,
+            validator: widget.validator,
+            searchCountryService: widget.searchCountryService,
+            editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
+            editAddressService: widget.editAddressService,
+            editContactAddressErrorBuilder:
+                widget.editContactAddressErrorBuilder,
+            searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
+              editFieldsHaveBottomPadding: editFieldsHaveBottomPadding
+          );
+          if (savedAddress != null) {
+            setState(() {
+              savedModel = savedAddress;
+            });
+          }
         };
     }
   }
@@ -242,7 +268,10 @@ class _IconWidget extends StatelessWidget {
 }
 
 class _AddressWidget extends StatelessWidget {
-  const _AddressWidget({required this.address, Key? key}) : super(key: key);
+  const _AddressWidget({
+    required this.address,
+    Key? key,
+  }) : super(key: key);
 
   final AddressModel? address;
 

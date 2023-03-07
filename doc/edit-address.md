@@ -43,6 +43,8 @@ logic for the main edit contact address save button logic.
 `searchCountryCustomBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound,
 custom item builder, error builder, empty builder, separator builder for the search country item
 picker.
+`dialogHasBottomPadding` if it is true, it moves the dialog content up with the height of the
+keyboard, when the keyboard is visible, so the city and street dialogs appear above the keyboard.
 
 ### `EditAddressLocalizedStrings`
 

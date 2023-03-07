@@ -9,7 +9,7 @@ import '../../../text_field_dialog.dart';
 import '../../../ui_components.dart';
 import '../views/edit_address_page.dart';
 
-void showAppAddressForCorrespondence<T extends PickerItemModel>(
+Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
   required String buttonText,
   required String headerText,
@@ -33,7 +33,7 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   final bool? editFieldsHaveBottomPadding,
 }) =>
-    showBlurredBottomSheet(
+    showBlurredBottomSheet<AddressModel?>(
       configuration: ModalConfiguration(
         fullScreen: configuration.fullScreen,
         heightFactor: configuration.heightFactor,
@@ -42,6 +42,8 @@ void showAppAddressForCorrespondence<T extends PickerItemModel>(
       ),
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(context,
+          onAddressSaved: (AddressModel address) =>
+              Navigator.of(ctx).pop(address),
           buttonText: buttonText,
           headerText: headerText,
           addressModel: addressModel,

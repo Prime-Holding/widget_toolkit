@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../models.dart';
 import '../../../search_picker.dart';
 import '../../../text_field_dialog.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
@@ -171,26 +169,21 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
     final bool editFieldsHaveBottomPadding = true,
   }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-                context, addressModel, editAddressService)
-            .providers,
-        child: EditAddressForm<T>(
-          onAddressChange: onAddressChange,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-          editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
-        ),
+      EditAddressForm<T>(
+        onAddressChange: onAddressChange,
+        cityErrorMapper: cityErrorMapper,
+        addressErrorMapper: addressErrorMapper,
+        validator: validator,
+        countryCustomIcon: countryCustomIcon,
+        editCountryFieldType: editCountryFieldType,
+        cityCustomIcon: cityCustomIcon,
+        editCityFieldType: editCityFieldType,
+        addressCustomIcon: addressCustomIcon,
+        editAddressFieldType: editAddressFieldType,
+        searchCountryService: searchCountryService,
+        editAddressLocalizedStrings: editAddressLocalizedStrings,
+        searchCountryCustomBuilders: searchCountryCustomBuilders,
+        editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
       );
 
   EditFieldState _getProfileFieldState(

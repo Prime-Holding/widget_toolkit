@@ -112,6 +112,12 @@ ThemeData getThemeData(bool inLightMode) {
             titleBold: const TextStyle(
               inherit: true,
             ),
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
           ),
         ])
       : ThemeData.dark().copyWith(extensions: [
@@ -129,6 +135,12 @@ ThemeData getThemeData(bool inLightMode) {
           ),
           EditAddressTheme.dark.copyWith(
             titleBold: const TextStyle(
+              inherit: true,
+            ),
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            captionBold: const TextStyle(
               inherit: true,
             ),
           ),
