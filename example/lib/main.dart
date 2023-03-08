@@ -44,25 +44,66 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final PageController pageController = PageController();
+  late PageController pageController;
+  String title = 'Common Components';
+  int nextPageIndex = 1;
 
   @override
-  Widget build(BuildContext context) {
-    return PageView(
-      controller: pageController,
-      children: <Widget>[
-        CommonComponentsPage(
-          pageController: pageController,
-        ),
-        PickersPage(
-          pageController: pageController,
-        ),
-        EditFieldsPage(
-          pageController: pageController,
-        ),
-      ],
-    );
+  void initState() {
+    pageController = PageController();
+    maintainAppBar();
+    super.initState();
   }
+
+  void maintainAppBar() {
+    pageController.addListener(() {
+      if (pageController.page == 0) {
+        setState(() {
+          title = 'Common Components';
+          nextPageIndex = 1;
+        });
+      }
+      if (pageController.page == 1) {
+        setState(() {
+          title = 'Pickers';
+          nextPageIndex = 2;
+        });
+      }
+      if (pageController.page == 2) {
+        setState(() {
+          title = 'Edit Fields';
+          nextPageIndex = 0;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: Text(title), actions: [
+          IconButton(
+              onPressed: () {
+                pageController.animateToPage(nextPageIndex,
+                    duration: const Duration(milliseconds: 800),
+                    curve: Curves.ease);
+              },
+              icon: const Icon(Icons.arrow_forward))
+        ]),
+        body: PageView(
+          controller: pageController,
+          children: <Widget>[
+            CommonComponentsPage(
+              pageController: pageController,
+            ),
+            PickersPage(
+              pageController: pageController,
+            ),
+            EditFieldsPage(
+              pageController: pageController,
+            ),
+          ],
+        ),
+      );
 
   @override
   void dispose() {
@@ -79,144 +120,143 @@ class CommonComponentsPage extends StatelessWidget {
   final PageController pageController;
 
   @override
-  Widget build(BuildContext context) => PageViewNamedPage(
-        title: 'Common Components',
-        pageController: pageController,
-        nextPageIndex: 1,
-        children: [
-          WidgetSection(
-            description: 'OpenUrlWidget - launch URL link',
-            child: OpenUrlWidget.withDependencies(
-              url: 'https://www.primeholding.com/',
-              translateError: translateError,
-              child: const Text(
-                'https://www.primeholding.com/',
-                style: TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          WidgetSection(
-            description: 'OpenUrlWidget - call a phone number',
-            child: OpenUrlWidget.withDependencies(
-              url: '+123456789012',
-              uriType: UriType.telephone,
-              translateError: translateError,
-              child: const Text(
-                '+123456789012',
-                style: TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          LoadingStateSwitcher(
-            builder: (isLoading, simulateLoading) => WidgetSection(
-              description: 'Shimmer Wrapper',
-              childSize: const Size(180, 120),
-              onRefresh: () => simulateLoading.call(true),
-              child: ShimmerWrapper(
-                showShimmer: isLoading,
-                fadeTransition: true,
-                alignment: Alignment.center,
-                child: Image.network(
-                    'https://www.btsbg.org/sites/default/files/obekti/stobski-piramidi-selo-stob.jpg'),
-              ),
-            ),
-          ),
-          LoadingStateSwitcher(
-            builder: (isLoading, simulateLoading) => WidgetSection(
-              description: 'Text Shimmer',
-              childSize: const Size(320, 32),
-              onRefresh: () => simulateLoading.call(true),
-              child: ShimmerText(
-                isLoading ? null : 'Displays Text after loaded',
-                alignment: Alignment.center,
-                type: ShimmerType.random(),
-              ),
-            ),
-          ),
-          WidgetSection(
-            description: 'Modal Sheet with message',
-            child: OutlineFillButton(
-              text: 'Open modal sheet',
-              onPressed: () => showBlurredBottomSheet(
-                context: context,
-                builder: (BuildContext context) => const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  child: MessagePanelWidget(
-                      message: 'This is an informative message',
-                      messageState: MessagePanelState.informative),
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          children: [
+            WidgetSection(
+              description: 'OpenUrlWidget - launch URL link',
+              child: OpenUrlWidget.withDependencies(
+                url: 'https://www.primeholding.com/',
+                translateError: translateError,
+                child: const Text(
+                  'https://www.primeholding.com/',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
-          ),
-          WidgetSection(
-            description: 'Error Modal Sheet',
-            child: GradientFillButton(
-              text: 'Present error in modal',
-              onPressed: () => showErrorBlurredBottomSheet(
-                error: 'This is an error message',
-                context: context,
-                retryCallback: (context) =>
-                    Future.delayed(const Duration(seconds: 2)),
+            WidgetSection(
+              description: 'OpenUrlWidget - call a phone number',
+              child: OpenUrlWidget.withDependencies(
+                url: '+123456789012',
+                uriType: UriType.telephone,
+                translateError: translateError,
+                child: const Text(
+                  '+123456789012',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          WidgetSection(
-            description: 'Buttons',
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: OutlineFillButton(
-                    text: 'OutlineFillButton',
-                    onPressed: () {},
+            LoadingStateSwitcher(
+              builder: (isLoading, simulateLoading) => WidgetSection(
+                description: 'Shimmer Wrapper',
+                childSize: const Size(180, 120),
+                onRefresh: () => simulateLoading.call(true),
+                child: ShimmerWrapper(
+                  showShimmer: isLoading,
+                  fadeTransition: true,
+                  alignment: Alignment.center,
+                  child: Image.network(
+                      'https://www.btsbg.org/sites/default/files/obekti/stobski-piramidi-selo-stob.jpg'),
+                ),
+              ),
+            ),
+            LoadingStateSwitcher(
+              builder: (isLoading, simulateLoading) => WidgetSection(
+                description: 'Text Shimmer',
+                childSize: const Size(320, 32),
+                onRefresh: () => simulateLoading.call(true),
+                child: ShimmerText(
+                  isLoading ? null : 'Displays Text after loaded',
+                  alignment: Alignment.center,
+                  type: ShimmerType.random(),
+                ),
+              ),
+            ),
+            WidgetSection(
+              description: 'Modal Sheet with message',
+              child: OutlineFillButton(
+                text: 'Open modal sheet',
+                onPressed: () => showBlurredBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) => const Padding(
+                    padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: MessagePanelWidget(
+                        message: 'This is an informative message',
+                        messageState: MessagePanelState.informative),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: GradientFillButton(
-                    text: 'GradientFillButton',
-                    onPressed: () {},
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: GradientFillButton(
-                    text: 'GradientFillButton - disabled',
-                    state: ButtonStateModel.disabled,
-                    onPressed: null,
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: IconTextButton(
-                    text: 'IconTextButton',
-                    icon: Icons.send_time_extension_outlined,
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: SmallButton(
-                    onPressed: () {},
-                    icon: Icons.home_work_outlined,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            WidgetSection(
+              description: 'Error Modal Sheet',
+              child: GradientFillButton(
+                text: 'Present error in modal',
+                onPressed: () => showErrorBlurredBottomSheet(
+                  error: 'This is an error message',
+                  context: context,
+                  retryCallback: (context) =>
+                      Future.delayed(const Duration(seconds: 2)),
+                ),
+              ),
+            ),
+            WidgetSection(
+              description: 'Buttons',
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
+                    child: OutlineFillButton(
+                      text: 'OutlineFillButton',
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
+                    child: GradientFillButton(
+                      text: 'GradientFillButton',
+                      onPressed: () {},
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    child: GradientFillButton(
+                      text: 'GradientFillButton - disabled',
+                      state: ButtonStateModel.disabled,
+                      onPressed: null,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
+                    child: IconTextButton(
+                      text: 'IconTextButton',
+                      icon: Icons.send_time_extension_outlined,
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
+                    child: SmallButton(
+                      onPressed: () {},
+                      icon: Icons.home_work_outlined,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       );
 }
 
@@ -226,74 +266,73 @@ class PickersPage extends StatelessWidget {
   final PageController pageController;
 
   @override
-  Widget build(BuildContext context) => PageViewNamedPage(
-        title: 'Pickers',
-        pageController: pageController,
-        nextPageIndex: 2,
-        children: [
-          WidgetSection(
-            description: 'ItemPicker - single select',
-            child: UpdateStateOnSelection<DataModel>(
-              builder: (updatedData, updateFunction) => OutlineFillButton(
-                text: 'Select one item',
-                onPressed: () => showItemPickerBottomSheet<DataModel>(
-                  context: context,
-                  title: 'Select a single item',
-                  selectedItems: updatedData,
-                  callback: (data) => updateFunction.call(data),
-                  service: DataService(),
-                  configuration:
-                      const ItemPickerConfiguration(isMultiSelect: false),
-                ),
-              ),
-            ),
-          ),
-          WidgetSection(
-            description: 'ItemPicker - multi select',
-            child: UpdateStateOnSelection<DataModel>(
-              builder: (updatedData, updateFunction) => OutlineFillButton(
-                text: 'Select a few items',
-                onPressed: () => showItemPickerBottomSheet<DataModel>(
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          children: [
+            WidgetSection(
+              description: 'ItemPicker - single select',
+              child: UpdateStateOnSelection<DataModel>(
+                builder: (updatedData, updateFunction) => OutlineFillButton(
+                  text: 'Select one item',
+                  onPressed: () => showItemPickerBottomSheet<DataModel>(
                     context: context,
-                    title: 'Select a few items',
+                    title: 'Select a single item',
                     selectedItems: updatedData,
                     callback: (data) => updateFunction.call(data),
                     service: DataService(),
                     configuration:
-                        const ItemPickerConfiguration(isMultiSelect: true)),
+                        const ItemPickerConfiguration(isMultiSelect: false),
+                  ),
+                ),
               ),
             ),
-          ),
-          WidgetSection(
-            description: 'Search Picker',
-            child: UpdateStateOnSelection<CountryModel>(
-              getString: (CountryModel element) => element.itemDisplayName,
-              builder: (updatedData, updateFunction) => OutlineFillButton(
-                text: 'Select an item from a long list',
-                onPressed: () => showSearchPickerBottomSheet<CountryModel>(
-                    context: context,
-                    title: 'Select country',
-                    hintText: 'Type substring',
-                    retryText: 'Retry',
-                    selectedItem:
-                        updatedData.isNotEmpty ? updatedData[0] : null,
-                    onItemTap: (item) =>
-                        updateFunction.call(item != null ? [item] : []),
-                    service: SearchService(SearchCountryRepository()),
-                    emptyBuilder: () => const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: MessagePanelWidget(
-                            message:
-                                'There is no results for the searched query!',
-                            messageState: MessagePanelState.neutral,
+            WidgetSection(
+              description: 'ItemPicker - multi select',
+              child: UpdateStateOnSelection<DataModel>(
+                builder: (updatedData, updateFunction) => OutlineFillButton(
+                  text: 'Select a few items',
+                  onPressed: () => showItemPickerBottomSheet<DataModel>(
+                      context: context,
+                      title: 'Select a few items',
+                      selectedItems: updatedData,
+                      callback: (data) => updateFunction.call(data),
+                      service: DataService(),
+                      configuration:
+                          const ItemPickerConfiguration(isMultiSelect: true)),
+                ),
+              ),
+            ),
+            WidgetSection(
+              description: 'Search Picker',
+              child: UpdateStateOnSelection<CountryModel>(
+                getString: (CountryModel element) => element.itemDisplayName,
+                builder: (updatedData, updateFunction) => OutlineFillButton(
+                  text: 'Select an item from a long list',
+                  onPressed: () => showSearchPickerBottomSheet<CountryModel>(
+                      context: context,
+                      title: 'Select country',
+                      hintText: 'Type substring',
+                      retryText: 'Retry',
+                      selectedItem:
+                          updatedData.isNotEmpty ? updatedData[0] : null,
+                      onItemTap: (item) =>
+                          updateFunction.call(item != null ? [item] : []),
+                      service: SearchService(SearchCountryRepository()),
+                      emptyBuilder: () => const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: MessagePanelWidget(
+                              message:
+                                  'There is no results for the searched query!',
+                              messageState: MessagePanelState.neutral,
+                            ),
                           ),
-                        ),
-                    modalConfiguration: const SearchPickerModalConfiguration(
-                        safeAreaBottom: true)),
+                      modalConfiguration: const SearchPickerModalConfiguration(
+                          safeAreaBottom: true)),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
 
@@ -304,63 +343,27 @@ class EditFieldsPage extends StatelessWidget {
   final PageController pageController;
 
   @override
-  Widget build(BuildContext context) => PageViewNamedPage(
-        title: 'Edit Fields',
-        pageController: pageController,
-        nextPageIndex: 0,
-        children: [
-          WidgetSection(
-            description: 'TextFieldDialog',
-            child: TextFieldDialog<String>(
-              errorMapper: (obj, context) =>
-                  ErrorMapperUtil<String>().errorMapper(obj, context),
-              label: 'First Name',
-              value: 'John',
-              validator: LocalAddressFieldService(),
-              header: 'Enter your data',
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          children: [
+            WidgetSection(
+              description: 'TextFieldDialog',
+              child: TextFieldDialog<String>(
+                errorMapper: (obj, context) =>
+                    ErrorMapperUtil<String>().errorMapper(obj, context),
+                label: 'First Name',
+                value: 'John',
+                validator: LocalAddressFieldService(),
+                header: 'Enter your data',
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
 //# endregion
 
 //# region Helper Methods and Classes
-class PageViewNamedPage extends StatelessWidget {
-  const PageViewNamedPage(
-      {required this.title,
-      required this.children,
-      required this.pageController,
-      required this.nextPageIndex,
-      Key? key})
-      : super(key: key);
-
-  final String title;
-  final List<Widget> children;
-  final PageController pageController;
-  final int nextPageIndex;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(title),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  pageController.animateToPage(nextPageIndex,
-                      duration: const Duration(milliseconds: 800),
-                      curve: Curves.ease);
-                },
-                icon: const Icon(Icons.arrow_forward))
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: [...children]),
-        ),
-      );
-}
-
 class WidgetSection extends StatelessWidget {
   const WidgetSection({
     required this.child,
