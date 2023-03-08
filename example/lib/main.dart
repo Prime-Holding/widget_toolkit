@@ -163,7 +163,8 @@ class CommonComponentsPage extends StatelessWidget {
               onPressed: () => showErrorBlurredBottomSheet(
                 error: 'This is an error message',
                 context: context,
-                retryCallback: (context) {},
+                retryCallback: (context) =>
+                    Future.delayed(const Duration(seconds: 2)),
               ),
             ),
           ),

@@ -57,7 +57,7 @@ Future<T?> showErrorBlurredBottomSheet<T>({
       ),
     );
 
-class _ErrorModalContent extends StatelessWidget {
+class _ErrorModalContent extends StatefulWidget {
   const _ErrorModalContent({
     required this.error,
     required this.retryButtonText,
@@ -92,29 +92,44 @@ class _ErrorModalContent extends StatelessWidget {
   final ButtonStateModel? retryButtonState;
 
   @override
+  State<_ErrorModalContent> createState() => _ErrorModalContentState();
+}
+
+class _ErrorModalContentState extends State<_ErrorModalContent> {
+  late bool isButtonLoading = false;
+
+  @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 10),
-            if (titleWidget != null)
+            if (widget.titleWidget != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: titleWidget!,
+                child: widget.titleWidget!,
               ),
             ErrorCardWidget(
-              text: error,
-              header: messageHeader,
-              retryButtonVisible: tryAgainCallback != null,
-              onRetryPressed: () {
-                tryAgainCallback?.call(context);
-                Navigator.of(context).pop();
+              text: widget.error,
+              header: widget.messageHeader,
+              retryButtonVisible: widget.tryAgainCallback != null,
+              onRetryPressed: () async {
+                setState(() {
+                  isButtonLoading = true;
+                });
+                await widget.tryAgainCallback?.call(context);
+                setState(() {
+                  isButtonLoading = false;
+                });
               },
-              retryButtonState: retryButtonState ?? ButtonStateModel.enabled,
-              retryButtonText: retryButtonText,
+              retryButtonState: widget.retryButtonState ??
+                  (isButtonLoading
+                      ? ButtonStateModel.loading
+                      : ButtonStateModel.enabled),
+              retryButtonText: widget.retryButtonText,
             ),
-            if (footerWidget != null) footerWidget!,
+            if (widget.footerWidget != null) widget.footerWidget!,
           ],
         ),
       );
