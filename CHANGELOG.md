@@ -1,13 +1,22 @@
-## [0.0.1-dev5] - TBS
+## [0.0.1-dev5] - March 08, 2023
 - Documentation improvements
 - Add example project
 - CountryModel name getter returns non nullable String
 - SearchPickerService provides default implementation of method 'filteredListByName'
 - IconTextButton now has transparent background
-- showSearchPickerBottomSheet and showItemPickerBottomSheet get more configurable
+- modalBottomSheets are more configurable
+- showBlurredBottomSheet (old name showModal) - UX improvements
 ### Breaking Changes:
 - showModal is renamed to showBlurredBottomSheet
 - showErrorModal is renamed to showErrorBlurredBottomSheet
+- showEditAddressBottomSheet - configuration was renamed to modalConfiguration
+- EditAddressWidget - configuration was renamed to editAddressConfiguration
+- ItemPickerConfiguration - fullScreen was moved inside modalConfiguration
+- showChangeLanguageBottomSheet - configuration was renamed to modalConfiguration
+- OpenUrlWidget - errorModalSafeBottom was wrapped inside errorModalConfiguration
+- showSearchPickerBottomSheet - fullScreen was moved into modalConfiguration (old name configuration)
+- TextFieldDialog - configuration was renamed to modalConfiguration, dialogHasBottomPadding was moved inside modalConfiguration
+- showErrorBlurredBottomSheet - safeAreaBottom was moved inside configuration
 
 ## [0.0.1-dev4] - February 27, 2023
 - Fix screenshots

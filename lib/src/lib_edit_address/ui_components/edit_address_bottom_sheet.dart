@@ -36,8 +36,8 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
       const TextFieldModalConfiguration(),
   final SearchPickerModalConfiguration countryPickerModalConfiguration =
       const SearchPickerModalConfiguration(),
-}) =>
-    showBlurredBottomSheet<AddressModel?>(
+}) async =>
+    await showBlurredBottomSheet<AddressModel?>(
       configuration: modalConfiguration,
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(context,
