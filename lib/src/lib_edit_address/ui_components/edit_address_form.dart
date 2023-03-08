@@ -19,12 +19,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     required this.validator,
     required this.searchCountryService,
     required this.editAddressLocalizedStrings,
-    this.countryCustomIcon,
-    this.editCountryFieldType = EditFieldType.dropdown,
-    this.cityCustomIcon,
-    this.editCityFieldType = EditFieldType.editfield,
-    this.addressCustomIcon,
-    this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
     this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
     this.countryPickerModalConfiguration =
@@ -39,12 +33,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper;
   final TextFieldValidator<String> validator;
-  final dynamic countryCustomIcon;
-  final EditFieldType editCountryFieldType;
-  final dynamic cityCustomIcon;
-  final EditFieldType editCityFieldType;
-  final dynamic addressCustomIcon;
-  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;

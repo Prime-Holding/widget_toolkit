@@ -357,6 +357,19 @@ class EditFieldsPage extends StatelessWidget {
                 header: 'Enter your data',
               ),
             ),
+            WidgetSection(
+              description: 'EditAddress',
+              child: EditAddressWidget<CountryModel>(
+                cityErrorMapper: (obj, context) =>
+                    ErrorMapperUtil<String>().errorMapper(obj, context),
+                addressErrorMapper: (obj, context) =>
+                    ErrorMapperUtil<String>().errorMapper(obj, context),
+                validator: LocalAddressFieldService(),
+                searchCountryService: SearchService(
+                  SearchCountryRepository(),
+                ),
+              ),
+            ),
           ],
         ),
       );
@@ -372,6 +385,7 @@ class WidgetSection extends StatelessWidget {
     this.childSize,
     super.key,
   });
+
   final Widget child;
   final String description;
   final Size? childSize;
