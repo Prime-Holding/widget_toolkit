@@ -4,11 +4,13 @@ import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
+import '../../../models.dart';
 import '../../../search_picker.dart';
-import '../../../widget_toolkit.dart';
-import '../../lib_edit_address/ui_components/edit_address_form.dart';
+import '../../../text_field_dialog.dart';
+import '../../../ui_components.dart';
 import '../blocs/edit_address_bloc.dart';
 import '../di/edit_address_dependencies.dart';
+import '../ui_components/edit_address_form.dart';
 
 typedef OnAddressSaved = Function(AddressModel addressModel);
 
@@ -27,6 +29,9 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.saveAddress,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -45,6 +50,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressService editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
@@ -65,6 +72,10 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final Function(AddressModel)? saveAddress,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final TextFieldModalConfiguration textFieldsModalConfiguration =
+        const TextFieldModalConfiguration(),
+    final SearchPickerModalConfiguration countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
@@ -73,19 +84,20 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           editAddressService,
         ).providers,
         child: EditAddressPage<T>(
-          onAddressSaved: onAddressSaved,
-          buttonText: buttonText,
-          headerText: headerText,
-          addressModel: addressModel,
-          saveAddress: saveAddress,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          editAddressService: editAddressService,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-        ),
+            onAddressSaved: onAddressSaved,
+            buttonText: buttonText,
+            headerText: headerText,
+            addressModel: addressModel,
+            saveAddress: saveAddress,
+            cityErrorMapper: cityErrorMapper,
+            addressErrorMapper: addressErrorMapper,
+            validator: validator,
+            searchCountryService: searchCountryService,
+            editAddressLocalizedStrings: editAddressLocalizedStrings,
+            editAddressService: editAddressService,
+            searchCountryCustomBuilders: searchCountryCustomBuilders,
+            textFieldsModalConfiguration: textFieldsModalConfiguration,
+            countryPickerModalConfiguration: countryPickerModalConfiguration),
       );
 
   @override
@@ -121,25 +133,26 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                           .editAddressTheme.editAddressPageErrorPanelPadding,
                     ),
                     if (!snapshot.hasData)
-                      EditAddressForm.withDependencies<T>(
-                        context,
-                        addressModel,
-                        (addressModel) {
-                          return context
-                              .read<EditAddressBlocType>()
-                              .events
-                              .setAddress(addressModel);
-                        },
-                        cityErrorMapper: cityErrorMapper,
-                        addressErrorMapper: addressErrorMapper,
-                        validator: validator,
-                        searchCountryService: searchCountryService,
-                        editAddressLocalizedStrings:
-                            editAddressLocalizedStrings,
-                        editAddressService: editAddressService,
-                        searchCountryCustomBuilders:
-                            searchCountryCustomBuilders,
-                      ),
+                      EditAddressForm.withDependencies<T>(context, addressModel,
+                          (addressModel) {
+                        return context
+                            .read<EditAddressBlocType>()
+                            .events
+                            .setAddress(addressModel);
+                      },
+                          cityErrorMapper: cityErrorMapper,
+                          addressErrorMapper: addressErrorMapper,
+                          validator: validator,
+                          searchCountryService: searchCountryService,
+                          editAddressLocalizedStrings:
+                              editAddressLocalizedStrings,
+                          editAddressService: editAddressService,
+                          searchCountryCustomBuilders:
+                              searchCountryCustomBuilders,
+                          textFieldsModalConfiguration:
+                              textFieldsModalConfiguration,
+                          countryPickerModalConfiguration:
+                              countryPickerModalConfiguration),
                     if (!snapshot.hasData)
                       SizedBox(height: context.editAddressTheme.spacingXL),
                     if (!snapshot.hasData)

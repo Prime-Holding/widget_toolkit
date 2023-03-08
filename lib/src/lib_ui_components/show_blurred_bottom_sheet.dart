@@ -26,13 +26,12 @@ bool _isBottomSheetShown = false;
 ///
 /// With the modal sheet [configuration], you can define or toggle different
 /// aspects of the modal sheet.
-Future<T?> showModal<T>({
+Future<T?> showBlurredBottomSheet<T>({
   required BuildContext context,
   required WidgetBuilder builder,
   ModalConfiguration configuration = const ModalConfiguration(),
   WidgetBuilder? headerBuilder,
   VoidCallback? onCancelPressed,
-  bool dialogHasBottomPadding = false,
 }) {
   // Dismiss any other modal sheets if only one is enforced
   if (configuration.haveOnlyOneSheet) {
@@ -72,11 +71,10 @@ Future<T?> showModal<T>({
         headerBuilder: headerBuilder,
         showCloseButton: configuration.showCloseButton,
         contentAlignment: configuration.contentAlignment,
-        animationAlignment: configuration.animationAlignment,
         showHeaderPill: configuration.showHeaderPill,
-        applySafeArea: configuration.applySafeArea,
         safeAreaBottom: configuration.safeAreaBottom,
-        dialogHasBottomPadding: dialogHasBottomPadding,
+        dialogHasBottomPadding: configuration.dialogHasBottomPadding,
+        additionalBottomPadding: configuration.additionalBottomPadding,
       ),
     ),
   ).then((value) {
@@ -92,15 +90,14 @@ class _ModalContent extends StatelessWidget {
     Key? key,
     required this.builder,
     required this.showCloseButton,
+    required this.showHeaderPill,
+    required this.safeAreaBottom,
+    required this.dialogHasBottomPadding,
     this.headerBuilder,
     this.heightFactor,
     this.contentAlignment,
-    this.animationAlignment,
     this.onClosePressed,
-    this.showHeaderPill = true,
-    this.applySafeArea = true,
-    this.safeAreaBottom = true,
-    this.dialogHasBottomPadding = true,
+    this.additionalBottomPadding,
   }) : super(key: key);
 
   /// The builder method returning the contents of the modal sheet
@@ -113,9 +110,6 @@ class _ModalContent extends StatelessWidget {
   /// Value for how much of the remaining screen size will the content take
   final double? heightFactor;
 
-  /// Flag indicating whether to apply a safe area around the content
-  final bool applySafeArea;
-
   /// Flag indicating whether or not to apply safe area at the bottom
   final bool safeAreaBottom;
 
@@ -126,9 +120,6 @@ class _ModalContent extends StatelessWidget {
   /// The content alignment along the vertical axis
   final MainAxisAlignment? contentAlignment;
 
-  /// The content alignment along the vertical axis
-  final Alignment? animationAlignment;
-
   /// Flag indicating the visibility of the already implemented close button
   final bool showCloseButton;
 
@@ -138,6 +129,9 @@ class _ModalContent extends StatelessWidget {
   /// Flag indicating if bottom overlay should be added as padding at the bottom
   /// of the page
   final bool dialogHasBottomPadding;
+
+  /// Padding to be added on the bottom of the page, when [safeAreaBottom] is false
+  final double? additionalBottomPadding;
 
   @override
   Widget build(BuildContext context) => heightFactor == null
@@ -158,7 +152,8 @@ class _ModalContent extends StatelessWidget {
     );
 
     final mainContent = Column(
-      mainAxisAlignment: contentAlignment ?? MainAxisAlignment.end,
+      mainAxisAlignment: contentAlignment ?? MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         /// Wrap the header in a `translate` widget, which will shift all its
@@ -168,10 +163,12 @@ class _ModalContent extends StatelessWidget {
           offset: const Offset(0, 1),
           child: _buildHeader(context),
         ),
-        heightFactor != null
-            ? Expanded(child: builderContent)
-            : Flexible(child: builderContent),
+        Flexible(child: builderContent),
         if (showCloseButton) _buildCloseButton(context),
+        if (!safeAreaBottom)
+          SizedBox(
+            height: additionalBottomPadding ?? 20,
+          ),
         if (dialogHasBottomPadding)
           SizedBox(
             height: MediaQuery.of(context).viewInsets.bottom,
@@ -179,14 +176,13 @@ class _ModalContent extends StatelessWidget {
       ],
     );
 
-    if (applySafeArea) {
-      return SafeArea(
+    return Container(
+      color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
+      child: SafeArea(
         bottom: safeAreaBottom,
         child: mainContent,
-      );
-    }
-
-    return mainContent;
+      ),
+    );
   }
 
   double get _cornerRadius => 24;
@@ -260,34 +256,69 @@ class _ModalContent extends StatelessWidget {
 /// App Modal sheet configuration used for controlling different parts and
 /// options of a modal sheet, such as height factor, header pill or the close
 /// button.
+///
+/// If [fullScreen] is true, this flag ignores the [heightFactor] and calculate
+/// the ratio for the full screen.
+/// The [heightFactor] of the modal sheet defined within the range of (0,1]
+///
+/// Close button will be displayed at the very bottom of the page if
+/// [showCloseButton] is true. Defaults to true.
+///
+/// A small decoration line will be added to the top of the modal if [showHeaderPill]
+///
+/// [dialogHasBottomPadding] defines if we want to add viewInsets.bottom as
+/// bottom padding to our BottomSheet. viewInsets.bottom is the parts of
+/// the display that are completely obscured by system UI, typically by the
+/// device's keyboard. Defaults to true.
+/// Set it false if want to allow the keyboard to overlap over the content.
+///
+/// [safeAreaBottom] is used to add or not the bottom safe area to our bottom sheet.
+/// Defaults to true.
+/// If set it false, [additionalBottomPadding] will be applied.
+///
+/// [isDismissible] indicates whether the modal sheet is dismissible or not
+///
+/// Flag [haveOnlyOneSheet] allows only to have one modal sheet open at a time
+///
+/// Align the content within the modal sheet using [contentAlignment]
 class ModalConfiguration {
   const ModalConfiguration({
-    this.fullScreen,
+    this.fullScreen = false,
     this.heightFactor,
     this.showCloseButton = true,
-    this.applySafeArea = true,
+    this.dialogHasBottomPadding = true,
     this.safeAreaBottom = true,
     this.showHeaderPill = true,
     this.isDismissible = true,
     this.haveOnlyOneSheet = true,
     this.contentAlignment,
-    this.animationAlignment,
+    this.additionalBottomPadding,
   });
 
-  /// If true, this flag ignores the [heightFactor] and calculate the ratio for the full screen
+  /// If [fullScreen] is true, this flag ignores the [heightFactor] and calculate
+  /// the ratio for the full screen
   final bool? fullScreen;
 
-  /// The height factor of the modal sheet defined within the range of (0,1]
+  /// The [heightFactor] of the modal sheet defined within the range of (0,1]
   final double? heightFactor;
 
   /// Flag indicating whether or not to show the close button
   final bool showCloseButton;
 
-  /// Should we apply a safe area around the widget
-  final bool applySafeArea;
+  /// Should we add viewInsets.bottom as bottom padding to our BottomSheet.
+  /// viewInsets.bottom is the parts of the display that are completely obscured
+  /// by system UI, typically by the device's keyboard.
+  /// Defaults to true.
+  /// Set it false if want to allow the keyboard to overlap over the content.
+  final bool dialogHasBottomPadding;
 
   /// Should we include the bottom safe area when applying a safe area
+  /// Defaults to true.
+  /// If set it false, [additionalBottomPadding] will be applied.
   final bool safeAreaBottom;
+
+  /// Bottom padding to be added when [safeAreaBottom] is false - defaults to 20.
+  final double? additionalBottomPadding;
 
   /// Flag indicating whether to show the header pill-cutout on the modal sheet
   final bool showHeaderPill;
@@ -300,9 +331,6 @@ class ModalConfiguration {
 
   /// Alignment of the content within the modal sheet
   final MainAxisAlignment? contentAlignment;
-
-  /// Alignment of the animation
-  final Alignment? animationAlignment;
 }
 
 double _calculateFullScreenRatio() {

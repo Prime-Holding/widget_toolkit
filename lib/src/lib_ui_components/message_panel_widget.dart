@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../extensions.dart';
 import '../base/models/message_panel_state.dart';
 import '../base/theme/widget_toolkit_theme.dart';
-import '../lib_language_picker/theme/language_picker_theme.dart';
 import '../lib_shimmer/models/shimmer_type.dart';
 import '../lib_shimmer/views/shimmer_text.dart';
 import '../lib_shimmer/views/shimmer_wrapper.dart';
@@ -37,7 +36,7 @@ class MessagePanelWidget extends StatelessWidget {
           color: _backgroundColor(context),
           borderRadius: BorderRadius.all(
             Radius.circular(
-              context.languagePickerTheme.spacingM,
+              context.widgetToolkitTheme.spacingM,
             ),
           ),
         ),
@@ -64,7 +63,7 @@ class MessagePanelWidget extends StatelessWidget {
               errorPanelIcon: errorPanelIcon,
             ),
             SizedBox(
-              width: context.languagePickerTheme.spacingM,
+              width: context.widgetToolkitTheme.spacingM,
             ),
             Expanded(
               child: Column(

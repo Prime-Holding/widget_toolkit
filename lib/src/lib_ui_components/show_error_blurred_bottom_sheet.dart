@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'buttons/button_state.dart';
 import 'error_card_widget.dart';
-import 'show_modal.dart';
+import 'show_blurred_bottom_sheet.dart';
 
 /// Displays a customizable modal sheet with a background blur effect. Requires
 /// an [error] which will be presented on the modal sheet, with an optional
@@ -19,15 +20,13 @@ import 'show_modal.dart';
 /// retry button is visible, the [footerWidget] will be build below the retry
 /// button.
 ///
-/// if [showCloseButton] is set to `true`, the defined [onCancelCallback] (if
-/// any) will be called before the modal sheet is closed.
-///
-/// The [showHeaderPill] flag toggles the visibility of the pill cutout at the
-/// top of the modal sheet.
+/// With [configuration] property you can set up how the ModalBottomSheet will
+/// appear. It refers to the default ModalConfiguration, but doesn't show
+/// close button and allows more then one sheets.
 ///
 /// The [image] is a widget that will be placed on top of the error message in
 /// the error message box.
-Future<T?> showErrorModal<T>({
+Future<T?> showErrorBlurredBottomSheet<T>({
   required BuildContext context,
   required String error,
   Widget? headerWidget,
@@ -35,21 +34,15 @@ Future<T?> showErrorModal<T>({
   Widget? image,
   Function(BuildContext)? retryCallback,
   Function()? onCancelCallback,
-  bool showCloseButton = false,
-  bool safeAreaBottom = true,
-  bool showHeaderPill = true,
+  ModalConfiguration configuration =
+      const ModalConfiguration(showCloseButton: false),
   String retryButtonText = 'Retry',
+  ButtonStateModel? retryButtonState,
 }) =>
-    showModal<T>(
+    showBlurredBottomSheet<T>(
       context: context,
       onCancelPressed: onCancelCallback,
-      configuration: ModalConfiguration(
-        applySafeArea: true,
-        safeAreaBottom: safeAreaBottom,
-        showCloseButton: showCloseButton,
-        haveOnlyOneSheet: false,
-        showHeaderPill: showHeaderPill,
-      ),
+      configuration: configuration,
       builder: (ctx) => WillPopScope(
         onWillPop: () => Future.value(false),
         child: _ErrorModalContent(
@@ -59,11 +52,12 @@ Future<T?> showErrorModal<T>({
           tryAgainCallback: retryCallback,
           messageHeader: image,
           retryButtonText: retryButtonText,
+          retryButtonState: retryButtonState,
         ),
       ),
     );
 
-class _ErrorModalContent extends StatelessWidget {
+class _ErrorModalContent extends StatefulWidget {
   const _ErrorModalContent({
     required this.error,
     required this.retryButtonText,
@@ -71,6 +65,7 @@ class _ErrorModalContent extends StatelessWidget {
     this.footerWidget,
     this.messageHeader,
     this.tryAgainCallback,
+    this.retryButtonState,
   });
 
   /// The error to be handled
@@ -92,6 +87,17 @@ class _ErrorModalContent extends StatelessWidget {
   /// The text displayed on the retry button
   final String retryButtonText;
 
+  /// Use [retryButtonState] to toggle the state of the retry button. Defaults to
+  /// ButtonStateModel.enabled
+  final ButtonStateModel? retryButtonState;
+
+  @override
+  State<_ErrorModalContent> createState() => _ErrorModalContentState();
+}
+
+class _ErrorModalContentState extends State<_ErrorModalContent> {
+  late bool isButtonLoading = false;
+
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -99,22 +105,31 @@ class _ErrorModalContent extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 10),
-            if (titleWidget != null)
+            if (widget.titleWidget != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: titleWidget!,
+                child: widget.titleWidget!,
               ),
             ErrorCardWidget(
-              text: error,
-              header: messageHeader,
-              retryButtonVisible: tryAgainCallback != null,
-              onRetryPressed: () {
-                tryAgainCallback?.call(context);
-                Navigator.of(context).pop();
+              text: widget.error,
+              header: widget.messageHeader,
+              retryButtonVisible: widget.tryAgainCallback != null,
+              onRetryPressed: () async {
+                setState(() {
+                  isButtonLoading = true;
+                });
+                await widget.tryAgainCallback?.call(context);
+                setState(() {
+                  isButtonLoading = false;
+                });
               },
-              retryButtonText: retryButtonText,
+              retryButtonState: widget.retryButtonState ??
+                  (isButtonLoading
+                      ? ButtonStateModel.loading
+                      : ButtonStateModel.enabled),
+              retryButtonText: widget.retryButtonText,
             ),
-            if (footerWidget != null) footerWidget!,
+            if (widget.footerWidget != null) widget.footerWidget!,
           ],
         ),
       );

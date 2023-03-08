@@ -1,0 +1,28 @@
+name: example
+description: An example project to present how to use widget_toolkit package with minimal effort.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.1 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_rx_bloc: ^5.0.2
+  rxdart:
+  widget_toolkit: ^0.0.1-dev5
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  widget_toolkit:
+    path: ../../widget_toolkit
+
+flutter:
+  assets:
+    - packages/widget_toolkit/icons/educate.svg
+  uses-material-design: true

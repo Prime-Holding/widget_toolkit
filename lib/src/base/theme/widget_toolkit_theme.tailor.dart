@@ -56,6 +56,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.filledButtonBackgroundColorDisabled,
     required this.filledButtonTextColorDisabled,
     required this.textButtonTextColorDisabled,
+    required this.textButtonBackgroundColor,
     required this.filledButtonTextColorEnabled,
     required this.smallButtonBackgroundColor,
     required this.buttonTextColor,
@@ -167,6 +168,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color filledButtonBackgroundColorDisabled;
   final Color filledButtonTextColorDisabled;
   final Color textButtonTextColorDisabled;
+  final Color textButtonBackgroundColor;
   final Color filledButtonTextColorEnabled;
   final Color smallButtonBackgroundColor;
   final Color buttonTextColor;
@@ -295,6 +297,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.filledButtonTextColorDisabled[0],
     textButtonTextColorDisabled:
         _$WidgetToolkitTheme.textButtonTextColorDisabled[0],
+    textButtonBackgroundColor:
+        _$WidgetToolkitTheme.textButtonBackgroundColor[0],
     filledButtonTextColorEnabled:
         _$WidgetToolkitTheme.filledButtonTextColorEnabled[0],
     smallButtonBackgroundColor:
@@ -440,6 +444,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.filledButtonTextColorDisabled[1],
     textButtonTextColorDisabled:
         _$WidgetToolkitTheme.textButtonTextColorDisabled[1],
+    textButtonBackgroundColor:
+        _$WidgetToolkitTheme.textButtonBackgroundColor[1],
     filledButtonTextColorEnabled:
         _$WidgetToolkitTheme.filledButtonTextColorEnabled[1],
     smallButtonBackgroundColor:
@@ -574,6 +580,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? filledButtonBackgroundColorDisabled,
     Color? filledButtonTextColorDisabled,
     Color? textButtonTextColorDisabled,
+    Color? textButtonBackgroundColor,
     Color? filledButtonTextColorEnabled,
     Color? smallButtonBackgroundColor,
     Color? buttonTextColor,
@@ -715,6 +722,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           filledButtonTextColorDisabled ?? this.filledButtonTextColorDisabled,
       textButtonTextColorDisabled:
           textButtonTextColorDisabled ?? this.textButtonTextColorDisabled,
+      textButtonBackgroundColor:
+          textButtonBackgroundColor ?? this.textButtonBackgroundColor,
       filledButtonTextColorEnabled:
           filledButtonTextColorEnabled ?? this.filledButtonTextColorEnabled,
       smallButtonBackgroundColor:
@@ -905,6 +914,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           other.filledButtonTextColorDisabled, t)!,
       textButtonTextColorDisabled: Color.lerp(
           textButtonTextColorDisabled, other.textButtonTextColorDisabled, t)!,
+      textButtonBackgroundColor: Color.lerp(
+          textButtonBackgroundColor, other.textButtonBackgroundColor, t)!,
       filledButtonTextColorEnabled: Color.lerp(
           filledButtonTextColorEnabled, other.filledButtonTextColorEnabled, t)!,
       smallButtonBackgroundColor: Color.lerp(
@@ -1085,6 +1096,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(filledButtonBackgroundColorDisabled, other.filledButtonBackgroundColorDisabled) &&
             const DeepCollectionEquality().equals(filledButtonTextColorDisabled, other.filledButtonTextColorDisabled) &&
             const DeepCollectionEquality().equals(textButtonTextColorDisabled, other.textButtonTextColorDisabled) &&
+            const DeepCollectionEquality().equals(textButtonBackgroundColor, other.textButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(filledButtonTextColorEnabled, other.filledButtonTextColorEnabled) &&
             const DeepCollectionEquality().equals(smallButtonBackgroundColor, other.smallButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(buttonTextColor, other.buttonTextColor) &&
@@ -1200,6 +1212,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(filledButtonBackgroundColorDisabled),
       const DeepCollectionEquality().hash(filledButtonTextColorDisabled),
       const DeepCollectionEquality().hash(textButtonTextColorDisabled),
+      const DeepCollectionEquality().hash(textButtonBackgroundColor),
       const DeepCollectionEquality().hash(filledButtonTextColorEnabled),
       const DeepCollectionEquality().hash(smallButtonBackgroundColor),
       const DeepCollectionEquality().hash(buttonTextColor),

@@ -3,8 +3,9 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../edit_address.dart';
+import '../../../models.dart';
 import '../../../search_picker.dart';
-import '../../../widget_toolkit.dart';
+import '../../../text_field_dialog.dart';
 import '../blocs/edit_address_bloc.dart';
 import 'country_picker_bottom_sheet.dart';
 
@@ -18,7 +19,16 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     required this.validator,
     required this.searchCountryService,
     required this.editAddressLocalizedStrings,
+    this.countryCustomIcon,
+    this.editCountryFieldType = EditFieldType.dropdown,
+    this.cityCustomIcon,
+    this.editCityFieldType = EditFieldType.editfield,
+    this.addressCustomIcon,
+    this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -29,8 +39,16 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper;
   final TextFieldValidator<String> validator;
+  final dynamic countryCustomIcon;
+  final EditFieldType editCountryFieldType;
+  final dynamic cityCustomIcon;
+  final EditFieldType editCityFieldType;
+  final dynamic addressCustomIcon;
+  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   @override
   Widget build(BuildContext context) =>
@@ -57,9 +75,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                       bloc.events.setCountry(country);
                       bloc.events.saveCountry();
                     },
-                    configuration: const CountryBottomSheetConfiguration(
-                      haveOnlyOneSheet: false,
-                    ),
+                    modalConfiguration: countryPickerModalConfiguration,
                     searchCountryService: searchCountryService,
                     countrySearchPickerTitle:
                         editAddressLocalizedStrings?.countrySearchPickerTitle ??
@@ -97,10 +113,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 onChanged: (city) => bloc.events.setCity(city),
                 validator: validator,
                 editFieldType: EditFieldType.editfield,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: true,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -118,10 +131,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 onChanged: (street) => bloc.events.setStreet(street),
                 validator: validator,
                 editFieldType: EditFieldType.editfield,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: true,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
             ],
           ),
@@ -143,6 +153,10 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     required final EditAddressService editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final TextFieldModalConfiguration textFieldsModalConfiguration =
+        const TextFieldModalConfiguration(),
+    final SearchPickerModalConfiguration countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
@@ -152,6 +166,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         searchCountryService: searchCountryService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
+        textFieldsModalConfiguration: textFieldsModalConfiguration,
+        countryPickerModalConfiguration: countryPickerModalConfiguration,
       );
 
   EditFieldState _getProfileFieldState(
