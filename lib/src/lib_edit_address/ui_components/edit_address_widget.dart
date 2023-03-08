@@ -30,18 +30,6 @@ import 'permanent_address_bottom_sheet.dart';
 /// [validator] is a service validator class, which provides methods with validation
 /// implementation for the input values of the city and address input values
 ///
-/// [countryCustomIcon] receives a custom icon for the country widget. To use a
-/// custom icon, the [editCountryFieldType] should be of type
-/// EditFieldType.custom
-///
-/// [cityCustomIcon] receives a custom icon for the city button. To use a
-/// custom icon, the [editCityFieldType] should be of type
-/// EditFieldType.custom
-///
-/// [addressCustomIcon] receives a custom icon for the city button. To use a
-/// custom icon, the [editAddressFieldType] should be of type
-/// EditFieldType.custom
-///
 /// [configuration] is a configuration for the edit address bottom sheet.
 ///
 /// [editAddressService] received an extension class of [EditAddressService] with
@@ -66,12 +54,6 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     this.editAddressLocalizedStrings,
     this.type = UserProfileCardTypes.mailingAddress,
     this.configuration = const EditAddressConfiguration(),
-    this.countryCustomIcon,
-    this.editCountryFieldType = EditFieldType.dropdown,
-    this.cityCustomIcon,
-    this.editCityFieldType = EditFieldType.editfield,
-    this.addressCustomIcon,
-    this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
     Key? key,
@@ -88,12 +70,6 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final EditAddressConfiguration configuration;
   final SearchPickerService<T> searchCountryService;
   final EditAddressService editAddressService;
-  final dynamic countryCustomIcon;
-  final EditFieldType editCountryFieldType;
-  final dynamic cityCustomIcon;
-  final EditFieldType editCityFieldType;
-  final dynamic addressCustomIcon;
-  final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
 
@@ -208,12 +184,6 @@ class _EditAddressWidgetState<T extends PickerItemModel>
         return () async {
           final savedAddress = await showEditAddressBottomSheet<T>(
             context,
-            countryCustomIcon: widget.countryCustomIcon,
-            editCountryFieldType: widget.editCountryFieldType,
-            cityCustomIcon: widget.cityCustomIcon,
-            editCityFieldType: widget.editCityFieldType,
-            addressCustomIcon: widget.addressCustomIcon,
-            editAddressFieldType: widget.editAddressFieldType,
             buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
                 context.getEditAddressLocalizedStrings.saveButtonText,
             headerText: widget.editAddressLocalizedStrings?.headerTitle ??

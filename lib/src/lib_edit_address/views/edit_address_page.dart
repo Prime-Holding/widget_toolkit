@@ -25,12 +25,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required this.editAddressService,
     this.editAddressLocalizedStrings,
     this.saveAddress,
-    this.countryCustomIcon,
-    this.editCountryFieldType = EditFieldType.dropdown,
-    this.cityCustomIcon,
-    this.editCityFieldType = EditFieldType.editfield,
-    this.addressCustomIcon,
-    this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
     Key? key,
@@ -46,12 +40,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper;
   final TextFieldValidator<String> validator;
-  final dynamic countryCustomIcon;
-  final EditFieldType editCountryFieldType;
-  final dynamic cityCustomIcon;
-  final EditFieldType editCityFieldType;
-  final dynamic addressCustomIcon;
-  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final EditAddressService editAddressService;
@@ -75,12 +63,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required EditAddressService editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final Function(AddressModel)? saveAddress,
-    final dynamic countryCustomIcon,
-    final EditFieldType editCountryFieldType = EditFieldType.dropdown,
-    final dynamic cityCustomIcon,
-    final EditFieldType editCityFieldType = EditFieldType.editfield,
-    final dynamic addressCustomIcon,
-    final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
@@ -99,12 +81,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           cityErrorMapper: cityErrorMapper,
           addressErrorMapper: addressErrorMapper,
           validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
           searchCountryService: searchCountryService,
           editAddressLocalizedStrings: editAddressLocalizedStrings,
           editAddressService: editAddressService,
@@ -157,12 +133,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                         cityErrorMapper: cityErrorMapper,
                         addressErrorMapper: addressErrorMapper,
                         validator: validator,
-                        countryCustomIcon: countryCustomIcon,
-                        editCountryFieldType: editCountryFieldType,
-                        cityCustomIcon: cityCustomIcon,
-                        editCityFieldType: editCityFieldType,
-                        addressCustomIcon: addressCustomIcon,
-                        editAddressFieldType: editAddressFieldType,
                         searchCountryService: searchCountryService,
                         editAddressLocalizedStrings:
                             editAddressLocalizedStrings,

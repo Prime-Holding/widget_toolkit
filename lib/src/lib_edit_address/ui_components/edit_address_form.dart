@@ -18,12 +18,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     required this.validator,
     required this.searchCountryService,
     required this.editAddressLocalizedStrings,
-    this.countryCustomIcon,
-    this.editCountryFieldType = EditFieldType.dropdown,
-    this.cityCustomIcon,
-    this.editCityFieldType = EditFieldType.editfield,
-    this.addressCustomIcon,
-    this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
     Key? key,
   }) : super(key: key);
@@ -35,12 +29,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper;
   final TextFieldValidator<String> validator;
-  final dynamic countryCustomIcon;
-  final EditFieldType editCountryFieldType;
-  final dynamic cityCustomIcon;
-  final EditFieldType editCityFieldType;
-  final dynamic addressCustomIcon;
-  final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
 
@@ -91,8 +79,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     snapshot.data,
                     false,
                   ),
-                  customIcon: countryCustomIcon,
-                  type: editCountryFieldType,
+                  type: EditFieldType.dropdown,
                 ),
               ),
               SizedBox(
@@ -109,8 +96,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 value: address.data?.city,
                 onChanged: (city) => bloc.events.setCity(city),
                 validator: validator,
-                editFieldCustomIcon: cityCustomIcon,
-                editFieldType: editCityFieldType,
+                editFieldType: EditFieldType.editfield,
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
@@ -131,8 +117,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 value: address.data?.streetAddress,
                 onChanged: (street) => bloc.events.setStreet(street),
                 validator: validator,
-                editFieldCustomIcon: addressCustomIcon,
-                editFieldType: editAddressFieldType,
+                editFieldType: EditFieldType.editfield,
                 configuration: const TextFieldConfiguration(
                   haveOnlyOneSheet: false,
                 ),
@@ -157,12 +142,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     required SearchPickerService<T> searchCountryService,
     required final EditAddressService editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
-    final dynamic countryCustomIcon,
-    final EditFieldType editCountryFieldType = EditFieldType.dropdown,
-    final dynamic cityCustomIcon,
-    final EditFieldType editCityFieldType = EditFieldType.editfield,
-    final dynamic addressCustomIcon,
-    final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
   }) =>
       EditAddressForm<T>(
@@ -170,12 +149,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         cityErrorMapper: cityErrorMapper,
         addressErrorMapper: addressErrorMapper,
         validator: validator,
-        countryCustomIcon: countryCustomIcon,
-        editCountryFieldType: editCountryFieldType,
-        cityCustomIcon: cityCustomIcon,
-        editCityFieldType: editCityFieldType,
-        addressCustomIcon: addressCustomIcon,
-        editAddressFieldType: editAddressFieldType,
         searchCountryService: searchCountryService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,

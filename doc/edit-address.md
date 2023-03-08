@@ -30,12 +30,6 @@ input String value for the edit address text input field. The `addressErrorMappe
 exception to a RxFieldException.
 `validator` is a service validator class, which provides methods with validation implementation for 
 the input values of the city and address input values.
-`countryCustomIcon` receives a custom icon for the country widget. To use a custom icon, the 
-`editCountryFieldType` should be of type EditFieldType.custom.
-`cityCustomIcon` receives a custom icon for the city button. To use a custom icon, the 
-`editCityFieldType` should be of type EditFieldType.custom.
-`addressCustomIcon` receives a custom icon for the city button. To use a custom icon, the
-`editAddressFieldType` should be of type EditFieldType.custom.
 `configuration` is a configuration for the edit address bottom sheet.
 `editAddressService` received an extension class of `EditAddressService` with implementation of the 
 logic for the main edit contact address save button logic.
@@ -45,6 +39,37 @@ custom item builder, error builder, empty builder, separator builder for the sea
 picker.
 `dialogHasBottomPadding` if it is true, it moves the dialog content up with the height of the
 keyboard, when the keyboard is visible, so the city and street dialogs appear above the keyboard.
+
+### How to override the icons in the library 
+
+Here is an example how to override the icons in the library for the light theme. You should use the
+`copyWith()` method and create a new `SvgFile`, which receives the path to the svg file, that you 
+want to use, to override the specific icon.
+
+```dart
+//theme
+//...
+ThemeData(
+extensions: [
+  // Here you provide the new icon for the icon in EditAddressWidget
+  EditAddressTheme.light.copyWith(editPenIcon: const SvgFile('assets/new-edit-pen.svg')),
+  TextFieldDialogTheme.light
+  // Here you provide the new icon for the city and street text fields
+    .copyWith(editPenIcon: const SvgFile('assets/new-edit-pen.svg'),
+  // Here you provide the new icon for the country search picker
+  arrowRightSquareIcon: const SvgFile('assets/new-forward.svg')),
+]);
+//..
+```
+
+To load your local svg files in the project, you should add the path to them in your pubspec.yaml
+
+```yaml
+flutter:
+  assets:
+    - assets/
+```
+
 
 ### `EditAddressLocalizedStrings`
 
@@ -119,12 +144,6 @@ EditAddressWidget<CountryModel>(
       isDismissible: true,
       heightFactor: null,
       fullScreen: false),
-    countryCustomIcon: Assets.deliveryBlack,
-    editCountryFieldType: EditFieldType.custom,
-    cityCustomIcon: Assets.deliveryBlack,
-    editCityFieldType: EditFieldType.custom,
-    addressCustomIcon: Assets.deliveryBlack,
-    editAddressFieldType: EditFieldType.custom,
     searchCountryService: SearchCountryService(
       SearchCountryRepository(),
       true,
