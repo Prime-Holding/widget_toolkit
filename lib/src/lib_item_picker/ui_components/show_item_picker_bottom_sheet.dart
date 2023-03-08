@@ -29,17 +29,13 @@ void showItemPickerBottomSheet<T extends PickerItemModel>({
   String? title,
   WidgetBuilder? footerBuilder,
   ItemPickerConfiguration configuration = const ItemPickerConfiguration(),
+  ItemPickerModalConfiguration modalConfiguration =
+      const ItemPickerModalConfiguration(),
   String? saveButtonText,
 }) {
-  showModal(
+  showBlurredBottomSheet(
     context: context,
-    configuration: ModalConfiguration(
-      fullScreen: configuration.fullScreen,
-      showCloseButton: true,
-      showHeaderPill: true,
-      haveOnlyOneSheet: true,
-      safeAreaBottom: false,
-    ),
+    configuration: modalConfiguration,
     onCancelPressed: () => Navigator.of(context).pop(),
     builder: (context) => ItemPickerPage.withDependencies<T>(
       context,
@@ -74,7 +70,6 @@ class ItemPickerConfiguration {
     this.isMultiSelect = true,
     this.isItemSelectionRequired = true,
     this.isStatic = false,
-    this.fullScreen = false,
     this.loadingItemsCount = 3,
     this.loadingItemHeight = 60,
   });
@@ -88,12 +83,34 @@ class ItemPickerConfiguration {
   /// If the content is set as static, then no loading will appear
   final bool isStatic;
 
-  /// Toggle if the content should stretch to full screen or not
-  final bool fullScreen;
-
   /// Pass the number of loading indicators
   final int loadingItemsCount;
 
   /// If the loading items height doesn't match the design you can specify custom height
   final double loadingItemHeight;
+}
+
+class ItemPickerModalConfiguration extends ModalConfiguration {
+  const ItemPickerModalConfiguration(
+      {bool safeAreaBottom = false,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = false,
+      bool haveOnlyOneSheet = true,
+      bool showHeaderPill = true,
+      bool showCloseButton = true,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }

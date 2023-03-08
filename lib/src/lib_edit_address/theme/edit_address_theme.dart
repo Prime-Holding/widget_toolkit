@@ -251,7 +251,7 @@ class _$EditAddressTheme {
   /// endregion
 }
 
-extension TextFieldDialogThemeContextExtension on BuildContext {
+extension EditAddressThemeContextExtension on BuildContext {
   /// Returns a reference to the [EditAddressTheme] theme extension of the current [Theme]
   EditAddressTheme get editAddressTheme {
     final theme = Theme.of(this).extension<EditAddressTheme>();

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../edit_address.dart';
+import '../../../models.dart';
 import '../../../search_picker.dart';
-import '../../../widget_toolkit.dart';
+import '../../../text_field_dialog.dart';
+import '../../../ui_components.dart';
 import '../views/edit_address_page.dart';
 
 Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
@@ -17,9 +19,10 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   required RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper,
   required TextFieldValidator<String> validator,
-  required EditAddressConfiguration configuration,
   required SearchPickerService<T> searchCountryService,
   required EditAddressService editAddressService,
+  final EditAddressConfiguration modalConfiguration =
+      const EditAddressConfiguration(),
   dynamic countryCustomIcon,
   final EditAddressLocalizedStrings? editAddressLocalizedStrings,
   final EditFieldType editCountryFieldType = EditFieldType.dropdown,
@@ -29,37 +32,36 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+  final TextFieldModalConfiguration textFieldsModalConfiguration =
+      const TextFieldModalConfiguration(),
+  final SearchPickerModalConfiguration countryPickerModalConfiguration =
+      const SearchPickerModalConfiguration(),
 }) async =>
-    await showModal<AddressModel?>(
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        heightFactor: configuration.heightFactor,
-        isDismissible: configuration.isDismissible,
-        safeAreaBottom: false,
-      ),
+    await showBlurredBottomSheet<AddressModel?>(
+      configuration: modalConfiguration,
       context: context,
-      builder: (ctx) => EditAddressPage.withDependencies<T>(
-        context,
-        onAddressSaved: (AddressModel address) =>
-            Navigator.of(ctx).pop(address),
-        buttonText: buttonText,
-        headerText: headerText,
-        addressModel: addressModel,
-        cityErrorMapper: cityErrorMapper,
-        addressErrorMapper: addressErrorMapper,
-        validator: validator,
-        countryCustomIcon: countryCustomIcon,
-        editCountryFieldType: editCountryFieldType,
-        cityCustomIcon: cityCustomIcon,
-        editCityFieldType: editCityFieldType,
-        addressCustomIcon: addressCustomIcon,
-        editAddressFieldType: editAddressFieldType,
-        searchCountryService: searchCountryService,
-        editAddressLocalizedStrings: editAddressLocalizedStrings,
-        editAddressService: editAddressService,
-        editContactAddressErrorBuilder: editContactAddressErrorBuilder,
-        searchCountryCustomBuilders: searchCountryCustomBuilders,
-      ),
+      builder: (ctx) => EditAddressPage.withDependencies<T>(context,
+          onAddressSaved: (AddressModel address) =>
+              Navigator.of(ctx).pop(address),
+          buttonText: buttonText,
+          headerText: headerText,
+          addressModel: addressModel,
+          cityErrorMapper: cityErrorMapper,
+          addressErrorMapper: addressErrorMapper,
+          validator: validator,
+          countryCustomIcon: countryCustomIcon,
+          editCountryFieldType: editCountryFieldType,
+          cityCustomIcon: cityCustomIcon,
+          editCityFieldType: editCityFieldType,
+          addressCustomIcon: addressCustomIcon,
+          editAddressFieldType: editAddressFieldType,
+          searchCountryService: searchCountryService,
+          editAddressLocalizedStrings: editAddressLocalizedStrings,
+          editAddressService: editAddressService,
+          editContactAddressErrorBuilder: editContactAddressErrorBuilder,
+          searchCountryCustomBuilders: searchCountryCustomBuilders,
+          textFieldsModalConfiguration: textFieldsModalConfiguration,
+          countryPickerModalConfiguration: countryPickerModalConfiguration),
       onCancelPressed: () => Navigator.of(context).pop(),
     );
 

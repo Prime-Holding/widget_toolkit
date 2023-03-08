@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
-import '../../lib_ui_components/show_modal.dart';
+import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../services/search_picker_service.dart';
 import '../views/search_picker_page.dart';
 
@@ -21,7 +21,7 @@ import '../views/search_picker_page.dart';
 /// Flag for toggle to full screen can be changed by setting [fullScreen]
 /// flag (defaults to `true`).
 /// If you want to have more than one sheet opened at the same time, set
-/// [haveOnlyOneSheet] in the [configuration] to false.
+/// [haveOnlyOneSheet] in the [modalConfiguration] to false.
 void showSearchPickerBottomSheet<T extends PickerItemModel>({
   required BuildContext context,
   required String title,
@@ -35,19 +35,13 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   Widget Function(int index)? separatorBuilder,
   T? selectedItem,
   bool showEmptyWidgetWhenNoResultsAreFound = true,
-  bool fullScreen = true,
   double loadingItemHeight = 60,
-  SearchPickerConfiguration configuration = const SearchPickerConfiguration(),
+  SearchPickerModalConfiguration modalConfiguration =
+      const SearchPickerModalConfiguration(),
 }) {
-  showModal(
+  showBlurredBottomSheet(
     context: context,
-    configuration: ModalConfiguration(
-      showCloseButton: false,
-      showHeaderPill: false,
-      haveOnlyOneSheet: configuration.haveOnlyOneSheet,
-      safeAreaBottom: false,
-      fullScreen: fullScreen,
-    ),
+    configuration: modalConfiguration,
     onCancelPressed: () => Navigator.of(context).pop(),
     builder: (context) => SearchPickerPage.withDependencies<T>(
       context,
@@ -71,10 +65,27 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   );
 }
 
-class SearchPickerConfiguration {
-  const SearchPickerConfiguration({
-    this.haveOnlyOneSheet = true,
-  });
-
-  final bool haveOnlyOneSheet;
+class SearchPickerModalConfiguration extends ModalConfiguration {
+  const SearchPickerModalConfiguration(
+      {bool safeAreaBottom = true,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = true,
+      bool haveOnlyOneSheet = true,
+      bool showHeaderPill = true,
+      bool showCloseButton = false,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }

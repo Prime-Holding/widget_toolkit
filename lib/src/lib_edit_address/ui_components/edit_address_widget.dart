@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 
-import '../../../edit_address.dart';
-import '../../../search_picker.dart';
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
 import '../extensions/user_profile_card_types_extension.dart';
@@ -42,7 +40,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// custom icon, the [editAddressFieldType] should be of type
 /// EditFieldType.custom
 ///
-/// [configuration] is a configuration for the edit address bottom sheet.
+/// [editAddressConfiguration] is a configuration for the edit address bottom sheet.
 ///
 /// [editAddressService] received an extension class of [EditAddressService] with
 /// implementation of the logic for the main edit contact address save button
@@ -65,7 +63,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     this.addressModel = _defaultAddressModel,
     this.editAddressLocalizedStrings,
     this.type = UserProfileCardTypes.mailingAddress,
-    this.configuration = const EditAddressConfiguration(),
+    this.editAddressConfiguration = const EditAddressConfiguration(),
     this.countryCustomIcon,
     this.editCountryFieldType = EditFieldType.dropdown,
     this.cityCustomIcon,
@@ -74,6 +72,9 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -85,7 +86,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper;
   final TextFieldValidator<String> validator;
-  final EditAddressConfiguration configuration;
+  final EditAddressConfiguration editAddressConfiguration;
   final SearchPickerService<T> searchCountryService;
   final EditAddressService editAddressService;
   final dynamic countryCustomIcon;
@@ -96,6 +97,8 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final EditFieldType editAddressFieldType;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   static const _defaultAddressModel = AddressModel(
     addressType: AddressTypeModel.correspondence,
@@ -200,36 +203,37 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                       ?.permanentAddressContentMessage ??
                   context.getEditAddressLocalizedStrings
                       .permanentAddressContentMessage,
-              configuration: widget.configuration,
+              configuration: widget.editAddressConfiguration,
             );
       case UserProfileCardTypes.mailingAddress:
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () async {
-          final savedAddress = await showEditAddressBottomSheet<T>(
-            context,
-            countryCustomIcon: widget.countryCustomIcon,
-            editCountryFieldType: widget.editCountryFieldType,
-            cityCustomIcon: widget.cityCustomIcon,
-            editCityFieldType: widget.editCityFieldType,
-            addressCustomIcon: widget.addressCustomIcon,
-            editAddressFieldType: widget.editAddressFieldType,
-            buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
-                context.getEditAddressLocalizedStrings.saveButtonText,
-            headerText: widget.editAddressLocalizedStrings?.headerTitle ??
-                context.getEditAddressLocalizedStrings.headerTitle,
-            addressModel: savedModel ?? widget.addressModel,
-            configuration: widget.configuration,
-            cityErrorMapper: widget.cityErrorMapper,
-            addressErrorMapper: widget.addressErrorMapper,
-            validator: widget.validator,
-            searchCountryService: widget.searchCountryService,
-            editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
-            editAddressService: widget.editAddressService,
-            editContactAddressErrorBuilder:
-                widget.editContactAddressErrorBuilder,
-            searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
-          );
+          final savedAddress = await showEditAddressBottomSheet<T>(context,
+              countryCustomIcon: widget.countryCustomIcon,
+              editCountryFieldType: widget.editCountryFieldType,
+              cityCustomIcon: widget.cityCustomIcon,
+              editCityFieldType: widget.editCityFieldType,
+              addressCustomIcon: widget.addressCustomIcon,
+              editAddressFieldType: widget.editAddressFieldType,
+              buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
+                  context.getEditAddressLocalizedStrings.saveButtonText,
+              headerText: widget.editAddressLocalizedStrings?.headerTitle ??
+                  context.getEditAddressLocalizedStrings.headerTitle,
+              addressModel: savedModel ?? widget.addressModel,
+              modalConfiguration: widget.editAddressConfiguration,
+              cityErrorMapper: widget.cityErrorMapper,
+              addressErrorMapper: widget.addressErrorMapper,
+              validator: widget.validator,
+              searchCountryService: widget.searchCountryService,
+              editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
+              editAddressService: widget.editAddressService,
+              editContactAddressErrorBuilder:
+                  widget.editContactAddressErrorBuilder,
+              searchCountryCustomBuilders: widget.searchCountryCustomBuilders,
+              textFieldsModalConfiguration: widget.textFieldsModalConfiguration,
+              countryPickerModalConfiguration:
+                  widget.countryPickerModalConfiguration);
           if (savedAddress != null) {
             setState(() {
               savedModel = savedAddress;
@@ -302,16 +306,29 @@ class _AddressWidget extends StatelessWidget {
       );
 }
 
-class EditAddressConfiguration {
-  const EditAddressConfiguration({
-    this.isDismissible = true,
-    this.heightFactor,
-    this.fullScreen = false,
-  });
-
-  final double? heightFactor;
-  final bool isDismissible;
-  final bool fullScreen;
+class EditAddressConfiguration extends ModalConfiguration {
+  const EditAddressConfiguration(
+      {bool safeAreaBottom = true,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = false,
+      bool haveOnlyOneSheet = false,
+      bool showHeaderPill = true,
+      bool showCloseButton = true,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }
 
 class SearchCountryCustomBuilders<T> {
