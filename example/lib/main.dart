@@ -437,13 +437,17 @@ class _LoadingStateSwitcherState extends State<LoadingStateSwitcher> {
   }
 
   Future<void> _slapAfterThreeSeconds(bool initial) async {
-    setState(() {
-      isLoading = initial;
-    });
+    if (mounted) {
+      setState(() {
+        isLoading = initial;
+      });
+    }
     await Future.delayed(const Duration(seconds: 3));
-    setState(() {
-      isLoading = !initial;
-    });
+    if (mounted) {
+      setState(() {
+        isLoading = !initial;
+      });
+    }
   }
 
   @override
