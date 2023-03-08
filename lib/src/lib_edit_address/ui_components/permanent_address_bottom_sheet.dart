@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../edit_address.dart';
 import '../../base/extensions/data_type_extensions.dart';
-import '../../lib_ui_components/show_modal.dart';
-import '../theme/edit_address_theme.dart';
-import 'edit_address_widget.dart';
+import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 
 void showPermanentAddressBottomSheet(
   BuildContext context, {
   required String headerText,
-  required EditAddressConfiguration configuration,
+  EditAddressConfiguration configuration = const EditAddressConfiguration(),
   required String permanentAddressContentMessage,
 }) =>
-    showModal(
+    showBlurredBottomSheet(
       context: context,
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        heightFactor: configuration.heightFactor,
-        isDismissible: configuration.isDismissible,
-        safeAreaBottom: false,
-      ),
+      configuration: configuration,
       onCancelPressed: () => Navigator.of(context).pop(),
       builder: (ctx) => _PermanentAddressBottomSheetWidget(
         headerText: headerText,

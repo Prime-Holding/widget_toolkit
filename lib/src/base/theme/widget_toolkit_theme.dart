@@ -261,6 +261,11 @@ class _$WidgetToolkitTheme {
   static List<Color> textButtonTextColorDisabled =
       filledButtonTextColorDisabled;
 
+  static List<Color> textButtonBackgroundColor = [
+    WidgetToolkitDesignSystem.light().colors.transparent,
+    WidgetToolkitDesignSystem.dark().colors.transparent,
+  ];
+
   static List<Color> filledButtonTextColorEnabled = [
     WidgetToolkitDesignSystem.light().colors.activeButtonTextColor,
     WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
@@ -451,6 +456,11 @@ class _$WidgetToolkitTheme {
   /// endregion
 
   /// region Common Spacings
+
+  static List<EdgeInsets> bottomSheetCloseButtonPadding = [
+    const EdgeInsets.only(top: 20),
+    const EdgeInsets.only(top: 20)
+  ];
 
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [
     const EdgeInsets.only(bottom: 20),

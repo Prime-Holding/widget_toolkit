@@ -87,13 +87,14 @@ class MockEditAddressBlocStates extends _i1.Mock
         ),
       ) as _i2.ConnectableStream<_i6.ErrorModel?>);
   @override
-  _i2.ConnectableStream<void> get onAddressSaved => (super.noSuchMethod(
+  _i2.ConnectableStream<_i5.AddressModel> get onAddressSaved =>
+      (super.noSuchMethod(
         Invocation.getter(#onAddressSaved),
-        returnValue: _FakeConnectableStream_0<void>(
+        returnValue: _FakeConnectableStream_0<_i5.AddressModel>(
           this,
           Invocation.getter(#onAddressSaved),
         ),
-      ) as _i2.ConnectableStream<void>);
+      ) as _i2.ConnectableStream<_i5.AddressModel>);
   @override
   _i2.ConnectableStream<String> get street => (super.noSuchMethod(
         Invocation.getter(#street),

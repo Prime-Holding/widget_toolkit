@@ -46,7 +46,7 @@ abstract class EditAddressBlocStates {
   ConnectableStream<ErrorModel?> get errors;
 
   /// The state is updated, when the save button for the contact address is tapped
-  ConnectableStream<void> get onAddressSaved;
+  ConnectableStream<AddressModel> get onAddressSaved;
 
   /// The state is updated, when a new street address is saved
   ConnectableStream<String> get street;
@@ -133,18 +133,19 @@ class EditAddressBloc extends $EditAddressBloc {
   Stream<bool> _mapToIsLoadingState() => loadingState;
 
   @override
-  ConnectableStream<void> _mapToOnAddressSavedState() => _$saveAddressEvent
-      .map(
-        (_) => _$setAddressEvent.hasValue
-            ? _$setAddressEvent.value
-            : _initialAddressModel,
-      )
-      .switchMap(
-        (address) => _service.saveAddress(address).asResultStream(),
-      )
-      .setResultStateHandler(this)
-      .whereSuccess()
-      .publish();
+  ConnectableStream<AddressModel> _mapToOnAddressSavedState() =>
+      _$saveAddressEvent
+          .map(
+            (_) => _$setAddressEvent.hasValue
+                ? _$setAddressEvent.value
+                : _initialAddressModel,
+          )
+          .switchMap(
+            (address) => _service.saveAddress(address).asResultStream(),
+          )
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publish();
 
   @override
   Stream<AddressModel> _mapToOnAddressSetState() => _$setAddressEvent;

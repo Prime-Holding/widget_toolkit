@@ -59,7 +59,7 @@ class IconTextButton extends StatelessWidget {
               context.widgetToolkitTheme.gradientRedEnd;
         }
         return colorStyle?.activeGradientColorStart ??
-            context.widgetToolkitTheme.backgroundColor;
+            context.widgetToolkitTheme.textButtonBackgroundColor;
       }),
     );
     final button = TextButton(

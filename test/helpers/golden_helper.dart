@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:widget_toolkit/edit_address.dart';
-import 'package:widget_toolkit/search_picker.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 import 'models/labeled_device_builder.dart';
@@ -114,6 +112,12 @@ ThemeData getThemeData(bool inLightMode) {
             titleBold: const TextStyle(
               inherit: true,
             ),
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
           ),
         ])
       : ThemeData.dark().copyWith(extensions: [
@@ -131,6 +135,12 @@ ThemeData getThemeData(bool inLightMode) {
           ),
           EditAddressTheme.dark.copyWith(
             titleBold: const TextStyle(
+              inherit: true,
+            ),
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            captionBold: const TextStyle(
               inherit: true,
             ),
           ),

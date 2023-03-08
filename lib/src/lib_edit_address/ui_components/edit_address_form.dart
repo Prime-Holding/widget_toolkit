@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
+import '../../../models.dart';
 import '../../../search_picker.dart';
-import '../../../widget_toolkit.dart';
+import '../../../text_field_dialog.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
 import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
@@ -27,6 +26,9 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.addressCustomIcon,
     this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -45,6 +47,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   @override
   Widget build(BuildContext context) =>
@@ -71,9 +75,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                       bloc.events.setCountry(country);
                       bloc.events.saveCountry();
                     },
-                    configuration: const CountryBottomSheetConfiguration(
-                      haveOnlyOneSheet: false,
-                    ),
+                    modalConfiguration: countryPickerModalConfiguration,
                     searchCountryService: searchCountryService,
                     countrySearchPickerTitle:
                         editAddressLocalizedStrings?.countrySearchPickerTitle ??
@@ -113,10 +115,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 validator: validator,
                 editFieldCustomIcon: cityCustomIcon,
                 editFieldType: editCityFieldType,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: false,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -135,10 +134,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 validator: validator,
                 editFieldCustomIcon: addressCustomIcon,
                 editFieldType: editAddressFieldType,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: false,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
             ],
           ),
@@ -166,26 +162,27 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
+    final TextFieldModalConfiguration textFieldsModalConfiguration =
+        const TextFieldModalConfiguration(),
+    final SearchPickerModalConfiguration countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
   }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-                context, addressModel, editAddressService)
-            .providers,
-        child: EditAddressForm<T>(
-          onAddressChange: onAddressChange,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-        ),
+      EditAddressForm<T>(
+        onAddressChange: onAddressChange,
+        cityErrorMapper: cityErrorMapper,
+        addressErrorMapper: addressErrorMapper,
+        validator: validator,
+        countryCustomIcon: countryCustomIcon,
+        editCountryFieldType: editCountryFieldType,
+        cityCustomIcon: cityCustomIcon,
+        editCityFieldType: editCityFieldType,
+        addressCustomIcon: addressCustomIcon,
+        editAddressFieldType: editAddressFieldType,
+        searchCountryService: searchCountryService,
+        editAddressLocalizedStrings: editAddressLocalizedStrings,
+        searchCountryCustomBuilders: searchCountryCustomBuilders,
+        textFieldsModalConfiguration: textFieldsModalConfiguration,
+        countryPickerModalConfiguration: countryPickerModalConfiguration,
       );
 
   EditFieldState _getProfileFieldState(

@@ -7,7 +7,7 @@ import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/buttons/small_button.dart';
 import '../../lib_ui_components/message_panel_error.dart';
-import '../../lib_ui_components/show_modal.dart';
+import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../blocs/language_picker_bloc.dart';
 import '../models/selected_language_model.dart';
 import '../theme/language_picker_theme.dart';
@@ -28,7 +28,7 @@ import '../ui_components/select_language_item.dart';
 /// right end of every language widget. There is a default checkIcon if the parameter
 /// is not specified.
 ///
-///  With [configuration] we can change the configuration of the showModal().
+///  With [modalConfiguration] we can change the configuration of the showModal().
 ///  There are default configurations provided. Changing [fullScreen] to true, makes
 ///  the modal sheet appear to the top of the screen. With [showHeaderPill] set to
 ///  true displays a header pill at the top of the modal sheet. Changing [safeAreaBottom]
@@ -47,12 +47,12 @@ void showChangeLanguageBottomSheet({
   Widget Function(ErrorModel?)? errorBuilder,
   required Widget Function(BuildContext)? headerBuilder,
   dynamic iconRight,
-  LanguagePickerConfiguration configuration =
-      const LanguagePickerConfiguration(),
+  LanguagePickerModalConfiguration modalConfiguration =
+      const LanguagePickerModalConfiguration(),
   final MessagePanelState messageState = MessagePanelState.important,
   dynamic errorPanelIcon,
 }) =>
-    showModal(
+    showBlurredBottomSheet(
       context: context,
       builder: (context) => _ChangeLanguageWidget(
         iconRight: iconRight,
@@ -62,24 +62,32 @@ void showChangeLanguageBottomSheet({
       ),
       headerBuilder: headerBuilder,
       onCancelPressed: () => Navigator.of(context).pop(),
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        showCloseButton: false,
-        showHeaderPill: configuration.showHeaderPill,
-        safeAreaBottom: configuration.safeAreaBottom,
-      ),
+      configuration: modalConfiguration,
     );
 
-class LanguagePickerConfiguration {
-  const LanguagePickerConfiguration({
-    this.fullScreen = false,
-    this.safeAreaBottom = false,
-    this.showHeaderPill = false,
-  });
-
-  final bool fullScreen;
-  final bool safeAreaBottom;
-  final bool showHeaderPill;
+class LanguagePickerModalConfiguration extends ModalConfiguration {
+  const LanguagePickerModalConfiguration(
+      {bool safeAreaBottom = true,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = false,
+      bool haveOnlyOneSheet = true,
+      bool showHeaderPill = false,
+      bool showCloseButton = false,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }
 
 class _ChangeLanguageWidget extends StatelessWidget {
