@@ -34,10 +34,8 @@ Future<T?> showErrorBlurredBottomSheet<T>({
   Widget? image,
   Function(BuildContext)? retryCallback,
   Function()? onCancelCallback,
-  ModalConfiguration? configuration = const ModalConfiguration(
-    showCloseButton: false,
-    haveOnlyOneSheet: false,
-  ),
+  ModalConfiguration configuration =
+      const ModalConfiguration(showCloseButton: false),
   String retryButtonText = 'Retry',
   ButtonStateModel? retryButtonState,
 }) =>

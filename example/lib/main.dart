@@ -147,9 +147,12 @@ class CommonComponentsPage extends StatelessWidget {
               text: 'Open modal sheet',
               onPressed: () => showBlurredBottomSheet(
                 context: context,
-                builder: (BuildContext context) => const MessagePanelWidget(
-                    message: 'This is an informative message',
-                    messageState: MessagePanelState.informative),
+                builder: (BuildContext context) => const Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: MessagePanelWidget(
+                      message: 'This is an informative message',
+                      messageState: MessagePanelState.informative),
+                ),
               ),
             ),
           ),
@@ -160,10 +163,7 @@ class CommonComponentsPage extends StatelessWidget {
               onPressed: () => showErrorBlurredBottomSheet(
                 error: 'This is an error message',
                 context: context,
-                retryCallback: (context) async {
-                  await Future.delayed(const Duration(seconds: 2));
-                  return;
-                },
+                retryCallback: (context) {},
               ),
             ),
           ),
@@ -241,8 +241,8 @@ class PickersPage extends StatelessWidget {
                   selectedItems: updatedData,
                   callback: (data) => updateFunction.call(data),
                   service: DataService(),
-                  configuration: const ItemPickerConfiguration(
-                      isMultiSelect: false, safeAreaBottom: true),
+                  configuration:
+                      const ItemPickerConfiguration(isMultiSelect: false),
                 ),
               ),
             ),
@@ -258,8 +258,8 @@ class PickersPage extends StatelessWidget {
                     selectedItems: updatedData,
                     callback: (data) => updateFunction.call(data),
                     service: DataService(),
-                    configuration: const ItemPickerConfiguration(
-                        isMultiSelect: true, safeAreaBottom: true)),
+                    configuration:
+                        const ItemPickerConfiguration(isMultiSelect: true)),
               ),
             ),
           ),
@@ -279,13 +279,16 @@ class PickersPage extends StatelessWidget {
                     onItemTap: (item) =>
                         updateFunction.call(item != null ? [item] : []),
                     service: SearchService(SearchCountryRepository()),
-                    emptyBuilder: () => const MessagePanelWidget(
-                          message:
-                              'There is no results for the searched query!',
-                          messageState: MessagePanelState.neutral,
+                    emptyBuilder: () => const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: MessagePanelWidget(
+                            message:
+                                'There is no results for the searched query!',
+                            messageState: MessagePanelState.neutral,
+                          ),
                         ),
-                    configuration:
-                        const SearchPickerConfiguration(safeAreaBottom: true)),
+                    modalConfiguration: const SearchPickerModalConfiguration(
+                        safeAreaBottom: true)),
               ),
             ),
           ),
@@ -313,23 +316,7 @@ class EditFieldsPage extends StatelessWidget {
               label: 'First Name',
               value: 'John',
               validator: LocalAddressFieldService(),
-              dialogHasBottomPadding: true,
-              configuration: const TextFieldConfiguration(),
               header: 'Enter your data',
-            ),
-          ),
-          WidgetSection(
-            description: 'EditAddress',
-            child: EditAddressWidget<CountryModel>(
-              cityErrorMapper: (obj, context) =>
-                  ErrorMapperUtil<String>().errorMapper(obj, context),
-              addressErrorMapper: (obj, context) =>
-                  ErrorMapperUtil<String>().errorMapper(obj, context),
-              validator: LocalAddressFieldService(),
-              searchCountryService: SearchService(
-                SearchCountryRepository(),
-              ),
-              editFieldsHaveBottomPadding: true,
             ),
           ),
         ],

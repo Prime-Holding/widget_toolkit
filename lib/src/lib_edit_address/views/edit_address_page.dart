@@ -35,7 +35,9 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     this.editAddressFieldType = EditFieldType.editfield,
     this.editContactAddressErrorBuilder,
     this.searchCountryCustomBuilders,
-    this.editFieldsHaveBottomPadding = true,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -60,7 +62,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressService editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
-  final bool? editFieldsHaveBottomPadding;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   static Widget withDependencies<T extends PickerItemModel>(
     BuildContext context, {
@@ -87,7 +90,10 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final bool? editFieldsHaveBottomPadding,
+    final TextFieldModalConfiguration textFieldsModalConfiguration =
+        const TextFieldModalConfiguration(),
+    final SearchPickerModalConfiguration countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
   }) =>
       MultiProvider(
         providers: EditAddressDependencies.from(
@@ -96,26 +102,26 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
           editAddressService,
         ).providers,
         child: EditAddressPage<T>(
-          onAddressSaved: onAddressSaved,
-          buttonText: buttonText,
-          headerText: headerText,
-          addressModel: addressModel,
-          saveAddress: saveAddress,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
-          validator: validator,
-          countryCustomIcon: countryCustomIcon,
-          editCountryFieldType: editCountryFieldType,
-          cityCustomIcon: cityCustomIcon,
-          editCityFieldType: editCityFieldType,
-          addressCustomIcon: addressCustomIcon,
-          editAddressFieldType: editAddressFieldType,
-          searchCountryService: searchCountryService,
-          editAddressLocalizedStrings: editAddressLocalizedStrings,
-          editAddressService: editAddressService,
-          searchCountryCustomBuilders: searchCountryCustomBuilders,
-          editFieldsHaveBottomPadding: editFieldsHaveBottomPadding,
-        ),
+            onAddressSaved: onAddressSaved,
+            buttonText: buttonText,
+            headerText: headerText,
+            addressModel: addressModel,
+            saveAddress: saveAddress,
+            cityErrorMapper: cityErrorMapper,
+            addressErrorMapper: addressErrorMapper,
+            validator: validator,
+            countryCustomIcon: countryCustomIcon,
+            editCountryFieldType: editCountryFieldType,
+            cityCustomIcon: cityCustomIcon,
+            editCityFieldType: editCityFieldType,
+            addressCustomIcon: addressCustomIcon,
+            editAddressFieldType: editAddressFieldType,
+            searchCountryService: searchCountryService,
+            editAddressLocalizedStrings: editAddressLocalizedStrings,
+            editAddressService: editAddressService,
+            searchCountryCustomBuilders: searchCountryCustomBuilders,
+            textFieldsModalConfiguration: textFieldsModalConfiguration,
+            countryPickerModalConfiguration: countryPickerModalConfiguration),
       );
 
   @override
@@ -151,33 +157,32 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                           .editAddressTheme.editAddressPageErrorPanelPadding,
                     ),
                     if (!snapshot.hasData)
-                      EditAddressForm.withDependencies<T>(
-                        context,
-                        addressModel,
-                        (addressModel) {
-                          return context
-                              .read<EditAddressBlocType>()
-                              .events
-                              .setAddress(addressModel);
-                        },
-                        cityErrorMapper: cityErrorMapper,
-                        addressErrorMapper: addressErrorMapper,
-                        validator: validator,
-                        countryCustomIcon: countryCustomIcon,
-                        editCountryFieldType: editCountryFieldType,
-                        cityCustomIcon: cityCustomIcon,
-                        editCityFieldType: editCityFieldType,
-                        addressCustomIcon: addressCustomIcon,
-                        editAddressFieldType: editAddressFieldType,
-                        searchCountryService: searchCountryService,
-                        editAddressLocalizedStrings:
-                            editAddressLocalizedStrings,
-                        editAddressService: editAddressService,
-                        searchCountryCustomBuilders:
-                            searchCountryCustomBuilders,
-                        editFieldsHaveBottomPadding:
-                            editFieldsHaveBottomPadding ?? true,
-                      ),
+                      EditAddressForm.withDependencies<T>(context, addressModel,
+                          (addressModel) {
+                        return context
+                            .read<EditAddressBlocType>()
+                            .events
+                            .setAddress(addressModel);
+                      },
+                          cityErrorMapper: cityErrorMapper,
+                          addressErrorMapper: addressErrorMapper,
+                          validator: validator,
+                          countryCustomIcon: countryCustomIcon,
+                          editCountryFieldType: editCountryFieldType,
+                          cityCustomIcon: cityCustomIcon,
+                          editCityFieldType: editCityFieldType,
+                          addressCustomIcon: addressCustomIcon,
+                          editAddressFieldType: editAddressFieldType,
+                          searchCountryService: searchCountryService,
+                          editAddressLocalizedStrings:
+                              editAddressLocalizedStrings,
+                          editAddressService: editAddressService,
+                          searchCountryCustomBuilders:
+                              searchCountryCustomBuilders,
+                          textFieldsModalConfiguration:
+                              textFieldsModalConfiguration,
+                          countryPickerModalConfiguration:
+                              countryPickerModalConfiguration),
                     if (!snapshot.hasData)
                       SizedBox(height: context.editAddressTheme.spacingXL),
                     if (!snapshot.hasData)

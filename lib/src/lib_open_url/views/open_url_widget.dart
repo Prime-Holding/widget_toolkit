@@ -37,7 +37,7 @@ class OpenUrlWidget extends StatelessWidget {
     this.onError,
     this.translateError,
     this.uriType = UriType.https,
-    this.errorModalConfiguration,
+    this.errorModalConfiguration = const ModalConfiguration(),
     super.key,
   });
 
@@ -62,7 +62,7 @@ class OpenUrlWidget extends StatelessWidget {
   /// With [configuration] property you can set up how the ModalBottomSheet in
   /// the default implementation of onError will appear. It refers to the default
   /// ModalConfiguration, but doesn't show close button and allows more then one sheets.
-  final ModalConfiguration? errorModalConfiguration;
+  final ModalConfiguration errorModalConfiguration;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -82,7 +82,7 @@ class OpenUrlWidget extends StatelessWidget {
     Function(BuildContext, Exception)? onError,
     String Function(BuildContext, Exception)? translateError,
     UriType uriType = UriType.https,
-    ModalConfiguration? modalConfiguration,
+    ModalConfiguration modalConfiguration = const ModalConfiguration(),
     Key? key,
   }) =>
       MultiProvider(

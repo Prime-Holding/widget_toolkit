@@ -26,7 +26,9 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.addressCustomIcon,
     this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
-    this.editFieldsHaveBottomPadding = true,
+    this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
+    this.countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
     Key? key,
   }) : super(key: key);
 
@@ -45,7 +47,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditFieldType editAddressFieldType;
   final SearchPickerService<T> searchCountryService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
-  final bool editFieldsHaveBottomPadding;
+  final TextFieldModalConfiguration textFieldsModalConfiguration;
+  final SearchPickerModalConfiguration countryPickerModalConfiguration;
 
   @override
   Widget build(BuildContext context) =>
@@ -72,9 +75,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                       bloc.events.setCountry(country);
                       bloc.events.saveCountry();
                     },
-                    configuration: const CountryBottomSheetConfiguration(
-                      haveOnlyOneSheet: false,
-                    ),
+                    modalConfiguration: countryPickerModalConfiguration,
                     searchCountryService: searchCountryService,
                     countrySearchPickerTitle:
                         editAddressLocalizedStrings?.countrySearchPickerTitle ??
@@ -114,10 +115,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 validator: validator,
                 editFieldCustomIcon: cityCustomIcon,
                 editFieldType: editCityFieldType,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: editFieldsHaveBottomPadding,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
               SizedBox(
                 height: context.editAddressTheme.spacingM,
@@ -136,10 +134,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 validator: validator,
                 editFieldCustomIcon: addressCustomIcon,
                 editFieldType: editAddressFieldType,
-                configuration: const TextFieldConfiguration(
-                  haveOnlyOneSheet: false,
-                ),
-                dialogHasBottomPadding: editFieldsHaveBottomPadding,
+                modalConfiguration: textFieldsModalConfiguration,
               ),
             ],
           ),
@@ -167,7 +162,10 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     final dynamic addressCustomIcon,
     final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final bool? editFieldsHaveBottomPadding = true,
+    final TextFieldModalConfiguration textFieldsModalConfiguration =
+        const TextFieldModalConfiguration(),
+    final SearchPickerModalConfiguration countryPickerModalConfiguration =
+        const SearchPickerModalConfiguration(),
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
@@ -183,7 +181,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         searchCountryService: searchCountryService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
-        editFieldsHaveBottomPadding: editFieldsHaveBottomPadding ?? true,
+        textFieldsModalConfiguration: textFieldsModalConfiguration,
+        countryPickerModalConfiguration: countryPickerModalConfiguration,
       );
 
   EditFieldState _getProfileFieldState(

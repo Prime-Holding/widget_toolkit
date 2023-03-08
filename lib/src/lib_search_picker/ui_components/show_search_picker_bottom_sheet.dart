@@ -21,7 +21,7 @@ import '../views/search_picker_page.dart';
 /// Flag for toggle to full screen can be changed by setting [fullScreen]
 /// flag (defaults to `true`).
 /// If you want to have more than one sheet opened at the same time, set
-/// [haveOnlyOneSheet] in the [configuration] to false.
+/// [haveOnlyOneSheet] in the [modalConfiguration] to false.
 void showSearchPickerBottomSheet<T extends PickerItemModel>({
   required BuildContext context,
   required String title,
@@ -35,19 +35,13 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   Widget Function(int index)? separatorBuilder,
   T? selectedItem,
   bool showEmptyWidgetWhenNoResultsAreFound = true,
-  bool fullScreen = true,
   double loadingItemHeight = 60,
-  SearchPickerConfiguration configuration = const SearchPickerConfiguration(),
+  SearchPickerModalConfiguration modalConfiguration =
+      const SearchPickerModalConfiguration(),
 }) {
   showBlurredBottomSheet(
     context: context,
-    configuration: ModalConfiguration(
-      showCloseButton: configuration.showCloseButton,
-      showHeaderPill: configuration.showHeaderPill,
-      haveOnlyOneSheet: configuration.haveOnlyOneSheet,
-      safeAreaBottom: configuration.safeAreaBottom,
-      fullScreen: fullScreen,
-    ),
+    configuration: modalConfiguration,
     onCancelPressed: () => Navigator.of(context).pop(),
     builder: (context) => SearchPickerPage.withDependencies<T>(
       context,
@@ -71,16 +65,27 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
   );
 }
 
-class SearchPickerConfiguration {
-  const SearchPickerConfiguration({
-    this.haveOnlyOneSheet = true,
-    this.showCloseButton = false,
-    this.showHeaderPill = true,
-    this.safeAreaBottom = true,
-  });
-
-  final bool haveOnlyOneSheet;
-  final bool showCloseButton;
-  final bool showHeaderPill;
-  final bool safeAreaBottom;
+class SearchPickerModalConfiguration extends ModalConfiguration {
+  const SearchPickerModalConfiguration(
+      {bool safeAreaBottom = true,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = true,
+      bool haveOnlyOneSheet = true,
+      bool showHeaderPill = true,
+      bool showCloseButton = false,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }

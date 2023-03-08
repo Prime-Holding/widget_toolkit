@@ -19,9 +19,10 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   required RxFieldException<String> Function(Object error, BuildContext context)
       addressErrorMapper,
   required TextFieldValidator<String> validator,
-  required EditAddressConfiguration configuration,
   required SearchPickerService<T> searchCountryService,
   required EditAddressService editAddressService,
+  final EditAddressConfiguration modalConfiguration =
+      const EditAddressConfiguration(),
   dynamic countryCustomIcon,
   final EditAddressLocalizedStrings? editAddressLocalizedStrings,
   final EditFieldType editCountryFieldType = EditFieldType.dropdown,
@@ -31,15 +32,13 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   final EditFieldType editAddressFieldType = EditFieldType.editfield,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-  final bool? editFieldsHaveBottomPadding,
+  final TextFieldModalConfiguration textFieldsModalConfiguration =
+      const TextFieldModalConfiguration(),
+  final SearchPickerModalConfiguration countryPickerModalConfiguration =
+      const SearchPickerModalConfiguration(),
 }) =>
     showBlurredBottomSheet<AddressModel?>(
-      configuration: ModalConfiguration(
-        fullScreen: configuration.fullScreen,
-        heightFactor: configuration.heightFactor,
-        isDismissible: configuration.isDismissible,
-        safeAreaBottom: true,
-      ),
+      configuration: modalConfiguration,
       context: context,
       builder: (ctx) => EditAddressPage.withDependencies<T>(context,
           onAddressSaved: (AddressModel address) =>
@@ -61,7 +60,8 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
           editAddressService: editAddressService,
           editContactAddressErrorBuilder: editContactAddressErrorBuilder,
           searchCountryCustomBuilders: searchCountryCustomBuilders,
-          editFieldsHaveBottomPadding: editFieldsHaveBottomPadding),
+          textFieldsModalConfiguration: textFieldsModalConfiguration,
+          countryPickerModalConfiguration: countryPickerModalConfiguration),
       onCancelPressed: () => Navigator.of(context).pop(),
     );
 

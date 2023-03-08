@@ -88,8 +88,7 @@ class TextFieldDialog<T> extends StatefulWidget {
     this.maxLines,
     this.editFieldCustomIcon,
     this.editFieldType = EditFieldType.editfield,
-    this.dialogHasBottomPadding = true,
-    this.configuration = const TextFieldConfiguration(),
+    this.modalConfiguration = const TextFieldModalConfiguration(),
     this.enabled = true,
     Key? key,
   })  : assert(editFieldCustomIcon == null ||
@@ -116,9 +115,8 @@ class TextFieldDialog<T> extends StatefulWidget {
       errorMapper;
   final dynamic editFieldCustomIcon;
   final EditFieldType editFieldType;
-  final bool dialogHasBottomPadding;
-  final TextFieldConfiguration configuration;
   final bool enabled;
+  final TextFieldModalConfiguration modalConfiguration;
 
   @override
   State<TextFieldDialog<T>> createState() => _TextFieldDialogState<T>();
@@ -184,14 +182,7 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
   Future<void> _showModalText(BuildContext context) async => widget.enabled
       ? showBlurredBottomSheet(
           context: context,
-          configuration: ModalConfiguration(
-            fullScreen: widget.configuration.fullScreen,
-            heightFactor: widget.configuration.heightFactor,
-            isDismissible: widget.configuration.isDismissible,
-            safeAreaBottom: false,
-            haveOnlyOneSheet: widget.configuration.haveOnlyOneSheet,
-            dialogHasBottomPadding: true,
-          ),
+          configuration: widget.modalConfiguration,
           builder: (ctx) => MultiProvider(
             providers: TextFieldDialogDependencies<T>.from(
               context,
@@ -234,16 +225,27 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
   }
 }
 
-class TextFieldConfiguration {
-  const TextFieldConfiguration({
-    this.isDismissible = true,
-    this.heightFactor,
-    this.fullScreen = false,
-    this.haveOnlyOneSheet = true,
-  });
-
-  final double? heightFactor;
-  final bool isDismissible;
-  final bool fullScreen;
-  final bool haveOnlyOneSheet;
+class TextFieldModalConfiguration extends ModalConfiguration {
+  const TextFieldModalConfiguration(
+      {bool safeAreaBottom = false,
+      MainAxisAlignment? contentAlignment,
+      double? additionalBottomPadding,
+      bool? fullScreen = false,
+      bool haveOnlyOneSheet = true,
+      bool showHeaderPill = true,
+      bool showCloseButton = true,
+      double? heightFactor,
+      bool dialogHasBottomPadding = true,
+      bool isDismissible = true})
+      : super(
+            safeAreaBottom: safeAreaBottom,
+            contentAlignment: contentAlignment,
+            additionalBottomPadding: additionalBottomPadding,
+            fullScreen: fullScreen,
+            haveOnlyOneSheet: haveOnlyOneSheet,
+            showHeaderPill: showHeaderPill,
+            showCloseButton: showCloseButton,
+            heightFactor: heightFactor,
+            dialogHasBottomPadding: dialogHasBottomPadding,
+            isDismissible: isDismissible);
 }

@@ -29,13 +29,12 @@ bool _isBottomSheetShown = false;
 Future<T?> showBlurredBottomSheet<T>({
   required BuildContext context,
   required WidgetBuilder builder,
-  ModalConfiguration? configuration,
+  ModalConfiguration configuration = const ModalConfiguration(),
   WidgetBuilder? headerBuilder,
   VoidCallback? onCancelPressed,
 }) {
-  ModalConfiguration config = configuration ?? const ModalConfiguration();
   // Dismiss any other modal sheets if only one is enforced
-  if (config.haveOnlyOneSheet) {
+  if (configuration.haveOnlyOneSheet) {
     if (_isBottomSheetShown) {
       Navigator.pop(context);
     }
@@ -47,8 +46,8 @@ Future<T?> showBlurredBottomSheet<T>({
     barrierColor: context.widgetToolkitTheme.bottomSheetBarrierColor,
     context: context,
     isScrollControlled: true,
-    isDismissible: config.isDismissible,
-    enableDrag: config.isDismissible,
+    isDismissible: configuration.isDismissible,
+    enableDrag: configuration.isDismissible,
     elevation: 0,
     builder: (context) => TweenAnimationBuilder<double>(
       builder: (context, sigma, child) {
@@ -64,19 +63,18 @@ Future<T?> showBlurredBottomSheet<T>({
       duration: const Duration(milliseconds: 200),
       tween: Tween(begin: 0.0, end: 5.0),
       child: _ModalContent(
-        heightFactor: (config.fullScreen ?? false)
+        heightFactor: (configuration.fullScreen ?? false)
             ? _calculateFullScreenRatio()
-            : config.heightFactor,
+            : configuration.heightFactor,
         builder: builder,
         onClosePressed: onCancelPressed,
         headerBuilder: headerBuilder,
-        showCloseButton: config.showCloseButton,
-        contentAlignment: config.contentAlignment,
-        animationAlignment: config.animationAlignment,
-        showHeaderPill: config.showHeaderPill,
-        safeAreaBottom: config.safeAreaBottom,
-        dialogHasBottomPadding: config.dialogHasBottomPadding,
-        additionalBottomPadding: config.additionalBottomPadding,
+        showCloseButton: configuration.showCloseButton,
+        contentAlignment: configuration.contentAlignment,
+        showHeaderPill: configuration.showHeaderPill,
+        safeAreaBottom: configuration.safeAreaBottom,
+        dialogHasBottomPadding: configuration.dialogHasBottomPadding,
+        additionalBottomPadding: configuration.additionalBottomPadding,
       ),
     ),
   ).then((value) {
@@ -98,7 +96,6 @@ class _ModalContent extends StatelessWidget {
     this.headerBuilder,
     this.heightFactor,
     this.contentAlignment,
-    this.animationAlignment,
     this.onClosePressed,
     this.additionalBottomPadding,
   }) : super(key: key);
@@ -122,9 +119,6 @@ class _ModalContent extends StatelessWidget {
 
   /// The content alignment along the vertical axis
   final MainAxisAlignment? contentAlignment;
-
-  /// The content alignment along the vertical axis
-  final Alignment? animationAlignment;
 
   /// Flag indicating the visibility of the already implemented close button
   final bool showCloseButton;
@@ -245,10 +239,7 @@ class _ModalContent extends StatelessWidget {
         padding: context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
         color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
         child: SmallButton(
-          onPressed: () {
-            onClosePressed?.call();
-            Navigator.of(context).pop();
-          },
+          onPressed: onClosePressed ?? () => Navigator.of(context).pop(),
           icon: Icons.close,
           type: SmallButtonType.outline,
           colorStyle: ButtonColorStyle.fromContext(
@@ -265,9 +256,34 @@ class _ModalContent extends StatelessWidget {
 /// App Modal sheet configuration used for controlling different parts and
 /// options of a modal sheet, such as height factor, header pill or the close
 /// button.
+///
+/// If [fullScreen] is true, this flag ignores the [heightFactor] and calculate
+/// the ratio for the full screen.
+/// The [heightFactor] of the modal sheet defined within the range of (0,1]
+///
+/// Close button will be displayed at the very bottom of the page if
+/// [showCloseButton] is true. Defaults to true.
+///
+/// A small decoration line will be added to the top of the modal if [showHeaderPill]
+///
+/// [dialogHasBottomPadding] defines if we want to add viewInsets.bottom as
+/// bottom padding to our BottomSheet. viewInsets.bottom is the parts of
+/// the display that are completely obscured by system UI, typically by the
+/// device's keyboard. Defaults to true.
+/// Set it false if want to allow the keyboard to overlap over the content.
+///
+/// [safeAreaBottom] is used to add or not the bottom safe area to our bottom sheet.
+/// Defaults to true.
+/// If set it false, [additionalBottomPadding] will be applied.
+///
+/// [isDismissible] indicates whether the modal sheet is dismissible or not
+///
+/// Flag [haveOnlyOneSheet] allows only to have one modal sheet open at a time
+///
+/// Align the content within the modal sheet using [contentAlignment]
 class ModalConfiguration {
   const ModalConfiguration({
-    this.fullScreen,
+    this.fullScreen = false,
     this.heightFactor,
     this.showCloseButton = true,
     this.dialogHasBottomPadding = true,
@@ -276,14 +292,14 @@ class ModalConfiguration {
     this.isDismissible = true,
     this.haveOnlyOneSheet = true,
     this.contentAlignment,
-    this.animationAlignment,
     this.additionalBottomPadding,
   });
 
-  /// If true, this flag ignores the [heightFactor] and calculate the ratio for the full screen
+  /// If [fullScreen] is true, this flag ignores the [heightFactor] and calculate
+  /// the ratio for the full screen
   final bool? fullScreen;
 
-  /// The height factor of the modal sheet defined within the range of (0,1]
+  /// The [heightFactor] of the modal sheet defined within the range of (0,1]
   final double? heightFactor;
 
   /// Flag indicating whether or not to show the close button
@@ -315,9 +331,6 @@ class ModalConfiguration {
 
   /// Alignment of the content within the modal sheet
   final MainAxisAlignment? contentAlignment;
-
-  /// Alignment of the animation
-  final Alignment? animationAlignment;
 }
 
 double _calculateFullScreenRatio() {
