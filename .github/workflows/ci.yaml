@@ -4,17 +4,22 @@ on:
   push:
     paths:
       - ".github/workflows/ci.yaml"
-      - "lib/**"
-      - "test/**"
+      - "packages/**"
 
   pull_request:
     paths:
       - ".github/workflows/ci.yaml"
-      - "lib/**"
-      - "test/**"
+      - "packages/**"
 
 jobs:
-  run_tests:
+  flutter_packages:
+    strategy:
+      matrix:
+        folder:
+          [
+              "packages/widget_toolkit",
+          ]
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,30 +27,30 @@ jobs:
         with:
           channel: "stable"
       - run: dart --version
-      - run: flutter --version 
+      - run: flutter --version
       - name: Install Dependencies
+        working-directory: ${{ matrix.folder }}
         run: flutter pub get
       - name: Analyze
+        working-directory: ${{ matrix.folder }}
         run: flutter analyze lib
       - name: Run tests
+        working-directory: ${{ matrix.folder }}
         run: |
           if [ -d "test" ]; then
             flutter test --coverage --exclude-tags=not-tests
           fi
       - name: Remove unnecessary files
+        working-directory: ${{ matrix.folder }}
         run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart','**_dependencies.dart' coverage/lcov.info
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
-          path: "coverage/lcov.info"
+          path: "${{ matrix.folder }}/coverage/lcov.info"
           min_coverage: 58
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
+          directory: ${{ matrix.folder }}/coverage
           token: ${{ secrets.CODECOV_TOKEN }}
-  build:
-    needs: [run_tests]
-    runs-on: ubuntu-latest
-    steps:
-      - name: noop
-        run: echo 'noop'
+
