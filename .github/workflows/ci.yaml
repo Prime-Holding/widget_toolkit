@@ -20,8 +20,7 @@ jobs:
               "packages/widget_toolkit",
           ]
       fail-fast: false
-      runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1.5.3
@@ -45,7 +44,7 @@ jobs:
         working-directory: ${{ matrix.folder }}
         run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart','**_dependencies.dart' coverage/lcov.info
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           path: "${{ matrix.folder }}/coverage/lcov.info"
           min_coverage: 58
