@@ -20,6 +20,9 @@ pre-configured options.
 
 `addressModel` is the current address information, which is provided to be displayed in the widgets 
 inside the page.
+`editAddressErrorMapper` receives a class, which should implement `EditAddressErrorMapper`, where you
+should map the errors for the city and street text values validation to `RxFieldException<String>`
+type, for more information check the documentation inside `EditAddressErrorMapper`.
 `cityErrorMapper` a function, which maps the the exceptions thrown from the validation methods 
 inside the class implementing the `TextFieldValidator`class. The methods in that class validate 
 the input String value for the edit city text input field. The `cityErrorMapper` should map the 
@@ -135,10 +138,7 @@ EditAddressWidget<CountryModel>(
       country: CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
     ),
     type: UserProfileCardTypes.mailingAddress,
-    cityErrorMapper: (obj, context) =>
-        EditAddressErrorMapperUtil<String>().cityErrorMapper(obj, context),
-    addressErrorMapper: (obj, context) =>
-        EditAddressErrorMapperUtil<String>().addressErrorMapper(obj, context),
+    editAddressErrorMapper: CustomEditAddressErrorMapper(),
     validator: context.read<EditAddressFieldsService>(),
     configuration: EditAddressConfiguration(
       isDismissible: true,
