@@ -4,14 +4,14 @@ on:
   push:
     paths:
       - ".github/workflows/ci.yaml"
-      - "lib/**"
-      - "test/**"
+      - "packages/widget_toolkit/lib/**"
+      - "packages/widget_toolkit/test/**"
 
   pull_request:
     paths:
       - ".github/workflows/ci.yaml"
-      - "lib/**"
-      - "test/**"
+      - "packages/widget_toolkit/lib/**"
+      - "packages/widget_toolkit/test/**"
 
 jobs:
   run_tests:
