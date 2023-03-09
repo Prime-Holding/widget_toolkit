@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
@@ -13,17 +12,10 @@ import 'permanent_address_bottom_sheet.dart';
 /// [EditAddressLocalizedStrings], it should provided translation for the
 /// strings in the package.
 ///
-/// [cityErrorMapper] a function, which maps the the exceptions thrown from the
-/// validation methods inside the class implementing the [TextFieldValidator]
-/// class. The methods in that class validate the input String value for the edit
-/// city text input field. The [cityErrorMapper] should map the exception to a
-/// RxFieldException
-///
-/// [addressErrorMapper] a function, which maps the the exceptions thrown from the
-/// validation methods inside the class implementing the [TextFieldValidator]
-/// class. The methods in that class validate the input String value for the edit
-/// address text input field. The [addressErrorMapper] should map the exception to a
-/// RxFieldException
+/// [editAddressErrorMapper] receives a class, which should implement
+/// [EditAddressErrorMapper] where you should map the errors
+/// for the city and street text values validation to RxFieldException<String>
+/// type, for more information check the documentation inside [EditAddressErrorMapper].
 ///
 /// [validator] is a service validator class, which provides methods with validation
 /// implementation for the input values of the city and address input values
@@ -43,8 +35,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// picker
 class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   const EditAddressWidget({
-    required this.cityErrorMapper,
-    required this.addressErrorMapper,
+    required this.editAddressErrorMapper,
     required this.validator,
     required this.searchCountryService,
     this.editAddressService = const _DefaultEditAddressService(),
@@ -63,10 +54,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final AddressModel addressModel;
   final UserProfileCardTypes type;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      cityErrorMapper;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      addressErrorMapper;
+  final EditAddressErrorMapper editAddressErrorMapper;
   final TextFieldValidator<String> validator;
   final EditAddressConfiguration editAddressConfiguration;
   final SearchPickerService<T> searchCountryService;
@@ -192,8 +180,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                   context.getEditAddressLocalizedStrings.headerTitle,
               addressModel: savedModel ?? widget.addressModel,
               modalConfiguration: widget.editAddressConfiguration,
-              cityErrorMapper: widget.cityErrorMapper,
-              addressErrorMapper: widget.addressErrorMapper,
+              editAddressErrorMapper: widget.editAddressErrorMapper,
               validator: widget.validator,
               searchCountryService: widget.searchCountryService,
               editAddressLocalizedStrings: widget.editAddressLocalizedStrings,

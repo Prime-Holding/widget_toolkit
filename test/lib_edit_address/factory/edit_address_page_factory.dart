@@ -46,6 +46,7 @@ Widget editAddressPageFactory({
         ],
         child: Builder(
           builder: (context) => EditAddressPage(
+            editAddressErrorMapper: EditAddressErrorMapperUtil(),
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
@@ -54,12 +55,6 @@ Widget editAddressPageFactory({
                   country:
                       CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
                 ),
-            cityErrorMapper: (obj, context) =>
-                EditAddressErrorMapperUtil<String>()
-                    .cityErrorMapper(obj, context),
-            addressErrorMapper: (obj, context) =>
-                EditAddressErrorMapperUtil<String>()
-                    .addressErrorMapper(obj, context),
             validator: context.read<EditAddressFieldsServiceMock>(),
             buttonText: 'Save',
             headerText: 'Contact Address',
@@ -106,6 +101,7 @@ Widget createEditAddressWidget({
         ],
         child: Builder(
           builder: (context) => EditAddressWidget(
+            editAddressErrorMapper: EditAddressErrorMapperUtil(),
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
@@ -114,12 +110,6 @@ Widget createEditAddressWidget({
                   country:
                       CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
                 ),
-            cityErrorMapper: (obj, context) =>
-                EditAddressErrorMapperUtil<String>()
-                    .cityErrorMapper(obj, context),
-            addressErrorMapper: (obj, context) =>
-                EditAddressErrorMapperUtil<String>()
-                    .addressErrorMapper(obj, context),
             validator: context.read<EditAddressFieldsServiceMock>(),
             searchCountryService:
                 SearchCountryServiceMock(SearchCountryRepositoryMock(), false),

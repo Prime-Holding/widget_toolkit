@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../edit_address.dart';
 import '../../../models.dart';
@@ -14,10 +13,7 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   required String buttonText,
   required String headerText,
   required AddressModel addressModel,
-  required RxFieldException<String> Function(Object error, BuildContext context)
-      cityErrorMapper,
-  required RxFieldException<String> Function(Object error, BuildContext context)
-      addressErrorMapper,
+  required EditAddressErrorMapper editAddressErrorMapper,
   required TextFieldValidator<String> validator,
   required SearchPickerService<T> searchCountryService,
   required EditAddressService editAddressService,
@@ -41,8 +37,7 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
           buttonText: buttonText,
           headerText: headerText,
           addressModel: addressModel,
-          cityErrorMapper: cityErrorMapper,
-          addressErrorMapper: addressErrorMapper,
+          editAddressErrorMapper: editAddressErrorMapper,
           validator: validator,
           searchCountryService: searchCountryService,
           editAddressLocalizedStrings: editAddressLocalizedStrings,
