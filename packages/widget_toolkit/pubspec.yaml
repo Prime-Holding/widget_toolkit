@@ -1,7 +1,7 @@
 name: widget_toolkit
 description: The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
 version: 0.0.1-dev5
-repository: https://github.com/Prime-Holding/widget_toolkit
+repository: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit
 issue_tracker: https://github.com/Prime-Holding/widget_toolkit/issues
 homepage: https://www.primeholding.com
 
@@ -44,15 +44,24 @@ flutter:
   uses-material-design: true
 
   assets:
-    - packages/widget_toolkit/icons/info-circle.svg
-    - packages/widget_toolkit/icons/arrow-right-square.svg
     - packages/widget_toolkit/icons/add.svg
+    - packages/widget_toolkit/icons/add-disabled.svg
+    - packages/widget_toolkit/icons/arrow-left.svg
+    - packages/widget_toolkit/icons/arrow-right-square.svg
+    - packages/widget_toolkit/icons/camera.svg
     - packages/widget_toolkit/icons/check.svg
     - packages/widget_toolkit/icons/check_circle.svg
     - packages/widget_toolkit/icons/close.svg
+    - packages/widget_toolkit/icons/close-qr-scanner.svg
     - packages/widget_toolkit/icons/danger.svg
     - packages/widget_toolkit/icons/edit-pen.svg
+    - packages/widget_toolkit/icons/educate.svg
+    - packages/widget_toolkit/icons/great_news.svg
+    - packages/widget_toolkit/icons/info-circle.svg
     - packages/widget_toolkit/icons/loading.svg
+    - packages/widget_toolkit/icons/message.svg
+    - packages/widget_toolkit/icons/qr-scan-area.svg
+    - packages/widget_toolkit/icons/tick-circle-success.svg
 
   fonts:
     - family: Roboto

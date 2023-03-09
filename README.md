@@ -19,11 +19,11 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 
 | Item Picker (mutli-select)| Item Picker (single select)| Language Picker |
 |---------------------------------------|-----------------------------|-----------------------------|
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/language-picker.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/language-picker.gif" alt="Language Picker"></img> |
 | Search Picker| Shimmer | Launch URL |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/url.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/url.gif" alt="Language Picker"></img> |
 | Error Bottom Sheet | Text Field Dialog | Address Dialog |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/address.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/address.gif" alt="Language Picker"></img> |
 
 
 ## How to use
@@ -102,24 +102,24 @@ extensions: [
 
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
-[codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master/graph/badge.svg
-[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/branch/master
+[codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
-[shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_shimmer
-[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_item_picker
-[open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_open_url
-[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/src/lib_item_picker
-[language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_language_picker
-[ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_ui_components
-[edit_address_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_edit_address
-[text_field_dialog_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
-[search_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/master/lib/src/lib_search_picker
-[ui_components_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/ui-components.md
-[shimmer_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/shimmer.md
-[open_url_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/open-url.md
-[item_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/item-picker.md
-[language_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/language-picker.md
-[search_picker-_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/search-picker.md
-[text_field_dialog_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/text-field-dialog.md
-[edit_address_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/doc/edit-address.md
+[shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_shimmer
+[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_item_picker
+[open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_open_url
+[item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/src/lib_item_picker
+[language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_language_picker
+[ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_ui_components
+[edit_address_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_edit_address
+[text_field_dialog_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_text_field_dialog
+[search_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_search_picker
+[ui_components_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/ui-components.md
+[shimmer_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/shimmer.md
+[open_url_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/open-url.md
+[item_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/item-picker.md
+[language_picker_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/language-picker.md
+[search_picker-_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/search-picker.md
+[text_field_dialog_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/text-field-dialog.md
+[edit_address_doc]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/edit-address.md
