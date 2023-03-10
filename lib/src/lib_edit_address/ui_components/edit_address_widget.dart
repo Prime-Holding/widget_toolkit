@@ -17,14 +17,14 @@ import 'permanent_address_bottom_sheet.dart';
 /// for the city and street text values validation to RxFieldException<String>
 /// type, for more information check the documentation inside [EditAddressErrorMapper].
 ///
-/// [validator] is a service validator class, which provides methods with validation
-/// implementation for the input values of the city and address input values
-///
 /// [editAddressConfiguration] is a configuration for the edit address bottom sheet.
 ///
-/// [editAddressService] received an extension class of [EditAddressService] with
-/// implementation of the logic for the main edit contact address save button
-/// logic
+/// [editAddressService] received an implementation of the [EditAddressService] class
+/// The API of the class provides methods for the logic for the main save address
+/// button, fetching of the list of countries, filtering the countries list,
+/// validating the city and street values while typing and when pressing the save
+/// button for each of them. Some methods have default implementation. For more
+/// information, check the documentation in the file [EditAddressService] class.
 ///
 /// [editContactAddressErrorBuilder] is a custom error builder for the contact
 /// address modal sheet
@@ -36,9 +36,7 @@ import 'permanent_address_bottom_sheet.dart';
 class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   const EditAddressWidget({
     required this.editAddressErrorMapper,
-    required this.validator,
-    required this.searchCountryService,
-    this.editAddressService = const _DefaultEditAddressService(),
+    required this.editAddressService,
     this.addressModel = _defaultAddressModel,
     this.editAddressLocalizedStrings,
     this.type = UserProfileCardTypes.mailingAddress,
@@ -55,10 +53,8 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final AddressModel addressModel;
   final UserProfileCardTypes type;
   final EditAddressErrorMapper editAddressErrorMapper;
-  final TextFieldValidator<String> validator;
   final EditAddressConfiguration editAddressConfiguration;
-  final SearchPickerService<T> searchCountryService;
-  final EditAddressService editAddressService;
+  final EditAddressService<T> editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;
@@ -181,8 +177,6 @@ class _EditAddressWidgetState<T extends PickerItemModel>
               addressModel: savedModel ?? widget.addressModel,
               modalConfiguration: widget.editAddressConfiguration,
               editAddressErrorMapper: widget.editAddressErrorMapper,
-              validator: widget.validator,
-              searchCountryService: widget.searchCountryService,
               editAddressLocalizedStrings: widget.editAddressLocalizedStrings,
               editAddressService: widget.editAddressService,
               editContactAddressErrorBuilder:
@@ -302,28 +296,4 @@ class SearchCountryCustomBuilders<T> {
   final Widget Function(Exception)? errorBuilder;
   final Widget Function()? emptyBuilder;
   final Widget Function(int index)? separatorBuilder;
-}
-
-class _DefaultEditAddressService implements EditAddressService {
-  const _DefaultEditAddressService();
-
-  @override
-  Future<AddressModel> saveAddress(AddressModel addressModel) async {
-    await Future.delayed(const Duration(seconds: 1));
-    throw _CustomErrorModel(
-        customMessage: 'The address could not be '
-            'saved, override the saveAddress() method and provide implementation for the '
-            'save operation.');
-  }
-}
-
-class _CustomErrorModel extends ErrorModel {
-  _CustomErrorModel({this.customMessage});
-
-  final String? customMessage;
-
-  @override
-  String toString() {
-    return customMessage ?? 'CustomErrorModel';
-  }
 }

@@ -18,10 +18,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required this.onAddressSaved,
     required this.addressModel,
     required this.editAddressErrorMapper,
-    required this.validator,
     required this.buttonText,
     required this.headerText,
-    required this.searchCountryService,
     required this.editAddressService,
     this.editAddressLocalizedStrings,
     this.saveAddress,
@@ -39,10 +37,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final String headerText;
   final Function(AddressModel)? saveAddress;
   final EditAddressErrorMapper editAddressErrorMapper;
-  final TextFieldValidator<String> validator;
-  final SearchPickerService<T> searchCountryService;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
-  final EditAddressService editAddressService;
+  final EditAddressService<T> editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;
@@ -55,9 +51,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required String headerText,
     required AddressModel addressModel,
     required EditAddressErrorMapper editAddressErrorMapper,
-    required TextFieldValidator<String> validator,
-    required SearchPickerService<T> searchCountryService,
-    required EditAddressService editAddressService,
+    required EditAddressService<T> editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final Function(AddressModel)? saveAddress,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
@@ -80,10 +74,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             addressModel: addressModel,
             saveAddress: saveAddress,
             editAddressErrorMapper: editAddressErrorMapper,
-            validator: validator,
-            searchCountryService: searchCountryService,
-            editAddressLocalizedStrings: editAddressLocalizedStrings,
             editAddressService: editAddressService,
+            editAddressLocalizedStrings: editAddressLocalizedStrings,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
             textFieldsModalConfiguration: textFieldsModalConfiguration,
             countryPickerModalConfiguration: countryPickerModalConfiguration),
@@ -130,8 +122,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                             .setAddress(addressModel);
                       },
                           editAddressErrorMapper: editAddressErrorMapper,
-                          validator: validator,
-                          searchCountryService: searchCountryService,
                           editAddressLocalizedStrings:
                               editAddressLocalizedStrings,
                           editAddressService: editAddressService,
