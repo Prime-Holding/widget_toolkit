@@ -37,6 +37,7 @@ the input values of the city and address input values.
 `editAddressService` received an extension class of `EditAddressService` with implementation of the 
 logic for the main edit contact address save button logic.
 `editContactAddressErrorBuilder` is a custom error builder for the contact address modal sheet.
+`onChanged` receives a function, which accepts the edited address model.
 `searchCountryCustomBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound,
 custom item builder, error builder, empty builder, separator builder for the search country item
 picker.

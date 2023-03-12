@@ -26,6 +26,8 @@ import 'permanent_address_bottom_sheet.dart';
 /// button for each of them. Some methods have default implementation. For more
 /// information, check the documentation in the file [EditAddressService] class.
 ///
+/// [onChanged] receives a function, which accepts the edited address model.
+///
 /// [editContactAddressErrorBuilder] is a custom error builder for the contact
 /// address modal sheet
 ///
@@ -37,6 +39,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   const EditAddressWidget({
     required this.editAddressErrorMapper,
     required this.editAddressService,
+    this.onChanged,
     this.addressModel = _defaultAddressModel,
     this.editAddressLocalizedStrings,
     this.type = UserProfileCardTypes.mailingAddress,
@@ -49,6 +52,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+  final Function(AddressModel? addressModel)? onChanged;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final AddressModel addressModel;
   final UserProfileCardTypes type;
@@ -170,6 +174,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
       case UserProfileCardTypes.phone:
         return () async {
           final savedAddress = await showEditAddressBottomSheet<T>(context,
+              onChanged: widget.onChanged,
               buttonText: widget.editAddressLocalizedStrings?.saveButtonText ??
                   context.getEditAddressLocalizedStrings.saveButtonText,
               headerText: widget.editAddressLocalizedStrings?.headerTitle ??

@@ -21,6 +21,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required this.buttonText,
     required this.headerText,
     required this.editAddressService,
+    this.onChanged,
     this.editAddressLocalizedStrings,
     this.saveAddress,
     this.editContactAddressErrorBuilder,
@@ -36,6 +37,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final String buttonText;
   final String headerText;
   final Function(AddressModel)? saveAddress;
+  final Function(AddressModel? addressModel)? onChanged;
   final EditAddressErrorMapper editAddressErrorMapper;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final EditAddressService<T> editAddressService;
@@ -52,6 +54,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required AddressModel addressModel,
     required EditAddressErrorMapper editAddressErrorMapper,
     required EditAddressService<T> editAddressService,
+    final Function(AddressModel? addressModel)? onChanged,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final Function(AddressModel)? saveAddress,
     final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
@@ -72,6 +75,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             buttonText: buttonText,
             headerText: headerText,
             addressModel: addressModel,
+            onChanged: onChanged,
             saveAddress: saveAddress,
             editAddressErrorMapper: editAddressErrorMapper,
             editAddressService: editAddressService,
@@ -90,79 +94,83 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             padding: context.editAddressTheme.editAddressPageOuterMostPadding,
             color: context.editAddressTheme.editAddressPageBackgroundColor,
             child: RxBlocListener<EditAddressBlocType, AddressModel>(
-              state: (bloc) => bloc.states.onAddressSaved,
-              listener: (context, state) => onAddressSaved(state),
-              child: RxBlocBuilder<EditAddressBlocType, AddressModel>(
+              state: (bloc) => bloc.states.onAddressSet,
+              listener: (context, state) => onChanged?.call(state),
+              child: RxBlocListener<EditAddressBlocType, AddressModel>(
                 state: (bloc) => bloc.states.onAddressSaved,
-                builder: (context, snapshot, bloc) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: context.editAddressTheme
-                          .editAddressPageOnAddressSavedPadding,
-                      child: Text(
-                        headerText,
-                        textAlign: TextAlign.start,
-                        style: context.editAddressTheme.titleBold,
-                      ),
-                    ),
-                    MessagePanelError<EditAddressBlocType>(
-                      errorState: (bloc) => bloc.states.errors,
-                      errorBuilder: editContactAddressErrorBuilder,
-                      padding: context
-                          .editAddressTheme.editAddressPageErrorPanelPadding,
-                    ),
-                    if (!snapshot.hasData)
-                      EditAddressForm.withDependencies<T>(context, addressModel,
-                          (addressModel) {
-                        return context
-                            .read<EditAddressBlocType>()
-                            .events
-                            .setAddress(addressModel);
-                      },
-                          editAddressErrorMapper: editAddressErrorMapper,
-                          editAddressLocalizedStrings:
-                              editAddressLocalizedStrings,
-                          editAddressService: editAddressService,
-                          searchCountryCustomBuilders:
-                              searchCountryCustomBuilders,
-                          textFieldsModalConfiguration:
-                              textFieldsModalConfiguration,
-                          countryPickerModalConfiguration:
-                              countryPickerModalConfiguration),
-                    if (!snapshot.hasData)
-                      SizedBox(height: context.editAddressTheme.spacingXL),
-                    if (!snapshot.hasData)
-                      RxBlocBuilder<EditAddressBlocType, bool>(
-                        state: (bloc) => bloc.states.isLoading,
-                        builder: (context, isLoadingSnapshot, bloc) =>
-                            RxBlocBuilder<EditAddressBlocType, AddressModel>(
-                          state: (bloc) => bloc.states.onAddressSet,
-                          builder: (context, address, bloc) =>
-                              GradientFillButton(
-                            elevation: 0,
-                            text: buttonText,
-                            state: isLoadingSnapshot.data ?? false
-                                ? ButtonStateModel.loading
-                                : ButtonStateModel.enabled,
-                            areIconsClose: true,
-                            onPressed: () async {
-                              if (saveAddress == null) {
-                                context
-                                    .read<EditAddressBlocType>()
-                                    .events
-                                    .saveAddress();
-                              } else {
-                                if (address.hasData) {
-                                  saveAddress?.call(address.data!);
-                                }
-                              }
-                            },
-                          ),
+                listener: (context, state) => onAddressSaved(state),
+                child: RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                  state: (bloc) => bloc.states.onAddressSaved,
+                  builder: (context, snapshot, bloc) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: context.editAddressTheme
+                            .editAddressPageOnAddressSavedPadding,
+                        child: Text(
+                          headerText,
+                          textAlign: TextAlign.start,
+                          style: context.editAddressTheme.titleBold,
                         ),
                       ),
-                  ],
+                      MessagePanelError<EditAddressBlocType>(
+                        errorState: (bloc) => bloc.states.errors,
+                        errorBuilder: editContactAddressErrorBuilder,
+                        padding: context
+                            .editAddressTheme.editAddressPageErrorPanelPadding,
+                      ),
+                      if (!snapshot.hasData)
+                        EditAddressForm.withDependencies<T>(
+                            context, addressModel, (addressModel) {
+                          return context
+                              .read<EditAddressBlocType>()
+                              .events
+                              .setAddress(addressModel);
+                        },
+                            editAddressErrorMapper: editAddressErrorMapper,
+                            editAddressLocalizedStrings:
+                                editAddressLocalizedStrings,
+                            editAddressService: editAddressService,
+                            searchCountryCustomBuilders:
+                                searchCountryCustomBuilders,
+                            textFieldsModalConfiguration:
+                                textFieldsModalConfiguration,
+                            countryPickerModalConfiguration:
+                                countryPickerModalConfiguration),
+                      if (!snapshot.hasData)
+                        SizedBox(height: context.editAddressTheme.spacingXL),
+                      if (!snapshot.hasData)
+                        RxBlocBuilder<EditAddressBlocType, bool>(
+                          state: (bloc) => bloc.states.isLoading,
+                          builder: (context, isLoadingSnapshot, bloc) =>
+                              RxBlocBuilder<EditAddressBlocType, AddressModel>(
+                            state: (bloc) => bloc.states.onAddressSet,
+                            builder: (context, address, bloc) =>
+                                GradientFillButton(
+                              elevation: 0,
+                              text: buttonText,
+                              state: isLoadingSnapshot.data ?? false
+                                  ? ButtonStateModel.loading
+                                  : ButtonStateModel.enabled,
+                              areIconsClose: true,
+                              onPressed: () async {
+                                if (saveAddress == null) {
+                                  context
+                                      .read<EditAddressBlocType>()
+                                      .events
+                                      .saveAddress();
+                                } else {
+                                  if (address.hasData) {
+                                    saveAddress?.call(address.data!);
+                                  }
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
