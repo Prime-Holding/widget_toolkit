@@ -23,6 +23,4 @@ dependency_overrides:
     path: ../../widget_toolkit
 
 flutter:
-  assets:
-    - packages/widget_toolkit/icons/educate.svg
   uses-material-design: true
