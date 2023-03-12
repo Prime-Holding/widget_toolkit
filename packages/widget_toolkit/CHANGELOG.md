@@ -1,6 +1,6 @@
 ## [0.0.1-dev6]
 - Removed params `showEditAddressBottomSheet(cityErrorMapper: , addressErrorMapper)`
-- Added params `addressErrorMapper(Function(Object error) translateError)`
+- Added params `showEditAddressBottomSheet(Function(Object error) translateError)`
 - Removed params `EditAddressWidget(cityErrorMapper:, addressErrorMapper)`
 - Added params `EditAddressWidget(Function(Object error) translateError)`
 - Removed params `TextFieldDialog(errorMapper: )`
