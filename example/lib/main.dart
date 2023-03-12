@@ -349,8 +349,8 @@ class EditFieldsPage extends StatelessWidget {
             WidgetSection(
               description: 'TextFieldDialog',
               child: TextFieldDialog<String>(
-                errorMapper: (obj, context) =>
-                    ErrorMapperUtil<String>().errorMapper(obj, context),
+                translateError: (error) =>
+                    TranslateErrorUtil.translateError<String>(error, context),
                 label: 'First Name',
                 value: 'John',
                 validator: LocalAddressFieldService(),
@@ -585,8 +585,8 @@ class SearchService extends SearchPickerService<CountryModel> {
       List.generate(5, (index) => CountryModel.empty());
 }
 
-class ErrorMapperUtil<T> {
-  RxFieldException<T> errorMapper(Object error, BuildContext context) {
+class TranslateErrorUtil {
+  static void translateError<T>(Object error, BuildContext context) {
     if (error is ErrorFormFieldModel) {
       throw RxFieldExceptionFatory.fromFormField<T>(error, context);
     }
