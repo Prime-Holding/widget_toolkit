@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../widget_toolkit.dart';
 import '../../base/models/item_builder.dart';
@@ -55,8 +54,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// picker
 class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   const EditAddressWidget({
-    required this.cityErrorMapper,
-    required this.addressErrorMapper,
+    required this.translateError,
     required this.validator,
     required this.searchCountryService,
     this.editAddressService = const _DefaultEditAddressService(),
@@ -81,10 +79,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final AddressModel addressModel;
   final UserProfileCardTypes type;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      cityErrorMapper;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      addressErrorMapper;
+  final Function(Object error) translateError;
   final TextFieldValidator<String> validator;
   final EditAddressConfiguration editAddressConfiguration;
   final SearchPickerService<T> searchCountryService;
@@ -222,8 +217,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                   context.getEditAddressLocalizedStrings.headerTitle,
               addressModel: savedModel ?? widget.addressModel,
               modalConfiguration: widget.editAddressConfiguration,
-              cityErrorMapper: widget.cityErrorMapper,
-              addressErrorMapper: widget.addressErrorMapper,
+              translateError: widget.translateError,
               validator: widget.validator,
               searchCountryService: widget.searchCountryService,
               editAddressLocalizedStrings: widget.editAddressLocalizedStrings,

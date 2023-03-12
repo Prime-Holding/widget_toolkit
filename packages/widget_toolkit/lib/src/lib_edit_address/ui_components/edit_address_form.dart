@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
-import 'package:flutter_rx_bloc/rx_form.dart';
 
 import '../../../edit_address.dart';
 import '../../../models.dart';
@@ -14,8 +13,7 @@ typedef OnAddressChange = Function(AddressModel addressModel);
 class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressForm({
     required this.onAddressChange,
-    required this.cityErrorMapper,
-    required this.addressErrorMapper,
+    required this.translateError,
     required this.validator,
     required this.searchCountryService,
     required this.editAddressLocalizedStrings,
@@ -34,10 +32,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
 
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final OnAddressChange onAddressChange;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      cityErrorMapper;
-  final RxFieldException<String> Function(Object error, BuildContext context)
-      addressErrorMapper;
+  final Function(Object error) translateError;
   final TextFieldValidator<String> validator;
   final dynamic countryCustomIcon;
   final EditFieldType editCountryFieldType;
@@ -105,7 +100,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
               TextFieldDialog<String>(
                 fillButtonText: editAddressLocalizedStrings?.cityButtonText ??
                     context.getEditAddressLocalizedStrings.cityButtonText,
-                errorMapper: cityErrorMapper,
+                translateError: translateError,
                 label: editAddressLocalizedStrings?.cityLabelText ??
                     context.getEditAddressLocalizedStrings.cityLabelText,
                 emptyLabel: editAddressLocalizedStrings?.cityEmptyLabel ??
@@ -124,7 +119,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 fillButtonText: editAddressLocalizedStrings
                         ?.addressButtonText ??
                     context.getEditAddressLocalizedStrings.addressButtonText,
-                errorMapper: addressErrorMapper,
+                translateError: translateError,
                 label: editAddressLocalizedStrings?.addressLabelText ??
                     context.getEditAddressLocalizedStrings.addressLabelText,
                 emptyLabel: editAddressLocalizedStrings?.addressEmptyLabel ??
@@ -145,12 +140,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     BuildContext context,
     AddressModel addressModel,
     OnAddressChange onAddressChange, {
-    required RxFieldException<String> Function(
-            Object error, BuildContext context)
-        cityErrorMapper,
-    required RxFieldException<String> Function(
-            Object error, BuildContext context)
-        addressErrorMapper,
+    required Function(Object error) translateError,
     required TextFieldValidator<String> validator,
     required SearchPickerService<T> searchCountryService,
     required final EditAddressService editAddressService,
@@ -169,8 +159,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
-        cityErrorMapper: cityErrorMapper,
-        addressErrorMapper: addressErrorMapper,
+        translateError: translateError,
         validator: validator,
         countryCustomIcon: countryCustomIcon,
         editCountryFieldType: editCountryFieldType,
