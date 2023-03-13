@@ -7,10 +7,7 @@ import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart
 import 'package:widget_toolkit/src/lib_edit_address/views/edit_address_page.dart';
 
 import '../mock/edit_address_mock.dart';
-import '../repository/search_country_repository_mock.dart';
-import '../service/edit_address_fields_service_mock.dart';
-import '../service/save_address_service_mock.dart';
-import '../service/search_country_service_mock.dart';
+import '../service/edit_address_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
 
 /// Change the parameters according the the needs of the test
@@ -40,12 +37,9 @@ Widget editAddressPageFactory({
               address: address,
             ),
           ),
-          Provider<EditAddressFieldsServiceMock>(
-            create: (context) => EditAddressFieldsServiceMock(),
-          ),
         ],
         child: Builder(
-          builder: (context) => EditAddressPage(
+          builder: (context) => EditAddressPage<CountryModel>(
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
@@ -56,13 +50,10 @@ Widget editAddressPageFactory({
                 ),
             translateError: (obj) => EditAddressErrorMapperUtil<String>()
                 .translateError(obj, context),
-            validator: context.read<EditAddressFieldsServiceMock>(),
             buttonText: 'Save',
             headerText: 'Contact Address',
-            searchCountryService:
-                SearchCountryServiceMock(SearchCountryRepositoryMock(), false),
-            editAddressService:
-                SaveAddressServiceMock(showError: showError ?? false),
+            editAddressService: EditAddressServiceMock<CountryModel>(
+                showError: showError ?? false),
             editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
             onAddressSaved: (AddressModel addressModel) {},
           ),
@@ -96,12 +87,9 @@ Widget createEditAddressWidget({
               address: address,
             ),
           ),
-          Provider<EditAddressFieldsServiceMock>(
-            create: (context) => EditAddressFieldsServiceMock(),
-          ),
         ],
         child: Builder(
-          builder: (context) => EditAddressWidget(
+          builder: (context) => EditAddressWidget<CountryModel>(
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
@@ -112,9 +100,7 @@ Widget createEditAddressWidget({
                 ),
             translateError: (obj) => EditAddressErrorMapperUtil<String>()
                 .translateError(obj, context),
-            validator: context.read<EditAddressFieldsServiceMock>(),
-            searchCountryService:
-                SearchCountryServiceMock(SearchCountryRepositoryMock(), false),
+            editAddressService: EditAddressServiceMock(showError: false),
             editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
           ),
         ),

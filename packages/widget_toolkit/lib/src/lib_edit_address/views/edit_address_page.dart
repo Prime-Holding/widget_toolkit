@@ -80,7 +80,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             translateError: translateError,
             editAddressLocalizedStrings: editAddressLocalizedStrings,
             editAddressService: editAddressService,
-            editAddressLocalizedStrings: editAddressLocalizedStrings,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
             textFieldsModalConfiguration: textFieldsModalConfiguration,
             countryPickerModalConfiguration: countryPickerModalConfiguration),

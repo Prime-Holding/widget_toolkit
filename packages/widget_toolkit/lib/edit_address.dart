@@ -10,4 +10,3 @@ export 'src/lib_edit_address/services/edit_address_service.dart';
 export 'src/lib_edit_address/theme/edit_address_theme.dart';
 export 'src/lib_edit_address/ui_components/edit_address_bottom_sheet.dart';
 export 'src/lib_edit_address/ui_components/edit_address_widget.dart';
-export 'src/lib_edit_address/utils/edit_address_error_mapper.dart';
