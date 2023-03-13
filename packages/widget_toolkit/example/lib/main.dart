@@ -357,20 +357,16 @@ class EditFieldsPage extends StatelessWidget {
                 header: 'Enter your data',
               ),
             ),
-            /// TODO uncomment when EditAddressWidget is ready
-            // WidgetSection(
-            //   description: 'EditAddress',
-            //   child: EditAddressWidget<CountryModel>(
-            //     cityErrorMapper: (obj, context) =>
-            //         ErrorMapperUtil<String>().errorMapper(obj, context),
-            //     addressErrorMapper: (obj, context) =>
-            //         ErrorMapperUtil<String>().errorMapper(obj, context),
-            //     validator: LocalAddressFieldService(),
-            //     searchCountryService: SearchService(
-            //       SearchCountryRepository(),
-            //     ),
-            //   ),
-            // ),
+            WidgetSection(
+              description: 'EditAddress',
+              child: EditAddressWidget<CountryModel>(
+                translateError: (error) =>
+                    TranslateErrorUtil.translateError<String>(error, context),
+                service: CustomEditAddressService<CountryModel>(
+                  searchRepository: SearchCountryRepository<CountryModel>(),
+                ),
+              ),
+            ),
           ],
         ),
       );
@@ -587,23 +583,25 @@ class DataService extends ItemPickerService<DataModel> {
       );
 }
 
-class SearchService extends SearchPickerService<CountryModel> {
+class SearchService<T> extends SearchPickerService<T> {
   SearchService(this._searchRepository);
 
-  final SearchCountryRepository _searchRepository;
+  final SearchCountryRepository<T> _searchRepository;
 
   @override
-  Future<List<CountryModel>> getItems() => _searchRepository.searchList;
+  Future<List<T>> getItems() => _searchRepository.searchList;
 
   @override
-  List<CountryModel> getPlaceholderList() =>
-      List.generate(5, (index) => CountryModel.empty());
+  List<T> getPlaceholderList() =>
+      List.generate(5, (index) => CountryModel.empty() as T);
 }
 
 class TranslateErrorUtil {
   static void translateError<T>(Object error, BuildContext context) {
     if (error is ErrorFormFieldModel) {
       throw RxFieldExceptionFatory.fromFormField<T>(error, context);
+    } else if (error is EditAddressError) {
+      throw RxFieldExceptionFatory.fromEditAddressError<T>(error, context);
     }
     throw error;
   }
@@ -617,6 +615,15 @@ extension RxFieldExceptionFatory on RxFieldException {
       RxFieldException<T>(
         error: formFieldModel.error,
         fieldValue: formFieldModel.fieldValue,
+      );
+
+  static RxFieldException<T> fromEditAddressError<T>(
+    EditAddressError editAddressError,
+    BuildContext context,
+  ) =>
+      RxFieldException<T>(
+        error: editAddressError.error,
+        fieldValue: editAddressError.fieldValue,
       );
 }
 
@@ -660,12 +667,25 @@ class ErrorFormFieldModel<T> extends ErrorModel {
       'ErrorRequiredField. Translation Key: $error. Value: $fieldValue.';
 }
 
-class SearchCountryRepository {
-  Future<List<CountryModel>> get searchList => Future.delayed(
+class EditAddressError<T> extends ErrorModel {
+  EditAddressError({
+    required this.error,
+    required this.fieldValue,
+  });
+
+  final String error;
+  final T fieldValue;
+
+  @override
+  String toString() => error;
+}
+
+class SearchCountryRepository<T> {
+  Future<List<T>> get searchList => Future.delayed(
         const Duration(seconds: 1),
         () => _countriesList
             .map((country) =>
-                CountryModel(countryCode: 'US', countryName: country))
+                CountryModel(countryCode: 'US', countryName: country) as T)
             .toList(),
       );
 
@@ -687,4 +707,74 @@ class SearchCountryRepository {
     'Italy'
   ];
 }
+
+class CustomEditAddressService<T> extends EditAddressService<T> {
+  CustomEditAddressService({
+    required this.searchRepository,
+  });
+
+  final SearchCountryRepository<T> searchRepository;
+
+  @override
+  Future<AddressModel> saveAddress(AddressModel addressModel) async {
+    await Future.delayed(const Duration(seconds: 1));
+    throw EditAddressError<String>(
+      error: 'Could not save',
+      fieldValue: addressModel.toString(),
+    );
+  }
+
+  @override
+  Future<List<T>> getCountries() async => await searchRepository.searchList;
+
+  @override
+  List<T> getCountryPlaceholderList() =>
+      List.generate(3, (index) => CountryModel.empty() as T);
+
+  @override
+  Future<String> validateCityOnSubmit(String text) async {
+    await Future.delayed(const Duration(seconds: 1));
+    if (text.trim().isEmpty) {
+      await Future.delayed(const Duration(seconds: 1));
+      throw EditAddressError<String>(
+        error: 'A value should be provided',
+        fieldValue: text,
+      );
+    }
+    return text;
+  }
+
+  @override
+  Future<String> validateStreetOnSubmit(String text) async {
+    if (text.trim().isEmpty) {
+      await Future.delayed(const Duration(seconds: 1));
+      throw EditAddressError<String>(
+        error: 'A value should be provided',
+        fieldValue: text,
+      );
+    }
+    return text;
+  }
+
+  @override
+  void validateCityOnType(String text) {
+    if (text.trim().isEmpty) {
+      throw EditAddressError<String>(
+        error: 'A value should be provided',
+        fieldValue: text,
+      );
+    }
+  }
+
+  @override
+  void validateStreetOnType(String text) {
+    if (text.trim().isEmpty) {
+      throw EditAddressError<String>(
+        error: 'A value should be provided',
+        fieldValue: text,
+      );
+    }
+  }
+}
+
 //# endregion
