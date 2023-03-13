@@ -10,7 +10,7 @@ import '../mock/edit_address_mock.dart';
 import '../service/edit_address_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
 
-/// Change the parameters according the the needs of the test
+/// Change the parameters according the needs of the test
 Widget editAddressPageFactory({
   bool? showError,
   AddressModel? onAddressSet,
@@ -61,7 +61,7 @@ Widget editAddressPageFactory({
       ),
     );
 
-/// Change the parameters according the the needs of the test
+/// Change the parameters according the needs of the test
 Widget createEditAddressWidget({
   AddressModel? onAddressSet,
   bool? isLoading,
