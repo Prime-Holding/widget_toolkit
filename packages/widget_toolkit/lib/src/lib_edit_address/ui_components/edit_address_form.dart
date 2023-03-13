@@ -16,7 +16,7 @@ typedef OnAddressChange = Function(AddressModel addressModel);
 class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressForm({
     required this.onAddressChange,
-    required this.editAddressErrorMapper,
+    required this.translateError,
     required this.editAddressService,
     required this.editAddressLocalizedStrings,
     this.searchCountryCustomBuilders,
@@ -28,7 +28,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
 
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final OnAddressChange onAddressChange;
-  final EditAddressErrorMapper editAddressErrorMapper;
+  final Function(Object error) translateError;
   final EditAddressService<T> editAddressService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;
@@ -89,7 +89,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
               TextFieldDialog<String>(
                 fillButtonText: editAddressLocalizedStrings?.cityButtonText ??
                     context.getEditAddressLocalizedStrings.cityButtonText,
-                errorMapper: editAddressErrorMapper.cityErrorMapper,
+                translateError: translateError,
                 label: editAddressLocalizedStrings?.cityLabelText ??
                     context.getEditAddressLocalizedStrings.cityLabelText,
                 emptyLabel: editAddressLocalizedStrings?.cityEmptyLabel ??
@@ -107,7 +107,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                 fillButtonText: editAddressLocalizedStrings
                         ?.addressButtonText ??
                     context.getEditAddressLocalizedStrings.addressButtonText,
-                errorMapper: editAddressErrorMapper.streetErrorMapper,
+                translateError: translateError,
                 label: editAddressLocalizedStrings?.addressLabelText ??
                     context.getEditAddressLocalizedStrings.addressLabelText,
                 emptyLabel: editAddressLocalizedStrings?.addressEmptyLabel ??
@@ -128,7 +128,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     BuildContext context,
     AddressModel addressModel,
     OnAddressChange onAddressChange, {
-    required EditAddressErrorMapper editAddressErrorMapper,
+    required Function(Object error) translateError,
     required EditAddressService<T> editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
@@ -139,7 +139,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   }) =>
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
-        editAddressErrorMapper: editAddressErrorMapper,
+        translateError: translateError,
         editAddressService: editAddressService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,

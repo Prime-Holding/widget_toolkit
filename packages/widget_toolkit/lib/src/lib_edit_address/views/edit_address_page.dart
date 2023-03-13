@@ -17,7 +17,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressPage({
     required this.onAddressSaved,
     required this.addressModel,
-    required this.editAddressErrorMapper,
+    required this.translateError,
     required this.buttonText,
     required this.headerText,
     required this.editAddressService,
@@ -37,8 +37,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final String buttonText;
   final String headerText;
   final Function(AddressModel)? saveAddress;
+  final Function(Object error) translateError;
   final Function(AddressModel? addressModel)? onChanged;
-  final EditAddressErrorMapper editAddressErrorMapper;
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final EditAddressService<T> editAddressService;
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder;
@@ -52,7 +52,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
     required String buttonText,
     required String headerText,
     required AddressModel addressModel,
-    required EditAddressErrorMapper editAddressErrorMapper,
+    required Function(Object error) translateError,
     required EditAddressService<T> editAddressService,
     final Function(AddressModel? addressModel)? onChanged,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
@@ -77,7 +77,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             addressModel: addressModel,
             onChanged: onChanged,
             saveAddress: saveAddress,
-            editAddressErrorMapper: editAddressErrorMapper,
+            translateError: translateError,
+            editAddressLocalizedStrings: editAddressLocalizedStrings,
             editAddressService: editAddressService,
             editAddressLocalizedStrings: editAddressLocalizedStrings,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
@@ -128,7 +129,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                               .events
                               .setAddress(addressModel);
                         },
-                            editAddressErrorMapper: editAddressErrorMapper,
+                            translateError: translateError,
                             editAddressLocalizedStrings:
                                 editAddressLocalizedStrings,
                             editAddressService: editAddressService,

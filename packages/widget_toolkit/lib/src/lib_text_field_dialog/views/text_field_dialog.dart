@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +36,7 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 ///
 /// [fillButtonText] is the text value in the button in the dialog
 ///
-/// [errorMapper] function, which implementation should map the form error to
+/// [translateError] function, which implementation should map the form error to
 /// RxFieldException error and translate the error to the correct language.
 /// You can check also the translateErrors() method in the [TextFieldDialogPage] widget
 ///
@@ -72,7 +71,7 @@ typedef FilledWidgetBuilder<T> = Widget Function(
 class TextFieldDialog<T> extends StatefulWidget {
   const TextFieldDialog({
     required this.validator,
-    required this.errorMapper,
+    required this.translateError,
     this.onChanged,
     this.label = 'Describe your value',
     this.emptyLabel = 'Enter text here',
@@ -111,8 +110,7 @@ class TextFieldDialog<T> extends StatefulWidget {
   final bool isMultiLinedInputField;
   final int? maxLines;
   final String fillButtonText;
-  final RxFieldException<T> Function(Object error, BuildContext context)
-      errorMapper;
+  final Function(Object error) translateError;
   final dynamic editFieldCustomIcon;
   final EditFieldType editFieldType;
   final bool enabled;
@@ -190,7 +188,7 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
               initialValue: _value,
             ).providers,
             child: TextFieldDialogPage<T>(
-              errorMapper: widget.errorMapper,
+              translateError: widget.translateError,
               callback: (value) {
                 setState(() => _value = value);
                 widget.onChanged?.call(value);

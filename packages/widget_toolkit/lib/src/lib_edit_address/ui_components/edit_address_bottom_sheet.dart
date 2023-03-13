@@ -13,7 +13,7 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   required String buttonText,
   required String headerText,
   required AddressModel addressModel,
-  required EditAddressErrorMapper editAddressErrorMapper,
+  required Function(Object error) translateError,
   required EditAddressService<T> editAddressService,
   final Function(AddressModel? addressModel)? onChanged,
   final EditAddressConfiguration modalConfiguration =
@@ -36,8 +36,8 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
           buttonText: buttonText,
           headerText: headerText,
           addressModel: addressModel,
+          translateError: translateError,
           onChanged: onChanged,
-          editAddressErrorMapper: editAddressErrorMapper,
           editAddressLocalizedStrings: editAddressLocalizedStrings,
           editAddressService: editAddressService,
           editContactAddressErrorBuilder: editContactAddressErrorBuilder,

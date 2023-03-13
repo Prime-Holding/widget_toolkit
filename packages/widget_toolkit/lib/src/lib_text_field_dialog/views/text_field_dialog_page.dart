@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 
 import '../../../widget_toolkit.dart';
-import '../../base/extensions/stream_translate_field_extension.dart';
 import '../../base/models/input_text_field_state.dart';
 import '../blocs/text_field_dialog_bloc.dart';
 import '../ui_components/input_text_field.dart';
@@ -21,7 +20,7 @@ import '../ui_components/input_text_field.dart';
 ///
 /// [fillButtonText] the text in the button, which is in the dialog
 ///
-/// [errorMapper] provide a function which maps the error from the service
+/// [translateError] provide a function which maps the error from the service
 /// to the appropriate ui error with text
 ///
 /// [header] is a value displayed above the text field in the dialog
@@ -38,7 +37,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
     required this.callback,
     required this.label,
     required this.fillButtonText,
-    required this.errorMapper,
+    required this.translateError,
     this.keyBoardType,
     this.header,
     this.inputFormatters,
@@ -56,8 +55,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
   final bool isMultiLinedInputField;
   final bool dialogHasBottomPadding;
   final int? maxLines;
-  final RxFieldException<T> Function(Object error, BuildContext context)
-      errorMapper;
+  final Function(Object error) translateError;
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +89,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
             },
           ),
           RxTextFormFieldBuilder<TextFieldDialogBlocType>(
-            state: (bloc) =>
-                bloc.states.text.translateErrors(errorMapper, context),
+            state: (bloc) => bloc.states.text
+                .handleError((object) => translateError(object)),
             showErrorState: (bloc) => bloc.states.isErrorVisible,
             onChanged: (bloc, value) => bloc.events.setText(value),
             cursorBehaviour: RxTextFormFieldCursorBehaviour.end,

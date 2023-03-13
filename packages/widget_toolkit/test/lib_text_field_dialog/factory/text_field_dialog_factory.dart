@@ -28,8 +28,7 @@ Widget textFieldDialogFactory({
           callback: (value) => '',
           label: 'Label',
           fillButtonText: 'Save',
-          errorMapper: (Object error, BuildContext context) =>
-              const RxFieldException(
+          translateError: (Object error) => throw const RxFieldException(
             error: 'Error',
             fieldValue: 'exception',
           ),

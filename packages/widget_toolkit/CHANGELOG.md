@@ -1,4 +1,12 @@
-## [0.0.1-dev5] - March 08, 2023
+## [0.0.1-dev6]
+- Removed params `showEditAddressBottomSheet(cityErrorMapper: , addressErrorMapper)`
+- Added params `showEditAddressBottomSheet(Function(Object error) translateError)`
+- Removed params `EditAddressWidget(cityErrorMapper:, addressErrorMapper)`
+- Added params `EditAddressWidget(Function(Object error) translateError)`
+- Removed params `TextFieldDialog(errorMapper: )`
+- Added params `TextFieldDialog(Function(Object error) translateError)`
+
+## [0.0.1-dev5]
 - Documentation improvements
 - Add example project
 - CountryModel name getter returns non nullable String
@@ -18,13 +26,13 @@
 - TextFieldDialog - configuration was renamed to modalConfiguration, dialogHasBottomPadding was moved inside modalConfiguration
 - showErrorBlurredBottomSheet - safeAreaBottom was moved inside configuration
 
-## [0.0.1-dev4] - February 27, 2023
+## [0.0.1-dev4]
 - Fix screenshots
 
-## [0.0.1-dev2] - February 27, 2023
+## [0.0.1-dev2]
  - Fix static analysis issues
 
-## [0.0.1-dev1] - February 27, 2023
+## [0.0.1-dev1]
 - Initial release of the following libraries
   -  [Shimmer](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/shimmer.md)
   -  [Item Picker](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/item-picker.md)
