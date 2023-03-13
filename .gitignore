@@ -1,6 +1,5 @@
 # Miscellaneous
 *.class
-*.lock
 *.log
 *.pyc
 *.swp
@@ -41,6 +40,7 @@ version
 
 # packages file containing multi-root paths
 .packages.generated
+pubspec_overrides.yaml
 
 # Flutter/Dart/Pub related
 **/doc/api/

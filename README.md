@@ -1,4 +1,4 @@
-![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]
+![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk] [![melos][melos_badge_lnk]][melos_lnk]
 
 # Overview
 
@@ -14,11 +14,11 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 
 | Item Picker (multi-select)| Item Picker (single-select)| Language Picker |
 |---------------------------------------|-----------------------------|-----------------------------|
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/language-picker.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/language-picker.gif" alt="Language Picker"></img> |
 | Search Picker| Shimmer | Launch URL |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/url.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/url.gif" alt="Language Picker"></img> |
 | Error Bottom Sheet | Text Field Dialog | Address Dialog |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/address.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/address.gif" alt="Language Picker"></img> |
 
 ## Documentation
 
@@ -35,3 +35,5 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
 [widget_toolkit_package_doc]: https://github.com/Prime-Holding/widget_toolkit/blob/master/packages/widget_toolkit/README.md
 [widget_toolkit_example]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/example
+[melos_badge_lnk]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square
+[melos_lnk]: https://github.com/invertase/melos
