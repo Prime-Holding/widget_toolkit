@@ -127,39 +127,81 @@ extensions: [
 //..
 ```
 
+Minimal configuration example of EditAddressWidget:
+
+```dart
+EditAddressWidget<CountryModel>(
+  translateError: (obj) => EditAddressErrorMapperUtil<String>()
+      .translateError(obj, context),
+  editAddressService: CustomEditAddressService<CountryModel>(),
+);
+```
+
 Complete example for EditAddressWidget usage:
 
 ```dart
 EditAddressWidget<CountryModel>(
-    editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
-    addressModel: AddressModel(
-      addressType: AddressTypeModel.correspondence,
-      city: 'Plovdiv',
-      streetAddress: 'street 1',
-      country: CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
-    ),
-    type: UserProfileCardTypes.mailingAddress,
-    editAddressErrorMapper: CustomEditAddressErrorMapper(),
-    validator: context.read<EditAddressFieldsService>(),
-    configuration: EditAddressConfiguration(
-      isDismissible: true,
-      heightFactor: null,
-      fullScreen: false),
-    searchCountryService: SearchCountryService(
-      SearchCountryRepository(),
-      true,
-    ),
-    editAddressService: SaveAddressService(),
-    editContactAddressErrorBuilder:(myException) => _customErrorBuilder(myException!, context),
-    searchCountryCustomBuilders: SearchCountryCustomBuilders<CountryModel>(
-        showEmptyWidgetWhenNoResultsAreFound: _showEmptyWidgetOnSearchCountryWhenNoResults(context),
-        itemBuilder: (ctx, item, isSelected, isLoading) =>
-          _buildSearchPickerCustomItem(item, isSelected, isLoading),
-        separatorBuilder: (index) => _buildSearchPickerCustomSeparator(),
-        errorBuilder: (error) => _buildSearchPickerCustomError(error),
-        emptyBuilder: () => _buildSearchPickerCustomEmpty(),
-    ),
-),
+  translateError: (obj) => EditAddressErrorMapperUtil<String>()
+      .translateError(obj, context),
+  editAddressService: CustomEditAddressService<CountryModel>(
+    searchRepository: SearchCountryRepository(),
+  ),
+  onChanged: (addressModel) =>
+      print('Address model: $addressModel'),
+  addressModel: const AddressModel(
+    addressType: AddressTypeModel.correspondence,
+    city: 'Plovd',
+    streetAddress: 'str1',
+    country: CountryModel.withDefaults(),
+  ),
+  editAddressLocalizedStrings: EditAddressLocalization(context),
+  type: UserProfileCardTypes.mailingAddress,
+  editAddressConfiguration: const EditAddressConfiguration(
+      safeAreaBottom: true,
+      contentAlignment: MainAxisAlignment.start,
+      additionalBottomPadding: 10,
+      fullScreen: false,
+      haveOnlyOneSheet: false,
+      showHeaderPill: true,
+      showCloseButton: true,
+      heightFactor: 0.6,
+      dialogHasBottomPadding: true,
+      isDismissible: true),
+  editContactAddressErrorBuilder: (errorMode) => _buildCustomErrorBuilder(errorMode),
+  searchCountryCustomBuilders: SearchCountryCustomBuilders<CountryModel>(
+    showEmptyWidgetWhenNoResultsAreFound: true,
+    itemBuilder: (context, model, isSelected, isLoading) => 
+      _buildCustomItemBuilder(context, model, isSelected, isLoading),
+    errorBuilder: (exception) => _buildCustomCountryErrorBuilder(exception),
+    emptyBuilder: () => _buildCustomEmptyBuilder(),
+    separatorBuilder: (index) => _buildCustomSeparatorBuilder(index),
+  ),
+  textFieldsModalConfiguration: const TextFieldModalConfiguration(
+    safeAreaBottom: false,
+    contentAlignment: MainAxisAlignment.start,
+    additionalBottomPadding: 10,
+    fullScreen: false,
+    haveOnlyOneSheet: true,
+    showHeaderPill: true,
+    showCloseButton: true,
+    heightFactor: 0.6,
+    dialogHasBottomPadding: true,
+    isDismissible: true,
+  ),
+  countryPickerModalConfiguration:
+      const SearchPickerModalConfiguration(
+    safeAreaBottom: false,
+    contentAlignment: MainAxisAlignment.start,
+    additionalBottomPadding: 10,
+    fullScreen: false,
+    haveOnlyOneSheet: true,
+    showHeaderPill: true,
+    showCloseButton: true,
+    heightFactor: 0.6,
+    dialogHasBottomPadding: true,
+    isDismissible: true,
+  ),
+);
 ```
 
 ---

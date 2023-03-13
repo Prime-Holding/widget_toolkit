@@ -81,6 +81,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             editAddressLocalizedStrings: editAddressLocalizedStrings,
             editAddressService: editAddressService,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
+            editContactAddressErrorBuilder:editContactAddressErrorBuilder,
             textFieldsModalConfiguration: textFieldsModalConfiguration,
             countryPickerModalConfiguration: countryPickerModalConfiguration),
       );
