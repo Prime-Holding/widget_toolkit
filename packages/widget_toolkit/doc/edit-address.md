@@ -1,12 +1,17 @@
 # Edit Address Dialog
 
 Edit Address package is useful when we need to edit an address, which appears in a bottom dialog,
-or show a message for permanent address, which is not editable and also appears in a bottom dialog.
-There are possible customizations such as passing custom error mappers for city and address text 
-input values, a custom header text for the bottom modal sheet, custom text labels for the
-widgets and custom text for the buttons. A text field validation service should be provided for the 
-city and address input fields and a service with method providing logic for the save address event.
-Also custom icons for the country, city and address widgets can be provided.
+or show a message for a permanent address, which is not editable and also appears in a bottom dialog.
+There are a lot of possible customizations such as passing a translation error function for the errors
+thrown from the validation of the city and address text input values. There is a localization file in 
+English, with default values for each string used in the library, which can be overriden. The library 
+provides a theme with default spacings, text styles, colors, EdgeInsets and icons, which can be
+overriden. There is a default service class, which provides default implementation for some of its
+methods. For example, for validation of the city and street input values and for filtering countries
+by name there is a default implementation. For the other methods, for example for fetching the list 
+of countries and for saving the address, a custom implementation should be provided. Each of the 
+bottom sheets can have custom configuration. From more information check the complete example in the
+documentation.
 
 ## Widgets
 
@@ -18,31 +23,26 @@ to show an edit address dialog.
 The `EditAddressWidget` is a widget for displaying an edit address modal sheet with some
 pre-configured options.
 
-`addressModel` is the current address information, which is provided to be displayed in the widgets 
-inside the page.
-`editAddressErrorMapper` receives a class, which should implement `EditAddressErrorMapper`, where you
-should map the errors for the city and street text values validation to `RxFieldException<String>`
-type, for more information check the documentation inside `EditAddressErrorMapper`.
-`cityErrorMapper` a function, which maps the the exceptions thrown from the validation methods 
-inside the class implementing the `TextFieldValidator`class. The methods in that class validate 
-the input String value for the edit city text input field. The `cityErrorMapper` should map the 
-exception to a RxFieldException.
-`addressErrorMapper` a function, which maps the the exceptions thrown from the validation methods 
-inside the class implementing the `TextFieldValidator`class. The methods in that class validate the 
-input String value for the edit address text input field. The `addressErrorMapper` should map the 
-exception to a RxFieldException.
-`validator` is a service validator class, which provides methods with validation implementation for 
-the input values of the city and address input values.
-`configuration` is a configuration for the edit address bottom sheet.
-`editAddressService` received an extension class of `EditAddressService` with implementation of the 
-logic for the main edit contact address save button logic.
-`editContactAddressErrorBuilder` is a custom error builder for the contact address modal sheet.
+`translateError` provide a function which maps the city and street validation errors from the 
+`service` service to the appropriate RxFieldException<String>, which is an ui error with text.
+`service` received an implementation of the `EditAddressService` class. The API of the class provides 
+methods for the logic for the main save address button, fetching of the list of countries, filtering
+the countries list, validating the city and street values while typing and when pressing the save
+button for each of them. Some methods have default implementation. For more information, check the 
+documentation in the file `EditAddressService` class.
 `onChanged` receives a function, which accepts the edited address model.
-`searchCountryCustomBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound,
-custom item builder, error builder, empty builder, separator builder for the search country item
-picker.
-`dialogHasBottomPadding` if it is true, it moves the dialog content up with the height of the
-keyboard, when the keyboard is visible, so the city and street dialogs appear above the keyboard.
+`initialAddress` is the current address information, which is provided to be displayed in the
+widgets inside the page.
+`searchCountryBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound, custom item builder,
+error builder, empty builder, separator builder for the search country item picker.
+`editContactAddressErrorBuilder` is a custom error builder for the contact address modal sheet
+`localizedStrings` receives a class, which should implement `EditAddressLocalizedStrings`, it should
+provided translation for the strings in the package.
+`configuration` is a configuration for the edit address bottom sheet.
+`type` depending on the selected type, a different type of modal bottom sheet is displayed. Currently
+choosing `UserProfileCardTypes.permanentAddress`displays a permanent address bottom sheet.
+`textFieldsModalConfiguration` is the configuration for the city and street bottom sheets.
+`countryPickerModalConfiguration` is the configuration for the country picker.
 
 ### How to override the icons in the library 
 
@@ -112,8 +112,7 @@ After that you can import the package with the following line:
 
 `import 'package:widget_toolkit/edit_address.dart';`
 
-Additional step is the requirement to add the EditAddressTheme as a
-extension to your ThemeData.
+Additional step is the requirement to add the `EditAddressTheme` as an extension to your `ThemeData`.
 
 as an example:
 
@@ -127,7 +126,7 @@ extensions: [
 //..
 ```
 
-Minimal configuration example of EditAddressWidget:
+Minimal configuration example of `EditAddressWidget`:
 
 ```dart
 EditAddressWidget<CountryModel>(
@@ -137,7 +136,7 @@ EditAddressWidget<CountryModel>(
 );
 ```
 
-Complete example for EditAddressWidget usage:
+Complete configuration example of `EditAddressWidget`:
 
 ```dart
 EditAddressWidget<CountryModel>(

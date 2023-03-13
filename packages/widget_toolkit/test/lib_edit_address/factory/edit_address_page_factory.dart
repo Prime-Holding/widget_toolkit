@@ -90,7 +90,7 @@ Widget createEditAddressWidget({
         ],
         child: Builder(
           builder: (context) => EditAddressWidget<CountryModel>(
-            addressModel: address ??
+            initialAddress: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
                   city: 'Sofia',
@@ -100,8 +100,8 @@ Widget createEditAddressWidget({
                 ),
             translateError: (obj) => EditAddressErrorMapperUtil<String>()
                 .translateError(obj, context),
-            editAddressService: EditAddressServiceMock(showError: false),
-            editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
+            service: EditAddressServiceMock(showError: false),
+            localizedStrings: EditAddressLocalizedStrings(context),
           ),
         ),
       ),
