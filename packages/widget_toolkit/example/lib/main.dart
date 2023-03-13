@@ -654,22 +654,6 @@ class SearchCountryRepository {
             .toList(),
       );
 
-  final _countriesList = [
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy',
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy',
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy'
-  ];
+  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
 }
 //# endregion

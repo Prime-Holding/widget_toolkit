@@ -17,13 +17,13 @@ The Widget Toolkit package consists of several lightweight and customisable UI c
 
 ## Demo
 
-| Item Picker (mutli-select)| Item Picker (single select)| Language Picker |
+| Item Picker (multi-select)| Item Picker (single select)| Language Picker |
 |---------------------------------------|-----------------------------|-----------------------------|
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/language-picker.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/multi-item-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/single-item-picker.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/language-picker.gif" alt="Language Picker"></img> |
 | Search Picker| Shimmer | Launch URL |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/url.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/search-picker.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/shimmer.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/url.gif" alt="Language Picker"></img> |
 | Error Bottom Sheet | Text Field Dialog | Address Dialog |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/master/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/doc/assets/address.gif" alt="Language Picker"></img> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/address.gif" alt="Language Picker"></img> |
 
 
 ## How to use
