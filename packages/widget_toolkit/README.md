@@ -108,7 +108,7 @@ extensions: [
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
 [shimmer_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_shimmer
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_item_picker
-[open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_open_url
+[open_url_pkg]: https://github.com/Prime-Holding/widget_toolkit/tree/packages/widget_toolkit/master/lib/src/lib_open_url
 [item_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/src/lib_item_picker
 [language_picker_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_language_picker
 [ui_components_pkg]: https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/lib/src/lib_ui_components
