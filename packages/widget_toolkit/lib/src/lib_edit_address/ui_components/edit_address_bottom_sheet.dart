@@ -18,7 +18,6 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   final Function(AddressModel? addressModel)? onChanged,
   final EditAddressConfiguration modalConfiguration =
       const EditAddressConfiguration(),
-  dynamic countryCustomIcon,
   final EditAddressLocalizedStrings? editAddressLocalizedStrings,
   final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
