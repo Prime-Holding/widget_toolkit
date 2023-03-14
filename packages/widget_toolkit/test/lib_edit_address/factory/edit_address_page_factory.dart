@@ -11,7 +11,7 @@ import '../service/edit_address_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
 
 /// Change the parameters according the needs of the test
-Widget editAddressPageFactory({
+Widget editAddressEmptyPageFactory({
   bool? showError,
   AddressModel? onAddressSet,
   bool? isLoading,
@@ -61,7 +61,6 @@ Widget editAddressPageFactory({
       ),
     );
 
-/// Change the parameters according the needs of the test
 Widget createEditAddressWidget({
   AddressModel? onAddressSet,
   bool? isLoading,
@@ -102,6 +101,57 @@ Widget createEditAddressWidget({
                 .translateError(obj, context),
             service: EditAddressServiceMock(showError: false),
             localizedStrings: EditAddressLocalizedStrings(context),
+          ),
+        ),
+      ),
+    );
+
+Widget editAddressSuccessPageFactory({
+  bool? showError,
+  AddressModel? onAddressSet,
+  bool? isLoading,
+  ErrorModel? errors,
+  String? street,
+  String? city,
+  bool? isCountryEdited,
+  CountryModel? country,
+  AddressModel? address,
+}) =>
+    Scaffold(
+      body: MultiProvider(
+        providers: [
+          RxBlocProvider<EditAddressBlocType>.value(
+            value: editAddressMockFactory(
+              onAddressSet: onAddressSet,
+              isLoading: isLoading,
+              errors: errors,
+              street: street,
+              city: city,
+              isCountryEdited: isCountryEdited,
+              country: country,
+              address: address,
+            ),
+          ),
+        ],
+        child: Builder(
+          builder: (context) => EditAddressPage.withDependencies<CountryModel>(
+            context,
+            addressModel: address ??
+                const AddressModel(
+                  addressType: AddressTypeModel.correspondence,
+                  city: 'Sofia',
+                  streetAddress: 'str1',
+                  country:
+                      CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
+                ),
+            translateError: (obj) => EditAddressErrorMapperUtil<String>()
+                .translateError(obj, context),
+            buttonText: 'Save',
+            headerText: 'Contact Address',
+            editAddressService: EditAddressServiceMock<CountryModel>(
+                showError: showError ?? false),
+            editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
+            onAddressSaved: (AddressModel addressModel) {},
           ),
         ),
       ),

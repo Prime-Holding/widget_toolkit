@@ -4,10 +4,22 @@ import '../../mocks/stubs.dart';
 import '../factory/edit_address_page_factory.dart';
 
 void main() {
-  /// TODO add golden tests tests for the not-empty cases
   runGoldenTests([
     generateDeviceBuilder(
-        widget: editAddressPageFactory(
+        widget: editAddressEmptyPageFactory(
+          showError: false,
+          isLoading: false,
+          onAddressSet: null,
+          address: null,
+          errors: null,
+          street: null,
+          city: null,
+          isCountryEdited: false,
+          country: null,
+        ), //loading
+        scenario: Scenario(name: 'edit_address_empty')),
+    generateDeviceBuilder(
+        widget: editAddressSuccessPageFactory(
           showError: false,
           isLoading: false,
           onAddressSet: Stubs.addressModel,
@@ -20,7 +32,7 @@ void main() {
         ),
         scenario: Scenario(name: 'edit_address_success')),
     generateDeviceBuilder(
-        widget: editAddressPageFactory(
+        widget: editAddressEmptyPageFactory(
           showError: false,
           isLoading: true,
           onAddressSet: Stubs.addressModel,
