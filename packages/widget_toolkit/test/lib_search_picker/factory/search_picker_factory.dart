@@ -11,7 +11,7 @@ import '../models/search_model_mock.dart';
 import '../repositories/search_repository_mock.dart';
 import '../services/search_picker_service_mock.dart';
 
-/// Change the parameters according the the needs of the test
+/// Change the parameters according the needs of the test
 Widget searchPickerFactory({
   required SearchRepositoryMock searchPickerRepository,
   required Result<List<SearchModelMock>> searchResult,

@@ -8,7 +8,6 @@ void showEditCountryBottomSheet<T extends PickerItemModel>(
   BuildContext context,
   CountryModel? country,
   Function(CountryModel) callback, {
-  // required CountryBottomSheetConfiguration configuration,
   required SearchPickerService<T> searchCountryService,
   required String countrySearchPickerTitle,
   required String countrySearchPickerHintText,
@@ -38,17 +37,3 @@ void showEditCountryBottomSheet<T extends PickerItemModel>(
     separatorBuilder: searchCountryCustomBuilders?.separatorBuilder,
   );
 }
-
-// class CountryBottomSheetConfiguration {
-//   const CountryBottomSheetConfiguration({
-//     this.isDismissible = true,
-//     this.heightFactor,
-//     this.fullScreen = true,
-//     this.haveOnlyOneSheet = false,
-//   });
-//
-//   final double? heightFactor;
-//   final bool isDismissible;
-//   final bool fullScreen;
-//   final bool haveOnlyOneSheet;
-// }

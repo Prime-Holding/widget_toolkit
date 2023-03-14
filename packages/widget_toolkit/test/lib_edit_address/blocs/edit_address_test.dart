@@ -6,12 +6,10 @@ import 'package:widget_toolkit/edit_address.dart';
 import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart';
 
 import '../../mocks/stubs.dart';
-import '../service/save_address_service_mock.dart';
 import 'edit_address_test.mocks.dart';
 
 @GenerateMocks([
   EditAddressService,
-  SaveAddressServiceMock,
   AddressModel,
 ])
 void main() {

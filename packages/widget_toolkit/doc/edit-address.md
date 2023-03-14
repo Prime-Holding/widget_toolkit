@@ -1,12 +1,17 @@
 # Edit Address Dialog
 
 Edit Address package is useful when we need to edit an address, which appears in a bottom dialog,
-or show a message for permanent address, which is not editable and also appears in a bottom dialog.
-There are possible customizations such as passing custom error mappers for city and address text 
-input values, a custom header text for the bottom modal sheet, custom text labels for the
-widgets and custom text for the buttons. A text field validation service should be provided for the 
-city and address input fields and a service with method providing logic for the save address event.
-Also custom icons for the country, city and address widgets can be provided.
+or show a message for a permanent address, which is not editable and also appears in a bottom dialog.
+There are a lot of possible customizations such as passing a translation error function for the errors
+thrown from the validation of the city and address text input values. There is a localization file in 
+English, with default values for each string used in the library, which can be overriden. The library 
+provides a theme with default spacings, text styles, colors, EdgeInsets and icons, which can be
+overriden. There is a default service class, which provides default implementation for some of its
+methods. For example, for validation of the city and street input values and for filtering countries
+by name there is a default implementation. For the other methods, for example for fetching the list 
+of countries and for saving the address, a custom implementation should be provided. Each of the 
+bottom sheets can have custom configuration. From more information check the complete example in the
+documentation.
 
 ## Widgets
 
@@ -18,33 +23,57 @@ to show an edit address dialog.
 The `EditAddressWidget` is a widget for displaying an edit address modal sheet with some
 pre-configured options.
 
-`addressModel` is the current address information, which is provided to be displayed in the widgets 
-inside the page.
-`cityErrorMapper` a function, which maps the the exceptions thrown from the validation methods 
-inside the class implementing the `TextFieldValidator`class. The methods in that class validate 
-the input String value for the edit city text input field. The `cityErrorMapper` should map the 
-exception to a RxFieldException.
-`addressErrorMapper` a function, which maps the the exceptions thrown from the validation methods 
-inside the class implementing the `TextFieldValidator`class. The methods in that class validate the 
-input String value for the edit address text input field. The `addressErrorMapper` should map the 
-exception to a RxFieldException.
-`validator` is a service validator class, which provides methods with validation implementation for 
-the input values of the city and address input values.
-`countryCustomIcon` receives a custom icon for the country widget. To use a custom icon, the 
-`editCountryFieldType` should be of type EditFieldType.custom.
-`cityCustomIcon` receives a custom icon for the city button. To use a custom icon, the 
-`editCityFieldType` should be of type EditFieldType.custom.
-`addressCustomIcon` receives a custom icon for the city button. To use a custom icon, the
-`editAddressFieldType` should be of type EditFieldType.custom.
+`translateError` provide a function which maps the city and street validation errors from the 
+`service` service to the appropriate RxFieldException<String>, which is an ui error with text.
+`service` received an implementation of the `EditAddressService` class. The API of the class provides 
+methods for the logic for the main save address button, fetching of the list of countries, filtering
+the countries list, validating the city and street values while typing and when pressing the save
+button for each of them. Some methods have default implementation. For more information, check the 
+documentation in the file `EditAddressService` class.
+`onChanged` receives a function, which accepts the edited address model.
+`initialAddress` is the current address information, which is provided to be displayed in the
+widgets inside the page.
+`searchCountryBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound, custom item builder,
+error builder, empty builder, separator builder for the search country item picker.
+`editContactAddressErrorBuilder` is a custom error builder for the contact address modal sheet
+`localizedStrings` receives a class, which should implement `EditAddressLocalizedStrings`, it should
+provided translation for the strings in the package.
 `configuration` is a configuration for the edit address bottom sheet.
-`editAddressService` received an extension class of `EditAddressService` with implementation of the 
-logic for the main edit contact address save button logic.
-`editContactAddressErrorBuilder` is a custom error builder for the contact address modal sheet.
-`searchCountryCustomBuilders` is a class which accepts showEmptyWidgetWhenNoResultsAreFound,
-custom item builder, error builder, empty builder, separator builder for the search country item
-picker.
-`dialogHasBottomPadding` if it is true, it moves the dialog content up with the height of the
-keyboard, when the keyboard is visible, so the city and street dialogs appear above the keyboard.
+`type` depending on the selected type, a different type of modal bottom sheet is displayed. Currently
+choosing `UserProfileCardTypes.permanentAddress`displays a permanent address bottom sheet.
+`textFieldsModalConfiguration` is the configuration for the city and street bottom sheets.
+`countryPickerModalConfiguration` is the configuration for the country picker.
+
+### How to override the icons in the library 
+
+Here is an example how to override the icons in the library for the light theme. You should use the
+`copyWith()` method and create a new `SvgFile`, which receives the path to the svg file, that you 
+want to use, to override the specific icon.
+
+```dart
+//theme
+//...
+ThemeData(
+extensions: [
+  // Here you provide the new icon for the icon in EditAddressWidget
+  EditAddressTheme.light.copyWith(editPenIcon: const SvgFile('assets/new-edit-pen.svg')),
+  TextFieldDialogTheme.light
+  // Here you provide the new icon for the city and street text fields
+    .copyWith(editPenIcon: const SvgFile('assets/new-edit-pen.svg'),
+  // Here you provide the new icon for the country search picker
+  arrowRightSquareIcon: const SvgFile('assets/new-forward.svg')),
+]);
+//..
+```
+
+To load your local svg files in the project, you should add the path to them in your pubspec.yaml
+
+```yaml
+flutter:
+  assets:
+    - assets/
+```
+
 
 ### `EditAddressLocalizedStrings`
 
@@ -83,8 +112,7 @@ After that you can import the package with the following line:
 
 `import 'package:widget_toolkit/edit_address.dart';`
 
-Additional step is the requirement to add the EditAddressTheme as a
-extension to your ThemeData.
+Additional step is the requirement to add the `EditAddressTheme` as an extension to your `ThemeData`.
 
 as an example:
 
@@ -98,48 +126,81 @@ extensions: [
 //..
 ```
 
-Complete example for EditAddressWidget usage:
+Minimal configuration example of `EditAddressWidget`:
 
 ```dart
 EditAddressWidget<CountryModel>(
-    editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
-    addressModel: AddressModel(
-      addressType: AddressTypeModel.correspondence,
-      city: 'Plovdiv',
-      streetAddress: 'street 1',
-      country: CountryModel(countryCode: 'BG', countryName: 'Bulgaria'),
-    ),
-    type: UserProfileCardTypes.mailingAddress,
-    cityErrorMapper: (obj, context) =>
-        EditAddressErrorMapperUtil<String>().cityErrorMapper(obj, context),
-    addressErrorMapper: (obj, context) =>
-        EditAddressErrorMapperUtil<String>().addressErrorMapper(obj, context),
-    validator: context.read<EditAddressFieldsService>(),
-    configuration: EditAddressConfiguration(
-      isDismissible: true,
-      heightFactor: null,
-      fullScreen: false),
-    countryCustomIcon: Assets.deliveryBlack,
-    editCountryFieldType: EditFieldType.custom,
-    cityCustomIcon: Assets.deliveryBlack,
-    editCityFieldType: EditFieldType.custom,
-    addressCustomIcon: Assets.deliveryBlack,
-    editAddressFieldType: EditFieldType.custom,
-    searchCountryService: SearchCountryService(
-      SearchCountryRepository(),
-      true,
-    ),
-    editAddressService: SaveAddressService(),
-    editContactAddressErrorBuilder:(myException) => _customErrorBuilder(myException!, context),
-    searchCountryCustomBuilders: SearchCountryCustomBuilders<CountryModel>(
-        showEmptyWidgetWhenNoResultsAreFound: _showEmptyWidgetOnSearchCountryWhenNoResults(context),
-        itemBuilder: (ctx, item, isSelected, isLoading) =>
-          _buildSearchPickerCustomItem(item, isSelected, isLoading),
-        separatorBuilder: (index) => _buildSearchPickerCustomSeparator(),
-        errorBuilder: (error) => _buildSearchPickerCustomError(error),
-        emptyBuilder: () => _buildSearchPickerCustomEmpty(),
-    ),
-),
+  translateError: (obj) => EditAddressErrorMapperUtil<String>()
+      .translateError(obj, context),
+  editAddressService: CustomEditAddressService<CountryModel>(),
+);
+```
+
+Complete configuration example of `EditAddressWidget`:
+
+```dart
+EditAddressWidget<CountryModel>(
+  translateError: (obj) => EditAddressErrorMapperUtil<String>()
+      .translateError(obj, context),
+  editAddressService: CustomEditAddressService<CountryModel>(
+    searchRepository: SearchCountryRepository(),
+  ),
+  onChanged: (addressModel) =>
+      print('Address model: $addressModel'),
+  addressModel: const AddressModel(
+    addressType: AddressTypeModel.correspondence,
+    city: 'Plovd',
+    streetAddress: 'str1',
+    country: CountryModel.withDefaults(),
+  ),
+  editAddressLocalizedStrings: EditAddressLocalization(context),
+  type: UserProfileCardTypes.mailingAddress,
+  editAddressConfiguration: const EditAddressConfiguration(
+      safeAreaBottom: true,
+      contentAlignment: MainAxisAlignment.start,
+      additionalBottomPadding: 10,
+      fullScreen: false,
+      haveOnlyOneSheet: false,
+      showHeaderPill: true,
+      showCloseButton: true,
+      heightFactor: 0.6,
+      dialogHasBottomPadding: true,
+      isDismissible: true),
+  editContactAddressErrorBuilder: (errorMode) => _buildCustomErrorBuilder(errorMode),
+  searchCountryCustomBuilders: SearchCountryCustomBuilders<CountryModel>(
+    showEmptyWidgetWhenNoResultsAreFound: true,
+    itemBuilder: (context, model, isSelected, isLoading) => 
+      _buildCustomItemBuilder(context, model, isSelected, isLoading),
+    errorBuilder: (exception) => _buildCustomCountryErrorBuilder(exception),
+    emptyBuilder: () => _buildCustomEmptyBuilder(),
+    separatorBuilder: (index) => _buildCustomSeparatorBuilder(index),
+  ),
+  textFieldsModalConfiguration: const TextFieldModalConfiguration(
+    safeAreaBottom: false,
+    contentAlignment: MainAxisAlignment.start,
+    additionalBottomPadding: 10,
+    fullScreen: false,
+    haveOnlyOneSheet: true,
+    showHeaderPill: true,
+    showCloseButton: true,
+    heightFactor: 0.6,
+    dialogHasBottomPadding: true,
+    isDismissible: true,
+  ),
+  countryPickerModalConfiguration:
+      const SearchPickerModalConfiguration(
+    safeAreaBottom: false,
+    contentAlignment: MainAxisAlignment.start,
+    additionalBottomPadding: 10,
+    fullScreen: false,
+    haveOnlyOneSheet: true,
+    showHeaderPill: true,
+    showCloseButton: true,
+    heightFactor: 0.6,
+    dialogHasBottomPadding: true,
+    isDismissible: true,
+  ),
+);
 ```
 
 ---

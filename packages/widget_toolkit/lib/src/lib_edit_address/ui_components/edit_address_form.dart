@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../models.dart';
 import '../../../search_picker.dart';
 import '../../../text_field_dialog.dart';
 import '../blocs/edit_address_bloc.dart';
+import '../services/city_service.dart';
+import '../services/country_service.dart';
+import '../services/street_service.dart';
 import 'country_picker_bottom_sheet.dart';
 
 typedef OnAddressChange = Function(AddressModel addressModel);
@@ -14,15 +18,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   const EditAddressForm({
     required this.onAddressChange,
     required this.translateError,
-    required this.validator,
-    required this.searchCountryService,
+    required this.editAddressService,
     required this.editAddressLocalizedStrings,
-    this.countryCustomIcon,
-    this.editCountryFieldType = EditFieldType.dropdown,
-    this.cityCustomIcon,
-    this.editCityFieldType = EditFieldType.editfield,
-    this.addressCustomIcon,
-    this.editAddressFieldType = EditFieldType.editfield,
     this.searchCountryCustomBuilders,
     this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
     this.countryPickerModalConfiguration =
@@ -33,14 +30,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final OnAddressChange onAddressChange;
   final Function(Object error) translateError;
-  final TextFieldValidator<String> validator;
-  final dynamic countryCustomIcon;
-  final EditFieldType editCountryFieldType;
-  final dynamic cityCustomIcon;
-  final EditFieldType editCityFieldType;
-  final dynamic addressCustomIcon;
-  final EditFieldType editAddressFieldType;
-  final SearchPickerService<T> searchCountryService;
+  final EditAddressService<T> editAddressService;
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;
   final SearchPickerModalConfiguration countryPickerModalConfiguration;
@@ -71,7 +61,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                       bloc.events.saveCountry();
                     },
                     modalConfiguration: countryPickerModalConfiguration,
-                    searchCountryService: searchCountryService,
+                    searchCountryService: context.read<CountryService<T>>(),
                     countrySearchPickerTitle:
                         editAddressLocalizedStrings?.countrySearchPickerTitle ??
                             context.getEditAddressLocalizedStrings
@@ -90,8 +80,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     snapshot.data,
                     false,
                   ),
-                  customIcon: countryCustomIcon,
-                  type: editCountryFieldType,
+                  type: EditFieldType.dropdown,
                 ),
               ),
               SizedBox(
@@ -107,9 +96,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     context.getEditAddressLocalizedStrings.cityEmptyLabel,
                 value: address.data?.city,
                 onChanged: (city) => bloc.events.setCity(city),
-                validator: validator,
-                editFieldCustomIcon: cityCustomIcon,
-                editFieldType: editCityFieldType,
+                validator: context.read<CityService>(),
+                editFieldType: EditFieldType.editfield,
                 modalConfiguration: textFieldsModalConfiguration,
               ),
               SizedBox(
@@ -126,9 +114,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     context.getEditAddressLocalizedStrings.addressEmptyLabel,
                 value: address.data?.streetAddress,
                 onChanged: (street) => bloc.events.setStreet(street),
-                validator: validator,
-                editFieldCustomIcon: addressCustomIcon,
-                editFieldType: editAddressFieldType,
+                validator: context.read<StreetService>(),
+                editFieldType: EditFieldType.editfield,
                 modalConfiguration: textFieldsModalConfiguration,
               ),
             ],
@@ -141,16 +128,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     AddressModel addressModel,
     OnAddressChange onAddressChange, {
     required Function(Object error) translateError,
-    required TextFieldValidator<String> validator,
-    required SearchPickerService<T> searchCountryService,
-    required final EditAddressService editAddressService,
+    required EditAddressService<T> editAddressService,
     final EditAddressLocalizedStrings? editAddressLocalizedStrings,
-    final dynamic countryCustomIcon,
-    final EditFieldType editCountryFieldType = EditFieldType.dropdown,
-    final dynamic cityCustomIcon,
-    final EditFieldType editCityFieldType = EditFieldType.editfield,
-    final dynamic addressCustomIcon,
-    final EditFieldType editAddressFieldType = EditFieldType.editfield,
     final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
     final TextFieldModalConfiguration textFieldsModalConfiguration =
         const TextFieldModalConfiguration(),
@@ -160,14 +139,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
       EditAddressForm<T>(
         onAddressChange: onAddressChange,
         translateError: translateError,
-        validator: validator,
-        countryCustomIcon: countryCustomIcon,
-        editCountryFieldType: editCountryFieldType,
-        cityCustomIcon: cityCustomIcon,
-        editCityFieldType: editCityFieldType,
-        addressCustomIcon: addressCustomIcon,
-        editAddressFieldType: editAddressFieldType,
-        searchCountryService: searchCountryService,
+        editAddressService: editAddressService,
         editAddressLocalizedStrings: editAddressLocalizedStrings,
         searchCountryCustomBuilders: searchCountryCustomBuilders,
         textFieldsModalConfiguration: textFieldsModalConfiguration,

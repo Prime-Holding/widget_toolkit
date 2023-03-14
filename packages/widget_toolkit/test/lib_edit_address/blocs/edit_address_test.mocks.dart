@@ -8,8 +8,6 @@ import 'dart:async' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:widget_toolkit/edit_address.dart' as _i2;
 
-import '../service/save_address_service_mock.dart' as _i4;
-
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -44,8 +42,8 @@ class _FakeCountryModel_1 extends _i1.SmartFake implements _i2.CountryModel {
 /// A class which mocks [EditAddressService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEditAddressService extends _i1.Mock
-    implements _i2.EditAddressService {
+class MockEditAddressService<T> extends _i1.Mock
+    implements _i2.EditAddressService<T> {
   MockEditAddressService() {
     _i1.throwOnMissingStub(this);
   }
@@ -65,37 +63,70 @@ class MockEditAddressService extends _i1.Mock
           ),
         )),
       ) as _i3.Future<_i2.AddressModel>);
-}
-
-/// A class which mocks [SaveAddressServiceMock].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockSaveAddressServiceMock extends _i1.Mock
-    implements _i4.SaveAddressServiceMock {
-  MockSaveAddressServiceMock() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  bool get showError => (super.noSuchMethod(
-        Invocation.getter(#showError),
-        returnValue: false,
-      ) as bool);
+  _i3.Future<List<T>> getCountries() => (super.noSuchMethod(
+        Invocation.method(
+          #getCountries,
+          [],
+        ),
+        returnValue: _i3.Future<List<T>>.value(<T>[]),
+      ) as _i3.Future<List<T>>);
   @override
-  _i3.Future<_i2.AddressModel> saveAddress(_i2.AddressModel? addressModel) =>
+  List<T> getCountryPlaceholderList() => (super.noSuchMethod(
+        Invocation.method(
+          #getCountryPlaceholderList,
+          [],
+        ),
+        returnValue: <T>[],
+      ) as List<T>);
+  @override
+  _i3.Future<List<T>> filteredCountriesByName(
+    List<T>? list,
+    String? searchParam,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #saveAddress,
-          [addressModel],
+          #filteredCountriesByName,
+          [
+            list,
+            searchParam,
+          ],
         ),
-        returnValue: _i3.Future<_i2.AddressModel>.value(_FakeAddressModel_0(
-          this,
-          Invocation.method(
-            #saveAddress,
-            [addressModel],
-          ),
-        )),
-      ) as _i3.Future<_i2.AddressModel>);
+        returnValue: _i3.Future<List<T>>.value(<T>[]),
+      ) as _i3.Future<List<T>>);
+  @override
+  _i3.Future<String> validateCityOnSubmit(String? text) => (super.noSuchMethod(
+        Invocation.method(
+          #validateCityOnSubmit,
+          [text],
+        ),
+        returnValue: _i3.Future<String>.value(''),
+      ) as _i3.Future<String>);
+  @override
+  _i3.Future<String> validateStreetOnSubmit(String? text) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #validateStreetOnSubmit,
+          [text],
+        ),
+        returnValue: _i3.Future<String>.value(''),
+      ) as _i3.Future<String>);
+  @override
+  void validateCityOnType(String? text) => super.noSuchMethod(
+        Invocation.method(
+          #validateCityOnType,
+          [text],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void validateStreetOnType(String? text) => super.noSuchMethod(
+        Invocation.method(
+          #validateStreetOnType,
+          [text],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [AddressModel].

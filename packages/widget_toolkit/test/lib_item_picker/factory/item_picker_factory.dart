@@ -9,7 +9,7 @@ import '../mock/item_picker_mock.dart';
 import '../models/item_picker_data_mock.dart';
 import '../services/item_picker_service_mock.dart';
 
-/// Change the parameters according the the needs of the test
+/// Change the parameters according the needs of the test
 Widget itemPickerFactory({
   required Result<List<ItemPickerDataMock>> itemsResult,
   required ItemPickerServiceMock itemPickerServiceMock,
