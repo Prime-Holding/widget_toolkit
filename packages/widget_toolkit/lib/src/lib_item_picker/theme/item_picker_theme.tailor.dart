@@ -13,22 +13,30 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme> {
     required this.titlePadding,
     required this.titleStyle,
     required this.errorPadding,
+    required this.contentListPadding,
+    required this.footerPadding,
   });
 
   final EdgeInsets titlePadding;
   final TextStyle titleStyle;
   final EdgeInsets errorPadding;
+  final EdgeInsets contentListPadding;
+  final EdgeInsets footerPadding;
 
   static final ItemPickerTheme light = ItemPickerTheme(
     titlePadding: _$ItemPickerTheme.titlePadding[0],
     titleStyle: _$ItemPickerTheme.titleStyle[0],
     errorPadding: _$ItemPickerTheme.errorPadding[0],
+    contentListPadding: _$ItemPickerTheme.contentListPadding[0],
+    footerPadding: _$ItemPickerTheme.footerPadding[0],
   );
 
   static final ItemPickerTheme dark = ItemPickerTheme(
     titlePadding: _$ItemPickerTheme.titlePadding[1],
     titleStyle: _$ItemPickerTheme.titleStyle[1],
     errorPadding: _$ItemPickerTheme.errorPadding[1],
+    contentListPadding: _$ItemPickerTheme.contentListPadding[1],
+    footerPadding: _$ItemPickerTheme.footerPadding[1],
   );
 
   static final themes = [
@@ -41,11 +49,15 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme> {
     EdgeInsets? titlePadding,
     TextStyle? titleStyle,
     EdgeInsets? errorPadding,
+    EdgeInsets? contentListPadding,
+    EdgeInsets? footerPadding,
   }) {
     return ItemPickerTheme(
       titlePadding: titlePadding ?? this.titlePadding,
       titleStyle: titleStyle ?? this.titleStyle,
       errorPadding: errorPadding ?? this.errorPadding,
+      contentListPadding: contentListPadding ?? this.contentListPadding,
+      footerPadding: footerPadding ?? this.footerPadding,
     );
   }
 
@@ -56,6 +68,9 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme> {
       titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
       errorPadding: t < 0.5 ? errorPadding : other.errorPadding,
+      contentListPadding:
+          t < 0.5 ? contentListPadding : other.contentListPadding,
+      footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
     );
   }
 
@@ -69,7 +84,11 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme> {
             const DeepCollectionEquality()
                 .equals(titleStyle, other.titleStyle) &&
             const DeepCollectionEquality()
-                .equals(errorPadding, other.errorPadding));
+                .equals(errorPadding, other.errorPadding) &&
+            const DeepCollectionEquality()
+                .equals(contentListPadding, other.contentListPadding) &&
+            const DeepCollectionEquality()
+                .equals(footerPadding, other.footerPadding));
   }
 
   @override
@@ -78,6 +97,8 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme> {
         runtimeType,
         const DeepCollectionEquality().hash(titlePadding),
         const DeepCollectionEquality().hash(titleStyle),
-        const DeepCollectionEquality().hash(errorPadding));
+        const DeepCollectionEquality().hash(errorPadding),
+        const DeepCollectionEquality().hash(contentListPadding),
+        const DeepCollectionEquality().hash(footerPadding));
   }
 }

@@ -39,7 +39,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.blueLight,
     required this.greenLight,
     required this.errorCardTextColor,
-    required this.bottomSheetHeaderPadding,
     required this.bottomSheetBarrierColor,
     required this.messagePanelBackgroundColor,
     required this.bottomSheetLineColor,
@@ -95,7 +94,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.outlineButtonPressedColor,
     required this.outlineButtonTextColor,
     required this.outlineButtonTextColorDisabled,
+    required this.bottomSheetHeaderPadding,
     required this.bottomSheetCloseButtonPadding,
+    required this.bottomSheetContentPadding,
     required this.messagePanelErrorEdgeInsets,
     required this.smallEdgeInsets,
     required this.mediumEdgeInsets,
@@ -106,12 +107,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.spacingXSS,
     required this.spacingS,
     required this.spacingM,
+    required this.spacingL,
     required this.spacingXL,
     required this.spacingXXL,
     required this.spacingXXXXL1,
     required this.textButtonIconRightPadding,
     required this.textButtonPadding,
     required this.appBarTextButtonPadding,
+    required this.bottomSheetBottomPadding,
     required this.checkIcon,
     required this.checkCircleIcon,
     required this.closeIcon,
@@ -151,7 +154,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color blueLight;
   final Color greenLight;
   final Color errorCardTextColor;
-  final EdgeInsets bottomSheetHeaderPadding;
   final Color bottomSheetBarrierColor;
   final Color messagePanelBackgroundColor;
   final Color bottomSheetLineColor;
@@ -207,7 +209,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color outlineButtonPressedColor;
   final Color outlineButtonTextColor;
   final Color outlineButtonTextColorDisabled;
+  final EdgeInsets bottomSheetHeaderPadding;
   final EdgeInsets bottomSheetCloseButtonPadding;
+  final EdgeInsets bottomSheetContentPadding;
   final EdgeInsets messagePanelErrorEdgeInsets;
   final EdgeInsets smallEdgeInsets;
   final EdgeInsets mediumEdgeInsets;
@@ -218,12 +222,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final double spacingXSS;
   final double spacingS;
   final double spacingM;
+  final double spacingL;
   final double spacingXL;
   final double spacingXXL;
   final double spacingXXXXL1;
   final double textButtonIconRightPadding;
   final double textButtonPadding;
   final double appBarTextButtonPadding;
+  final double bottomSheetBottomPadding;
   final SvgFile checkIcon;
   final SvgFile checkCircleIcon;
   final SvgFile closeIcon;
@@ -274,7 +280,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     blueLight: _$WidgetToolkitTheme.blueLight[0],
     greenLight: _$WidgetToolkitTheme.greenLight[0],
     errorCardTextColor: _$WidgetToolkitTheme.errorCardTextColor[0],
-    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[0],
     bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[0],
     messagePanelBackgroundColor:
         _$WidgetToolkitTheme.messagePanelBackgroundColor[0],
@@ -350,8 +355,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[0],
     outlineButtonTextColorDisabled:
         _$WidgetToolkitTheme.outlineButtonTextColorDisabled[0],
+    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[0],
     bottomSheetCloseButtonPadding:
         _$WidgetToolkitTheme.bottomSheetCloseButtonPadding[0],
+    bottomSheetContentPadding:
+        _$WidgetToolkitTheme.bottomSheetContentPadding[0],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[0],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[0],
@@ -363,6 +371,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     spacingXSS: _$WidgetToolkitTheme.spacingXSS[0],
     spacingS: _$WidgetToolkitTheme.spacingS[0],
     spacingM: _$WidgetToolkitTheme.spacingM[0],
+    spacingL: _$WidgetToolkitTheme.spacingL[0],
     spacingXL: _$WidgetToolkitTheme.spacingXL[0],
     spacingXXL: _$WidgetToolkitTheme.spacingXXL[0],
     spacingXXXXL1: _$WidgetToolkitTheme.spacingXXXXL1[0],
@@ -370,6 +379,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.textButtonIconRightPadding[0],
     textButtonPadding: _$WidgetToolkitTheme.textButtonPadding[0],
     appBarTextButtonPadding: _$WidgetToolkitTheme.appBarTextButtonPadding[0],
+    bottomSheetBottomPadding: _$WidgetToolkitTheme.bottomSheetBottomPadding[0],
     checkIcon: _$WidgetToolkitTheme.checkIcon[0],
     checkCircleIcon: _$WidgetToolkitTheme.checkCircleIcon[0],
     closeIcon: _$WidgetToolkitTheme.closeIcon[0],
@@ -421,7 +431,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     blueLight: _$WidgetToolkitTheme.blueLight[1],
     greenLight: _$WidgetToolkitTheme.greenLight[1],
     errorCardTextColor: _$WidgetToolkitTheme.errorCardTextColor[1],
-    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[1],
     bottomSheetBarrierColor: _$WidgetToolkitTheme.bottomSheetBarrierColor[1],
     messagePanelBackgroundColor:
         _$WidgetToolkitTheme.messagePanelBackgroundColor[1],
@@ -497,8 +506,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     outlineButtonTextColor: _$WidgetToolkitTheme.outlineButtonTextColor[1],
     outlineButtonTextColorDisabled:
         _$WidgetToolkitTheme.outlineButtonTextColorDisabled[1],
+    bottomSheetHeaderPadding: _$WidgetToolkitTheme.bottomSheetHeaderPadding[1],
     bottomSheetCloseButtonPadding:
         _$WidgetToolkitTheme.bottomSheetCloseButtonPadding[1],
+    bottomSheetContentPadding:
+        _$WidgetToolkitTheme.bottomSheetContentPadding[1],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[1],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[1],
@@ -510,6 +522,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     spacingXSS: _$WidgetToolkitTheme.spacingXSS[1],
     spacingS: _$WidgetToolkitTheme.spacingS[1],
     spacingM: _$WidgetToolkitTheme.spacingM[1],
+    spacingL: _$WidgetToolkitTheme.spacingL[1],
     spacingXL: _$WidgetToolkitTheme.spacingXL[1],
     spacingXXL: _$WidgetToolkitTheme.spacingXXL[1],
     spacingXXXXL1: _$WidgetToolkitTheme.spacingXXXXL1[1],
@@ -517,6 +530,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.textButtonIconRightPadding[1],
     textButtonPadding: _$WidgetToolkitTheme.textButtonPadding[1],
     appBarTextButtonPadding: _$WidgetToolkitTheme.appBarTextButtonPadding[1],
+    bottomSheetBottomPadding: _$WidgetToolkitTheme.bottomSheetBottomPadding[1],
     checkIcon: _$WidgetToolkitTheme.checkIcon[1],
     checkCircleIcon: _$WidgetToolkitTheme.checkCircleIcon[1],
     closeIcon: _$WidgetToolkitTheme.closeIcon[1],
@@ -563,7 +577,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? blueLight,
     Color? greenLight,
     Color? errorCardTextColor,
-    EdgeInsets? bottomSheetHeaderPadding,
     Color? bottomSheetBarrierColor,
     Color? messagePanelBackgroundColor,
     Color? bottomSheetLineColor,
@@ -619,7 +632,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? outlineButtonPressedColor,
     Color? outlineButtonTextColor,
     Color? outlineButtonTextColorDisabled,
+    EdgeInsets? bottomSheetHeaderPadding,
     EdgeInsets? bottomSheetCloseButtonPadding,
+    EdgeInsets? bottomSheetContentPadding,
     EdgeInsets? messagePanelErrorEdgeInsets,
     EdgeInsets? smallEdgeInsets,
     EdgeInsets? mediumEdgeInsets,
@@ -630,12 +645,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     double? spacingXSS,
     double? spacingS,
     double? spacingM,
+    double? spacingL,
     double? spacingXL,
     double? spacingXXL,
     double? spacingXXXXL1,
     double? textButtonIconRightPadding,
     double? textButtonPadding,
     double? appBarTextButtonPadding,
+    double? bottomSheetBottomPadding,
     SvgFile? checkIcon,
     SvgFile? checkCircleIcon,
     SvgFile? closeIcon,
@@ -693,8 +710,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       blueLight: blueLight ?? this.blueLight,
       greenLight: greenLight ?? this.greenLight,
       errorCardTextColor: errorCardTextColor ?? this.errorCardTextColor,
-      bottomSheetHeaderPadding:
-          bottomSheetHeaderPadding ?? this.bottomSheetHeaderPadding,
       bottomSheetBarrierColor:
           bottomSheetBarrierColor ?? this.bottomSheetBarrierColor,
       messagePanelBackgroundColor:
@@ -784,8 +799,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           outlineButtonTextColor ?? this.outlineButtonTextColor,
       outlineButtonTextColorDisabled:
           outlineButtonTextColorDisabled ?? this.outlineButtonTextColorDisabled,
+      bottomSheetHeaderPadding:
+          bottomSheetHeaderPadding ?? this.bottomSheetHeaderPadding,
       bottomSheetCloseButtonPadding:
           bottomSheetCloseButtonPadding ?? this.bottomSheetCloseButtonPadding,
+      bottomSheetContentPadding:
+          bottomSheetContentPadding ?? this.bottomSheetContentPadding,
       messagePanelErrorEdgeInsets:
           messagePanelErrorEdgeInsets ?? this.messagePanelErrorEdgeInsets,
       smallEdgeInsets: smallEdgeInsets ?? this.smallEdgeInsets,
@@ -798,6 +817,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       spacingXSS: spacingXSS ?? this.spacingXSS,
       spacingS: spacingS ?? this.spacingS,
       spacingM: spacingM ?? this.spacingM,
+      spacingL: spacingL ?? this.spacingL,
       spacingXL: spacingXL ?? this.spacingXL,
       spacingXXL: spacingXXL ?? this.spacingXXL,
       spacingXXXXL1: spacingXXXXL1 ?? this.spacingXXXXL1,
@@ -806,6 +826,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       textButtonPadding: textButtonPadding ?? this.textButtonPadding,
       appBarTextButtonPadding:
           appBarTextButtonPadding ?? this.appBarTextButtonPadding,
+      bottomSheetBottomPadding:
+          bottomSheetBottomPadding ?? this.bottomSheetBottomPadding,
       checkIcon: checkIcon ?? this.checkIcon,
       checkCircleIcon: checkCircleIcon ?? this.checkCircleIcon,
       closeIcon: closeIcon ?? this.closeIcon,
@@ -879,8 +901,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       greenLight: Color.lerp(greenLight, other.greenLight, t)!,
       errorCardTextColor:
           Color.lerp(errorCardTextColor, other.errorCardTextColor, t)!,
-      bottomSheetHeaderPadding:
-          t < 0.5 ? bottomSheetHeaderPadding : other.bottomSheetHeaderPadding,
       bottomSheetBarrierColor: Color.lerp(
           bottomSheetBarrierColor, other.bottomSheetBarrierColor, t)!,
       messagePanelBackgroundColor: Color.lerp(
@@ -988,9 +1008,13 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(outlineButtonTextColor, other.outlineButtonTextColor, t)!,
       outlineButtonTextColorDisabled: Color.lerp(outlineButtonTextColorDisabled,
           other.outlineButtonTextColorDisabled, t)!,
+      bottomSheetHeaderPadding:
+          t < 0.5 ? bottomSheetHeaderPadding : other.bottomSheetHeaderPadding,
       bottomSheetCloseButtonPadding: t < 0.5
           ? bottomSheetCloseButtonPadding
           : other.bottomSheetCloseButtonPadding,
+      bottomSheetContentPadding:
+          t < 0.5 ? bottomSheetContentPadding : other.bottomSheetContentPadding,
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,
@@ -1004,6 +1028,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
       spacingM: t < 0.5 ? spacingM : other.spacingM,
+      spacingL: t < 0.5 ? spacingL : other.spacingL,
       spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
       spacingXXL: t < 0.5 ? spacingXXL : other.spacingXXL,
       spacingXXXXL1: t < 0.5 ? spacingXXXXL1 : other.spacingXXXXL1,
@@ -1013,6 +1038,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       textButtonPadding: t < 0.5 ? textButtonPadding : other.textButtonPadding,
       appBarTextButtonPadding:
           t < 0.5 ? appBarTextButtonPadding : other.appBarTextButtonPadding,
+      bottomSheetBottomPadding:
+          t < 0.5 ? bottomSheetBottomPadding : other.bottomSheetBottomPadding,
       checkIcon: t < 0.5 ? checkIcon : other.checkIcon,
       checkCircleIcon: t < 0.5 ? checkCircleIcon : other.checkCircleIcon,
       closeIcon: t < 0.5 ? closeIcon : other.closeIcon,
@@ -1079,7 +1106,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(blueLight, other.blueLight) &&
             const DeepCollectionEquality().equals(greenLight, other.greenLight) &&
             const DeepCollectionEquality().equals(errorCardTextColor, other.errorCardTextColor) &&
-            const DeepCollectionEquality().equals(bottomSheetHeaderPadding, other.bottomSheetHeaderPadding) &&
             const DeepCollectionEquality().equals(bottomSheetBarrierColor, other.bottomSheetBarrierColor) &&
             const DeepCollectionEquality().equals(messagePanelBackgroundColor, other.messagePanelBackgroundColor) &&
             const DeepCollectionEquality().equals(bottomSheetLineColor, other.bottomSheetLineColor) &&
@@ -1135,7 +1161,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(outlineButtonPressedColor, other.outlineButtonPressedColor) &&
             const DeepCollectionEquality().equals(outlineButtonTextColor, other.outlineButtonTextColor) &&
             const DeepCollectionEquality().equals(outlineButtonTextColorDisabled, other.outlineButtonTextColorDisabled) &&
+            const DeepCollectionEquality().equals(bottomSheetHeaderPadding, other.bottomSheetHeaderPadding) &&
             const DeepCollectionEquality().equals(bottomSheetCloseButtonPadding, other.bottomSheetCloseButtonPadding) &&
+            const DeepCollectionEquality().equals(bottomSheetContentPadding, other.bottomSheetContentPadding) &&
             const DeepCollectionEquality().equals(messagePanelErrorEdgeInsets, other.messagePanelErrorEdgeInsets) &&
             const DeepCollectionEquality().equals(smallEdgeInsets, other.smallEdgeInsets) &&
             const DeepCollectionEquality().equals(mediumEdgeInsets, other.mediumEdgeInsets) &&
@@ -1146,12 +1174,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(spacingXSS, other.spacingXSS) &&
             const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
             const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
+            const DeepCollectionEquality().equals(spacingL, other.spacingL) &&
             const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
             const DeepCollectionEquality().equals(spacingXXL, other.spacingXXL) &&
             const DeepCollectionEquality().equals(spacingXXXXL1, other.spacingXXXXL1) &&
             const DeepCollectionEquality().equals(textButtonIconRightPadding, other.textButtonIconRightPadding) &&
             const DeepCollectionEquality().equals(textButtonPadding, other.textButtonPadding) &&
             const DeepCollectionEquality().equals(appBarTextButtonPadding, other.appBarTextButtonPadding) &&
+            const DeepCollectionEquality().equals(bottomSheetBottomPadding, other.bottomSheetBottomPadding) &&
             const DeepCollectionEquality().equals(checkIcon, other.checkIcon) &&
             const DeepCollectionEquality().equals(checkCircleIcon, other.checkCircleIcon) &&
             const DeepCollectionEquality().equals(closeIcon, other.closeIcon) &&
@@ -1195,7 +1225,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(blueLight),
       const DeepCollectionEquality().hash(greenLight),
       const DeepCollectionEquality().hash(errorCardTextColor),
-      const DeepCollectionEquality().hash(bottomSheetHeaderPadding),
       const DeepCollectionEquality().hash(bottomSheetBarrierColor),
       const DeepCollectionEquality().hash(messagePanelBackgroundColor),
       const DeepCollectionEquality().hash(bottomSheetLineColor),
@@ -1251,7 +1280,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(outlineButtonPressedColor),
       const DeepCollectionEquality().hash(outlineButtonTextColor),
       const DeepCollectionEquality().hash(outlineButtonTextColorDisabled),
+      const DeepCollectionEquality().hash(bottomSheetHeaderPadding),
       const DeepCollectionEquality().hash(bottomSheetCloseButtonPadding),
+      const DeepCollectionEquality().hash(bottomSheetContentPadding),
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
       const DeepCollectionEquality().hash(smallEdgeInsets),
       const DeepCollectionEquality().hash(mediumEdgeInsets),
@@ -1262,12 +1293,14 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(spacingXSS),
       const DeepCollectionEquality().hash(spacingS),
       const DeepCollectionEquality().hash(spacingM),
+      const DeepCollectionEquality().hash(spacingL),
       const DeepCollectionEquality().hash(spacingXL),
       const DeepCollectionEquality().hash(spacingXXL),
       const DeepCollectionEquality().hash(spacingXXXXL1),
       const DeepCollectionEquality().hash(textButtonIconRightPadding),
       const DeepCollectionEquality().hash(textButtonPadding),
       const DeepCollectionEquality().hash(appBarTextButtonPadding),
+      const DeepCollectionEquality().hash(bottomSheetBottomPadding),
       const DeepCollectionEquality().hash(checkIcon),
       const DeepCollectionEquality().hash(checkCircleIcon),
       const DeepCollectionEquality().hash(closeIcon),

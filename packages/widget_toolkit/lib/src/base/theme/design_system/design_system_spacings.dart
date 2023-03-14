@@ -38,11 +38,7 @@ class DesignSystemSpacings {
 
   /// region EdgeInsets
 
-  final EdgeInsets titleEdgeInsets = const EdgeInsets.all(16);
-  final EdgeInsets mediumEdgeInsets = const EdgeInsets.all(12);
-  final EdgeInsets largeHorizontalEdgeInsets = const EdgeInsets.symmetric(
-    horizontal: 16,
-  );
+  final EdgeInsets mediumEdgeInsets = const EdgeInsets.symmetric(vertical: 12);
 
   /// endregion
 }

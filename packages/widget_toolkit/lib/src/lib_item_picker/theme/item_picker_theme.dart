@@ -10,8 +10,12 @@ class _$ItemPickerTheme {
   /// region ItemPickerPage
 
   static List<EdgeInsets> titlePadding = [
-    const EdgeInsets.only(bottom: 16, top: 20, left: 24),
-    const EdgeInsets.only(bottom: 16, top: 20, left: 24),
+    EdgeInsets.only(
+        bottom: WidgetToolkitDesignSystem.light().spacings.m,
+        left: WidgetToolkitDesignSystem.light().spacings.xs),
+    EdgeInsets.only(
+        bottom: WidgetToolkitDesignSystem.light().spacings.m,
+        left: WidgetToolkitDesignSystem.light().spacings.xs),
   ];
 
   static List<TextStyle> titleStyle = [
@@ -20,8 +24,18 @@ class _$ItemPickerTheme {
   ];
 
   static List<EdgeInsets> errorPadding = [
-    WidgetToolkitDesignSystem.light().spacings.largeHorizontalEdgeInsets,
-    WidgetToolkitDesignSystem.dark().spacings.largeHorizontalEdgeInsets,
+    EdgeInsets.zero,
+    EdgeInsets.zero,
+  ];
+
+  static List<EdgeInsets> contentListPadding = [
+    EdgeInsets.zero,
+    EdgeInsets.zero,
+  ];
+
+  static List<EdgeInsets> footerPadding = [
+    EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m),
+    EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m),
   ];
 
   /// endregion

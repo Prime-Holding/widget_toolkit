@@ -227,7 +227,6 @@ class TextFieldModalConfiguration extends ModalConfiguration {
   const TextFieldModalConfiguration(
       {bool safeAreaBottom = false,
       MainAxisAlignment? contentAlignment,
-      double? additionalBottomPadding,
       bool? fullScreen = false,
       bool haveOnlyOneSheet = true,
       bool showHeaderPill = true,
@@ -238,7 +237,6 @@ class TextFieldModalConfiguration extends ModalConfiguration {
       : super(
             safeAreaBottom: safeAreaBottom,
             contentAlignment: contentAlignment,
-            additionalBottomPadding: additionalBottomPadding,
             fullScreen: fullScreen,
             haveOnlyOneSheet: haveOnlyOneSheet,
             showHeaderPill: showHeaderPill,

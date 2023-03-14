@@ -100,11 +100,11 @@ class _ErrorModalContentState extends State<_ErrorModalContent> {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             if (widget.titleWidget != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),

@@ -69,7 +69,6 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
   const LanguagePickerModalConfiguration(
       {bool safeAreaBottom = true,
       MainAxisAlignment? contentAlignment,
-      double? additionalBottomPadding,
       bool? fullScreen = false,
       bool haveOnlyOneSheet = true,
       bool showHeaderPill = false,
@@ -80,7 +79,6 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
       : super(
             safeAreaBottom: safeAreaBottom,
             contentAlignment: contentAlignment,
-            additionalBottomPadding: additionalBottomPadding,
             fullScreen: fullScreen,
             haveOnlyOneSheet: haveOnlyOneSheet,
             showHeaderPill: showHeaderPill,
