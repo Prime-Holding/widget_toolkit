@@ -81,7 +81,7 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
             editAddressLocalizedStrings: editAddressLocalizedStrings,
             editAddressService: editAddressService,
             searchCountryCustomBuilders: searchCountryCustomBuilders,
-            editContactAddressErrorBuilder:editContactAddressErrorBuilder,
+            editContactAddressErrorBuilder: editContactAddressErrorBuilder,
             textFieldsModalConfiguration: textFieldsModalConfiguration,
             countryPickerModalConfiguration: countryPickerModalConfiguration),
       );
@@ -123,12 +123,12 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                       ),
                       if (!snapshot.hasData)
                         EditAddressForm.withDependencies<T>(
-                            context, addressModel, (addressModel) {
-                          return context
-                              .read<EditAddressBlocType>()
-                              .events
-                              .setAddress(addressModel);
-                        },
+                            context,
+                            addressModel,
+                            (addressModel) => context
+                                .read<EditAddressBlocType>()
+                                .events
+                                .setAddress(addressModel),
                             translateError: translateError,
                             editAddressLocalizedStrings:
                                 editAddressLocalizedStrings,

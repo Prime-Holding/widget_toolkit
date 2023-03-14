@@ -18,17 +18,13 @@ class CountryService<T> extends SearchPickerService<T> {
   final EditAddressService<T> editAddressService;
 
   @override
-  Future<List<T>> getItems() {
-    return editAddressService.getCountries();
-  }
+  Future<List<T>> getItems() => editAddressService.getCountries();
 
   @override
-  Future<List<T>> filteredListByName(List<T> list, String? searchParam) async {
-    return editAddressService.filteredCountriesByName(list, searchParam);
-  }
+  Future<List<T>> filteredListByName(List<T> list, String? searchParam) =>
+      editAddressService.filteredCountriesByName(list, searchParam);
 
   @override
-  List<T> getPlaceholderList() {
-    return editAddressService.getCountryPlaceholderList();
-  }
+  List<T> getPlaceholderList() =>
+      editAddressService.getCountryPlaceholderList();
 }

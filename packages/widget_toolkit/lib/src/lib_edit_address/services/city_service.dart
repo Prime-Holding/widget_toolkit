@@ -14,12 +14,10 @@ class CityService extends TextFieldValidator<String> {
   final EditAddressService editAddressService;
 
   @override
-  Future<String> validateOnSubmit(String text) {
-    return editAddressService.validateCityOnSubmit(text);
-  }
+  Future<String> validateOnSubmit(String text) =>
+      editAddressService.validateCityOnSubmit(text);
 
   @override
-  void validateOnType(String text) {
-    editAddressService.validateCityOnType(text);
-  }
+  void validateOnType(String text) =>
+      editAddressService.validateCityOnType(text);
 }
