@@ -153,6 +153,8 @@ class DesignSystemColors {
 
   final black = Colors.black;
 
+  final blueAccent = Colors.blueAccent;
+
   final gray = const Color(0xff9da2a6);
 
   final darkGray = const Color(0xff393E46);

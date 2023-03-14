@@ -253,6 +253,11 @@ class _$WidgetToolkitTheme {
     WidgetToolkitDesignSystem.dark().colors.lightGray,
   ];
 
+  static List<Color> filledButtonBackgroundColorPressed = [
+    WidgetToolkitDesignSystem.light().colors.blueAccent,
+    WidgetToolkitDesignSystem.dark().colors.blueAccent,
+  ];
+
   static List<Color> filledButtonTextColorDisabled = [
     WidgetToolkitDesignSystem.light().colors.gray,
     WidgetToolkitDesignSystem.dark().colors.gray,
