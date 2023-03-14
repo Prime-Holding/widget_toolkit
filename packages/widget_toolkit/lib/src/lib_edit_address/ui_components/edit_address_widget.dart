@@ -125,8 +125,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                             padding: context
                                 .editAddressTheme.editAddressWidgetPadding3,
                             child: ShimmerText(
-                              widget.localizedStrings
-                                      ?.cardFieldLabel ??
+                              widget.localizedStrings?.cardFieldLabel ??
                                   context.getEditAddressLocalizedStrings
                                       .cardFieldLabel,
                               style: context.editAddressTheme.captionBold
@@ -171,10 +170,10 @@ class _EditAddressWidgetState<T extends PickerItemModel>
               context,
               headerText: widget.localizedStrings?.headerTitle ??
                   context.getEditAddressLocalizedStrings.headerTitle,
-              permanentAddressContentMessage: widget.localizedStrings
-                      ?.permanentAddressContentMessage ??
-                  context.getEditAddressLocalizedStrings
-                      .permanentAddressContentMessage,
+              permanentAddressContentMessage:
+                  widget.localizedStrings?.permanentAddressContentMessage ??
+                      context.getEditAddressLocalizedStrings
+                          .permanentAddressContentMessage,
               configuration: widget.configuration,
             );
       case UserProfileCardTypes.mailingAddress:
