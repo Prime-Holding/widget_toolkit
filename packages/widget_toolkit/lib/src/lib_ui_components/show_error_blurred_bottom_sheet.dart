@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../base/theme/widget_toolkit_theme.dart';
 import 'buttons/button_state.dart';
 import 'error_card_widget.dart';
 import 'show_blurred_bottom_sheet.dart';
@@ -99,38 +100,34 @@ class _ErrorModalContentState extends State<_ErrorModalContent> {
   late bool isButtonLoading = false;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // const SizedBox(height: 10),
-            if (widget.titleWidget != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: widget.titleWidget!,
-              ),
-            ErrorCardWidget(
-              text: widget.error,
-              header: widget.messageHeader,
-              retryButtonVisible: widget.tryAgainCallback != null,
-              onRetryPressed: () async {
-                setState(() {
-                  isButtonLoading = true;
-                });
-                await widget.tryAgainCallback?.call(context);
-                setState(() {
-                  isButtonLoading = false;
-                });
-              },
-              retryButtonState: widget.retryButtonState ??
-                  (isButtonLoading
-                      ? ButtonStateModel.loading
-                      : ButtonStateModel.enabled),
-              retryButtonText: widget.retryButtonText,
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.titleWidget != null)
+            Padding(
+              padding: context.widgetToolkitTheme.errorModalContentTitleInsets,
+              child: widget.titleWidget!,
             ),
-            if (widget.footerWidget != null) widget.footerWidget!,
-          ],
-        ),
+          ErrorCardWidget(
+            text: widget.error,
+            header: widget.messageHeader,
+            retryButtonVisible: widget.tryAgainCallback != null,
+            onRetryPressed: () async {
+              setState(() {
+                isButtonLoading = true;
+              });
+              await widget.tryAgainCallback?.call(context);
+              setState(() {
+                isButtonLoading = false;
+              });
+            },
+            retryButtonState: widget.retryButtonState ??
+                (isButtonLoading
+                    ? ButtonStateModel.loading
+                    : ButtonStateModel.enabled),
+            retryButtonText: widget.retryButtonText,
+          ),
+          if (widget.footerWidget != null) widget.footerWidget!,
+        ],
       );
 }

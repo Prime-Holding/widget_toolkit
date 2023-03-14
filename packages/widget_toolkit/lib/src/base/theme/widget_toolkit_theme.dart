@@ -472,6 +472,11 @@ class _$WidgetToolkitTheme {
     const EdgeInsets.only(bottom: 20),
   ];
 
+  static List<EdgeInsets> errorModalContentTitleInsets = [
+    const EdgeInsets.only(bottom: 8),
+    const EdgeInsets.only(bottom: 8),
+  ];
+
   static List<EdgeInsets> smallEdgeInsets = [
     const EdgeInsets.all(12),
     const EdgeInsets.all(12),

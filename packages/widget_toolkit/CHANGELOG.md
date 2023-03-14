@@ -1,3 +1,11 @@
+## [0.0.1-dev7] - TBE
+- Removed params `ModalConfiguration(additionalBottomPadding:)`
+- Removed params `EditAddressConfiguration(additionalBottomPadding:)`
+- Removed params `ItemPickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `LanguagePickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `SearchPickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `TextFieldModalConfiguration(additionalBottomPadding:)`
+- 
 ## [0.0.1-dev6]
 - Removed params `showEditAddressBottomSheet(cityErrorMapper: , addressErrorMapper)`
 - Added params `showEditAddressBottomSheet(Function(Object error) translateError)`

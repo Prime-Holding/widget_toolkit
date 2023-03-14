@@ -98,6 +98,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.bottomSheetCloseButtonPadding,
     required this.bottomSheetContentPadding,
     required this.messagePanelErrorEdgeInsets,
+    required this.errorModalContentTitleInsets,
     required this.smallEdgeInsets,
     required this.mediumEdgeInsets,
     required this.largeEdgeInsets,
@@ -213,6 +214,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final EdgeInsets bottomSheetCloseButtonPadding;
   final EdgeInsets bottomSheetContentPadding;
   final EdgeInsets messagePanelErrorEdgeInsets;
+  final EdgeInsets errorModalContentTitleInsets;
   final EdgeInsets smallEdgeInsets;
   final EdgeInsets mediumEdgeInsets;
   final EdgeInsets largeEdgeInsets;
@@ -362,6 +364,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.bottomSheetContentPadding[0],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[0],
+    errorModalContentTitleInsets:
+        _$WidgetToolkitTheme.errorModalContentTitleInsets[0],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[0],
     mediumEdgeInsets: _$WidgetToolkitTheme.mediumEdgeInsets[0],
     largeEdgeInsets: _$WidgetToolkitTheme.largeEdgeInsets[0],
@@ -513,6 +517,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
         _$WidgetToolkitTheme.bottomSheetContentPadding[1],
     messagePanelErrorEdgeInsets:
         _$WidgetToolkitTheme.messagePanelErrorEdgeInsets[1],
+    errorModalContentTitleInsets:
+        _$WidgetToolkitTheme.errorModalContentTitleInsets[1],
     smallEdgeInsets: _$WidgetToolkitTheme.smallEdgeInsets[1],
     mediumEdgeInsets: _$WidgetToolkitTheme.mediumEdgeInsets[1],
     largeEdgeInsets: _$WidgetToolkitTheme.largeEdgeInsets[1],
@@ -636,6 +642,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     EdgeInsets? bottomSheetCloseButtonPadding,
     EdgeInsets? bottomSheetContentPadding,
     EdgeInsets? messagePanelErrorEdgeInsets,
+    EdgeInsets? errorModalContentTitleInsets,
     EdgeInsets? smallEdgeInsets,
     EdgeInsets? mediumEdgeInsets,
     EdgeInsets? largeEdgeInsets,
@@ -807,6 +814,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           bottomSheetContentPadding ?? this.bottomSheetContentPadding,
       messagePanelErrorEdgeInsets:
           messagePanelErrorEdgeInsets ?? this.messagePanelErrorEdgeInsets,
+      errorModalContentTitleInsets:
+          errorModalContentTitleInsets ?? this.errorModalContentTitleInsets,
       smallEdgeInsets: smallEdgeInsets ?? this.smallEdgeInsets,
       mediumEdgeInsets: mediumEdgeInsets ?? this.mediumEdgeInsets,
       largeEdgeInsets: largeEdgeInsets ?? this.largeEdgeInsets,
@@ -1018,6 +1027,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,
+      errorModalContentTitleInsets: t < 0.5
+          ? errorModalContentTitleInsets
+          : other.errorModalContentTitleInsets,
       smallEdgeInsets: t < 0.5 ? smallEdgeInsets : other.smallEdgeInsets,
       mediumEdgeInsets: t < 0.5 ? mediumEdgeInsets : other.mediumEdgeInsets,
       largeEdgeInsets: t < 0.5 ? largeEdgeInsets : other.largeEdgeInsets,
@@ -1165,6 +1177,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(bottomSheetCloseButtonPadding, other.bottomSheetCloseButtonPadding) &&
             const DeepCollectionEquality().equals(bottomSheetContentPadding, other.bottomSheetContentPadding) &&
             const DeepCollectionEquality().equals(messagePanelErrorEdgeInsets, other.messagePanelErrorEdgeInsets) &&
+            const DeepCollectionEquality().equals(errorModalContentTitleInsets, other.errorModalContentTitleInsets) &&
             const DeepCollectionEquality().equals(smallEdgeInsets, other.smallEdgeInsets) &&
             const DeepCollectionEquality().equals(mediumEdgeInsets, other.mediumEdgeInsets) &&
             const DeepCollectionEquality().equals(largeEdgeInsets, other.largeEdgeInsets) &&
@@ -1284,6 +1297,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(bottomSheetCloseButtonPadding),
       const DeepCollectionEquality().hash(bottomSheetContentPadding),
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
+      const DeepCollectionEquality().hash(errorModalContentTitleInsets),
       const DeepCollectionEquality().hash(smallEdgeInsets),
       const DeepCollectionEquality().hash(mediumEdgeInsets),
       const DeepCollectionEquality().hash(largeEdgeInsets),
