@@ -50,9 +50,7 @@ abstract class EditAddressService<T> {
   }
 
   Future<String> validateCityOnSubmit(String text) async {
-    await Future.delayed(const Duration(seconds: 1));
     if (text.trim().isEmpty) {
-      await Future.delayed(const Duration(seconds: 1));
       throw Exception('A value should be provided');
     }
     return text;
@@ -60,7 +58,6 @@ abstract class EditAddressService<T> {
 
   Future<String> validateStreetOnSubmit(String text) async {
     if (text.trim().isEmpty) {
-      await Future.delayed(const Duration(seconds: 1));
       throw Exception('A value should be provided');
     }
     return text;
