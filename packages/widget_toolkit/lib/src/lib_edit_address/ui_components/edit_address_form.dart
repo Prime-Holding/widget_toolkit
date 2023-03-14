@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../edit_address.dart';
 import '../../../models.dart';
@@ -60,8 +61,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                       bloc.events.saveCountry();
                     },
                     modalConfiguration: countryPickerModalConfiguration,
-                    searchCountryService:
-                        CountryService(editAddressService: editAddressService),
+                    searchCountryService: context.read<CountryService<T>>(),
                     countrySearchPickerTitle:
                         editAddressLocalizedStrings?.countrySearchPickerTitle ??
                             context.getEditAddressLocalizedStrings
@@ -96,7 +96,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     context.getEditAddressLocalizedStrings.cityEmptyLabel,
                 value: address.data?.city,
                 onChanged: (city) => bloc.events.setCity(city),
-                validator: CityService(editAddressService: editAddressService),
+                validator: context.read<CityService>(),
                 editFieldType: EditFieldType.editfield,
                 modalConfiguration: textFieldsModalConfiguration,
               ),
@@ -114,8 +114,7 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
                     context.getEditAddressLocalizedStrings.addressEmptyLabel,
                 value: address.data?.streetAddress,
                 onChanged: (street) => bloc.events.setStreet(street),
-                validator:
-                    StreetService(editAddressService: editAddressService),
+                validator: context.read<StreetService>(),
                 editFieldType: EditFieldType.editfield,
                 modalConfiguration: textFieldsModalConfiguration,
               ),
