@@ -10,8 +10,8 @@ part 'language_picker_theme.tailor.dart';
 class _$LanguagePickerTheme {
   /// region EdgeInsets
   static List<EdgeInsets> changeLanguagePadding = [
-    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-    const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    EdgeInsets.zero,
+    EdgeInsets.zero,
   ];
 
   static List<EdgeInsets> chooseLanguagePadding = [

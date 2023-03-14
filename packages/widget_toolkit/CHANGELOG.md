@@ -1,10 +1,16 @@
-## [0.0.1-dev6]
+## [0.0.1-dev6] - TBE
 - Removed params `showEditAddressBottomSheet(cityErrorMapper: , addressErrorMapper)`
 - Added params `showEditAddressBottomSheet(Function(Object error) translateError)`
 - Removed params `EditAddressWidget(cityErrorMapper:, addressErrorMapper)`
 - Added params `EditAddressWidget(Function(Object error) translateError)`
 - Removed params `TextFieldDialog(errorMapper: )`
 - Added params `TextFieldDialog(Function(Object error) translateError)`
+- Removed params `ModalConfiguration(additionalBottomPadding:)`
+- Removed params `EditAddressConfiguration(additionalBottomPadding:)`
+- Removed params `ItemPickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `LanguagePickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `SearchPickerModalConfiguration(additionalBottomPadding:)`
+- Removed params `TextFieldModalConfiguration(additionalBottomPadding:)`
 
 ## [0.0.1-dev5]
 - Documentation improvements
@@ -34,11 +40,11 @@
 
 ## [0.0.1-dev1]
 - Initial release of the following libraries
-  -  [Shimmer](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/shimmer.md)
-  -  [Item Picker](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/item-picker.md)
-  -  [Open Url](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/open-url.md)
-  -  [Language Picker](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/language-picker.md)
-  -  [UI Components](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/ui-components.md)
-  -  [Edit Address](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/edit-address.md)
-  -  [Text Field Dialog](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/text-field-dialog.md)
-  -  [Search Picker](https://github.com/Prime-Holding/widget_toolkit/packages/widget_toolkit/tree/master/doc/search-picker.md)
+  -  [Shimmer](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/shimmer.md)
+  -  [Item Picker](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/item-picker.md)
+  -  [Open Url](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/open-url.md)
+  -  [Language Picker](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/language-picker.md)
+  -  [UI Components](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/ui-components.md)
+  -  [Edit Address](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/edit-address.md)
+  -  [Text Field Dialog](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/text-field-dialog.md)
+  -  [Search Picker](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/doc/search-picker.md)

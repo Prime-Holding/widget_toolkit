@@ -161,10 +161,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
           ),
           buildSuccess: (context, list, bloc) => list.isEmpty
               ? Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 16,
-                  ),
+                  padding: context.itemPickerTheme.contentListPadding,
                   child: widget.emptyBuilder?.call() ??
 
                       /// TODO (david.djordjevic): Find a way to pass an error message directly
@@ -202,7 +199,6 @@ class _ItemPickerPageState<T extends PickerItemModel>
         key: Key('appItemSizedBox-$height'),
         height: height,
         child: ListView.separated(
-          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemCount: isLoading ? widget.loadingItemsCount : list.length,
           itemBuilder: (context, index) {
@@ -231,26 +227,20 @@ class _ItemPickerPageState<T extends PickerItemModel>
 
   Widget _buildFooterButtons({bool isLoading = false}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: context.itemPickerTheme.footerPadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.footerBuilder != null) widget.footerBuilder!(context),
           if (widget.isMultiSelect)
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 12,
-                bottom: 2,
-              ),
-              child: GradientFillButton(
-                elevation: 0,
-                state: _saveState(isLoading: isLoading),
-                text: widget.saveButtonText ?? 'Save',
-                onPressed: () =>
-                    _saveState(isLoading: isLoading) == ButtonStateModel.enabled
-                        ? widget.onTap(selectedItems)
-                        : null,
-              ),
+            GradientFillButton(
+              elevation: 0,
+              state: _saveState(isLoading: isLoading),
+              text: widget.saveButtonText ?? 'Save',
+              onPressed: () =>
+                  _saveState(isLoading: isLoading) == ButtonStateModel.enabled
+                      ? widget.onTap(selectedItems)
+                      : null,
             ),
         ],
       ),

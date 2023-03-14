@@ -69,7 +69,6 @@ class SearchPickerModalConfiguration extends ModalConfiguration {
   const SearchPickerModalConfiguration(
       {bool safeAreaBottom = true,
       MainAxisAlignment? contentAlignment,
-      double? additionalBottomPadding,
       bool? fullScreen = true,
       bool haveOnlyOneSheet = true,
       bool showHeaderPill = true,
@@ -80,7 +79,6 @@ class SearchPickerModalConfiguration extends ModalConfiguration {
       : super(
             safeAreaBottom: safeAreaBottom,
             contentAlignment: contentAlignment,
-            additionalBottomPadding: additionalBottomPadding,
             fullScreen: fullScreen,
             haveOnlyOneSheet: haveOnlyOneSheet,
             showHeaderPill: showHeaderPill,

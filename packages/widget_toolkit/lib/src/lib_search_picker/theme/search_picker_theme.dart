@@ -11,15 +11,11 @@ class _$SearchPickerTheme {
 
   static List<EdgeInsets> titlePadding = [
     EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.light().spacings.xs,
-      top: WidgetToolkitDesignSystem.light().spacings.l,
-      left: WidgetToolkitDesignSystem.light().spacings.xl,
-    ),
+        bottom: WidgetToolkitDesignSystem.light().spacings.xs,
+        left: WidgetToolkitDesignSystem.light().spacings.xs),
     EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.light().spacings.xs,
-      top: WidgetToolkitDesignSystem.light().spacings.l,
-      left: WidgetToolkitDesignSystem.light().spacings.xl,
-    ),
+        bottom: WidgetToolkitDesignSystem.light().spacings.xs,
+        left: WidgetToolkitDesignSystem.light().spacings.xs),
   ];
 
   static List<TextStyle> titleStyle = [

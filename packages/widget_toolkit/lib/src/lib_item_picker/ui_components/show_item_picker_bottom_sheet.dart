@@ -94,7 +94,6 @@ class ItemPickerModalConfiguration extends ModalConfiguration {
   const ItemPickerModalConfiguration(
       {bool safeAreaBottom = false,
       MainAxisAlignment? contentAlignment,
-      double? additionalBottomPadding,
       bool? fullScreen = false,
       bool haveOnlyOneSheet = true,
       bool showHeaderPill = true,
@@ -105,7 +104,6 @@ class ItemPickerModalConfiguration extends ModalConfiguration {
       : super(
             safeAreaBottom: safeAreaBottom,
             contentAlignment: contentAlignment,
-            additionalBottomPadding: additionalBottomPadding,
             fullScreen: fullScreen,
             haveOnlyOneSheet: haveOnlyOneSheet,
             showHeaderPill: showHeaderPill,

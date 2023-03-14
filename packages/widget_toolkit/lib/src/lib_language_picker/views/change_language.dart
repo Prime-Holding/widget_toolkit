@@ -67,20 +67,18 @@ void showChangeLanguageBottomSheet({
 
 class LanguagePickerModalConfiguration extends ModalConfiguration {
   const LanguagePickerModalConfiguration(
-      {bool safeAreaBottom = true,
+      {bool safeAreaBottom = false,
       MainAxisAlignment? contentAlignment,
-      double? additionalBottomPadding,
       bool? fullScreen = false,
       bool haveOnlyOneSheet = true,
       bool showHeaderPill = false,
       bool showCloseButton = false,
       double? heightFactor,
-      bool dialogHasBottomPadding = true,
+      bool dialogHasBottomPadding = false,
       bool isDismissible = true})
       : super(
             safeAreaBottom: safeAreaBottom,
             contentAlignment: contentAlignment,
-            additionalBottomPadding: additionalBottomPadding,
             fullScreen: fullScreen,
             haveOnlyOneSheet: haveOnlyOneSheet,
             showHeaderPill: showHeaderPill,

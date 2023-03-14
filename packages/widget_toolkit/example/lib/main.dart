@@ -186,12 +186,9 @@ class CommonComponentsPage extends StatelessWidget {
                 text: 'Open modal sheet',
                 onPressed: () => showBlurredBottomSheet(
                   context: context,
-                  builder: (BuildContext context) => const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    child: MessagePanelWidget(
-                        message: 'This is an informative message',
-                        messageState: MessagePanelState.informative),
-                  ),
+                  builder: (BuildContext context) => const MessagePanelWidget(
+                      message: 'This is an informative message',
+                      messageState: MessagePanelState.informative),
                 ),
               ),
             ),
@@ -318,13 +315,10 @@ class PickersPage extends StatelessWidget {
                       onItemTap: (item) =>
                           updateFunction.call(item != null ? [item] : []),
                       service: SearchService(SearchCountryRepository()),
-                      emptyBuilder: () => const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: MessagePanelWidget(
-                              message:
-                                  'There is no results for the searched query!',
-                              messageState: MessagePanelState.neutral,
-                            ),
+                      emptyBuilder: () => const MessagePanelWidget(
+                            message:
+                                'There is no results for the searched query!',
+                            messageState: MessagePanelState.neutral,
                           ),
                       modalConfiguration: const SearchPickerModalConfiguration(
                           safeAreaBottom: true)),
