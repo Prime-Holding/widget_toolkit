@@ -1,4 +1,4 @@
-import '../../../edit_address.dart';
+import '../../../widget_toolkit.dart';
 
 /// The class provides API for saving the address, editing the values of the address:
 /// city name and street name,fetching and filtering the countries list for the address.
@@ -51,27 +51,27 @@ abstract class EditAddressService<T> {
 
   Future<String> validateCityOnSubmit(String text) async {
     if (text.trim().isEmpty) {
-      throw Exception('A value should be provided');
+      throw GenericErrorModel(customMessage:'A value should be provided');
     }
     return text;
   }
 
   Future<String> validateStreetOnSubmit(String text) async {
     if (text.trim().isEmpty) {
-      throw Exception('A value should be provided');
+      throw GenericErrorModel(customMessage: 'A value should be provided');
     }
     return text;
   }
 
   void validateCityOnType(String text) {
     if (text.trim().isEmpty) {
-      throw Exception('A value should be provided');
+      throw GenericErrorModel(customMessage:'A value should be provided');
     }
   }
 
   void validateStreetOnType(String text) {
     if (text.trim().isEmpty) {
-      throw Exception('A value should be provided');
+      throw GenericErrorModel(customMessage:'A value should be provided');
     }
   }
 }
