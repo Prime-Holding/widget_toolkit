@@ -238,15 +238,6 @@ class _$WidgetToolkitTheme {
     WidgetToolkitDesignSystem.light().colors.gray,
     WidgetToolkitDesignSystem.dark().colors.gray,
   ];
-  static List<Color> gradientRedStart = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedStart,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedStart,
-  ];
-
-  static List<Color> gradientRedEnd = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
-  ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
     WidgetToolkitDesignSystem.light().colors.lightGray,
@@ -357,11 +348,6 @@ class _$WidgetToolkitTheme {
   static List<Color> activeGradientColorEnd = [
     WidgetToolkitDesignSystem.light().colors.lightGray,
     WidgetToolkitDesignSystem.dark().colors.lightGray,
-  ];
-
-  static List<Color> activeGradientRedEnd = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
   ];
 
   static List<Color> boxShadowColor = [

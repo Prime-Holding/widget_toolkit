@@ -192,9 +192,9 @@ class SelectLanguageItem extends StatelessWidget {
       state != ButtonStateModel.disabled
           ? LinearGradient(colors: [
               colorStyle?.activeGradientColorStart ??
-                  context.languagePickerTheme.languageGradientRedStart,
+                  context.languagePickerTheme.languageGradientStart,
               colorStyle?.activeGradientColorEnd ??
-                  context.languagePickerTheme.languageGradientRedEnd,
+                  context.languagePickerTheme.languageGradientEnd,
             ])
           : LinearGradient(colors: [
               context.languagePickerTheme.filledButtonBackgroundColorDisabled,

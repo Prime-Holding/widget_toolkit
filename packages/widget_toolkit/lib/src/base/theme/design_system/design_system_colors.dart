@@ -139,10 +139,6 @@ class DesignSystemColors {
 
   /// region General purpose colors
 
-  final gradientRedEnd = _HexColor('FFBFC1');
-
-  final gradientRedStart = _HexColor('D40E14');
-
   final textColorWhite = const Color(0xfffafafc);
 
   final transparent = const Color(0x00000000);
@@ -188,8 +184,6 @@ class DesignSystemColors {
   final orangeLight = const Color(0xffffe9d9);
 
   final darkBlue = const Color(0xff004f95);
-  //
-  // final disabledFilledButtonBackgroundColor = const Color(0xff9da2a6);
 
   final darkGreen = const Color(0xff008559);
 
