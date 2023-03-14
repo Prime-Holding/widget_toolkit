@@ -51,9 +51,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.descriptionThin,
     required this.errorTitle,
     required this.disabledFilledButtonBackgroundColor,
-    required this.gradientRedStart,
-    required this.gradientRedEnd,
     required this.filledButtonBackgroundColorDisabled,
+    required this.filledButtonBackgroundColorPressed,
     required this.filledButtonTextColorDisabled,
     required this.textButtonTextColorDisabled,
     required this.textButtonBackgroundColor,
@@ -75,7 +74,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     required this.black,
     required this.activeGradientColorStart,
     required this.activeGradientColorEnd,
-    required this.activeGradientRedEnd,
     required this.boxShadowColor,
     required this.red,
     required this.orange,
@@ -163,9 +161,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final TextStyle descriptionThin;
   final TextStyle errorTitle;
   final Color disabledFilledButtonBackgroundColor;
-  final Color gradientRedStart;
-  final Color gradientRedEnd;
   final Color filledButtonBackgroundColorDisabled;
+  final Color filledButtonBackgroundColorPressed;
   final Color filledButtonTextColorDisabled;
   final Color textButtonTextColorDisabled;
   final Color textButtonBackgroundColor;
@@ -187,7 +184,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
   final Color black;
   final Color activeGradientColorStart;
   final Color activeGradientColorEnd;
-  final Color activeGradientRedEnd;
   final Color boxShadowColor;
   final Color red;
   final Color orange;
@@ -289,10 +285,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     errorTitle: _$WidgetToolkitTheme.errorTitle[0],
     disabledFilledButtonBackgroundColor:
         _$WidgetToolkitTheme.disabledFilledButtonBackgroundColor[0],
-    gradientRedStart: _$WidgetToolkitTheme.gradientRedStart[0],
-    gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[0],
     filledButtonBackgroundColorDisabled:
         _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[0],
+    filledButtonBackgroundColorPressed:
+        _$WidgetToolkitTheme.filledButtonBackgroundColorPressed[0],
     filledButtonTextColorDisabled:
         _$WidgetToolkitTheme.filledButtonTextColorDisabled[0],
     textButtonTextColorDisabled:
@@ -323,7 +319,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     black: _$WidgetToolkitTheme.black[0],
     activeGradientColorStart: _$WidgetToolkitTheme.activeGradientColorStart[0],
     activeGradientColorEnd: _$WidgetToolkitTheme.activeGradientColorEnd[0],
-    activeGradientRedEnd: _$WidgetToolkitTheme.activeGradientRedEnd[0],
     boxShadowColor: _$WidgetToolkitTheme.boxShadowColor[0],
     red: _$WidgetToolkitTheme.red[0],
     orange: _$WidgetToolkitTheme.orange[0],
@@ -436,10 +431,10 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     errorTitle: _$WidgetToolkitTheme.errorTitle[1],
     disabledFilledButtonBackgroundColor:
         _$WidgetToolkitTheme.disabledFilledButtonBackgroundColor[1],
-    gradientRedStart: _$WidgetToolkitTheme.gradientRedStart[1],
-    gradientRedEnd: _$WidgetToolkitTheme.gradientRedEnd[1],
     filledButtonBackgroundColorDisabled:
         _$WidgetToolkitTheme.filledButtonBackgroundColorDisabled[1],
+    filledButtonBackgroundColorPressed:
+        _$WidgetToolkitTheme.filledButtonBackgroundColorPressed[1],
     filledButtonTextColorDisabled:
         _$WidgetToolkitTheme.filledButtonTextColorDisabled[1],
     textButtonTextColorDisabled:
@@ -470,7 +465,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     black: _$WidgetToolkitTheme.black[1],
     activeGradientColorStart: _$WidgetToolkitTheme.activeGradientColorStart[1],
     activeGradientColorEnd: _$WidgetToolkitTheme.activeGradientColorEnd[1],
-    activeGradientRedEnd: _$WidgetToolkitTheme.activeGradientRedEnd[1],
     boxShadowColor: _$WidgetToolkitTheme.boxShadowColor[1],
     red: _$WidgetToolkitTheme.red[1],
     orange: _$WidgetToolkitTheme.orange[1],
@@ -575,9 +569,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     TextStyle? descriptionThin,
     TextStyle? errorTitle,
     Color? disabledFilledButtonBackgroundColor,
-    Color? gradientRedStart,
-    Color? gradientRedEnd,
     Color? filledButtonBackgroundColorDisabled,
+    Color? filledButtonBackgroundColorPressed,
     Color? filledButtonTextColorDisabled,
     Color? textButtonTextColorDisabled,
     Color? textButtonBackgroundColor,
@@ -599,7 +592,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
     Color? black,
     Color? activeGradientColorStart,
     Color? activeGradientColorEnd,
-    Color? activeGradientRedEnd,
     Color? boxShadowColor,
     Color? red,
     Color? orange,
@@ -713,11 +705,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       disabledFilledButtonBackgroundColor:
           disabledFilledButtonBackgroundColor ??
               this.disabledFilledButtonBackgroundColor,
-      gradientRedStart: gradientRedStart ?? this.gradientRedStart,
-      gradientRedEnd: gradientRedEnd ?? this.gradientRedEnd,
       filledButtonBackgroundColorDisabled:
           filledButtonBackgroundColorDisabled ??
               this.filledButtonBackgroundColorDisabled,
+      filledButtonBackgroundColorPressed: filledButtonBackgroundColorPressed ??
+          this.filledButtonBackgroundColorPressed,
       filledButtonTextColorDisabled:
           filledButtonTextColorDisabled ?? this.filledButtonTextColorDisabled,
       textButtonTextColorDisabled:
@@ -754,7 +746,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           activeGradientColorStart ?? this.activeGradientColorStart,
       activeGradientColorEnd:
           activeGradientColorEnd ?? this.activeGradientColorEnd,
-      activeGradientRedEnd: activeGradientRedEnd ?? this.activeGradientRedEnd,
       boxShadowColor: boxShadowColor ?? this.boxShadowColor,
       red: red ?? this.red,
       orange: orange ?? this.orange,
@@ -903,12 +894,13 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           disabledFilledButtonBackgroundColor,
           other.disabledFilledButtonBackgroundColor,
           t)!,
-      gradientRedStart:
-          Color.lerp(gradientRedStart, other.gradientRedStart, t)!,
-      gradientRedEnd: Color.lerp(gradientRedEnd, other.gradientRedEnd, t)!,
       filledButtonBackgroundColorDisabled: Color.lerp(
           filledButtonBackgroundColorDisabled,
           other.filledButtonBackgroundColorDisabled,
+          t)!,
+      filledButtonBackgroundColorPressed: Color.lerp(
+          filledButtonBackgroundColorPressed,
+          other.filledButtonBackgroundColorPressed,
           t)!,
       filledButtonTextColorDisabled: Color.lerp(filledButtonTextColorDisabled,
           other.filledButtonTextColorDisabled, t)!,
@@ -949,8 +941,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
           activeGradientColorStart, other.activeGradientColorStart, t)!,
       activeGradientColorEnd:
           Color.lerp(activeGradientColorEnd, other.activeGradientColorEnd, t)!,
-      activeGradientRedEnd:
-          Color.lerp(activeGradientRedEnd, other.activeGradientRedEnd, t)!,
       boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
       red: Color.lerp(red, other.red, t)!,
       orange: Color.lerp(orange, other.orange, t)!,
@@ -1091,9 +1081,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(descriptionThin, other.descriptionThin) &&
             const DeepCollectionEquality().equals(errorTitle, other.errorTitle) &&
             const DeepCollectionEquality().equals(disabledFilledButtonBackgroundColor, other.disabledFilledButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(gradientRedStart, other.gradientRedStart) &&
-            const DeepCollectionEquality().equals(gradientRedEnd, other.gradientRedEnd) &&
             const DeepCollectionEquality().equals(filledButtonBackgroundColorDisabled, other.filledButtonBackgroundColorDisabled) &&
+            const DeepCollectionEquality().equals(filledButtonBackgroundColorPressed, other.filledButtonBackgroundColorPressed) &&
             const DeepCollectionEquality().equals(filledButtonTextColorDisabled, other.filledButtonTextColorDisabled) &&
             const DeepCollectionEquality().equals(textButtonTextColorDisabled, other.textButtonTextColorDisabled) &&
             const DeepCollectionEquality().equals(textButtonBackgroundColor, other.textButtonBackgroundColor) &&
@@ -1115,7 +1104,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(black, other.black) &&
             const DeepCollectionEquality().equals(activeGradientColorStart, other.activeGradientColorStart) &&
             const DeepCollectionEquality().equals(activeGradientColorEnd, other.activeGradientColorEnd) &&
-            const DeepCollectionEquality().equals(activeGradientRedEnd, other.activeGradientRedEnd) &&
             const DeepCollectionEquality().equals(boxShadowColor, other.boxShadowColor) &&
             const DeepCollectionEquality().equals(red, other.red) &&
             const DeepCollectionEquality().equals(orange, other.orange) &&
@@ -1207,9 +1195,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(descriptionThin),
       const DeepCollectionEquality().hash(errorTitle),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
-      const DeepCollectionEquality().hash(gradientRedStart),
-      const DeepCollectionEquality().hash(gradientRedEnd),
       const DeepCollectionEquality().hash(filledButtonBackgroundColorDisabled),
+      const DeepCollectionEquality().hash(filledButtonBackgroundColorPressed),
       const DeepCollectionEquality().hash(filledButtonTextColorDisabled),
       const DeepCollectionEquality().hash(textButtonTextColorDisabled),
       const DeepCollectionEquality().hash(textButtonBackgroundColor),
@@ -1231,7 +1218,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(black),
       const DeepCollectionEquality().hash(activeGradientColorStart),
       const DeepCollectionEquality().hash(activeGradientColorEnd),
-      const DeepCollectionEquality().hash(activeGradientRedEnd),
       const DeepCollectionEquality().hash(boxShadowColor),
       const DeepCollectionEquality().hash(red),
       const DeepCollectionEquality().hash(orange),

@@ -127,9 +127,10 @@ class GradientFillButton extends StatelessWidget {
     );
   }
 
-  Color getPressedInnerBackgroundColor(context) => (colorStyle?.pressedColor ??
-          context.designSystem.colors.procreditGradientRedEnd)
-      .withOpacity(0.5);
+  Color getPressedInnerBackgroundColor(BuildContext context) =>
+      (colorStyle?.pressedColor ??
+              context.widgetToolkitTheme.filledButtonBackgroundColorPressed)
+          .withOpacity(0.5);
 
   /// region Builders
 

@@ -143,11 +143,6 @@ class _$TextFieldDialogTheme {
     WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
-  static List<Color> gradientRedEnd = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
-  ];
-
   static List<Color> mediumWhite = [
     WidgetToolkitDesignSystem.light().colors.lightGray,
     WidgetToolkitDesignSystem.dark().colors.lightGray,

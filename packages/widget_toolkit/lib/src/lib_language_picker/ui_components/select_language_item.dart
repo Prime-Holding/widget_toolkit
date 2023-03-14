@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../asset_classes.dart';
+import '../../base/theme/widget_toolkit_theme.dart';
 import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/dynamic_icon.dart';
@@ -191,9 +192,9 @@ class SelectLanguageItem extends StatelessWidget {
       state != ButtonStateModel.disabled
           ? LinearGradient(colors: [
               colorStyle?.activeGradientColorStart ??
-                  context.languagePickerTheme.languageGradientRedStart,
+                  context.languagePickerTheme.languageGradientStart,
               colorStyle?.activeGradientColorEnd ??
-                  context.languagePickerTheme.languageGradientRedEnd,
+                  context.languagePickerTheme.languageGradientEnd,
             ])
           : LinearGradient(colors: [
               context.languagePickerTheme.filledButtonBackgroundColorDisabled,
@@ -208,9 +209,10 @@ class SelectLanguageItem extends StatelessWidget {
                   ? context.languagePickerTheme.buttonTextColor
                   : context.languagePickerTheme.bodyTextColor2);
 
-  Color getPressedInnerBackgroundColor(context) => (colorStyle?.pressedColor ??
-          context.designSystem.colors.procreditGradientRedEnd)
-      .withOpacity(0.5);
+  Color getPressedInnerBackgroundColor(BuildContext context) =>
+      (colorStyle?.pressedColor ??
+              context.widgetToolkitTheme.filledButtonBackgroundColorPressed)
+          .withOpacity(0.5);
 
   Color getInnerButtonColor(BuildContext context) =>
       (state != ButtonStateModel.disabled)

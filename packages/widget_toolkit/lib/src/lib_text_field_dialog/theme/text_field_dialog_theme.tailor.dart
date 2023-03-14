@@ -34,7 +34,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     required this.white,
     required this.blue,
     required this.disabledFilledButtonBackgroundColor,
-    required this.gradientRedEnd,
     required this.mediumWhite,
     required this.gray,
     required this.green,
@@ -93,7 +92,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
   final Color white;
   final Color blue;
   final Color disabledFilledButtonBackgroundColor;
-  final Color gradientRedEnd;
   final Color mediumWhite;
   final Color gray;
   final Color green;
@@ -159,7 +157,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     blue: _$TextFieldDialogTheme.blue[0],
     disabledFilledButtonBackgroundColor:
         _$TextFieldDialogTheme.disabledFilledButtonBackgroundColor[0],
-    gradientRedEnd: _$TextFieldDialogTheme.gradientRedEnd[0],
     mediumWhite: _$TextFieldDialogTheme.mediumWhite[0],
     gray: _$TextFieldDialogTheme.gray[0],
     green: _$TextFieldDialogTheme.green[0],
@@ -233,7 +230,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     blue: _$TextFieldDialogTheme.blue[1],
     disabledFilledButtonBackgroundColor:
         _$TextFieldDialogTheme.disabledFilledButtonBackgroundColor[1],
-    gradientRedEnd: _$TextFieldDialogTheme.gradientRedEnd[1],
     mediumWhite: _$TextFieldDialogTheme.mediumWhite[1],
     gray: _$TextFieldDialogTheme.gray[1],
     green: _$TextFieldDialogTheme.green[1],
@@ -306,7 +302,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     Color? white,
     Color? blue,
     Color? disabledFilledButtonBackgroundColor,
-    Color? gradientRedEnd,
     Color? mediumWhite,
     Color? gray,
     Color? green,
@@ -374,7 +369,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       disabledFilledButtonBackgroundColor:
           disabledFilledButtonBackgroundColor ??
               this.disabledFilledButtonBackgroundColor,
-      gradientRedEnd: gradientRedEnd ?? this.gradientRedEnd,
       mediumWhite: mediumWhite ?? this.mediumWhite,
       gray: gray ?? this.gray,
       green: green ?? this.green,
@@ -466,7 +460,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
           disabledFilledButtonBackgroundColor,
           other.disabledFilledButtonBackgroundColor,
           t)!,
-      gradientRedEnd: Color.lerp(gradientRedEnd, other.gradientRedEnd, t)!,
       mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
       gray: Color.lerp(gray, other.gray, t)!,
       green: Color.lerp(green, other.green, t)!,
@@ -565,8 +558,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
                 disabledFilledButtonBackgroundColor,
                 other.disabledFilledButtonBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(gradientRedEnd, other.gradientRedEnd) &&
-            const DeepCollectionEquality()
                 .equals(mediumWhite, other.mediumWhite) &&
             const DeepCollectionEquality().equals(gray, other.gray) &&
             const DeepCollectionEquality().equals(green, other.green) &&
@@ -589,7 +580,8 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
                 .equals(addDisabledIcon, other.addDisabledIcon) &&
             const DeepCollectionEquality()
                 .equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
-            const DeepCollectionEquality().equals(editPenIcon, other.editPenIcon) &&
+            const DeepCollectionEquality()
+                .equals(editPenIcon, other.editPenIcon) &&
             const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
             const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
             const DeepCollectionEquality().equals(tickCircleSuccessIcon, other.tickCircleSuccessIcon) &&
@@ -636,7 +628,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       const DeepCollectionEquality().hash(white),
       const DeepCollectionEquality().hash(blue),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
-      const DeepCollectionEquality().hash(gradientRedEnd),
       const DeepCollectionEquality().hash(mediumWhite),
       const DeepCollectionEquality().hash(gray),
       const DeepCollectionEquality().hash(green),

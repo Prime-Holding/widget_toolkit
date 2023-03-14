@@ -88,19 +88,19 @@ class _$LanguagePickerTheme {
     WidgetToolkitDesignSystem.dark().colors.gray,
   ];
 
-  static List<Color> activeGradientRedEnd = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedEnd,
+  static List<Color> activeGradientEnd = [
+    WidgetToolkitDesignSystem.light().colors.blue,
+    WidgetToolkitDesignSystem.dark().colors.blue,
   ];
 
-  static List<Color> languageGradientRedStart = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedStart,
-    WidgetToolkitDesignSystem.dark().colors.redDark,
+  static List<Color> languageGradientStart = [
+    WidgetToolkitDesignSystem.light().colors.blue,
+    WidgetToolkitDesignSystem.dark().colors.darkBlue,
   ];
 
-  static List<Color> languageGradientRedEnd = [
-    WidgetToolkitDesignSystem.light().colors.gradientRedEnd,
-    WidgetToolkitDesignSystem.dark().colors.gradientRedStart,
+  static List<Color> languageGradientEnd = [
+    WidgetToolkitDesignSystem.light().colors.lightBlue,
+    WidgetToolkitDesignSystem.dark().colors.blue,
   ];
 
   static List<Color> filledButtonBackgroundColorDisabled = [
@@ -133,11 +133,6 @@ class _$LanguagePickerTheme {
     WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
   ];
 
-  static List<Color> textButtonLoadingIndicatorColor = [
-    WidgetToolkitDesignSystem.light().colors.redDark,
-    WidgetToolkitDesignSystem.dark().colors.redDark,
-  ];
-
   static List<Color> buttonBlueGradientEnd = [
     WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
     WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
@@ -152,24 +147,10 @@ class _$LanguagePickerTheme {
     WidgetToolkitDesignSystem.light().colors.white,
     WidgetToolkitDesignSystem.dark().colors.white,
   ];
-  static List<Color> errorTextBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.green,
-    WidgetToolkitDesignSystem.dark().colors.green,
-  ];
-
-  static List<Color> errorTextColor = [
-    WidgetToolkitDesignSystem.light().colors.black,
-    WidgetToolkitDesignSystem.dark().colors.black,
-  ];
 
   static List<SvgFile> checkIcon = [
     WidgetToolkitDesignSystem.dark().icons.checkIcon,
     WidgetToolkitDesignSystem.light().icons.checkIcon,
-  ];
-
-  static List<SvgFile> dangerIcon = [
-    WidgetToolkitDesignSystem.dark().icons.dangerIcon,
-    WidgetToolkitDesignSystem.light().icons.dangerIcon,
   ];
 
   /// endregion
