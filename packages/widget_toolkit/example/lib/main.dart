@@ -689,23 +689,7 @@ class SearchCountryRepository<T> {
             .toList(),
       );
 
-  final _countriesList = [
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy',
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy',
-    'Angola',
-    'Bulgaria',
-    'Cuba',
-    'Egypt',
-    'Italy'
-  ];
+  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
 }
 
 class CustomEditAddressService<T> extends EditAddressService<T> {
