@@ -56,7 +56,7 @@ class IconTextButton extends StatelessWidget {
         if (states.contains(MaterialState.pressed) ||
             state == ButtonStateModel.pressed) {
           return colorStyle?.pressedColor ??
-              context.widgetToolkitTheme.gradientRedEnd;
+              context.widgetToolkitTheme.primaryGradientEnd;
         }
         return colorStyle?.activeGradientColorStart ??
             context.widgetToolkitTheme.textButtonBackgroundColor;

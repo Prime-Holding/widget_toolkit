@@ -151,7 +151,7 @@ class _ChangeLanguageWidget extends StatelessWidget {
                     activeGradientColorStart: context.languagePickerTheme
                         .disabledFilledButtonBackgroundColor,
                     activeGradientColorEnd:
-                        context.languagePickerTheme.activeGradientRedEnd,
+                        context.languagePickerTheme.activeGradientEnd,
                   ),
                 )
               ],
