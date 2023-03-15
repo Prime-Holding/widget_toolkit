@@ -128,14 +128,8 @@ class _$EditAddressTheme {
   /// endregion
   ///region EdgeInsets
   static List<EdgeInsets> editAddressPageOuterMostPadding = [
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.light().spacings.s2,
-      horizontal: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.dark().spacings.s2,
-      horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
-    ),
+    EdgeInsets.zero,
+    EdgeInsets.zero,
   ];
 
   static List<EdgeInsets> editAddressPageOnAddressSavedPadding = [
@@ -157,18 +151,8 @@ class _$EditAddressTheme {
   ];
 
   static List<EdgeInsets> permanentAddressPadding1 = [
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.light().spacings.m,
-      top: WidgetToolkitDesignSystem.light().spacings.s1,
-      right: WidgetToolkitDesignSystem.light().spacings.m,
-      bottom: WidgetToolkitDesignSystem.light().spacings.l,
-    ),
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.light().spacings.m,
-      top: WidgetToolkitDesignSystem.light().spacings.s1,
-      right: WidgetToolkitDesignSystem.light().spacings.m,
-      bottom: WidgetToolkitDesignSystem.light().spacings.l,
-    )
+    EdgeInsets.zero,
+    EdgeInsets.zero,
   ];
 
   static List<EdgeInsets> permanentAddressPadding2 = [
