@@ -1,4 +1,5 @@
 import '../../base/models/errors/error_model.dart';
+import 'edit_address_error_type.dart';
 
 class EditAddressErrorModel<T> extends ErrorModel {
   EditAddressErrorModel({
@@ -8,7 +9,7 @@ class EditAddressErrorModel<T> extends ErrorModel {
   });
 
   final String error;
-  final String translationKey;
+  final EditAddressErrorType translationKey;
   final T fieldValue;
 
   @override
