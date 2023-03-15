@@ -2,6 +2,8 @@ name: 'Publish widget_toolkit to pub.dev'
 
 on:
   push:
+    branches:
+      - master
     tags:
       - 'widget_toolkit-v[0-9]+.[0-9]+.[0-9]+*'
 
