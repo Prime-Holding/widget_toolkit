@@ -4,10 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:widget_toolkit/edit_address.dart';
 import 'package:widget_toolkit/language_picker.dart';
 import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart';
+import 'package:widget_toolkit/src/lib_edit_address/services/city_service.dart';
+import 'package:widget_toolkit/src/lib_edit_address/services/street_service.dart';
 import 'package:widget_toolkit/src/lib_edit_address/views/edit_address_page.dart';
 
 import '../mock/edit_address_mock.dart';
+import '../service/city_service_mock.dart';
 import '../service/edit_address_service_mock.dart';
+import '../service/street_service_mock.dart';
 import '../utils/edit_address_error_mapper_util.dart';
 
 /// Change the parameters according the needs of the test
@@ -25,6 +29,20 @@ Widget editAddressEmptyPageFactory({
     Scaffold(
       body: MultiProvider(
         providers: [
+          Provider(
+            create: (context) => EditAddressServiceMock<CountryModel>(
+                showError: showError ?? false),
+          ),
+          Provider<CityService>(
+            create: (context) => CityServiceMock(
+                editAddressService:
+                    context.read<EditAddressServiceMock<CountryModel>>()),
+          ),
+          Provider<StreetService>(
+            create: (context) => StreetServiceMock(
+                editAddressService:
+                    context.read<EditAddressServiceMock<CountryModel>>()),
+          ),
           RxBlocProvider<EditAddressBlocType>.value(
             value: editAddressMockFactory(
               onAddressSet: onAddressSet,
@@ -52,8 +70,8 @@ Widget editAddressEmptyPageFactory({
                 .translateError(obj, context),
             buttonText: 'Save',
             headerText: 'Contact Address',
-            editAddressService: EditAddressServiceMock<CountryModel>(
-                showError: showError ?? false),
+            editAddressService:
+                context.read<EditAddressServiceMock<CountryModel>>(),
             editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
             onAddressSaved: (AddressModel addressModel) {},
           ),
