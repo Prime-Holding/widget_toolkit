@@ -24,23 +24,19 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     required this.messagePanelErrorEdgeInsets,
     required this.activeButtonLanguageTextColor,
     required this.disabledFilledButtonBackgroundColor,
-    required this.activeGradientRedEnd,
-    required this.languageGradientRedStart,
-    required this.languageGradientRedEnd,
+    required this.activeGradientEnd,
+    required this.languageGradientStart,
+    required this.languageGradientEnd,
     required this.filledButtonBackgroundColorDisabled,
     required this.buttonTextColor,
     required this.filledButtonTextColorDisabled,
     required this.textColorWhite,
     required this.boxShadowColor,
     required this.bodyTextColor2,
-    required this.textButtonLoadingIndicatorColor,
     required this.buttonBlueGradientEnd,
     required this.elevatedButtonBackgroundColor,
     required this.outlineButtonBackgroundColor,
-    required this.errorTextBackgroundColor,
-    required this.errorTextColor,
     required this.checkIcon,
-    required this.dangerIcon,
   });
 
   final EdgeInsets changeLanguagePadding;
@@ -57,23 +53,19 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
   final EdgeInsets messagePanelErrorEdgeInsets;
   final Color activeButtonLanguageTextColor;
   final Color disabledFilledButtonBackgroundColor;
-  final Color activeGradientRedEnd;
-  final Color languageGradientRedStart;
-  final Color languageGradientRedEnd;
+  final Color activeGradientEnd;
+  final Color languageGradientStart;
+  final Color languageGradientEnd;
   final Color filledButtonBackgroundColorDisabled;
   final Color buttonTextColor;
   final Color filledButtonTextColorDisabled;
   final Color textColorWhite;
   final Color boxShadowColor;
   final Color bodyTextColor2;
-  final Color textButtonLoadingIndicatorColor;
   final Color buttonBlueGradientEnd;
   final Color elevatedButtonBackgroundColor;
   final Color outlineButtonBackgroundColor;
-  final Color errorTextBackgroundColor;
-  final Color errorTextColor;
   final SvgFile checkIcon;
-  final SvgFile dangerIcon;
 
   static final LanguagePickerTheme light = LanguagePickerTheme(
     changeLanguagePadding: _$LanguagePickerTheme.changeLanguagePadding[0],
@@ -96,9 +88,9 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
         _$LanguagePickerTheme.activeButtonLanguageTextColor[0],
     disabledFilledButtonBackgroundColor:
         _$LanguagePickerTheme.disabledFilledButtonBackgroundColor[0],
-    activeGradientRedEnd: _$LanguagePickerTheme.activeGradientRedEnd[0],
-    languageGradientRedStart: _$LanguagePickerTheme.languageGradientRedStart[0],
-    languageGradientRedEnd: _$LanguagePickerTheme.languageGradientRedEnd[0],
+    activeGradientEnd: _$LanguagePickerTheme.activeGradientEnd[0],
+    languageGradientStart: _$LanguagePickerTheme.languageGradientStart[0],
+    languageGradientEnd: _$LanguagePickerTheme.languageGradientEnd[0],
     filledButtonBackgroundColorDisabled:
         _$LanguagePickerTheme.filledButtonBackgroundColorDisabled[0],
     buttonTextColor: _$LanguagePickerTheme.buttonTextColor[0],
@@ -107,17 +99,12 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     textColorWhite: _$LanguagePickerTheme.textColorWhite[0],
     boxShadowColor: _$LanguagePickerTheme.boxShadowColor[0],
     bodyTextColor2: _$LanguagePickerTheme.bodyTextColor2[0],
-    textButtonLoadingIndicatorColor:
-        _$LanguagePickerTheme.textButtonLoadingIndicatorColor[0],
     buttonBlueGradientEnd: _$LanguagePickerTheme.buttonBlueGradientEnd[0],
     elevatedButtonBackgroundColor:
         _$LanguagePickerTheme.elevatedButtonBackgroundColor[0],
     outlineButtonBackgroundColor:
         _$LanguagePickerTheme.outlineButtonBackgroundColor[0],
-    errorTextBackgroundColor: _$LanguagePickerTheme.errorTextBackgroundColor[0],
-    errorTextColor: _$LanguagePickerTheme.errorTextColor[0],
     checkIcon: _$LanguagePickerTheme.checkIcon[0],
-    dangerIcon: _$LanguagePickerTheme.dangerIcon[0],
   );
 
   static final LanguagePickerTheme dark = LanguagePickerTheme(
@@ -141,9 +128,9 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
         _$LanguagePickerTheme.activeButtonLanguageTextColor[1],
     disabledFilledButtonBackgroundColor:
         _$LanguagePickerTheme.disabledFilledButtonBackgroundColor[1],
-    activeGradientRedEnd: _$LanguagePickerTheme.activeGradientRedEnd[1],
-    languageGradientRedStart: _$LanguagePickerTheme.languageGradientRedStart[1],
-    languageGradientRedEnd: _$LanguagePickerTheme.languageGradientRedEnd[1],
+    activeGradientEnd: _$LanguagePickerTheme.activeGradientEnd[1],
+    languageGradientStart: _$LanguagePickerTheme.languageGradientStart[1],
+    languageGradientEnd: _$LanguagePickerTheme.languageGradientEnd[1],
     filledButtonBackgroundColorDisabled:
         _$LanguagePickerTheme.filledButtonBackgroundColorDisabled[1],
     buttonTextColor: _$LanguagePickerTheme.buttonTextColor[1],
@@ -152,17 +139,12 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     textColorWhite: _$LanguagePickerTheme.textColorWhite[1],
     boxShadowColor: _$LanguagePickerTheme.boxShadowColor[1],
     bodyTextColor2: _$LanguagePickerTheme.bodyTextColor2[1],
-    textButtonLoadingIndicatorColor:
-        _$LanguagePickerTheme.textButtonLoadingIndicatorColor[1],
     buttonBlueGradientEnd: _$LanguagePickerTheme.buttonBlueGradientEnd[1],
     elevatedButtonBackgroundColor:
         _$LanguagePickerTheme.elevatedButtonBackgroundColor[1],
     outlineButtonBackgroundColor:
         _$LanguagePickerTheme.outlineButtonBackgroundColor[1],
-    errorTextBackgroundColor: _$LanguagePickerTheme.errorTextBackgroundColor[1],
-    errorTextColor: _$LanguagePickerTheme.errorTextColor[1],
     checkIcon: _$LanguagePickerTheme.checkIcon[1],
-    dangerIcon: _$LanguagePickerTheme.dangerIcon[1],
   );
 
   static final themes = [
@@ -186,23 +168,19 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     EdgeInsets? messagePanelErrorEdgeInsets,
     Color? activeButtonLanguageTextColor,
     Color? disabledFilledButtonBackgroundColor,
-    Color? activeGradientRedEnd,
-    Color? languageGradientRedStart,
-    Color? languageGradientRedEnd,
+    Color? activeGradientEnd,
+    Color? languageGradientStart,
+    Color? languageGradientEnd,
     Color? filledButtonBackgroundColorDisabled,
     Color? buttonTextColor,
     Color? filledButtonTextColorDisabled,
     Color? textColorWhite,
     Color? boxShadowColor,
     Color? bodyTextColor2,
-    Color? textButtonLoadingIndicatorColor,
     Color? buttonBlueGradientEnd,
     Color? elevatedButtonBackgroundColor,
     Color? outlineButtonBackgroundColor,
-    Color? errorTextBackgroundColor,
-    Color? errorTextColor,
     SvgFile? checkIcon,
-    SvgFile? dangerIcon,
   }) {
     return LanguagePickerTheme(
       changeLanguagePadding:
@@ -230,11 +208,10 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       disabledFilledButtonBackgroundColor:
           disabledFilledButtonBackgroundColor ??
               this.disabledFilledButtonBackgroundColor,
-      activeGradientRedEnd: activeGradientRedEnd ?? this.activeGradientRedEnd,
-      languageGradientRedStart:
-          languageGradientRedStart ?? this.languageGradientRedStart,
-      languageGradientRedEnd:
-          languageGradientRedEnd ?? this.languageGradientRedEnd,
+      activeGradientEnd: activeGradientEnd ?? this.activeGradientEnd,
+      languageGradientStart:
+          languageGradientStart ?? this.languageGradientStart,
+      languageGradientEnd: languageGradientEnd ?? this.languageGradientEnd,
       filledButtonBackgroundColorDisabled:
           filledButtonBackgroundColorDisabled ??
               this.filledButtonBackgroundColorDisabled,
@@ -244,19 +221,13 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       textColorWhite: textColorWhite ?? this.textColorWhite,
       boxShadowColor: boxShadowColor ?? this.boxShadowColor,
       bodyTextColor2: bodyTextColor2 ?? this.bodyTextColor2,
-      textButtonLoadingIndicatorColor: textButtonLoadingIndicatorColor ??
-          this.textButtonLoadingIndicatorColor,
       buttonBlueGradientEnd:
           buttonBlueGradientEnd ?? this.buttonBlueGradientEnd,
       elevatedButtonBackgroundColor:
           elevatedButtonBackgroundColor ?? this.elevatedButtonBackgroundColor,
       outlineButtonBackgroundColor:
           outlineButtonBackgroundColor ?? this.outlineButtonBackgroundColor,
-      errorTextBackgroundColor:
-          errorTextBackgroundColor ?? this.errorTextBackgroundColor,
-      errorTextColor: errorTextColor ?? this.errorTextColor,
       checkIcon: checkIcon ?? this.checkIcon,
-      dangerIcon: dangerIcon ?? this.dangerIcon,
     );
   }
 
@@ -296,12 +267,12 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
           disabledFilledButtonBackgroundColor,
           other.disabledFilledButtonBackgroundColor,
           t)!,
-      activeGradientRedEnd:
-          Color.lerp(activeGradientRedEnd, other.activeGradientRedEnd, t)!,
-      languageGradientRedStart: Color.lerp(
-          languageGradientRedStart, other.languageGradientRedStart, t)!,
-      languageGradientRedEnd:
-          Color.lerp(languageGradientRedEnd, other.languageGradientRedEnd, t)!,
+      activeGradientEnd:
+          Color.lerp(activeGradientEnd, other.activeGradientEnd, t)!,
+      languageGradientStart:
+          Color.lerp(languageGradientStart, other.languageGradientStart, t)!,
+      languageGradientEnd:
+          Color.lerp(languageGradientEnd, other.languageGradientEnd, t)!,
       filledButtonBackgroundColorDisabled: Color.lerp(
           filledButtonBackgroundColorDisabled,
           other.filledButtonBackgroundColorDisabled,
@@ -312,21 +283,13 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
       boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
       bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
-      textButtonLoadingIndicatorColor: Color.lerp(
-          textButtonLoadingIndicatorColor,
-          other.textButtonLoadingIndicatorColor,
-          t)!,
       buttonBlueGradientEnd:
           Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
       elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
           other.elevatedButtonBackgroundColor, t)!,
       outlineButtonBackgroundColor: Color.lerp(
           outlineButtonBackgroundColor, other.outlineButtonBackgroundColor, t)!,
-      errorTextBackgroundColor: Color.lerp(
-          errorTextBackgroundColor, other.errorTextBackgroundColor, t)!,
-      errorTextColor: Color.lerp(errorTextColor, other.errorTextColor, t)!,
       checkIcon: t < 0.5 ? checkIcon : other.checkIcon,
-      dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
     );
   }
 
@@ -365,26 +328,22 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
                 disabledFilledButtonBackgroundColor,
                 other.disabledFilledButtonBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(activeGradientRedEnd, other.activeGradientRedEnd) &&
+                .equals(activeGradientEnd, other.activeGradientEnd) &&
+            const DeepCollectionEquality()
+                .equals(languageGradientStart, other.languageGradientStart) &&
+            const DeepCollectionEquality()
+                .equals(languageGradientEnd, other.languageGradientEnd) &&
             const DeepCollectionEquality().equals(
-                languageGradientRedStart, other.languageGradientRedStart) &&
-            const DeepCollectionEquality()
-                .equals(languageGradientRedEnd, other.languageGradientRedEnd) &&
-            const DeepCollectionEquality()
-                .equals(filledButtonBackgroundColorDisabled, other.filledButtonBackgroundColorDisabled) &&
+                filledButtonBackgroundColorDisabled, other.filledButtonBackgroundColorDisabled) &&
             const DeepCollectionEquality().equals(buttonTextColor, other.buttonTextColor) &&
             const DeepCollectionEquality().equals(filledButtonTextColorDisabled, other.filledButtonTextColorDisabled) &&
             const DeepCollectionEquality().equals(textColorWhite, other.textColorWhite) &&
             const DeepCollectionEquality().equals(boxShadowColor, other.boxShadowColor) &&
             const DeepCollectionEquality().equals(bodyTextColor2, other.bodyTextColor2) &&
-            const DeepCollectionEquality().equals(textButtonLoadingIndicatorColor, other.textButtonLoadingIndicatorColor) &&
             const DeepCollectionEquality().equals(buttonBlueGradientEnd, other.buttonBlueGradientEnd) &&
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(outlineButtonBackgroundColor, other.outlineButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(errorTextBackgroundColor, other.errorTextBackgroundColor) &&
-            const DeepCollectionEquality().equals(errorTextColor, other.errorTextColor) &&
-            const DeepCollectionEquality().equals(checkIcon, other.checkIcon) &&
-            const DeepCollectionEquality().equals(dangerIcon, other.dangerIcon));
+            const DeepCollectionEquality().equals(checkIcon, other.checkIcon));
   }
 
   @override
@@ -406,23 +365,19 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
       const DeepCollectionEquality().hash(activeButtonLanguageTextColor),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
-      const DeepCollectionEquality().hash(activeGradientRedEnd),
-      const DeepCollectionEquality().hash(languageGradientRedStart),
-      const DeepCollectionEquality().hash(languageGradientRedEnd),
+      const DeepCollectionEquality().hash(activeGradientEnd),
+      const DeepCollectionEquality().hash(languageGradientStart),
+      const DeepCollectionEquality().hash(languageGradientEnd),
       const DeepCollectionEquality().hash(filledButtonBackgroundColorDisabled),
       const DeepCollectionEquality().hash(buttonTextColor),
       const DeepCollectionEquality().hash(filledButtonTextColorDisabled),
       const DeepCollectionEquality().hash(textColorWhite),
       const DeepCollectionEquality().hash(boxShadowColor),
       const DeepCollectionEquality().hash(bodyTextColor2),
-      const DeepCollectionEquality().hash(textButtonLoadingIndicatorColor),
       const DeepCollectionEquality().hash(buttonBlueGradientEnd),
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
       const DeepCollectionEquality().hash(outlineButtonBackgroundColor),
-      const DeepCollectionEquality().hash(errorTextBackgroundColor),
-      const DeepCollectionEquality().hash(errorTextColor),
-      const DeepCollectionEquality().hash(checkIcon),
-      const DeepCollectionEquality().hash(dangerIcon)
+      const DeepCollectionEquality().hash(checkIcon)
     ]);
   }
 }
