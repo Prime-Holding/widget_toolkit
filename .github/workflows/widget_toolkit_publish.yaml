@@ -1,4 +1,4 @@
-name: Publish to pub.dev
+name: 'Publish widget_toolkit to pub.dev'
 
 on:
   push:
