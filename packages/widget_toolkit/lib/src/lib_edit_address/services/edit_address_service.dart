@@ -1,4 +1,5 @@
-import '../../../widget_toolkit.dart';
+import '../../lib_edit_address/models/address_model.dart';
+import '../models/edit_address_error_model.dart';
 
 /// The class provides API for saving the address, editing the values of the address:
 /// city name and street name,fetching and filtering the countries list for the address.
@@ -51,27 +52,39 @@ abstract class EditAddressService<T> {
 
   Future<String> validateCityOnSubmit(String text) async {
     if (text.trim().isEmpty) {
-      throw GenericErrorModel(customMessage:'A value should be provided');
+      throw EditAddressErrorModel<String>(
+          error: 'A value should be provided',
+          translationKey: 'editAddressErrorModel',
+          fieldValue: text);
     }
     return text;
   }
 
   Future<String> validateStreetOnSubmit(String text) async {
     if (text.trim().isEmpty) {
-      throw GenericErrorModel(customMessage: 'A value should be provided');
+      throw EditAddressErrorModel<String>(
+          error: 'A value should be provided',
+          translationKey: 'editAddressErrorModel',
+          fieldValue: text);
     }
     return text;
   }
 
   void validateCityOnType(String text) {
     if (text.trim().isEmpty) {
-      throw GenericErrorModel(customMessage:'A value should be provided');
+      throw EditAddressErrorModel<String>(
+          error: 'A value should be provided',
+          translationKey: 'editAddressErrorModel',
+          fieldValue: text);
     }
   }
 
   void validateStreetOnType(String text) {
     if (text.trim().isEmpty) {
-      throw GenericErrorModel(customMessage:'A value should be provided');
+      throw EditAddressErrorModel<String>(
+          error: 'A value should be provided PACKAGE',
+          translationKey: 'editAddressErrorModel',
+          fieldValue: text);
     }
   }
 }

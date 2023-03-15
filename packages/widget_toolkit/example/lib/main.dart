@@ -599,15 +599,18 @@ class SearchService<T> extends SearchPickerService<T> {
 class TranslateErrorUtil {
   static void translateError<T>(Object error, BuildContext context) {
     if (error is ErrorFormFieldModel) {
-      throw RxFieldExceptionFatory.fromFormField<T>(error, context);
+      throw RxFieldExceptionFactory.fromFormField<T>(error, context);
+    } else if (error is EditAddressErrorModel) {
+      throw RxFieldExceptionFactory.fromEditAddressErrorModel<T>(
+          error, context);
     } else if (error is EditAddressError) {
-      throw RxFieldExceptionFatory.fromEditAddressError<T>(error, context);
+      throw RxFieldExceptionFactory.fromEditAddressError<T>(error, context);
     }
     throw error;
   }
 }
 
-extension RxFieldExceptionFatory on RxFieldException {
+extension RxFieldExceptionFactory on RxFieldException {
   static RxFieldException<T> fromFormField<T>(
     ErrorFormFieldModel formFieldModel,
     BuildContext context,
@@ -615,6 +618,15 @@ extension RxFieldExceptionFatory on RxFieldException {
       RxFieldException<T>(
         error: formFieldModel.error,
         fieldValue: formFieldModel.fieldValue,
+      );
+
+  static RxFieldException<T> fromEditAddressErrorModel<T>(
+    EditAddressErrorModel editAddressError,
+    BuildContext context,
+  ) =>
+      RxFieldException<T>(
+        error: editAddressError.error,
+        fieldValue: editAddressError.fieldValue,
       );
 
   static RxFieldException<T> fromEditAddressError<T>(
