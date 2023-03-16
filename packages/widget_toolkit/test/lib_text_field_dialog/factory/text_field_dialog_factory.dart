@@ -9,7 +9,7 @@ import 'package:widget_toolkit/src/lib_text_field_dialog/views/text_field_dialog
 import '../mock/text_field_dialog_mock.dart';
 import '../services/text_field_service_mock.dart';
 
-/// Change the parameters according the the needs of the test
+/// Change the parameters according the needs of the test
 /// todo add values if needed in the function
 Widget textFieldDialogFactory({
   required Result<String> submittedResult,

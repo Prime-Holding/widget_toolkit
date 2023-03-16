@@ -28,20 +28,21 @@ class MessagePanelError<BlocType extends RxBlocTypeBase>
 
   @override
   Widget build(BuildContext context) => RxBlocBuilder<BlocType, ErrorModel?>(
-        state: (bloc) => errorState(bloc),
-        builder: (context, snapshot, bloc) => AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: snapshot.data == null
-              ? const SizedBox()
-              : Padding(
-                  padding: padding,
-                  child: errorBuilder?.call(snapshot.data) ??
-                      MessagePanelWidget(
-                        message: snapshot.data.toString(),
-                        messageState: messageState,
-                        errorPanelIcon: errorPanelIcon,
-                      ),
-                ),
-        ),
-      );
+      state: (bloc) => errorState(bloc),
+      builder: (context, snapshot, bloc) => AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: snapshot.data == null && snapshot.error == null
+                ? const SizedBox()
+                : Padding(
+                    padding: padding,
+                    child: errorBuilder?.call(snapshot.data) ??
+                        MessagePanelWidget(
+                          message: snapshot.data == null
+                              ? snapshot.error.toString()
+                              : snapshot.data.toString(),
+                          messageState: messageState,
+                          errorPanelIcon: errorPanelIcon,
+                        ),
+                  ),
+          ));
 }

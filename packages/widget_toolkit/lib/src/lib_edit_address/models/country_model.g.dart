@@ -52,14 +52,12 @@ class _$CountryModelCWProxyImpl implements _$CountryModelCWProxy {
     return CountryModel(
       countryCode:
           countryCode == const $CopyWithPlaceholder() || countryCode == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.countryCode!
+              ? _value.countryCode
               // ignore: cast_nullable_to_non_nullable
               : countryCode as String,
       countryName:
           countryName == const $CopyWithPlaceholder() || countryName == null
-              // ignore: unnecessary_non_null_assertion
-              ? _value.countryName!
+              ? _value.countryName
               // ignore: cast_nullable_to_non_nullable
               : countryName as String,
     );

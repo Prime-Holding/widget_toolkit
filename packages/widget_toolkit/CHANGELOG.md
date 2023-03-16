@@ -1,9 +1,18 @@
-## [0.0.1-dev6] - TBE
-- Removed params `showEditAddressBottomSheet(cityErrorMapper: , addressErrorMapper)`
-- Added params `showEditAddressBottomSheet(Function(Object error) translateError)`
-- Removed params `EditAddressWidget(cityErrorMapper:, addressErrorMapper)`
-- Added params `EditAddressWidget(Function(Object error) translateError)`
-- Removed params `TextFieldDialog(errorMapper: )`
+## [0.0.1-dev6] 
+
+- Documentation improvements
+- `EditAddressWidget` example is added to the example project
+- Fixed golden tests for `EditAddressPage`
+- `EditAddressService` provides default implementation for the newly added methods: `filteredCountriesByName`, `validateCityOnSubmit`,`validateStreetOnSubmit`,`validateCityOnType`,`validateStreetOnType`,
+- Added methods to `EditAddressService` without default implementation are: `getCountries`, `getCountryPlaceholderList`
+### Breaking Changes:
+- Removed params `showEditAddressBottomSheet(cityErrorMapper , addressErrorMapper, validator, searchCountryService, countryCustomIcon, editCountryFieldType, cityCustomIcon, editCityFieldType, addressCustomIcon, editAddressFieldType)`
+- Added params `showEditAddressBottomSheet(Function(Object error) translateError, Function(AddressModel? addressModel)? onChanged)`
+- Removed params `EditAddressWidget(cityErrorMapper, addressErrorMapper, validator, searchCountryService, countryCustomIcon, editCountryFieldType, cityCustomIcon, editCityFieldType, addressCustomIcon, editAddressFieldType)`
+- Added params `EditAddressWidget(Function(Object error) translateError, Function(AddressModel? addressModel)? onChanged,)`
+- Renamed params in `EditAddressWidget`: `editAddressService` becomes `service`, `addressModel` becomes `initialAddress`.
+- `service` parameter in `EditAddressWidget` becomes required, because the default service is deleted.
+- Removed params `TextFieldDialog(errorMapper)`
 - Added params `TextFieldDialog(Function(Object error) translateError)`
 - Removed params `ModalConfiguration(additionalBottomPadding:)`
 - Removed params `EditAddressConfiguration(additionalBottomPadding:)`
@@ -11,6 +20,7 @@
 - Removed params `LanguagePickerModalConfiguration(additionalBottomPadding:)`
 - Removed params `SearchPickerModalConfiguration(additionalBottomPadding:)`
 - Removed params `TextFieldModalConfiguration(additionalBottomPadding:)`
+  -  [Edit Address API Improvements ticket](https://github.com/Prime-Holding/widget_toolkit/issues/9)
 
 ## [0.0.1-dev5]
 - Documentation improvements
