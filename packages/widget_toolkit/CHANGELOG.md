@@ -20,6 +20,7 @@
 - Removed params `LanguagePickerModalConfiguration(additionalBottomPadding:)`
 - Removed params `SearchPickerModalConfiguration(additionalBottomPadding:)`
 - Removed params `TextFieldModalConfiguration(additionalBottomPadding:)`
+  -  [Edit Address API Improvements ticket](https://github.com/Prime-Holding/widget_toolkit/issues/9)
 
 ## [0.0.1-dev5]
 - Documentation improvements
