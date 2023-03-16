@@ -6,11 +6,6 @@ on:
       - ".github/workflows/ci.yaml"
       - "packages/**"
 
-  pull_request:
-    paths:
-      - ".github/workflows/ci.yaml"
-      - "packages/**"
-
 jobs:
   flutter_packages:
     strategy:

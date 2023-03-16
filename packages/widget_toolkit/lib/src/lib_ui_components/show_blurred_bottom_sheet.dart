@@ -74,7 +74,6 @@ Future<T?> showBlurredBottomSheet<T>({
         showHeaderPill: configuration.showHeaderPill,
         safeAreaBottom: configuration.safeAreaBottom,
         dialogHasBottomPadding: configuration.dialogHasBottomPadding,
-        additionalBottomPadding: configuration.additionalBottomPadding,
       ),
     ),
   ).then((value) {
@@ -97,7 +96,6 @@ class _ModalContent extends StatelessWidget {
     this.heightFactor,
     this.contentAlignment,
     this.onClosePressed,
-    this.additionalBottomPadding,
   }) : super(key: key);
 
   /// The builder method returning the contents of the modal sheet
@@ -130,9 +128,6 @@ class _ModalContent extends StatelessWidget {
   /// of the page
   final bool dialogHasBottomPadding;
 
-  /// Padding to be added on the bottom of the page, when [safeAreaBottom] is false
-  final double? additionalBottomPadding;
-
   @override
   Widget build(BuildContext context) => heightFactor == null
       ? Container(
@@ -148,6 +143,7 @@ class _ModalContent extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     final builderContent = Container(
       color: context.widgetToolkitTheme.bottomSheetBackgroundColor,
+      padding: context.widgetToolkitTheme.bottomSheetContentPadding,
       child: builder(context),
     );
 
@@ -167,7 +163,7 @@ class _ModalContent extends StatelessWidget {
         if (showCloseButton) _buildCloseButton(context),
         if (!safeAreaBottom)
           SizedBox(
-            height: additionalBottomPadding ?? 20,
+            height: context.widgetToolkitTheme.bottomSheetBottomPadding,
           ),
         if (dialogHasBottomPadding)
           SizedBox(
@@ -287,12 +283,11 @@ class ModalConfiguration {
     this.heightFactor,
     this.showCloseButton = true,
     this.dialogHasBottomPadding = true,
-    this.safeAreaBottom = true,
+    this.safeAreaBottom = false,
     this.showHeaderPill = true,
     this.isDismissible = true,
     this.haveOnlyOneSheet = true,
     this.contentAlignment,
-    this.additionalBottomPadding,
   });
 
   /// If [fullScreen] is true, this flag ignores the [heightFactor] and calculate
@@ -316,9 +311,6 @@ class ModalConfiguration {
   /// Defaults to true.
   /// If set it false, [additionalBottomPadding] will be applied.
   final bool safeAreaBottom;
-
-  /// Bottom padding to be added when [safeAreaBottom] is false - defaults to 20.
-  final double? additionalBottomPadding;
 
   /// Flag indicating whether to show the header pill-cutout on the modal sheet
   final bool showHeaderPill;

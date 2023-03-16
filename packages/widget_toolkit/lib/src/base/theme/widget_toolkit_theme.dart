@@ -172,11 +172,6 @@ class _$WidgetToolkitTheme {
     WidgetToolkitDesignSystem.dark().colors.white,
   ];
 
-  static List<EdgeInsets> bottomSheetHeaderPadding = [
-    const EdgeInsets.only(left: 24),
-    const EdgeInsets.only(left: 24),
-  ];
-
   static List<Color> bottomSheetBarrierColor = [
     WidgetToolkitDesignSystem.light().colors.bottomSheetBarrierColor,
     WidgetToolkitDesignSystem.dark().colors.bottomSheetBarrierColor,
@@ -448,14 +443,29 @@ class _$WidgetToolkitTheme {
 
   /// region Common Spacings
 
+  static List<EdgeInsets> bottomSheetHeaderPadding = [
+    const EdgeInsets.only(left: 24),
+    const EdgeInsets.only(left: 24),
+  ];
+
   static List<EdgeInsets> bottomSheetCloseButtonPadding = [
     const EdgeInsets.only(top: 20),
     const EdgeInsets.only(top: 20)
   ];
 
+  static List<EdgeInsets> bottomSheetContentPadding = [
+    const EdgeInsets.fromLTRB(20, 20, 20, 0),
+    const EdgeInsets.fromLTRB(20, 20, 20, 0)
+  ];
+
   static List<EdgeInsets> messagePanelErrorEdgeInsets = [
     const EdgeInsets.only(bottom: 20),
     const EdgeInsets.only(bottom: 20),
+  ];
+
+  static List<EdgeInsets> errorModalContentTitleInsets = [
+    const EdgeInsets.only(bottom: 8),
+    const EdgeInsets.only(bottom: 8),
   ];
 
   static List<EdgeInsets> smallEdgeInsets = [
@@ -503,6 +513,11 @@ class _$WidgetToolkitTheme {
     WidgetToolkitDesignSystem.dark().spacings.m,
   ];
 
+  static List<double> spacingL = [
+    WidgetToolkitDesignSystem.light().spacings.l,
+    WidgetToolkitDesignSystem.dark().spacings.l,
+  ];
+
   static List<double> spacingXL = [
     WidgetToolkitDesignSystem.light().spacings.xl,
     WidgetToolkitDesignSystem.dark().spacings.xl,
@@ -523,6 +538,8 @@ class _$WidgetToolkitTheme {
   static List<double> textButtonPadding = spacingXS;
 
   static List<double> appBarTextButtonPadding = spacingXSS;
+
+  static List<double> bottomSheetBottomPadding = spacingL;
 
   /// endregion
 

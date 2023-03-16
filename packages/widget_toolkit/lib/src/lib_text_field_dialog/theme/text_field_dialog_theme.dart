@@ -245,18 +245,8 @@ class _$TextFieldDialogTheme {
   ///region EdgeInsets
 
   static List<EdgeInsets> textFieldDialog2 = [
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.light().spacings.xs1,
-      top: WidgetToolkitDesignSystem.light().spacings.l,
-      left: WidgetToolkitDesignSystem.light().spacings.m,
-      right: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.dark().spacings.xs1,
-      top: WidgetToolkitDesignSystem.dark().spacings.l,
-      left: WidgetToolkitDesignSystem.dark().spacings.m,
-      right: WidgetToolkitDesignSystem.dark().spacings.m,
-    ),
+    EdgeInsets.zero,
+    EdgeInsets.zero,
   ];
 
   static List<EdgeInsets> textFieldDialog4 = [
