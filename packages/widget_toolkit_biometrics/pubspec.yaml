@@ -18,7 +18,8 @@ dependencies:
   rx_bloc: ^4.0.0
   rxdart: ^0.27.7
   shared_preferences: ^2.0.17
-  widget_toolkit: ^0.0.1-dev4
+  widget_toolkit: ^0.0.1-dev5
+  nested: 1.0.0
 
 dev_dependencies:
   build_runner: ^2.3.3

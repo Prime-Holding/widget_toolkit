@@ -36,8 +36,8 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: Center(
-          child: Container(
+        body: SafeArea(
+          child: Center(
             child: BiometricsSwitch(
               biometricsLocalDataSource: ProfileLocalDataSource(),
             ),

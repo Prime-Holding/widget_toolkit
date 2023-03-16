@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../blocs/biometrics_bloc.dart';
@@ -16,9 +16,6 @@ import '../services/biometrics_service.dart';
 /// Builds Material Design switch to enable or disable biometrics for a specific
 /// need as per application. Might be overwritten using [builder] function.
 /// Displays customizable notification on success switching.
-///
-/// It depends on [AppLevelBiometricsDependencies] so make sure that you provide
-/// them into the context on top level, as well as an implementation of [BiometricsLocalDataSource].
 class BiometricsSwitch extends StatelessWidget {
   const BiometricsSwitch({
     required this.biometricsLocalDataSource,
@@ -78,48 +75,52 @@ class BiometricsSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
-        child: Column(
+        child: Nested(
           children: [
-            RxBlocBuilder<BiometricsBlocType, bool>(
-              state: (bloc) => bloc.states.areBiometricsEnabled,
-              builder: (context, enabled, bloc) {
-                final areEnabled = enabled.hasData && (enabled.data ?? false);
-                return builder?.call(
-                      areEnabled,
-                      (enable) => bloc.events
-                          .setBiometrics(enable, _getMessage(enable)),
-                    ) ??
-                    Switch(
-                      value: areEnabled,
-                      onChanged: (val) {
-                        bloc.events.setBiometrics(val, _getMessage(val));
-                      },
-                    );
-              },
-            ),
-            _showBottomMessage(context),
-            _buildErrorListener(context),
+            _buildShowBottomMessageListener(),
+            _buildErrorListener(),
           ],
+          child: RxBlocBuilder<BiometricsBlocType, bool>(
+            state: (bloc) => bloc.states.areBiometricsEnabled,
+            builder: (context, enabled, bloc) {
+              final areEnabled = enabled.hasData && (enabled.data ?? false);
+              return builder?.call(
+                    areEnabled,
+                    (enable) =>
+                        bloc.events.setBiometrics(enable, _getMessage(enable)),
+                  ) ??
+                  Switch(
+                    value: areEnabled,
+                    onChanged: (val) {
+                      bloc.events.setBiometrics(val, _getMessage(val));
+                    },
+                  );
+            },
+          ),
         ),
       );
 
   String _getMessage(bool isEnabled) =>
       isEnabled ? (enabledMessage ?? activateBiometrics) : deactivateBiometrics;
 
-  Widget _buildErrorListener(BuildContext context) =>
+  RxBlocListener _buildErrorListener() =>
       RxBlocListener<BiometricsBlocType, ErrorModel>(
         state: (bloc) => bloc.states.errors,
         listener: (context, state) => onError?.call(state),
       );
 
-  Widget _showBottomMessage(BuildContext context) =>
+  RxBlocListener _buildShowBottomMessageListener() =>
       RxBlocListener<BiometricsBlocType, BiometricsSettingMessageType?>(
         state: (bloc) => bloc.states.biometricsDialog,
-        listener: (context, state) => state != null
-            ? showDefaultNotification
-                ? showBiometricsMessageBottomSheet(context, state)
-                : onStateChanged?.call(state)
-            : null,
+        listener: (context, state) {
+          if (state != null) {
+            if (showDefaultNotification) {
+              showBiometricsMessageBottomSheet(context, state);
+            } else {
+              onStateChanged?.call(state);
+            }
+          }
+        },
       );
 
   /*todo(Toncho): to customize this you can pass in a [onStateChanged] callback,
@@ -132,29 +133,16 @@ class BiometricsSwitch extends StatelessWidget {
         context: context,
         configuration: const ModalConfiguration(safeAreaBottom: false),
         builder: (context) => Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                MessagePanelWidget(
-                  message: mapMessageToString?.call(messageType) ??
-                      messageType.translate(),
-                  messageState: messageType.state(),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                SmallButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: Icons.close,
-                  type: SmallButtonType.outline,
-                ),
-              ],
-            ),
+          padding: EdgeInsets.only(
+            left: 16,
+            top: 16,
+            right: 16,
+            bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: MessagePanelWidget(
+            message: mapMessageToString?.call(messageType) ??
+                messageType.translate(),
+            messageState: messageType.state(),
           ),
         ),
       );
