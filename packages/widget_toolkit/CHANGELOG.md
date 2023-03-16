@@ -1,5 +1,4 @@
-## [0.0.1-dev6] 
-
+## [0.0.1-dev6]
 - Documentation improvements
 - `EditAddressWidget` example is added to the example project
 - Fixed golden tests for `EditAddressPage`
@@ -14,12 +13,12 @@
 - `service` parameter in `EditAddressWidget` becomes required, because the default service is deleted.
 - Removed params `TextFieldDialog(errorMapper)`
 - Added params `TextFieldDialog(Function(Object error) translateError)`
-- Removed params `ModalConfiguration(additionalBottomPadding:)`
-- Removed params `EditAddressConfiguration(additionalBottomPadding:)`
-- Removed params `ItemPickerModalConfiguration(additionalBottomPadding:)`
-- Removed params `LanguagePickerModalConfiguration(additionalBottomPadding:)`
-- Removed params `SearchPickerModalConfiguration(additionalBottomPadding:)`
-- Removed params `TextFieldModalConfiguration(additionalBottomPadding:)`
+- Removed params `ModalConfiguration(additionalBottomPadding)`
+- Removed params `EditAddressConfiguration(additionalBottomPadding)`
+- Removed params `ItemPickerModalConfiguration(additionalBottomPadding)`
+- Removed params `LanguagePickerModalConfiguration(additionalBottomPadding)`
+- Removed params `SearchPickerModalConfiguration(additionalBottomPadding)`
+- Removed params `TextFieldModalConfiguration(additionalBottomPadding)`
   -  [Edit Address API Improvements ticket](https://github.com/Prime-Holding/widget_toolkit/issues/9)
 
 ## [0.0.1-dev5]
