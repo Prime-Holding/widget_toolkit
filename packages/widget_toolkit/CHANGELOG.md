@@ -1,4 +1,4 @@
-## [0.0.1-dev6] - TBE
+## [0.0.1-dev6] 
 
 - Documentation improvements
 - `EditAddressWidget` example is added to the example project
