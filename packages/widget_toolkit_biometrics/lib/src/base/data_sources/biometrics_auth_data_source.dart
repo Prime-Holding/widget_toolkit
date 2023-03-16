@@ -5,8 +5,9 @@ import '../models/biometrics_authentication_type.dart';
 /// [BiometricsAuthDataSource] is a wrapper of the plugin [local_auth] and
 /// expose its properties, to be used from [BiometricsService]
 class BiometricsAuthDataSource {
-  /*todo(Toncho): make this an explicit dependency*/
-  final LocalAuthentication auth = LocalAuthentication();
+  final LocalAuthentication auth;
+
+  BiometricsAuthDataSource({required this.auth});
 
   Future<bool> get canCheckBiometrics => auth.canCheckBiometrics;
 
