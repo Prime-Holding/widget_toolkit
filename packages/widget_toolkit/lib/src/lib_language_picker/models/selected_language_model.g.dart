@@ -58,18 +58,15 @@ class _$SelectedLanguageModelCWProxyImpl
   }) {
     return SelectedLanguageModel(
       language: language == const $CopyWithPlaceholder() || language == null
-          // ignore: unnecessary_non_null_assertion
-          ? _value.language!
+          ? _value.language
           // ignore: cast_nullable_to_non_nullable
           : language as LanguageModel,
       selected: selected == const $CopyWithPlaceholder() || selected == null
-          // ignore: unnecessary_non_null_assertion
-          ? _value.selected!
+          ? _value.selected
           // ignore: cast_nullable_to_non_nullable
           : selected as bool,
       isLoading: isLoading == const $CopyWithPlaceholder() || isLoading == null
-          // ignore: unnecessary_non_null_assertion
-          ? _value.isLoading!
+          ? _value.isLoading
           // ignore: cast_nullable_to_non_nullable
           : isLoading as bool,
     );
