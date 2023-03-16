@@ -116,7 +116,8 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                         ),
                       ),
                       MessagePanelError<EditAddressBlocType>(
-                        errorState: (bloc) => bloc.states.errors,
+                        errorState: (bloc) => bloc.states.errors.map((event) =>
+                            event != null ? translateError(event) : event),
                         errorBuilder: editContactAddressErrorBuilder,
                         padding: context
                             .editAddressTheme.editAddressPageErrorPanelPadding,

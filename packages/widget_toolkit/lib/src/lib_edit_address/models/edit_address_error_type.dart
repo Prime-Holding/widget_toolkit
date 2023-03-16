@@ -1,1 +1,5 @@
-enum EditAddressErrorType { editAddressErrorModel }
+enum EditAddressErrorType {
+  editAddressEmptyCity,
+  editAddressEmptyStreet,
+  editAddressSaveError,
+}

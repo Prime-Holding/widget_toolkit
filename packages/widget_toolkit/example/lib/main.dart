@@ -604,6 +604,13 @@ class TranslateErrorUtil {
       throw RxFieldExceptionFactory.fromEditAddressErrorModel<T>(
           error, context);
     } else if (error is EditAddressError) {
+      if (error.translationKey == EditAddressErrorType.editAddressSaveError) {
+        throw EditAddressError(
+          translationKey: EditAddressErrorType.editAddressSaveError,
+          error: 'Could not save the address',
+          fieldValue: error.fieldValue,
+        );
+      }
       throw RxFieldExceptionFactory.fromEditAddressError<T>(error, context);
     }
     throw error;
@@ -625,7 +632,7 @@ extension RxFieldExceptionFactory on RxFieldException {
     BuildContext context,
   ) =>
       RxFieldException<T>(
-        error: editAddressError.error,
+        error: editAddressError.translate(context),
         fieldValue: editAddressError.fieldValue,
       );
 
@@ -634,9 +641,31 @@ extension RxFieldExceptionFactory on RxFieldException {
     BuildContext context,
   ) =>
       RxFieldException<T>(
-        error: editAddressError.error,
+        error: editAddressError.translate(context),
         fieldValue: editAddressError.fieldValue,
       );
+}
+
+extension EditAddressErrorModelTranslation on EditAddressErrorModel {
+  String translate(BuildContext context) {
+    if (translationKey == EditAddressErrorType.editAddressEmptyCity) {
+      return 'Provide a value for the city';
+    } else if (translationKey == EditAddressErrorType.editAddressEmptyStreet) {
+      return 'Provide a value for the street';
+    }
+    return '';
+  }
+}
+
+extension EditAddressErrorTranslation on EditAddressError {
+  String translate(BuildContext context) {
+    if (translationKey == EditAddressErrorType.editAddressEmptyCity) {
+      return 'Provide a value for the city';
+    } else if (translationKey == EditAddressErrorType.editAddressEmptyStreet) {
+      return 'Provide a value for the street';
+    }
+    return '';
+  }
 }
 
 class LocalAddressFieldService extends TextFieldValidator<String> {
@@ -681,15 +710,30 @@ class ErrorFormFieldModel<T> extends ErrorModel {
 
 class EditAddressError<T> extends ErrorModel {
   EditAddressError({
-    required this.error,
+    required this.translationKey,
     required this.fieldValue,
+    this.error,
   });
 
-  final String error;
+  final EditAddressErrorType translationKey;
   final T fieldValue;
+  String? error;
 
   @override
-  String toString() => error;
+  String toString() => '$error';
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EditAddressError &&
+          runtimeType == other.runtimeType &&
+          translationKey == other.translationKey &&
+          fieldValue == other.fieldValue &&
+          error == other.error;
+
+  @override
+  int get hashCode =>
+      translationKey.hashCode ^ fieldValue.hashCode ^ error.hashCode;
 }
 
 class SearchCountryRepository<T> {
@@ -715,7 +759,7 @@ class CustomEditAddressService<T> extends EditAddressService<T> {
   Future<AddressModel> saveAddress(AddressModel addressModel) async {
     await Future.delayed(const Duration(seconds: 1));
     throw EditAddressError<String>(
-      error: 'Could not save',
+      translationKey: EditAddressErrorType.editAddressSaveError,
       fieldValue: addressModel.toString(),
     );
   }
@@ -733,7 +777,7 @@ class CustomEditAddressService<T> extends EditAddressService<T> {
     if (text.trim().isEmpty) {
       await Future.delayed(const Duration(seconds: 1));
       throw EditAddressError<String>(
-        error: 'A value should be provided',
+        translationKey: EditAddressErrorType.editAddressEmptyCity,
         fieldValue: text,
       );
     }
@@ -745,7 +789,7 @@ class CustomEditAddressService<T> extends EditAddressService<T> {
     if (text.trim().isEmpty) {
       await Future.delayed(const Duration(seconds: 1));
       throw EditAddressError<String>(
-        error: 'A value should be provided',
+        translationKey: EditAddressErrorType.editAddressEmptyStreet,
         fieldValue: text,
       );
     }
@@ -756,7 +800,7 @@ class CustomEditAddressService<T> extends EditAddressService<T> {
   void validateCityOnType(String text) {
     if (text.trim().isEmpty) {
       throw EditAddressError<String>(
-        error: 'A value should be provided',
+        translationKey: EditAddressErrorType.editAddressEmptyCity,
         fieldValue: text,
       );
     }
@@ -766,7 +810,7 @@ class CustomEditAddressService<T> extends EditAddressService<T> {
   void validateStreetOnType(String text) {
     if (text.trim().isEmpty) {
       throw EditAddressError<String>(
-        error: 'A value should be provided',
+        translationKey: EditAddressErrorType.editAddressEmptyCity,
         fieldValue: text,
       );
     }

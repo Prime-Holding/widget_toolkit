@@ -54,8 +54,7 @@ abstract class EditAddressService<T> {
   Future<String> validateCityOnSubmit(String text) async {
     if (text.trim().isEmpty) {
       throw EditAddressErrorModel<String>(
-          error: 'A value should be provided',
-          translationKey: EditAddressErrorType.editAddressErrorModel,
+          translationKey: EditAddressErrorType.editAddressEmptyCity,
           fieldValue: text);
     }
     return text;
@@ -64,8 +63,7 @@ abstract class EditAddressService<T> {
   Future<String> validateStreetOnSubmit(String text) async {
     if (text.trim().isEmpty) {
       throw EditAddressErrorModel<String>(
-          error: 'A value should be provided',
-          translationKey: EditAddressErrorType.editAddressErrorModel,
+          translationKey: EditAddressErrorType.editAddressEmptyStreet,
           fieldValue: text);
     }
     return text;
@@ -74,8 +72,7 @@ abstract class EditAddressService<T> {
   void validateCityOnType(String text) {
     if (text.trim().isEmpty) {
       throw EditAddressErrorModel<String>(
-          error: 'A value should be provided',
-          translationKey: EditAddressErrorType.editAddressErrorModel,
+          translationKey: EditAddressErrorType.editAddressEmptyCity,
           fieldValue: text);
     }
   }
@@ -83,8 +80,7 @@ abstract class EditAddressService<T> {
   void validateStreetOnType(String text) {
     if (text.trim().isEmpty) {
       throw EditAddressErrorModel<String>(
-          error: 'A value should be provided PACKAGE',
-          translationKey: EditAddressErrorType.editAddressErrorModel,
+          translationKey: EditAddressErrorType.editAddressEmptyStreet,
           fieldValue: text);
     }
   }
