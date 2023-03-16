@@ -22,8 +22,9 @@ jobs:
       - name: Install dependencies
         working-directory: packages/widget_toolkit
         run: dart pub get
-      # Here you can insert custom steps you need
-      # - run: dart tool/generate-code.dart
+      - name: Dart format
+        working-directory: packages/widget_toolkit
+        run: dart format .
       - name: Publish
         working-directory: packages/widget_toolkit
-        run: dart pub publish --dry-run
+        run: dart pub publish --force
