@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
+import '../../base/data_sources/biometrics_auth_data_source.dart';
+import '../../base/data_sources/biometrics_local_data_source.dart';
 import '../../base/models/biometrics_setting_message_types.dart';
+import '../../base/repositories/biometrics_repository.dart';
 import '../../base/resources/constants.dart';
 import '../../base/services/biometrics_service.dart';
 import '../bloc/biometrics_bloc.dart';
@@ -16,6 +21,7 @@ import '../bloc/biometrics_bloc.dart';
 /// them into the context on top level, as well as an implementation of [BiometricsLocalDataSource].
 class BiometricsSwitch extends StatelessWidget {
   const BiometricsSwitch({
+    required this.biometricsLocalDataSource,
     this.enabledMessage,
     this.onStateChanged,
     this.showDefaultNotification = true,
@@ -23,7 +29,20 @@ class BiometricsSwitch extends StatelessWidget {
     this.mapMessageToString,
     this.onError,
     super.key,
-  });
+  }) : _addDependencies = true;
+
+  const BiometricsSwitch.withoutDependencies({
+    required this.biometricsLocalDataSource,
+    this.enabledMessage,
+    this.onStateChanged,
+    this.showDefaultNotification = true,
+    this.builder,
+    this.mapMessageToString,
+    this.onError,
+    super.key,
+  }) : _addDependencies = false;
+
+  final bool _addDependencies;
 
   /// [enabledMessage] is the message to show to user while prompting them
   /// for authentication while enabling biometrics. This is typically along the lines of: 'Please scan
@@ -55,11 +74,10 @@ class BiometricsSwitch extends StatelessWidget {
   /// [onError] is optional function that enable error handling out of the package
   final void Function(ErrorModel)? onError;
 
+  final BiometricsLocalDataSource biometricsLocalDataSource;
+
   @override
-  Widget build(BuildContext context) => RxBlocProvider<BiometricsBlocType>(
-        /*Todo(Toncho): this creates an implicit dependency
-           on [BiometricsService], */
-        create: (ctx) => BiometricsBloc(context.read<BiometricsService>()),
+  Widget build(BuildContext context) => _wrapWithDependencies(
         child: Column(
           children: [
             RxBlocBuilder<BiometricsBlocType, bool>(
@@ -138,4 +156,45 @@ class BiometricsSwitch extends StatelessWidget {
           ),
         ),
       );
+
+  Widget _wrapWithDependencies({required Widget child}) {
+    if (_addDependencies) {
+      return MultiProvider(
+        providers: _buildDependencies(),
+        child: child,
+      );
+    } else {
+      return child;
+    }
+  }
+
+  List<SingleChildWidget> _buildDependencies() => [
+        Provider<LocalAuthentication>(
+          create: (context) => LocalAuthentication(),
+        ),
+        Provider<BiometricsLocalDataSource>(
+          create: (context) => biometricsLocalDataSource,
+        ),
+        Provider<BiometricsAuthDataSource>(
+          create: (context) => BiometricsAuthDataSource(
+            auth: context.read<LocalAuthentication>(),
+          ),
+        ),
+        Provider<BiometricsRepository>(
+          create: (context) => BiometricsRepository(
+            context.read<BiometricsAuthDataSource>(),
+            context.read<BiometricsLocalDataSource>(),
+          ),
+        ),
+        Provider<BiometricsService>(
+          create: (context) => BiometricsService(
+            context.read<BiometricsRepository>(),
+          ),
+        ),
+        RxBlocProvider<BiometricsBlocType>(
+          create: (context) => BiometricsBloc(
+            context.read<BiometricsService>(),
+          ),
+        ),
+      ];
 }
