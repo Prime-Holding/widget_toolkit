@@ -6,11 +6,11 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:widget_toolkit_biometrics/src/base/models/biometrics_authentication_type.dart'
+import 'package:widget_toolkit_biometrics/src/models/biometrics_authentication_type.dart'
     as _i4;
-import 'package:widget_toolkit_biometrics/src/base/models/biometrics_setting_message_types.dart'
+import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_types.dart'
     as _i5;
-import 'package:widget_toolkit_biometrics/src/base/services/biometrics_service.dart'
+import 'package:widget_toolkit_biometrics/src/services/biometrics_service.dart'
     as _i2;
 
 // ignore_for_file: type=lint

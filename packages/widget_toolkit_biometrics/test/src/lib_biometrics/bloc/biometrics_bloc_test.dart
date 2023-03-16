@@ -3,9 +3,9 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
 import 'package:widget_toolkit/models.dart';
-import 'package:widget_toolkit_biometrics/src/base/models/biometrics_setting_message_types.dart';
-import 'package:widget_toolkit_biometrics/src/base/services/biometrics_service.dart';
-import 'package:widget_toolkit_biometrics/src/lib_biometrics/bloc/biometrics_bloc.dart';
+import 'package:widget_toolkit_biometrics/src/blocs/biometrics_bloc.dart';
+import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_types.dart';
+import 'package:widget_toolkit_biometrics/src/services/biometrics_service.dart';
 
 import '../mocks/stubs.dart';
 import 'biometrics_bloc_test.mocks.dart';

@@ -1,6 +1,6 @@
 library widget_toolkit_biometrics;
 
-export 'package:widget_toolkit_biometrics/src/base/data_sources/biometrics_local_data_source.dart';
-export 'package:widget_toolkit_biometrics/src/base/models/biometrics_authentication_type.dart';
-export 'package:widget_toolkit_biometrics/src/base/models/biometrics_setting_message_types.dart';
-export 'package:widget_toolkit_biometrics/src/lib_biometrics/view/biometrics_switch.dart';
+export 'package:widget_toolkit_biometrics/src/data_sources/biometrics_local_data_source.dart';
+export 'package:widget_toolkit_biometrics/src/models/biometrics_authentication_type.dart';
+export 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_types.dart';
+export 'package:widget_toolkit_biometrics/src/views/biometrics_switch.dart';

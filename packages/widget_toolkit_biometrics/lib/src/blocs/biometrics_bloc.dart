@@ -3,10 +3,10 @@ import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 
-import '../../base/models/biometrics_setting_message_types.dart';
-import '../../base/services/biometrics_service.dart';
+import '../models/biometrics_setting_message_types.dart';
+import '../services/biometrics_service.dart';
 
-part '../bloc/biometrics_bloc.rxb.g.dart';
+part 'biometrics_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the BiometricsBloC.
 abstract class BiometricsBlocEvents {

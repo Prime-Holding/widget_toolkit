@@ -5,13 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
-import '../../base/data_sources/biometrics_auth_data_source.dart';
-import '../../base/data_sources/biometrics_local_data_source.dart';
-import '../../base/models/biometrics_setting_message_types.dart';
-import '../../base/repositories/biometrics_repository.dart';
-import '../../base/resources/constants.dart';
-import '../../base/services/biometrics_service.dart';
-import '../bloc/biometrics_bloc.dart';
+import '../blocs/biometrics_bloc.dart';
+import '../data_sources/biometrics_auth_data_source.dart';
+import '../data_sources/biometrics_local_data_source.dart';
+import '../models/biometrics_setting_message_types.dart';
+import '../repositories/biometrics_repository.dart';
+import '../resources/constants.dart';
+import '../services/biometrics_service.dart';
 
 /// Builds Material Design switch to enable or disable biometrics for a specific
 /// need as per application. Might be overwritten using [builder] function.
@@ -122,6 +122,8 @@ class BiometricsSwitch extends StatelessWidget {
             : null,
       );
 
+  /*todo(Toncho): to customize this you can pass in a [onStateChanged] callback,
+      look at [_showBottomMessage] to understand*/
   Future<void> showBiometricsMessageBottomSheet(
     BuildContext context,
     BiometricsSettingMessageType messageType,
