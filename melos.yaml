@@ -1,8 +1,0 @@
-name: widget_toolkit
-
-packages:
-  - packages/**
-
-scripts:
-  analyze:
-    exec: dart analyze .

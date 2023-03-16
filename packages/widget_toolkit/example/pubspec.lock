@@ -405,10 +405,10 @@ packages:
   widget_toolkit:
     dependency: "direct main"
     description:
-      path: "/Users/snezhana.romanova/StudioProjects/widget_toolkit/packages/widget_toolkit/example/../../widget_toolkit"
-      relative: false
+      path: ".."
+      relative: true
     source: path
-    version: "0.0.1-dev5"
+    version: "0.0.1-dev6"
   xml:
     dependency: transitive
     description:
