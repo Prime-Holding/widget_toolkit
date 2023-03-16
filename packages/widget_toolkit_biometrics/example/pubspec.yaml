@@ -1,0 +1,30 @@
+name: example
+description: An example project to present how to use widget_toolkit_biometrics package with minimal effort.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider:
+  flutter_rx_bloc: ^5.0.2
+  rxdart:
+  widget_toolkit: ^0.0.1-dev5
+  widget_toolkit_biometrics: ^0.0.1-dev1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+dependency_overrides:
+#  widget_toolkit:
+#    path: ../../widget_toolkit
+  widget_toolkit_biometrics:
+    path: ../../widget_toolkit_biometrics
+
+flutter:
+  uses-material-design: true
