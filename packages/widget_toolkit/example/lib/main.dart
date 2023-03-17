@@ -359,6 +359,13 @@ class EditFieldsPage extends StatelessWidget {
                 service: CustomEditAddressService<CountryModel>(
                   searchRepository: SearchCountryRepository<CountryModel>(),
                 ),
+                onSaved: (address) => showBlurredBottomSheet(
+                  context: context,
+                  builder: (context) => MessagePanelWidget(
+                    message: address.fullAddress,
+                    messageState: MessagePanelState.informative,
+                  ),
+                ),
               ),
             ),
           ],
@@ -460,18 +467,12 @@ class _LoadingStateSwitcherState extends State<LoadingStateSwitcher> {
       widget.builder.call(isLoading, _slapAfterThreeSeconds);
 }
 
-String translateError(BuildContext context, Exception exception) {
-  if (exception is ErrorAccessDeniedModel) {
-    return 'Unable to open link on this device. Perhaps you are missing the'
-        ' right application to open the link.';
-  }
-  return exception.toString();
-}
-
 class UpdateStateOnSelection<T> extends StatefulWidget {
-  const UpdateStateOnSelection(
-      {required this.builder, this.getString, Key? key})
-      : super(key: key);
+  const UpdateStateOnSelection({
+    required this.builder,
+    this.getString,
+    Key? key,
+  }) : super(key: key);
 
   final Widget Function(
       List<T> data, void Function(List<T> newData) updateState) builder;
@@ -533,6 +534,139 @@ class _UpdateStateOnSelectionState<T> extends State<UpdateStateOnSelection<T>> {
       );
 }
 
+class TranslateErrorUtil {
+  static void translateError<T>(Object error, BuildContext context) {
+    if (error is ErrorFormFieldModel) {
+      throw RxFieldException<T>(
+        error: error.error,
+        fieldValue: error.fieldValue,
+      );
+    }
+
+    if (error is EditAddressErrorModel) {
+      throw RxFieldException<T>(
+        error: error.translate(context),
+        fieldValue: error.fieldValue,
+      );
+    }
+
+    throw error;
+  }
+}
+
+String translateError(BuildContext context, Exception exception) {
+  if (exception is ErrorAccessDeniedModel) {
+    return 'Unable to open link on this device. Perhaps you are missing the'
+        ' right application to open the link.';
+  }
+  return exception.toString();
+}
+
+//# endregion
+
+class DataService extends ItemPickerService<DataModel> {
+  DataService();
+
+  @override
+  Future<List<DataModel>> getItems() => Future.delayed(
+        const Duration(seconds: 3),
+        () => List.generate(
+          20,
+          (index) => DataModel(
+            name: 'Person $index',
+            description:
+                'This may be very long description for user named Person $index',
+          ),
+        ),
+      );
+}
+
+//# region Services
+class SearchService<T> extends SearchPickerService<T> {
+  SearchService(this._searchRepository);
+
+  final SearchCountryRepository<T> _searchRepository;
+
+  @override
+  Future<List<T>> getItems() => _searchRepository.searchList;
+
+  @override
+  List<T> getPlaceholderList() =>
+      List.generate(5, (index) => CountryModel.empty() as T);
+}
+
+class CustomEditAddressService<T> extends EditAddressService<T> {
+  CustomEditAddressService({
+    required this.searchRepository,
+  });
+
+  final SearchCountryRepository<T> searchRepository;
+
+  @override
+  Future<AddressModel> saveAddress(AddressModel addressModel) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return addressModel;
+  }
+
+  @override
+  Future<List<T>> getCountries() async => await searchRepository.searchList;
+
+  @override
+  List<T> getCountryPlaceholderList() =>
+      List.generate(3, (index) => CountryModel.empty() as T);
+
+  @override
+  Future<String> validateCityOnSubmit(String text) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return super.validateCityOnSubmit(text);
+  }
+}
+
+class LocalAddressFieldService extends TextFieldValidator<String> {
+  static const int minLengthRequired = 2;
+  static const int maxLengthRequired = 7;
+
+  @override
+  Future<String> validateOnSubmit(String text) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    if (text.length >= maxLengthRequired) {
+      throw ErrorFormFieldModel<String>(
+        error: 'Please enter at max $maxLengthRequired symbols',
+        fieldValue: text,
+      );
+    }
+
+    return text;
+  }
+
+  @override
+  void validateOnType(String text) {
+    if (text.length < minLengthRequired) {
+      throw ErrorFormFieldModel<String>(
+        error: 'Please enter at least $minLengthRequired symbols',
+        fieldValue: text,
+      );
+    }
+  }
+}
+//# endregion
+
+//# region Repositories
+class SearchCountryRepository<T> {
+  Future<List<T>> get searchList => Future.delayed(
+        const Duration(seconds: 1),
+        () => _countriesList
+            .map((country) =>
+                CountryModel(countryCode: 'US', countryName: country) as T)
+            .toList(),
+      );
+
+  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
+}
+//# endregion
+
+//# region Models
 class DataModel extends PickerItemModel {
   DataModel({
     required this.name,
@@ -560,134 +694,6 @@ class DataModel extends PickerItemModel {
   String toString() => name;
 }
 
-class DataService extends ItemPickerService<DataModel> {
-  DataService();
-
-  @override
-  Future<List<DataModel>> getItems() => Future.delayed(
-        const Duration(seconds: 3),
-        () => List.generate(
-          20,
-          (index) => DataModel(
-            name: 'Person $index',
-            description:
-                'This may be very long description for user named Person $index',
-          ),
-        ),
-      );
-}
-
-class SearchService<T> extends SearchPickerService<T> {
-  SearchService(this._searchRepository);
-
-  final SearchCountryRepository<T> _searchRepository;
-
-  @override
-  Future<List<T>> getItems() => _searchRepository.searchList;
-
-  @override
-  List<T> getPlaceholderList() =>
-      List.generate(5, (index) => CountryModel.empty() as T);
-}
-
-class TranslateErrorUtil {
-  static void translateError<T>(Object error, BuildContext context) {
-    if (error is ErrorFormFieldModel) {
-      throw RxFieldExceptionFactory.fromFormField<T>(error, context);
-    } else if (error is EditAddressErrorModel) {
-      throw RxFieldExceptionFactory.fromEditAddressErrorModel<T>(
-          error, context);
-    } else if (error is EditAddressError) {
-      if (error.translationKey == EditAddressErrorType.editAddressSaveError) {
-        throw EditAddressError(
-          translationKey: EditAddressErrorType.editAddressSaveError,
-          error: 'Could not save the address',
-          fieldValue: error.fieldValue,
-        );
-      }
-      throw RxFieldExceptionFactory.fromEditAddressError<T>(error, context);
-    }
-    throw error;
-  }
-}
-
-extension RxFieldExceptionFactory on RxFieldException {
-  static RxFieldException<T> fromFormField<T>(
-    ErrorFormFieldModel formFieldModel,
-    BuildContext context,
-  ) =>
-      RxFieldException<T>(
-        error: formFieldModel.error,
-        fieldValue: formFieldModel.fieldValue,
-      );
-
-  static RxFieldException<T> fromEditAddressErrorModel<T>(
-    EditAddressErrorModel editAddressError,
-    BuildContext context,
-  ) =>
-      RxFieldException<T>(
-        error: editAddressError.translate(context),
-        fieldValue: editAddressError.fieldValue,
-      );
-
-  static RxFieldException<T> fromEditAddressError<T>(
-    EditAddressError editAddressError,
-    BuildContext context,
-  ) =>
-      RxFieldException<T>(
-        error: editAddressError.translate(context),
-        fieldValue: editAddressError.fieldValue,
-      );
-}
-
-extension EditAddressErrorModelTranslation on EditAddressErrorModel {
-  String translate(BuildContext context) {
-    if (translationKey == EditAddressErrorType.editAddressEmptyCity) {
-      return 'Provide a value for the city';
-    } else if (translationKey == EditAddressErrorType.editAddressEmptyStreet) {
-      return 'Provide a value for the street';
-    }
-    return '';
-  }
-}
-
-extension EditAddressErrorTranslation on EditAddressError {
-  String translate(BuildContext context) {
-    if (translationKey == EditAddressErrorType.editAddressEmptyCity) {
-      return 'Provide a value for the city';
-    } else if (translationKey == EditAddressErrorType.editAddressEmptyStreet) {
-      return 'Provide a value for the street';
-    }
-    return '';
-  }
-}
-
-class LocalAddressFieldService extends TextFieldValidator<String> {
-  static const int minLengthRequired = 2;
-  static const int maxLengthRequired = 7;
-
-  @override
-  Future<String> validateOnSubmit(String text) async {
-    await Future.delayed(const Duration(seconds: 1));
-    if (text.length >= maxLengthRequired) {
-      await Future.delayed(const Duration(seconds: 1));
-      throw ErrorFormFieldModel<String>(
-          error: 'Please enter at max $maxLengthRequired symbols',
-          fieldValue: text);
-    }
-    return text;
-  }
-
-  @override
-  void validateOnType(String text) {
-    if (text.length < minLengthRequired) {
-      throw ErrorFormFieldModel<String>(
-          error: 'Please enter at least $minLengthRequired symbols',
-          fieldValue: text);
-    }
-  }
-}
-
 class ErrorFormFieldModel<T> extends ErrorModel {
   ErrorFormFieldModel({
     required this.error,
@@ -702,111 +708,15 @@ class ErrorFormFieldModel<T> extends ErrorModel {
       'ErrorRequiredField. Translation Key: $error. Value: $fieldValue.';
 }
 
-class EditAddressError<T> extends ErrorModel {
-  EditAddressError({
-    required this.translationKey,
-    required this.fieldValue,
-    this.error,
-  });
-
-  final EditAddressErrorType translationKey;
-  final T fieldValue;
-  String? error;
-
-  @override
-  String toString() => '$error';
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EditAddressError &&
-          runtimeType == other.runtimeType &&
-          translationKey == other.translationKey &&
-          fieldValue == other.fieldValue &&
-          error == other.error;
-
-  @override
-  int get hashCode =>
-      translationKey.hashCode ^ fieldValue.hashCode ^ error.hashCode;
-}
-
-class SearchCountryRepository<T> {
-  Future<List<T>> get searchList => Future.delayed(
-        const Duration(seconds: 1),
-        () => _countriesList
-            .map((country) =>
-                CountryModel(countryCode: 'US', countryName: country) as T)
-            .toList(),
-      );
-
-  final _countriesList = ['Angola', 'Bulgaria', 'Cuba', 'Egypt', 'Italy'];
-}
-
-class CustomEditAddressService<T> extends EditAddressService<T> {
-  CustomEditAddressService({
-    required this.searchRepository,
-  });
-
-  final SearchCountryRepository<T> searchRepository;
-
-  @override
-  Future<AddressModel> saveAddress(AddressModel addressModel) async {
-    await Future.delayed(const Duration(seconds: 1));
-    throw EditAddressError<String>(
-      translationKey: EditAddressErrorType.editAddressSaveError,
-      fieldValue: addressModel.toString(),
-    );
-  }
-
-  @override
-  Future<List<T>> getCountries() async => await searchRepository.searchList;
-
-  @override
-  List<T> getCountryPlaceholderList() =>
-      List.generate(3, (index) => CountryModel.empty() as T);
-
-  @override
-  Future<String> validateCityOnSubmit(String text) async {
-    await Future.delayed(const Duration(seconds: 1));
-    if (text.trim().isEmpty) {
-      await Future.delayed(const Duration(seconds: 1));
-      throw EditAddressError<String>(
-        translationKey: EditAddressErrorType.editAddressEmptyCity,
-        fieldValue: text,
-      );
-    }
-    return text;
-  }
-
-  @override
-  Future<String> validateStreetOnSubmit(String text) async {
-    if (text.trim().isEmpty) {
-      await Future.delayed(const Duration(seconds: 1));
-      throw EditAddressError<String>(
-        translationKey: EditAddressErrorType.editAddressEmptyStreet,
-        fieldValue: text,
-      );
-    }
-    return text;
-  }
-
-  @override
-  void validateCityOnType(String text) {
-    if (text.trim().isEmpty) {
-      throw EditAddressError<String>(
-        translationKey: EditAddressErrorType.editAddressEmptyCity,
-        fieldValue: text,
-      );
-    }
-  }
-
-  @override
-  void validateStreetOnType(String text) {
-    if (text.trim().isEmpty) {
-      throw EditAddressError<String>(
-        translationKey: EditAddressErrorType.editAddressEmptyCity,
-        fieldValue: text,
-      );
+extension EditAddressErrorModelTranslation on EditAddressErrorModel {
+  String translate(BuildContext context) {
+    switch (translationKey) {
+      case EditAddressErrorType.editAddressEmptyCity:
+        return 'Provide a value for the city';
+      case EditAddressErrorType.editAddressEmptyStreet:
+        return 'Provide a value for the street';
+      case EditAddressErrorType.editAddressSaveError:
+        return 'Could not save the address';
     }
   }
 }

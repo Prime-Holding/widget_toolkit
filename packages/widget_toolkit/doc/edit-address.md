@@ -145,8 +145,10 @@ EditAddressWidget<CountryModel>(
   editAddressService: CustomEditAddressService<CountryModel>(
     searchRepository: SearchCountryRepository(),
   ),
+  onSaved: (addressModel) =>
+      print('Address model saved: $addressModel'),
   onChanged: (addressModel) =>
-      print('Address model: $addressModel'),
+      print('Address model changed: $addressModel'),
   addressModel: const AddressModel(
     addressType: AddressTypeModel.correspondence,
     city: 'Plovd',
