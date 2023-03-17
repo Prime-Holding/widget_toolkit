@@ -16,7 +16,11 @@ import 'permanent_address_bottom_sheet.dart';
 /// button for each of them. Some methods have default implementation. For more
 /// information, check the documentation in the file [EditAddressService] class.
 ///
-/// [onChanged] receives a function, which accepts the edited address model.
+/// [onChanged] receives a function, which accepts the edited address model and
+/// it is invoked when any of its property changes.
+///
+/// [onSaved] receives a function, which accepts the edited address model and
+/// it is invoked when the model is saved and the dialog is dismissed.
 ///
 /// [initialAddress] is the current address information, which is provided to be
 /// displayed in the widgets inside the page.
@@ -48,6 +52,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     required this.translateError,
     required this.service,
     this.onChanged,
+    this.onSaved,
     this.initialAddress = _defaultAddressModel,
     this.searchCountryBuilders,
     this.editContactAddressErrorBuilder,
@@ -61,6 +66,7 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
   }) : super(key: key);
 
   final Function(AddressModel? addressModel)? onChanged;
+  final Function(AddressModel addressModel)? onSaved;
   final EditAddressLocalizedStrings? localizedStrings;
   final AddressModel initialAddress;
   final UserProfileCardTypes type;
@@ -180,26 +186,30 @@ class _EditAddressWidgetState<T extends PickerItemModel>
       case UserProfileCardTypes.email:
       case UserProfileCardTypes.phone:
         return () async {
-          final savedAddress = await showEditAddressBottomSheet<T>(context,
-              onChanged: widget.onChanged,
-              buttonText: widget.localizedStrings?.saveButtonText ??
-                  context.getEditAddressLocalizedStrings.saveButtonText,
-              headerText: widget.localizedStrings?.headerTitle ??
-                  context.getEditAddressLocalizedStrings.headerTitle,
-              addressModel: _savedModel ?? widget.initialAddress,
-              modalConfiguration: widget.configuration,
-              translateError: widget.translateError,
-              editAddressLocalizedStrings: widget.localizedStrings,
-              editAddressService: widget.service,
-              editContactAddressErrorBuilder:
-                  widget.editContactAddressErrorBuilder,
-              searchCountryCustomBuilders: widget.searchCountryBuilders,
-              textFieldsModalConfiguration: widget.textFieldsModalConfiguration,
-              countryPickerModalConfiguration:
-                  widget.countryPickerModalConfiguration);
+          final savedAddress = await showEditAddressBottomSheet<T>(
+            context,
+            onChanged: widget.onChanged,
+            buttonText: widget.localizedStrings?.saveButtonText ??
+                context.getEditAddressLocalizedStrings.saveButtonText,
+            headerText: widget.localizedStrings?.headerTitle ??
+                context.getEditAddressLocalizedStrings.headerTitle,
+            addressModel: _savedModel ?? widget.initialAddress,
+            modalConfiguration: widget.configuration,
+            translateError: widget.translateError,
+            editAddressLocalizedStrings: widget.localizedStrings,
+            editAddressService: widget.service,
+            editContactAddressErrorBuilder:
+                widget.editContactAddressErrorBuilder,
+            searchCountryCustomBuilders: widget.searchCountryBuilders,
+            textFieldsModalConfiguration: widget.textFieldsModalConfiguration,
+            countryPickerModalConfiguration:
+                widget.countryPickerModalConfiguration,
+          );
+
           if (savedAddress != null) {
             setState(() {
               _savedModel = savedAddress;
+              widget.onSaved?.call(savedAddress);
             });
           }
         };
