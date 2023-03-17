@@ -16,7 +16,11 @@ import 'permanent_address_bottom_sheet.dart';
 /// button for each of them. Some methods have default implementation. For more
 /// information, check the documentation in the file [EditAddressService] class.
 ///
-/// [onChanged] receives a function, which accepts the edited address model.
+/// [onChanged] receives a function, which accepts the edited address model and
+/// it is invoked when any of its property changes.
+///
+/// [onSaved] receives a function, which accepts the edited address model and
+/// it is invoked when the model is saved and the dialog is dismissed.
 ///
 /// [initialAddress] is the current address information, which is provided to be
 /// displayed in the widgets inside the page.

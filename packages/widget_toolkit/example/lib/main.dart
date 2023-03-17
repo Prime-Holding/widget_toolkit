@@ -564,6 +564,8 @@ String translateError(BuildContext context, Exception exception) {
 
 //# endregion
 
+//# region Services
+
 class DataService extends ItemPickerService<DataModel> {
   DataService();
 
@@ -581,7 +583,6 @@ class DataService extends ItemPickerService<DataModel> {
       );
 }
 
-//# region Services
 class SearchService<T> extends SearchPickerService<T> {
   SearchService(this._searchRepository);
 

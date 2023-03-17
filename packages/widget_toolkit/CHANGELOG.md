@@ -8,7 +8,7 @@
 - Removed params `showEditAddressBottomSheet(cityErrorMapper , addressErrorMapper, validator, searchCountryService, countryCustomIcon, editCountryFieldType, cityCustomIcon, editCityFieldType, addressCustomIcon, editAddressFieldType)`
 - Added params `showEditAddressBottomSheet(Function(Object error) translateError, Function(AddressModel? addressModel)? onChanged)`
 - Removed params `EditAddressWidget(cityErrorMapper, addressErrorMapper, validator, searchCountryService, countryCustomIcon, editCountryFieldType, cityCustomIcon, editCityFieldType, addressCustomIcon, editAddressFieldType)`
-- Added params `EditAddressWidget(Function(Object error) translateError, Function(AddressModel? addressModel)? onChanged,)`
+- Added params `EditAddressWidget(Function(Object error) translateError, Function(AddressModel? addressModel)? onChanged, onSaved)`
 - Renamed params in `EditAddressWidget`: `editAddressService` becomes `service`, `addressModel` becomes `initialAddress`.
 - `service` parameter in `EditAddressWidget` becomes required, because the default service is deleted.
 - Removed params `TextFieldDialog(errorMapper)`
