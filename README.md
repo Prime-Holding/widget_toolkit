@@ -33,7 +33,7 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 [codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
-[widget_toolkit_package_doc]: https://github.com/Prime-Holding/widget_toolkit/blob/master/packages/widget_toolkit/README.md
+[widget_toolkit_package_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/README.md
 [widget_toolkit_example]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/example
 [melos_badge_lnk]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square
 [melos_lnk]: https://github.com/invertase/melos
