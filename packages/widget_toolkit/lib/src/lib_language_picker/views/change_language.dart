@@ -3,6 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models.dart';
+import '../../../theme_data.dart';
 import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/buttons/small_button.dart';
@@ -24,10 +25,6 @@ import '../ui_components/select_language_item.dart';
 ///
 /// The [headerBuilder] parameter receives the title widget of the language picker
 ///
-/// With [iconRight] parameter, you can provide the icon, displayed on the
-/// right end of every language widget. There is a default checkIcon if the parameter
-/// is not specified.
-///
 ///  With [modalConfiguration] we can change the configuration of the showModal().
 ///  There are default configurations provided. Changing [fullScreen] to true, makes
 ///  the modal sheet appear to the top of the screen. With [showHeaderPill] set to
@@ -38,27 +35,46 @@ import '../ui_components/select_language_item.dart';
 /// [messageState] receives a [MessagePanelState], according to it, the appropriate
 /// icon, color and background color of the error panel widget are displayed.
 ///
-/// [errorPanelIcon] receives a custom Icon for the error panel displayed above
-/// the language list. In order to use it, you should specify that the message
-/// state is [MessagePanelState.custom].
+/// For the [SelectLanguageItem] widget there is a default checkIcon on the
+/// right end of the selected language widget. To use a custom icon, use:
+/// LanguagePickerTheme.light.copyWith(
+///   checkIcon: Assets.customIcon,
+/// ),
 ///
+/// [MessagePanelError] widget, is displayed above the languages list, when
+/// there is an error. To access one of the other preconfigured icons, instead
+/// of the danger icon displayed in the error panel on the left of the error,
+/// for the value of the parameter [messageState] provide another [MessagePanelState]
+/// value, such as: [MessagePanelState.informative]
+///
+/// In order to override the error panel icon with a custom icon, you should use
+/// the copyWith method of the [WidgetToolkitTheme], such as:
+/// WidgetToolkitTheme.light.copyWith(
+///   dangerIcon: Assets.customIcon,
+/// )
+///
+/// [hasLeftIcon] Displays an icon on the left of the language name. By default it
+/// is null and the icon is not displayed. If you want to use the default icon on the
+/// left of the language name, set it to true. In order to use a custom icon,
+/// set it to true and override the default icon with :
+/// LanguagePickerTheme.light.copyWith(
+///   leftInfoCircleIcon: Assets.customIcon,
+/// ),
 void showChangeLanguageBottomSheet({
   required BuildContext context,
   Widget Function(ErrorModel?)? errorBuilder,
   required Widget Function(BuildContext)? headerBuilder,
-  dynamic iconRight,
   LanguagePickerModalConfiguration modalConfiguration =
       const LanguagePickerModalConfiguration(),
   final MessagePanelState messageState = MessagePanelState.important,
-  dynamic errorPanelIcon,
+  final bool? hasLeftIcon,
 }) =>
     showBlurredBottomSheet(
       context: context,
       builder: (context) => _ChangeLanguageWidget(
-        iconRight: iconRight,
         errorBuilder: errorBuilder,
         messageState: messageState,
-        errorPanelIcon: errorPanelIcon,
+        hasLeftIcon: hasLeftIcon,
       ),
       headerBuilder: headerBuilder,
       onCancelPressed: () => Navigator.of(context).pop(),
@@ -91,16 +107,14 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
 class _ChangeLanguageWidget extends StatelessWidget {
   const _ChangeLanguageWidget({
     required this.messageState,
-    this.errorPanelIcon,
     this.errorBuilder,
-    this.iconRight,
+    this.hasLeftIcon,
     Key? key,
   }) : super(key: key);
 
-  final dynamic iconRight;
   final Widget Function(ErrorModel?)? errorBuilder;
   final MessagePanelState messageState;
-  final dynamic errorPanelIcon;
+  final bool? hasLeftIcon;
 
   @override
   Widget build(BuildContext context) =>
@@ -118,7 +132,6 @@ class _ChangeLanguageWidget extends StatelessWidget {
                       context.languagePickerTheme.messagePanelErrorEdgeInsets,
                   errorBuilder: errorBuilder,
                   messageState: messageState,
-                  errorPanelIcon: errorPanelIcon,
                 ),
                 ...(snapshot.data ?? [])
                     .map(
@@ -133,7 +146,7 @@ class _ChangeLanguageWidget extends StatelessWidget {
                                 .read<LanguagePickerBlocType>()
                                 .events
                                 .setCurrent(languageModel.language),
-                        iconRight: iconRight,
+                        hasLeftIcon: hasLeftIcon,
                       ),
                     )
                     .toList(),
@@ -165,16 +178,15 @@ class _ChooseLanguage extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
     this.padding = EdgeInsets.zero,
-    this.iconRight,
+    this.hasLeftIcon,
     Key? key,
   }) : super(key: key);
 
   final SelectedLanguageModel languageModel;
   final Function(SelectedLanguageModel)? onPressed;
-
   final EdgeInsets padding;
   final bool isLoading;
-  final dynamic iconRight;
+  final bool? hasLeftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -190,8 +202,8 @@ class _ChooseLanguage extends StatelessWidget {
           code: languageModel.language.languageCode.toUpperCase(),
           onPressed:
               onPressed == null ? null : () => onPressed?.call(languageModel),
-          iconRight: iconRight ?? context.languagePickerTheme.checkIcon,
           state: buttonState,
+          hasLeftIcon: hasLeftIcon,
         ),
       );
     }
@@ -201,7 +213,6 @@ class _ChooseLanguage extends StatelessWidget {
       child: SelectLanguageItem.unSelected(
         languageKey: languageModel.language.key,
         code: languageModel.language.languageCode.toUpperCase(),
-        iconRight: iconRight ?? context.languagePickerTheme.checkIcon,
         onPressed:
             onPressed == null ? null : () => onPressed?.call(languageModel),
         state: buttonState,
@@ -211,6 +222,7 @@ class _ChooseLanguage extends StatelessWidget {
               context.languagePickerTheme.activeButtonLanguageTextColor,
         ),
         languageModel: languageModel,
+        hasLeftIcon: hasLeftIcon,
       ),
     );
   }

@@ -153,6 +153,11 @@ class _$LanguagePickerTheme {
     WidgetToolkitDesignSystem.light().icons.checkIcon,
   ];
 
+  static List<SvgFile> leftInfoCircleIcon = [
+    WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+    WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
+  ];
+
   /// endregion
 }
 
