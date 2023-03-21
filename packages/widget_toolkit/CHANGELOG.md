@@ -1,3 +1,10 @@
+## [0.0.1-dev7]
+- Documentation improvements
+### Breaking Changes:
+- Removed params: `showChangeLanguageBottomSheet(iconRight, errorPanelIcon)`
+- Added parameter `showChangeLanguageBottomSheet(bool? hasLeftIcon, Widget Function(SelectedLanguageModel model, bool loading, BuildContext context)? itemBuilder)`
+  -  [Language Picker API Improvements ticket](https://github.com/Prime-Holding/widget_toolkit/issues/10)
+
 ## [0.0.1-dev6]
 - Documentation improvements
 - `EditAddressWidget` example is added to the example project
