@@ -17,6 +17,10 @@ import '../ui_components/select_language_item.dart';
 /// Display a bottom modal sheet, designed to display a list of available languages,
 /// from which to choose one to be set as the language Locale() to your MaterialApp()
 ///
+/// [itemBuilder] the parameter accepts a function, which should return a Widget
+/// to display the [SelectedLanguageModel] data. The loading parameter accepts
+/// the value for the current [SelectedLanguageModel.isLoading] model.
+///
 /// With the [errorBuilder] parameter you can provide a function, which receives
 /// an exception model, which implements `ErrorModel`.`ErrorModel` is the type
 /// of error coming from the LanguagePickerBloc error state. In order to map
@@ -62,16 +66,20 @@ import '../ui_components/select_language_item.dart';
 /// ),
 void showChangeLanguageBottomSheet({
   required BuildContext context,
+  Widget Function(BuildContext)? headerBuilder,
   Widget Function(ErrorModel?)? errorBuilder,
-  required Widget Function(BuildContext)? headerBuilder,
+  Widget Function(
+          SelectedLanguageModel model, bool loading, BuildContext context)?
+      itemBuilder,
   LanguagePickerModalConfiguration modalConfiguration =
       const LanguagePickerModalConfiguration(),
-  final MessagePanelState messageState = MessagePanelState.important,
+  MessagePanelState messageState = MessagePanelState.important,
   final bool? hasLeftIcon,
 }) =>
     showBlurredBottomSheet(
       context: context,
       builder: (context) => _ChangeLanguageWidget(
+        itemBuilder: itemBuilder,
         errorBuilder: errorBuilder,
         messageState: messageState,
         hasLeftIcon: hasLeftIcon,
@@ -107,11 +115,17 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
 class _ChangeLanguageWidget extends StatelessWidget {
   const _ChangeLanguageWidget({
     required this.messageState,
+    this.itemBuilder,
     this.errorBuilder,
     this.hasLeftIcon,
     Key? key,
   }) : super(key: key);
 
+  final Widget Function(
+    SelectedLanguageModel model,
+    bool loading,
+    BuildContext context,
+  )? itemBuilder;
   final Widget Function(ErrorModel?)? errorBuilder;
   final MessagePanelState messageState;
   final bool? hasLeftIcon;
@@ -133,23 +147,27 @@ class _ChangeLanguageWidget extends StatelessWidget {
                   errorBuilder: errorBuilder,
                   messageState: messageState,
                 ),
-                ...(snapshot.data ?? [])
-                    .map(
-                      (language) => _ChooseLanguage(
-                        languageModel: language,
-                        padding:
-                            context.languagePickerTheme.chooseLanguagePadding,
-                        isLoading: language.isLoading,
-                        onPressed: (snapshot.data ?? []).isAnyLoading
-                            ? null
-                            : (languageModel) => context
-                                .read<LanguagePickerBlocType>()
-                                .events
-                                .setCurrent(languageModel.language),
-                        hasLeftIcon: hasLeftIcon,
-                      ),
-                    )
-                    .toList(),
+                ...(snapshot.data ?? []).map(
+                  (language) {
+                    if (itemBuilder != null) {
+                      return itemBuilder!(
+                          language, language.isLoading, context);
+                    }
+                    return _ChooseLanguage(
+                      languageModel: language,
+                      padding:
+                          context.languagePickerTheme.chooseLanguagePadding,
+                      isLoading: language.isLoading,
+                      onPressed: (snapshot.data ?? []).isAnyLoading
+                          ? null
+                          : (languageModel) => context
+                              .read<LanguagePickerBlocType>()
+                              .events
+                              .setCurrent(languageModel.language),
+                      hasLeftIcon: hasLeftIcon,
+                    );
+                  },
+                ).toList(),
                 SizedBox(
                   height: context.languagePickerTheme.changeLanguageSizedBox,
                 ),
