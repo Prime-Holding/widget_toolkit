@@ -22,7 +22,7 @@ abstract class BiometricsBlocStates {
   Stream<ErrorModel> get errors;
 
   /// Message to be presented when biometrics setting are updated
-  Stream<BiometricsSettingMessageType?> get biometricsDialog;
+  Stream<BiometricsSettingMessageType> get biometricsDialog;
 
   /// Flag if the biometrics are currently enabled or not
   Stream<bool> get areBiometricsEnabled;
@@ -56,7 +56,7 @@ class BiometricsBloc extends $BiometricsBloc {
       ]).setErrorStateHandler(this).whereSuccess();
 
   @override
-  Stream<BiometricsSettingMessageType?> _mapToBiometricsDialogState() =>
+  Stream<BiometricsSettingMessageType> _mapToBiometricsDialogState() =>
       _$setBiometricsEvent
           .switchMap((event) => _biometricAuthenticationService
               .enableBiometrics(event.enabled, event.localizedMessage)

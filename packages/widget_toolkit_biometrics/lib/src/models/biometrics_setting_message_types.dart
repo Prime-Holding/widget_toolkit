@@ -6,7 +6,6 @@ enum BiometricsSettingMessageType {
   biometricEnabledSuccess,
   biometricDisabledSuccess,
   noBiometricsSupportedDevice,
-  none,
 }
 
 extension ReadableMessage on BiometricsSettingMessageType {
@@ -24,11 +23,7 @@ extension ReadableMessage on BiometricsSettingMessageType {
         return 'Your biometrics are successfully enabled!';
       case BiometricsSettingMessageType.biometricDisabledSuccess:
         return 'Your biometrics are successfully disabled!';
-      case BiometricsSettingMessageType.none:
-        break;
     }
-
-    return '';
   }
 
   MessagePanelState state() {
@@ -40,9 +35,6 @@ extension ReadableMessage on BiometricsSettingMessageType {
       case BiometricsSettingMessageType.biometricEnabledSuccess:
       case BiometricsSettingMessageType.biometricDisabledSuccess:
         return MessagePanelState.positiveCheck;
-      case BiometricsSettingMessageType.none:
-        break;
     }
-    return MessagePanelState.positiveCheck;
   }
 }
