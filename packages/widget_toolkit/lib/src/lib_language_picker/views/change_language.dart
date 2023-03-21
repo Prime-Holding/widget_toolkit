@@ -29,15 +29,12 @@ import '../ui_components/select_language_item.dart';
 ///
 /// The [headerBuilder] parameter receives the title widget of the language picker
 ///
-///  With [modalConfiguration] we can change the configuration of the showModal().
-///  There are default configurations provided. Changing [fullScreen] to true, makes
-///  the modal sheet appear to the top of the screen. With [showHeaderPill] set to
-///  true displays a header pill at the top of the modal sheet. Changing [safeAreaBottom]
-///  to true, moves the modal sheet up and displays the background color at the
-///  bottom of the modal sheet.
-///
-/// [messageState] receives a [MessagePanelState], according to it, the appropriate
-/// icon, color and background color of the error panel widget are displayed.
+/// With [modalConfiguration] we can change the configuration of the showModal().
+/// There are default configurations provided. Changing [fullScreen] to true, makes
+/// the modal sheet appear to the top of the screen. With [showHeaderPill] set to
+/// true displays a header pill at the top of the modal sheet. Changing [safeAreaBottom]
+/// to true, moves the modal sheet up and displays the background color at the
+/// bottom of the modal sheet.
 ///
 /// For the [SelectLanguageItem] widget there is a default checkIcon on the
 /// right end of the selected language widget. To use a custom icon, use:
@@ -46,10 +43,12 @@ import '../ui_components/select_language_item.dart';
 /// ),
 ///
 /// [MessagePanelError] widget, is displayed above the languages list, when
-/// there is an error. To access one of the other preconfigured icons, instead
-/// of the danger icon displayed in the error panel on the left of the error,
-/// for the value of the parameter [messageState] provide another [MessagePanelState]
-/// value, such as: [MessagePanelState.informative]
+/// there is an error with a default icon. To access one of the other
+/// preconfigured icons, instead of the danger icon displayed in the error panel
+/// on the left of the error text, for the value of the parameter [messageState]
+/// provide another [MessagePanelState] value, such as: [MessagePanelState.informative].
+/// According to [messageState], the appropriate icon, color and background color
+/// of the error panel widget  are displayed.
 ///
 /// In order to override the error panel icon with a custom icon, you should use
 /// the copyWith method of the [WidgetToolkitTheme], such as:
