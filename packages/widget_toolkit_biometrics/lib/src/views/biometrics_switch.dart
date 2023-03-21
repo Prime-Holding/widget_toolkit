@@ -8,7 +8,7 @@ import 'package:widget_toolkit/widget_toolkit.dart';
 import '../blocs/biometrics_bloc.dart';
 import '../data_sources/biometrics_auth_data_source.dart';
 import '../data_sources/biometrics_local_data_source.dart';
-import '../models/biometrics_setting_message_types.dart';
+import '../models/biometrics_setting_message_type.dart';
 import '../repositories/biometrics_repository.dart';
 import '../resources/constants.dart';
 import '../services/biometrics_service.dart';
@@ -20,9 +20,9 @@ class BiometricsSwitch extends StatelessWidget {
   const BiometricsSwitch({
     required this.biometricsLocalDataSource,
     this.enabledMessage,
+    this.mapMessageToString,
     this.onStateChanged,
     this.builder,
-    this.mapMessageToString,
     this.onError,
     super.key,
   }) : _addDependencies = true;
@@ -30,9 +30,9 @@ class BiometricsSwitch extends StatelessWidget {
   const BiometricsSwitch.withoutDependencies({
     required this.biometricsLocalDataSource,
     this.enabledMessage,
+    this.mapMessageToString,
     this.onStateChanged,
     this.builder,
-    this.mapMessageToString,
     this.onError,
     super.key,
   }) : _addDependencies = false;
@@ -68,8 +68,7 @@ class BiometricsSwitch extends StatelessWidget {
   )? builder;
 
   /// [mapMessageToString] will be used to translate the [BiometricsSettingMessageType]
-  /// to human readable text and will be used into the default notification if
-  /// [showDefaultNotification] is true
+  /// to human readable text and will be used into the default notification
   final String Function(BiometricsSettingMessageType message)?
       mapMessageToString;
 

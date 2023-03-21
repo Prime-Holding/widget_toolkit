@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 
-import '../models/biometrics_setting_message_types.dart';
+import '../models/biometrics_setting_message_type.dart';
 import '../services/biometrics_service.dart';
 
 part 'biometrics_bloc.rxb.g.dart';

@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/src/blocs/biometrics_bloc.dart';
-import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_types.dart';
+import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_type.dart';
 import 'package:widget_toolkit_biometrics/src/services/biometrics_service.dart';
 
 import '../mocks/stubs.dart';

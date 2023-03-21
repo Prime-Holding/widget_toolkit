@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 import '../models/biometrics_authentication_type.dart';
-import '../models/biometrics_setting_message_types.dart';
+import '../models/biometrics_setting_message_type.dart';
 import '../repositories/biometrics_repository.dart';
 
 /// Do all the work regarding changing and checking the state of biometrics.

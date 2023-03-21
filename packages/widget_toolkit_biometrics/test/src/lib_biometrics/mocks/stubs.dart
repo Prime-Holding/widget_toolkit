@@ -1,4 +1,4 @@
-import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_types.dart';
+import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_type.dart';
 
 class Stubs {
   static bool negative = false;
