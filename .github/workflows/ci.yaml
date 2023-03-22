@@ -13,6 +13,7 @@ jobs:
         folder:
           [
               "packages/widget_toolkit",
+              "packages/widget_toolkit_otp",
           ]
       fail-fast: false
     runs-on: ubuntu-latest
