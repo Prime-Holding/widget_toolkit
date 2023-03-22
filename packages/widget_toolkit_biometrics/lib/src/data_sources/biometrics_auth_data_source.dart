@@ -45,6 +45,10 @@ class BiometricsAuthDataSource {
   ///Maps a [BiometricType] from the [local_auth] library
   ///to a [BiometricAuthType] from this library
   BiometricsAuthType mapBiometric(BiometricType type) {
+    /*todo(Toncho): We're just replicating the [BiometricsType] from the
+        [local_auth] library, this seems unnecessary, ask for opinions from the
+        others, and this isn't even used in this library but only in the pin
+        library, so maybe we should remove it completely*/
     switch (type) {
       case BiometricType.face:
         return BiometricsAuthType.face;
@@ -52,14 +56,10 @@ class BiometricsAuthDataSource {
         return BiometricsAuthType.fingerprint;
       case BiometricType.iris:
         return BiometricsAuthType.iris;
-
-      ///TODO: https://pub.dev/packages/local_auth/changelog#200
       case BiometricType.strong:
-        return BiometricsAuthType.face;
-
-      ///TODO: https://pub.dev/packages/local_auth/changelog#200
+        return BiometricsAuthType.strong;
       case BiometricType.weak:
-        return BiometricsAuthType.face;
+        return BiometricsAuthType.weak;
     }
   }
 }

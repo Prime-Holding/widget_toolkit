@@ -110,7 +110,6 @@ class BiometricsSwitch extends StatelessWidget {
         ),
       );
 
-  //todo(Toncho): make this localizable
   String _getMessage(bool isEnabled) =>
       isEnabled ? (enabledMessage ?? activateBiometrics) : deactivateBiometrics;
 
@@ -136,8 +135,6 @@ class BiometricsSwitch extends StatelessWidget {
         },
       );
 
-  /*todo(Toncho): to customize this you can pass in a [onStateChanged] callback,
-      look at [_buildShowBottomMessageListener] to understand*/
   Future<void> _showBiometricsMessageBottomSheet(
     BuildContext context,
     BiometricsSettingMessageType message,

@@ -1,11 +1,21 @@
 import 'package:widget_toolkit/language_picker.dart';
 
 enum BiometricsSettingMessageType {
-  biometricsAreDisabled,
-  noBiometricsAvailable,
+  ///Biometrics have been enabled successfully
   biometricEnabledSuccess,
+
+  ///Biometrics have been disabled successfully
   biometricDisabledSuccess,
+
+  ///The device doesn't support biometrics and is unable to fail over to
+  ///device credentials
   noBiometricsSupportedDevice,
+
+  ///The device doesn't support biometrics
+  noBiometricsAvailable,
+
+  ///The user hasn't setup biometric authentication in their device settings
+  biometricsAreDisabled,
 }
 
 extension ReadableMessage on BiometricsSettingMessageType {

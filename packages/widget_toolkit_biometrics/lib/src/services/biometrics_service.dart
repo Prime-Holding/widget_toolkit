@@ -13,9 +13,12 @@ class BiometricsService {
 
   BiometricsService(this._biometricAuthenticationRepository);
 
+  /// Returns true if device is capable of checking biometrics.
   Future<bool> get canCheckBiometrics =>
       _biometricAuthenticationRepository.canCheckBiometrics;
 
+  /// Returns true if device is capable of checking biometrics or is able to
+  /// fail over to device credentials.
   Future<bool> get isDeviceSupported =>
       _biometricAuthenticationRepository.isDeviceSupported;
 
@@ -44,13 +47,14 @@ class BiometricsService {
     String localizedMessage,
   ) async {
     if (value) {
-      //are biometrics enabled by the user device settings
+      // Is the device capable of checking biometrics or able to
+      // fail over to device credentials.
       final isDeviceSupportedFlag = await isDeviceSupported;
       if (!isDeviceSupportedFlag) {
         return BiometricsSettingMessageType.noBiometricsSupportedDevice;
       }
 
-      //are biometrics enabled by the user device settings
+      // Is the device capable of checking biometrics.
       final canCheckBiometricsFlag = await canCheckBiometrics;
       if (!canCheckBiometricsFlag) {
         return BiometricsSettingMessageType.noBiometricsAvailable;
@@ -59,7 +63,7 @@ class BiometricsService {
       try {
         final authenticateFlag = await authenticate(localizedMessage);
         if (!authenticateFlag) {
-          //no biometrics settings set up available
+          //The user hasn't setup biometric authentication in their device settings
           return BiometricsSettingMessageType.biometricsAreDisabled;
         }
       } on PlatformException catch (_) {
