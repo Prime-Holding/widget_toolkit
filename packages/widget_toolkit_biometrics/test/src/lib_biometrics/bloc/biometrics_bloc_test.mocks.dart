@@ -6,10 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:widget_toolkit_biometrics/src/models/biometrics_authentication_type.dart'
-    as _i4;
 import 'package:widget_toolkit_biometrics/src/models/biometrics_setting_message_type.dart'
-    as _i5;
+    as _i4;
 import 'package:widget_toolkit_biometrics/src/services/biometrics_service.dart'
     as _i2;
 
@@ -43,13 +41,6 @@ class MockBiometricsService extends _i1.Mock implements _i2.BiometricsService {
         returnValue: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
   @override
-  _i3.Future<List<_i4.BiometricsAuthType>> get availableBiometrics =>
-      (super.noSuchMethod(
-        Invocation.getter(#availableBiometrics),
-        returnValue: _i3.Future<List<_i4.BiometricsAuthType>>.value(
-            <_i4.BiometricsAuthType>[]),
-      ) as _i3.Future<List<_i4.BiometricsAuthType>>);
-  @override
   _i3.Future<bool> authenticate(String? localizedReason) => (super.noSuchMethod(
         Invocation.method(
           #authenticate,
@@ -76,7 +67,7 @@ class MockBiometricsService extends _i1.Mock implements _i2.BiometricsService {
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
   @override
-  _i3.Future<_i5.BiometricsSettingMessageType> enableBiometrics(
+  _i3.Future<_i4.BiometricsSettingMessageType> enableBiometrics(
     bool? value,
     String? localizedMessage,
   ) =>
@@ -88,7 +79,7 @@ class MockBiometricsService extends _i1.Mock implements _i2.BiometricsService {
             localizedMessage,
           ],
         ),
-        returnValue: _i3.Future<_i5.BiometricsSettingMessageType>.value(
-            _i5.BiometricsSettingMessageType.biometricsAreDisabled),
-      ) as _i3.Future<_i5.BiometricsSettingMessageType>);
+        returnValue: _i3.Future<_i4.BiometricsSettingMessageType>.value(
+            _i4.BiometricsSettingMessageType.biometricEnabledSuccess),
+      ) as _i3.Future<_i4.BiometricsSettingMessageType>);
 }

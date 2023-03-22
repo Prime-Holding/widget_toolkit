@@ -33,8 +33,5 @@
             android:value="2" />
     </application>
 
-    <!--todo(Toncho): describe needed permissions to add for plugin in README.md
-            the permissions needed are described for the local_auth package
-            https://pub.dev/packages/local_auth-->
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 </manifest>

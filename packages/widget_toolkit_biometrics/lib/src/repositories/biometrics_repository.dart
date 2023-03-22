@@ -1,6 +1,5 @@
 import '../data_sources/biometrics_auth_data_source.dart';
 import '../data_sources/biometrics_local_data_source.dart';
-import '../models/biometrics_authentication_type.dart';
 
 class BiometricsRepository {
   final BiometricsAuthDataSource _biometricAuthenticationDataSource;
@@ -16,9 +15,6 @@ class BiometricsRepository {
 
   Future<bool> get isDeviceSupported =>
       _biometricAuthenticationDataSource.isDeviceSupported;
-
-  Future<List<BiometricsAuthType>> get availableBiometrics =>
-      _biometricAuthenticationDataSource.availableBiometrics;
 
   Future<bool> authenticate(String localizedReason) =>
       _biometricAuthenticationDataSource.authenticate(localizedReason);

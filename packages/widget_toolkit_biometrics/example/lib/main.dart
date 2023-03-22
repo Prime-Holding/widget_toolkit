@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
               enabledMessage: 'Activate the biometrics of your device',
               // optionally you can provide [mapMessageToString],
               // which will be used to translate the [BiometricsSettingMessageType]
-              // to human readable text and will be used into the default notification
+              // to human readable text and will be used in the default notification
               mapMessageToString: (message) {
                 switch (message) {
                   case BiometricsSettingMessageType.biometricsAreDisabled:

@@ -1,7 +1,5 @@
 import 'package:local_auth/local_auth.dart';
 
-import '../models/biometrics_authentication_type.dart';
-
 /// [BiometricsAuthDataSource] is a wrapper of the plugin [local_auth] and
 /// expose its properties
 class BiometricsAuthDataSource {
@@ -35,31 +33,4 @@ class BiometricsAuthDataSource {
         localizedReason: localizedReason,
         options: const AuthenticationOptions(biometricOnly: true),
       );
-
-  /// Returns a list of enrolled biometrics.
-  Future<List<BiometricsAuthType>> get availableBiometrics =>
-      localAuthentication
-          .getAvailableBiometrics()
-          .then((list) => list.map((e) => mapBiometric(e)).toList());
-
-  ///Maps a [BiometricType] from the [local_auth] library
-  ///to a [BiometricAuthType] from this library
-  BiometricsAuthType mapBiometric(BiometricType type) {
-    /*todo(Toncho): We're just replicating the [BiometricsType] from the
-        [local_auth] library, this seems unnecessary, ask for opinions from the
-        others, and this isn't even used in this library but only in the pin
-        library, so maybe we should remove it completely*/
-    switch (type) {
-      case BiometricType.face:
-        return BiometricsAuthType.face;
-      case BiometricType.fingerprint:
-        return BiometricsAuthType.fingerprint;
-      case BiometricType.iris:
-        return BiometricsAuthType.iris;
-      case BiometricType.strong:
-        return BiometricsAuthType.strong;
-      case BiometricType.weak:
-        return BiometricsAuthType.weak;
-    }
-  }
 }
