@@ -1,5 +1,5 @@
 name: widget_toolkit_qr
-description: A package which provide a qr scanner functionality.
+description: A package which provide a qr scanner functionality. It depends on `flutter_qr_bar_scanner` package.
 version: 0.0.1
 homepage: https://primeholding.com/
 
