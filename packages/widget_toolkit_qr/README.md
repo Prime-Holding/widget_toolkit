@@ -32,7 +32,7 @@ the bloc can be listened also in another place in your app, with a custom implem
 builder or listener.
 
 Note: The `QrScannerBloc` and the implementations of `SystemPermissionsService`, `QrCodeService`
-should be provided with `QrScannerPageWithDependencies()` above the `QrScannerPage` in the widget tree.
+should be provided with `QrScannerDependencies.from()` above the `QrScannerPage` in the widget tree.
 
 ## Getting started
 

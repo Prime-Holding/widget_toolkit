@@ -1,0 +1,28 @@
+name: qr_example
+description: An example project to present how to use widget_toolkit_qr package with minimal effort.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.1 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_rx_bloc: ^5.0.2
+  permission_handler: ^10.2.0
+  provider: ^6.0.5
+  rxdart:
+  widget_toolkit: ^0.0.1-dev6
+  widget_toolkit_qr:
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  widget_toolkit_qr:
+    path: ../../widget_toolkit_qr
+
+flutter:
+  uses-material-design: true
