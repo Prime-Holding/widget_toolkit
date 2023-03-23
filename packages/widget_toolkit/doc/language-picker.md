@@ -101,18 +101,16 @@ late Locale _locale;
   @override
   void initState() {
     _locale = const Locale('en');
-
-    try {
-      context
-          .read<LanguagePickerBlocType>()
-          .states
-          .currentLanguage
-          .listen((language) {
-        setState(
-          () => _locale = Locale(language.locale),
-        );
-      });
-    } on Exception catch (_) {}
+    
+    context
+        .read<LanguagePickerBlocType>()
+        .states
+        .currentLanguage
+        .listen((language) {
+      setState(
+        () => _locale = Locale(language.locale),
+      );
+    });
 
     super.initState();
   }
