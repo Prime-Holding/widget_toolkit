@@ -30,7 +30,7 @@ abstract class $BiometricsBloc extends RxBlocBase
 
   /// The state of [biometricsDialog] implemented in
   /// [_mapToBiometricsDialogState]
-  late final Stream<BiometricsSettingMessageType?> _biometricsDialogState =
+  late final Stream<BiometricsMessage?> _biometricsDialogState =
       _mapToBiometricsDialogState();
 
   /// The state of [areBiometricsEnabled] implemented in
@@ -55,8 +55,7 @@ abstract class $BiometricsBloc extends RxBlocBase
   Stream<ErrorModel> get errors => _errorsState;
 
   @override
-  Stream<BiometricsSettingMessageType?> get biometricsDialog =>
-      _biometricsDialogState;
+  Stream<BiometricsMessage?> get biometricsDialog => _biometricsDialogState;
 
   @override
   Stream<bool> get areBiometricsEnabled => _areBiometricsEnabledState;
@@ -65,7 +64,7 @@ abstract class $BiometricsBloc extends RxBlocBase
 
   Stream<ErrorModel> _mapToErrorsState();
 
-  Stream<BiometricsSettingMessageType?> _mapToBiometricsDialogState();
+  Stream<BiometricsMessage?> _mapToBiometricsDialogState();
 
   Stream<bool> _mapToAreBiometricsEnabledState();
 
