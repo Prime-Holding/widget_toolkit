@@ -67,7 +67,7 @@ class MockBiometricsService extends _i1.Mock implements _i2.BiometricsService {
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
   @override
-  _i3.Future<_i4.BiometricsSettingMessageType> enableBiometrics(
+  _i3.Future<_i4.BiometricsMessage?> enableBiometrics(
     bool? value,
     String? localizedMessage,
   ) =>
@@ -79,7 +79,6 @@ class MockBiometricsService extends _i1.Mock implements _i2.BiometricsService {
             localizedMessage,
           ],
         ),
-        returnValue: _i3.Future<_i4.BiometricsSettingMessageType>.value(
-            _i4.BiometricsSettingMessageType.biometricEnabledSuccess),
-      ) as _i3.Future<_i4.BiometricsSettingMessageType>);
+        returnValue: _i3.Future<_i4.BiometricsMessage?>.value(),
+      ) as _i3.Future<_i4.BiometricsMessage?>);
 }

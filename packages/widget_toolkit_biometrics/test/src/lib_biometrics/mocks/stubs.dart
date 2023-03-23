@@ -5,8 +5,6 @@ class Stubs {
   static bool positive = true;
   static String emptyString = '';
   static String localizedMessage = 'localizedMessage';
-  static BiometricsSettingMessageType enabledSuccess =
-      BiometricsSettingMessageType.biometricEnabledSuccess;
-  static BiometricsSettingMessageType disabledSuccess =
-      BiometricsSettingMessageType.biometricDisabledSuccess;
+  static BiometricsMessage enabledSuccess = BiometricsMessage.enabled;
+  static BiometricsMessage disabledSuccess = BiometricsMessage.disabled;
 }

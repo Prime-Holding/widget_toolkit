@@ -31,7 +31,7 @@ class BiometricsService {
       _biometricAuthenticationRepository
           .setBiometricsEnabled(areBiometricsEnabled);
 
-  Future<BiometricsSettingMessageType> enableBiometrics(
+  Future<BiometricsMessage?> enableBiometrics(
     bool value,
     String localizedMessage,
   ) async {
@@ -40,31 +40,32 @@ class BiometricsService {
       // fail over to device credentials.
       final isDeviceSupportedFlag = await isDeviceSupported;
       if (!isDeviceSupportedFlag) {
-        return BiometricsSettingMessageType.noBiometricsSupportedDevice;
+        return BiometricsMessage.notSupported;
       }
 
       // Is the device capable of checking biometrics.
       final canCheckBiometricsFlag = await canCheckBiometrics;
       if (!canCheckBiometricsFlag) {
-        return BiometricsSettingMessageType.noBiometricsAvailable;
+        return BiometricsMessage.notSupported;
       }
 
       try {
         final authenticateFlag = await authenticate(localizedMessage);
         if (!authenticateFlag) {
-          //The user hasn't setup biometric authentication in their device settings
-          return BiometricsSettingMessageType.biometricsAreDisabled;
+          //The user canceled authentication
+          return null;
         }
       } on PlatformException catch (_) {
-        return BiometricsSettingMessageType.noBiometricsAvailable;
+        // the device has biometric capabilities, but the user hasn't set them up
+        return BiometricsMessage.notSetup;
       }
 
       //finally, set the settings.
       await setBiometricsEnabled(value);
-      return BiometricsSettingMessageType.biometricEnabledSuccess;
+      return BiometricsMessage.enabled;
     } else {
       await setBiometricsEnabled(false);
-      return BiometricsSettingMessageType.biometricDisabledSuccess;
+      return BiometricsMessage.disabled;
     }
   }
 }

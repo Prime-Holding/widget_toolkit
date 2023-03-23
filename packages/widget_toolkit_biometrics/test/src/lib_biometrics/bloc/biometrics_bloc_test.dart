@@ -67,7 +67,7 @@ void main() {
   });
 
   group('test biometrics_bloc_dart state biometricsDialog', () {
-    rxBlocTest<BiometricsBlocType, BiometricsSettingMessageType?>(
+    rxBlocTest<BiometricsBlocType, BiometricsMessage?>(
         'test biometrics_bloc_dart state biometricsDialog',
         build: () async {
           defineWhen();
@@ -79,7 +79,7 @@ void main() {
         state: (bloc) => bloc.states.biometricsDialog,
         expect: [Stubs.enabledSuccess]);
 
-    rxBlocTest<BiometricsBlocType, BiometricsSettingMessageType?>(
+    rxBlocTest<BiometricsBlocType, BiometricsMessage?>(
         'test biometrics_bloc_dart state biometricsDialog',
         build: () async {
           defineWhen();

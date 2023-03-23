@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:local_auth/local_auth.dart';
@@ -55,7 +56,7 @@ class BiometricsSwitch extends StatelessWidget {
   /// message to an english string would be passed in.
   final void Function(
     BuildContext context,
-    BiometricsSettingMessageType message,
+    BiometricsMessage message,
     String localizedMessage,
   )? onStateChanged;
 
@@ -67,10 +68,9 @@ class BiometricsSwitch extends StatelessWidget {
     void Function(bool newValue) setBiometrics,
   )? builder;
 
-  /// [mapMessageToString] will be used to translate the [BiometricsSettingMessageType]
+  /// [mapMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
-  final String Function(BiometricsSettingMessageType message)?
-      mapMessageToString;
+  final String Function(BiometricsMessage message)? mapMessageToString;
 
   /// [onError] is optional function that enable error handling out of the package
   final void Function(ErrorModel)? onError;
@@ -120,9 +120,14 @@ class BiometricsSwitch extends StatelessWidget {
       );
 
   RxBlocListener _buildShowBottomMessageListener() =>
-      RxBlocListener<BiometricsBlocType, BiometricsSettingMessageType>(
+      RxBlocListener<BiometricsBlocType, BiometricsMessage?>(
         state: (bloc) => bloc.states.biometricsDialog,
         listener: (context, message) {
+          if (message == null) {
+            // the user canceled authentication
+            return;
+          }
+
           if (onStateChanged == null) {
             _showBiometricsMessageBottomSheet(
               context,
@@ -137,27 +142,64 @@ class BiometricsSwitch extends StatelessWidget {
 
   Future<void> _showBiometricsMessageBottomSheet(
     BuildContext context,
-    BiometricsSettingMessageType message,
+    BiometricsMessage message,
     String localizedMessage,
   ) =>
       showBlurredBottomSheet(
         context: context,
-        configuration: const ModalConfiguration(safeAreaBottom: false),
-        builder: (context) => Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            top: 16,
-            right: 16,
-            bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: MessagePanelWidget(
-            message: localizedMessage,
-            messageState: message.state(),
-          ),
+        configuration: const ModalConfiguration(
+          safeAreaBottom: false,
+          showCloseButton: false,
+        ),
+        builder: (context) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            MessagePanelWidget(
+              message: localizedMessage,
+              messageState: message.state(),
+            ),
+            Padding(
+              padding: context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SmallButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icons.close,
+                    type: SmallButtonType.outline,
+                    colorStyle: ButtonColorStyle.fromContext(
+                      context,
+                      activeGradientColorStart: context.widgetToolkitTheme
+                          .disabledFilledButtonBackgroundColor,
+                      activeGradientColorEnd:
+                          context.widgetToolkitTheme.primaryGradientEnd,
+                    ),
+                  ),
+                  if (message == BiometricsMessage.notSetup)
+                    SmallButton(
+                      onPressed: () {
+                        AppSettings.openSecuritySettings();
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icons.settings,
+                      type: SmallButtonType.outline,
+                      colorStyle: ButtonColorStyle.fromContext(
+                        context,
+                        activeGradientColorStart: context.widgetToolkitTheme
+                            .disabledFilledButtonBackgroundColor,
+                        activeGradientColorEnd:
+                            context.widgetToolkitTheme.primaryGradientEnd,
+                      ),
+                    ),
+                ],
+              ),
+            )
+          ],
         ),
       );
 
-  String _localizeMessage(BiometricsSettingMessageType message) {
+  String _localizeMessage(BiometricsMessage message) {
     return mapMessageToString?.call(message) ?? message.translate();
   }
 

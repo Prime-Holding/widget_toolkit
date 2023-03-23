@@ -31,6 +31,9 @@ class BiometricsAuthDataSource {
   Future<bool> authenticate(String localizedReason) =>
       localAuthentication.authenticate(
         localizedReason: localizedReason,
-        options: const AuthenticationOptions(biometricOnly: true),
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+          useErrorDialogs: false,
+        ),
       );
 }

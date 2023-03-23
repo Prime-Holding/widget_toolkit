@@ -1,4 +1,6 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
@@ -47,29 +49,28 @@ class MyHomePage extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: BiometricsSwitch(
-              // You are required to provide an implementations of [BiometricsLocalDataSource]
+              // You are required to provide an implementation of [BiometricsLocalDataSource]
               biometricsLocalDataSource: ProfileLocalDataSource(),
               // optionally you can provide a [enabledMessage], this should be
               // a localized message, which would get shown to the user when they
               // are prompted to confirm that they want to enable biometrics
               enabledMessage: 'Activate the biometrics of your device',
               // optionally you can provide [mapMessageToString],
-              // which will be used to translate the [BiometricsSettingMessageType]
+              // which will be used to translate the [BiometricsMessage]
               // to human readable text and will be used in the default notification
               mapMessageToString: (message) {
                 switch (message) {
-                  case BiometricsSettingMessageType.biometricsAreDisabled:
+                  case BiometricsMessage.notSetup:
                     return 'To use biometrics, you need to turn it on in your device settings!';
 
-                  case BiometricsSettingMessageType.noBiometricsAvailable:
-                    return 'No biometrics enrolled on this device.';
-                  case BiometricsSettingMessageType.noBiometricsSupportedDevice:
+                  case BiometricsMessage.notSupported:
                     return 'You don\'t have biometric feature on your device!';
 
-                  case BiometricsSettingMessageType.biometricEnabledSuccess:
-                    return 'Your biometrics are successfully enabled!';
-                  case BiometricsSettingMessageType.biometricDisabledSuccess:
-                    return 'Your biometrics are successfully disabled!';
+                  case BiometricsMessage.enabled:
+                    return 'Your biometrics are enabled!';
+
+                  case BiometricsMessage.disabled:
+                    return 'Your biometrics are disabled!';
                 }
               },
               // Optionally, use [onStateChanged] to execute custom callback or present custom notification
@@ -77,23 +78,62 @@ class MyHomePage extends StatelessWidget {
               //
               // If you have defined [mapMessageToString] the result from that would be
               // passed in as [localizedMessage], otherwise the default mapping of the
-              // message to an english string would be passed in.
+              // message to an English string would be passed in.
               onStateChanged: (context, message, localizedMessage) {
                 showBlurredBottomSheet(
                   context: context,
-                  configuration:
-                      const ModalConfiguration(safeAreaBottom: false),
-                  builder: (context) => Padding(
-                    padding: EdgeInsets.only(
-                      left: 16,
-                      top: 16,
-                      right: 16,
-                      bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    child: MessagePanelWidget(
-                      message: localizedMessage,
-                      messageState: message.state(),
-                    ),
+                  configuration: const ModalConfiguration(
+                    safeAreaBottom: false,
+                    showCloseButton: false,
+                  ),
+                  builder: (context) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MessagePanelWidget(
+                        message: localizedMessage,
+                        messageState: message.state(),
+                      ),
+                      Padding(
+                        padding: context
+                            .widgetToolkitTheme.bottomSheetCloseButtonPadding,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SmallButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              icon: Icons.close,
+                              type: SmallButtonType.outline,
+                              colorStyle: ButtonColorStyle.fromContext(
+                                context,
+                                activeGradientColorStart: context
+                                    .widgetToolkitTheme
+                                    .disabledFilledButtonBackgroundColor,
+                                activeGradientColorEnd: context
+                                    .widgetToolkitTheme.primaryGradientEnd,
+                              ),
+                            ),
+                            if (message == BiometricsMessage.notSetup)
+                              SmallButton(
+                                onPressed: () {
+                                  AppSettings.openSecuritySettings();
+                                  Navigator.of(context).pop();
+                                },
+                                icon: Icons.settings,
+                                type: SmallButtonType.outline,
+                                colorStyle: ButtonColorStyle.fromContext(
+                                  context,
+                                  activeGradientColorStart: context
+                                      .widgetToolkitTheme
+                                      .disabledFilledButtonBackgroundColor,
+                                  activeGradientColorEnd: context
+                                      .widgetToolkitTheme.primaryGradientEnd,
+                                ),
+                              ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 );
               },
@@ -106,24 +146,20 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               // Optionally you can provide [onError] to handle errors out of the
-              // package, or to show a notification
+              // package, or to show a notification, in practice this would only
+              // get called if the implementations of
+              // [BiometricsLocalDataSource.areBiometricsEnabled()] or
+              // [BiometricsLocalDataSource.setBiometricsEnabled(enable)]
+              // throw
               onError: (error) {
                 showBlurredBottomSheet(
                   context: context,
                   configuration:
                       const ModalConfiguration(safeAreaBottom: false),
-                  builder: (context) => Padding(
-                    padding: EdgeInsets.only(
-                      left: 16,
-                      top: 16,
-                      right: 16,
-                      bottom: 16 + MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    child: const MessagePanelWidget(
-                      message: 'We\'re sorry we couldn\'t enable biometric'
-                          'authentication at this time',
-                      messageState: MessagePanelState.important,
-                    ),
+                  builder: (context) => const MessagePanelWidget(
+                    message: 'We\'re sorry we couldn\'t enable biometric'
+                        'authentication at this time',
+                    messageState: MessagePanelState.important,
                   ),
                 );
               },
@@ -136,15 +172,20 @@ class MyHomePage extends StatelessWidget {
 /// You have to implement and provide a [BiometricsLocalDataSource]
 /// you can use this to store the value, for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
-  bool _areBiometricsEnabled = false;
+  static const _areBiometricsEnabled = 'areBiometricsEnabled';
 
-  ProfileLocalDataSource();
+  Future<SharedPreferences> get _storageInstance =>
+      SharedPreferences.getInstance();
 
   @override
-  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled;
+  Future<bool> areBiometricsEnabled() async {
+    final storage = await _storageInstance;
+    return storage.getBool(_areBiometricsEnabled) ?? false;
+  }
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async {
-    _areBiometricsEnabled = enable;
+    final storage = await _storageInstance;
+    await storage.setBool(_areBiometricsEnabled, enable);
   }
 }
