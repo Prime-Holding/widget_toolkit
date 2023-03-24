@@ -24,6 +24,26 @@ class Stubs {
   static Result<List<ItemPickerDataMock>> itemPickerLoading =
       Result<List<ItemPickerDataMock>>.loading();
 
+  static List<SelectedLanguageModel> languagesStateLoading = <SelectedLanguageModel>[
+    SelectedLanguageModel(
+      language: LanguagePickerDataMock(
+        locale: 'bg',
+        key: 'bulgarian',
+        languageCode: 'bg',
+      ),
+      selected: false,
+      isLoading: true,
+    ),
+    SelectedLanguageModel(
+        language: LanguagePickerDataMock(
+          locale: 'en',
+          key: 'english',
+          languageCode: 'en',
+        ),
+        selected: true,
+        isLoading: true),
+  ];
+
   static List<SelectedLanguageModel> languagesState = <SelectedLanguageModel>[
     SelectedLanguageModel(
       language: LanguagePickerDataMock(

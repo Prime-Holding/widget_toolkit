@@ -77,7 +77,7 @@ void showChangeLanguageBottomSheet({
 }) =>
     showBlurredBottomSheet(
       context: context,
-      builder: (context) => _ChangeLanguageWidget(
+      builder: (context) => ChangeLanguageWidget(
         itemBuilder: itemBuilder,
         errorBuilder: errorBuilder,
         messageState: messageState,
@@ -111,8 +111,8 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
             isDismissible: isDismissible);
 }
 
-class _ChangeLanguageWidget extends StatelessWidget {
-  const _ChangeLanguageWidget({
+class ChangeLanguageWidget extends StatelessWidget {
+  const ChangeLanguageWidget({
     required this.messageState,
     this.itemBuilder,
     this.errorBuilder,
