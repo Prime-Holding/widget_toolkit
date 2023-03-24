@@ -53,7 +53,7 @@ Widget qrScannerPageFactory({
     );
 
 Widget _buildErrorModalSheetListener(BuildContext context) =>
-    RxBlocListener<QrScannerBlocType, ErrorModel?>(
+    RxBlocListener<QrScannerBlocType, Exception?>(
       state: (bloc) => bloc.states.errors,
       listener: (ctx, error) {
         showQrScannerErrorBottomModalSheet(

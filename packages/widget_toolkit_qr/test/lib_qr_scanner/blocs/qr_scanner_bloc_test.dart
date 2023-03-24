@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
-import 'package:widget_toolkit/widget_toolkit.dart';
 import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
 
 import '../../mocks/stubs.dart';
@@ -77,7 +76,7 @@ void main() {
   });
 
   group('test qr_scanner_bloc_dart state errors', () {
-    rxBlocTest<QrScannerBlocType, ErrorModel?>(
+    rxBlocTest<QrScannerBlocType, Exception?>(
         'test qr_scanner_bloc_dart state errors',
         build: () async {
           defineWhenQrServiceThrows();

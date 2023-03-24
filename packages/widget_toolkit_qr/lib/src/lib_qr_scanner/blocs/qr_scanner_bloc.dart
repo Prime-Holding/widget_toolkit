@@ -1,7 +1,5 @@
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:widget_toolkit/extensions.dart';
-import 'package:widget_toolkit/models.dart';
 
 import '../services/qr_validation_service.dart';
 import '../services/system_permissions_service.dart';
@@ -26,7 +24,7 @@ abstract class QrScannerBlocStates<T> {
   ConnectableStream<T?> get scannedValue;
 
   /// Returns the errors
-  Stream<ErrorModel> get errors;
+  Stream<Exception> get errors;
 
   /// Returns true if the app has access to the device's camera or false, if it
   /// does not
@@ -48,7 +46,7 @@ class QrScannerBloc<T> extends $QrScannerBloc<T> {
   final SystemPermissionsService _systemPermissionsService;
 
   @override
-  Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
+  Stream<Exception> _mapToErrorsState() => errorState;
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState.startWith(false);
