@@ -43,52 +43,56 @@ import 'camera_permission.dart';
 ///
 /// [onScannedCode] a function, which is called when the qr code is scanned
 /// successfully, for example you can pop from the screen when this happens.
-class QrScannerPage extends StatelessWidget {
-  const QrScannerPage({
-    required this.qrCodeCallback,
-    this.cameraPermissionBottomSheetConfiguration,
-    this.onErrorCallback,
+class QrScannerComponent<T> extends StatelessWidget {
+  const QrScannerComponent({
+    this.onCodeScanned,
+    this.onError,
+    this.onCodeValidated,
     this.cameraPermissionButtonText,
     this.cameraAccessTitleText,
     this.cameraAccessLabelText,
+    this.cameraPermissionBottomSheetConfiguration,
     this.spaceBetweenScannerAndLoadingWidget,
-    this.onScannedCode,
+    this.isLoadingIndicatorVisible = true,
     Key? key,
   }) : super(key: key);
 
-  final Function(String) qrCodeCallback;
-  final Function(Object)? onErrorCallback;
+  final Function(Object)? onError;
+  final Function(String)? onCodeScanned;
+  final Function(T?)? onCodeValidated;
+  final bool? isLoadingIndicatorVisible;
+
   final String? cameraPermissionButtonText;
   final String? cameraAccessTitleText;
   final String? cameraAccessLabelText;
   final QrScannerConfiguration? cameraPermissionBottomSheetConfiguration;
   final double? spaceBetweenScannerAndLoadingWidget;
-  final Function(Object?)? onScannedCode;
 
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          RxBlocListener<QrScannerBlocType, Object?>(
-            state: (bloc) => bloc.states.scannedValue,
-            listener: (context, scannedValue) {
-              onScannedCode?.call(scannedValue);
-            },
-          ),
+          RxBlocListener<QrScannerBlocType<T>, T?>(
+              state: (bloc) => bloc.states.scannedValue,
+              listener: (context, scannedValue) =>
+                  onCodeValidated?.call(scannedValue)),
+          RxBlocListener<QrScannerBlocType<T>, Exception>(
+              state: (bloc) => bloc.states.errors,
+              listener: (context, error) => onError?.call(error)),
           AspectRatio(
             aspectRatio: 1,
             child: Stack(
               children: [
                 Padding(
                   padding: context.qrScannerTheme.qrScannerPage3,
-                  child: RxBlocListener<QrScannerBlocType, bool>(
+                  child: RxBlocListener<QrScannerBlocType<T>, bool>(
                     state: (bloc) => bloc.states.hasCameraPermission,
                     listener: (ctx, permission) {
                       if (permission == false) {
                         showAppCameraPermissionBottomSheet(
                           ctx,
                           onPermissionTab: () => ctx
-                              .read<QrScannerBlocType>()
+                              .read<QrScannerBlocType<T>>()
                               .events
                               .requestCameraPermission(),
                           cameraPermissionButtonText:
@@ -101,29 +105,30 @@ class QrScannerPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: RxBlocBuilder<QrScannerBlocType, bool>(
+                    child: RxBlocBuilder<QrScannerBlocType<T>, bool>(
                       state: (bloc) => bloc.states.hasCameraPermission,
-                      builder: (ctx, permission, bloc) => permission.hasData &&
-                              permission.data == true
-                          ? _QRBarScannerCamera(
-                              formats: const [
-                                BarcodeFormats.QR_CODE,
-                              ],
-                              onError: (ctx, error) {
-                                if (error != null && onErrorCallback != null) {
-                                  onErrorCallback!(error);
-                                }
-                                return null;
-                              },
-                              qrCodeCallback: (code) {
-                                if (code != null) {
-                                  qrCodeCallback(code);
-                                }
-                              },
-                              offscreenBuilder: (ctx) => const SizedBox(),
-                              notStartedBuilder: (ctx) => const SizedBox(),
-                            )
-                          : const SizedBox(),
+                      builder: (ctx, permission, bloc) =>
+                          permission.hasData && permission.data == true
+                              ? _QRBarScannerCamera(
+                                  formats: const [
+                                    BarcodeFormats.QR_CODE,
+                                  ],
+                                  onError: (ctx, error) {
+                                    if (error != null && onError != null) {
+                                      onError!(error);
+                                    }
+                                    return null;
+                                  },
+                                  qrCodeCallback: (code) {
+                                    if (code != null) {
+                                      onCodeScanned?.call(code);
+                                      bloc.events.validateQRCode(code);
+                                    }
+                                  },
+                                  offscreenBuilder: (ctx) => const SizedBox(),
+                                  notStartedBuilder: (ctx) => const SizedBox(),
+                                )
+                              : const SizedBox(),
                     ),
                   ),
                 ),
@@ -134,15 +139,17 @@ class QrScannerPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: spaceBetweenScannerAndLoadingWidget ?? 20,
-          ),
-          _buildLoadingLinearProgressIndicator(context),
+          if (isLoadingIndicatorVisible == null) ...[
+            SizedBox(
+              height: spaceBetweenScannerAndLoadingWidget ?? 20,
+            ),
+            _buildLoadingLinearProgressIndicator(context),
+          ],
         ],
       );
 
   Widget _buildLoadingLinearProgressIndicator(BuildContext context) =>
-      RxBlocBuilder<QrScannerBlocType, bool>(
+      RxBlocBuilder<QrScannerBlocType<T>, bool>(
         state: (bloc) => bloc.states.isLoading,
         builder: (ctx, state, bloc) => state.hasData && state.data == true
             ? Align(

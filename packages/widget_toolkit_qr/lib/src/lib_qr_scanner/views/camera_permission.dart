@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_toolkit/ui_components.dart';
 
 import '../../base/theme/qr_scanner_theme.dart';
-import 'qr_scanner_page.dart';
+import 'qr_scanner_component.dart';
 
 /// [showAppCameraPermissionBottomSheet] A function, which shows on the screen
 /// a bottom modal sheet with text message, which  you should provide and it

@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
 
@@ -41,15 +39,7 @@ class MyApp extends StatelessWidget {
         EditAddressTheme.dark,
         QrScannerTheme.dark,
       ]),
-      home: MultiProvider(
-        providers: [
-          ...QrScannerDependencies.from(
-            QrService(),
-            QrPermissions(),
-          ).providers,
-        ],
-        child: const HomePage(),
-      ),
+      home: const HomePage(),
     );
   }
 }
@@ -67,27 +57,19 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              QrScannerPage(
-                qrCodeCallback: (qrCode) => context
-                    .read<QrScannerBlocType>()
-                    .events
-                    .checkQRCode(qrCode),
-                onErrorCallback: (error) => showErrorBlurredBottomSheet(
+              QrScannerWidget<String>(
+                qrValidationService: QrService(),
+                onCodeValidated: (result) => showBlurredBottomSheet(
                   context: context,
-                  error: error.toString(),
-                  configuration: const ModalConfiguration(
-                    showCloseButton: true,
+                  builder: (ctx) => MessagePanelWidget(
+                    message: result ?? '',
+                    messageState: MessagePanelState.positiveCheck,
                   ),
                 ),
-                onScannedCode: (qrCode) => qrCode != null && qrCode is String
-                    ? showBlurredBottomSheet(
-                        context: context,
-                        builder: (context) => MessagePanelWidget(
-                          message: qrCode,
-                          messageState: MessagePanelState.positiveCheck,
-                        ),
-                      )
-                    : const SizedBox(),
+                onError: (error) => showErrorBlurredBottomSheet(
+                  context: context,
+                  error: TranslateErrorUtil.translateError(error),
+                ),
               ),
             ],
           ),
@@ -95,31 +77,17 @@ class HomePage extends StatelessWidget {
       );
 }
 
-class QrService extends QrCodeService {
+class QrService extends QrValidationService<String> {
   @override
-  Future<Object> checkQrCode(String qrCode) async {
+  Future<String> validateQrCode(String qrCode) async {
     await Future.delayed(const Duration(seconds: 3));
     return qrCode;
   }
 }
 
-class QrPermissions extends SystemPermissionsService {
-  @override
-  Future<bool> checkForCameraPermissions() async {
-    final permissionStatus = await Permission.camera.request();
-
-    return permissionStatus.isGranted;
-  }
-
-  @override
-  Future<bool> requestCameraPermission() async {
-    PermissionStatus status = await Permission.camera.request();
-    if (status.isPermanentlyDenied) {
-      await openAppSettings();
-    }
-
-    await Permission.camera.request();
-    if (status.isGranted) return true;
-    return false;
+class TranslateErrorUtil {
+  static String translateError(Object error) {
+    /// Translate your error here
+    return error.toString();
   }
 }

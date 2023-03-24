@@ -9,35 +9,35 @@ import '../../mocks/stubs.dart';
 import 'qr_scanner_bloc_test.mocks.dart';
 
 @GenerateMocks([
-  QrCodeService,
+  QrValidationService,
   SystemPermissionsService,
 ])
 void main() {
-  late QrCodeService qrCodeService;
+  late QrValidationService qrValidationService;
   late SystemPermissionsService systemPermissionsService;
 
   void defineWhenQrServiceReturnsSuccessfully() {
-    when(qrCodeService.checkQrCode(Stubs.qrValue))
+    when(qrValidationService.validateQrCode(Stubs.qrValue))
         .thenAnswer((_) => Future.value(Stubs.qrValue));
   }
 
   void defineWhenQrServiceThrows() {
-    when(qrCodeService.checkQrCode(Stubs.qrValue))
+    when(qrValidationService.validateQrCode(Stubs.qrValue))
         .thenAnswer((_) => Future.error(Stubs.error));
   }
 
-  void defineWhenServiceResponeCheckCameraPermission() {
+  void defineWhenServiceResponseCheckCameraPermission() {
     when(systemPermissionsService.checkForCameraPermissions())
         .thenAnswer((_) => Future.value(Stubs.cameraPermissionTrue));
   }
 
   QrScannerBloc qrScannerBloc() => QrScannerBloc(
-        qrCodeService,
+        qrValidationService,
         systemPermissionsService,
       );
 
   setUp(() {
-    qrCodeService = MockQrCodeService();
+    qrValidationService = MockQrValidationService();
     systemPermissionsService = MockSystemPermissionsService();
   });
 
@@ -46,12 +46,12 @@ void main() {
         'test qr_scanner_bloc_dart state scannedValue',
         build: () async {
           defineWhenQrServiceReturnsSuccessfully();
-          defineWhenServiceResponeCheckCameraPermission();
+          defineWhenServiceResponseCheckCameraPermission();
 
           return qrScannerBloc();
         },
         act: (bloc) async {
-          return bloc.events.checkQRCode(Stubs.qrValue);
+          return bloc.events.validateQRCode(Stubs.qrValue);
         },
         state: (bloc) => bloc.states.scannedValue,
         expect: [Stubs.qrValue]);
@@ -62,7 +62,7 @@ void main() {
         'test qr_scanner_bloc_dart state isLoading',
         build: () async {
           defineWhenQrServiceReturnsSuccessfully();
-          defineWhenServiceResponeCheckCameraPermission();
+          defineWhenServiceResponseCheckCameraPermission();
 
           return qrScannerBloc();
         },
@@ -81,12 +81,12 @@ void main() {
         'test qr_scanner_bloc_dart state errors',
         build: () async {
           defineWhenQrServiceThrows();
-          defineWhenServiceResponeCheckCameraPermission();
+          defineWhenServiceResponseCheckCameraPermission();
 
           return qrScannerBloc();
         },
         act: (bloc) async {
-          bloc.events.checkQRCode(Stubs.qrValue);
+          bloc.events.validateQRCode(Stubs.qrValue);
         },
         state: (bloc) => bloc.states.errors,
         expect: [Stubs.error]);
@@ -97,7 +97,7 @@ void main() {
         'test qr_scanner_bloc_dart state hasCameraPermission',
         build: () async {
           defineWhenQrServiceReturnsSuccessfully();
-          defineWhenServiceResponeCheckCameraPermission();
+          defineWhenServiceResponseCheckCameraPermission();
 
           return qrScannerBloc();
         },

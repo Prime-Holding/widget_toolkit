@@ -6,11 +6,15 @@ import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
 
 import 'qr_scanner_mock.mocks.dart';
 
-@GenerateMocks([QrScannerBlocStates, QrScannerBlocEvents, QrScannerBlocType])
+@GenerateMocks([
+  QrScannerBlocStates,
+  QrScannerBlocEvents,
+  QrScannerBlocType,
+])
 QrScannerBlocType qrScannerMockFactory({
+  required ErrorModel errors,
   bool? isLoading,
-  Object? scannedValue,
-  ErrorModel? errors,
+  String? scannedValue,
   bool? hasCameraPermission,
 }) {
   final blocMock = MockQrScannerBlocType();
@@ -27,11 +31,11 @@ QrScannerBlocType qrScannerMockFactory({
   when(statesMock.scannedValue).thenAnswer(
     (_) => scannedValue != null
         ? Stream.value(scannedValue).publish()
-        : const Stream<Object?>.empty().publish(),
+        : const Stream<String?>.empty().publish(),
   );
 
   when(statesMock.errors).thenAnswer(
-    (_) => errors != null ? Stream.value(errors) : const Stream.empty(),
+    (_) => Stream.value(errors),
   );
 
   when(statesMock.hasCameraPermission).thenAnswer(
