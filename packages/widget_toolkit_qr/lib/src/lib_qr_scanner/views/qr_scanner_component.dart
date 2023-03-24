@@ -4,7 +4,7 @@ import 'package:flutter_qr_bar_scanner/flutter_qr_bar_scanner.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:widget_toolkit/extensions.dart';
+import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../../base/common_ui_components/prime_linear_progress_indicator.dart';
 import '../../base/theme/qr_scanner_theme.dart';
@@ -141,27 +141,25 @@ class QrScannerComponent<T> extends StatelessWidget {
           ),
           if (isLoadingIndicatorVisible == null) ...[
             SizedBox(
-              height: spaceBetweenScannerAndLoadingWidget ?? 20,
+              height: spaceBetweenScannerAndLoadingWidget ??
+                  context.widgetToolkitTheme.spacingL,
             ),
-            _buildLoadingLinearProgressIndicator(context),
+            RxBlocBuilder<QrScannerBlocType<T>, bool>(
+              state: (bloc) => bloc.states.isLoading,
+              builder: (ctx, state, bloc) => state.hasData && state.data == true
+                  ? Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: context.qrScannerTheme.qrScannerPage4,
+                        child: PrimeLinearProgressIndicator(
+                          borderRadius: context.qrScannerTheme.qrScannerPageXS,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
+            )
           ],
         ],
-      );
-
-  Widget _buildLoadingLinearProgressIndicator(BuildContext context) =>
-      RxBlocBuilder<QrScannerBlocType<T>, bool>(
-        state: (bloc) => bloc.states.isLoading,
-        builder: (ctx, state, bloc) => state.hasData && state.data == true
-            ? Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: context.qrScannerTheme.qrScannerPage4,
-                  child: PrimeLinearProgressIndicator(
-                    borderRadius: context.qrScannerTheme.qrScannerPageXS,
-                  ),
-                ),
-              )
-            : const SizedBox(),
       );
 }
 

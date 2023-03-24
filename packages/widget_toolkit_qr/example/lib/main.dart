@@ -24,19 +24,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
         WidgetToolkitTheme.light,
-        ItemPickerTheme.light,
-        SearchPickerTheme.light,
-        TextFieldDialogTheme.light,
-        EditAddressTheme.light,
         QrScannerTheme.light,
       ]),
       darkTheme: ThemeData.dark()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
         WidgetToolkitTheme.dark,
-        ItemPickerTheme.dark,
-        SearchPickerTheme.dark,
-        TextFieldDialogTheme.dark,
-        EditAddressTheme.dark,
         QrScannerTheme.dark,
       ]),
       home: const HomePage(),
@@ -53,7 +45,9 @@ class HomePage extends StatelessWidget {
           title: const Text('Qr Example'),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.widgetToolkitTheme.spacingXXXXL1,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

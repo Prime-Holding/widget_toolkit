@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widget_toolkit/ui_components.dart';
+import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../../base/theme/qr_scanner_theme.dart';
 import 'qr_scanner_component.dart';
@@ -77,7 +77,9 @@ class _CameraPermissionWidget extends StatelessWidget {
                 padding: context.qrScannerTheme.cameraPermission2,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(
+                      context.widgetToolkitTheme.spacingXS1,
+                    ),
                     border: Border.all(
                       color: context.qrScannerTheme
                           .qrScannerCameraPermissionRedLightColor,
