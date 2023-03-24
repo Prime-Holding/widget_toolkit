@@ -37,7 +37,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     required this.elevatedButtonBackgroundColor,
     required this.outlineButtonBackgroundColor,
     required this.checkIcon,
-    required this.leftInfoCircleIcon,
   });
 
   final EdgeInsets changeLanguagePadding;
@@ -67,7 +66,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
   final Color elevatedButtonBackgroundColor;
   final Color outlineButtonBackgroundColor;
   final SvgFile checkIcon;
-  final SvgFile leftInfoCircleIcon;
 
   static final LanguagePickerTheme light = LanguagePickerTheme(
     changeLanguagePadding: _$LanguagePickerTheme.changeLanguagePadding[0],
@@ -107,7 +105,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     outlineButtonBackgroundColor:
         _$LanguagePickerTheme.outlineButtonBackgroundColor[0],
     checkIcon: _$LanguagePickerTheme.checkIcon[0],
-    leftInfoCircleIcon: _$LanguagePickerTheme.leftInfoCircleIcon[0],
   );
 
   static final LanguagePickerTheme dark = LanguagePickerTheme(
@@ -148,7 +145,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     outlineButtonBackgroundColor:
         _$LanguagePickerTheme.outlineButtonBackgroundColor[1],
     checkIcon: _$LanguagePickerTheme.checkIcon[1],
-    leftInfoCircleIcon: _$LanguagePickerTheme.leftInfoCircleIcon[1],
   );
 
   static final themes = [
@@ -185,7 +181,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
     Color? elevatedButtonBackgroundColor,
     Color? outlineButtonBackgroundColor,
     SvgFile? checkIcon,
-    SvgFile? leftInfoCircleIcon,
   }) {
     return LanguagePickerTheme(
       changeLanguagePadding:
@@ -233,7 +228,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       outlineButtonBackgroundColor:
           outlineButtonBackgroundColor ?? this.outlineButtonBackgroundColor,
       checkIcon: checkIcon ?? this.checkIcon,
-      leftInfoCircleIcon: leftInfoCircleIcon ?? this.leftInfoCircleIcon,
     );
   }
 
@@ -296,8 +290,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       outlineButtonBackgroundColor: Color.lerp(
           outlineButtonBackgroundColor, other.outlineButtonBackgroundColor, t)!,
       checkIcon: t < 0.5 ? checkIcon : other.checkIcon,
-      leftInfoCircleIcon:
-          t < 0.5 ? leftInfoCircleIcon : other.leftInfoCircleIcon,
     );
   }
 
@@ -351,8 +343,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
             const DeepCollectionEquality().equals(buttonBlueGradientEnd, other.buttonBlueGradientEnd) &&
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(outlineButtonBackgroundColor, other.outlineButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(checkIcon, other.checkIcon) &&
-            const DeepCollectionEquality().equals(leftInfoCircleIcon, other.leftInfoCircleIcon));
+            const DeepCollectionEquality().equals(checkIcon, other.checkIcon));
   }
 
   @override
@@ -386,8 +377,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme> {
       const DeepCollectionEquality().hash(buttonBlueGradientEnd),
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
       const DeepCollectionEquality().hash(outlineButtonBackgroundColor),
-      const DeepCollectionEquality().hash(checkIcon),
-      const DeepCollectionEquality().hash(leftInfoCircleIcon)
+      const DeepCollectionEquality().hash(checkIcon)
     ]);
   }
 }

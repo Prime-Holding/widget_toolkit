@@ -7,7 +7,6 @@ import '../services/language_picker_service_mock.dart';
 
 Widget languagePickerSuccessPageFactory({
   required bool showError,
-  required bool hasLeftIcon,
   required bool isLoading,
 }) =>
     Scaffold(
@@ -29,9 +28,8 @@ Widget languagePickerSuccessPageFactory({
           )
         ],
         child: Builder(
-          builder: (context) => ChangeLanguageWidget(
+          builder: (context) => const ChangeLanguageWidget(
             messageState: MessagePanelState.important,
-            hasLeftIcon: hasLeftIcon,
           ),
         ),
       ),

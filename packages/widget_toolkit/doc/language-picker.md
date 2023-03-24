@@ -35,12 +35,6 @@ the `WidgetToolkitTheme`, such as:
 `WidgetToolkitTheme.light.copyWith(
    dangerIcon: Assets.customIcon,
  );`
-`hasLeftIcon` displays an icon on the left of the language name. By default it is null and the icon 
-is not displayed. If you want to use the default icon on the left of the language name, set it to true.
-In order to use a custom icon, set it to true and override the default icon with :
-`LanguagePickerTheme.light.copyWith(
-   leftInfoCircleIcon: Assets.customIcon,
- );`
 
 To listen for the state of the changed language in the whole app, you should provide the 
 `LanguagePickerDependencies.from()` constructor in the base of your app. There, you should update
@@ -146,7 +140,6 @@ showChangeLanguageBottomSheet(
       isDismissible: true,
     ),
     errorBuilder: (myException) => _buildCustomErrorBuilder(myException),
-    hasLeftIcon: true,
     messageState: MessagePanelState.informative,
 );
 ```

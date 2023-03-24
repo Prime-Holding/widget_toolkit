@@ -55,14 +55,6 @@ import '../ui_components/select_language_item.dart';
 /// WidgetToolkitTheme.light.copyWith(
 ///   dangerIcon: Assets.customIcon,
 /// )
-///
-/// [hasLeftIcon] Displays an icon on the left of the language name. By default it
-/// is null and the icon is not displayed. If you want to use the default icon on the
-/// left of the language name, set it to true. In order to use a custom icon,
-/// set it to true and override the default icon with :
-/// LanguagePickerTheme.light.copyWith(
-///   leftInfoCircleIcon: Assets.customIcon,
-/// ),
 void showChangeLanguageBottomSheet({
   required BuildContext context,
   Widget Function(BuildContext)? headerBuilder,
@@ -73,7 +65,6 @@ void showChangeLanguageBottomSheet({
   LanguagePickerModalConfiguration modalConfiguration =
       const LanguagePickerModalConfiguration(),
   MessagePanelState messageState = MessagePanelState.important,
-  final bool? hasLeftIcon,
 }) =>
     showBlurredBottomSheet(
       context: context,
@@ -81,7 +72,6 @@ void showChangeLanguageBottomSheet({
         itemBuilder: itemBuilder,
         errorBuilder: errorBuilder,
         messageState: messageState,
-        hasLeftIcon: hasLeftIcon,
       ),
       headerBuilder: headerBuilder,
       onCancelPressed: () => Navigator.of(context).pop(),
@@ -116,7 +106,6 @@ class ChangeLanguageWidget extends StatelessWidget {
     required this.messageState,
     this.itemBuilder,
     this.errorBuilder,
-    this.hasLeftIcon,
     Key? key,
   }) : super(key: key);
 
@@ -127,7 +116,6 @@ class ChangeLanguageWidget extends StatelessWidget {
   )? itemBuilder;
   final Widget Function(ErrorModel?)? errorBuilder;
   final MessagePanelState messageState;
-  final bool? hasLeftIcon;
 
   @override
   Widget build(BuildContext context) =>
@@ -163,7 +151,6 @@ class ChangeLanguageWidget extends StatelessWidget {
                               .read<LanguagePickerBlocType>()
                               .events
                               .setCurrent(languageModel.language),
-                      hasLeftIcon: hasLeftIcon,
                     );
                   },
                 ).toList(),
@@ -195,7 +182,6 @@ class _ChooseLanguage extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
     this.padding = EdgeInsets.zero,
-    this.hasLeftIcon,
     Key? key,
   }) : super(key: key);
 
@@ -203,7 +189,6 @@ class _ChooseLanguage extends StatelessWidget {
   final Function(SelectedLanguageModel)? onPressed;
   final EdgeInsets padding;
   final bool isLoading;
-  final bool? hasLeftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +205,6 @@ class _ChooseLanguage extends StatelessWidget {
           onPressed:
               onPressed == null ? null : () => onPressed?.call(languageModel),
           state: buttonState,
-          hasLeftIcon: hasLeftIcon,
         ),
       );
     }
@@ -239,7 +223,6 @@ class _ChooseLanguage extends StatelessWidget {
               context.languagePickerTheme.activeButtonLanguageTextColor,
         ),
         languageModel: languageModel,
-        hasLeftIcon: hasLeftIcon,
       ),
     );
   }

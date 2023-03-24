@@ -28,9 +28,6 @@ import '../theme/language_picker_theme.dart';
 /// [colorStyle] receives the color style of the button.
 ///
 /// [radius] is the border radius of the button
-///
-/// [hasLeftIcon] if the parameter is set, the default icon displayed and it
-/// can also be changed with a custom one.
 class SelectLanguageItem extends StatelessWidget {
   final String languageKey;
   final String code;
@@ -40,7 +37,6 @@ class SelectLanguageItem extends StatelessWidget {
   final double radius;
   final SelectedLanguageModel languageModel;
   final bool isSelected;
-  final bool? hasLeftIcon;
 
   const SelectLanguageItem._({
     Key? key,
@@ -52,7 +48,6 @@ class SelectLanguageItem extends StatelessWidget {
     this.radius = 8,
     this.state = ButtonStateModel.enabled,
     this.colorStyle,
-    this.hasLeftIcon,
   }) : super(key: key);
 
   factory SelectLanguageItem.selected({
@@ -64,7 +59,6 @@ class SelectLanguageItem extends StatelessWidget {
     double radius = 8,
     ButtonStateModel state = ButtonStateModel.enabled,
     ButtonColorStyle? colorStyle,
-    bool? hasLeftIcon,
   }) =>
       SelectLanguageItem._(
         languageKey: languageKey,
@@ -76,7 +70,6 @@ class SelectLanguageItem extends StatelessWidget {
         radius: radius,
         colorStyle: colorStyle,
         key: key,
-        hasLeftIcon: hasLeftIcon,
       );
 
   factory SelectLanguageItem.unSelected({
@@ -88,7 +81,6 @@ class SelectLanguageItem extends StatelessWidget {
     double radius = 8,
     ButtonStateModel state = ButtonStateModel.enabled,
     ButtonColorStyle? colorStyle,
-    bool? hasLeftIcon,
   }) =>
       SelectLanguageItem._(
         languageKey: languageKey,
@@ -100,7 +92,6 @@ class SelectLanguageItem extends StatelessWidget {
         radius: radius,
         colorStyle: colorStyle,
         key: key,
-        hasLeftIcon: hasLeftIcon,
       );
 
   @override
@@ -133,11 +124,6 @@ class SelectLanguageItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (hasLeftIcon ?? false)
-            DynamicIcon(
-              context.languagePickerTheme.leftInfoCircleIcon,
-              color: _getTextColor(context),
-            ),
           SizedBox(
             width: context.languagePickerTheme.spacingM,
           ),
