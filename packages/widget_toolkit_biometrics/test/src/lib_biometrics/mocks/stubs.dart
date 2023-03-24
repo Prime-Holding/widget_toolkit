@@ -7,4 +7,6 @@ class Stubs {
   static String localizedMessage = 'localizedMessage';
   static BiometricsMessage enabledSuccess = BiometricsMessage.enabled;
   static BiometricsMessage disabledSuccess = BiometricsMessage.disabled;
+  static BiometricsMessage notSupported = BiometricsMessage.notSupported;
+  static BiometricsMessage notSetup = BiometricsMessage.notSetup;
 }
