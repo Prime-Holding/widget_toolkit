@@ -69,6 +69,8 @@ class HomePage extends StatelessWidget {
                 onError: (error) => showErrorBlurredBottomSheet(
                   context: context,
                   error: TranslateErrorUtil.translateError(error),
+                  configuration:
+                      const ModalConfiguration(showCloseButton: true),
                 ),
               ),
             ],
