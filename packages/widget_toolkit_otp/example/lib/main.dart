@@ -39,7 +39,7 @@ class MyHomePage extends StatelessWidget {
           title: const Text('widget_toolkit_otp Example'),
         ),
         body: SafeArea(
-          child: SmsCodeWidget(
+          child: SmsCodeWidgetWithDependencies(
             sentNewCodeActivationTime: 2,
             service: FakeSmsCodeService(),
             builder: (state) => Padding(
