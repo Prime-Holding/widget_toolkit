@@ -9,14 +9,10 @@ void main() {
     testWidgets('countdown_widget_success', (tester) async {
       int duration = 5;
       final key = ValueKey(duration.toString());
-      void decreaseDuration() => duration--;
       await tester.pumpWidget(
         buildCountdown(
           countdownTime: duration,
           key: key,
-          onCountdownTick: (_) {
-            decreaseDuration();
-          },
         ),
       );
       expect(duration, 5);
