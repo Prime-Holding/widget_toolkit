@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 
 import '../base/models/temporary_code_state.dart';
 import '../base/theme/sms_code_theme.dart';
+import '../base/utils/enums.dart' as enums;
 import '../lib_sms_code_verification/bloc/sms_code_bloc.dart';
 import 'sms_code_theme_configuration.dart';
 
 /// SMS code field with a lot of customization also supporting sms code
 /// autofill and paste functionality.
-class SmsCodeField extends StatelessWidget {
+class SmsCodeField extends StatefulWidget {
+// class SmsCodeField extends StatelessWidget {
   const SmsCodeField({
     this.onChanged,
     this.onSubmitted,
@@ -38,9 +40,9 @@ class SmsCodeField extends StatelessWidget {
     this.keyboardType = TextInputType.number,
     this.pinContentAlignment = Alignment.center,
     this.themeConfig = const SmsThemeConfiguration(),
-    this.inputAnimationType = PinAnimationType.scale,
-    this.hapticFeedbackType = HapticFeedbackType.disabled,
-    this.androidSmsAutofillMethod = AndroidSmsAutofillMethod.none,
+    this.inputAnimationType = enums.PinAnimationType.scale,
+    this.hapticFeedbackType = enums.HapticFeedbackType.disabled,
+    this.androidSmsAutofillMethod = enums.AndroidSmsAutofillMethod.none,
     this.useInternalCommunication = true,
     super.key,
   });
@@ -115,21 +117,13 @@ class SmsCodeField extends StatelessWidget {
   /// Second option requires user interaction to confirm reading a SMS, See readme for more details
   /// [AndroidSmsAutofillMethod.smsUserConsentApi]
   /// More about SMS User Consent API https://developers.google.com/identity/sms-retriever/user-consent/overview
-  final AndroidSmsAutofillMethod androidSmsAutofillMethod;
+  final enums.AndroidSmsAutofillMethod androidSmsAutofillMethod;
 
   /// Haptic feedback triggered every key press
-  final HapticFeedbackType hapticFeedbackType;
+  final enums.HapticFeedbackType hapticFeedbackType;
 
   /// Animation type of the input
-  final PinAnimationType inputAnimationType;
-
-  /// Configuration of toolbar options.
-  ///
-  /// If not set, select all and paste will default to be enabled. Copy and cut
-  /// will be disabled if [obscureText] is true. If [readOnly] is true,
-  /// paste and cut will be disabled regardless.
-  /// DEPRECATED
-  // final ToolbarOptions? toolbarOptions;
+  final enums.PinAnimationType inputAnimationType;
 
   /// Error displayed below the pin field. This field is ignored if
   /// [useInternalCommunication] is set to `true`.
@@ -158,25 +152,81 @@ class SmsCodeField extends StatelessWidget {
   /// the
   final bool useInternalCommunication;
 
-  bool get _isDisabled => enabled != null && enabled == false;
+  @override
+  State<SmsCodeField> createState() => _SmsCodeFieldState();
+}
+
+class _SmsCodeFieldState extends State<SmsCodeField> {
+  TextEditingController? _controller;
 
   @override
-  Widget build(BuildContext context) => useInternalCommunication
+  void initState() {
+    _controller = widget.controller;
+
+    super.initState();
+  }
+
+  AndroidSmsAutofillMethod get _smsAutofillMethod {
+    switch (widget.androidSmsAutofillMethod) {
+      case enums.AndroidSmsAutofillMethod.none:
+        return AndroidSmsAutofillMethod.none;
+      case enums.AndroidSmsAutofillMethod.smsRetrieverApi:
+        return AndroidSmsAutofillMethod.smsRetrieverApi;
+      case enums.AndroidSmsAutofillMethod.smsUserConsentApi:
+        return AndroidSmsAutofillMethod.smsUserConsentApi;
+    }
+  }
+
+  PinAnimationType get _animationType {
+    switch (widget.inputAnimationType) {
+      case enums.PinAnimationType.rotation:
+        return PinAnimationType.rotation;
+      case enums.PinAnimationType.none:
+        return PinAnimationType.none;
+      case enums.PinAnimationType.scale:
+        return PinAnimationType.scale;
+      case enums.PinAnimationType.fade:
+        return PinAnimationType.fade;
+      case enums.PinAnimationType.slide:
+        return PinAnimationType.slide;
+    }
+  }
+
+  HapticFeedbackType get _hapticFeedbackType {
+    switch (widget.hapticFeedbackType) {
+      case enums.HapticFeedbackType.disabled:
+        return HapticFeedbackType.disabled;
+      case enums.HapticFeedbackType.lightImpact:
+        return HapticFeedbackType.lightImpact;
+      case enums.HapticFeedbackType.mediumImpact:
+        return HapticFeedbackType.mediumImpact;
+      case enums.HapticFeedbackType.heavyImpact:
+        return HapticFeedbackType.heavyImpact;
+      case enums.HapticFeedbackType.selectionClick:
+        return HapticFeedbackType.selectionClick;
+      case enums.HapticFeedbackType.vibrate:
+        return HapticFeedbackType.vibrate;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.useInternalCommunication
       ? _buildPinFieldWithBuilder(context)
       : _buildPinField(context,
-          forceErrorState: forceErrorState,
-          errorText: errorText,
-          pinLength: pinLength,
-          enabled: enabled ?? true,
-          onCompleted: onCompleted);
+          forceErrorState: widget.forceErrorState,
+          errorText: widget.errorText,
+          pinLength: widget.pinLength,
+          enabled: widget.enabled ?? true,
+          onCompleted: widget.onCompleted);
 
   /// region Builders
 
-  /// Widget built if [useInternalCommunication] is disabled
+  /// Widget built if [widget.useInternalCommunication] is disabled
   Widget _buildPinField(
     BuildContext context, {
     String? errorText,
     bool forceErrorState = false,
+    bool forceSuccessState = false,
     bool enabled = true,
     required int pinLength,
     void Function(String)? onCompleted,
@@ -185,77 +235,82 @@ class SmsCodeField extends StatelessWidget {
       Pinput(
         defaultPinTheme: _buildDefaultTheme(context),
         errorPinTheme: _buildErrorTheme(context),
-        disabledPinTheme: _isDisabled
-            ? _buildDisabledTheme(context)
-            : _buildSuccessTheme(context),
+        disabledPinTheme: forceSuccessState
+            ? _buildSuccessTheme(context)
+            : _buildDisabledTheme(context),
         focusedPinTheme: _buildFocusedTheme(context),
         submittedPinTheme: _buildSubmittedTheme(context),
         followingPinTheme: _buildUnfilledStyleTheme(context),
-        androidSmsAutofillMethod: androidSmsAutofillMethod,
-        hapticFeedbackType: hapticFeedbackType,
-        pinAnimationType: inputAnimationType,
-        preFilledWidget: prefilledWidget,
-        keyboardType: keyboardType,
-        controller: controller,
+        androidSmsAutofillMethod: _smsAutofillMethod,
+        hapticFeedbackType: _hapticFeedbackType,
+        pinAnimationType: _animationType,
+        preFilledWidget: widget.prefilledWidget,
+        keyboardType: widget.keyboardType,
+        controller: _controller,
         length: pinLength,
         readOnly: readOnly,
-        autofocus: autofocus,
-        focusNode: focusNode,
-        showCursor: showCursor,
+        autofocus: widget.autofocus,
+        focusNode: widget.focusNode,
+        showCursor: widget.showCursor,
         enabled: enabled,
         errorText: errorText,
-        onTap: onFieldTap,
-        onChanged: onChanged,
+        onTap: widget.onFieldTap,
+        onChanged: widget.onChanged,
         onCompleted: onCompleted,
-        onSubmitted: onSubmitted,
-        obscureText: obscureText,
-        obscuringWidget: obscuringWidget,
-        senderPhoneNumber: senderPhoneNumber,
-        pinContentAlignment: pinContentAlignment,
-        errorBuilder: errorBuilder,
+        onSubmitted: widget.onSubmitted,
+        obscureText: widget.obscureText,
+        obscuringWidget: widget.obscuringWidget,
+        senderPhoneNumber: widget.senderPhoneNumber,
+        pinContentAlignment: widget.pinContentAlignment,
+        errorBuilder: widget.errorBuilder,
         forceErrorState: forceErrorState,
-        closeKeyboardWhenCompleted: closeKeyboardOnDone,
-        separator: separator,
-        cursor: cursor ??
+        closeKeyboardWhenCompleted: widget.closeKeyboardOnDone,
+        separator: widget.separator,
+        cursor: widget.cursor ??
             Container(
               width: 1.1,
               height: 16,
               color: Colors.black.withOpacity(0.75),
             ),
-        validator:
-            validator != null ? (input) => validator!(context, input) : null,
-        pinputAutovalidateMode: autoValidate
+        validator: widget.validator != null
+            ? (input) => widget.validator!(context, input)
+            : null,
+        pinputAutovalidateMode: widget.autoValidate
             ? PinputAutovalidateMode.onSubmit
             : PinputAutovalidateMode.disabled,
-
-        /// toolbarOptions has been deprecated
-        // toolbarOptions: toolbarOptions ??
-        //     const ToolbarOptions(
-        //       paste: true,
-        //     ),
       );
 
-  /// Widget built when [useInternalCommunication] is enabled
+  /// Widget built when [widget.useInternalCommunication] is enabled
   Widget _buildPinFieldWithBuilder(BuildContext context) =>
       RxBlocBuilder<SmsCodeBlocType, TemporaryCodeState>(
         state: (bloc) => bloc.states.onCodeVerificationResult,
         builder: (context, verificationResult, bloc) =>
             RxBlocBuilder<SmsCodeBlocType, int>(
           state: (bloc) => bloc.states.pinLength,
-          builder: (context, pinLength, bloc) => _buildPinField(
-            context,
-            forceErrorState:
-                verificationResult.data == TemporaryCodeState.wrong,
-            pinLength: pinLength.data ?? 6,
-            readOnly: verificationResult.data == TemporaryCodeState.correct ||
-                verificationResult.data == TemporaryCodeState.loading ||
-                verificationResult.data == TemporaryCodeState.disabled,
-            enabled: _isDisabled
-                ? false
-                : verificationResult.data != TemporaryCodeState.correct,
-            onCompleted: (value) =>
-                context.read<SmsCodeBlocType>().events.verifyCode(value),
-          ),
+          builder: (context, pinLength, bloc) {
+            if (verificationResult.data == TemporaryCodeState.reset) {
+              _controller ??= TextEditingController();
+              _controller?.clear();
+            }
+
+            return _buildPinField(
+              context,
+              forceErrorState:
+                  verificationResult.data == TemporaryCodeState.wrong,
+              forceSuccessState:
+                  verificationResult.data == TemporaryCodeState.correct,
+              pinLength: pinLength.data ?? 6,
+              readOnly: verificationResult.data == TemporaryCodeState.correct ||
+                  verificationResult.data == TemporaryCodeState.loading ||
+                  verificationResult.data == TemporaryCodeState.disabled,
+              enabled: (widget.enabled != null && widget.enabled == false) ||
+                      verificationResult.data == TemporaryCodeState.disabled
+                  ? false
+                  : verificationResult.data != TemporaryCodeState.correct,
+              onCompleted: (value) =>
+                  context.read<SmsCodeBlocType>().events.verifyCode(value),
+            );
+          },
         ),
       );
 
@@ -298,13 +353,13 @@ class SmsCodeField extends StatelessWidget {
       );
 
   PinTheme _buildDefaultTheme(BuildContext context) =>
-      themeConfig.defaultStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.defaultStyle!)
+      widget.themeConfig.defaultStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.defaultStyle!)
           : _buildGenericTheme(context);
 
   PinTheme _buildDisabledTheme(BuildContext context) =>
-      themeConfig.disabledStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.disabledStyle!)
+      widget.themeConfig.disabledStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.disabledStyle!)
           : _buildGenericTheme(
               context,
               bgColor: context.smsCodeTheme.disabledBackgroundColor,
@@ -312,31 +367,31 @@ class SmsCodeField extends StatelessWidget {
             );
 
   PinTheme _buildFocusedTheme(BuildContext context) =>
-      themeConfig.focusedStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.focusedStyle!)
+      widget.themeConfig.focusedStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.focusedStyle!)
           : _buildGenericTheme(
               context,
               showBorder: true,
             );
 
   PinTheme _buildSubmittedTheme(BuildContext context) =>
-      themeConfig.submittedStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.submittedStyle!)
+      widget.themeConfig.submittedStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.submittedStyle!)
           : _buildGenericTheme(
               context,
               bgColor: context.smsCodeTheme.submittedBackgroundColor,
             );
 
   PinTheme _buildUnfilledStyleTheme(BuildContext context) =>
-      themeConfig.unfilledStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.unfilledStyle!)
+      widget.themeConfig.unfilledStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.unfilledStyle!)
           : _buildGenericTheme(
               context,
             );
 
   PinTheme _buildErrorTheme(BuildContext context) =>
-      themeConfig.errorStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.errorStyle!)
+      widget.themeConfig.errorStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.errorStyle!)
           : _buildGenericTheme(
               context,
               showBorder: true,
@@ -347,8 +402,8 @@ class SmsCodeField extends StatelessWidget {
             );
 
   PinTheme _buildSuccessTheme(BuildContext context) =>
-      themeConfig.successStyle != null
-          ? _buildThemeFromConfigStyle(themeConfig.successStyle!)
+      widget.themeConfig.successStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.successStyle!)
           : _buildGenericTheme(
               context,
               showBorder: true,
@@ -357,6 +412,4 @@ class SmsCodeField extends StatelessWidget {
               borderWidth: context.smsCodeTheme.successBorderWidth,
               textStyle: context.smsCodeTheme.successTextStyle,
             );
-
-  /// endregion
 }

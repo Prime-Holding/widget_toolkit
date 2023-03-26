@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
-// import 'package:prime_sms_code/prime_sms_code.dart';
 import 'package:widget_toolkit_otp/widget_toolkit_otp.dart';
 
 Widget resendButtonFactory({
@@ -37,7 +36,7 @@ Widget buildCountdown({
   Key? key,
 }) =>
     _materialWrapper(
-      CountdownWidget.withDependencies(
+      CountdownWidget(
           controller: CountdownController(),
           countdownService: countdownService,
           onCountdownTick: onCountdownTick,

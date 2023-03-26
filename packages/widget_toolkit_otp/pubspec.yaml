@@ -1,6 +1,6 @@
 name: widget_toolkit_otp
 description: Package helping with building sms or pin code fields and screens in a matter of minutes
-version: 0.0.1
+version: 0.0.1-dev1
 homepage: https://primeholding.com/
 
 environment:

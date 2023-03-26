@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:widget_toolkit/ui_components.dart';
 
 import '../../base/utils/constants.dart';
 import '../../base/utils/enums.dart';
+import '../../base/utils/util_methods.dart';
 import '../bloc/countdown_bloc.dart';
-import '../di/countdown_dependencies.dart';
-import '../services/countdown_service.dart';
 
 part 'countdown_controller.dart';
 
@@ -31,14 +31,15 @@ part 'countdown_controller.dart';
 /// hours format) will be displayed with double digits (even if a single digit
 /// number is presented). In case you want to disable this behaviour, you can
 /// set the [preferDoubleDigitsForTime] parameter to `false`.
-class CountdownWidget extends StatefulWidget {
-  const CountdownWidget({
+class CountdownComponent extends StatefulWidget {
+  const CountdownComponent({
     this.onCountdownTick,
     this.controller,
     this.textStyle,
     this.timeFormat = CountdownTimeFormat.seconds,
     this.countdownTime = defaultCountdownTime,
     this.preferDoubleDigitsForTime = true,
+    this.translateError,
     super.key,
   });
 
@@ -67,42 +68,15 @@ class CountdownWidget extends StatefulWidget {
   /// Text style of the countdown text
   final TextStyle? textStyle;
 
-  /// Convenience builder method that initializes CountdownWidget dependencies
-  /// right above the widget.
-  static Widget withDependencies({
-    CountdownController? controller,
-    CountdownService? countdownService,
-    TextStyle? textStyle,
-    void Function(int)? onCountdownTick,
-    CountdownTimeFormat timeFormat = CountdownTimeFormat.seconds,
-    int countdownTime = defaultCountdownTime,
-    bool preferDoubleDigitsForTime = true,
-    Key? key,
-  }) =>
-      MultiProvider(
-        key: key,
-        providers: CountdownDependencies.from(
-          countdownService: countdownService,
-          countdownTime: countdownTime,
-        ).providers,
-        child: CountdownWidget(
-          textStyle: textStyle,
-          onCountdownTick: onCountdownTick,
-          countdownTime: countdownTime,
-          controller: controller,
-          timeFormat: timeFormat,
-          preferDoubleDigitsForTime: preferDoubleDigitsForTime,
-        ),
-      );
+  final String Function(Object error)? translateError;
 
   @override
-  State<CountdownWidget> createState() => _CountdownWidgetState();
+  State<CountdownComponent> createState() => _CountdownComponentState();
 }
 
-class _CountdownWidgetState extends State<CountdownWidget> {
+class _CountdownComponentState extends State<CountdownComponent> {
   late final CountdownController _controller;
-
-  bool get _preferDoubleDigits => widget.preferDoubleDigitsForTime;
+  int remainingTime = defaultCountdownTime;
 
   @override
   void initState() {
@@ -110,6 +84,11 @@ class _CountdownWidgetState extends State<CountdownWidget> {
     _controller = widget.controller ?? CountdownController();
     _controller.addListener(_onControllerNotified);
     _controller._setCountdownTime(widget.countdownTime);
+
+    // Perform an update every second
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onCountdownTick?.call(remainingTime);
+    });
   }
 
   @override
@@ -119,23 +98,27 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => RxBlocBuilder<CountdownBlocType, int>(
+  Widget build(BuildContext context) => RxResultBuilder<CountdownBlocType, int>(
         state: (bloc) => bloc.states.remainingTime,
-        builder: (context, remainingTimeState, bloc) {
-          final remainingTime = remainingTimeState.data;
-          if (remainingTime == null) return const SizedBox.shrink();
-
+        buildSuccess: (context, remainingTime, bloc) {
           _controller._updateRemainingTime(remainingTime);
-          // Perform an update every second
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            widget.onCountdownTick?.call(remainingTime);
-          });
+          this.remainingTime = remainingTime;
 
           return Text(
-            _convertRemainingTime(remainingTime),
+            convertRemainingTime(
+              remainingTime,
+              widget.timeFormat,
+              widget.preferDoubleDigitsForTime,
+            ),
             style: widget.textStyle,
           );
         },
+        buildLoading: (context, bloc) => const CircularProgressIndicator(),
+        buildError: (context, error, bloc) => ErrorCardWidget(
+          text: widget.translateError?.call(error) ?? error.toString(),
+          retryButtonVisible: true,
+          onRetryPressed: () => bloc.events.resetTimer(),
+        ),
       );
 
   /// Countdown controller callback happening every time the controller notifies
@@ -151,43 +134,5 @@ class _CountdownWidgetState extends State<CountdownWidget> {
       default:
         break;
     }
-  }
-
-  /// Convenience method for converting an integer into double digits number
-  /// mostly used for hours and minutes presentation.
-  String _formatToDoubleDigitValue(int val) {
-    if (val < 10) return '0$val';
-    return val.toString();
-  }
-
-  /// Convert the time into a presentable format
-  String _convertRemainingTime(int time) {
-    String output = '';
-
-    switch (widget.timeFormat) {
-      case CountdownTimeFormat.minutes:
-        final mins = time ~/ 60;
-        final secs = time - mins * 60;
-
-        final minOut =
-            _preferDoubleDigits ? _formatToDoubleDigitValue(mins) : mins;
-        output = '$minOut:${_formatToDoubleDigitValue(secs)}';
-        break;
-      case CountdownTimeFormat.hours:
-        final hours = time ~/ 3600;
-        final mins = (time - hours * 3600) ~/ 60;
-        final secs = (time - hours * 3600) % 60;
-
-        final hoursOut =
-            _preferDoubleDigits ? _formatToDoubleDigitValue(hours) : hours;
-        output = '$hoursOut'
-            ':${_formatToDoubleDigitValue(mins)}'
-            ':${_formatToDoubleDigitValue(secs)}';
-        break;
-      case CountdownTimeFormat.seconds:
-      default:
-        output = time.toString();
-    }
-    return output;
   }
 }

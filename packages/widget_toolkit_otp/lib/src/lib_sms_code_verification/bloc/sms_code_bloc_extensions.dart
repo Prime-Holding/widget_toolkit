@@ -8,12 +8,10 @@ extension ConfirmSMSCodeFromEmail on SmsCodeBloc {
       var confirmPhoneCode = await _service.confirmPhoneCode(code);
       setResult(confirmPhoneCode);
 
-      reset(stopCounter: true);
       yield TemporaryCodeState.correct;
       return;
     } catch (e) {
       codeSent(false);
-      reset(stopCounter: true);
       setTemporaryCodeState(TemporaryCodeState.wrong);
       rethrow;
     }

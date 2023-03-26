@@ -46,6 +46,8 @@ void main() {
         .thenAnswer((_) => Future.value(Stubs.validityTime));
     when(countdownService.countDown(maxTime: Stubs.validityTime))
         .thenAnswer((_) => Stream.value(Stubs.validityTime));
+    when(countdownService.countDown(maxTime: throttleTime))
+        .thenAnswer((_) => Stream.value(throttleTime));
     when(service.updatePhoneNumber(Stubs.phoneNumber))
         .thenAnswer((_) => Future.value(Stubs.phoneNumber));
     when(service.sendConfirmationSms(Stubs.phoneNumber))

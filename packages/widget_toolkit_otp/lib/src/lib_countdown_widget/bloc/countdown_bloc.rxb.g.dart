@@ -23,16 +23,17 @@ abstract class $CountdownBloc extends RxBlocBase
   final _$resetTimerEvent = PublishSubject<int>();
 
   /// The state of [remainingTime] implemented in [_mapToRemainingTimeState]
-  late final Stream<int> _remainingTimeState = _mapToRemainingTimeState();
+  late final Stream<Result<int>> _remainingTimeState =
+      _mapToRemainingTimeState();
 
   @override
   void resetTimer({int maxTime = defaultCountdownTime}) =>
       _$resetTimerEvent.add(maxTime);
 
   @override
-  Stream<int> get remainingTime => _remainingTimeState;
+  Stream<Result<int>> get remainingTime => _remainingTimeState;
 
-  Stream<int> _mapToRemainingTimeState();
+  Stream<Result<int>> _mapToRemainingTimeState();
 
   @override
   CountdownBlocEvents get events => this;

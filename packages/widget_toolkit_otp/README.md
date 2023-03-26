@@ -1,14 +1,14 @@
-# Prime SMS Code
+# widget_toolkit_otp
 
-`Prime SMS Code` package contains a number of useful widgets that can help you in building sms/pin 
+`widget_toolkit_otp` package contains a number of useful widgets that can help you in building sms/pin 
 code screens or workflows for your app. The package contains widgets for entering pin codes, 
 pasting them, resend logic and more.
 
 ## Widgets
 
-The `Prime SMS Code` package consists of the following widgets:
+The `widget_toolkit_otp` package consists of the following widgets:
 
-### PrimeSmsCodeField
+### SmsCodeField
 
 This is a wrapper around package [Pinput](https://pub.dev/packages/pinput) and exposes all its 
 customization options. In addition it provide default implementations for some of the package properties 
@@ -41,7 +41,7 @@ AutomatedResendCodeButton maintains its own state. Once the button is being pres
 a few statuses (loading, codeSent, disabled, active, error). The button is enabled only in active state. 
 There are a lot of options to be customised as providing icons, labels, colorStyles, textStyle e.t. 
 To prevent user from spam pressing the button it gets disabled for long after the onPressed callback 
-is executed. That way we are not going to sent too much codes and confuse the user. Uses the CountdownWidget under the hoot.
+is executed. That way we are not going to sent too much codes and confuse the user. Uses the CountdownWidget under the hood.
 
 ### ResendCodeButton
 
@@ -70,29 +70,36 @@ in the same step, arrange the page content depending on bloc's states and events
 
 ## How to use
 
-In order to start using this package you need to add the dependency to the `prime_sms_code` in your `pubspec.yaml` file.
+In order to start using this package you need to add the dependency to the `widget_toolkit_otp` in your `pubspec.yaml` file.
 
 ```yaml
-prime_sms_code:
+widget_toolkit_otp:
   git:
-    url: https://gitlab.programista.pro/prime-reusable-components/flutter
-    path: packages/prime_sms_code
+    url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
+    path: packages/widget_toolkit_otp
+widget_toolkit:
+  git:
+    url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
+    path: packages/widget_toolkit
 ```
-
 
 Afterwards, you can import the package by including the following line:
 
-`import 'package:prime_sms_code/prime_sms_code.dart';`
+`import 'package:widget_toolkit_otp/widget_toolkit_otp.dart';`
+
+You should also import the widget_toolkit package:
+
+     import 'package:widget_toolkit/widget_toolkit.dart';
 
 after which you are ready to start using the widgets in your app.
 
 There are two ways of using this package - to use prebuilt widgets to visualize your own business 
 logic or to use the provided SmsCodeBloc and arrange widgets in a page, however you want.
 Widgets that you can use without SmsCodeBloc are CountdownWidget, AutomatedResendCodeButton, 
-PrimeSmsCodeField(set useInternalCommunication = false) and ResendCodeButton(set useInternalCommunication = false).
+SmsCodeField(set useInternalCommunication = false) and ResendCodeButton(set useInternalCommunication = false).
 
 To use the implemented business logic, you first need to provide in the context SmsCodeBloc and 
 implementation of SmsCodeService. Then, to render your page content, you can use SmsPhoneNumberField 
-(combine it with custom widget or with PrimeTextFieldDialog),
-ValidityWidget, ResendCodeButton, ResendButtonTimer and PrimeSmsCodeField. Use SmsCodeWidget to have 
+(combine it with custom widget or with TextFieldDialog),
+ValidityWidget, ResendCodeButton, ResendButtonTimer and SmsCodeField. Use SmsCodeWidget to have 
 all dependencies provided and use its builder to easily create your page content.

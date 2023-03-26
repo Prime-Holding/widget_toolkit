@@ -1,4 +1,4 @@
-part of 'countdown_widget.dart';
+part of 'countdown_component.dart';
 
 /// Countdown controller is used to gain more control over the countdown widget.
 /// It allows resetting the actual timer and also has access to the remaining

@@ -138,33 +138,29 @@ class SmsCodeBloc extends $SmsCodeBloc {
   @override
   Stream<int> _mapToValidityTimeState() => _$resetEvent
       .startWith(false)
-      .switchMap((value) => _service.getValidityTime(value).asStream())
-      .switchMap(
-        (time) => _countDownService
-            .countDown(maxTime: time)
-            .withLatestFrom(onCodeVerificationResult, (validity, state) {
-          final bool codeNotSent = state != TemporaryCodeState.correct &&
-              state != TemporaryCodeState.wrong;
-          if (validity == 0 && codeNotSent) {
-            setTemporaryCodeState(TemporaryCodeState.disabled);
-          }
-          return validity;
-        }),
-      );
+      .switchMap((value) => _service.getValidityTime(value).asResultStream())
+      .setResultStateHandler(this)
+      .whereSuccess()
+      .switchMap((time) => _countDownService.countDown(maxTime: time).takeUntil(
+          onCodeVerificationResult
+              .where((event) => event == TemporaryCodeState.correct)));
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;
 
   @override
   Stream<TemporaryCodeState> _mapToOnCodeVerificationResultState() => Rx.merge([
-        _$verifyCodeEvent.flatMap((value) => confirmSMSCode(value)
-            .asResultStream()
+        _$verifyCodeEvent
+            .flatMap((value) => confirmSMSCode(value).asResultStream())
             .setResultStateHandler(this)
-            .whereSuccess()),
+            .whereSuccess(),
         _$resetEvent
             .where((event) => !event)
             .map((val) => TemporaryCodeState.reset),
         _$setTemporaryCodeStateEvent.startWith(TemporaryCodeState.reset),
+        validityTime
+            .where((event) => event == 0)
+            .map((event) => TemporaryCodeState.disabled),
       ]).shareReplay(maxSize: 1);
 
   @override
@@ -178,14 +174,21 @@ class SmsCodeBloc extends $SmsCodeBloc {
   @override
   Stream<int> _mapToPinLengthState() => _service
       .getCodeLength()
-      .asStream()
+      .asResultStream()
+      .setResultStateHandler(this)
+      .whereSuccess()
       .asBroadcastStream()
       .shareReplay(maxSize: 1);
 
   @override
   Stream<int> _mapToResendButtonThrottleTimeState() => Rx.merge([
-        _$resetEvent.startWith(false).switchMap(
-            (event) => _service.getResendButtonThrottleTime(event).asStream()),
+        _$resetEvent
+            .startWith(false)
+            .switchMap((event) =>
+                _service.getResendButtonThrottleTime(event).asResultStream())
+            .setResultStateHandler(this)
+            .whereSuccess()
+            .switchMap((time) => _countDownService.countDown(maxTime: time)),
         _$enableResendButtonEvent.mapTo(0)
       ]).asBroadcastStream();
 }

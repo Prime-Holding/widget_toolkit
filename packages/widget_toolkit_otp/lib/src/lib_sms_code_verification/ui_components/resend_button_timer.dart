@@ -3,7 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../base/utils/enums.dart';
-import '../../lib_countdown_widget/widgets/countdown_widget.dart';
+import '../../lib_countdown_widget/di/countdown_widget.dart';
 import '../bloc/sms_code_bloc.dart';
 
 /// ResendButtonTimer presents how long the resendCode button will be disabled.
@@ -54,7 +54,7 @@ class ResendButtonTimer extends StatelessWidget {
 
   Widget _buildValidityWidget(
           BuildContext context, int time, SmsCodeBlocType bloc) =>
-      CountdownWidget.withDependencies(
+      CountdownWidget(
           countdownTime: time,
           timeFormat: timeFormat!,
           textStyle: textStyle,

@@ -16,7 +16,7 @@ abstract class CountdownBlocEvents {
 /// A contract class containing all states of the CountdownBloc.
 abstract class CountdownBlocStates {
   /// Remaining countdown time in seconds
-  Stream<int> get remainingTime;
+  Stream<Result<int>> get remainingTime;
 }
 
 /// A Countdown [RxBloc](https://pub.dev/packages/rx_bloc) which contains logic
@@ -40,7 +40,7 @@ class CountdownBloc extends $CountdownBloc {
   final int _initialTime;
 
   @override
-  Stream<int> _mapToRemainingTimeState() => _$resetTimerEvent
-      .startWith(_initialTime)
-      .switchMap((time) => _countdownService.countDown(maxTime: time));
+  Stream<Result<int>> _mapToRemainingTimeState() =>
+      _$resetTimerEvent.startWith(_initialTime).switchMap((time) =>
+          _countdownService.countDown(maxTime: time).asResultStream());
 }

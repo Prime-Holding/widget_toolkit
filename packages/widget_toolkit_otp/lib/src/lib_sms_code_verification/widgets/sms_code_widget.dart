@@ -41,8 +41,12 @@ class SmsCodeWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _buildErrorListener(context),
-            _buildResultListener(context),
+            RxBlocListener<SmsCodeBlocType, ErrorModel?>(
+                listener: (context, error) => onError?.call(context, error),
+                state: (bloc) => bloc.states.errors),
+            RxBlocListener<SmsCodeBlocType, dynamic>(
+                listener: (context, result) => onResult?.call(context, result),
+                state: (bloc) => bloc.states.result),
             Flexible(
               child: RxBlocBuilder<SmsCodeBlocType, TemporaryCodeState>(
                 state: (bloc) => bloc.states.onCodeVerificationResult,
@@ -52,14 +56,4 @@ class SmsCodeWidget extends StatelessWidget {
           ],
         ),
       );
-
-  Widget _buildErrorListener(BuildContext context) =>
-      RxBlocListener<SmsCodeBlocType, ErrorModel?>(
-          listener: (context, error) => onError?.call(context, error),
-          state: (bloc) => bloc.states.errors);
-
-  Widget _buildResultListener(BuildContext context) =>
-      RxBlocListener<SmsCodeBlocType, dynamic>(
-          listener: (context, result) => onResult?.call(context, result),
-          state: (bloc) => bloc.states.result);
 }

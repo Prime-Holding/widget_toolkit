@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:widget_toolkit/common_ui_components.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../base/extensions/exception_extensions.dart';
 import '../base/theme/sms_code_theme.dart';
 import '../base/utils/localized_strings.dart';
-import '../lib_countdown_widget/widgets/countdown_widget.dart';
+import '../lib_countdown_widget/di/countdown_widget.dart';
 
 /// ResendCodeButton maintains its own statuses. Once the button is being
 /// pressed, it goes through a few stats (loading, codeSent, disabled, active,
@@ -160,7 +159,7 @@ class _AutomatedResendCodeButtonState extends State<AutomatedResendCodeButton> {
         isEnabled: false,
         text: widget.strings?.resendButtonDisabledStateLabel ??
             context.getLocalizedStrings.resendButtonDisabledStateLabel,
-        icon: CountdownWidget.withDependencies(
+        icon: CountdownWidget(
             countdownTime: widget.disabledDuration,
             onCountdownTick: _onCountDownTick,
             textStyle: _getDefaultTextStyle(context)),
