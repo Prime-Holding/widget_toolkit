@@ -21,15 +21,13 @@ Widget languagePickerSuccessPageFactory({
               selected: Stubs.selectedLanguageEnglish,
             ),
           ),
-          Provider<LanguagePickerBlocType>(
-            create: (context) => LanguagePickerBloc(
-              context.read<LanguagePickerServiceMock>(),
-            ),
-          )
         ],
         child: Builder(
-          builder: (context) => const ChangeLanguageWidget(
+          builder: (context) => ChangeLanguageWidget(
             messageState: MessagePanelState.important,
+            service: context.read<LanguagePickerServiceMock>(),
+            onChanged: (language){
+            },
           ),
         ),
       ),

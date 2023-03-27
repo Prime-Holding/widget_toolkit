@@ -13,6 +13,11 @@ to show your language list.
 The `showChangeLanguageBottomSheet` function is a convenience function for displaying a 
 `ChangeLanguageWidget` modal sheet with some pre-configured options. 
 
+The `service` receives an implementation of the `LanguageService` class. The API of the class 
+provides methods for the logic of fetching a list of languages, setting and getting the current 
+one and getting all of them.
+The `onChanged` parameter accepts a function, which receives the value of the selected language,
+which can be used to update the value of the `MaterialApp(locale)` parameter of the app,
 The `itemBuilder` parameter accepts a function, which should return a Widget to display the 
 `SelectedLanguageModel` data. The loading parameter accepts the value for the current 
 `SelectedLanguageModel.isLoading` model.
@@ -36,12 +41,6 @@ the `WidgetToolkitTheme`, such as:
    dangerIcon: Assets.customIcon,
  );`
 
-To listen for the state of the changed language in the whole app, you should provide the 
-`LanguagePickerDependencies.from()` constructor in the base of your app. There, you should update
-the `Locale` in your `MaterialApp` with the `currentLanguage` state of the bloc. In the
-`LanguagePickerDependencies.from()` constructor, you should provide your implementation of the
-methods of the abstract `LanguageService` class.
-
 ## How to use
 
 In order to start using this package you need to add the dependency to the `widget_toolkit` in
@@ -49,20 +48,6 @@ your `pubspec.yaml` file.
 
 ```yaml
 widget_toolkit: any
-```
-
-The dependencies of the Language Picker should be provided in the root dependencies of the
-application:
-
-```dart
-MultiProvider(
-  providers: [
-    ...LanguagePickerDependencies.from(
-      LanguageServiceExample(localDataSource: _localDataSource),
-    ).providers, 
-  ],
-  child: this,
-);
 ```
 
 After that you can import the package with the following line:
@@ -87,47 +72,99 @@ MaterialApp(
 //..
 ```
 
-Here is an example of how you can listen for a change of the `currentLanguage` state in a StatefulWidget in 
-your app and update your `MaterialApp` locale parameter:
+In order to fetch the models you want to present in the bottom sheet dialog you need to implement
+your `LanguageService` and/or extend `LanguageModel` and you can implement the `SelectedLanguageModel`:
+
 ```dart
-late Locale _locale;
+class MyCustomLanguageModel implements LanguageModel {
+  MyCustomLanguageModel({
+    required this.locale,
+    required this.key,
+    required this.languageCode,
+  });
 
   @override
-  void initState() {
-    _locale = const Locale('en');
-    
-    context
-        .read<LanguagePickerBlocType>()
-        .states
-        .currentLanguage
-        .listen((language) {
-      setState(
-        () => _locale = Locale(language.locale),
-      );
-    });
+  final String locale;
 
-    super.initState();
-  }
+  @override
+  final String key;
 
-@override
-Widget build(BuildContext context) => MaterialApp(
-  locale: _locale,
-);
+  @override
+  final String languageCode;
+
+  @override
+  String asString() => key;
+
+  @override
+  String withFirstCapitalLetter() => key.substring(0).toUpperCase();
+
+  @override
+  String translate(BuildContext context) => '';
+
+  @override
+  List<Object?> get props => [locale, key, languageCode];
+
+  @override
+  bool? get stringify => true;
+}
+
+class MyCustomSelectedLanguageModel implements SelectedLanguageModel {
+  MyCustomSelectedLanguageModel({
+    required this.language,
+    required this.selected,
+    this.isLoading = false,
+  });
+
+  @override
+  final LanguageModel language;
+
+  @override
+  final bool selected;
+
+  @override
+  final bool isLoading;
+
+  @override
+  List<Object?> get props => [language, selected, isLoading];
+
+  @override
+  bool? get stringify => true;
+}
+
+class MyCustomLanguageService implements LanguageService {
+  MyCustomLanguageService();
+
+  @override
+  Future<List<LanguageModel>> getAll() async => [...get all language models];
+
+  @override
+  Future<LanguageModel> getCurrent() async => [...get current language model];
+
+  @override
+  Future<void> setCurrent(LanguageModel language) async => [...set current language model];
+
+  @override
+  Future<List<SelectedLanguageModel>> getLanguageList() async => [...get selected language models];
+}
 ```
 
 Minimal example for showItemPickerBottomSheet usage:
 ```dart
 showChangeLanguageBottomSheet(
   context: context,
+  service: context.read<LanguageServiceExample>(),
+  onChanged: (language) => print('Selected language: $language'),
 );
 ```
 
 Complete example for showItemPickerBottomSheet usage:
 ```dart
 showChangeLanguageBottomSheet(
-    context: context,
-    itemBuilder: (item, isLoading, context) => _buildLanguageItem(item, isLoading, context),
-    headerBuilder: (context) => _buildCustomHeaderBuilder(context),
+  context: context,
+  service: context.read<LanguageServiceExample>(),
+  onChanged: (language) => print('Selected language: $language'),
+  itemBuilder: (item, isLoading, context) => _buildLanguageItem(item, isLoading, context),
+  headerBuilder: (context) => _buildCustomHeaderBuilder(context),
     modalConfiguration: const LanguagePickerModalConfiguration(
       safeAreaBottom: false,
       contentAlignment: MainAxisAlignment.end,
@@ -139,8 +176,8 @@ showChangeLanguageBottomSheet(
       dialogHasBottomPadding: false,
       isDismissible: true,
     ),
-    errorBuilder: (myException) => _buildCustomErrorBuilder(myException),
-    messageState: MessagePanelState.informative,
+  errorBuilder: (myException) => _buildCustomErrorBuilder(myException),
+  messageState: MessagePanelState.informative,
 );
 ```
 

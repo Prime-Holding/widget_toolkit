@@ -2,7 +2,7 @@
 - Documentation improvements
 ### Breaking Changes:
 - Removed params: `showChangeLanguageBottomSheet(iconRight, errorPanelIcon)`
-- Added parameter `showChangeLanguageBottomSheet(Widget Function(SelectedLanguageModel model, bool loading, BuildContext context)? itemBuilder)`
+- Added parameter `showChangeLanguageBottomSheet(Widget Function(SelectedLanguageModel model, bool loading, BuildContext context)? itemBuilder, required LanguageService service, required Function(LanguageModel language) onChanged,)`
   -  [Language Picker API Improvements ticket](https://github.com/Prime-Holding/widget_toolkit/issues/10)
 
 ## [0.0.1-dev6]

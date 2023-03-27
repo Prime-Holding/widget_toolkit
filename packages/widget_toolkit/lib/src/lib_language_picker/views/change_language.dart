@@ -4,18 +4,29 @@ import 'package:provider/provider.dart';
 
 import '../../../models.dart';
 import '../../../theme_data.dart';
+import '../../base/models/language_model.dart';
 import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/buttons/small_button.dart';
 import '../../lib_ui_components/message_panel_error.dart';
 import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../blocs/language_picker_bloc.dart';
+import '../di/language_picker_dependencies.dart';
 import '../models/selected_language_model.dart';
+import '../services/language_service.dart';
 import '../theme/language_picker_theme.dart';
 import '../ui_components/select_language_item.dart';
 
 /// Display a bottom modal sheet, designed to display a list of available languages,
 /// from which to choose one to be set as the language Locale() to your MaterialApp()
+///
+/// [service] receives an implementation of the [LanguageService] class.
+/// The API of the class provides methods for the logic of fetching a list
+/// of languages, setting and getting the current one and getting all of them.
+/// For more information, check the documentation in the file [LanguageService] class.
+///
+/// [onChanged] receives a function, which accepts the selected language model and
+/// it is invoked when the selected change is changed.
 ///
 /// [itemBuilder] the parameter accepts a function, which should return a Widget
 /// to display the [SelectedLanguageModel] data. The loading parameter accepts
@@ -57,6 +68,8 @@ import '../ui_components/select_language_item.dart';
 /// )
 void showChangeLanguageBottomSheet({
   required BuildContext context,
+  required LanguageService service,
+  required Function(LanguageModel language) onChanged,
   Widget Function(BuildContext)? headerBuilder,
   Widget Function(ErrorModel?)? errorBuilder,
   Widget Function(
@@ -69,6 +82,8 @@ void showChangeLanguageBottomSheet({
     showBlurredBottomSheet(
       context: context,
       builder: (context) => ChangeLanguageWidget(
+        service: service,
+        onChanged: onChanged,
         itemBuilder: itemBuilder,
         errorBuilder: errorBuilder,
         messageState: messageState,
@@ -104,6 +119,8 @@ class LanguagePickerModalConfiguration extends ModalConfiguration {
 class ChangeLanguageWidget extends StatelessWidget {
   const ChangeLanguageWidget({
     required this.messageState,
+    required this.service,
+    required this.onChanged,
     this.itemBuilder,
     this.errorBuilder,
     Key? key,
@@ -116,60 +133,75 @@ class ChangeLanguageWidget extends StatelessWidget {
   )? itemBuilder;
   final Widget Function(ErrorModel?)? errorBuilder;
   final MessagePanelState messageState;
+  final LanguageService service;
+  final Function(LanguageModel language) onChanged;
 
   @override
-  Widget build(BuildContext context) =>
-      RxBlocBuilder<LanguagePickerBlocType, List<SelectedLanguageModel>>(
-        bloc: context.read<LanguagePickerBlocType>(),
-        state: (bloc) => bloc.states.languages,
-        builder: (context, snapshot, bloc) => Padding(
-          padding: context.languagePickerTheme.changeLanguagePadding,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                MessagePanelError<LanguagePickerBlocType>(
-                  errorState: (bloc) => bloc.states.errors,
-                  padding:
-                      context.languagePickerTheme.messagePanelErrorEdgeInsets,
-                  errorBuilder: errorBuilder,
-                  messageState: messageState,
-                ),
-                ...(snapshot.data ?? []).map(
-                  (language) {
-                    if (itemBuilder != null) {
-                      return itemBuilder!(
-                          language, language.isLoading, context);
-                    }
-                    return _ChooseLanguage(
-                      languageModel: language,
-                      padding:
-                          context.languagePickerTheme.chooseLanguagePadding,
-                      isLoading: language.isLoading,
-                      onPressed: (snapshot.data ?? []).isAnyLoading
-                          ? null
-                          : (languageModel) => context
-                              .read<LanguagePickerBlocType>()
-                              .events
-                              .setCurrent(languageModel.language),
-                    );
-                  },
-                ).toList(),
-                SizedBox(
-                  height: context.languagePickerTheme.changeLanguageSizedBox,
-                ),
-                SmallButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: Icons.close,
-                  type: SmallButtonType.outline,
-                  colorStyle: ButtonColorStyle.fromContext(
-                    context,
-                    activeGradientColorStart: context.languagePickerTheme
-                        .disabledFilledButtonBackgroundColor,
-                    activeGradientColorEnd:
-                        context.languagePickerTheme.activeGradientEnd,
+  Widget build(BuildContext context) => MultiProvider(
+        providers: LanguagePickerDependencies.from(
+          service,
+        ).providers,
+        child: Builder(
+          builder: (context) =>
+              RxBlocListener<LanguagePickerBlocType, LanguageModel>(
+            state: (bloc) => bloc.states.currentLanguage,
+            listener: (context, state) => onChanged.call(state),
+            child: RxBlocBuilder<LanguagePickerBlocType,
+                List<SelectedLanguageModel>>(
+              bloc: context.read<LanguagePickerBlocType>(),
+              state: (bloc) => bloc.states.languages,
+              builder: (context, snapshot, bloc) => Padding(
+                padding: context.languagePickerTheme.changeLanguagePadding,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      MessagePanelError<LanguagePickerBlocType>(
+                        errorState: (bloc) => bloc.states.errors,
+                        padding: context
+                            .languagePickerTheme.messagePanelErrorEdgeInsets,
+                        errorBuilder: errorBuilder,
+                        messageState: messageState,
+                      ),
+                      ...(snapshot.data ?? []).map(
+                        (language) {
+                          if (itemBuilder != null) {
+                            return itemBuilder!(
+                                language, language.isLoading, context);
+                          }
+                          return _ChooseLanguage(
+                            languageModel: language,
+                            padding: context
+                                .languagePickerTheme.chooseLanguagePadding,
+                            isLoading: language.isLoading,
+                            onPressed: (snapshot.data ?? []).isAnyLoading
+                                ? null
+                                : (languageModel) => context
+                                    .read<LanguagePickerBlocType>()
+                                    .events
+                                    .setCurrent(languageModel.language),
+                          );
+                        },
+                      ).toList(),
+                      SizedBox(
+                        height:
+                            context.languagePickerTheme.changeLanguageSizedBox,
+                      ),
+                      SmallButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: Icons.close,
+                        type: SmallButtonType.outline,
+                        colorStyle: ButtonColorStyle.fromContext(
+                          context,
+                          activeGradientColorStart: context.languagePickerTheme
+                              .disabledFilledButtonBackgroundColor,
+                          activeGradientColorEnd:
+                              context.languagePickerTheme.activeGradientEnd,
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
+                ),
+              ),
             ),
           ),
         ),
