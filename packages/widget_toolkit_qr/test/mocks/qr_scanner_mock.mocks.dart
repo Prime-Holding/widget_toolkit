@@ -7,7 +7,6 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:rxdart/rxdart.dart' as _i2;
-import 'package:widget_toolkit/models.dart' as _i5;
 import 'package:widget_toolkit_qr/src/lib_qr_scanner/blocs/qr_scanner_bloc.dart'
     as _i3;
 
@@ -78,10 +77,10 @@ class MockQrScannerBlocStates<T> extends _i1.Mock
         ),
       ) as _i2.ConnectableStream<T?>);
   @override
-  _i4.Stream<_i5.ErrorModel> get errors => (super.noSuchMethod(
+  _i4.Stream<Exception?> get errors => (super.noSuchMethod(
         Invocation.getter(#errors),
-        returnValue: _i4.Stream<_i5.ErrorModel>.empty(),
-      ) as _i4.Stream<_i5.ErrorModel>);
+        returnValue: _i4.Stream<Exception?>.empty(),
+      ) as _i4.Stream<Exception?>);
   @override
   _i2.ConnectableStream<bool> get hasCameraPermission => (super.noSuchMethod(
         Invocation.getter(#hasCameraPermission),

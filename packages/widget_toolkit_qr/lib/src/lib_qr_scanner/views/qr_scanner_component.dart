@@ -60,7 +60,7 @@ class QrScannerComponent<T> extends StatelessWidget {
   final Function(Object)? onError;
   final Function(String)? onCodeScanned;
   final Function(T?)? onCodeValidated;
-  final bool? isLoadingIndicatorVisible;
+  final bool isLoadingIndicatorVisible;
 
   final String? cameraPermissionButtonText;
   final String? cameraAccessTitleText;
@@ -76,9 +76,10 @@ class QrScannerComponent<T> extends StatelessWidget {
               state: (bloc) => bloc.states.scannedValue,
               listener: (context, scannedValue) =>
                   onCodeValidated?.call(scannedValue)),
-          RxBlocListener<QrScannerBlocType<T>, Exception>(
+          RxBlocListener<QrScannerBlocType<T>, Exception?>(
               state: (bloc) => bloc.states.errors,
-              listener: (context, error) => onError?.call(error)),
+              condition: (oldError, newError) => newError != null,
+              listener: (context, error) => onError?.call(error!)),
           AspectRatio(
             aspectRatio: 1,
             child: Stack(
@@ -139,7 +140,7 @@ class QrScannerComponent<T> extends StatelessWidget {
               ],
             ),
           ),
-          if (isLoadingIndicatorVisible == null) ...[
+          if (isLoadingIndicatorVisible) ...[
             SizedBox(
               height: spaceBetweenScannerAndLoadingWidget ??
                   context.widgetToolkitTheme.spacingL,

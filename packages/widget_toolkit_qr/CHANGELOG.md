@@ -1,3 +1,2 @@
-## 0.0.1
-
-* TODO: Describe initial release.
+## [0.0.1-dev1]
+* Initial release

@@ -18,7 +18,7 @@ class QrScannerWidget<T> extends StatelessWidget {
     this.cameraAccessLabelText,
     this.cameraPermissionBottomSheetConfiguration,
     this.spaceBetweenScannerAndLoadingWidget,
-    this.isLoadingIndicatorVisible,
+    this.isLoadingIndicatorVisible = true,
     super.key,
   }) : _qrValidationService = qrValidationService;
 
@@ -27,7 +27,7 @@ class QrScannerWidget<T> extends StatelessWidget {
   final Function(Object)? onError;
   final Function(String)? onCodeScanned;
   final Function(T?)? onCodeValidated;
-  final bool? isLoadingIndicatorVisible;
+  final bool isLoadingIndicatorVisible;
 
   final String? cameraPermissionButtonText;
   final String? cameraAccessTitleText;

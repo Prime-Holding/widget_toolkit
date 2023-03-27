@@ -24,7 +24,7 @@ abstract class QrScannerBlocStates<T> {
   ConnectableStream<T?> get scannedValue;
 
   /// Returns the errors
-  Stream<Exception> get errors;
+  Stream<Exception?> get errors;
 
   /// Returns true if the app has access to the device's camera or false, if it
   /// does not

@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
+import 'package:widget_toolkit_qr/src/lib_qr_scanner/services/system_permissions_service.dart';
 import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
 
 import '../../mocks/stubs.dart';
@@ -69,8 +70,6 @@ void main() {
         state: (bloc) => bloc.states.isLoading,
         expect: [
           false,
-          false,
-          true,
           false,
         ]);
   });

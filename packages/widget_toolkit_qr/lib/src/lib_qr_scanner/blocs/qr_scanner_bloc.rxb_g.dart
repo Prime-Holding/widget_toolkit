@@ -36,7 +36,7 @@ abstract class $QrScannerBloc<T> extends RxBlocBase
       _mapToScannedValueState();
 
   /// The state of [errors] implemented in [_mapToErrorsState]
-  late final Stream<Exception> _errorsState = _mapToErrorsState();
+  late final Stream<Exception?> _errorsState = _mapToErrorsState();
 
   /// The state of [hasCameraPermission] implemented in
   /// [_mapToHasCameraPermissionState]
@@ -56,7 +56,7 @@ abstract class $QrScannerBloc<T> extends RxBlocBase
   ConnectableStream<T?> get scannedValue => _scannedValueState;
 
   @override
-  Stream<Exception> get errors => _errorsState;
+  Stream<Exception?> get errors => _errorsState;
 
   @override
   ConnectableStream<bool> get hasCameraPermission => _hasCameraPermissionState;
@@ -65,7 +65,7 @@ abstract class $QrScannerBloc<T> extends RxBlocBase
 
   ConnectableStream<T?> _mapToScannedValueState();
 
-  Stream<Exception> _mapToErrorsState();
+  Stream<Exception?> _mapToErrorsState();
 
   ConnectableStream<bool> _mapToHasCameraPermissionState();
 

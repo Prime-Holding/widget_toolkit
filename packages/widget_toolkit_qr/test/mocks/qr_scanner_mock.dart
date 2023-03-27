@@ -1,7 +1,6 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:widget_toolkit/language_picker.dart';
 import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
 
 import 'qr_scanner_mock.mocks.dart';
@@ -11,15 +10,15 @@ import 'qr_scanner_mock.mocks.dart';
   QrScannerBlocEvents,
   QrScannerBlocType,
 ])
-QrScannerBlocType qrScannerMockFactory({
-  required ErrorModel errors,
+QrScannerBlocType<String> qrScannerMockFactory({
+  Exception? errors,
   bool? isLoading,
   String? scannedValue,
-  bool? hasCameraPermission,
+  required bool hasCameraPermission,
 }) {
-  final blocMock = MockQrScannerBlocType();
+  final blocMock = MockQrScannerBlocType<String>();
   final eventsMock = MockQrScannerBlocEvents();
-  final statesMock = MockQrScannerBlocStates();
+  final statesMock = MockQrScannerBlocStates<String>();
 
   when(blocMock.events).thenReturn(eventsMock);
   when(blocMock.states).thenReturn(statesMock);
@@ -35,13 +34,11 @@ QrScannerBlocType qrScannerMockFactory({
   );
 
   when(statesMock.errors).thenAnswer(
-    (_) => Stream.value(errors),
+    (_) => errors != null ? Stream.value(errors) : const Stream.empty(),
   );
 
   when(statesMock.hasCameraPermission).thenAnswer(
-    (_) => hasCameraPermission != null
-        ? Stream.value(hasCameraPermission).publish()
-        : const Stream<bool>.empty().publish(),
+    (_) => Stream.value(hasCameraPermission).publish(),
   );
 
   return blocMock;
