@@ -8,11 +8,9 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 
 | Package                                                                                                                 | Pub                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [widget_toolkit](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit)                   | [![pub package](https://img.shields.io/pub/v/widget_toolkit.svg)](https://pub.dev/packages/widget_toolkit)                   |
-
-| Package                                                                                                                 | Pub                                                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [widget_toolkit](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit)                   | [![pub package](https://img.shields.io/pub/v/widget_toolkit.svg)](https://pub.dev/packages/widget_toolkit)                   
 | [widget_toolkit_otp](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_otp)           | [![pub package](https://img.shields.io/pub/v/widget_toolkit_otp.svg)](https://pub.dev/packages/widget_toolkit_otp)           |
+
 
 ## Demo
 
