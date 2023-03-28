@@ -1,0 +1,28 @@
+name: otp_example
+description: An example project to present how to use widget_toolkit_otp package with minimal effort.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  widget_toolkit: ^0.0.1-dev5
+  widget_toolkit_otp: ^0.0.1-dev5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+dependency_overrides:
+  widget_toolkit:
+    path: ../../widget_toolkit
+  widget_toolkit_otp:
+    path: ../../widget_toolkit_otp
+
+flutter:
+  uses-material-design: true
