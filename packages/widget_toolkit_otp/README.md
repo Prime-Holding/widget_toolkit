@@ -6,7 +6,7 @@ pasting them, resend logic and more.
 
 ## Demo
 
-<img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_otp/doc/assets/otp-example.gif" alt="SMS OTP Field">
+<img width=296 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_otp/doc/assets/otp-example.gif" alt="SMS OTP Field">
 
 ## Widgets
 
