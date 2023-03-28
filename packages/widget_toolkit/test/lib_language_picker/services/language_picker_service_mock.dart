@@ -1,26 +1,23 @@
 import 'package:widget_toolkit/language_picker.dart';
 
 class LanguagePickerServiceMock extends LanguageService {
-  LanguagePickerServiceMock(
-    this.languages,
-  );
+  LanguagePickerServiceMock({
+    required this.languages,
+    required this.selected,
+  });
 
   final List<LanguageModel> languages;
-  late LanguageModel _selected;
+  LanguageModel selected;
 
   @override
-  Future<List<LanguageModel>> getAll() async {
-    return await Future.value(languages);
-  }
+  Future<List<LanguageModel>> getAll() async => await Future.value(languages);
 
   @override
-  Future<LanguageModel> getCurrent() async {
-    return await Future.value(_selected);
-  }
+  Future<LanguageModel> getCurrent() async => await Future.value(selected);
 
   @override
   Future<void> setCurrent(LanguageModel language) async {
-    _selected = language;
+    selected = language;
     return Future.value();
   }
 }

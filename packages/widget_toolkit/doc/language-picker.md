@@ -13,26 +13,35 @@ to show your language list.
 The `showChangeLanguageBottomSheet` function is a convenience function for displaying a 
 `ChangeLanguageWidget` modal sheet with some pre-configured options. 
 
+The `service` receives an implementation of the `LanguageService` class. The API of the class 
+provides methods for the logic of fetching a list of languages, setting and getting the current 
+one and getting all of them.
+The `onChanged` parameter accepts a function, which receives the value of the selected language,
+which can be used to update the value of the `MaterialApp(locale)` parameter of the app,
+The `translate` parameter receives a function, which accepts the selected language model and based 
+on a value of its parameters returns a translated string of the name of the language.
+The `itemBuilder` parameter accepts a function, which should return a Widget to display the 
+`SelectedLanguageModel` data. The loading parameter accepts the value for the current 
+`SelectedLanguageModel.isLoading` model.
 With the `errorBuilder` parameter you can provide a function, which receives an exception model,
 which implements `ErrorModel`. `ErrorModel` is the type of error coming from the LanguagePickerBloc
 error state. In order to map other types of exceptions, you should provide an `errorBuilder`,
 with handling of the error.
-With `iconRight` parameter, you can provide the icon, displayed on the 
-right end of every language widget. There is a default icon if the parameter is not specified.
 The `headerBuilder` parameter receives the title widget of the language picker.
-With the `configuration` we can change the default configuration of the showModalBottomSheet().
+With the `modalConfiguration` we can change the default configuration of the `showBlurredBottomSheet()`.
 To do that should provide a LanguagePickerConfiguration() instance to override the default values.
-There are different styles for the error message widget. The default state is MessagePanelState.important.
-With the `messageState` you can provide one of the enum values. With the MessagePanelState.custom
-you can use the custom error text color and the custom error background color. When you use the
-MessagePanelState.custom, you can provide a custom icon for the error panel widget with the
-`errorPanelIcon` parameter.
-
-To listen for the state of the changed language in the whole app, you should provide the 
-`LanguagePickerDependencies.from()` constructor in the base of your app. There, you should update
-the `Locale` in your `MaterialApp` with the `currentLanguage` state of the bloc. In the
-`LanguagePickerDependencies.from()` constructor, you should provide your implementation of the
-methods of the abstract `LanguageService` class.
+There are different states for the error message widget. The default state is `MessagePanelState.important`.
+With the `messageState` you can provide one of the enum values.
+`MessagePanelError` widget, is displayed above the languages list, when there is an error with a 
+default icon. To access one of the other preconfigured icons, instead of the danger icon displayed
+in the error panel on the left of the error text, for the value of the parameter `messageState`
+provide another `MessagePanelState` value, such as: `MessagePanelState.informative`. According to
+`messageState`, the appropriate icon, color and background color of the error panel widget  are displayed.
+In order to override the error panel icon with a custom icon, you should use the `copyWith` method of
+the `WidgetToolkitTheme`, such as:
+`WidgetToolkitTheme.light.copyWith(
+   dangerIcon: Assets.customIcon,
+ );`
 
 ## How to use
 
@@ -43,56 +52,84 @@ your `pubspec.yaml` file.
 widget_toolkit: any
 ```
 
-The dependencies of the Language Picker should be provided in the root dependencies of the
-application:
-
-```dart
-MultiProvider(
-  providers: [
-    ...LanguagePickerDependencies.from(
-      LanguageServiceExample(localDataSource: _localDataSource),
-    ).providers, 
-  ],
-  child: this,
-);
-```
-
 After that you can import the package with the following line:
 
 `import 'package:widget_toolkit/language_picker.dart';`
 
-Additional step is the requirement to add the LanguagePickerTheme and LanguagePickerTheme as a 
-extension to your ThemeData.
+Additional step is the requirement to add the `LanguagePickerTheme` and `WidgetToolkitTheme` as  
+extensions to your `ThemeData`.
 
-as an example:
+Here is an example:
 ```dart
 //theme 
 //...
-extensions: [
-    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
-    darkMode ? LanguagePickerTheme.dark : LanguagePickerTheme.light,
-]
+MaterialApp(
+  theme: ThemeData(
+    extensions: [
+      darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
+      darkMode ? LanguagePickerTheme.dark : LanguagePickerTheme.light,
+    ]
+  )
+);
 //..
+```
+
+In order to fetch the models you want to present in the bottom sheet dialog you need to implement
+your `LanguageService`:
+
+```dart
+class MyCustomLanguageService implements LanguageService {
+  MyCustomLanguageService();
+
+  @override
+  Future<List<LanguageModel>> getAll() async => [...get all language models];
+
+  @override
+  Future<LanguageModel> getCurrent() async => [...get current language model];
+
+  @override
+  Future<void> setCurrent(LanguageModel language) async => [...set current language model];
+
+  @override
+  Future<List<SelectedLanguageModel>> getLanguageList() async => [...get selected language models];
+}
+```
+
+Minimal example for showItemPickerBottomSheet usage:
+```dart
+showChangeLanguageBottomSheet(
+  context: context,
+  service: context.read<LanguageServiceExample>(),
+  onChanged: (language) => print('Selected language: $language'),
+  translate: (model) => _translatesTheNameOfTheLanguage(model),
+);
 ```
 
 Complete example for showItemPickerBottomSheet usage:
 ```dart
 showChangeLanguageBottomSheet(
   context: context,
-  headerBuilder: (context) => Text(
-    context.l10n.languagePicker.changeLanguage,
-    style: context.languagePickerTheme.titleBold,
-  ),
-  errorBuilder: (myException) => customErrorBuilder(myException!),
-  iconRight: Assets.add,
-  configuration: LanguagePickerConfiguration(
-    showHeaderPill: true,
-    fullScreen: true,
-    safeAreaBottom: true,
-  ),
-  messageState: MessagePanelState.custom,
-  errorPanelIcon: Assets.deliveryBlack,
+  service: context.read<LanguageServiceExample>(),
+  onChanged: (language) => print('Selected language: $language'),
+  itemBuilder: (item, isLoading, context) => _buildLanguageItem(item, isLoading, context),
+  translate: (model) => _translatesTheNameOfTheLanguage(model),
+  headerBuilder: (context) => _buildCustomHeaderBuilder(context),
+    modalConfiguration: const LanguagePickerModalConfiguration(
+      safeAreaBottom: false,
+      contentAlignment: MainAxisAlignment.end,
+      fullScreen: false,
+      haveOnlyOneSheet: true,
+      showHeaderPill: false,  
+      showCloseButton: false,
+      heightFactor: 0.6,
+      dialogHasBottomPadding: false,
+      isDismissible: true,
+    ),
+  errorBuilder: (myException) => _buildCustomErrorBuilder(myException),
+  messageState: MessagePanelState.informative,
 );
 ```
+
+
 
 ---

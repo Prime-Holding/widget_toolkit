@@ -17,7 +17,7 @@ of `selectedItems`, function that return a list of generic type `callback`, `ser
 provide even more optional customizations as part of ItemPickerConfiguration. There you can set some
 properties like `isMultiSelect`, `isItemSelectionRequired`, `isStatic`, `itemHeight`, `fullScreen`.
 Another optional customization can be applied by using the `itemBuilder`, `separatorBuilder`,`footerBuilder`,
-'errorBuilder' or `emptyBuilder`.
+`errorBuilder` or `emptyBuilder`.
 
 ## How to use
 
