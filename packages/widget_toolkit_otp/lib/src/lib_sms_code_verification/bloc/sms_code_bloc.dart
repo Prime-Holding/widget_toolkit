@@ -88,7 +88,6 @@ class SmsCodeBloc extends $SmsCodeBloc {
       : _service = service,
         _countDownService = countdownService,
         _initialPhoneNumber = initialPhoneNumber {
-    // print('--SmsCodeBloc created');
     if (_initialPhoneNumber != null) {
       _number.add(_initialPhoneNumber!);
     } else {
