@@ -26,8 +26,8 @@ Widget languagePickerSuccessPageFactory({
           builder: (context) => ChangeLanguageWidget(
             messageState: MessagePanelState.important,
             service: context.read<LanguagePickerServiceMock>(),
-            onChanged: (language){
-            },
+            onChanged: (language) {},
+            translate: (model) => '',
           ),
         ),
       ),

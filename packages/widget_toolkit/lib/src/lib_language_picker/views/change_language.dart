@@ -28,6 +28,10 @@ import '../ui_components/select_language_item.dart';
 /// [onChanged] receives a function, which accepts the selected language model and
 /// it is invoked when the selected change is changed.
 ///
+/// [translate] receives a function, which accepts the selected language model and
+/// based on a value of its parameters returns a translated string of the name
+/// of the language.
+///
 /// [itemBuilder] the parameter accepts a function, which should return a Widget
 /// to display the [SelectedLanguageModel] data. The loading parameter accepts
 /// the value for the current [SelectedLanguageModel.isLoading] model.
@@ -70,6 +74,7 @@ void showChangeLanguageBottomSheet({
   required BuildContext context,
   required LanguageService service,
   required Function(LanguageModel language) onChanged,
+  required String Function(LanguageModel) translate,
   Widget Function(BuildContext)? headerBuilder,
   Widget Function(ErrorModel?)? errorBuilder,
   Widget Function(
@@ -82,6 +87,7 @@ void showChangeLanguageBottomSheet({
     showBlurredBottomSheet(
       context: context,
       builder: (context) => ChangeLanguageWidget(
+        translate: translate,
         service: service,
         onChanged: onChanged,
         itemBuilder: itemBuilder,
@@ -121,11 +127,13 @@ class ChangeLanguageWidget extends StatelessWidget {
     required this.messageState,
     required this.service,
     required this.onChanged,
+    required this.translate,
     this.itemBuilder,
     this.errorBuilder,
     Key? key,
   }) : super(key: key);
 
+  final String Function(LanguageModel) translate;
   final Widget Function(
     SelectedLanguageModel model,
     bool loading,
@@ -150,60 +158,64 @@ class ChangeLanguageWidget extends StatelessWidget {
                 List<SelectedLanguageModel>>(
               bloc: context.read<LanguagePickerBlocType>(),
               state: (bloc) => bloc.states.languages,
-              builder: (context, snapshot, bloc) => Padding(
-                padding: context.languagePickerTheme.changeLanguagePadding,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      MessagePanelError<LanguagePickerBlocType>(
-                        errorState: (bloc) => bloc.states.errors,
-                        padding: context
-                            .languagePickerTheme.messagePanelErrorEdgeInsets,
-                        errorBuilder: errorBuilder,
-                        messageState: messageState,
-                      ),
-                      ...(snapshot.data ?? []).map(
-                        (language) {
-                          if (itemBuilder != null) {
-                            return itemBuilder!(
-                                language, language.isLoading, context);
-                          }
-                          return _ChooseLanguage(
-                            languageModel: language,
-                            padding: context
-                                .languagePickerTheme.chooseLanguagePadding,
-                            isLoading: language.isLoading,
-                            onPressed: (snapshot.data ?? []).isAnyLoading
-                                ? null
-                                : (languageModel) => context
-                                    .read<LanguagePickerBlocType>()
-                                    .events
-                                    .setCurrent(languageModel.language),
-                          );
-                        },
-                      ).toList(),
-                      SizedBox(
-                        height:
-                            context.languagePickerTheme.changeLanguageSizedBox,
-                      ),
-                      SmallButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: Icons.close,
-                        type: SmallButtonType.outline,
-                        colorStyle: ButtonColorStyle.fromContext(
-                          context,
-                          activeGradientColorStart: context.languagePickerTheme
-                              .disabledFilledButtonBackgroundColor,
-                          activeGradientColorEnd:
-                              context.languagePickerTheme.activeGradientEnd,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              builder: (context, snapshot, bloc) =>
+                  _buildLanguagesList(context, snapshot),
             ),
           ),
+        ),
+      );
+
+  Widget _buildLanguagesList(BuildContext context,
+          AsyncSnapshot<List<SelectedLanguageModel>> snapshot) =>
+      Padding(
+        padding: context.languagePickerTheme.changeLanguagePadding,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              MessagePanelError<LanguagePickerBlocType>(
+                errorState: (bloc) => bloc.states.errors,
+                padding:
+                    context.languagePickerTheme.messagePanelErrorEdgeInsets,
+                errorBuilder: errorBuilder,
+                messageState: messageState,
+              ),
+              ...(snapshot.data ?? []).map(
+                (language) {
+                  if (itemBuilder != null) {
+                    return itemBuilder!(language, language.isLoading, context);
+                  }
+                  return _ChooseLanguage(
+                    languageModel: language,
+                    translate: translate,
+                    padding: context.languagePickerTheme.chooseLanguagePadding,
+                    isLoading: language.isLoading,
+                    onPressed: (snapshot.data ?? []).isAnyLoading
+                        ? null
+                        : (languageModel) => context
+                            .read<LanguagePickerBlocType>()
+                            .events
+                            .setCurrent(languageModel.language),
+                  );
+                },
+              ).toList(),
+              SizedBox(
+                height: context.languagePickerTheme.changeLanguageSizedBox,
+              ),
+              _buildSmallButton(context)
+            ],
+          ),
+        ),
+      );
+
+  Widget _buildSmallButton(BuildContext context) => SmallButton(
+        onPressed: () => Navigator.of(context).pop(),
+        icon: Icons.close,
+        type: SmallButtonType.outline,
+        colorStyle: ButtonColorStyle.fromContext(
+          context,
+          activeGradientColorStart:
+              context.languagePickerTheme.disabledFilledButtonBackgroundColor,
+          activeGradientColorEnd: context.languagePickerTheme.activeGradientEnd,
         ),
       );
 }
@@ -211,6 +223,7 @@ class ChangeLanguageWidget extends StatelessWidget {
 class _ChooseLanguage extends StatelessWidget {
   const _ChooseLanguage({
     required this.languageModel,
+    required this.translate,
     this.onPressed,
     this.isLoading = false,
     this.padding = EdgeInsets.zero,
@@ -218,6 +231,7 @@ class _ChooseLanguage extends StatelessWidget {
   }) : super(key: key);
 
   final SelectedLanguageModel languageModel;
+  final String Function(LanguageModel) translate;
   final Function(SelectedLanguageModel)? onPressed;
   final EdgeInsets padding;
   final bool isLoading;
@@ -237,6 +251,7 @@ class _ChooseLanguage extends StatelessWidget {
           onPressed:
               onPressed == null ? null : () => onPressed?.call(languageModel),
           state: buttonState,
+          translate: translate,
         ),
       );
     }
@@ -255,6 +270,7 @@ class _ChooseLanguage extends StatelessWidget {
               context.languagePickerTheme.activeButtonLanguageTextColor,
         ),
         languageModel: languageModel,
+        translate: translate,
       ),
     );
   }

@@ -18,6 +18,8 @@ provides methods for the logic of fetching a list of languages, setting and gett
 one and getting all of them.
 The `onChanged` parameter accepts a function, which receives the value of the selected language,
 which can be used to update the value of the `MaterialApp(locale)` parameter of the app,
+The `translate` parameter receives a function, which accepts the selected language model and based 
+on a value of its parameters returns a translated string of the name of the language.
 The `itemBuilder` parameter accepts a function, which should return a Widget to display the 
 `SelectedLanguageModel` data. The loading parameter accepts the value for the current 
 `SelectedLanguageModel.isLoading` model.
@@ -73,64 +75,9 @@ MaterialApp(
 ```
 
 In order to fetch the models you want to present in the bottom sheet dialog you need to implement
-your `LanguageService` and/or extend `LanguageModel` and you can implement the `SelectedLanguageModel`:
+your `LanguageService`:
 
 ```dart
-class MyCustomLanguageModel implements LanguageModel {
-  MyCustomLanguageModel({
-    required this.locale,
-    required this.key,
-    required this.languageCode,
-  });
-
-  @override
-  final String locale;
-
-  @override
-  final String key;
-
-  @override
-  final String languageCode;
-
-  @override
-  String asString() => key;
-
-  @override
-  String withFirstCapitalLetter() => key.substring(0).toUpperCase();
-
-  @override
-  String translate(BuildContext context) => '';
-
-  @override
-  List<Object?> get props => [locale, key, languageCode];
-
-  @override
-  bool? get stringify => true;
-}
-
-class MyCustomSelectedLanguageModel implements SelectedLanguageModel {
-  MyCustomSelectedLanguageModel({
-    required this.language,
-    required this.selected,
-    this.isLoading = false,
-  });
-
-  @override
-  final LanguageModel language;
-
-  @override
-  final bool selected;
-
-  @override
-  final bool isLoading;
-
-  @override
-  List<Object?> get props => [language, selected, isLoading];
-
-  @override
-  bool? get stringify => true;
-}
-
 class MyCustomLanguageService implements LanguageService {
   MyCustomLanguageService();
 
@@ -154,6 +101,7 @@ showChangeLanguageBottomSheet(
   context: context,
   service: context.read<LanguageServiceExample>(),
   onChanged: (language) => print('Selected language: $language'),
+  translate: (model) => _translatesTheNameOfTheLanguage(model),
 );
 ```
 
@@ -164,6 +112,7 @@ showChangeLanguageBottomSheet(
   service: context.read<LanguageServiceExample>(),
   onChanged: (language) => print('Selected language: $language'),
   itemBuilder: (item, isLoading, context) => _buildLanguageItem(item, isLoading, context),
+  translate: (model) => _translatesTheNameOfTheLanguage(model),
   headerBuilder: (context) => _buildCustomHeaderBuilder(context),
     modalConfiguration: const LanguagePickerModalConfiguration(
       safeAreaBottom: false,

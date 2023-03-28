@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../base/models/language_model.dart';
 import '../../base/theme/widget_toolkit_theme.dart';
 import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
@@ -37,6 +38,7 @@ class SelectLanguageItem extends StatelessWidget {
   final double radius;
   final SelectedLanguageModel languageModel;
   final bool isSelected;
+  final String Function(LanguageModel) translate;
 
   const SelectLanguageItem._({
     Key? key,
@@ -44,6 +46,7 @@ class SelectLanguageItem extends StatelessWidget {
     required this.code,
     required this.languageModel,
     required this.isSelected,
+    required this.translate,
     this.onPressed,
     this.radius = 8,
     this.state = ButtonStateModel.enabled,
@@ -55,6 +58,7 @@ class SelectLanguageItem extends StatelessWidget {
     required String languageKey,
     required String code,
     required SelectedLanguageModel languageModel,
+    required String Function(LanguageModel) translate,
     VoidCallback? onPressed,
     double radius = 8,
     ButtonStateModel state = ButtonStateModel.enabled,
@@ -69,6 +73,7 @@ class SelectLanguageItem extends StatelessWidget {
         state: state,
         radius: radius,
         colorStyle: colorStyle,
+        translate: translate,
         key: key,
       );
 
@@ -77,6 +82,7 @@ class SelectLanguageItem extends StatelessWidget {
     required String languageKey,
     required String code,
     required SelectedLanguageModel languageModel,
+    required String Function(LanguageModel) translate,
     VoidCallback? onPressed,
     double radius = 8,
     ButtonStateModel state = ButtonStateModel.enabled,
@@ -91,6 +97,7 @@ class SelectLanguageItem extends StatelessWidget {
         state: state,
         radius: radius,
         colorStyle: colorStyle,
+        translate: translate,
         key: key,
       );
 
@@ -137,11 +144,13 @@ class SelectLanguageItem extends StatelessWidget {
             width: context.languagePickerTheme.spacingM,
           ),
           Expanded(
-            child: Text(languageModel.language.translate(context),
-                textAlign: TextAlign.left,
-                style: context.languagePickerTheme.descriptionThin.copyWith(
-                  color: _getTextColor(context),
-                )),
+            child: Text(
+              translate(languageModel.language),
+              textAlign: TextAlign.left,
+              style: context.languagePickerTheme.descriptionThin.copyWith(
+                color: _getTextColor(context),
+              ),
+            ),
           ),
           if (state == ButtonStateModel.loading)
             SizedLoadingIndicator.textButtonValue(
