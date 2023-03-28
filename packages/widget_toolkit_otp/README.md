@@ -4,6 +4,10 @@
 code screens or workflows for your app. The package contains widgets for entering pin codes, 
 pasting them, resend logic and more.
 
+## Demo
+
+<img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_otp/doc/assets/otp-example.gif" alt="SMS OTP Field">
+
 ## Widgets
 
 The `widget_toolkit_otp` package consists of the following widgets:
