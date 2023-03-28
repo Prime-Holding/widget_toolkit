@@ -6,23 +6,39 @@ import 'package:widget_toolkit/language_picker.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../../mocks/stubs.dart';
-import '../services/language_picker_service_mock.dart';
+
 import 'language_picker_test.mocks.dart';
 
-late LanguagePickerServiceMock service;
-
-@GenerateMocks([LanguagePickerServiceMock])
+@GenerateMocks([LanguageService])
 void main() {
+  late LanguageService service;
+
   setUp(() {
-    service = MockLanguagePickerServiceMock();
+    service = MockLanguageService();
   });
+
+  void defineWhenCurrentLanguage() {
+    when(service.getCurrent()).thenAnswer((_) => Future.value(
+          (Stubs.selectedLanguageBulgarian),
+        ));
+  }
+
+  void defineWhenGetLanguageList() {
+    when(service.getLanguageList()).thenAnswer((_) => Future.value(
+          (Stubs.languagesState),
+        ));
+  }
+
+  LanguagePickerBloc languagePickerBloc() => LanguagePickerBloc(
+        service,
+      );
 
   group('test language_picker_bloc states', () {
     rxBlocTest<LanguagePickerBlocType, List<SelectedLanguageModel>>(
         'test language_picker_bloc state languages',
         build: () async {
-          _defineWhenGetLanguageList();
-          _defineWhenCurrentLanguage();
+          defineWhenGetLanguageList();
+          defineWhenCurrentLanguage();
           return languagePickerBloc();
         },
         act: (bloc) async {},
@@ -34,8 +50,8 @@ void main() {
     rxBlocTest<LanguagePickerBlocType, LanguageModel>(
         'test item_picker_bloc state currentLanguage',
         build: () async {
-          _defineWhenGetLanguageList();
-          _defineWhenCurrentLanguage();
+          defineWhenGetLanguageList();
+          defineWhenCurrentLanguage();
           return languagePickerBloc();
         },
         act: (bloc) async {
@@ -47,19 +63,3 @@ void main() {
         ]);
   });
 }
-
-void _defineWhenCurrentLanguage() {
-  when(service.getCurrent()).thenAnswer((_) => Future.value(
-        (Stubs.selectedLanguageBulgarian),
-      ));
-}
-
-void _defineWhenGetLanguageList() {
-  when(service.getLanguageList()).thenAnswer((_) => Future.value(
-        (Stubs.languagesState),
-      ));
-}
-
-LanguagePickerBloc languagePickerBloc() => LanguagePickerBloc(
-      service,
-    );

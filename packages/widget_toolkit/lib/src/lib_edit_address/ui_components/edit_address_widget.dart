@@ -9,7 +9,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// errors from the [service] service to the appropriate
 /// RxFieldException<String>, which is an ui error with text.
 ///
-/// [service] received an implementation of the [EditAddressService] class.
+/// [service] receives an implementation of the [EditAddressService] class.
 /// The API of the class provides methods for the logic for the main save address
 /// button, fetching of the list of countries, filtering the countries list,
 /// validating the city and street values while typing and when pressing the save
@@ -17,7 +17,7 @@ import 'permanent_address_bottom_sheet.dart';
 /// information, check the documentation in the file [EditAddressService] class.
 ///
 /// [onChanged] receives a function, which accepts the edited address model and
-/// it is invoked when any of its property changes.
+/// it is invoked when some of its property changes.
 ///
 /// [onSaved] receives a function, which accepts the edited address model and
 /// it is invoked when the model is saved and the dialog is dismissed.

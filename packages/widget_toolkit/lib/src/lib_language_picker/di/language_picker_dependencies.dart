@@ -13,11 +13,8 @@ class LanguagePickerDependencies {
   final LanguageService service;
 
   late List<SingleChildWidget> providers = [
-    ..._services,
     ..._blocs,
   ];
-
-  late final List<SingleChildStatelessWidget> _services = [];
 
   late final List<RxBlocProvider> _blocs = [
     RxBlocProvider<LanguagePickerBlocType>(
