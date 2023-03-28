@@ -22,7 +22,7 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 | Error Bottom Sheet | Text Field Dialog | Address Dialog |
 | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/error-bottom-sheet.gif" alt="Address Widget"> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/text-field-dialog.gif" alt="Language Picker"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit/doc/assets/address.gif" alt="Language Picker"></img> |
 | SMS OTP Field |
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/open-source-widget-toolkit-otp/packages/widget_toolkit_otp/doc/assets/otp-example.gif" alt="SMS OTP Field"> |
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_otp/doc/assets/otp-example.gif" alt="SMS OTP Field"> |
 
 ## Documentation
 
