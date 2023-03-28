@@ -15,9 +15,9 @@ abstract class SmsCodeService {
   /// How long codes will be valid in seconds
   Future<int> getValidityTime(bool reset);
 
-  /// How long resendCode button will be disabled after a code have been sent
+  /// How long the resendCode button will be disabled after a code has been sent
   Future<int> getResendButtonThrottleTime(bool reset);
 
-  /// How many characters will contain the code
+  /// How many characters the code has
   Future<int> getCodeLength();
 }

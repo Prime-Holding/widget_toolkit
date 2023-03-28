@@ -63,9 +63,9 @@ builder, to be totally recreated, using the same logic.
 ValidityWidget displays how long will be valid lately sent to the user code. This widget can not be 
 used outside the SmsCodeBloc and its content might be fully recreated using its builder.
 
-### SmsCodeWidget
+### SmsCodeProvider
 
-SmsCodeWidget is user friendly way to provide all dependencies for the implemented business logic and,
+SmsCodeProvider is user friendly way to provide all dependencies for the implemented business logic and,
 in the same step, arrange the page content depending on bloc's states and events.
 
 ## How to use
@@ -73,23 +73,29 @@ in the same step, arrange the page content depending on bloc's states and events
 In order to start using this package you need to add the dependency to the `widget_toolkit_otp` in your `pubspec.yaml` file.
 
 ```yaml
-widget_toolkit_otp:
-  git:
-    url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
-    path: packages/widget_toolkit_otp
-widget_toolkit:
-  git:
-    url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
-    path: packages/widget_toolkit
+  widget_toolkit_otp: ^0.0.1-dev1
+  widget_toolkit: ^0.0.1-dev6
 ```
 
 Afterwards, you can import the package by including the following line:
 
-`import 'package:widget_toolkit_otp/widget_toolkit_otp.dart';`
+    `import 'package:widget_toolkit_otp/widget_toolkit_otp.dart';`
 
 You should also import the widget_toolkit package:
 
      import 'package:widget_toolkit/widget_toolkit.dart';
+
+And set the appropriate ThemeData:
+
+```dart
+// theme 
+//...
+extensions: [
+    darkMode ? WidgetToolkitTheme.dark : WidgetToolkitTheme.light,
+    darkMode ? SmsCodeTheme.dark : SmsCodeTheme.light,
+]
+//..
+```
 
 after which you are ready to start using the widgets in your app.
 
@@ -101,5 +107,60 @@ SmsCodeField(set useInternalCommunication = false) and ResendCodeButton(set useI
 To use the implemented business logic, you first need to provide in the context SmsCodeBloc and 
 implementation of SmsCodeService. Then, to render your page content, you can use SmsPhoneNumberField 
 (combine it with custom widget or with TextFieldDialog),
-ValidityWidget, ResendCodeButton, ResendButtonTimer and SmsCodeField. Use SmsCodeWidget to have 
+ValidityWidget, ResendCodeButton, ResendButtonTimer and SmsCodeField. Use SmsCodeProvider to have 
 all dependencies provided and use its builder to easily create your page content.
+
+Here's an example of how to achieve the integrated SmsCodeProvider functionality:
+
+You need to implement your `SmsCodeService` as follows:
+
+```dart
+class MyCustomSmsCodeService implements SmsCodeService {
+    @override
+    Future<dynamic> confirmPhoneCode(String code) async => ...send a request to the server to verify the code and return the response...
+
+    @override
+    Future<String> getFullPhoneNumber() async => ...fetch user's phone number...;
+  
+    @override
+    Future<String> updatePhoneNumber(String newNumber) async => ...update the user's number and return new one...;
+
+    @override
+    Future<bool> sendConfirmationSms(String usersPhoneNumber) async => ...resend SMS code...
+
+    @override
+    Future<int> getValidityTime(bool reset) async => ...how long the sent code will be valid...;
+
+    @override
+    Future<int> getResendButtonThrottleTime(bool reset) async => ...time until next resend is available in seconds...;
+
+    @override
+    Future<int> getCodeLength() async => ...ƒetch code length...;
+}
+```
+
+Then you can simply assemble SmsCodeProvider and its subsequent widgets like this:
+
+```dart
+//...
+SmsCodeProvider(
+    sentNewCodeActivationTime: 2,
+    smsCodeService: MyCustomSmsCodeService(),
+    builder: (state) => Column(
+        children: [
+            SmsPhoneNumberField(
+                builder: (context, number, onChanged) => TextFieldDialog(
+                    value: number,
+                    onChanged: onChanged,
+                    ...
+                ),
+            ),
+            const SmsCodeField(),
+            const ValidityWidget(),
+            const ResendCodeButton(),
+            const ResendButtonTimer(),
+        ],
+    ),
+),
+//..
+```

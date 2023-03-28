@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-//import '../../utils/design_system/design_system.dart';
-
 part 'sms_code_theme.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.none)
@@ -170,7 +168,6 @@ class _$SmsCodeTheme {
 
   static TextStyle captionBold = const TextStyle(
       fontWeight: FontWeight.w600,
-      fontFamily: 'Meta',
       fontStyle: FontStyle.normal,
       letterSpacing: 0.8,
       fontSize: 10.0);

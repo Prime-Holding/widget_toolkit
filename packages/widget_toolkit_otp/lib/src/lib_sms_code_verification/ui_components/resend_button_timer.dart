@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../base/utils/enums.dart';
 import '../../lib_countdown_widget/di/countdown_widget.dart';
@@ -38,29 +37,22 @@ class ResendButtonTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => RxBlocBuilder<SmsCodeBlocType, int>(
-        bloc: context.read<SmsCodeBlocType>(),
         state: (bloc) => bloc.states.resendButtonThrottleTime,
-        builder: (context, resetTime, bloc) =>
-            (resetTime.hasData && resetTime.data! >= 1)
-                ? builder?.call(
-                        resetTime.data!,
-                        context
-                            .read<SmsCodeBlocType>()
-                            .events
-                            .enableResendButton) ??
-                    _buildValidityWidget(context, resetTime.data!, bloc)
-                : placeholder ?? const SizedBox(),
+        builder: (context, resetTime, bloc) => (resetTime.hasData &&
+                resetTime.data! >= 1)
+            ? builder?.call(resetTime.data!, bloc.events.enableResendButton) ??
+                CountdownWidget(
+                  countdownTime: resetTime.data!,
+                  timeFormat: timeFormat!,
+                  textStyle: textStyle,
+                  onCountdownTick: (val) => _onCountdownTick(val, bloc),
+                )
+            : placeholder ?? const SizedBox(),
       );
 
-  Widget _buildValidityWidget(
-          BuildContext context, int time, SmsCodeBlocType bloc) =>
-      CountdownWidget(
-          countdownTime: time,
-          timeFormat: timeFormat!,
-          textStyle: textStyle,
-          onCountdownTick: (val) {
-            if (val <= 0) {
-              context.read<SmsCodeBlocType>().events.enableResendButton();
-            }
-          });
+  void _onCountdownTick(int val, SmsCodeBlocType bloc) {
+    if (val <= 0) {
+      bloc.events.enableResendButton();
+    }
+  }
 }

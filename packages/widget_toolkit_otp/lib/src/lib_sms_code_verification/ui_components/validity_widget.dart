@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widget_toolkit_otp.dart';
+import '../../base/theme/sms_code_theme.dart';
+import '../../base/utils/enums.dart';
+import '../../base/utils/localized_strings.dart';
 import '../../base/utils/util_methods.dart';
+import '../bloc/sms_code_bloc.dart';
 
 /// ValidityWidget presents how long a code is valid. It depends on SmsCodeBlocType,
 /// so make sure you have that bloc provided in the context above this widget.

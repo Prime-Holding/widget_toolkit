@@ -20,6 +20,7 @@ class CountdownWidget extends StatelessWidget {
     this.textStyle,
     this.onCountdownTick,
     this.timeFormat = CountdownTimeFormat.seconds,
+    this.translateError,
     super.key,
   });
 
@@ -34,6 +35,7 @@ class CountdownWidget extends StatelessWidget {
   final void Function(int)? onCountdownTick;
   final CountdownTimeFormat timeFormat;
   final bool preferDoubleDigitsForTime = true;
+  final String Function(Object error)? translateError;
 
   /// Convenience builder method that initializes CountdownComponent dependencies
   /// right above the widget.
@@ -50,6 +52,7 @@ class CountdownWidget extends StatelessWidget {
           controller: controller,
           timeFormat: timeFormat,
           preferDoubleDigitsForTime: preferDoubleDigitsForTime,
+          translateError: translateError,
         ),
       );
 

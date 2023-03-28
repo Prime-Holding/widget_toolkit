@@ -39,9 +39,9 @@ class MyHomePage extends StatelessWidget {
           title: const Text('widget_toolkit_otp Example'),
         ),
         body: SafeArea(
-          child: SmsCodeWidgetWithDependencies(
+          child: SmsCodeProvider(
             sentNewCodeActivationTime: 2,
-            service: FakeSmsCodeService(),
+            smsCodeService: FakeSmsCodeService(),
             builder: (state) => Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -132,11 +132,11 @@ class FakeSmsCodeService implements SmsCodeService {
   @override
   Future<int> getValidityTime(bool reset) async => 30;
 
-  /// How long resendCode button will be disabled after a code have been sent
+  /// How long the resendCode button will be disabled after a code has been sent
   @override
   Future<int> getResendButtonThrottleTime(bool reset) async => 15;
 
-  /// How many characters will contain the code
+  /// How many characters the code has
   @override
   Future<int> getCodeLength() async => 4;
 }
