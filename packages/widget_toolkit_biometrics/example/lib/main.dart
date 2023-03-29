@@ -51,10 +51,10 @@ class MyHomePage extends StatelessWidget {
             child: BiometricsSwitch(
               // You are required to provide an implementation of [BiometricsLocalDataSource]
               biometricsLocalDataSource: ProfileLocalDataSource(),
-              // optionally you can provide a [enabledMessage], this should be
+              // optionally you can provide a [localizedReason], this should be
               // a localized message, which would get shown to the user when they
               // are prompted to confirm that they want to enable biometrics
-              enabledMessage: 'Activate the biometrics of your device',
+              localizedReason: 'Activate the biometrics of your device',
               // optionally you can provide [mapMessageToString],
               // which will be used to translate the [BiometricsMessage]
               // to human readable text and will be used in the default notification

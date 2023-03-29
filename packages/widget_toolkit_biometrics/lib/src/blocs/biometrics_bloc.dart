@@ -10,7 +10,7 @@ part 'biometrics_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the BiometricsBloC.
 abstract class BiometricsBlocEvents {
-  void setBiometrics(bool enabled, String localizedMessage);
+  void setBiometrics(bool enabled, String localizedReason);
 }
 
 /// A contract class containing all states of the BiometricsBloC.
@@ -58,7 +58,7 @@ class BiometricsBloc extends $BiometricsBloc {
   Stream<BiometricsMessage?> _mapToBiometricsDialogState() =>
       _$setBiometricsEvent
           .switchMap((event) => _biometricAuthenticationService
-              .enableBiometrics(event.enabled, event.localizedMessage)
+              .enableBiometrics(event.enabled, event.localizedReason)
               .asResultStream())
           .setResultStateHandler(this)
           .whereSuccess();

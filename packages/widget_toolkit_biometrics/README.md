@@ -81,9 +81,9 @@ BiometricsSwitch(
   
 ## Customization  
   
-Optionally you can provide a `enabledMessage`, this should be a localized message, which would get shown to the user when they  are prompted to confirm that they want to enable biometrics. 
+Optionally you can provide a `localizedReason`, this should be a localized string, which would get shown to the user when they are prompted to confirm that they want to enable biometrics. 
 ```dart
-enabledMessage: 'Activate the biometrics of your device',
+localizedReason: 'Activate the biometrics of your device',
 ```
 
 Optionally you can provide `mapMessageToString`, which will be used to translate the `BiometricsMessage` to human readable text and will be used in the default notification:

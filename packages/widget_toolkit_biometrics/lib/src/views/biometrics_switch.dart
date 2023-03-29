@@ -2,8 +2,8 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../blocs/biometrics_bloc.dart';
@@ -20,7 +20,7 @@ import '../services/biometrics_service.dart';
 class BiometricsSwitch extends StatelessWidget {
   const BiometricsSwitch({
     required this.biometricsLocalDataSource,
-    this.enabledMessage,
+    this.localizedReason,
     this.mapMessageToString,
     this.onStateChanged,
     this.builder,
@@ -30,7 +30,7 @@ class BiometricsSwitch extends StatelessWidget {
 
   const BiometricsSwitch.withoutDependencies({
     required this.biometricsLocalDataSource,
-    this.enabledMessage,
+    this.localizedReason,
     this.mapMessageToString,
     this.onStateChanged,
     this.builder,
@@ -43,10 +43,10 @@ class BiometricsSwitch extends StatelessWidget {
   /// to use the biometrics.
   final BiometricsLocalDataSource biometricsLocalDataSource;
 
-  /// [enabledMessage] is the message to show to user while prompting them
+  /// [localizedReason] is the message to show to user while prompting them
   /// for authentication while enabling biometrics. This is typically along the lines of: 'Please scan
   /// your finger to access MyApp.'. Defaults to 'Activate the biometrics of your device'
-  final String? enabledMessage;
+  final String? localizedReason;
 
   /// Use [onStateChanged] to execute custom callback or present custom notification
   /// to the user whenever the biometrics are enabled or disabled successfully.
@@ -79,66 +79,61 @@ class BiometricsSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
-        child: Nested(
-          children: [
-            _buildShowBottomMessageListener(),
-            _buildErrorListener(),
-          ],
-          child: RxBlocBuilder<BiometricsBlocType, bool>(
-            state: (bloc) => bloc.states.areBiometricsEnabled,
-            builder: (context, enabled, bloc) {
-              final areEnabled = enabled.hasData && (enabled.data ?? false);
+        child: RxBlocListener<BiometricsBlocType, BiometricsMessage?>(
+          state: (bloc) => bloc.states.biometricsDialog,
+          listener: _onStateChanged,
+          child: RxBlocListener<BiometricsBlocType, ErrorModel>(
+            state: (bloc) => bloc.states.errors,
+            listener: (context, state) => onError?.call(state),
+            child: RxBlocBuilder<BiometricsBlocType, bool>(
+              state: (bloc) => bloc.states.areBiometricsEnabled,
+              builder: (context, enabled, bloc) {
+                final areEnabled = enabled.hasData && (enabled.data ?? false);
 
-              if (builder != null) {
-                return builder!.call(
-                  context,
-                  areEnabled,
-                  (enable) {
-                    bloc.events.setBiometrics(enable, _getMessage(enable));
-                  },
-                );
-              } else {
-                return Switch(
-                  value: areEnabled,
-                  onChanged: (enable) {
-                    bloc.events.setBiometrics(enable, _getMessage(enable));
-                  },
-                );
-              }
-            },
+                if (builder != null) {
+                  return builder!.call(
+                    context,
+                    areEnabled,
+                    (enable) {
+                      bloc.events.setBiometrics(
+                        enable,
+                        localizedReason ?? activateBiometrics,
+                      );
+                    },
+                  );
+                } else {
+                  return Switch(
+                    value: areEnabled,
+                    onChanged: (enable) {
+                      bloc.events.setBiometrics(
+                        enable,
+                        localizedReason ?? activateBiometrics,
+                      );
+                    },
+                  );
+                }
+              },
+            ),
           ),
         ),
       );
 
-  String _getMessage(bool isEnabled) =>
-      isEnabled ? (enabledMessage ?? activateBiometrics) : deactivateBiometrics;
+  void _onStateChanged(BuildContext context, BiometricsMessage? message) {
+    if (message == null) {
+      // the user canceled authentication
+      return;
+    }
 
-  RxBlocListener _buildErrorListener() =>
-      RxBlocListener<BiometricsBlocType, ErrorModel>(
-        state: (bloc) => bloc.states.errors,
-        listener: (context, state) => onError?.call(state),
+    if (onStateChanged == null) {
+      _showBiometricsMessageBottomSheet(
+        context,
+        message,
+        _localizeMessage(message),
       );
-
-  RxBlocListener _buildShowBottomMessageListener() =>
-      RxBlocListener<BiometricsBlocType, BiometricsMessage?>(
-        state: (bloc) => bloc.states.biometricsDialog,
-        listener: (context, message) {
-          if (message == null) {
-            // the user canceled authentication
-            return;
-          }
-
-          if (onStateChanged == null) {
-            _showBiometricsMessageBottomSheet(
-              context,
-              message,
-              _localizeMessage(message),
-            );
-          } else {
-            onStateChanged!.call(context, message, _localizeMessage(message));
-          }
-        },
-      );
+    } else {
+      onStateChanged!.call(context, message, _localizeMessage(message));
+    }
+  }
 
   Future<void> _showBiometricsMessageBottomSheet(
     BuildContext context,

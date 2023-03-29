@@ -33,7 +33,7 @@ class BiometricsService {
 
   Future<BiometricsMessage?> enableBiometrics(
     bool value,
-    String localizedMessage,
+    String localizedReason,
   ) async {
     if (value) {
       // Is the device capable of checking biometrics or able to
@@ -50,7 +50,7 @@ class BiometricsService {
       }
 
       try {
-        final authenticateFlag = await authenticate(localizedMessage);
+        final authenticateFlag = await authenticate(localizedReason);
         if (!authenticateFlag) {
           //The user canceled authentication
           return null;

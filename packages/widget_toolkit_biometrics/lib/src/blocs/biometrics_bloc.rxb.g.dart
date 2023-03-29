@@ -41,11 +41,11 @@ abstract class $BiometricsBloc extends RxBlocBase
   @override
   void setBiometrics(
     bool enabled,
-    String localizedMessage,
+    String localizedReason,
   ) =>
       _$setBiometricsEvent.add(_SetBiometricsEventArgs(
         enabled,
-        localizedMessage,
+        localizedReason,
       ));
 
   @override
@@ -87,10 +87,10 @@ abstract class $BiometricsBloc extends RxBlocBase
 class _SetBiometricsEventArgs {
   const _SetBiometricsEventArgs(
     this.enabled,
-    this.localizedMessage,
+    this.localizedReason,
   );
 
   final bool enabled;
 
-  final String localizedMessage;
+  final String localizedReason;
 }
