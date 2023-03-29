@@ -2,8 +2,6 @@ name: 'Publish widget_toolkit_biometrics to pub.dev'
 
 on:
   push:
-    branches:
-      - master
     tags:
       - 'widget_toolkit_biometrics-v[0-9]+.[0-9]+.[0-9]+*'
 
