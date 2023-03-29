@@ -1,4 +1,4 @@
-![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]  
+﻿![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]  
   
 # Widget Toolkit Biometrics  
   
@@ -6,22 +6,9 @@
 
 ## Demo  
   
-| Enable/Disable                                                                                                                                                                                         | Not Supported                                                                                                                                                                                               | Not Setup                                                                                                                                                                                           |  
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
-| <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/success_light.gif?raw=true" alt="Enable/Disable"></img> | <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/not_supported_light.gif?raw=true" alt="Not Supported"></img> | <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/not_setup_light.gif?raw=true" alt="Not Setup"></img> |
-|                                                                                                                                                                                                        |                                                                                                                                                                                                             |                                                                                                                                                                                                     |
-| <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/success_dark.gif?raw=true" alt="Enable/Disable"></img>  | <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/not_supported_dark.gif?raw=true" alt="Not Supported"></img>  | <img src="https://github.com/Prime-Holding/widget_toolkit/blob/77aae47366405628e22ba478fafca1cb41120d19/packages/widget_toolkit_biometrics/doc/not_setup_dark.gif?raw=true" alt="Not Setup"></img>  |
-  
-  
-## How to use  
-  
-In order to start using this package you need to add it and the [widget_toolkit](https://pub.dev/packages/widget_toolkit) package as dependencies of your project:
-  
-```bash  
-$ flutter pub add widget_toolkit widget_toolkit_biometrics  
-```  
-  
-After that you have to follow the [integration instructions for the local_auth package](https://pub.dev/packages/local_auth) in order for the plugin to work on your desired platforms.
+| Enable/Disable | Not Supported | Not Setup | 
+|---|---|---| 
+| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/success.webp" alt="Enable/Disable"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_supported.webp" alt="Not Supported"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_setup.webp" alt="Not Setup"></img> |
   
 ## Setup  
 
@@ -81,7 +68,7 @@ BiometricsSwitch(
   
 ## Customization  
   
-Optionally you can provide a `localizedReason`, this should be a localized string, which would get shown to the user when they are prompted to confirm that they want to enable biometrics. 
+Optionally you can provide a `localizedReason`, this should be a localized string, which would get shown to the user when they  are prompted to confirm that they want to enable biometrics. 
 ```dart
 localizedReason: 'Activate the biometrics of your device',
 ```
@@ -149,6 +136,6 @@ onError: (error) {
   
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg  
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg  
-[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master  
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_biometrics/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg  
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
