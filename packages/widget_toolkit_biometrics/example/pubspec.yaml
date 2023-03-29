@@ -7,26 +7,20 @@ environment:
   sdk: '>=2.19.4 <3.0.0'
 
 dependencies:
+  app_settings: ^4.2.0
   flutter:
     sdk: flutter
-  provider:
   flutter_rx_bloc: ^5.0.2
-  rxdart:
-  widget_toolkit: ^0.0.1-dev5
-  widget_toolkit_biometrics: ^0.0.1-dev1
+  provider: ^6.0.5
+  rxdart: ^0.27.7
   shared_preferences: ^2.0.20
-  app_settings: ^4.2.0
+  widget_toolkit: ^0.0.1-dev6
+  widget_toolkit_biometrics: ^0.0.1-dev1
 
 dev_dependencies:
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-
-dependency_overrides:
-#  widget_toolkit:
-#    path: ../../widget_toolkit
-  widget_toolkit_biometrics:
-    path: ../../widget_toolkit_biometrics
 
 flutter:
   uses-material-design: true
