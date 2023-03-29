@@ -32,3 +32,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+screenshots:
+  - description: "Enable/Disable"
+    path: doc/assets/enable_disable.webp
+  - description: "Not Supported"
+    path: doc/assets/not_supported.webp
+  - description: "Not Setup"
+    path: doc/assets/not_setup.webp
