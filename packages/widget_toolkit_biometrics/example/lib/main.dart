@@ -118,38 +118,24 @@ class MyHomePage extends StatelessWidget {
         safeAreaBottom: false,
         showCloseButton: false,
       ),
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          MessagePanelWidget(
-            message: localizedMessage,
-            messageState: message.state(),
-          ),
-          Padding(
-            padding: context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SmallButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: Icons.close,
-                  type: SmallButtonType.outline,
-                  colorStyle: ButtonColorStyle.fromContext(
-                    context,
-                    activeGradientColorStart: context
-                        .widgetToolkitTheme.disabledFilledButtonBackgroundColor,
-                    activeGradientColorEnd:
-                        context.widgetToolkitTheme.primaryGradientEnd,
-                  ),
-                ),
-                if (message == BiometricsMessage.notSetup)
+      builder: (context) => Padding(
+        padding: context.widgetToolkitTheme.mediumEdgeInsets,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            MessagePanelWidget(
+              message: localizedMessage,
+              messageState: message.state(),
+            ),
+            Padding(
+              padding: context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   SmallButton(
-                    onPressed: () {
-                      AppSettings.openSecuritySettings();
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icons.settings,
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icons.close,
                     type: SmallButtonType.outline,
                     colorStyle: ButtonColorStyle.fromContext(
                       context,
@@ -159,10 +145,27 @@ class MyHomePage extends StatelessWidget {
                           context.widgetToolkitTheme.primaryGradientEnd,
                     ),
                   ),
-              ],
-            ),
-          )
-        ],
+                  if (message == BiometricsMessage.notSetup)
+                    SmallButton(
+                      onPressed: () {
+                        AppSettings.openSecuritySettings();
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icons.settings,
+                      type: SmallButtonType.outline,
+                      colorStyle: ButtonColorStyle.fromContext(
+                        context,
+                        activeGradientColorStart: context.widgetToolkitTheme
+                            .disabledFilledButtonBackgroundColor,
+                        activeGradientColorEnd:
+                            context.widgetToolkitTheme.primaryGradientEnd,
+                      ),
+                    ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
