@@ -10,7 +10,7 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [widget_toolkit](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit)                   | [![pub package](https://img.shields.io/pub/v/widget_toolkit.svg)](https://pub.dev/packages/widget_toolkit)                   
 | [widget_toolkit_otp](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_otp)           | [![pub package](https://img.shields.io/pub/v/widget_toolkit_otp.svg)](https://pub.dev/packages/widget_toolkit_otp)           |
-
+| [widget_toolkit_biometrics](https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_biometrics)                   | [![pub package](https://img.shields.io/pub/v/widget_toolkit_biometrics.svg)](https://pub.dev/packages/widget_toolkit_biometrics)                   |
 
 ## Demo
 
@@ -30,11 +30,13 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 
 - [widget_toolkit][widget_toolkit_package_doc]
 - [widget_toolkit_otp][widget_toolkit_otp_package_doc]
+- [widget_toolkit_biometrics][widget_toolkit_biometrics_package_doc]
 
 ## Samples
 
 - [widget_toolkit][widget_toolkit_example] - an example application that showcases how easy it is to insert, provided from the package, UI components.
 - [widget_toolkit_otp][widget_toolkit_otp_example] - an example application that showcases how simply an SMS Code OTP confirmation page can be put together.
+- [widget_toolkit_biometrics][widget_toolkit_biometrics_example] - an example application that shows how to use widget_toolkit_biometrics
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
@@ -45,5 +47,7 @@ Set of flutter packages (so far only one but a few more are coming) that make it
 [widget_toolkit_example]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit/example
 [widget_toolkit_otp_package_doc]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_otp/README.md
 [widget_toolkit_otp_example]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_otp/example
+[widget_toolkit_biometrics_package_doc]: https://github.com/Prime-Holding/widget_toolkit/blob/master/packages/widget_toolkit_biometrics/README.md
+[widget_toolkit_biometrics_example]: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_biometrics/example
 [melos_badge_lnk]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square
 [melos_lnk]: https://github.com/invertase/melos

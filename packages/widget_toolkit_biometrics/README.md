@@ -8,7 +8,7 @@
   
 | Enable/Disable | Not Supported | Not Setup | 
 |---|---|---| 
-| <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/success.webp" alt="Enable/Disable"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_supported.webp" alt="Not Supported"></img> | <img src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_setup.webp" alt="Not Setup"></img> |
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/success.webp" alt="Enable/Disable"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_supported.webp" alt="Not Supported"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/new-package-widget-toolkit-biometrics/packages/widget_toolkit_biometrics/doc/assets/not_setup.webp" alt="Not Setup"></img> |
   
 ## Setup  
 
