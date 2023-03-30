@@ -157,7 +157,8 @@ class BiometricsSwitch extends StatelessWidget {
                 messageState: message.state(),
               ),
               Padding(
-                padding: context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
+                padding:
+                    context.widgetToolkitTheme.bottomSheetCloseButtonPadding,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

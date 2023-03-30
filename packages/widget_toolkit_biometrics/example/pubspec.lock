@@ -576,7 +576,7 @@ packages:
       path: "../../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.1-dev6"
+    version: "0.0.1-dev7"
   widget_toolkit_biometrics:
     dependency: "direct main"
     description:
