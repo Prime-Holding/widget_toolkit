@@ -14,6 +14,7 @@ jobs:
           [
               "packages/widget_toolkit",
               "packages/widget_toolkit_otp",
+              "packages/widget_toolkit_biometrics",
           ]
       fail-fast: false
     runs-on: ubuntu-latest
