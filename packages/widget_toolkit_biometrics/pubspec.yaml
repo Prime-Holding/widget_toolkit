@@ -34,9 +34,9 @@ flutter:
   uses-material-design: true
 
 screenshots:
-  - description: "Enable/Disable"
-    path: doc/assets/enable_disable.webp
-  - description: "Not Supported"
+  - description: "Success Scenario"
+    path: doc/assets/success.webp
+  - description: "Not Supported Scenario"
     path: doc/assets/not_supported.webp
-  - description: "Not Setup"
+  - description: "Not Setup Scenario"
     path: doc/assets/not_setup.webp
