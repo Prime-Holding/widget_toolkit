@@ -8,7 +8,7 @@
   
 | Enable/Disable | Not Supported | Not Setup | 
 |---|---|---| 
-| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_biometrics/doc/assets/success.webp" alt="Enable/Disable"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_biometrics/doc/assets/not_supported.webp" alt="Not Supported"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_biometrics/doc/assets/not_setup.webp" alt="Not Setup"></img> |
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_biometrics/doc/assets/success.webp" alt="Enable/Disable"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_biometrics/doc/assets/not_supported.webp" alt="Not Supported"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_biometrics/doc/assets/not_setup.webp" alt="Not Setup"></img> |
   
 ## Setup  
 
