@@ -13,6 +13,8 @@ jobs:
         folder:
           [
               "packages/widget_toolkit",
+              "packages/widget_toolkit_otp",
+              "packages/widget_toolkit_biometrics",
               "packages/widget_toolkit_qr",
           ]
       fail-fast: false

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../asset_classes.dart';
+import '../../base/models/language_model.dart';
 import '../../base/theme/widget_toolkit_theme.dart';
 import '../../lib_ui_components/buttons/button_color_style.dart';
 import '../../lib_ui_components/buttons/button_state.dart';
@@ -17,12 +16,6 @@ import '../theme/language_picker_theme.dart';
 /// as the currently selected one in the LanguagePickerBloc
 ///
 /// [code] is the shortly written language code, for example: for 'English', should be 'EN'
-///
-/// [iconLeft] can receive an icon, which should stay on the left side of the widget.
-/// By default there is no such icon, for example, it can be a check icon.
-///
-/// [iconRight] can receive an icon, which should stay on the right side of the widget
-/// By default there is no such icon.
 ///
 /// [state] receives the state of the button, it can be used to check whether the
 /// button is loading and display a loading indicator instead of the right icon from
@@ -40,49 +33,37 @@ class SelectLanguageItem extends StatelessWidget {
   final String languageKey;
   final String code;
   final VoidCallback? onPressed;
-  final dynamic iconLeft;
-  final dynamic iconRight;
   final ButtonStateModel state;
   final ButtonColorStyle? colorStyle;
   final double radius;
   final SelectedLanguageModel languageModel;
   final bool isSelected;
+  final String Function(LanguageModel) translate;
 
-  SelectLanguageItem._(
-      {Key? key,
-      required this.languageKey,
-      required this.code,
-      required this.languageModel,
-      required this.isSelected,
-      this.onPressed,
-      this.radius = 8,
-      this.iconLeft,
-      this.iconRight,
-      this.state = ButtonStateModel.enabled,
-      this.colorStyle})
-      : super(key: key) {
-    assert(iconLeft == null || iconLeft is IconData || iconLeft is SvgPicture);
-    assert(iconRight == null ||
-        iconRight is IconData ||
-        iconRight is SvgPicture ||
-        iconRight is SvgFile);
-  }
+  const SelectLanguageItem._({
+    Key? key,
+    required this.languageKey,
+    required this.code,
+    required this.languageModel,
+    required this.isSelected,
+    required this.translate,
+    this.onPressed,
+    this.radius = 8,
+    this.state = ButtonStateModel.enabled,
+    this.colorStyle,
+  }) : super(key: key);
 
-  factory SelectLanguageItem.selected(
-          {Key? key,
-          required String languageKey,
-          required String code,
-          required SelectedLanguageModel languageModel,
-          VoidCallback? onPressed,
-          double radius = 8,
-
-          /// Provide an IconData or SvgPicture
-          dynamic iconLeft,
-
-          /// Provide an IconData or SvgPicture
-          dynamic iconRight,
-          ButtonStateModel state = ButtonStateModel.enabled,
-          ButtonColorStyle? colorStyle}) =>
+  factory SelectLanguageItem.selected({
+    Key? key,
+    required String languageKey,
+    required String code,
+    required SelectedLanguageModel languageModel,
+    required String Function(LanguageModel) translate,
+    VoidCallback? onPressed,
+    double radius = 8,
+    ButtonStateModel state = ButtonStateModel.enabled,
+    ButtonColorStyle? colorStyle,
+  }) =>
       SelectLanguageItem._(
         languageKey: languageKey,
         code: code,
@@ -92,26 +73,21 @@ class SelectLanguageItem extends StatelessWidget {
         state: state,
         radius: radius,
         colorStyle: colorStyle,
-        iconLeft: iconLeft,
-        iconRight: iconRight,
+        translate: translate,
         key: key,
       );
 
-  factory SelectLanguageItem.unSelected(
-          {Key? key,
-          required String languageKey,
-          required String code,
-          required SelectedLanguageModel languageModel,
-          VoidCallback? onPressed,
-          double radius = 8,
-
-          /// Provide an IconData or SvgPicture
-          dynamic iconLeft,
-
-          /// Provide an IconData or SvgPicture
-          dynamic iconRight,
-          ButtonStateModel state = ButtonStateModel.enabled,
-          ButtonColorStyle? colorStyle}) =>
+  factory SelectLanguageItem.unSelected({
+    Key? key,
+    required String languageKey,
+    required String code,
+    required SelectedLanguageModel languageModel,
+    required String Function(LanguageModel) translate,
+    VoidCallback? onPressed,
+    double radius = 8,
+    ButtonStateModel state = ButtonStateModel.enabled,
+    ButtonColorStyle? colorStyle,
+  }) =>
       SelectLanguageItem._(
         languageKey: languageKey,
         code: code,
@@ -121,8 +97,7 @@ class SelectLanguageItem extends StatelessWidget {
         state: state,
         radius: radius,
         colorStyle: colorStyle,
-        iconLeft: iconLeft,
-        iconRight: iconRight,
+        translate: translate,
         key: key,
       );
 
@@ -156,11 +131,9 @@ class SelectLanguageItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (iconLeft != null)
-            DynamicIcon(
-              iconLeft,
-              color: _getTextColor(context),
-            ),
+          SizedBox(
+            width: context.languagePickerTheme.spacingM,
+          ),
           Text(
             code,
             style: context
@@ -171,18 +144,20 @@ class SelectLanguageItem extends StatelessWidget {
             width: context.languagePickerTheme.spacingM,
           ),
           Expanded(
-            child: Text(languageModel.language.translate(context),
-                textAlign: TextAlign.left,
-                style: context.languagePickerTheme.descriptionThin.copyWith(
-                  color: _getTextColor(context),
-                )),
+            child: Text(
+              translate(languageModel.language),
+              textAlign: TextAlign.left,
+              style: context.languagePickerTheme.descriptionThin.copyWith(
+                color: _getTextColor(context),
+              ),
+            ),
           ),
           if (state == ButtonStateModel.loading)
             SizedLoadingIndicator.textButtonValue(
                 color: context.languagePickerTheme.textColorWhite),
           if (state != ButtonStateModel.loading && isSelected)
             DynamicIcon(
-              iconRight,
+              context.languagePickerTheme.checkIcon,
               color: _getTextColor(context),
             ),
         ],
@@ -232,12 +207,12 @@ class SelectLanguageItem extends StatelessWidget {
               context.languagePickerTheme.elevatedButtonBackgroundColor,
           padding: const EdgeInsets.all(0),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius),
-              side: BorderSide(
-                color:
-                    context.languagePickerTheme.elevatedButtonBackgroundColor,
-                width: 2.0,
-              )),
+            borderRadius: BorderRadius.circular(radius),
+            side: BorderSide(
+              color: context.languagePickerTheme.elevatedButtonBackgroundColor,
+              width: 2.0,
+            ),
+          ),
           elevation: 0,
         ),
         onPressed: onPressed,

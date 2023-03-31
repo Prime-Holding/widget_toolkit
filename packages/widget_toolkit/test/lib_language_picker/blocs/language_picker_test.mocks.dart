@@ -3,12 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:widget_toolkit/language_picker.dart' as _i2;
-
-import '../services/language_picker_service_mock.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,61 +29,55 @@ class _FakeLanguageModel_0 extends _i1.SmartFake implements _i2.LanguageModel {
         );
 }
 
-/// A class which mocks [LanguagePickerServiceMock].
+/// A class which mocks [LanguageService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLanguagePickerServiceMock extends _i1.Mock
-    implements _i3.LanguagePickerServiceMock {
-  MockLanguagePickerServiceMock() {
+class MockLanguageService extends _i1.Mock implements _i2.LanguageService {
+  MockLanguageService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i2.LanguageModel> get languages => (super.noSuchMethod(
-        Invocation.getter(#languages),
-        returnValue: <_i2.LanguageModel>[],
-      ) as List<_i2.LanguageModel>);
-  @override
-  _i4.Future<List<_i2.LanguageModel>> getAll() => (super.noSuchMethod(
-        Invocation.method(
-          #getAll,
-          [],
-        ),
-        returnValue:
-            _i4.Future<List<_i2.LanguageModel>>.value(<_i2.LanguageModel>[]),
-      ) as _i4.Future<List<_i2.LanguageModel>>);
-  @override
-  _i4.Future<_i2.LanguageModel> getCurrent() => (super.noSuchMethod(
+  _i3.Future<_i2.LanguageModel> getCurrent() => (super.noSuchMethod(
         Invocation.method(
           #getCurrent,
           [],
         ),
-        returnValue: _i4.Future<_i2.LanguageModel>.value(_FakeLanguageModel_0(
+        returnValue: _i3.Future<_i2.LanguageModel>.value(_FakeLanguageModel_0(
           this,
           Invocation.method(
             #getCurrent,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.LanguageModel>);
+      ) as _i3.Future<_i2.LanguageModel>);
   @override
-  _i4.Future<void> setCurrent(_i2.LanguageModel? language) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #setCurrent,
-          [language],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-  @override
-  _i4.Future<List<_i2.SelectedLanguageModel>> getLanguageList() =>
+  _i3.Future<List<_i2.SelectedLanguageModel>> getLanguageList() =>
       (super.noSuchMethod(
         Invocation.method(
           #getLanguageList,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.SelectedLanguageModel>>.value(
+        returnValue: _i3.Future<List<_i2.SelectedLanguageModel>>.value(
             <_i2.SelectedLanguageModel>[]),
-      ) as _i4.Future<List<_i2.SelectedLanguageModel>>);
+      ) as _i3.Future<List<_i2.SelectedLanguageModel>>);
+  @override
+  _i3.Future<List<_i2.LanguageModel>> getAll() => (super.noSuchMethod(
+        Invocation.method(
+          #getAll,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i2.LanguageModel>>.value(<_i2.LanguageModel>[]),
+      ) as _i3.Future<List<_i2.LanguageModel>>);
+  @override
+  _i3.Future<void> setCurrent(_i2.LanguageModel? language) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setCurrent,
+          [language],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

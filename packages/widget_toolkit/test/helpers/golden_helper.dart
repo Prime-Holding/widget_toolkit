@@ -95,9 +95,20 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
 ThemeData getThemeData(bool inLightMode) {
   final theme = inLightMode
       ? ThemeData.light().copyWith(extensions: [
-          WidgetToolkitTheme.light,
+          WidgetToolkitTheme.light.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
           ItemPickerTheme.light,
-          LanguagePickerTheme.light,
+          LanguagePickerTheme.light.copyWith(
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            languageCodeInLanguagePickerTitleBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
           SearchPickerTheme.light,
           TextFieldDialogTheme.light,
           TextFieldDialogTheme.light.copyWith(
@@ -121,9 +132,20 @@ ThemeData getThemeData(bool inLightMode) {
           ),
         ])
       : ThemeData.dark().copyWith(extensions: [
-          WidgetToolkitTheme.dark,
+          WidgetToolkitTheme.dark.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
           ItemPickerTheme.dark,
-          LanguagePickerTheme.dark,
+          LanguagePickerTheme.dark.copyWith(
+            descriptionThin: const TextStyle(
+              inherit: true,
+            ),
+            languageCodeInLanguagePickerTitleBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
           SearchPickerTheme.dark,
           TextFieldDialogTheme.dark.copyWith(
             captionBold: const TextStyle(
