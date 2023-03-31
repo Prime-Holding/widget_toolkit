@@ -13,6 +13,7 @@ Support iOS and Android
 
 | Success Scan | Scan Error | Permission Asked  | 
 |---|---|---|
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_qr/doc/assets/scan_success.webp" alt="Scan Success"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_qr/doc/assets/scan_error.webp" alt="Scan Error"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_qr/doc/assets/permission_asked.webp" alt="Permission Asked"></img> |
 
 ## Widgets
 
