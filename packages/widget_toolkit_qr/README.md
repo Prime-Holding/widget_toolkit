@@ -1,64 +1,67 @@
+
+# Widget Toolkit QR
+
+**Widget Toolkit QR** package helps developers to add a qr scanner functionality into their applications. It can be used
+in the authentication process of an application.
+
 This package is a wrapper of [flutter_qr_bar_scanner](https://pub.dev/packages/flutter_qr_bar_scanner),
 for more information about the `flutter_qr_bar_scanner` package, check out its documentation.
 
 Support iOS and Android
 
-## Features
+## Demo
 
-This package helps developers to add a qr scanner functionality into their applications. It can be used
-in the authentication process of an application.
+| Success Scan | Scan Error | Permission Asked  | 
+|---|---|---|
 
 ## Widgets
 
- - QrScannerPage 
+ - QrScannerWidget<T>
 
-QrScannerPage is is the widget, which displays a qr scanner and a loading indicator bellow the qr scanner.
-The handling of the error state of the `QrScannerBloc`, can be done by wrapping the 
-`showQrScannerErrorBottomModalSheet()` function with a listener for the error state of the bloc.
+QrScannerWidget<T> is the widget, which displays a qr scanner and a loading indicator bellow the qr scanner.
+The widget can be configured so it returns the expected value ones the validation has passed.
 
 ## Functions
 
  - void showAppCameraPermissionBottomSheet()
 
-`showAppCameraPermissionBottomSheet()` is a function, which shows on the screen a bottom modal sheet 
-with text message, which you should provide and it should say to the user, that he/she should enable 
+`showAppCameraPermissionBottomSheet()` is a function, which shows a bottom modal sheet 
+with a text message on the screen. You should provide that message telling the user, that he/she should enable 
 the access of the application to the device's camera.
 
  - void showQrScannerErrorBottomModalSheet()
  
 `showQrScannerErrorBottomModalSheet()` is a function, which can be used to provide a bottom modal 
-sheet, in which the error text from `QrScannerBloc` error state can be printed. The error state from
-the bloc can be listened also in another place in your app, with a custom implementation of a 
-builder or listener.
+sheet, that displays the error returned from the `onError` method of `QrScannerWidget`.
 
-Note: The `QrScannerBloc` and the implementations of `SystemPermissionsService`, `QrCodeService`
-should be provided with `QrScannerDependencies.from()` above the `QrScannerPage` in the widget tree.
+Note: The implementation of the abstract class `QrValidationService<T>` should be provided to the `QrScannerWidget`.
 
 ## Getting started
 
-For Android 
+**For Android**
 
-Configure your project by adding to your_project_root/android/app/build.gradle:
-
+Step 1: Configure your project by adding to your_project_root/android/app/build.gradle:
+```
     android {
         compileSdkVersion 33
     }
-
-Add in your_project_root/android/gradle.properties
-
+```
+Step 2: Add in your_project_root/android/gradle.properties
+```
     android.useAndroidX=true
     android.enableJetifier=true
-
-Open the AndroidManifest.xml file in your android/app/src/main directory and add the following device permissions:
+```
+Step 3: Open the AndroidManifest.xml file in your android/app/src/main directory and add the following device permissions:
 
 ```
    ...
     <uses-permission android:name="android.permission.CAMERA"/>
    ...
 ```
-For iOS
 
-Open the Info.plist file in your ios/Runner directory and add the following permissions:
+**For iOS**
+
+Step 1: Open the Info.plist file in your ios/Runner directory and add the following permissions:
 
 ```
     ...
@@ -69,7 +72,7 @@ Open the Info.plist file in your ios/Runner directory and add the following perm
 ```
 
 
-Open the Podfile file in your ios directory and add the following permissions:
+Step 2: Open the Podfile file in your ios directory and add the following permissions:
 ```
     ...
      post_install do |installer|
@@ -91,67 +94,103 @@ Open the Podfile file in your ios directory and add the following permissions:
 
 ## Usage
 
-In order to start using this package you need to add the dependency to the `widget_toolkit_qr` and to the
-`widget_toolkit` package in your pubspec.yaml file:
+Step 1: Add `widget_toolkit_qr` package as a dependency in your `pubspec.yaml` file:
 
-```yaml
-widget_toolkit_qr:
-git:
-  url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
-  path: packages/widget_toolkit_qr
-widget_toolkit:
-  git:
-    url: https://github.com/Prime-Holding/widget_toolkit/tree/develop/
-    path: packages/widget_toolkit
+```bash
+$ flutter pub add widget_toolkit_qr
 ```
 
-After that you can import the package with the following lines:
+Step 2: If you missed the steps in the [Getting started][#getting-started] section now is the time to apply them.
 
-	import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
-
-Also you should import the widget_toolkit package:
-
-    import 'package:widget_toolkit/widget_toolkit.dart';
-
-after which you are ready to start using the widgets in your app.
-
-## Permission handler
-
-To be able to ask the user to grant permissions to your application you can use this package:
-[permission_handler](https://pub.dev/packages/permission_handler), for more information check
-out the documentation of the package `permission_handler`.
-By using its features you can provide implementation of the methods of the abstract class
-`SystemPermissionsService`, which should be implemented in a service class.
-
-In your pubspec.yaml you should add a dependency to `permission_handler` package:
-
-```yaml
-dependencies:
-  permission_handler: ^10.0.0
-```
-
-Then you should import the classes from the package like this:
-
-    import 'package:permission_handler/permission_handler.dart';
-
-After which you should be ready to start using the package in your app.
-
-Example for `QrScannerPage` usage:
+Step 3: Pass the `WidgetToolkitTheme` and `QrScannerTheme` extensions to the `ThemeData` of your app:
 ```dart
-      QrScannerPage(
-        cameraPermissionBottomSheetConfiguration: QrScannerConfiguration(
-          fullScreen: false,
-          showHeaderPill: true,
-        ),
-        qrCodeCallback: (qrCode) =>
-            context.read<QrScannerBlocType>().events.checkQRCode(qrCode),
-        cameraPermissionButtonText: 'Grant access to camera',
-        cameraAccessTitleText: 'Access camera',
-        cameraAccessLabelText: 'Access your camera',
-        spaceBetweenScannerAndLoadingWidget: 60,
-        onScannedCode: (data) => setState(() {
-          _scannedValue = data;
-          Navigator.of(context).pop();
-        }),
-      );
+MaterialApp(  
+  theme: ThemeData.light().copyWith(  
+    colorScheme: ColorScheme.fromSwatch(),  
+      WidgetToolkitTheme.light,
+      QrScannerTheme.light,
+    ],  
+  ),  
+  darkTheme: ThemeData.dark().copyWith(  
+    colorScheme: ColorScheme.fromSwatch(),  
+    extensions: [
+	    WidgetToolkitTheme.dark,
+        QrScannerTheme.dark,
+    ],
+  ),
+); 
 ```
+Note: The `WidgetToolkitTheme` comes from the **Widget Toolkit** package which already presence in the **Widget Toolkit QR** package.
+It can be imported with the following line:
+```dart
+import 'package:widget_toolkit/widget_toolkit.dart';
+```
+
+Step 4: You should provide implementation of `QrValidationService<T>`, for example:
+```dart
+      class QrService extends QrValidationService<String> {
+        @override
+        Future<String> validateQrCode(String qrCode) async {
+          ///TODO: validate the qr data here
+          return qrCode;
+        }
+}
+```
+
+Step 5: Import the package with the following line:
+```dart
+	import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';
+```
+after which you are ready to start using the widget in your app.
+
+Example for `QrScannerWidget<T>` usage:
+```dart
+      QrScannerWidget<String>(
+        qrValidationService: QrService(),
+        onCodeValidated: (result) => showBlurredBottomSheet(
+          context: context,
+          builder: (ctx) => MessagePanelWidget(
+            message: result ?? '',
+            messageState: MessagePanelState.positiveCheck,
+          ),
+        ),
+        onError: (error) => showErrorBlurredBottomSheet(
+          context: context,
+          error: TranslateErrorUtil.translateError(error),
+          configuration:
+              const ModalConfiguration(showCloseButton: true),
+        ),
+      )
+```
+
+We try to make the `QrScannerWidget<T>` as customised as possible.
+
+### qrValidationService (required)
+
+
+### onCodeScanned
+is an optional callback which is called right after the QR code has been scanned and before it is passed to the validation service.
+
+### onCodeValidated
+is an optional callback which returns the result from the validation method.
+
+### onError
+is an optional callback which return an error no matter if it is a validation error or an error which comes from the QRScanner itself.
+
+### cameraPermissionButtonText
+an optional property overriding the text in the button, which is in the camera permission bottom modal sheet.
+
+### cameraAccessTitleText
+an optional property overriding the title of the camera permission bottom sheet.
+
+### cameraAccessLabelText
+an optional property overriding the content of the error in the camera permission bottom sheet.
+
+### cameraPermissionBottomSheetConfiguration
+it customises the camera permission bottom sheet behaviour. 
+
+### spaceBetweenScannerAndLoadingWidget
+a double value used to set the space between the qr scanner widget and the loading widget.
+
+### isLoadingIndicatorVisible
+is a `boolean` property with a default value `true` which defines if the loading indicator should be visible while the scanned QR code is processed.

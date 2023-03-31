@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Widget Toolkit Demo',
+      title: 'Widget Toolkit QR Demo',
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
         WidgetToolkitTheme.light,

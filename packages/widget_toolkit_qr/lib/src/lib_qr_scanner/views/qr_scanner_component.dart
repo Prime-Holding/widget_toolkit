@@ -11,38 +11,6 @@ import '../../base/theme/qr_scanner_theme.dart';
 import '../blocs/qr_scanner_bloc.dart';
 import 'camera_permission.dart';
 
-/// [QrScannerPage] is the widget, which displays a qr scanner and a loading
-/// indicator bellow it.
-/// The handling of the error state of the [QrScannerBloc], can be done by wrapping
-/// the [showQrScannerErrorBottomModalSheet] function with a listener for the
-/// error state
-///
-/// [qrCodeCallback] A callback, which receives as parameter the value of the
-/// scanned qr code as String. It should be used to provide the value to the
-/// [QrScannerBloc] checkQRCode() event.
-///
-/// [cameraPermissionBottomSheetConfiguration] configuration for camera
-/// permission's bottom sheet, displayed when the user has not yet provided
-/// access for the application to the device's camera.
-///
-/// [onErrorCallback] a callback receiving an error from [QRBarScannerCamera]
-/// widget
-///
-/// [cameraPermissionButtonText] the text in the button, which is in the camera
-/// permission bottom modal sheet, displayed when there is still no access given
-/// to the device's camera. The default value is 'Grant access'.
-///
-/// [cameraAccessTitleText] the text value
-/// it is used in the  [_CameraPermissionWidget], the default value is
-/// 'Camera access'
-///
-/// [cameraAccessLabelText] A label text for the bottom error modal sheet
-///
-/// [spaceBetweenScannerAndLoadingWidget] a double value used to set the space
-/// between the qr scanner widget and the loading widget
-///
-/// [onScannedCode] a function, which is called when the qr code is scanned
-/// successfully, for example you can pop from the screen when this happens.
 class QrScannerComponent<T> extends StatelessWidget {
   const QrScannerComponent({
     this.onCodeScanned,
@@ -147,21 +115,27 @@ class QrScannerComponent<T> extends StatelessWidget {
             ),
             RxBlocBuilder<QrScannerBlocType<T>, bool>(
               state: (bloc) => bloc.states.isLoading,
-              builder: (ctx, state, bloc) => state.hasData && state.data == true
-                  ? Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: context.qrScannerTheme.qrScannerPage4,
-                        child: PrimeLinearProgressIndicator(
-                          borderRadius: context.qrScannerTheme.qrScannerPageXS,
-                        ),
-                      ),
-                    )
-                  : const SizedBox(),
+              builder: (ctx, state, bloc) =>
+                  _buildLoadingLinearProgressIndicator(context,
+                      isLoading: state.hasData && state.data == true),
             )
           ],
         ],
       );
+
+  Widget _buildLoadingLinearProgressIndicator(BuildContext context,
+          {required bool isLoading}) =>
+      isLoading
+          ? Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: context.qrScannerTheme.qrScannerPage4,
+                child: PrimeLinearProgressIndicator(
+                  borderRadius: context.qrScannerTheme.qrScannerPageXS,
+                ),
+              ),
+            )
+          : const SizedBox();
 }
 
 typedef AppErrorCallback = Widget? Function(
