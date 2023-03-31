@@ -106,25 +106,39 @@ Step 1. Create an implementation of `SmsCodeService`:
 ```dart
 class MyCustomSmsCodeService implements SmsCodeService {  
   @override  
-  Future<dynamic> confirmPhoneCode(String code) async => ...send a request to the server to verify the code and return the response...  
+  Future<dynamic> confirmPhoneCode(String code) async {  
+    //send a request to the server to verify the code and return the response...  
+  }  
   
   @override  
-  Future<String> getFullPhoneNumber() async => ...fetch user's phone number...;  
+  Future<String> getFullPhoneNumber() async {  
+    //fetch user's phone number...  
+  }  
   
   @override  
-  Future<String> updatePhoneNumber(String newNumber) async => ...update the user's number and return new one...;  
+  Future<String> updatePhoneNumber(String newNumber) async {  
+    //update the user's number and return new one...  
+  }  
   
   @override  
-  Future<bool> sendConfirmationSms(String usersPhoneNumber) async => ...resend SMS code...  
+  Future<bool> sendConfirmationSms(String usersPhoneNumber) async {  
+    //resend SMS code  
+  }  
   
   @override  
-  Future<int> getValidityTime(bool reset) async => ...how long the sent code will be valid...;  
+  Future<int> getValidityTime(bool reset) async {  
+    //how long the sent code will be valid...  
+  }  
   
   @override  
-  Future<int> getResendButtonThrottleTime(bool reset) async => ...time until next resend is available in seconds...;  
+  Future<int> getResendButtonThrottleTime(bool reset) async {  
+    //time until next resend is available in seconds...  
+  }  
   
   @override  
-  Future<int> getCodeLength() async => ...fetch code length...;  
+  Future<int> getCodeLength() async {  
+    //fetch code length...  
+  }  
 }
 ```
 
