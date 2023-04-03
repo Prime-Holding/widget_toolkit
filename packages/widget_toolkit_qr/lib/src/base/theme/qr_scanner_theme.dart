@@ -6,6 +6,9 @@ part 'qr_scanner_theme.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.none)
 class _$QrScannerTheme {
+  static const _qrFrameBlueColorHex = '004F95';
+  static const _qrFrameBlueLightColorHex = 'e6e7ff';
+
   /// region paddings
 
   static List<EdgeInsets> cameraPermission1 = [
@@ -211,35 +214,29 @@ class _$QrScannerTheme {
     WidgetToolkitDesignSystem.dark().colors.qrScannerMediumWhite,
   ];
 
-  static List<Color> qrScannerGradientRedStart = [
-    WidgetToolkitDesignSystem.light().colors.qrScannerGradientRedStart,
+  static List<Color> qrScannerGradientBlueStart = [
+    _HexColor(_qrFrameBlueColorHex),
     WidgetToolkitDesignSystem.dark().colors.qrScannerSubtitleWhite,
   ];
 
-  static List<Color> qrScannerCameraPermissionRedLightColor = [
-    WidgetToolkitDesignSystem.light().colors.qrScannerRedLightColor,
-    WidgetToolkitDesignSystem.dark().colors.qrScannerRedLightColor,
+  static List<Color> qrScannerCameraPermissionBlueLightColor = [
+    _HexColor(_qrFrameBlueLightColorHex),
+    _HexColor(_qrFrameBlueLightColorHex),
   ];
 
-  static List<Color> linearProgressIndicatorRedLightColor = [
-    WidgetToolkitDesignSystem.light()
-        .colors
-        .qrScannerLinearProgressRedLightColor,
-    WidgetToolkitDesignSystem.dark()
-        .colors
-        .qrScannerLinearProgressRedLightColor,
+  static List<Color> linearProgressIndicatorBlueLightColor = [
+    _HexColor(_qrFrameBlueLightColorHex),
+    _HexColor(_qrFrameBlueLightColorHex),
   ];
 
-  static List<Color> qrScannerRed = [
-    WidgetToolkitDesignSystem.light().colors.qrScannerRed,
-    WidgetToolkitDesignSystem.dark().colors.qrScannerRed,
+  static List<Color> qrScannerBlue = [
+    _HexColor(_qrFrameBlueColorHex),
+    _HexColor(_qrFrameBlueColorHex),
   ];
 
-  static List<Color> linearProgressIndicatorRed = [
-    WidgetToolkitDesignSystem.light()
-        .colors
-        .qrScannerlinearProgressIndicatorRed,
-    WidgetToolkitDesignSystem.dark().colors.qrScannerlinearProgressIndicatorRed,
+  static List<Color> linearProgressIndicatorBlue = [
+    _HexColor(_qrFrameBlueColorHex),
+    _HexColor(_qrFrameBlueColorHex),
   ];
 
   static List<Color> qrScannerDisabledButtonGray = [
@@ -337,8 +334,8 @@ class _$QrScannerTheme {
   ];
 
   static List<SvgFile> qrScanAreaIcon = [
-    WidgetToolkitDesignSystem.dark().icons.qrScanAreaIcon,
-    WidgetToolkitDesignSystem.light().icons.qrScanAreaIcon,
+    const SvgFile('packages/widget_toolkit_qr/icons/qr-scan-area.svg'),
+    const SvgFile('packages/widget_toolkit_qr/icons/qr-scan-area.svg'),
   ];
 
   static List<SvgFile> backButtonCloseIcon = [
@@ -366,5 +363,15 @@ extension ThemeContextExtension on BuildContext {
     }
 
     return theme;
+  }
+}
+
+class _HexColor extends Color {
+  _HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    var hex = hexColor.toUpperCase().replaceAll('#', '');
+    if (hex.length == 6) hex = 'FF$hex';
+    return int.parse(hex, radix: 16);
   }
 }

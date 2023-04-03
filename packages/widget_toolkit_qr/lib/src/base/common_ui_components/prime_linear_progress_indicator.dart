@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme/qr_scanner_theme.dart';
 
 class PrimeLinearProgressIndicator extends StatelessWidget {
@@ -22,8 +23,8 @@ class PrimeLinearProgressIndicator extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 0.0)),
         child: LinearProgressIndicator(
           backgroundColor: backgroundColor ??
-              context.qrScannerTheme.linearProgressIndicatorRedLightColor,
-          color: color ?? context.qrScannerTheme.linearProgressIndicatorRed,
+              context.qrScannerTheme.linearProgressIndicatorBlueLightColor,
+          color: color ?? context.qrScannerTheme.linearProgressIndicatorBlue,
           valueColor: valueColor,
           minHeight:
               minHeight ?? context.qrScannerTheme.linearProgressIndicatorXS,
