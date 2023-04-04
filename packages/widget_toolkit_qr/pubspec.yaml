@@ -1,10 +1,12 @@
 name: widget_toolkit_qr
 description: A Flutter package which provides a QR scanner widget easy integratable into the application.
-version: 0.0.1-dev1
+version: 0.0.1-dev2
+repository: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_qr
+issue_tracker: https://github.com/orgs/Prime-Holding/projects/6
 homepage: https://primeholding.com/
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
   flutter: ">=3.7.1"
 
 dependencies:
@@ -39,3 +41,12 @@ flutter:
 
   assets:
     - packages/widget_toolkit_qr/icons/qr-scan-area.svg
+    
+    
+screenshots:
+  - description: "QR Widget (Permission Asked)"
+    path: doc/assets/permission_asked.webp
+  - description: "QR Widget (Error State)"
+    path: doc/assets/scan_error.webp
+  - description: "QR Widget (Success Asked)"
+    path: doc/assets/scan_success.webp
