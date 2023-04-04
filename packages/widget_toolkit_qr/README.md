@@ -97,45 +97,66 @@ sheet, that displays the error returned from the `onError` method of `QrScannerW
 
 **Step 1:** Add `widget_toolkit_qr` package as a dependency in your `pubspec.yaml` file:
 
-```bash  
-$ flutter pub add widget_toolkit_qr
-```  
+```bash
+    $ flutter pub add widget_toolkit_qr
+```
 
 **Step 2:** If you missed the steps in the [Getting started][#getting-started] section now is the time to apply them.
 
 **Step 3:** Pass the `WidgetToolkitTheme` and `QrScannerTheme` extensions to the `ThemeData` of your app:
-```dart  
-MaterialApp(    
-  theme: ThemeData.light().copyWith(    
-    colorScheme: ColorScheme.fromSwatch(),    
-      WidgetToolkitTheme.light,  
- QrScannerTheme.light, ],  ),    
-  darkTheme: ThemeData.dark().copyWith(    
-    colorScheme: ColorScheme.fromSwatch(),    
-    extensions: [  
- WidgetToolkitTheme.dark, QrScannerTheme.dark, ], ),);   
-```  
+```dart
+    MaterialApp(    
+      theme: ThemeData.light().copyWith(    
+        colorScheme: ColorScheme.fromSwatch(),    
+          WidgetToolkitTheme.light,  
+     QrScannerTheme.light, ],  ),    
+      darkTheme: ThemeData.dark().copyWith(    
+        colorScheme: ColorScheme.fromSwatch(),    
+        extensions: [  
+     WidgetToolkitTheme.dark, QrScannerTheme.dark, ], ),);   
+```
 **Note:** The `WidgetToolkitTheme` comes from the **Widget Toolkit** package which already presence in the **Widget Toolkit QR** package.  
 It can be imported with the following line:
-```dart  
-import 'package:widget_toolkit/widget_toolkit.dart';
+```dart
+    import 'package:widget_toolkit/widget_toolkit.dart';
 ```  
 
 **Step 4:** You should provide implementation of `QrValidationService<T>`, for example:
-```dart  
- class QrService extends QrValidationService<String> { @override Future<String> validateQrCode(String qrCode) async { ///TODO: validate the qr data here return qrCode; }}  
-```  
+```dart
+    class QrService extends QrValidationService<String> {
+      @override
+      Future<String> validateQrCode(String qrCode) async {
+        ///TODO: validate the qr data here
+        return qrCode;
+      }
+    }
+```
 
 **Step 5:** Import the package with the following line:
-```dart  
- import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';  
-```  
+```dart
+    import 'package:widget_toolkit_qr/widget_toolkit_qr.dart';  
+```
 after which you are ready to start using the widget in your app.
 
 Example for `QrScannerWidget<T>` usage:
-```dart  
- QrScannerWidget<String>( qrValidationService: QrService(), onCodeValidated: (result) => showBlurredBottomSheet( context: context, builder: (ctx) => MessagePanelWidget( message: result ?? '', messageState: MessagePanelState.positiveCheck, ), ), onError: (error) => showErrorBlurredBottomSheet( context: context, error: TranslateErrorUtil.translateError(error), configuration: const ModalConfiguration(showCloseButton: true), ), )  
-```  
+```dart
+    QrScannerWidget<String>(
+      qrValidationService: QrService(),
+      onCodeValidated: (result) => showBlurredBottomSheet(
+        context: context,
+        builder: (ctx) => MessagePanelWidget(
+          message: result ?? '',
+          messageState: MessagePanelState.positiveCheck,
+        ),
+      ),
+      onError: (error) => showErrorBlurredBottomSheet(
+        context: context,
+        error: TranslateErrorUtil.translateError(error),
+        configuration:
+            const ModalConfiguration(showCloseButton: true),
+      ),
+    )
+```
 
 ## Customization
 
