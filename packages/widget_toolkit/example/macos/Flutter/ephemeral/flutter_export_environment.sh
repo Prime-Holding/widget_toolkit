@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/goxy/fvm/versions/stable"
-export "FLUTTER_APPLICATION_PATH=/Users/goxy/Flutter projects/widget_toolkit/packages/widget_toolkit/example"
+export "FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.0.0/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/stanislav.petkov/StudioProjects/widget_toolkit/packages/widget_toolkit/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

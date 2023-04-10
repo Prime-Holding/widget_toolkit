@@ -1,0 +1,30 @@
+name: example
+description: An example project to present how to use widget_toolkit_pin package with minimal effort.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_rx_bloc: ^5.0.2
+  provider: ^6.0.5
+  rx_bloc: ^4.0.0
+  widget_toolkit_pin:
+    path: ../../widget_toolkit_pin
+  widget_toolkit: ^0.0.1-dev7
+  widget_toolkit_biometrics: #^0.0.1-dev2
+#    path: ../../widget_toolkit_biometrics
+
+dependency_overrides:
+  widget_toolkit_biometrics: #^0.0.1-dev2
+    path: ../../widget_toolkit_biometrics
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
