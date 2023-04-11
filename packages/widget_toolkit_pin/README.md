@@ -1,4 +1,33 @@
-This package provides page for entering pin code and might be used with or without biometrics.
+![CI][ci_badge_lnk] [![codecov][codecov_badge_lnk]][codecov_branch_lnk] ![style][code_style_lnk] ![license][license_lnk]
+
+# Widget Toolkit Pin
+
+**Widget Toolkit Pin** provides a page for entering pin code and might be used with or without biometrics.
+The package uses the [local_auth](https://pub.dev/packages/local_auth) package, in order to provide an automatic prompt of a platform dialog that asks you to enable or disable biometrics at the application level.
+
+## Setup
+
+Step 1: Add the `widget_toolkit_pin`  and `widget_toolkit_biometrics` packages as dependencies.
+```bash  
+$ flutter pub add widget_toolkit_pin widget_toolkit_biometrics  
+```
+
+Step 2: Pass the `WidgetToolkitPin` extensions to the `ThemeData` of your app:
+```dart
+MaterialApp(  
+  theme: ThemeData.light().copyWith(  
+    colorScheme: ColorScheme.fromSwatch(),
+      WidgetToolkitPin.light,  
+    ],  
+  ),  
+  darkTheme: ThemeData.dark().copyWith(  
+    colorScheme: ColorScheme.fromSwatch(),  
+    extensions: [
+      WidgetToolkitPin.dark,
+    ],
+  ),  
+); 
+```  
 
 Support Android, iOS and Windows
 
@@ -38,3 +67,9 @@ After that you can import the package with the following line:
 	import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 after which you are ready to start using the widgets in your app.
+
+[ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
+[codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_biometrics/branch/master
+[code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg

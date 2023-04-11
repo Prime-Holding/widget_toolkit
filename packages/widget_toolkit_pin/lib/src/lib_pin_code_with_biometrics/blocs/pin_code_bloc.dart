@@ -7,12 +7,12 @@ import '../services/pin_code_service.dart';
 
 part 'pin_code_bloc.rxb.g.dart';
 
-/// A contract class containing all events of the AppPinCodeWithBiometricsPageBloC.
+/// A contract class containing all events of the PinCodeBloc.
 abstract class PinCodeBlocEvents {
   void requestBiometricAuth(String localizedMessage);
 }
 
-/// A contract class containing all states of the AppPinCodeWithBiometricsPageBloC.
+/// A contract class containing all states of the PinCodeBloc.
 abstract class PinCodeBlocStates {
   Stream<bool> get areBiometricsEnabled;
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
 import '../../base/extensions/error_model_translations.dart';
@@ -26,13 +27,14 @@ import 'pin_code_key.dart';
 /// return the native ID authentication workflow.
 class PinCodeKeyboard extends StatefulWidget {
   const PinCodeKeyboard._({
-    required this.pinCodeService,
+    required this.onApplyPressed,
     required this.keyLength,
+    this.pinCodeService,
+    this.biometricsLocalDataSource,
     this.isLoading = false,
     this.isConfirmPage = false,
     this.hasFingerScan = false,
     this.hasFaceScan = false,
-    required this.onApplyPressed,
     this.onBiometricsPressed,
     this.onChangePin,
     this.error,
@@ -45,13 +47,12 @@ class PinCodeKeyboard extends StatefulWidget {
         super(key: key);
 
   factory PinCodeKeyboard.generic({
-    required PinCodeService pinCodeService,
     required int keyLength,
+    required void Function(String) onApplyPressed,
     bool isLoading = false,
     bool isConfirmPage = false,
     bool hasFingerScan = false,
     bool hasFaceScan = false,
-    required void Function(String) onApplyPressed,
     VoidCallback? onBiometricsPressed,
     void Function()? onChangePin,
     ErrorModel? error,
@@ -63,7 +64,6 @@ class PinCodeKeyboard extends StatefulWidget {
     Key? key,
   }) =>
       PinCodeKeyboard._(
-        pinCodeService: pinCodeService,
         keyLength: keyLength,
         onApplyPressed: onApplyPressed,
         isLoading: isLoading,
@@ -82,8 +82,9 @@ class PinCodeKeyboard extends StatefulWidget {
 
   static Widget withBiometrics({
     required int keyLength,
-    required Function(String) onApplyPressed,
     required PinCodeService pinCodeService,
+    required BiometricsLocalDataSource biometricsLocalDataSource,
+    required Function(String) onApplyPressed,
     bool isLoading = false,
     bool isConfirmPage = false,
     void Function()? onChangePin,
@@ -98,8 +99,9 @@ class PinCodeKeyboard extends StatefulWidget {
       MultiProvider(
         providers: [
           ...PinCodeDependencies.from(
-            translatableStrings: translatableStrings,
             pinCodeService: pinCodeService,
+            biometricsLocalDataSource: biometricsLocalDataSource,
+            translatableStrings: translatableStrings,
           ).providers,
         ],
         child: Column(
@@ -120,6 +122,7 @@ class PinCodeKeyboard extends StatefulWidget {
                   builder: (context, availableBiometrics, bloc) =>
                       PinCodeKeyboard._(
                     pinCodeService: pinCodeService,
+                    biometricsLocalDataSource: biometricsLocalDataSource,
                     keyLength: keyLength,
                     onApplyPressed: onApplyPressed,
                     isLoading: isLoading,
@@ -156,7 +159,9 @@ class PinCodeKeyboard extends StatefulWidget {
   /// Define how many numbers contains your key. Max 10 digits
   final int keyLength;
 
-  final PinCodeService pinCodeService;
+  final PinCodeService? pinCodeService;
+
+  final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   /// When the user submit the key, the widget should present to the user that
   /// the pin verification is in progress. Over the masked pin a Shimmer will be

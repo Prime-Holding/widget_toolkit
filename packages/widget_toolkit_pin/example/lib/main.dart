@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:widget_toolkit/theme_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 void main() {
@@ -18,14 +19,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
           PrimePinTheme.light,
-          WidgetToolkitTheme.light,
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
           PrimePinTheme.dark,
-          WidgetToolkitTheme.dark,
         ],
       ),
       home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
@@ -44,6 +43,9 @@ class MyHomePage extends StatelessWidget {
           Provider<PinCodeService>(
             create: (context) => AppPinCodeService(),
           ),
+          Provider<BiometricsLocalDataSource>(
+            create: (context) => ProfileLocalDataSource(),
+          )
         ],
         child: Builder(
           builder: (context) => Scaffold(
@@ -70,30 +72,40 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Expanded(
-                      child: PinCodeKeyboard.withBiometrics(
-                        // error: ErrorPinAttemptsModel(remainingAttempts: 2),
-                        keyLength: 3,
-                        onApplyPressed: (onApplyPressed) {},
-                        pinCodeService: context.read<PinCodeService>(),
-                        errorModalConfiguration: const ErrorModalConfiguration(
-                          applySafeArea: true,
-                          contentAlignment: MainAxisAlignment.end,
-                          haveOnlyOneSheet: true,
-                          heightFactor: 0.6,
-                          isDismissible: true,
-                          safeAreaBottom: true,
-                          showCloseButton: false,
-                          showHeaderPill: true,
-                          fullScreen: false,
-                          dialogHasBottomPadding: true,
-                        ),
-                      ),
+                      child: buildWithBiometrics(context),
+                      // buildGeneric(context)
                     ),
                   ],
                 ),
               ),
             ),
           ),
+        ),
+      );
+
+  Widget buildGeneric(BuildContext context) => PinCodeKeyboard.generic(
+        keyLength: 3,
+        onApplyPressed: (onApplyPressed) {},
+      );
+
+  Widget buildWithBiometrics(BuildContext context) =>
+      PinCodeKeyboard.withBiometrics(
+        // error: ErrorPinAttemptsModel(remainingAttempts: 2),
+        keyLength: 4,
+        onApplyPressed: (onApplyPressed) {},
+        pinCodeService: context.read<PinCodeService>(),
+        biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
+        errorModalConfiguration: const ErrorModalConfiguration(
+          applySafeArea: true,
+          contentAlignment: MainAxisAlignment.end,
+          haveOnlyOneSheet: true,
+          heightFactor: 0.6,
+          isDismissible: true,
+          safeAreaBottom: true,
+          showCloseButton: false,
+          showHeaderPill: true,
+          fullScreen: false,
+          dialogHasBottomPadding: true,
         ),
       );
 }
@@ -103,4 +115,26 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() => Future.value('1111');
+// Future<String?> getPinCode() => Future.value(null);
+}
+
+/// You have to implement and provide a [BiometricsLocalDataSource]
+/// you can use this to store the value, for example in [SharedPreferences]
+class ProfileLocalDataSource implements BiometricsLocalDataSource {
+  static const _areBiometricsEnabled = 'areBiometricsEnabled';
+
+  Future<SharedPreferences> get _storageInstance =>
+      SharedPreferences.getInstance();
+
+  @override
+  Future<bool> areBiometricsEnabled() async {
+    final storage = await _storageInstance;
+    return storage.getBool(_areBiometricsEnabled) ?? false;
+  }
+
+  @override
+  Future<void> setBiometricsEnabled(bool enable) async {
+    final storage = await _storageInstance;
+    await storage.setBool(_areBiometricsEnabled, enable);
+  }
 }

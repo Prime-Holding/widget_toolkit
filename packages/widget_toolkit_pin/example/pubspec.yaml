@@ -7,6 +7,7 @@ environment:
   sdk: '>=2.19.4 <3.0.0'
 
 dependencies:
+  shared_preferences: ^2.0.20
   flutter:
     sdk: flutter
   flutter_rx_bloc: ^5.0.2
@@ -14,8 +15,8 @@ dependencies:
   rx_bloc: ^4.0.0
   widget_toolkit_pin:
     path: ../../widget_toolkit_pin
-  widget_toolkit: ^0.0.1-dev7
-  widget_toolkit_biometrics: #^0.0.1-dev2
+#  widget_toolkit: ^0.0.1-dev7
+  widget_toolkit_biometrics: ^0.0.1-dev2
 #    path: ../../widget_toolkit_biometrics
 
 dependency_overrides:

@@ -32,7 +32,7 @@ Widget pinCodePageFactory(
           onApplyPressed: (p0) {},
           onChangePin: () {},
           keyLength: 6,
-          pinCodeService: pinCodeService,
+          // pinCodeService: pinCodeService,
         ),
       ),
     );
