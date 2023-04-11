@@ -12,6 +12,7 @@ import '../../base/resources/app_constants.dart';
 import '../../base/utils/utils.dart';
 import '../di/pin_code_dependencies.dart';
 import '../models/biometrics_authentication_type.dart';
+import 'callback_widget.dart';
 import 'pin_code_delete_key.dart';
 import 'pin_code_error_modal.dart';
 import 'pin_code_key.dart';
@@ -19,7 +20,7 @@ import 'pin_code_key.dart';
 /// This Widget builds custom numeric keyboard on the screen. It presents three
 /// columns with numbers from 1 to 9 in three rows. Below them is the zero in the
 /// middle and two customizable buttons in bought directions. To define them use
-/// [bottomLeftKeyboardButton] and/or [bottomRightKeyboardButton]. By default the
+/// [deleteKeyButton] and/or [bottomRightKeyboardButton]. By default the
 /// left button will be back arrow and whenever pressed, will delete the last
 /// entered number. The right button will be submit button - enabled only if all
 /// numbers are provided. If some biometrics are available and no one digit has been entered,
@@ -38,7 +39,7 @@ class PinCodeKeyboard extends StatefulWidget {
     this.onBiometricsPressed,
     this.onChangePin,
     this.error,
-    this.bottomLeftKeyboardButton,
+    this.deleteKeyButton,
     this.bottomRightKeyboardButton,
     this.translatableStrings,
     this.errorModalConfiguration = const ErrorModalConfiguration(),
@@ -70,7 +71,7 @@ class PinCodeKeyboard extends StatefulWidget {
         isConfirmPage: isConfirmPage,
         onChangePin: onChangePin,
         error: error,
-        bottomLeftKeyboardButton: bottomLeftKeyboardButton,
+        deleteKeyButton: bottomLeftKeyboardButton,
         bottomRightKeyboardButton: bottomRightKeyboardButton,
         translatableStrings: translatableStrings,
         errorModalConfiguration: errorModalConfiguration,
@@ -129,7 +130,7 @@ class PinCodeKeyboard extends StatefulWidget {
                     isConfirmPage: isConfirmPage,
                     onChangePin: onChangePin,
                     error: error,
-                    bottomLeftKeyboardButton: bottomLeftKeyboardButton,
+                    deleteKeyButton: bottomLeftKeyboardButton,
                     bottomRightKeyboardButton: bottomRightKeyboardButton,
                     translatableStrings: translatableStrings,
                     errorModalConfiguration: errorModalConfiguration,
@@ -143,10 +144,13 @@ class PinCodeKeyboard extends StatefulWidget {
                         availableBiometrics.hasData &&
                         availableBiometrics.data!
                             .contains(BiometricsAuthType.face),
-                    onBiometricsPressed: () => bloc.events.requestBiometricAuth(
-                        translatableStrings?.enterPinWithBiometrics ??
-                            context
-                                .getPinLocalizedStrings.enterPinWithBiometrics),
+                    onBiometricsPressed: () {
+                      print('onBiometricsPressed1');
+                      bloc.events.requestBiometricAuth(
+                          translatableStrings?.enterPinWithBiometrics ??
+                              context.getPinLocalizedStrings
+                                  .enterPinWithBiometrics);
+                    },
                     key: key,
                   ),
                 ),
@@ -183,6 +187,7 @@ class PinCodeKeyboard extends StatefulWidget {
   final void Function(String) onApplyPressed;
 
   /// You may define different function in case ID authentication have been used.
+  /// Triggered when the biometrics button on the bottom right is pressed.
   final VoidCallback? onBiometricsPressed;
 
   ///Reflects every change of the code
@@ -194,7 +199,7 @@ class PinCodeKeyboard extends StatefulWidget {
 
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
-  final PinCodeCustomKey? bottomLeftKeyboardButton;
+  final PinCodeCustomKey? deleteKeyButton;
 
   /// Provide custom implementation for the most down right button. Do not forget
   /// to make it clickable.
@@ -474,11 +479,7 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
                 height: calculateKeyboardButtonSize(context),
                 width: calculateKeyboardButtonSize(context),
                 child: Center(
-                  child: widget.bottomLeftKeyboardButton ??
-                      PinCodeDeleteKey(
-                        isLoading: widget.isLoading,
-                        onTap: _onDeletePressed,
-                      ),
+                  child: Container(),
                 ),
               ),
               PinCodeKey(
@@ -506,19 +507,28 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
                 ? PinCodeKey(
                     isFaceScan: true,
                     isLoading: widget.isLoading,
-                    onPressed: (_) => widget.onBiometricsPressed?.call(),
+                    onPressed: (_) {
+                      print('onPressed 1');
+                      return widget.onBiometricsPressed?.call();
+                    },
                   )
                 : widget.hasFingerScan
                     ? PinCodeKey(
                         isFingerScan: true,
                         isLoading: widget.isLoading,
-                        onPressed: (_) => widget.onBiometricsPressed?.call(),
+                        onPressed: (_) {
+                          print('onPressed 2');
+                          return widget.onBiometricsPressed?.call();
+                        },
                       )
                     : _buildApplyIcon()
             : pin.length == widget.keyLength
-                ? GestureDetector(
-                    onTap: () => widget.onApplyPressed(pin),
-                    child: _buildApplyIcon(isEnabled: true))
+                ? CallbackWidget(
+                    onCreated: (pin) => widget.onApplyPressed(pin),
+                    child: _buildApplyIcon(
+                      isEnabled: true,
+                    ),
+                  )
                 : _buildApplyIcon(),
       );
 
@@ -528,9 +538,25 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
             ? isEnabled
                 ? context.primePinTheme.pinCheckEnabledIcon
                 : context.primePinTheme.pinCheckDisabledIcon
-            : isEnabled
-                ? context.primePinTheme.pinNextEnabledIcon
-                : context.primePinTheme.pinNextDisabledIcon,
+            : pin.isNotEmpty
+                ? widget.deleteKeyButton ??
+                    PinCodeDeleteKey(
+                      isLoading: widget.isLoading,
+                      onTap: _onDeletePressed,
+                    )
+                : (widget.hasFingerScan || widget.hasFaceScan)
+                    ? PinCodeKey(
+                        number: -12,
+                        /// TODO implement onPressed
+                        onPressed: (n) {
+                          print('TODO TRIGGER biometrics');
+                        },
+                        isLoading: widget.isLoading,
+                        isFingerScan: widget.hasFingerScan,
+                        isFaceScan: widget.hasFaceScan,
+                      )
+                    : PinCodeCustomKey(
+                        buildChild: (buildChild) => Container(), onTap: () {}),
       );
 
   /// endregion

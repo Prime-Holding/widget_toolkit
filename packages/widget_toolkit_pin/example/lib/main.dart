@@ -92,6 +92,7 @@ class MyHomePage extends StatelessWidget {
       PinCodeKeyboard.withBiometrics(
         // error: ErrorPinAttemptsModel(remainingAttempts: 2),
         keyLength: 4,
+          // isConfirmPage:true,
         onApplyPressed: (onApplyPressed) {},
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
