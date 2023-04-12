@@ -28,7 +28,7 @@ import 'pin_code_key.dart';
 /// return the native ID authentication workflow.
 class PinCodeKeyboard extends StatefulWidget {
   const PinCodeKeyboard._({
-    required this.onApplyPressed,
+    required this.onAutoSubmit,
     required this.keyLength,
     this.pinCodeService,
     this.biometricsLocalDataSource,
@@ -49,7 +49,7 @@ class PinCodeKeyboard extends StatefulWidget {
 
   factory PinCodeKeyboard.generic({
     required int keyLength,
-    required void Function(String) onApplyPressed,
+    required void Function(String) onAutoSubmit,
     bool isLoading = false,
     bool isConfirmPage = false,
     bool hasFingerScan = false,
@@ -66,7 +66,7 @@ class PinCodeKeyboard extends StatefulWidget {
   }) =>
       PinCodeKeyboard._(
         keyLength: keyLength,
-        onApplyPressed: onApplyPressed,
+        onAutoSubmit: onAutoSubmit,
         isLoading: isLoading,
         isConfirmPage: isConfirmPage,
         onChangePin: onChangePin,
@@ -85,7 +85,7 @@ class PinCodeKeyboard extends StatefulWidget {
     required int keyLength,
     required PinCodeService pinCodeService,
     required BiometricsLocalDataSource biometricsLocalDataSource,
-    required Function(String) onApplyPressed,
+    required Function(String) onAutoSubmit,
     bool isLoading = false,
     bool isConfirmPage = false,
     void Function()? onChangePin,
@@ -111,7 +111,8 @@ class PinCodeKeyboard extends StatefulWidget {
                 state: (bloc) => bloc.states.pinFromBiometricAuthentication,
                 listener: (context, pin) {
                   if (pin != null) {
-                    onApplyPressed.call(pin);
+                    print('pin0: $pin');
+                    onAutoSubmit.call(pin);
                   }
                 }),
             Expanded(
@@ -125,7 +126,7 @@ class PinCodeKeyboard extends StatefulWidget {
                     pinCodeService: pinCodeService,
                     biometricsLocalDataSource: biometricsLocalDataSource,
                     keyLength: keyLength,
-                    onApplyPressed: onApplyPressed,
+                    onAutoSubmit: onAutoSubmit,
                     isLoading: isLoading,
                     isConfirmPage: isConfirmPage,
                     onChangePin: onChangePin,
@@ -183,8 +184,10 @@ class PinCodeKeyboard extends StatefulWidget {
   /// If the authentication button will present face icon
   final bool hasFaceScan;
 
-  /// Define what you want to do with the code once it is submitted
-  final void Function(String) onApplyPressed;
+  /// Define what you want to do with the code once it is submitted.
+  /// It is first called with the pin code sent from the server and then with
+  /// the pin code from the input once its length reaches [keyLength]
+  final void Function(String) onAutoSubmit;
 
   /// You may define different function in case ID authentication have been used.
   /// Triggered when the biometrics button on the bottom right is pressed.
@@ -524,7 +527,7 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
                     : _buildApplyIcon()
             : pin.length == widget.keyLength
                 ? CallbackWidget(
-                    onCreated: (pin) => widget.onApplyPressed(pin),
+                    onAutoSubmit: () => widget.onAutoSubmit(pin),
                     child: _buildApplyIcon(
                       isEnabled: true,
                     ),
@@ -547,6 +550,7 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
                 : (widget.hasFingerScan || widget.hasFaceScan)
                     ? PinCodeKey(
                         number: -12,
+
                         /// TODO implement onPressed
                         onPressed: (n) {
                           print('TODO TRIGGER biometrics');
@@ -565,6 +569,7 @@ class _PinCodeKeyboardState extends State<PinCodeKeyboard>
 
   void _onKeyPressed(int? key) => pin.length < widget.keyLength
       ? setState(() {
+        print('onKeyPressed $key');
           pin += key.toString();
         })
       : {};

@@ -29,7 +29,7 @@ Widget pinCodePageFactory(
         padding: const EdgeInsets.all(30),
         child: PinCodeKeyboard.generic(
           isLoading: isLoading,
-          onApplyPressed: (p0) {},
+          onAutoSubmit: (p0) {},
           onChangePin: () {},
           keyLength: 6,
           // pinCodeService: pinCodeService,

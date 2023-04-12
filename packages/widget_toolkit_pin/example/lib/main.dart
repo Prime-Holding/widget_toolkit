@@ -85,15 +85,17 @@ class MyHomePage extends StatelessWidget {
 
   Widget buildGeneric(BuildContext context) => PinCodeKeyboard.generic(
         keyLength: 3,
-        onApplyPressed: (onApplyPressed) {},
+        onAutoSubmit: (onApplyPressed) {},
       );
 
   Widget buildWithBiometrics(BuildContext context) =>
       PinCodeKeyboard.withBiometrics(
         // error: ErrorPinAttemptsModel(remainingAttempts: 2),
         keyLength: 4,
-          // isConfirmPage:true,
-        onApplyPressed: (onApplyPressed) {},
+        // isConfirmPage:true,
+        onAutoSubmit: (onAutoSubmit) {
+          print('uiOnAutoSubmit3 $onAutoSubmit');
+        },
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
         errorModalConfiguration: const ErrorModalConfiguration(
@@ -115,7 +117,9 @@ class AppPinCodeService implements PinCodeService {
   AppPinCodeService();
 
   @override
-  Future<String?> getPinCode() => Future.value('1111');
+  Future<String?> getPinCode() {
+    print('getPinCode');
+    return Future.value('1111');}
 // Future<String?> getPinCode() => Future.value(null);
 }
 
