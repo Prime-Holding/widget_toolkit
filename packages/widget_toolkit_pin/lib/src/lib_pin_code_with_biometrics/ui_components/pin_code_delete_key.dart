@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/utils/theme/prime_pin_theme.dart';
+import '../../base/utils/theme/pin_code_theme.dart';
 import '../../base/utils/utils.dart';
 
 class PinCodeDeleteKey extends StatefulWidget {
@@ -38,8 +38,8 @@ class PinCodeDeleteKeyState extends State<PinCodeDeleteKey> {
             width: calculateKeyboardButtonSize(context),
             child: Center(
               child: isPressed
-                  ? context.primePinTheme.pinDeleteActionIcon
-                  : context.primePinTheme.pinDeleteDefaultIcon,
+                  ? context.pinCodeTheme.pinDeleteActionIcon
+                  : context.pinCodeTheme.pinDeleteDefaultIcon,
             ),
           ),
         ),

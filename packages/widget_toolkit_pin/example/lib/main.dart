@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -18,13 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PrimePinTheme.light,
+          PinCodeTheme.light,
+          WidgetToolkitTheme.light,
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PrimePinTheme.dark,
+          PinCodeTheme.dark,
+          WidgetToolkitTheme.dark,
         ],
       ),
       home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
@@ -40,11 +43,18 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
+          Provider<SharedPreferencesInstance>(
+            create: (context) => SharedPreferencesInstance(),
+          ),
           Provider<PinCodeService>(
-            create: (context) => AppPinCodeService(),
+            create: (context) => AppPinCodeService(
+              sharedPreferences: context.read<SharedPreferencesInstance>(),
+            ),
           ),
           Provider<BiometricsLocalDataSource>(
-            create: (context) => ProfileLocalDataSource(),
+            create: (context) => ProfileLocalDataSource(
+              sharedPreferences: context.read<SharedPreferencesInstance>(),
+            ),
           )
         ],
         child: Builder(
@@ -61,8 +71,8 @@ class MyHomePage extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      context.primePinTheme.primaryGradientStart,
-                      context.primePinTheme.primaryGradientEnd
+                      context.pinCodeTheme.primaryGradientStart,
+                      context.pinCodeTheme.primaryGradientEnd
                     ],
                   ),
                 ),
@@ -83,19 +93,9 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
-  Widget buildGeneric(BuildContext context) => PinCodeKeyboard.generic(
+  Widget buildWithBiometrics(BuildContext context) => PinCodeKeyboard(
+        mapMessageToString: _exampleMapMessageToString,
         keyLength: 3,
-        onAutoSubmit: (onApplyPressed) {},
-      );
-
-  Widget buildWithBiometrics(BuildContext context) =>
-      PinCodeKeyboard.withBiometrics(
-        // error: ErrorPinAttemptsModel(remainingAttempts: 2),
-        keyLength: 4,
-        // isConfirmPage:true,
-        onAutoSubmit: (onAutoSubmit) {
-          print('uiOnAutoSubmit3 $onAutoSubmit');
-        },
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
         errorModalConfiguration: const ErrorModalConfiguration(
@@ -111,35 +111,105 @@ class MyHomePage extends StatelessWidget {
           dialogHasBottomPadding: true,
         ),
       );
+
+  String _exampleMapMessageToString(BiometricsMessage message) {
+    switch (message) {
+      case BiometricsMessage.notSetup:
+        return 'To use biometrics, you need to turn it on in your device settings!';
+
+      case BiometricsMessage.notSupported:
+        return 'You don\'t have biometric feature on your device!';
+
+      case BiometricsMessage.enabled:
+        return 'Your biometrics are enabled!';
+
+      case BiometricsMessage.disabled:
+        return 'Your biometrics are disabled!';
+    }
+  }
 }
 
 class AppPinCodeService implements PinCodeService {
-  AppPinCodeService();
+  AppPinCodeService({required this.sharedPreferences});
+
+  final SharedPreferencesInstance sharedPreferences;
+
+  static const _isPinCodeInStorage = 'pinCode';
 
   @override
-  Future<String?> getPinCode() {
-    print('getPinCode');
-    return Future.value('1111');}
-// Future<String?> getPinCode() => Future.value(null);
+  Future<bool> isPinCodeInSecureStorage() async {
+    var isPinCodeInSecureStorage =
+        await sharedPreferences.getString(_isPinCodeInStorage);
+    if (isPinCodeInSecureStorage == null) {
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
+  @override
+  Future<String> encryptPinCode(String pinCode) async {
+    // save the pin code in storage
+    var isPinSaved =
+        await sharedPreferences.setString(_isPinCodeInStorage, pinCode);
+    if (isPinSaved) {
+      return Future.value(pinCode);
+    }
+    return Future.value('not saved');
+  }
+
+  @override
+  Future<int> getPinLength() => Future.value(3);
+
+  @override
+  Future<bool> verifyPinCode(String pinCode) {
+    if (pinCode == '111') {
+      return Future.value(true);
+    }
+    return Future.value(false);
+  }
 }
 
 /// You have to implement and provide a [BiometricsLocalDataSource]
 /// you can use this to store the value, for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
-  static const _areBiometricsEnabled = 'areBiometricsEnabled';
+  ProfileLocalDataSource({required this.sharedPreferences});
 
-  Future<SharedPreferences> get _storageInstance =>
-      SharedPreferences.getInstance();
+  final SharedPreferencesInstance sharedPreferences;
+
+  static const _areBiometricsEnabled = 'areBiometricsEnabled';
 
   @override
   Future<bool> areBiometricsEnabled() async {
-    final storage = await _storageInstance;
-    return storage.getBool(_areBiometricsEnabled) ?? false;
+    var areBiometricsEnabled =
+        await sharedPreferences.getBool(_areBiometricsEnabled) ?? false;
+    return areBiometricsEnabled;
   }
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async {
-    final storage = await _storageInstance;
-    await storage.setBool(_areBiometricsEnabled, enable);
+    // var isSaved =
+        await sharedPreferences.setBool(_areBiometricsEnabled, enable);
+    // print('areBiometricsEnabled: $isSaved');
   }
+}
+
+/// This class is using as wrapper of SharedPreferences to avoid async
+/// instance in booking_app_with_dependencies.dart
+class SharedPreferencesInstance {
+  Future<SharedPreferences> get _instance => SharedPreferences.getInstance();
+
+  Future<bool?> getBool(String key) async => (await _instance).getBool(key);
+
+  Future<bool> setBool(String key, bool value) async =>
+      (await _instance).setBool(key, value);
+
+  Future<String?> getString(String key) async =>
+      (await _instance).getString(key);
+
+  Future<bool> setString(String key, String value) async =>
+      (await _instance).setString(key, value);
+
+// Future<bool> remove(String key) async => (await _instance).remove(key);
+
+// Future<bool> clear() async => (await _instance).clear();
 }

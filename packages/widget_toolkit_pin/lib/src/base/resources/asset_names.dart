@@ -12,10 +12,6 @@ class AssetNames {
   static const fingerScanPressed =
       'packages/widget_toolkit_pin/icons/fingerScanPressed.svg';
   static const infoCircle = 'packages/widget_toolkit_pin/icons/infoCircle.svg';
-  static const pinCheckEnabled =
-      'packages/widget_toolkit_pin/icons/pinCheckEnabled.svg';
-  static const pinCheckDisabled =
-      'packages/widget_toolkit_pin/icons/pinCheckDisabled.svg';
   static const String pinDeleteAction =
       'packages/widget_toolkit_pin/icons/pinDeleteAction.svg';
   static const pinDeleteDefault =

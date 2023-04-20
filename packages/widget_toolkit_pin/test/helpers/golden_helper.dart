@@ -87,8 +87,8 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
       tester,
       builder,
       theme: theme == Themes.light
-          ? ThemeData.light().copyWith(extensions: [PrimePinTheme.light])
-          : ThemeData.dark().copyWith(extensions: [PrimePinTheme.dark]),
+          ? ThemeData.light().copyWith(extensions: [PinCodeTheme.light])
+          : ThemeData.dark().copyWith(extensions: [PinCodeTheme.dark]),
     );
 
 /// Wraps a [DeviceBuilder] in a [materialAppWrapper] using any of the

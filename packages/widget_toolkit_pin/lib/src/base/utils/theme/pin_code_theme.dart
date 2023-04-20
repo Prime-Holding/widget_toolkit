@@ -3,10 +3,10 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import '../design_system/design_system.dart';
 
-part 'prime_pin_theme.tailor.dart';
+part 'pin_code_theme.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.none)
-class _$PrimePinTheme {
+class _$PinCodeTheme {
   /// region Colors
 
   static List<Color> primaryColor = [
@@ -351,16 +351,6 @@ class _$PrimePinTheme {
     PrimeDesignSystem.light().icons.infoCircle,
   ];
 
-  static List<Widget> pinCheckEnabledIcon = [
-    PrimeDesignSystem.dark().icons.pinCheckEnabled,
-    PrimeDesignSystem.light().icons.pinCheckEnabled,
-  ];
-
-  static List<Widget> pinCheckDisabledIcon = [
-    PrimeDesignSystem.dark().icons.pinCheckDisabled,
-    PrimeDesignSystem.light().icons.pinCheckDisabled,
-  ];
-
   static List<Widget> pinNextEnabledIcon = [
     PrimeDesignSystem.dark().icons.pinNextEnabled,
     PrimeDesignSystem.light().icons.pinNextEnabled,
@@ -375,12 +365,12 @@ class _$PrimePinTheme {
 }
 
 extension ThemePinExtension on BuildContext {
-  /// Returns a reference to the [PrimePinTheme] theme extension of the current [Theme]
-  PrimePinTheme get primePinTheme {
-    final theme = Theme.of(this).extension<PrimePinTheme>();
+  /// Returns a reference to the [PinCodeTheme] theme extension of the current [Theme]
+  PinCodeTheme get pinCodeTheme {
+    final theme = Theme.of(this).extension<PinCodeTheme>();
     if (theme == null) {
       throw UnimplementedError(
-        'Not Implemented PrimePinTheme. '
+        'Not Implemented PinCodeTheme. '
         'Please add it as extension to the MaterialApp -> ThemeData',
       );
     }

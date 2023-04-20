@@ -7,11 +7,16 @@ class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
   PinBiometricsAuthDataSource({required super.localAuthentication});
 
   Future<List<BiometricsAuthType>> get availableBiometrics =>
-      localAuthentication
-          .getAvailableBiometrics()
-          .then((list) => list.map((e) => mapBiometric(e)).toList());
+      localAuthentication.getAvailableBiometrics().then((list) {
+        // print('SS');
+        return list.map((e) {
+          // print('E: $e');
+          return mapBiometric(e);
+        }).toList();
+      });
 
   BiometricsAuthType mapBiometric(BiometricType type) {
+    // print('mapBiometric4 $type');
     switch (type) {
       case BiometricType.face:
         return BiometricsAuthType.face;

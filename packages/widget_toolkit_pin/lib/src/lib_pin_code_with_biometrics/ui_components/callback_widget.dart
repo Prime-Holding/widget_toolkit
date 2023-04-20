@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CallbackWidget extends StatelessWidget {
+class CallbackWidget extends StatefulWidget {
   final Function() onAutoSubmit;
   final Widget child;
 
@@ -11,11 +11,23 @@ class CallbackWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      onAutoSubmit();
-    });
+  State<CallbackWidget> createState() => _CallbackWidgetState();
+}
 
-    return child;
+class _CallbackWidgetState extends State<CallbackWidget> {
+  @override
+  void initState() {
+    print('CallbackWidget initState');
+    widget.onAutoSubmit();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    // widget.onAutoSubmit();
+    // });
+
+    return widget.child;
   }
 }

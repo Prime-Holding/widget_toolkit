@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 import '../../helpers/golden_helper.dart';
@@ -27,12 +29,31 @@ Widget pinCodePageFactory(
       backgroundColor: Colors.blue,
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: PinCodeKeyboard.generic(
-          isLoading: isLoading,
-          onAutoSubmit: (p0) {},
+        child: PinCodeKeyboard(
+          // isLoading: isLoading,
+          // onAutoSubmit: (p0) {},
           onChangePin: () {},
-          keyLength: 6,
+          keyLength: 6, pinCodeService:pinCodeService, biometricsLocalDataSource: ProfileLocalDataSource(),
           // pinCodeService: pinCodeService,
         ),
       ),
     );
+/// you can use this to store the value, for example in [SharedPreferences]
+class ProfileLocalDataSource implements BiometricsLocalDataSource {
+  static const _areBiometricsEnabled = 'areBiometricsEnabled';
+
+  Future<SharedPreferences> get _storageInstance =>
+      SharedPreferences.getInstance();
+
+  @override
+  Future<bool> areBiometricsEnabled() async {
+    final storage = await _storageInstance;
+    return storage.getBool(_areBiometricsEnabled) ?? false;
+  }
+
+  @override
+  Future<void> setBiometricsEnabled(bool enable) async {
+    final storage = await _storageInstance;
+    await storage.setBool(_areBiometricsEnabled, enable);
+  }
+}

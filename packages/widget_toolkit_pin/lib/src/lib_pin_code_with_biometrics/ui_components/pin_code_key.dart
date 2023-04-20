@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/utils/theme/prime_pin_theme.dart';
+import '../../base/utils/theme/pin_code_theme.dart';
 import '../../base/utils/utils.dart';
 
 class PinCodeKey extends StatefulWidget {
@@ -10,6 +10,7 @@ class PinCodeKey extends StatefulWidget {
     this.isFingerScan = false,
     this.isFaceScan = false,
     this.isLoading = false,
+    // this.showDefaultIcon = false,
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +18,9 @@ class PinCodeKey extends StatefulWidget {
   final bool isFingerScan;
   final bool isFaceScan;
   final bool isLoading;
+
+  /// Shows the face scan icon if set to true
+  // final bool showDefaultIcon;
   final void Function(int?) onPressed;
 
   @override
@@ -25,6 +29,18 @@ class PinCodeKey extends StatefulWidget {
 
 class _PinCodeKeyState extends State<PinCodeKey> {
   bool isPressed = false;
+
+  // @override
+  // void initState() {
+    // if (widget.showDefaultIcon) {
+    //   print('PinCodeKeyinitState showDefaultIcon: ${widget.showDefaultIcon}');
+    // }
+    // super.initState();
+  // }
+
+  /// 1. todo when the enable button is pressed the onTapUp is not triggered
+  /// 2. todo fix when the delete button is pressed the automatic authentication
+  /// is triggered
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -42,6 +58,9 @@ class _PinCodeKeyState extends State<PinCodeKey> {
         onTapUp: widget.isLoading
             ? null
             : (_) async {
+          /// todo test if  this showDefaultIcon is needed
+          //       print(' todo onTapUp isLoading: ${widget.isLoading}'
+          //           ' showDefaultIcon: ${widget.showDefaultIcon}');
                 await Future.delayed(const Duration(milliseconds: 300));
                 setState(() {
                   isPressed = false;
@@ -51,21 +70,22 @@ class _PinCodeKeyState extends State<PinCodeKey> {
             ? AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 child: isPressed
-                    ? context.primePinTheme.fingerScanPressedIcon
-                    : context.primePinTheme.fingerScanDefaultIcon,
+                    ? context.pinCodeTheme.fingerScanPressedIcon
+                    : context.pinCodeTheme.fingerScanDefaultIcon,
               )
             : widget.isFaceScan
+            // : (widget.isFaceScan || widget.showDefaultIcon)
                 ? AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: isPressed
-                        ? context.primePinTheme.faceScanPressedIcon
-                        : context.primePinTheme.faceScanDefaultIcon,
+                        ? context.pinCodeTheme.faceScanPressedIcon
+                        : context.pinCodeTheme.faceScanDefaultIcon,
                   )
                 : AnimatedContainer(
                     width: _calculateSize(context),
                     height: _calculateSize(context),
                     decoration: BoxDecoration(
-                      color: context.primePinTheme.white.withOpacity(
+                      color: context.pinCodeTheme.white.withOpacity(
                         widget.isLoading
                             ? 0.1
                             : isPressed
@@ -82,11 +102,11 @@ class _PinCodeKeyState extends State<PinCodeKey> {
 
   Widget _buildText() => Text(
         widget.number.toString(),
-        style: context.primePinTheme.pinCodeKeyTextStyle.copyWith(
+        style: context.pinCodeTheme.pinCodeKeyTextStyle.copyWith(
           fontSize: _calculateSize(context) / 2.25,
           color: isPressed
-              ? context.primePinTheme.pinCodeKeyTextColorPressed
-              : context.primePinTheme.pinCodeKeyTextColorDefault
+              ? context.pinCodeTheme.pinCodeKeyTextColorPressed
+              : context.pinCodeTheme.pinCodeKeyTextColorDefault
                   .withOpacity(widget.isLoading ? 0.5 : 1.0),
         ),
       );
