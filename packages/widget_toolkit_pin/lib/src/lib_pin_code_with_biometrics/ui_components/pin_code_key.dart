@@ -10,7 +10,7 @@ class PinCodeKey extends StatefulWidget {
     this.isFingerScan = false,
     this.isFaceScan = false,
     this.isLoading = false,
-    // this.showDefaultIcon = false,
+    this.showDefaultIcon = false,
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class PinCodeKey extends StatefulWidget {
   final bool isLoading;
 
   /// Shows the face scan icon if set to true
-  // final bool showDefaultIcon;
+  final bool showDefaultIcon;
   final void Function(int?) onPressed;
 
   @override
@@ -73,8 +73,8 @@ class _PinCodeKeyState extends State<PinCodeKey> {
                     ? context.pinCodeTheme.fingerScanPressedIcon
                     : context.pinCodeTheme.fingerScanDefaultIcon,
               )
-            : widget.isFaceScan
-            // : (widget.isFaceScan || widget.showDefaultIcon)
+            // : widget.isFaceScan
+            : (widget.isFaceScan || widget.showDefaultIcon)
                 ? AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: isPressed
