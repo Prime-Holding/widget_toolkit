@@ -8,7 +8,6 @@ import 'package:shimmer/shimmer.dart';
 import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
-import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/ui_components/pin_code_biometric_key_with_auto_submit.dart';
 
 import '../../../widget_toolkit_pin.dart';
 import '../../base/extensions/error_model_translations.dart';
@@ -17,6 +16,7 @@ import '../../base/utils/utils.dart';
 import '../di/pin_code_dependencies.dart';
 import '../models/biometrics_authentication_type.dart';
 import 'auto_submit_widget.dart';
+import 'pin_code_biometric_key_with_auto_submit.dart';
 import 'pin_code_delete_key.dart';
 import 'pin_code_error_modal.dart';
 import 'pin_code_key.dart';

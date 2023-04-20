@@ -9,18 +9,7 @@ class MockPinCodeService implements PinCodeService {
   final bool throwError;
 
   @override
-  Future<String?> getPinCode() async {
-    await Future.delayed(const Duration(milliseconds: 600));
-    return throwError
-        ? throw Exception('Throw Exception from the PinService')
-        : returnNull
-            ? null
-            : code;
-  }
-
-  @override
   Future<String> encryptPinCode(String pinCode) => Future.value(pinCode);
-  // Future<String> encryptPinCode(String pinCode) => Future.value(pinCode);
 
   @override
   Future<int> getPinLength() => Future.value(3);
