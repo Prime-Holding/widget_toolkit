@@ -351,16 +351,6 @@ class _$PinCodeTheme {
     PrimeDesignSystem.light().icons.infoCircle,
   ];
 
-  static List<Widget> pinNextEnabledIcon = [
-    PrimeDesignSystem.dark().icons.pinNextEnabled,
-    PrimeDesignSystem.light().icons.pinNextEnabled,
-  ];
-
-  static List<Widget> pinNextDisabledIcon = [
-    PrimeDesignSystem.dark().icons.pinNextDisabled,
-    PrimeDesignSystem.light().icons.pinNextDisabled,
-  ];
-
   /// endregion
 }
 

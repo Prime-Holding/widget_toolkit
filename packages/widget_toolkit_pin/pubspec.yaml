@@ -62,5 +62,3 @@ flutter:
     - packages/widget_toolkit_pin/icons/infoCircle.svg
     - packages/widget_toolkit_pin/icons/pinDeleteAction.svg
     - packages/widget_toolkit_pin/icons/pinDeleteDefault.svg
-    - packages/widget_toolkit_pin/icons/pinNextEnabled.svg
-    - packages/widget_toolkit_pin/icons/pinNextDisabled.svg

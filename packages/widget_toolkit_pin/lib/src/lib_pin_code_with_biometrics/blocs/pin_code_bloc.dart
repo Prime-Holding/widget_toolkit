@@ -81,25 +81,14 @@ class PinCodeBloc extends $PinCodeBloc {
               pinCodeService.isPinCodeInSecureStorage().asResultStream())
           .setResultStateHandler(this)
           .whereSuccess()
-          // .doOnData((event) {
-        // print('IsPinCodeInSecureStorageBBLoc $event');
-      // })
           .publishReplay(maxSize: 1);
-
-  // }).publishReplay(maxSize: 1);
 
   @override
   Stream<bool> _mapToAreBiometricsEnabledState() =>
       _$checkBiometricsEnabledEvent
-          .switchMap((value) {
-            // print('checkBiometricsEnabledEvent');
-            return getAreBiometricsEnabled().asResultStream();
-          })
+          .switchMap((value) => getAreBiometricsEnabled().asResultStream())
           .setResultStateHandler(this)
           .whereSuccess();
-          // .doOnData((event) {
-          //   print('AreBiometricsEnabledState4 $event');
-          // });
 
   Future<bool> getAreBiometricsEnabled() async {
     var isDeviceSupported =
@@ -109,9 +98,7 @@ class PinCodeBloc extends $PinCodeBloc {
     var biometricsEnabled =
         await biometricAuthenticationService.areBiometricsEnabled();
 
-    // var pinCode = await pinCodeService.getPinCode();
-    return isDeviceSupported && canCheckBiometrics && biometricsEnabled; //&&
-    //pinCode != null;
+    return isDeviceSupported && canCheckBiometrics && biometricsEnabled;
   }
 
   @override
@@ -121,9 +108,6 @@ class PinCodeBloc extends $PinCodeBloc {
               .asResultStream()
               .setResultStateHandler(this)
               .whereSuccess()
-              // .doOnData((event) {
-            // print('availableBiometricsBloc: $event');
-          // })
               .publish();
 
   @override
@@ -133,9 +117,6 @@ class PinCodeBloc extends $PinCodeBloc {
               (value) => _biometricAuthentication(value).asResultStream())
           .setResultStateHandler(this)
           .whereSuccess()
-          // .doOnData((event) {
-        // print('requestBiometricAuthBloc: $event ');
-      // })
           .publishReplay(maxSize: 1);
 
   Future<bool> _biometricAuthentication(String localizedReason) async {
@@ -143,63 +124,36 @@ class PinCodeBloc extends $PinCodeBloc {
         localizedReason.isEmpty ? localizedBiometricsMessage : localizedReason);
 
     return success;
-    // if (success) {
-    // return await pinCodeService.getPinCode();
-    // bool external = false; // todo check this
-    // var t = isPinCodeVerified.listen((value) {
-    //   print('internal1 $value');
-    //   external = value;
-    // });
-    // await t.cancel();
-    // return external;
-
-    // return await pinCodeService.getPinCode();
-    // }
-    // return false;
   }
 
   @override
   ConnectableStream<bool> _mapToIsPinCodeVerifiedState() => _$autoSubmitEvent
-      // .doOnData((pinCode) {
-      //   print('beforeVerify: $pinCode');
-      // })
-      .switchMap((pinCode) {
-        return encryptAndVerify(pinCode).asResultStream();
-      })
+      .switchMap((pinCode) => encryptAndVerify(pinCode).asResultStream())
       .setResultStateHandler(this)
       .whereSuccess()
-      // .doOnData((event) {
-      //   print('eventAfterVerify bool: $event');
-      // })
       .publishReplay(maxSize: 1);
 
   Future<bool> encryptAndVerify(String pinCode) async {
     // Store the pin in device storage
-    var g = await pinCodeService.encryptPinCode(pinCode);
-    var t = await pinCodeService.verifyPinCode(g);
-    return t;
+    var encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    var verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
+    return verifiedPin;
   }
 
   @override
   Stream<BiometricsMessage?> _mapToBiometricsDialogState() =>
       _$setBiometricsEvent
-          // .doOnData((event) {
-          //   print('setBiometrics enabled3: ${event.enabled}  ');
-          // })
           .switchMap((event) => biometricAuthenticationService
               .enableBiometrics(event.enabled, event.localizedReason)
               .asResultStream())
           .setResultStateHandler(this)
           .whereSuccess()
           .doOnData((event) {
-            if (event == BiometricsMessage.enabled) {
-              checkBiometricsEnabled();
-            }
-          });
+        if (event == BiometricsMessage.enabled) {
+          checkBiometricsEnabled();
+        }
+      });
 
   @override
-  Stream<bool> _mapToIsLoadingState() =>
-      loadingState;//.distinct().doOnData((event) {
-        // print('loadingStateBloc $event');
-      // });
+  Stream<bool> _mapToIsLoadingState() => loadingState;
 }

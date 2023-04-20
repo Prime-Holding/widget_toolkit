@@ -51,8 +51,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     required this.pinKeyboardErrorTextStyle,
     required this.pinKeyboardMaskedKeyBorderColor,
     required this.pinKeyboardMaskedKeyColor,
-    required this.pinNextDisabledIcon,
-    required this.pinNextEnabledIcon,
     required this.primaryColor,
     required this.primaryGradientEnd,
     required this.primaryGradientStart,
@@ -132,8 +130,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   final TextStyle pinKeyboardErrorTextStyle;
   final Color pinKeyboardMaskedKeyBorderColor;
   final Color pinKeyboardMaskedKeyColor;
-  final Widget pinNextDisabledIcon;
-  final Widget pinNextEnabledIcon;
 
   /// region Colors
   final Color primaryColor;
@@ -216,8 +212,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     pinKeyboardMaskedKeyBorderColor:
         _$PinCodeTheme.pinKeyboardMaskedKeyBorderColor[0],
     pinKeyboardMaskedKeyColor: _$PinCodeTheme.pinKeyboardMaskedKeyColor[0],
-    pinNextDisabledIcon: _$PinCodeTheme.pinNextDisabledIcon[0],
-    pinNextEnabledIcon: _$PinCodeTheme.pinNextEnabledIcon[0],
     primaryColor: _$PinCodeTheme.primaryColor[0],
     primaryGradientEnd: _$PinCodeTheme.primaryGradientEnd[0],
     primaryGradientStart: _$PinCodeTheme.primaryGradientStart[0],
@@ -299,8 +293,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     pinKeyboardMaskedKeyBorderColor:
         _$PinCodeTheme.pinKeyboardMaskedKeyBorderColor[1],
     pinKeyboardMaskedKeyColor: _$PinCodeTheme.pinKeyboardMaskedKeyColor[1],
-    pinNextDisabledIcon: _$PinCodeTheme.pinNextDisabledIcon[1],
-    pinNextEnabledIcon: _$PinCodeTheme.pinNextEnabledIcon[1],
     primaryColor: _$PinCodeTheme.primaryColor[1],
     primaryGradientEnd: _$PinCodeTheme.primaryGradientEnd[1],
     primaryGradientStart: _$PinCodeTheme.primaryGradientStart[1],
@@ -378,8 +370,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     TextStyle? pinKeyboardErrorTextStyle,
     Color? pinKeyboardMaskedKeyBorderColor,
     Color? pinKeyboardMaskedKeyColor,
-    Widget? pinNextDisabledIcon,
-    Widget? pinNextEnabledIcon,
     Color? primaryColor,
     Color? primaryGradientEnd,
     Color? primaryGradientStart,
@@ -476,8 +466,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           this.pinKeyboardMaskedKeyBorderColor,
       pinKeyboardMaskedKeyColor:
           pinKeyboardMaskedKeyColor ?? this.pinKeyboardMaskedKeyColor,
-      pinNextDisabledIcon: pinNextDisabledIcon ?? this.pinNextDisabledIcon,
-      pinNextEnabledIcon: pinNextEnabledIcon ?? this.pinNextEnabledIcon,
       primaryColor: primaryColor ?? this.primaryColor,
       primaryGradientEnd: primaryGradientEnd ?? this.primaryGradientEnd,
       primaryGradientStart: primaryGradientStart ?? this.primaryGradientStart,
@@ -603,10 +591,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           t)!,
       pinKeyboardMaskedKeyColor: Color.lerp(
           pinKeyboardMaskedKeyColor, other.pinKeyboardMaskedKeyColor, t)!,
-      pinNextDisabledIcon:
-          t < 0.5 ? pinNextDisabledIcon : other.pinNextDisabledIcon,
-      pinNextEnabledIcon:
-          t < 0.5 ? pinNextEnabledIcon : other.pinNextEnabledIcon,
       primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
       primaryGradientEnd:
           Color.lerp(primaryGradientEnd, other.primaryGradientEnd, t)!,
@@ -709,8 +693,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
             const DeepCollectionEquality().equals(pinKeyboardErrorTextStyle, other.pinKeyboardErrorTextStyle) &&
             const DeepCollectionEquality().equals(pinKeyboardMaskedKeyBorderColor, other.pinKeyboardMaskedKeyBorderColor) &&
             const DeepCollectionEquality().equals(pinKeyboardMaskedKeyColor, other.pinKeyboardMaskedKeyColor) &&
-            const DeepCollectionEquality().equals(pinNextDisabledIcon, other.pinNextDisabledIcon) &&
-            const DeepCollectionEquality().equals(pinNextEnabledIcon, other.pinNextEnabledIcon) &&
             const DeepCollectionEquality().equals(primaryColor, other.primaryColor) &&
             const DeepCollectionEquality().equals(primaryGradientEnd, other.primaryGradientEnd) &&
             const DeepCollectionEquality().equals(primaryGradientStart, other.primaryGradientStart) &&
@@ -786,8 +768,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(pinKeyboardErrorTextStyle),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyBorderColor),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyColor),
-      const DeepCollectionEquality().hash(pinNextDisabledIcon),
-      const DeepCollectionEquality().hash(pinNextEnabledIcon),
       const DeepCollectionEquality().hash(primaryColor),
       const DeepCollectionEquality().hash(primaryGradientEnd),
       const DeepCollectionEquality().hash(primaryGradientStart),

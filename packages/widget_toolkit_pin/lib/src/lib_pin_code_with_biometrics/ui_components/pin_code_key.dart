@@ -19,7 +19,7 @@ class PinCodeKey extends StatefulWidget {
   final bool isFaceScan;
   final bool isLoading;
 
-  /// Shows the face scan icon if set to true
+  /// Shows the face scan icon if it is set to true
   final bool showDefaultIcon;
   final void Function(int?) onPressed;
 
@@ -29,18 +29,6 @@ class PinCodeKey extends StatefulWidget {
 
 class _PinCodeKeyState extends State<PinCodeKey> {
   bool isPressed = false;
-
-  // @override
-  // void initState() {
-    // if (widget.showDefaultIcon) {
-    //   print('PinCodeKeyinitState showDefaultIcon: ${widget.showDefaultIcon}');
-    // }
-    // super.initState();
-  // }
-
-  /// 1. todo when the enable button is pressed the onTapUp is not triggered
-  /// 2. todo fix when the delete button is pressed the automatic authentication
-  /// is triggered
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -58,9 +46,6 @@ class _PinCodeKeyState extends State<PinCodeKey> {
         onTapUp: widget.isLoading
             ? null
             : (_) async {
-          /// todo test if  this showDefaultIcon is needed
-          //       print(' todo onTapUp isLoading: ${widget.isLoading}'
-          //           ' showDefaultIcon: ${widget.showDefaultIcon}');
                 await Future.delayed(const Duration(milliseconds: 300));
                 setState(() {
                   isPressed = false;
@@ -73,7 +58,6 @@ class _PinCodeKeyState extends State<PinCodeKey> {
                     ? context.pinCodeTheme.fingerScanPressedIcon
                     : context.pinCodeTheme.fingerScanDefaultIcon,
               )
-            // : widget.isFaceScan
             : (widget.isFaceScan || widget.showDefaultIcon)
                 ? AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),

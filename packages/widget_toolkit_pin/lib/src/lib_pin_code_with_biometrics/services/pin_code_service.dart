@@ -1,5 +1,4 @@
-abstract class PinCodeService{
-
+abstract class PinCodeService {
   /// Reads from device internal storage and returns the stored pin code to the bloc
   Future<bool> isPinCodeInSecureStorage();
 
@@ -14,5 +13,4 @@ abstract class PinCodeService{
   /// add a default implementation to return what is the input. Returns the
   /// encrypted pinCode from the device secure storage.
   Future<String> encryptPinCode(String pinCode) => Future.value(pinCode);
-  // String encryptPinCode(String pinCode) => pinCode;
 }
