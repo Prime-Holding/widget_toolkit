@@ -2,12 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 import 'models/labeled_device_builder.dart';
 import 'models/scenario.dart';
 
-enum Themes { light }
+enum Themes { light, dark }
 
 /// return a [LabeledDeviceBuilder] with a scenario rendered on all device sizes
 ///
@@ -87,8 +88,8 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
       tester,
       builder,
       theme: theme == Themes.light
-          ? ThemeData.light().copyWith(extensions: [PinCodeTheme.light])
-          : ThemeData.dark().copyWith(extensions: [PinCodeTheme.dark]),
+          ? ThemeData.light().copyWith(extensions: [WidgetToolkitTheme.light,PinCodeTheme.light])
+          : ThemeData.dark().copyWith(extensions: [WidgetToolkitTheme.dark,PinCodeTheme.dark]),
     );
 
 /// Wraps a [DeviceBuilder] in a [materialAppWrapper] using any of the

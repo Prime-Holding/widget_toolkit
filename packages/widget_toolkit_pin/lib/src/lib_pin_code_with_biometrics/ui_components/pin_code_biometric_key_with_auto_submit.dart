@@ -59,7 +59,6 @@ class _PinCodeBiometricKeyWithAutoSubmitState
             isFingerScan: widget.isFingerScan,
             isFaceScan: widget.isFaceScan,
             isLoading: widget.isLoading,
-            // showDefaultIcon: widget.showDefaultIcon,
           ),
         )
       : PinCodeKey(

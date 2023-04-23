@@ -43,17 +43,17 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
-          Provider<SharedPreferencesInstance>(
-            create: (context) => SharedPreferencesInstance(),
+          Provider<InMemoryInstance>(
+            create: (context) => InMemoryInstance(),
           ),
           Provider<PinCodeService>(
             create: (context) => AppPinCodeService(
-              sharedPreferences: context.read<SharedPreferencesInstance>(),
+              inMemoryInstance: context.read<InMemoryInstance>(),
             ),
           ),
           Provider<BiometricsLocalDataSource>(
             create: (context) => ProfileLocalDataSource(
-              sharedPreferences: context.read<SharedPreferencesInstance>(),
+              inMemoryInstance: context.read<InMemoryInstance>(),
             ),
           )
         ],
@@ -83,7 +83,6 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: buildWithBiometrics(context),
-                      // buildGeneric(context)
                     ),
                   ],
                 ),
@@ -130,17 +129,18 @@ class MyHomePage extends StatelessWidget {
 }
 
 class AppPinCodeService implements PinCodeService {
-  AppPinCodeService({required this.sharedPreferences});
+  AppPinCodeService({required this.inMemoryInstance});
 
-  final SharedPreferencesInstance sharedPreferences;
+  final InMemoryInstance inMemoryInstance;
 
   static const _isPinCodeInStorage = 'pinCode';
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
     var isPinCodeInSecureStorage =
-        await sharedPreferences.getString(_isPinCodeInStorage);
-    if (isPinCodeInSecureStorage == null) {
+        inMemoryInstance.getString(_isPinCodeInStorage);
+
+    if (isPinCodeInSecureStorage.isEmpty) {
       return Future.value(false);
     }
     return Future.value(true);
@@ -148,13 +148,8 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    // save the pin code in storage
-    var isPinSaved =
-        await sharedPreferences.setString(_isPinCodeInStorage, pinCode);
-    if (isPinSaved) {
-      return Future.value(pinCode);
-    }
-    return Future.value('not saved');
+    inMemoryInstance.setString(_isPinCodeInStorage, pinCode);
+    return Future.value(pinCode);
   }
 
   @override
@@ -172,39 +167,36 @@ class AppPinCodeService implements PinCodeService {
 /// You have to implement and provide a [BiometricsLocalDataSource]
 /// you can use this to store the value, for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
-  ProfileLocalDataSource({required this.sharedPreferences});
+  ProfileLocalDataSource({required this.inMemoryInstance});
 
-  final SharedPreferencesInstance sharedPreferences;
+  final InMemoryInstance inMemoryInstance;
 
   static const _areBiometricsEnabled = 'areBiometricsEnabled';
 
   @override
   Future<bool> areBiometricsEnabled() async {
-    var areBiometricsEnabled =
-        await sharedPreferences.getBool(_areBiometricsEnabled) ?? false;
+    var areBiometricsEnabled = inMemoryInstance.getBool(_areBiometricsEnabled);
     return areBiometricsEnabled;
   }
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async {
-        await sharedPreferences.setBool(_areBiometricsEnabled, enable);
+    inMemoryInstance.setBool(_areBiometricsEnabled, enable);
   }
 }
 
-/// This class is using as wrapper of SharedPreferences to avoid async
-/// instance in booking_app_with_dependencies.dart
-class SharedPreferencesInstance {
-  Future<SharedPreferences> get _instance => SharedPreferences.getInstance();
+class InMemoryInstance {
+  final Map<String, dynamic> _data = {};
 
-  Future<bool?> getBool(String key) async => (await _instance).getBool(key);
+  bool getBool(String key) => _data[key] ?? false;
 
-  Future<bool> setBool(String key, bool value) async =>
-      (await _instance).setBool(key, value);
+  void setBool(String key, bool value) {
+    _data[key] = value;
+  }
 
-  Future<String?> getString(String key) async =>
-      (await _instance).getString(key);
+  String getString(String key) => _data[key] ?? '';
 
-  Future<bool> setString(String key, String value) async =>
-      (await _instance).setString(key, value);
-
+  void setString(String key, String value) {
+    _data[key] = value;
+  }
 }

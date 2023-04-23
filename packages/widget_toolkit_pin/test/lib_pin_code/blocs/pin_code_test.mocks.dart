@@ -14,6 +14,8 @@ import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/repositories
     as _i2;
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/services/pin_biometrics_service.dart'
     as _i3;
+import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/services/pin_code_service.dart'
+    as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -123,4 +125,46 @@ class MockPinBiometricsService extends _i1.Mock
         ),
         returnValue: _i4.Future<_i6.BiometricsMessage?>.value(),
       ) as _i4.Future<_i6.BiometricsMessage?>);
+}
+
+/// A class which mocks [PinCodeService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPinCodeService extends _i1.Mock implements _i7.PinCodeService {
+  MockPinCodeService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<bool> isPinCodeInSecureStorage() => (super.noSuchMethod(
+        Invocation.method(
+          #isPinCodeInSecureStorage,
+          [],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> verifyPinCode(String? pinCode) => (super.noSuchMethod(
+        Invocation.method(
+          #verifyPinCode,
+          [pinCode],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+  @override
+  _i4.Future<int> getPinLength() => (super.noSuchMethod(
+        Invocation.method(
+          #getPinLength,
+          [],
+        ),
+        returnValue: _i4.Future<int>.value(0),
+      ) as _i4.Future<int>);
+  @override
+  _i4.Future<String> encryptPinCode(String? pinCode) => (super.noSuchMethod(
+        Invocation.method(
+          #encryptPinCode,
+          [pinCode],
+        ),
+        returnValue: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
 }
