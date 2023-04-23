@@ -84,13 +84,29 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
   DeviceBuilder builder, {
   Themes? theme,
 }) =>
-    pumpDeviceBuilderWithMaterialApp(
-      tester,
-      builder,
-      theme: theme == Themes.light
-          ? ThemeData.light().copyWith(extensions: [WidgetToolkitTheme.light,PinCodeTheme.light])
-          : ThemeData.dark().copyWith(extensions: [WidgetToolkitTheme.dark,PinCodeTheme.dark]),
-    );
+    pumpDeviceBuilderWithMaterialApp(tester, builder,
+        theme: getThemeData(theme == Themes.light));
+
+ThemeData getThemeData(bool inLightMode) {
+  final theme = inLightMode
+      ? ThemeData.light().copyWith(extensions: [
+          WidgetToolkitTheme.light.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
+          PinCodeTheme.light,
+        ])
+      : ThemeData.dark().copyWith(extensions: [
+          WidgetToolkitTheme.light.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
+          PinCodeTheme.dark,
+        ]);
+  return theme;
+}
 
 /// Wraps a [DeviceBuilder] in a [materialAppWrapper] using any of the
 /// parameters we specify and pumps it
