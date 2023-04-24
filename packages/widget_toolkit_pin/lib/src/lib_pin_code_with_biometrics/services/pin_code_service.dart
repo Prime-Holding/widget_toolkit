@@ -13,4 +13,7 @@ abstract class PinCodeService {
   /// add a default implementation to return what is the input. Returns the
   /// encrypted pinCode from the device secure storage.
   Future<String> encryptPinCode(String pinCode) => Future.value(pinCode);
+
+  /// Returns the pin code or null if it is not saved in the device memory yet.
+  Future<String?> getPinCode();
 }

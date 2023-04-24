@@ -98,7 +98,12 @@ class PinCodeBloc extends $PinCodeBloc {
     var biometricsEnabled =
         await biometricAuthenticationService.areBiometricsEnabled();
 
-    return isDeviceSupported && canCheckBiometrics && biometricsEnabled;
+    var pinCode = await pinCodeService.getPinCode();
+
+    return isDeviceSupported &&
+        canCheckBiometrics &&
+        biometricsEnabled &&
+        pinCode != null;
   }
 
   @override
