@@ -237,22 +237,36 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     required bool hasFaceScan,
     required bool biometricsEnabled,
   }) =>
-      SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(flex: 4, child: Container()),
-            _buildAnimatedKeysAndErrorBuilder(context),
-            Flexible(flex: 3, child: Container()),
-            _buildKeyboard(
-              verticalSpacing: MediaQuery.of(context).size.height / 45,
-              isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
-              context: context,
-              hasFingerScan: hasFingerScan,
-              hasFaceScan: hasFaceScan,
-              biometricsEnabled: biometricsEnabled,
-            ),
-          ],
+      Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              context.pinCodeTheme.primaryGradientStart,
+              context.pinCodeTheme.primaryGradientEnd
+            ],
+          ),
+        ),
+        padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 20),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(flex: 4, child: Container()),
+              _buildAnimatedKeysAndErrorBuilder(context),
+              Flexible(flex: 3, child: Container()),
+              _buildKeyboard(
+                verticalSpacing: MediaQuery.of(context).size.height / 45,
+                isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
+                context: context,
+                hasFingerScan: hasFingerScan,
+                hasFaceScan: hasFaceScan,
+                biometricsEnabled: biometricsEnabled,
+              ),
+            ],
+          ),
         ),
       );
 

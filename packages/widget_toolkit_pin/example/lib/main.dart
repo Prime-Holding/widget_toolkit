@@ -65,27 +65,12 @@ class MyHomePage extends StatelessWidget {
             extendBodyBehindAppBar: true,
             body: SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      context.pinCodeTheme.primaryGradientStart,
-                      context.pinCodeTheme.primaryGradientEnd
-                    ],
+              child: Column(
+                children: [
+                  Expanded(
+                    child: buildWithBiometrics(context),
                   ),
-                ),
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.1,
-                    vertical: 20),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: buildWithBiometrics(context),
-                    ),
-                  ],
-                ),
+                ],
               ),
             ),
           ),
