@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/theme_data.dart';
+import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -78,23 +80,28 @@ class MyHomePage extends StatelessWidget {
       );
 
   Widget buildWithBiometrics(BuildContext context) => PinCodeKeyboard(
+        translateError: _translateError,
         mapMessageToString: _exampleMapMessageToString,
         keyLength: 3,
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
-        errorModalConfiguration: const ErrorModalConfiguration(
-          applySafeArea: true,
-          contentAlignment: MainAxisAlignment.end,
-          haveOnlyOneSheet: true,
-          heightFactor: 0.6,
-          isDismissible: true,
-          safeAreaBottom: true,
-          showCloseButton: false,
-          showHeaderPill: true,
-          fullScreen: false,
-          dialogHasBottomPadding: true,
-        ),
+        onError: (error, translatedError) =>
+            _exampleOnError(context, error, translatedError),
       );
+
+  String _translateError(Object error) => 'translated error';
+
+  void _exampleOnError(
+      BuildContext context, Object error, String translatedError) {
+    showBlurredBottomSheet(
+      context: context,
+      configuration: const ModalConfiguration(safeAreaBottom: false),
+      builder: (context) => MessagePanelWidget(
+        message: translatedError,
+        messageState: MessagePanelState.important,
+      ),
+    );
+  }
 
   String _exampleMapMessageToString(BiometricsMessage message) {
     switch (message) {

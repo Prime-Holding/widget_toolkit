@@ -1,7 +1,5 @@
 library widget_toolkit_pin;
 
-export 'src/base/models/error/error_model.dart';
-export 'src/base/models/error_modal_configuration.dart';
 export 'src/base/resources/pin_localized_strings.dart';
 export 'src/base/utils/theme/pin_code_theme.dart';
 export 'src/lib_pin_code_with_biometrics/blocs/pin_code_bloc.dart';

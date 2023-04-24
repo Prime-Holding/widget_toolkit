@@ -28,19 +28,20 @@ class PinCodeKeyboard extends StatelessWidget {
     required this.keyLength,
     required this.pinCodeService,
     required this.biometricsLocalDataSource,
+    required this.translateError,
     this.mapMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
-    this.onChangePin,
-    this.error,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
     this.translatableStrings,
-    this.errorModalConfiguration = const ErrorModalConfiguration(),
     this.addDependencies = true,
+    this.onError,
     Key? key,
   })  : assert(keyLength <= kPinMaxLength, 'max key length is 20'),
         super(key: key);
+
+  final String Function(Object error) translateError;
 
   /// [mapMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
@@ -61,13 +62,6 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Returns the verification state of the input from the pin code auto submit value.
   final void Function(bool)? isPinCodeVerified;
 
-  ///Reflects every change of the code
-  final void Function()? onChangePin;
-
-  /// Expects to receive ErrorPinAttemptsModel and will translate it. Otherwise
-  /// a generic message will be displayed.
-  final ErrorModel? error;
-
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
   final PinCodeCustomKey? deleteKeyButton;
@@ -79,27 +73,26 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
   final PinLocalizedStrings? translatableStrings;
 
-  /// Customize modal sheet appearance
-  final ErrorModalConfiguration errorModalConfiguration;
-
   /// If set to true the dependencies will be injected before the building of
   /// the widget, otherwise the user should provide an implementation for the
   /// dependencies
   final bool addDependencies;
 
+  /// [onError] is optional function that enable error handling out of the package
+  final Function(Object error, String translatedError)? onError;
+
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
         child: PinCodeComponent(
+          translateError: translateError,
           keyLength: keyLength,
           mapMessageToString: mapMessageToString,
           isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
           isPinCodeVerified: isPinCodeVerified,
-          onChangePin: onChangePin,
-          error: error,
           deleteKeyButton: deleteKeyButton,
           bottomRightKeyboardButton: bottomRightKeyboardButton,
           translatableStrings: translatableStrings,
-          errorModalConfiguration: errorModalConfiguration,
+          onError: onError,
         ),
       );
 

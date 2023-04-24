@@ -20,14 +20,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     required this.descriptionBold,
     required this.descriptionBoldTextStyle,
     required this.descriptionThin,
-    required this.errorModalActionButtonTextColor,
-    required this.errorModalCloseButtonGradientStartColor,
-    required this.errorModalCloseButtonIconColor,
-    required this.errorModalCloseButtonPadding1,
-    required this.errorModalCloseButtonPadding2,
-    required this.errorModalErrorWidgetPadding,
-    required this.errorModalTitlePadding,
-    required this.errorModalTitleTextStyle,
     required this.errorTitle,
     required this.faceScanDefaultIcon,
     required this.faceScanInvertedIcon,
@@ -37,7 +29,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     required this.fingerScanPressedIcon,
     required this.greenLight,
     required this.highlightColor,
-    required this.infoCircleIcon,
     required this.lightRed,
     required this.pinCodeKeyTextColorDefault,
     required this.pinCodeKeyTextColorPressed,
@@ -47,8 +38,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     required this.pinKeyboardBottomButtonTextColor,
     required this.pinKeyboardBottomButtonTextStyle,
     required this.pinKeyboardErrorPinColor,
-    required this.pinKeyboardErrorTextColor,
-    required this.pinKeyboardErrorTextStyle,
     required this.pinKeyboardMaskedKeyBorderColor,
     required this.pinKeyboardMaskedKeyColor,
     required this.primaryColor,
@@ -93,17 +82,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   /// region Common TextStyles
   final TextStyle descriptionBoldTextStyle;
   final TextStyle descriptionThin;
-  final Color errorModalActionButtonTextColor;
-  final Color errorModalCloseButtonGradientStartColor;
-  final Color errorModalCloseButtonIconColor;
-
-  /// endregion
-  /// region Common Spacings
-  final EdgeInsets errorModalCloseButtonPadding1;
-  final EdgeInsets errorModalCloseButtonPadding2;
-  final EdgeInsets errorModalErrorWidgetPadding;
-  final EdgeInsets errorModalTitlePadding;
-  final TextStyle errorModalTitleTextStyle;
   final TextStyle errorTitle;
   final Widget faceScanDefaultIcon;
   final Widget faceScanInvertedIcon;
@@ -113,7 +91,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   final Widget fingerScanPressedIcon;
   final Color greenLight;
   final Color highlightColor;
-  final Widget infoCircleIcon;
   final Color lightRed;
   final Color pinCodeKeyTextColorDefault;
   final Color pinCodeKeyTextColorPressed;
@@ -126,8 +103,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   final Color pinKeyboardBottomButtonTextColor;
   final TextStyle pinKeyboardBottomButtonTextStyle;
   final Color pinKeyboardErrorPinColor;
-  final Color pinKeyboardErrorTextColor;
-  final TextStyle pinKeyboardErrorTextStyle;
   final Color pinKeyboardMaskedKeyBorderColor;
   final Color pinKeyboardMaskedKeyColor;
 
@@ -150,6 +125,9 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   final double spacingXL;
   final double spacingXS;
   final double spacingXS1;
+
+  /// endregion
+  /// region Common Spacings
   final double spacingXSS1;
   final double spacingXXL;
   final double spacingXXXL;
@@ -172,20 +150,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     descriptionBold: _$PinCodeTheme.descriptionBold[0],
     descriptionBoldTextStyle: _$PinCodeTheme.descriptionBoldTextStyle[0],
     descriptionThin: _$PinCodeTheme.descriptionThin[0],
-    errorModalActionButtonTextColor:
-        _$PinCodeTheme.errorModalActionButtonTextColor[0],
-    errorModalCloseButtonGradientStartColor:
-        _$PinCodeTheme.errorModalCloseButtonGradientStartColor[0],
-    errorModalCloseButtonIconColor:
-        _$PinCodeTheme.errorModalCloseButtonIconColor[0],
-    errorModalCloseButtonPadding1:
-        _$PinCodeTheme.errorModalCloseButtonPadding1[0],
-    errorModalCloseButtonPadding2:
-        _$PinCodeTheme.errorModalCloseButtonPadding2[0],
-    errorModalErrorWidgetPadding:
-        _$PinCodeTheme.errorModalErrorWidgetPadding[0],
-    errorModalTitlePadding: _$PinCodeTheme.errorModalTitlePadding[0],
-    errorModalTitleTextStyle: _$PinCodeTheme.errorModalTitleTextStyle[0],
     errorTitle: _$PinCodeTheme.errorTitle[0],
     faceScanDefaultIcon: _$PinCodeTheme.faceScanDefaultIcon[0],
     faceScanInvertedIcon: _$PinCodeTheme.faceScanInvertedIcon[0],
@@ -195,7 +159,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     fingerScanPressedIcon: _$PinCodeTheme.fingerScanPressedIcon[0],
     greenLight: _$PinCodeTheme.greenLight[0],
     highlightColor: _$PinCodeTheme.highlightColor[0],
-    infoCircleIcon: _$PinCodeTheme.infoCircleIcon[0],
     lightRed: _$PinCodeTheme.lightRed[0],
     pinCodeKeyTextColorDefault: _$PinCodeTheme.pinCodeKeyTextColorDefault[0],
     pinCodeKeyTextColorPressed: _$PinCodeTheme.pinCodeKeyTextColorPressed[0],
@@ -207,8 +170,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     pinKeyboardBottomButtonTextStyle:
         _$PinCodeTheme.pinKeyboardBottomButtonTextStyle[0],
     pinKeyboardErrorPinColor: _$PinCodeTheme.pinKeyboardErrorPinColor[0],
-    pinKeyboardErrorTextColor: _$PinCodeTheme.pinKeyboardErrorTextColor[0],
-    pinKeyboardErrorTextStyle: _$PinCodeTheme.pinKeyboardErrorTextStyle[0],
     pinKeyboardMaskedKeyBorderColor:
         _$PinCodeTheme.pinKeyboardMaskedKeyBorderColor[0],
     pinKeyboardMaskedKeyColor: _$PinCodeTheme.pinKeyboardMaskedKeyColor[0],
@@ -253,20 +214,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     descriptionBold: _$PinCodeTheme.descriptionBold[1],
     descriptionBoldTextStyle: _$PinCodeTheme.descriptionBoldTextStyle[1],
     descriptionThin: _$PinCodeTheme.descriptionThin[1],
-    errorModalActionButtonTextColor:
-        _$PinCodeTheme.errorModalActionButtonTextColor[1],
-    errorModalCloseButtonGradientStartColor:
-        _$PinCodeTheme.errorModalCloseButtonGradientStartColor[1],
-    errorModalCloseButtonIconColor:
-        _$PinCodeTheme.errorModalCloseButtonIconColor[1],
-    errorModalCloseButtonPadding1:
-        _$PinCodeTheme.errorModalCloseButtonPadding1[1],
-    errorModalCloseButtonPadding2:
-        _$PinCodeTheme.errorModalCloseButtonPadding2[1],
-    errorModalErrorWidgetPadding:
-        _$PinCodeTheme.errorModalErrorWidgetPadding[1],
-    errorModalTitlePadding: _$PinCodeTheme.errorModalTitlePadding[1],
-    errorModalTitleTextStyle: _$PinCodeTheme.errorModalTitleTextStyle[1],
     errorTitle: _$PinCodeTheme.errorTitle[1],
     faceScanDefaultIcon: _$PinCodeTheme.faceScanDefaultIcon[1],
     faceScanInvertedIcon: _$PinCodeTheme.faceScanInvertedIcon[1],
@@ -276,7 +223,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     fingerScanPressedIcon: _$PinCodeTheme.fingerScanPressedIcon[1],
     greenLight: _$PinCodeTheme.greenLight[1],
     highlightColor: _$PinCodeTheme.highlightColor[1],
-    infoCircleIcon: _$PinCodeTheme.infoCircleIcon[1],
     lightRed: _$PinCodeTheme.lightRed[1],
     pinCodeKeyTextColorDefault: _$PinCodeTheme.pinCodeKeyTextColorDefault[1],
     pinCodeKeyTextColorPressed: _$PinCodeTheme.pinCodeKeyTextColorPressed[1],
@@ -288,8 +234,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     pinKeyboardBottomButtonTextStyle:
         _$PinCodeTheme.pinKeyboardBottomButtonTextStyle[1],
     pinKeyboardErrorPinColor: _$PinCodeTheme.pinKeyboardErrorPinColor[1],
-    pinKeyboardErrorTextColor: _$PinCodeTheme.pinKeyboardErrorTextColor[1],
-    pinKeyboardErrorTextStyle: _$PinCodeTheme.pinKeyboardErrorTextStyle[1],
     pinKeyboardMaskedKeyBorderColor:
         _$PinCodeTheme.pinKeyboardMaskedKeyBorderColor[1],
     pinKeyboardMaskedKeyColor: _$PinCodeTheme.pinKeyboardMaskedKeyColor[1],
@@ -339,14 +283,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     TextStyle? descriptionBold,
     TextStyle? descriptionBoldTextStyle,
     TextStyle? descriptionThin,
-    Color? errorModalActionButtonTextColor,
-    Color? errorModalCloseButtonGradientStartColor,
-    Color? errorModalCloseButtonIconColor,
-    EdgeInsets? errorModalCloseButtonPadding1,
-    EdgeInsets? errorModalCloseButtonPadding2,
-    EdgeInsets? errorModalErrorWidgetPadding,
-    EdgeInsets? errorModalTitlePadding,
-    TextStyle? errorModalTitleTextStyle,
     TextStyle? errorTitle,
     Widget? faceScanDefaultIcon,
     Widget? faceScanInvertedIcon,
@@ -356,7 +292,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     Widget? fingerScanPressedIcon,
     Color? greenLight,
     Color? highlightColor,
-    Widget? infoCircleIcon,
     Color? lightRed,
     Color? pinCodeKeyTextColorDefault,
     Color? pinCodeKeyTextColorPressed,
@@ -366,8 +301,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
     Color? pinKeyboardBottomButtonTextColor,
     TextStyle? pinKeyboardBottomButtonTextStyle,
     Color? pinKeyboardErrorPinColor,
-    Color? pinKeyboardErrorTextColor,
-    TextStyle? pinKeyboardErrorTextStyle,
     Color? pinKeyboardMaskedKeyBorderColor,
     Color? pinKeyboardMaskedKeyColor,
     Color? primaryColor,
@@ -414,23 +347,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       descriptionBoldTextStyle:
           descriptionBoldTextStyle ?? this.descriptionBoldTextStyle,
       descriptionThin: descriptionThin ?? this.descriptionThin,
-      errorModalActionButtonTextColor: errorModalActionButtonTextColor ??
-          this.errorModalActionButtonTextColor,
-      errorModalCloseButtonGradientStartColor:
-          errorModalCloseButtonGradientStartColor ??
-              this.errorModalCloseButtonGradientStartColor,
-      errorModalCloseButtonIconColor:
-          errorModalCloseButtonIconColor ?? this.errorModalCloseButtonIconColor,
-      errorModalCloseButtonPadding1:
-          errorModalCloseButtonPadding1 ?? this.errorModalCloseButtonPadding1,
-      errorModalCloseButtonPadding2:
-          errorModalCloseButtonPadding2 ?? this.errorModalCloseButtonPadding2,
-      errorModalErrorWidgetPadding:
-          errorModalErrorWidgetPadding ?? this.errorModalErrorWidgetPadding,
-      errorModalTitlePadding:
-          errorModalTitlePadding ?? this.errorModalTitlePadding,
-      errorModalTitleTextStyle:
-          errorModalTitleTextStyle ?? this.errorModalTitleTextStyle,
       errorTitle: errorTitle ?? this.errorTitle,
       faceScanDefaultIcon: faceScanDefaultIcon ?? this.faceScanDefaultIcon,
       faceScanInvertedIcon: faceScanInvertedIcon ?? this.faceScanInvertedIcon,
@@ -443,7 +359,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           fingerScanPressedIcon ?? this.fingerScanPressedIcon,
       greenLight: greenLight ?? this.greenLight,
       highlightColor: highlightColor ?? this.highlightColor,
-      infoCircleIcon: infoCircleIcon ?? this.infoCircleIcon,
       lightRed: lightRed ?? this.lightRed,
       pinCodeKeyTextColorDefault:
           pinCodeKeyTextColorDefault ?? this.pinCodeKeyTextColorDefault,
@@ -458,10 +373,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           this.pinKeyboardBottomButtonTextStyle,
       pinKeyboardErrorPinColor:
           pinKeyboardErrorPinColor ?? this.pinKeyboardErrorPinColor,
-      pinKeyboardErrorTextColor:
-          pinKeyboardErrorTextColor ?? this.pinKeyboardErrorTextColor,
-      pinKeyboardErrorTextStyle:
-          pinKeyboardErrorTextStyle ?? this.pinKeyboardErrorTextStyle,
       pinKeyboardMaskedKeyBorderColor: pinKeyboardMaskedKeyBorderColor ??
           this.pinKeyboardMaskedKeyBorderColor,
       pinKeyboardMaskedKeyColor:
@@ -521,29 +432,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           descriptionBoldTextStyle, other.descriptionBoldTextStyle, t)!,
       descriptionThin:
           TextStyle.lerp(descriptionThin, other.descriptionThin, t)!,
-      errorModalActionButtonTextColor: Color.lerp(
-          errorModalActionButtonTextColor,
-          other.errorModalActionButtonTextColor,
-          t)!,
-      errorModalCloseButtonGradientStartColor: Color.lerp(
-          errorModalCloseButtonGradientStartColor,
-          other.errorModalCloseButtonGradientStartColor,
-          t)!,
-      errorModalCloseButtonIconColor: Color.lerp(errorModalCloseButtonIconColor,
-          other.errorModalCloseButtonIconColor, t)!,
-      errorModalCloseButtonPadding1: t < 0.5
-          ? errorModalCloseButtonPadding1
-          : other.errorModalCloseButtonPadding1,
-      errorModalCloseButtonPadding2: t < 0.5
-          ? errorModalCloseButtonPadding2
-          : other.errorModalCloseButtonPadding2,
-      errorModalErrorWidgetPadding: t < 0.5
-          ? errorModalErrorWidgetPadding
-          : other.errorModalErrorWidgetPadding,
-      errorModalTitlePadding:
-          t < 0.5 ? errorModalTitlePadding : other.errorModalTitlePadding,
-      errorModalTitleTextStyle: TextStyle.lerp(
-          errorModalTitleTextStyle, other.errorModalTitleTextStyle, t)!,
       errorTitle: TextStyle.lerp(errorTitle, other.errorTitle, t)!,
       faceScanDefaultIcon:
           t < 0.5 ? faceScanDefaultIcon : other.faceScanDefaultIcon,
@@ -559,7 +447,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           t < 0.5 ? fingerScanPressedIcon : other.fingerScanPressedIcon,
       greenLight: Color.lerp(greenLight, other.greenLight, t)!,
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
-      infoCircleIcon: t < 0.5 ? infoCircleIcon : other.infoCircleIcon,
       lightRed: Color.lerp(lightRed, other.lightRed, t)!,
       pinCodeKeyTextColorDefault: Color.lerp(
           pinCodeKeyTextColorDefault, other.pinCodeKeyTextColorDefault, t)!,
@@ -581,10 +468,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
           t)!,
       pinKeyboardErrorPinColor: Color.lerp(
           pinKeyboardErrorPinColor, other.pinKeyboardErrorPinColor, t)!,
-      pinKeyboardErrorTextColor: Color.lerp(
-          pinKeyboardErrorTextColor, other.pinKeyboardErrorTextColor, t)!,
-      pinKeyboardErrorTextStyle: TextStyle.lerp(
-          pinKeyboardErrorTextStyle, other.pinKeyboardErrorTextStyle, t)!,
       pinKeyboardMaskedKeyBorderColor: Color.lerp(
           pinKeyboardMaskedKeyBorderColor,
           other.pinKeyboardMaskedKeyBorderColor,
@@ -652,46 +535,46 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
                 descriptionBoldTextStyle, other.descriptionBoldTextStyle) &&
             const DeepCollectionEquality()
                 .equals(descriptionThin, other.descriptionThin) &&
-            const DeepCollectionEquality().equals(
-                errorModalActionButtonTextColor,
-                other.errorModalActionButtonTextColor) &&
-            const DeepCollectionEquality().equals(
-                errorModalCloseButtonGradientStartColor,
-                other.errorModalCloseButtonGradientStartColor) &&
-            const DeepCollectionEquality().equals(
-                errorModalCloseButtonIconColor,
-                other.errorModalCloseButtonIconColor) &&
-            const DeepCollectionEquality().equals(errorModalCloseButtonPadding1,
-                other.errorModalCloseButtonPadding1) &&
-            const DeepCollectionEquality().equals(errorModalCloseButtonPadding2,
-                other.errorModalCloseButtonPadding2) &&
-            const DeepCollectionEquality().equals(errorModalErrorWidgetPadding,
-                other.errorModalErrorWidgetPadding) &&
             const DeepCollectionEquality()
-                .equals(errorModalTitlePadding, other.errorModalTitlePadding) &&
-            const DeepCollectionEquality().equals(errorModalTitleTextStyle, other.errorModalTitleTextStyle) &&
-            const DeepCollectionEquality().equals(errorTitle, other.errorTitle) &&
-            const DeepCollectionEquality().equals(faceScanDefaultIcon, other.faceScanDefaultIcon) &&
-            const DeepCollectionEquality().equals(faceScanInvertedIcon, other.faceScanInvertedIcon) &&
-            const DeepCollectionEquality().equals(faceScanPressedIcon, other.faceScanPressedIcon) &&
-            const DeepCollectionEquality().equals(fingerScanDefaultIcon, other.fingerScanDefaultIcon) &&
-            const DeepCollectionEquality().equals(fingerScanInvertedIcon, other.fingerScanInvertedIcon) &&
-            const DeepCollectionEquality().equals(fingerScanPressedIcon, other.fingerScanPressedIcon) &&
-            const DeepCollectionEquality().equals(greenLight, other.greenLight) &&
-            const DeepCollectionEquality().equals(highlightColor, other.highlightColor) &&
-            const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
+                .equals(errorTitle, other.errorTitle) &&
+            const DeepCollectionEquality()
+                .equals(faceScanDefaultIcon, other.faceScanDefaultIcon) &&
+            const DeepCollectionEquality()
+                .equals(faceScanInvertedIcon, other.faceScanInvertedIcon) &&
+            const DeepCollectionEquality()
+                .equals(faceScanPressedIcon, other.faceScanPressedIcon) &&
+            const DeepCollectionEquality()
+                .equals(fingerScanDefaultIcon, other.fingerScanDefaultIcon) &&
+            const DeepCollectionEquality()
+                .equals(fingerScanInvertedIcon, other.fingerScanInvertedIcon) &&
+            const DeepCollectionEquality()
+                .equals(fingerScanPressedIcon, other.fingerScanPressedIcon) &&
+            const DeepCollectionEquality()
+                .equals(greenLight, other.greenLight) &&
+            const DeepCollectionEquality()
+                .equals(highlightColor, other.highlightColor) &&
             const DeepCollectionEquality().equals(lightRed, other.lightRed) &&
-            const DeepCollectionEquality().equals(pinCodeKeyTextColorDefault, other.pinCodeKeyTextColorDefault) &&
-            const DeepCollectionEquality().equals(pinCodeKeyTextColorPressed, other.pinCodeKeyTextColorPressed) &&
-            const DeepCollectionEquality().equals(pinCodeKeyTextStyle, other.pinCodeKeyTextStyle) &&
-            const DeepCollectionEquality().equals(pinDeleteActionIcon, other.pinDeleteActionIcon) &&
-            const DeepCollectionEquality().equals(pinDeleteDefaultIcon, other.pinDeleteDefaultIcon) &&
-            const DeepCollectionEquality().equals(pinKeyboardBottomButtonTextColor, other.pinKeyboardBottomButtonTextColor) &&
-            const DeepCollectionEquality().equals(pinKeyboardBottomButtonTextStyle, other.pinKeyboardBottomButtonTextStyle) &&
-            const DeepCollectionEquality().equals(pinKeyboardErrorPinColor, other.pinKeyboardErrorPinColor) &&
-            const DeepCollectionEquality().equals(pinKeyboardErrorTextColor, other.pinKeyboardErrorTextColor) &&
-            const DeepCollectionEquality().equals(pinKeyboardErrorTextStyle, other.pinKeyboardErrorTextStyle) &&
-            const DeepCollectionEquality().equals(pinKeyboardMaskedKeyBorderColor, other.pinKeyboardMaskedKeyBorderColor) &&
+            const DeepCollectionEquality().equals(
+                pinCodeKeyTextColorDefault, other.pinCodeKeyTextColorDefault) &&
+            const DeepCollectionEquality().equals(
+                pinCodeKeyTextColorPressed, other.pinCodeKeyTextColorPressed) &&
+            const DeepCollectionEquality()
+                .equals(pinCodeKeyTextStyle, other.pinCodeKeyTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(pinDeleteActionIcon, other.pinDeleteActionIcon) &&
+            const DeepCollectionEquality()
+                .equals(pinDeleteDefaultIcon, other.pinDeleteDefaultIcon) &&
+            const DeepCollectionEquality().equals(
+                pinKeyboardBottomButtonTextColor,
+                other.pinKeyboardBottomButtonTextColor) &&
+            const DeepCollectionEquality().equals(
+                pinKeyboardBottomButtonTextStyle,
+                other.pinKeyboardBottomButtonTextStyle) &&
+            const DeepCollectionEquality().equals(
+                pinKeyboardErrorPinColor, other.pinKeyboardErrorPinColor) &&
+            const DeepCollectionEquality().equals(
+                pinKeyboardMaskedKeyBorderColor,
+                other.pinKeyboardMaskedKeyBorderColor) &&
             const DeepCollectionEquality().equals(pinKeyboardMaskedKeyColor, other.pinKeyboardMaskedKeyColor) &&
             const DeepCollectionEquality().equals(primaryColor, other.primaryColor) &&
             const DeepCollectionEquality().equals(primaryGradientEnd, other.primaryGradientEnd) &&
@@ -736,15 +619,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(descriptionBold),
       const DeepCollectionEquality().hash(descriptionBoldTextStyle),
       const DeepCollectionEquality().hash(descriptionThin),
-      const DeepCollectionEquality().hash(errorModalActionButtonTextColor),
-      const DeepCollectionEquality()
-          .hash(errorModalCloseButtonGradientStartColor),
-      const DeepCollectionEquality().hash(errorModalCloseButtonIconColor),
-      const DeepCollectionEquality().hash(errorModalCloseButtonPadding1),
-      const DeepCollectionEquality().hash(errorModalCloseButtonPadding2),
-      const DeepCollectionEquality().hash(errorModalErrorWidgetPadding),
-      const DeepCollectionEquality().hash(errorModalTitlePadding),
-      const DeepCollectionEquality().hash(errorModalTitleTextStyle),
       const DeepCollectionEquality().hash(errorTitle),
       const DeepCollectionEquality().hash(faceScanDefaultIcon),
       const DeepCollectionEquality().hash(faceScanInvertedIcon),
@@ -754,7 +628,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(fingerScanPressedIcon),
       const DeepCollectionEquality().hash(greenLight),
       const DeepCollectionEquality().hash(highlightColor),
-      const DeepCollectionEquality().hash(infoCircleIcon),
       const DeepCollectionEquality().hash(lightRed),
       const DeepCollectionEquality().hash(pinCodeKeyTextColorDefault),
       const DeepCollectionEquality().hash(pinCodeKeyTextColorPressed),
@@ -764,8 +637,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(pinKeyboardBottomButtonTextColor),
       const DeepCollectionEquality().hash(pinKeyboardBottomButtonTextStyle),
       const DeepCollectionEquality().hash(pinKeyboardErrorPinColor),
-      const DeepCollectionEquality().hash(pinKeyboardErrorTextColor),
-      const DeepCollectionEquality().hash(pinKeyboardErrorTextStyle),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyBorderColor),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyColor),
       const DeepCollectionEquality().hash(primaryColor),

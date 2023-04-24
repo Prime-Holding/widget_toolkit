@@ -1,5 +1,7 @@
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:widget_toolkit/extensions.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../models/biometrics_authentication_type.dart';
@@ -53,6 +55,9 @@ abstract class PinCodeBlocStates {
 
   /// The loading state
   Stream<bool> get isLoading;
+
+  /// The error state
+  Stream<ErrorModel> get errors;
 }
 
 @RxBloc()
@@ -160,4 +165,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;
+
+  @override
+  Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 }

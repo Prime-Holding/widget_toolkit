@@ -7,6 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:rxdart/rxdart.dart' as _i2;
+import 'package:widget_toolkit/models.dart' as _i7;
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart'
     as _i6;
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/blocs/pin_code_bloc.dart'
@@ -117,6 +118,11 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
         Invocation.getter(#isLoading),
         returnValue: _i4.Stream<bool>.empty(),
       ) as _i4.Stream<bool>);
+  @override
+  _i4.Stream<_i7.ErrorModel> get errors => (super.noSuchMethod(
+        Invocation.getter(#errors),
+        returnValue: _i4.Stream<_i7.ErrorModel>.empty(),
+      ) as _i4.Stream<_i7.ErrorModel>);
 }
 
 /// A class which mocks [PinCodeBlocEvents].

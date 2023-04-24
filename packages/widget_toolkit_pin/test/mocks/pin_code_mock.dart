@@ -1,6 +1,7 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
@@ -20,6 +21,7 @@ PinCodeBlocType pinCodeMockFactory({
   bool? isPinCodeVerified,
   bool? areBiometricsEnabled,
   List<BiometricsAuthType>? availableBiometrics,
+  ErrorModel? error,
 }) {
   final blocMock = MockPinCodeBlocType();
   final eventsMock = MockPinCodeBlocEvents();
@@ -66,6 +68,11 @@ PinCodeBlocType pinCodeMockFactory({
     (_) => availableBiometrics != null
         ? Stream.value(availableBiometrics).publish()
         : const Stream<List<BiometricsAuthType>>.empty().publish(),
+  );
+
+  when(statesMock.errors).thenAnswer(
+    (_) =>
+        error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
   );
 
   return blocMock;

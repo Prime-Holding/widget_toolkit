@@ -5,33 +5,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
-import '../../base/extensions/error_model_translations.dart';
 import '../../base/utils/utils.dart';
 import '../models/biometrics_authentication_type.dart';
 import 'auto_submit_widget.dart';
 import 'pin_code_biometric_key_with_auto_submit.dart';
 import 'pin_code_delete_key.dart';
-import 'pin_code_error_modal.dart';
 import 'pin_code_key.dart';
 
 class PinCodeComponent extends StatefulWidget {
-  const PinCodeComponent(
-      {required this.keyLength,
-      this.mapMessageToString,
-      this.isAuthenticatedWithBiometrics,
-      this.isPinCodeVerified,
-      this.onChangePin,
-      this.error,
-      this.deleteKeyButton,
-      this.bottomRightKeyboardButton,
-      this.translatableStrings,
-      this.errorModalConfiguration = const ErrorModalConfiguration(),
-      super.key});
+  const PinCodeComponent({
+    required this.keyLength,
+    required this.translateError,
+    this.mapMessageToString,
+    this.isAuthenticatedWithBiometrics,
+    this.isPinCodeVerified,
+    this.deleteKeyButton,
+    this.bottomRightKeyboardButton,
+    this.translatableStrings,
+    this.onError,
+    super.key,
+  });
+
+  /// Handle the translation of the error from the errors stream
+  final String Function(Object error) translateError;
 
   /// [mapMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
@@ -46,13 +48,6 @@ class PinCodeComponent extends StatefulWidget {
   /// Returns the verification state of the input from the pin code auto submit value.
   final void Function(bool)? isPinCodeVerified;
 
-  ///Reflects every change of the code
-  final void Function()? onChangePin;
-
-  /// Expects to receive ErrorPinAttemptsModel and will translate it. Otherwise
-  /// a generic message will be displayed.
-  final ErrorModel? error;
-
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
   final PinCodeCustomKey? deleteKeyButton;
@@ -64,8 +59,9 @@ class PinCodeComponent extends StatefulWidget {
   /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
   final PinLocalizedStrings? translatableStrings;
 
-  /// Customize modal sheet appearance
-  final ErrorModalConfiguration errorModalConfiguration;
+  /// An optional function that enable error handling out of the package, it receives
+  /// the error from the errors stream and the translated error
+  final Function(Object error, String translatedError)? onError;
 
   @override
   State<PinCodeComponent> createState() => _PinCodeComponentState();
@@ -75,7 +71,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     with SingleTickerProviderStateMixin {
   String pin = '';
   late AnimationController _controller;
-  bool hasErrorText = false;
+  bool hasErrorText = true;
   bool isLoading = false;
   static const String _activateBiometrics =
       'Activate the biometrics of your device';
@@ -143,18 +139,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   }
 
   @override
-  void didUpdateWidget(covariant PinCodeComponent oldWidget) {
-    if (widget.error != null && !isLoading) {
-      _startErrorAnimation();
-    }
-
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _showErrorDialogIfNeeded());
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -193,6 +177,13 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           RxBlocListener<PinCodeBlocType, BiometricsMessage?>(
             state: (bloc) => bloc.states.biometricsDialog,
             listener: _onStateChanged,
+          ),
+          RxBlocListener<PinCodeBlocType, ErrorModel>(
+            state: (bloc) => bloc.states.errors,
+            listener: (context, error) {
+              final translatedError = widget.translateError(error);
+              widget.onError?.call(error, translatedError);
+            },
           ),
           _buildBuilders()
         ],
@@ -286,40 +277,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           duration: const Duration(milliseconds: 300),
           switchInCurve: Curves.easeOut,
           switchOutCurve: Curves.easeOut,
-          transitionBuilder: (child, animation) {
-            if (hasErrorText) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0, -1),
-                  end: const Offset(0, 0),
-                ).animate(animation),
-                child: FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
-              );
-            } else {
-              return AnimatedSwitcher.defaultTransitionBuilder
-                  .call(child, animation);
-            }
-          },
-          child: hasErrorText && widget.error is! ErrorPinAttemptsModel
-              ? _buildErrorText(context)
-              : _buildMaskedKeysRow(context),
+          transitionBuilder: (child, animation) =>
+              AnimatedSwitcher.defaultTransitionBuilder.call(child, animation),
+          child: _buildMaskedKeysRow(context),
         ),
-      );
-
-  Widget _buildErrorText(BuildContext context) => Column(
-        children: [
-          context.pinCodeTheme.infoCircleIcon,
-          SizedBox(height: context.pinCodeTheme.spacing2),
-          Text(
-            widget.error!.translate(context,
-                translatableStrings: widget.translatableStrings),
-            style: context.pinCodeTheme.pinKeyboardErrorTextStyle.copyWith(
-                color: context.pinCodeTheme.pinKeyboardErrorTextColor),
-          ),
-        ],
       );
 
   Widget _buildMaskedKeysRow(BuildContext context) => IntrinsicWidth(
@@ -659,41 +620,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         })
       : null;
 
-  Future<void> _startErrorAnimation() async {
-    await _controller.forward(from: 0);
-    if (widget.error is! ErrorPinAttemptsModel) {
-      setState(() {
-        hasErrorText = true;
-      });
-    }
-
-    pin = '';
-    if (widget.error is! ErrorPinAttemptsModel) {
-      await Future.delayed(const Duration(seconds: 2));
-    }
-    if (mounted) {
-      setState(() {
-        hasErrorText = false;
-      });
-    }
-  }
-
-  void _showErrorDialogIfNeeded() {
-    if (widget.error is! ErrorPinAttemptsModel) return;
-    if ((widget.error as ErrorPinAttemptsModel).remainingAttempts == 0) return;
-
-    showPinCodeErrorModal(context,
-        error: widget.error! as ErrorPinAttemptsModel,
-        hasRetryButton:
-            (widget.error! as ErrorPinAttemptsModel).remainingAttempts == 0,
-        onChangePinTap: widget.onChangePin,
-        translatableStrings: widget.translatableStrings,
-        modalConfiguration: widget.errorModalConfiguration);
-  }
-
-  /// todo test setBiometrics bloc event
-  /// get the state of the are biometrics enabled for the app and
-  /// if they are not available call setBiometrics with enable true
   void _onStateChanged(BuildContext context, BiometricsMessage? message) {
     if (message == null) {
       return;

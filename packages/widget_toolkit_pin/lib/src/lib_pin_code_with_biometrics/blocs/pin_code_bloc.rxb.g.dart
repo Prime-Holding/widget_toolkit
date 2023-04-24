@@ -67,6 +67,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
   late final Stream<bool> _isLoadingState = _mapToIsLoadingState();
 
+  /// The state of [errors] implemented in [_mapToErrorsState]
+  late final Stream<ErrorModel> _errorsState = _mapToErrorsState();
+
   @override
   void checkBiometricsEnabled() => _$checkBiometricsEnabledEvent.add(null);
 
@@ -114,6 +117,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   @override
   Stream<bool> get isLoading => _isLoadingState;
 
+  @override
+  Stream<ErrorModel> get errors => _errorsState;
+
   Stream<bool> _mapToAreBiometricsEnabledState();
 
   ConnectableStream<bool> _mapToIsPinCodeVerifiedState();
@@ -127,6 +133,8 @@ abstract class $PinCodeBloc extends RxBlocBase
   ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState();
 
   Stream<bool> _mapToIsLoadingState();
+
+  Stream<ErrorModel> _mapToErrorsState();
 
   @override
   PinCodeBlocEvents get events => this;

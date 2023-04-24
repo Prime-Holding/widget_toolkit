@@ -49,26 +49,24 @@ Widget pinCodePageFactory({
 }) =>
     Scaffold(
       backgroundColor: Colors.blue,
-      body: Padding(
-        padding: const EdgeInsets.all(30),
-        child: MultiProvider(
-          providers: [
-            RxBlocProvider<PinCodeBlocType>.value(
-              value: pinCodeMockFactory(
-                isLoading: isLoading,
-                biometricsMessage: biometricsMessage,
-                isPinCodeInSecureStorage: isPinCodeInSecureStorage,
-                isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
-                isPinCodeVerified: isPinCodeVerified,
-                areBiometricsEnabled: areBiometricsEnabled,
-                availableBiometrics: availableBiometrics,
-              ),
+      body: MultiProvider(
+        providers: [
+          RxBlocProvider<PinCodeBlocType>.value(
+            value: pinCodeMockFactory(
+              isLoading: isLoading,
+              biometricsMessage: biometricsMessage,
+              isPinCodeInSecureStorage: isPinCodeInSecureStorage,
+              isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
+              isPinCodeVerified: isPinCodeVerified,
+              areBiometricsEnabled: areBiometricsEnabled,
+              availableBiometrics: availableBiometrics,
             ),
-          ],
-          child: Builder(
-            builder: (context) => const PinCodeComponent(
-              keyLength: 6,
-            ),
+          ),
+        ],
+        child: Builder(
+          builder: (context) => PinCodeComponent(
+            keyLength: 6,
+            translateError: (error) => error.toString(),
           ),
         ),
       ),
