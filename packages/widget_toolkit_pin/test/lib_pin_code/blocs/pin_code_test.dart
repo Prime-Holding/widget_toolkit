@@ -62,6 +62,8 @@ void main() {
         .thenAnswer((_) => Future.value(pinCode));
 
     when(pinCodeService.getPinLength()).thenAnswer((_) => Future.value(6));
+
+    when(pinCodeService.getPinCode()).thenAnswer((_) => Future.value(pinCode));
   }
 
   PinCodeBloc pinCodeBloc({String? code, bool? returnNull, bool? throwError}) =>

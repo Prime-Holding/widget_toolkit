@@ -167,4 +167,12 @@ class MockPinCodeService extends _i1.Mock implements _i7.PinCodeService {
         ),
         returnValue: _i4.Future<String>.value(''),
       ) as _i4.Future<String>);
+  @override
+  _i4.Future<String?> getPinCode() => (super.noSuchMethod(
+        Invocation.method(
+          #getPinCode,
+          [],
+        ),
+        returnValue: _i4.Future<String?>.value(),
+      ) as _i4.Future<String?>);
 }
