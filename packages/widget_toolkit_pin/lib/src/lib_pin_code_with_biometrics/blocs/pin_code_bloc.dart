@@ -134,7 +134,6 @@ class PinCodeBloc extends $PinCodeBloc {
       .publishReplay(maxSize: 1);
 
   Future<bool> encryptAndVerify(String pinCode) async {
-    // Store the pin in device storage
     var encryptedPin = await pinCodeService.encryptPinCode(pinCode);
     var verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
     return verifiedPin;

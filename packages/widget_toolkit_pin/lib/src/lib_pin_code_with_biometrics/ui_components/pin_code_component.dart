@@ -666,8 +666,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   void _showErrorDialogIfNeeded() {
     if (widget.error is! ErrorPinAttemptsModel) return;
-    // The user should be logged out from the auth interceptor
-    // and this dialog should be opened from the landing page
     if ((widget.error as ErrorPinAttemptsModel).remainingAttempts == 0) return;
 
     showPinCodeErrorModal(context,
@@ -684,19 +682,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   /// if they are not available call setBiometrics with enable true
   void _onStateChanged(BuildContext context, BiometricsMessage? message) {
     if (message == null) {
-      // the user canceled authentication
       return;
     }
 
-    // if (onStateChanged == null) {
     _showBiometricsMessageBottomSheet(
       context,
       message,
       _localizeMessage(message),
     );
-    // } else {
-    //   onStateChanged!.call(context, message, _localizeMessage(message));
-    // }
   }
 
   String _localizeMessage(BiometricsMessage message) =>

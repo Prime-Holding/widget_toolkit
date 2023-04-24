@@ -69,13 +69,8 @@ void main() {
         biometricAuthenticationService: biometricAuthenticationService,
         localizedBiometricsMessage: '',
         pinCodeService: pinCodeService,
-        // MockPinCodeService(
-        //     code: code,
-        //     returnNull: returnNull ?? false,
-        //     throwError: throwError ?? false), // localizedBiometricsMessage,
       );
 
-  /// todo finish fixing the tests
   group('test pin_code_bloc_dart state areBiometricsEnabled', () {
     rxBlocTest<PinCodeBloc, bool>(
         'test pin_code_bloc_dart state areBiometricsEnabled',
