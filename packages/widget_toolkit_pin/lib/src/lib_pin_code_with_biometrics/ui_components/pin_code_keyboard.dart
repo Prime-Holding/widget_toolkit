@@ -37,6 +37,7 @@ class PinCodeKeyboard extends StatelessWidget {
     this.bottomRightKeyboardButton,
     this.translatableStrings,
     this.errorModalConfiguration = const ErrorModalConfiguration(),
+    this.addDependencies = true,
     Key? key,
   })  : assert(keyLength <= kPinMaxLength, 'max key length is 20'),
         super(key: key);
@@ -81,15 +82,13 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Customize modal sheet appearance
   final ErrorModalConfiguration errorModalConfiguration;
 
+  /// If set to true the dependencies will be injected before the building of
+  /// the widget, otherwise the user should provide an implementation for the
+  /// dependencies
+  final bool addDependencies;
+
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          ...PinCodeDependencies.from(
-            pinCodeService: pinCodeService,
-            biometricsLocalDataSource: biometricsLocalDataSource,
-            translatableStrings: translatableStrings,
-          ).providers,
-        ],
+  Widget build(BuildContext context) => _wrapWithDependencies(
         child: PinCodeComponent(
           keyLength: keyLength,
           mapMessageToString: mapMessageToString,
@@ -103,4 +102,21 @@ class PinCodeKeyboard extends StatelessWidget {
           errorModalConfiguration: errorModalConfiguration,
         ),
       );
+
+  Widget _wrapWithDependencies({required Widget child}) {
+    if (addDependencies) {
+      return MultiProvider(
+        providers: [
+          ...PinCodeDependencies.from(
+            pinCodeService: pinCodeService,
+            biometricsLocalDataSource: biometricsLocalDataSource,
+            translatableStrings: translatableStrings,
+          ).providers,
+        ],
+        child: child,
+      );
+    } else {
+      return child;
+    }
+  }
 }
