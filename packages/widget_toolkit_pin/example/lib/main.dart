@@ -121,9 +121,13 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+/// You have to implement and provide a [PinCodeService], you can use this to
+/// store the value of [_pinCode], for example in [SharedPreferences]
 class AppPinCodeService implements PinCodeService {
   AppPinCodeService();
 
+  /// This pin is intended to be stored in the secured storage for production
+  /// applications
   String? _pinCode;
 
   @override
@@ -160,16 +164,18 @@ class AppPinCodeService implements PinCodeService {
   }
 }
 
-/// You have to implement and provide a [BiometricsLocalDataSource]
-/// you can use this to store the value, for example in [SharedPreferences]
+/// You have to implement and provide a [BiometricsLocalDataSource], you can
+/// store the value of [_areBiometricsEnabled], for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
   ProfileLocalDataSource();
 
-  bool? _biometrics;
+  /// This bool check is intended to be stored in the secured storage for production
+  /// applications
+  bool? _areBiometricsEnabled;
 
   @override
-  Future<bool> areBiometricsEnabled() async => _biometrics ?? false;
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
 
   @override
-  Future<void> setBiometricsEnabled(bool enable) async => _biometrics = enable;
+  Future<void> setBiometricsEnabled(bool enable) async => _areBiometricsEnabled = enable;
 }
