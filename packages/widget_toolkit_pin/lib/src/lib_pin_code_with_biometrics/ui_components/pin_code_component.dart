@@ -190,34 +190,43 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       );
 
   Widget _buildBuilders() => Expanded(
-        child: RxBlocBuilder<PinCodeBlocType, bool>(
-          state: (bloc) => bloc.states.isPinCodeInSecureStorage,
-          builder: (context, isPinCodeInSecureStorage, bloc) =>
-              RxBlocBuilder<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.areBiometricsEnabled,
-            builder: (context, areBiometricsEnabled, bloc) =>
-                RxBlocBuilder<PinCodeBlocType, List<BiometricsAuthType>>(
-              state: (bloc) => bloc.states.availableBiometrics,
-              builder: (context, availableBiometrics, bloc) =>
-                  _buildPageContent(
-                isPinCodeIsSecureStorage: isPinCodeInSecureStorage.hasData &&
-                    isPinCodeInSecureStorage.data!,
-                context: context,
-                hasFingerScan: areBiometricsEnabled.hasData &&
-                    areBiometricsEnabled.data! &&
-                    availableBiometrics.hasData &&
-                    availableBiometrics.data!
-                        .contains(BiometricsAuthType.fingerprint),
-                hasFaceScan: areBiometricsEnabled.hasData &&
-                    areBiometricsEnabled.data! &&
-                    availableBiometrics.hasData &&
-                    availableBiometrics.data!.contains(BiometricsAuthType.face),
-                biometricsEnabled: areBiometricsEnabled.hasData
-                    ? areBiometricsEnabled.data!
-                    : false,
+        child: RxBlocBuilder<PinCodeBlocType, int>(
+          state: (bloc) => bloc.states.pinLength,
+          builder: (context, pinLength, bloc) {
+            print('pinLengthUI ${pinLength.data}');
+            //todo test this
+            return RxBlocBuilder<PinCodeBlocType, bool>(
+              state: (bloc) => bloc.states.isPinCodeInSecureStorage,
+              builder: (context, isPinCodeInSecureStorage, bloc) =>
+                  RxBlocBuilder<PinCodeBlocType, bool>(
+                state: (bloc) => bloc.states.areBiometricsEnabled,
+                builder: (context, areBiometricsEnabled, bloc) =>
+                    RxBlocBuilder<PinCodeBlocType, List<BiometricsAuthType>>(
+                  state: (bloc) => bloc.states.availableBiometrics,
+                  builder: (context, availableBiometrics, bloc) =>
+                      _buildPageContent(
+                    isPinCodeIsSecureStorage:
+                        isPinCodeInSecureStorage.hasData &&
+                            isPinCodeInSecureStorage.data!,
+                    context: context,
+                    hasFingerScan: areBiometricsEnabled.hasData &&
+                        areBiometricsEnabled.data! &&
+                        availableBiometrics.hasData &&
+                        availableBiometrics.data!
+                            .contains(BiometricsAuthType.fingerprint),
+                    hasFaceScan: areBiometricsEnabled.hasData &&
+                        areBiometricsEnabled.data! &&
+                        availableBiometrics.hasData &&
+                        availableBiometrics.data!
+                            .contains(BiometricsAuthType.face),
+                    biometricsEnabled: areBiometricsEnabled.hasData
+                        ? areBiometricsEnabled.data!
+                        : false,
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       );
 

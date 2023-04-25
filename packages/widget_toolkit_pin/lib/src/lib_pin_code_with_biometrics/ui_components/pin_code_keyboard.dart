@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
-import '../../base/resources/app_constants.dart';
 import '../di/pin_code_dependencies.dart';
 import 'pin_code_component.dart';
 
@@ -19,13 +18,14 @@ import 'pin_code_component.dart';
 /// When the user submits the pin code, the widget should present to the user that
 /// the pin verification is in progress. Over the masked pin a Shimmer will be
 /// presented and buttons will change their appearance.
-/// The pin code from the input is auto submitted once its length reaches [keyLength].
+/// The pin code from the input is auto submitted once its length reaches
+/// [PinCodeService.getPinLength()].
 /// When the biometrics button on the bottom right is pressed an enable biometrics
 /// question pops up after the permission is given the pressing of the button
 /// triggers a biometrics scan.
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
-    required this.keyLength,
+    // required this.keyLength,
     required this.pinCodeService,
     required this.biometricsLocalDataSource,
     required this.translateError,
@@ -38,7 +38,7 @@ class PinCodeKeyboard extends StatelessWidget {
     this.addDependencies = true,
     this.onError,
     Key? key,
-  })  : assert(keyLength <= kPinMaxLength, 'max key length is 20'),
+  })  : //assert(keyLength <= kPinMaxLength, 'max key length is 20'),
         super(key: key);
 
   final String Function(Object error) translateError;
@@ -48,7 +48,7 @@ class PinCodeKeyboard extends StatelessWidget {
   final String Function(BiometricsMessage message)? mapMessageToString;
 
   /// Define how many numbers contains your key. Max 10 digits
-  final int keyLength;
+  // final int keyLength;
 
   /// Provides a contract to be implemented for the pin code related methods.
   final PinCodeService pinCodeService;
@@ -62,12 +62,15 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Returns the verification state of the input from the pin code auto submit value.
   final void Function(bool)? isPinCodeVerified;
 
-  /// Provide custom implementation for the most down left button. Do not forget
-  /// to make it clickable. Default to LeftArrow.
+  /// Provide custom implementation for the most down left button, shown when
+  /// there is pin code input on the screen. Do not forget to make it clickable.
+  /// Default to LeftArrow.
   final PinCodeCustomKey? deleteKeyButton;
 
-  /// Provide custom implementation for the most down right button. Do not forget
-  /// to make it clickable.
+  /// Provide custom implementation for the most down right button. If this
+  /// parameter is not used, a default button is used, which provides pin code
+  /// auto submit, biometrics enabling and biometrics authentication functionalities,
+  /// and its icon changes to empty, face, finger. Do not forget to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
   /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
@@ -85,7 +88,7 @@ class PinCodeKeyboard extends StatelessWidget {
   Widget build(BuildContext context) => _wrapWithDependencies(
         child: PinCodeComponent(
           translateError: translateError,
-          keyLength: keyLength,
+          keyLength: 3,
           mapMessageToString: mapMessageToString,
           isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
           isPinCodeVerified: isPinCodeVerified,

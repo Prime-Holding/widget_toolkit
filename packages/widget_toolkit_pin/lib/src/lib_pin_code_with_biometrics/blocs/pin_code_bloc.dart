@@ -53,6 +53,8 @@ abstract class PinCodeBlocStates {
   /// Returns true if there is any pin code stored in device local secure storage
   ConnectableStream<bool> get isPinCodeInSecureStorage;
 
+  ConnectableStream<int> get pinLength;
+
   /// The loading state
   Stream<bool> get isLoading;
 
@@ -73,6 +75,7 @@ class PinCodeBloc extends $PinCodeBloc {
     isAuthenticatedWithBiometrics.connect().addTo(_compositeSubscription);
     isPinCodeVerified.connect().addTo(_compositeSubscription);
     availableBiometrics.connect().addTo(_compositeSubscription);
+    pinLength.connect().addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -162,6 +165,16 @@ class PinCodeBloc extends $PinCodeBloc {
           checkBiometricsEnabled();
         }
       });
+
+  @override
+  ConnectableStream<int> _mapToPinLengthState() => pinCodeService
+          .getPinLength()
+          .asResultStream()
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .doOnData((event) {
+        print('getPinLengthBloc: $event');
+      }).publish();
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;

@@ -70,7 +70,7 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: buildWithBiometrics(context),
+                    child: _buildPinCodeWithBiometrics(context),
                   ),
                 ],
               ),
@@ -79,16 +79,17 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
-  Widget buildWithBiometrics(BuildContext context) => PinCodeKeyboard(
+  Widget _buildPinCodeWithBiometrics(BuildContext context) => PinCodeKeyboard(
         translateError: _translateError,
         mapMessageToString: _exampleMapMessageToString,
-        keyLength: 3,
+        // keyLength: 3,
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
         onError: (error, translatedError) =>
             _exampleOnError(context, error, translatedError),
       );
 
+  /// todo this to be deleted probably
   String _translateError(Object error) => 'translated error';
 
   void _exampleOnError(
@@ -191,13 +192,9 @@ class InMemoryInstance {
 
   bool getBool(String key) => _data[key] ?? false;
 
-  void setBool(String key, bool value) {
-    _data[key] = value;
-  }
+  void setBool(String key, bool value) => _data[key] = value;
 
   String getString(String key) => _data[key] ?? '';
 
-  void setString(String key, String value) {
-    _data[key] = value;
-  }
+  void setString(String key, String value) => _data[key] = value;
 }

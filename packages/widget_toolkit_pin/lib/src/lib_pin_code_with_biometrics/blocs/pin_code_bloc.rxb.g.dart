@@ -64,6 +64,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   late final ConnectableStream<bool> _isPinCodeInSecureStorageState =
       _mapToIsPinCodeInSecureStorageState();
 
+  /// The state of [pinLength] implemented in [_mapToPinLengthState]
+  late final ConnectableStream<int> _pinLengthState = _mapToPinLengthState();
+
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
   late final Stream<bool> _isLoadingState = _mapToIsLoadingState();
 
@@ -115,6 +118,9 @@ abstract class $PinCodeBloc extends RxBlocBase
       _isPinCodeInSecureStorageState;
 
   @override
+  ConnectableStream<int> get pinLength => _pinLengthState;
+
+  @override
   Stream<bool> get isLoading => _isLoadingState;
 
   @override
@@ -131,6 +137,8 @@ abstract class $PinCodeBloc extends RxBlocBase
   Stream<BiometricsMessage?> _mapToBiometricsDialogState();
 
   ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState();
+
+  ConnectableStream<int> _mapToPinLengthState();
 
   Stream<bool> _mapToIsLoadingState();
 
