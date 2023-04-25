@@ -146,7 +146,9 @@ class AppPinCodeService implements PinCodeService {
   }
 
   @override
-  Future<int> getPinLength() => Future.value(3);
+  Future<int> getPinLength() async {
+    await Future.value(const Duration(seconds: 10));
+    return Future.value(3);}
 
   @override
   Future<bool> verifyPinCode(String pinCode) {

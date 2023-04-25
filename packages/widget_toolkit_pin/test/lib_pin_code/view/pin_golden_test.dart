@@ -46,6 +46,7 @@ Widget pinCodePageFactory({
   bool? isPinCodeVerified,
   bool? areBiometricsEnabled,
   List<BiometricsAuthType>? availableBiometrics,
+  int pinLength = 6,
 }) =>
     Scaffold(
       backgroundColor: Colors.blue,
@@ -60,12 +61,14 @@ Widget pinCodePageFactory({
               isPinCodeVerified: isPinCodeVerified,
               areBiometricsEnabled: areBiometricsEnabled,
               availableBiometrics: availableBiometrics,
+              pinLength: pinLength,
             ),
           ),
         ],
         child: Builder(
           builder: (context) => PinCodeComponent(
             translateError: (error) => error.toString(),
+            pinLength: pinLength,
           ),
         ),
       ),

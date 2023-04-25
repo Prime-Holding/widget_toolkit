@@ -22,6 +22,7 @@ PinCodeBlocType pinCodeMockFactory({
   bool? areBiometricsEnabled,
   List<BiometricsAuthType>? availableBiometrics,
   ErrorModel? error,
+  int? pinLength,
 }) {
   final blocMock = MockPinCodeBlocType();
   final eventsMock = MockPinCodeBlocEvents();
@@ -73,6 +74,12 @@ PinCodeBlocType pinCodeMockFactory({
   when(statesMock.errors).thenAnswer(
     (_) =>
         error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
+  );
+
+  when(statesMock.pinLength).thenAnswer(
+    (_) => pinLength != null
+        ? Stream<int>.value(pinLength).publish()
+        : const Stream<int>.empty().publish(),
   );
 
   return blocMock;

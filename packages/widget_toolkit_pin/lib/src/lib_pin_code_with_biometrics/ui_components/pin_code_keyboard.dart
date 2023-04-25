@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
@@ -81,15 +82,24 @@ class PinCodeKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
-        child: PinCodeComponent(
-          translateError: translateError,
-          mapMessageToString: mapMessageToString,
-          isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
-          isPinCodeVerified: isPinCodeVerified,
-          deleteKeyButton: deleteKeyButton,
-          bottomRightKeyboardButton: bottomRightKeyboardButton,
-          translatableStrings: translatableStrings,
-          onError: onError,
+        child: RxBlocBuilder<PinCodeBlocType, int>(
+          state: (bloc) => bloc.states.pinLength,
+          builder: (context, snapshot, bloc) {
+            if (snapshot.hasData) {
+              return PinCodeComponent(
+                pinLength: snapshot.data!,
+                translateError: translateError,
+                mapMessageToString: mapMessageToString,
+                isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
+                isPinCodeVerified: isPinCodeVerified,
+                deleteKeyButton: deleteKeyButton,
+                bottomRightKeyboardButton: bottomRightKeyboardButton,
+                translatableStrings: translatableStrings,
+                onError: onError,
+              );
+            }
+            return Container();
+          },
         ),
       );
 

@@ -142,6 +142,14 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
   }
 
   @override
+  void getPinLength(int? length) => super.noSuchMethod(
+        Invocation.method(
+          #getPinLength,
+          [length],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   void checkBiometricsEnabled() => super.noSuchMethod(
         Invocation.method(
           #checkBiometricsEnabled,

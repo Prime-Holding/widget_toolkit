@@ -12,6 +12,9 @@ part 'pin_code_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the PinCodeBloc.
 abstract class PinCodeBlocEvents {
+  // @RxBlocEvent(type: RxBlocEventType.behaviour)
+  void getPinLength(int? length);
+
   /// Checks whether the biometrics are enabled for the application
   @RxBlocEvent(type: RxBlocEventType.behaviour)
   void checkBiometricsEnabled();
@@ -69,6 +72,7 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.pinCodeService,
     required this.localizedBiometricsMessage,
   }) {
+    // getPinLength(6);
     checkPinCodeInStorage();
     checkBiometricsEnabled();
     isPinCodeInSecureStorage.connect().addTo(_compositeSubscription);
@@ -167,14 +171,16 @@ class PinCodeBloc extends $PinCodeBloc {
       });
 
   @override
-  ConnectableStream<int> _mapToPinLengthState() => pinCodeService
-          .getPinLength()
-          .asResultStream()
-          .setResultStateHandler(this)
-          .whereSuccess()
-          .doOnData((event) {
-        print('getPinLengthBloc: $event');
-      }).publish();
+  ConnectableStream<int> _mapToPinLengthState() => _$getPinLengthEvent
+      .startWith(null)
+      // .doOnData((event) {
+    // print('doOnData3 $event');
+  // })
+      .switchMap((value) => pinCodeService.getPinLength().asResultStream())
+
+      .setResultStateHandler(this)
+      .whereSuccess()
+      .publish();
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;

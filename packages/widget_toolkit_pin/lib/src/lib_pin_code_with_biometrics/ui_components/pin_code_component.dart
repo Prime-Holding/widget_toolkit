@@ -21,6 +21,7 @@ import 'pin_code_key.dart';
 class PinCodeComponent extends StatefulWidget {
   const PinCodeComponent({
     required this.translateError,
+    required this.pinLength,
     this.mapMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
@@ -30,6 +31,8 @@ class PinCodeComponent extends StatefulWidget {
     this.onError,
     super.key,
   });
+
+  final int pinLength;
 
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
@@ -186,53 +189,46 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       );
 
   Widget _buildBuilders() => Expanded(
-        child: RxBlocBuilder<PinCodeBlocType, int>(
-          state: (bloc) => bloc.states.pinLength,
-          builder: (context, pinLength, bloc) =>
+        child: RxBlocBuilder<PinCodeBlocType, bool>(
+          state: (bloc) => bloc.states.isPinCodeInSecureStorage,
+          builder: (context, isPinCodeInSecureStorage, bloc) =>
               RxBlocBuilder<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.isPinCodeInSecureStorage,
-            builder: (context, isPinCodeInSecureStorage, bloc) =>
-                RxBlocBuilder<PinCodeBlocType, bool>(
-              state: (bloc) => bloc.states.areBiometricsEnabled,
-              builder: (context, areBiometricsEnabled, bloc) =>
-                  RxBlocBuilder<PinCodeBlocType, List<BiometricsAuthType>>(
-                state: (bloc) => bloc.states.availableBiometrics,
-                builder: (context, availableBiometrics, bloc) => Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        context.pinCodeTheme.primaryGradientStart,
-                        context.pinCodeTheme.primaryGradientEnd
-                      ],
-                    ),
+            state: (bloc) => bloc.states.areBiometricsEnabled,
+            builder: (context, areBiometricsEnabled, bloc) =>
+                RxBlocBuilder<PinCodeBlocType, List<BiometricsAuthType>>(
+              state: (bloc) => bloc.states.availableBiometrics,
+              builder: (context, availableBiometrics, bloc) => Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      context.pinCodeTheme.primaryGradientStart,
+                      context.pinCodeTheme.primaryGradientEnd
+                    ],
                   ),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.1,
-                      vertical: 20),
-                  child: pinLength.hasData
-                      ? _buildPageContent(
-                          pinLength: pinLength.data!,
-                          isPinCodeIsSecureStorage:
-                              isPinCodeInSecureStorage.hasData &&
-                                  isPinCodeInSecureStorage.data!,
-                          context: context,
-                          hasFingerScan: areBiometricsEnabled.hasData &&
-                              areBiometricsEnabled.data! &&
-                              availableBiometrics.hasData &&
-                              availableBiometrics.data!
-                                  .contains(BiometricsAuthType.fingerprint),
-                          hasFaceScan: areBiometricsEnabled.hasData &&
-                              areBiometricsEnabled.data! &&
-                              availableBiometrics.hasData &&
-                              availableBiometrics.data!
-                                  .contains(BiometricsAuthType.face),
-                          biometricsEnabled: areBiometricsEnabled.hasData
-                              ? areBiometricsEnabled.data!
-                              : false,
-                        )
-                      : Container(),
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.1,
+                    vertical: 20),
+                child: _buildPageContent(
+                  pinLength: widget.pinLength,
+                  isPinCodeIsSecureStorage: isPinCodeInSecureStorage.hasData &&
+                      isPinCodeInSecureStorage.data!,
+                  context: context,
+                  hasFingerScan: areBiometricsEnabled.hasData &&
+                      areBiometricsEnabled.data! &&
+                      availableBiometrics.hasData &&
+                      availableBiometrics.data!
+                          .contains(BiometricsAuthType.fingerprint),
+                  hasFaceScan: areBiometricsEnabled.hasData &&
+                      areBiometricsEnabled.data! &&
+                      availableBiometrics.hasData &&
+                      availableBiometrics.data!
+                          .contains(BiometricsAuthType.face),
+                  biometricsEnabled: areBiometricsEnabled.hasData
+                      ? areBiometricsEnabled.data!
+                      : false,
                 ),
               ),
             ),
@@ -248,29 +244,25 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     required bool hasFaceScan,
     required bool biometricsEnabled,
   }) =>
-      pinLength < 10
-          ? SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(flex: 4, child: Container()),
-                  _buildAnimatedKeysAndErrorBuilder(context, pinLength),
-                  Flexible(flex: 3, child: Container()),
-                  _buildKeyboard(
-                    verticalSpacing: MediaQuery.of(context).size.height / 45,
-                    isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
-                    context: context,
-                    hasFingerScan: hasFingerScan,
-                    hasFaceScan: hasFaceScan,
-                    biometricsEnabled: biometricsEnabled,
-                    pinLength: pinLength,
-                  ),
-                ],
-              ),
-            )
-          : const Center(
-              child: Text('Pin code length, should be less than 10'),
-            );
+      SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(flex: 4, child: Container()),
+            _buildAnimatedKeysAndErrorBuilder(context, pinLength),
+            Flexible(flex: 3, child: Container()),
+            _buildKeyboard(
+              verticalSpacing: MediaQuery.of(context).size.height / 45,
+              isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
+              context: context,
+              hasFingerScan: hasFingerScan,
+              hasFaceScan: hasFaceScan,
+              biometricsEnabled: biometricsEnabled,
+              pinLength: pinLength,
+            ),
+          ],
+        ),
+      );
 
   /// region Builders
 
@@ -574,7 +566,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           hasFingerScan,
         );
       }
-        return Container();
+      return Container();
     } else {
       return _buildEnableBiometricsButton(
         biometricsEnabled,

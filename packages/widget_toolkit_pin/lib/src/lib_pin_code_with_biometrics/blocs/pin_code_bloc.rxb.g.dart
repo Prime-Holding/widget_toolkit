@@ -19,6 +19,9 @@ abstract class $PinCodeBloc extends RxBlocBase
     implements PinCodeBlocEvents, PinCodeBlocStates, PinCodeBlocType {
   final _compositeSubscription = CompositeSubscription();
 
+  /// Тhe [Subject] where events sink to by calling [getPinLength]
+  final _$getPinLengthEvent = PublishSubject<int?>();
+
   /// Тhe [Subject] where events sink to by calling [checkBiometricsEnabled]
   final _$checkBiometricsEnabledEvent = BehaviorSubject<void>();
 
@@ -72,6 +75,9 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   /// The state of [errors] implemented in [_mapToErrorsState]
   late final Stream<ErrorModel> _errorsState = _mapToErrorsState();
+
+  @override
+  void getPinLength(int? length) => _$getPinLengthEvent.add(length);
 
   @override
   void checkBiometricsEnabled() => _$checkBiometricsEnabledEvent.add(null);
@@ -152,6 +158,7 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   @override
   void dispose() {
+    _$getPinLengthEvent.close();
     _$checkBiometricsEnabledEvent.close();
     _$checkPinCodeInStorageEvent.close();
     _$requestBiometricAuthEvent.close();
