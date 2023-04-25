@@ -177,5 +177,6 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
   Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
 
   @override
-  Future<void> setBiometricsEnabled(bool enable) async => _areBiometricsEnabled = enable;
+  Future<void> setBiometricsEnabled(bool enable) async =>
+      _areBiometricsEnabled = enable;
 }
