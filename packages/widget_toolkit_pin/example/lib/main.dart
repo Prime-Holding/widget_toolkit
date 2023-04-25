@@ -124,15 +124,11 @@ class MyHomePage extends StatelessWidget {
 class AppPinCodeService implements PinCodeService {
   AppPinCodeService();
 
-  final Map<String, dynamic> _data = {};
-
-  static const _isPinCodeInStorage = 'pinCode';
+  String? _pinCode;
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
-    var isPinCodeInSecureStorage = _data[_isPinCodeInStorage] ?? '';
-
-    if (isPinCodeInSecureStorage.isEmpty) {
+    if (_pinCode == null) {
       return Future.value(false);
     }
     return Future.value(true);
@@ -140,7 +136,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    _data[_isPinCodeInStorage] = pinCode;
+    _pinCode = pinCode;
     return Future.value(pinCode);
   }
 
@@ -157,11 +153,10 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() async {
-    var pin = _data[_isPinCodeInStorage] ?? '';
-    if (pin.isEmpty) {
-      Future.value(null);
+    if (_pinCode == null) {
+      return Future.value(null);
     }
-    return Future.value(pin);
+    return Future.value(_pinCode);
   }
 }
 
@@ -170,15 +165,11 @@ class AppPinCodeService implements PinCodeService {
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
   ProfileLocalDataSource();
 
-  final Map<String, dynamic> _data = {};
-
-  static const _areBiometricsEnabled = 'areBiometricsEnabled';
+  bool? _biometrics;
 
   @override
-  Future<bool> areBiometricsEnabled() async =>
-      _data[_areBiometricsEnabled] ?? false;
+  Future<bool> areBiometricsEnabled() async => _biometrics ?? false;
 
   @override
-  Future<void> setBiometricsEnabled(bool enable) async =>
-      _data[_areBiometricsEnabled] = enable;
+  Future<void> setBiometricsEnabled(bool enable) async => _biometrics = enable;
 }
