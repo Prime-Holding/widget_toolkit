@@ -19,13 +19,12 @@ import 'pin_code_component.dart';
 /// the pin verification is in progress. Over the masked pin a Shimmer will be
 /// presented and buttons will change their appearance.
 /// The pin code from the input is auto submitted once its length reaches
-/// [PinCodeService.getPinLength()].
+/// [PinCodeService.getPinLength()], which should return a value less than 10.
 /// When the biometrics button on the bottom right is pressed an enable biometrics
 /// question pops up after the permission is given the pressing of the button
 /// triggers a biometrics scan.
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
-    // required this.keyLength,
     required this.pinCodeService,
     required this.biometricsLocalDataSource,
     required this.translateError,
@@ -38,17 +37,13 @@ class PinCodeKeyboard extends StatelessWidget {
     this.addDependencies = true,
     this.onError,
     Key? key,
-  })  : //assert(keyLength <= kPinMaxLength, 'max key length is 20'),
-        super(key: key);
+  }) : super(key: key);
 
   final String Function(Object error) translateError;
 
   /// [mapMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
   final String Function(BiometricsMessage message)? mapMessageToString;
-
-  /// Define how many numbers contains your key. Max 10 digits
-  // final int keyLength;
 
   /// Provides a contract to be implemented for the pin code related methods.
   final PinCodeService pinCodeService;
@@ -88,7 +83,6 @@ class PinCodeKeyboard extends StatelessWidget {
   Widget build(BuildContext context) => _wrapWithDependencies(
         child: PinCodeComponent(
           translateError: translateError,
-          keyLength: 3,
           mapMessageToString: mapMessageToString,
           isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
           isPinCodeVerified: isPinCodeVerified,
@@ -99,20 +93,16 @@ class PinCodeKeyboard extends StatelessWidget {
         ),
       );
 
-  Widget _wrapWithDependencies({required Widget child}) {
-    if (addDependencies) {
-      return MultiProvider(
-        providers: [
-          ...PinCodeDependencies.from(
-            pinCodeService: pinCodeService,
-            biometricsLocalDataSource: biometricsLocalDataSource,
-            translatableStrings: translatableStrings,
-          ).providers,
-        ],
-        child: child,
-      );
-    } else {
-      return child;
-    }
-  }
+  Widget _wrapWithDependencies({required Widget child}) => addDependencies
+      ? MultiProvider(
+          providers: [
+            ...PinCodeDependencies.from(
+              pinCodeService: pinCodeService,
+              biometricsLocalDataSource: biometricsLocalDataSource,
+              translatableStrings: translatableStrings,
+            ).providers,
+          ],
+          child: child,
+        )
+      : child;
 }

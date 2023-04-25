@@ -65,7 +65,6 @@ Widget pinCodePageFactory({
         ],
         child: Builder(
           builder: (context) => PinCodeComponent(
-            keyLength: 6,
             translateError: (error) => error.toString(),
           ),
         ),
