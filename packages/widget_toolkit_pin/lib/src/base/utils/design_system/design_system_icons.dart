@@ -39,16 +39,4 @@ class DesignSystemIcons {
     AssetNames.fingerScanPressed,
     semanticsLabel: 'fingerScanPressed',
   );
-  final infoCircle = SvgPicture.asset(
-    AssetNames.infoCircle,
-    semanticsLabel: 'infoCircle',
-  );
-  final pinNextEnabled = SvgPicture.asset(
-    AssetNames.pinNextEnabled,
-    semanticsLabel: 'pinNextEnabled',
-  );
-  final pinNextDisabled = SvgPicture.asset(
-    AssetNames.pinNextDisabled,
-    semanticsLabel: 'pinNextDisabled',
-  );
 }

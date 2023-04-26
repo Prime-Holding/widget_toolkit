@@ -113,8 +113,7 @@ class PinCodeKeyboard extends StatelessWidget {
             ...PinCodeDependencies.from(
               pinCodeService: pinCodeService,
               biometricsLocalDataSource: biometricsLocalDataSource,
-              localizedReason:
-                  localizedReason ?? _enterPinWithBiometrics,
+              localizedReason: localizedReason ?? _enterPinWithBiometrics,
             ).providers,
           ],
           child: child,
