@@ -222,6 +222,22 @@ to the user when they  are prompted to confirm that they want to enable biometri
 ```dart
 localizedReason: 'Activate the biometrics of your device',
 ```
+## Functional specifications
+
+When the widget is loaded for the first time on the bottom right of the page, there is no button.
+At this point the biometrics for the app are still not enabled.
+After at least 1 number has been selected the delete button shows up. When the length of the input
+reached the pin code length the button icon disappears. The pin code is encrypted stored in the
+local device secure storage. Then, there is an auto submit of the selected
+pin code to the backend for verification. After the pin has been saved successfully in the secure
+storage, the biometrics icon appear on the bottom right. When you press it, it triggers enabling
+of the biometrics event. The local authentication from the local_auth package is triggered.
+The user is asked, if he/she wants to allow the app to use biometrics authentication. When you click
+ok, the biometrics authentication is triggered. When it is successful, on the screen is displayed
+a message that the biometrics are enabled. The next time when restart the app, because the pin code
+will be stored in the device secure storage, the biometrics authentication will be automatically
+triggered and the biometrics icon will be displayed on the bottom right. When you press it every 
+time it will trigger the biometric authentication.
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
