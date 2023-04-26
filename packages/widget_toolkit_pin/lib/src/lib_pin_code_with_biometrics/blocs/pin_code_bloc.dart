@@ -12,12 +12,14 @@ part 'pin_code_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the PinCodeBloc.
 abstract class PinCodeBlocEvents {
-  // @RxBlocEvent(type: RxBlocEventType.behaviour)
   void getPinLength(int? length);
 
   /// Checks whether the biometrics are enabled for the application
   @RxBlocEvent(type: RxBlocEventType.behaviour)
   void checkBiometricsEnabled();
+
+  @RxBlocEvent(type: RxBlocEventType.behaviour)
+  void checkAvailableBiometrics();
 
   /// Checks whether there is a pin code stored in the device secure storage
   @RxBlocEvent(type: RxBlocEventType.behaviour)
@@ -72,9 +74,9 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.pinCodeService,
     required this.localizedBiometricsMessage,
   }) {
-    // getPinLength(6);
     checkPinCodeInStorage();
     checkBiometricsEnabled();
+    checkAvailableBiometrics();
     isPinCodeInSecureStorage.connect().addTo(_compositeSubscription);
     isAuthenticatedWithBiometrics.connect().addTo(_compositeSubscription);
     isPinCodeVerified.connect().addTo(_compositeSubscription);
@@ -120,12 +122,13 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<List<BiometricsAuthType>>
-      _mapToAvailableBiometricsState() =>
-          biometricAuthenticationService.availableBiometrics
-              .asResultStream()
-              .setResultStateHandler(this)
-              .whereSuccess()
-              .publish();
+      _mapToAvailableBiometricsState() => _$checkAvailableBiometricsEvent
+          .switchMap((value) => biometricAuthenticationService
+              .availableBiometrics
+              .asResultStream())
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publishReplay();
 
   @override
   ConnectableStream<bool> _mapToIsAuthenticatedWithBiometricsState() =>
@@ -173,11 +176,7 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   ConnectableStream<int> _mapToPinLengthState() => _$getPinLengthEvent
       .startWith(null)
-      // .doOnData((event) {
-    // print('doOnData3 $event');
-  // })
       .switchMap((value) => pinCodeService.getPinLength().asResultStream())
-
       .setResultStateHandler(this)
       .whereSuccess()
       .publish();

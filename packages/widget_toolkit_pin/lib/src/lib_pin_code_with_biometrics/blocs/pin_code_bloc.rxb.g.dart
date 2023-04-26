@@ -25,6 +25,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// Тhe [Subject] where events sink to by calling [checkBiometricsEnabled]
   final _$checkBiometricsEnabledEvent = BehaviorSubject<void>();
 
+  /// Тhe [Subject] where events sink to by calling [checkAvailableBiometrics]
+  final _$checkAvailableBiometricsEvent = BehaviorSubject<void>();
+
   /// Тhe [Subject] where events sink to by calling [checkPinCodeInStorage]
   final _$checkPinCodeInStorageEvent = BehaviorSubject<void>();
 
@@ -81,6 +84,9 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   @override
   void checkBiometricsEnabled() => _$checkBiometricsEnabledEvent.add(null);
+
+  @override
+  void checkAvailableBiometrics() => _$checkAvailableBiometricsEvent.add(null);
 
   @override
   void checkPinCodeInStorage() => _$checkPinCodeInStorageEvent.add(null);
@@ -160,6 +166,7 @@ abstract class $PinCodeBloc extends RxBlocBase
   void dispose() {
     _$getPinLengthEvent.close();
     _$checkBiometricsEnabledEvent.close();
+    _$checkAvailableBiometricsEvent.close();
     _$checkPinCodeInStorageEvent.close();
     _$requestBiometricAuthEvent.close();
     _$autoSubmitEvent.close();
