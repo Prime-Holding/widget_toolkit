@@ -2,12 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 import 'models/labeled_device_builder.dart';
 import 'models/scenario.dart';
 
-enum Themes { light }
+enum Themes { light, dark }
 
 /// return a [LabeledDeviceBuilder] with a scenario rendered on all device sizes
 ///
@@ -83,13 +84,29 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
   DeviceBuilder builder, {
   Themes? theme,
 }) =>
-    pumpDeviceBuilderWithMaterialApp(
-      tester,
-      builder,
-      theme: theme == Themes.light
-          ? ThemeData.light().copyWith(extensions: [PrimePinTheme.light])
-          : ThemeData.dark().copyWith(extensions: [PrimePinTheme.dark]),
-    );
+    pumpDeviceBuilderWithMaterialApp(tester, builder,
+        theme: getThemeData(theme == Themes.light));
+
+ThemeData getThemeData(bool inLightMode) {
+  final theme = inLightMode
+      ? ThemeData.light().copyWith(extensions: [
+          WidgetToolkitTheme.light.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
+          PinCodeTheme.light,
+        ])
+      : ThemeData.dark().copyWith(extensions: [
+          WidgetToolkitTheme.light.copyWith(
+            captionBold: const TextStyle(
+              inherit: true,
+            ),
+          ),
+          PinCodeTheme.dark,
+        ]);
+  return theme;
+}
 
 /// Wraps a [DeviceBuilder] in a [materialAppWrapper] using any of the
 /// parameters we specify and pumps it

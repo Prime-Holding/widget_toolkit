@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -18,13 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PrimePinTheme.light,
+          PinCodeTheme.light,
+          WidgetToolkitTheme.light,
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PrimePinTheme.dark,
+          PinCodeTheme.dark,
+          WidgetToolkitTheme.dark,
         ],
       ),
       home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
@@ -61,8 +64,8 @@ class MyHomePage extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      context.primePinTheme.primaryGradientStart,
-                      context.primePinTheme.primaryGradientEnd
+                      context.pinCodeTheme.primaryGradientStart,
+                      context.pinCodeTheme.primaryGradientEnd
                     ],
                   ),
                 ),
@@ -73,7 +76,6 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: buildWithBiometrics(context),
-                      // buildGeneric(context)
                     ),
                   ],
                 ),
@@ -83,19 +85,9 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
-  Widget buildGeneric(BuildContext context) => PinCodeKeyboard.generic(
+  Widget buildWithBiometrics(BuildContext context) => PinCodeKeyboard(
+        mapMessageToString: _exampleMapMessageToString,
         keyLength: 3,
-        onAutoSubmit: (onApplyPressed) {},
-      );
-
-  Widget buildWithBiometrics(BuildContext context) =>
-      PinCodeKeyboard.withBiometrics(
-        // error: ErrorPinAttemptsModel(remainingAttempts: 2),
-        keyLength: 4,
-        // isConfirmPage:true,
-        onAutoSubmit: (onAutoSubmit) {
-          print('uiOnAutoSubmit3 $onAutoSubmit');
-        },
         pinCodeService: context.read<PinCodeService>(),
         biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
         errorModalConfiguration: const ErrorModalConfiguration(
@@ -111,35 +103,80 @@ class MyHomePage extends StatelessWidget {
           dialogHasBottomPadding: true,
         ),
       );
+
+  String _exampleMapMessageToString(BiometricsMessage message) {
+    switch (message) {
+      case BiometricsMessage.notSetup:
+        return 'To use biometrics, you need to turn it on in your device settings!';
+
+      case BiometricsMessage.notSupported:
+        return 'You don\'t have biometric feature on your device!';
+
+      case BiometricsMessage.enabled:
+        return 'Your biometrics are enabled!';
+
+      case BiometricsMessage.disabled:
+        return 'Your biometrics are disabled!';
+    }
+  }
 }
 
+/// You have to implement and provide a [PinCodeService], you can use this to
+/// store the value of [_pinCode], for example in [SharedPreferences]
 class AppPinCodeService implements PinCodeService {
   AppPinCodeService();
 
+  /// This pin is intended to be stored in the secured storage for production
+  /// applications
+  String? _pinCode;
+
   @override
-  Future<String?> getPinCode() {
-    print('getPinCode');
-    return Future.value('1111');}
-// Future<String?> getPinCode() => Future.value(null);
+  Future<bool> isPinCodeInSecureStorage() async {
+    if (_pinCode == null) {
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
+  @override
+  Future<String> encryptPinCode(String pinCode) async {
+    _pinCode = pinCode;
+    return Future.value(pinCode);
+  }
+
+  @override
+  Future<int> getPinLength() => Future.value(3);
+
+  @override
+  Future<bool> verifyPinCode(String pinCode) {
+    if (pinCode == '111') {
+      return Future.value(true);
+    }
+    return Future.value(false);
+  }
+
+  @override
+  Future<String?> getPinCode() async {
+    if (_pinCode == null) {
+      return Future.value(null);
+    }
+    return Future.value(_pinCode);
+  }
 }
 
-/// You have to implement and provide a [BiometricsLocalDataSource]
-/// you can use this to store the value, for example in [SharedPreferences]
+/// You have to implement and provide a [BiometricsLocalDataSource], you can
+/// store the value of [_areBiometricsEnabled], for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
-  static const _areBiometricsEnabled = 'areBiometricsEnabled';
+  ProfileLocalDataSource();
 
-  Future<SharedPreferences> get _storageInstance =>
-      SharedPreferences.getInstance();
-
-  @override
-  Future<bool> areBiometricsEnabled() async {
-    final storage = await _storageInstance;
-    return storage.getBool(_areBiometricsEnabled) ?? false;
-  }
+  /// This bool check is intended to be stored in the secured storage for production
+  /// applications
+  bool? _areBiometricsEnabled;
 
   @override
-  Future<void> setBiometricsEnabled(bool enable) async {
-    final storage = await _storageInstance;
-    await storage.setBool(_areBiometricsEnabled, enable);
-  }
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
+
+  @override
+  Future<void> setBiometricsEnabled(bool enable) async =>
+      _areBiometricsEnabled = enable;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/utils/theme/prime_pin_theme.dart';
+import '../../base/utils/theme/pin_code_theme.dart';
 import '../../base/utils/utils.dart';
 
 class PinCodeKey extends StatefulWidget {
@@ -10,6 +10,7 @@ class PinCodeKey extends StatefulWidget {
     this.isFingerScan = false,
     this.isFaceScan = false,
     this.isLoading = false,
+    this.showDefaultIcon = false,
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +18,9 @@ class PinCodeKey extends StatefulWidget {
   final bool isFingerScan;
   final bool isFaceScan;
   final bool isLoading;
+
+  /// Shows the face scan icon if it is set to true
+  final bool showDefaultIcon;
   final void Function(int?) onPressed;
 
   @override
@@ -51,21 +55,21 @@ class _PinCodeKeyState extends State<PinCodeKey> {
             ? AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 child: isPressed
-                    ? context.primePinTheme.fingerScanPressedIcon
-                    : context.primePinTheme.fingerScanDefaultIcon,
+                    ? context.pinCodeTheme.fingerScanPressedIcon
+                    : context.pinCodeTheme.fingerScanDefaultIcon,
               )
-            : widget.isFaceScan
+            : (widget.isFaceScan || widget.showDefaultIcon)
                 ? AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: isPressed
-                        ? context.primePinTheme.faceScanPressedIcon
-                        : context.primePinTheme.faceScanDefaultIcon,
+                        ? context.pinCodeTheme.faceScanPressedIcon
+                        : context.pinCodeTheme.faceScanDefaultIcon,
                   )
                 : AnimatedContainer(
                     width: _calculateSize(context),
                     height: _calculateSize(context),
                     decoration: BoxDecoration(
-                      color: context.primePinTheme.white.withOpacity(
+                      color: context.pinCodeTheme.white.withOpacity(
                         widget.isLoading
                             ? 0.1
                             : isPressed
@@ -82,11 +86,11 @@ class _PinCodeKeyState extends State<PinCodeKey> {
 
   Widget _buildText() => Text(
         widget.number.toString(),
-        style: context.primePinTheme.pinCodeKeyTextStyle.copyWith(
+        style: context.pinCodeTheme.pinCodeKeyTextStyle.copyWith(
           fontSize: _calculateSize(context) / 2.25,
           color: isPressed
-              ? context.primePinTheme.pinCodeKeyTextColorPressed
-              : context.primePinTheme.pinCodeKeyTextColorDefault
+              ? context.pinCodeTheme.pinCodeKeyTextColorPressed
+              : context.pinCodeTheme.pinCodeKeyTextColorDefault
                   .withOpacity(widget.isLoading ? 0.5 : 1.0),
         ),
       );

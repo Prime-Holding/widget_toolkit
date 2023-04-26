@@ -5,7 +5,7 @@ import '../../base/extensions/error_model_translations.dart';
 import '../../base/models/error/error_model.dart';
 import '../../base/models/error_modal_configuration.dart';
 import '../../base/resources/pin_localized_strings.dart';
-import '../../base/utils/theme/prime_pin_theme.dart';
+import '../../base/utils/theme/pin_code_theme.dart';
 
 void showPinCodeErrorModal(
   BuildContext context, {
@@ -27,15 +27,15 @@ void showPinCodeErrorModal(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: context.primePinTheme.errorModalTitlePadding,
+            padding: context.pinCodeTheme.errorModalTitlePadding,
             child: Text(
               error.translate(context,
                   translatableStrings: translatableStrings),
-              style: context.primePinTheme.errorModalTitleTextStyle,
+              style: context.pinCodeTheme.errorModalTitleTextStyle,
             ),
           ),
           Padding(
-            padding: context.primePinTheme.errorModalErrorWidgetPadding,
+            padding: context.pinCodeTheme.errorModalErrorWidgetPadding,
             child: ErrorCardWidget(
               exception: error,
               retryButtonVisible: hasRetryButton,
@@ -44,8 +44,8 @@ void showPinCodeErrorModal(
           ),
           Padding(
             padding: error.remainingAttempts == 0
-                ? context.primePinTheme.errorModalCloseButtonPadding1
-                : context.primePinTheme.errorModalCloseButtonPadding2,
+                ? context.pinCodeTheme.errorModalCloseButtonPadding1
+                : context.pinCodeTheme.errorModalCloseButtonPadding2,
             child: error.remainingAttempts == 0
                 ? OutlineFillButton(
                     text: translatableStrings?.errorModalActionLabel ??
@@ -53,7 +53,7 @@ void showPinCodeErrorModal(
                     colorStyle: ButtonColorStyle.fromContext(
                       context,
                       activeButtonTextColor:
-                          context.primePinTheme.errorModalActionButtonTextColor,
+                          context.pinCodeTheme.errorModalActionButtonTextColor,
                     ),
                     onPressed: () {
                       if (onCloseTap != null) onCloseTap;
@@ -66,9 +66,9 @@ void showPinCodeErrorModal(
                     colorStyle: ButtonColorStyle.fromContext(
                       context,
                       activeButtonTextColor:
-                          context.primePinTheme.errorModalCloseButtonIconColor,
-                      activeGradientColorStart: context.primePinTheme
-                          .errorModalCloseButtonGradientStartColor,
+                          context.pinCodeTheme.errorModalCloseButtonIconColor,
+                      activeGradientColorStart: context
+                          .pinCodeTheme.errorModalCloseButtonGradientStartColor,
                     ),
                   ),
           ),

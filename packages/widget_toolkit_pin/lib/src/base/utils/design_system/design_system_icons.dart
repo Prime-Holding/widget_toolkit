@@ -43,14 +43,6 @@ class DesignSystemIcons {
     AssetNames.infoCircle,
     semanticsLabel: 'infoCircle',
   );
-  final pinCheckEnabled = SvgPicture.asset(
-    AssetNames.pinCheckEnabled,
-    semanticsLabel: 'pinCheckEnabled',
-  );
-  final pinCheckDisabled = SvgPicture.asset(
-    AssetNames.pinCheckDisabled,
-    semanticsLabel: 'pinCheckDisabled',
-  );
   final pinNextEnabled = SvgPicture.asset(
     AssetNames.pinNextEnabled,
     semanticsLabel: 'pinNextEnabled',

@@ -11,9 +11,6 @@ class DesignSystemTypography {
 // Material design typography:
 // https://material.io/design/typography/the-type-system.html#type-scale
 
-// Keep the general purpose styles declared as 'const'. If not possible then
-// declare them as late final properties.
-
   final bold30 = const TextStyle(
       fontWeight: FontWeight.w700, fontStyle: FontStyle.normal, fontSize: 30.0);
 
