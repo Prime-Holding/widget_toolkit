@@ -45,18 +45,11 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
-          Provider<InMemoryInstance>(
-            create: (context) => InMemoryInstance(),
-          ),
           Provider<PinCodeService>(
-            create: (context) => AppPinCodeService(
-              inMemoryInstance: context.read<InMemoryInstance>(),
-            ),
+            create: (context) => AppPinCodeService(),
           ),
           Provider<BiometricsLocalDataSource>(
-            create: (context) => ProfileLocalDataSource(
-              inMemoryInstance: context.read<InMemoryInstance>(),
-            ),
+            create: (context) => ProfileLocalDataSource(),
           )
         ],
         child: Builder(
@@ -121,19 +114,18 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+/// You have to implement and provide a [PinCodeService], you can use this to
+/// store the value of [_pinCode], for example in [SharedPreferences]
 class AppPinCodeService implements PinCodeService {
-  AppPinCodeService({required this.inMemoryInstance});
+  AppPinCodeService();
 
-  final InMemoryInstance inMemoryInstance;
-
-  static const _isPinCodeInStorage = 'pinCode';
+  /// This pin is intended to be stored in the secured storage for production
+  /// applications
+  String? _pinCode;
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
-    var isPinCodeInSecureStorage =
-        inMemoryInstance.getString(_isPinCodeInStorage);
-
-    if (isPinCodeInSecureStorage.isEmpty) {
+    if (_pinCode == null) {
       return Future.value(false);
     }
     return Future.value(true);
@@ -141,7 +133,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    inMemoryInstance.setString(_isPinCodeInStorage, pinCode);
+    _pinCode = pinCode;
     return Future.value(pinCode);
   }
 
@@ -160,43 +152,27 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() async {
-    var pin = inMemoryInstance.getString(_isPinCodeInStorage);
-    if (pin.isEmpty) {
-      Future.value(null);
+    if (_pinCode == null) {
+      return Future.value(null);
     }
-    return Future.value(pin);
+    return Future.value(_pinCode);
   }
 }
 
-/// You have to implement and provide a [BiometricsLocalDataSource]
-/// you can use this to store the value, for example in [SharedPreferences]
+/// You have to implement and provide a [BiometricsLocalDataSource], you can
+/// store the value of [_areBiometricsEnabled], for example in [SharedPreferences]
 class ProfileLocalDataSource implements BiometricsLocalDataSource {
-  ProfileLocalDataSource({required this.inMemoryInstance});
+  ProfileLocalDataSource();
 
-  final InMemoryInstance inMemoryInstance;
-
-  static const _areBiometricsEnabled = 'areBiometricsEnabled';
-
-  @override
-  Future<bool> areBiometricsEnabled() async {
-    var areBiometricsEnabled = inMemoryInstance.getBool(_areBiometricsEnabled);
-    return areBiometricsEnabled;
-  }
+  /// This bool check is intended to be stored in the secured storage for production
+  /// applications
+  bool? _areBiometricsEnabled;
 
   @override
-  Future<void> setBiometricsEnabled(bool enable) async {
-    inMemoryInstance.setBool(_areBiometricsEnabled, enable);
-  }
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
+
+  @override
+  Future<void> setBiometricsEnabled(bool enable) async =>
+      _areBiometricsEnabled = enable;
 }
 
-class InMemoryInstance {
-  final Map<String, dynamic> _data = {};
-
-  bool getBool(String key) => _data[key] ?? false;
-
-  void setBool(String key, bool value) => _data[key] = value;
-
-  String getString(String key) => _data[key] ?? '';
-
-  void setString(String key, String value) => _data[key] = value;
-}
