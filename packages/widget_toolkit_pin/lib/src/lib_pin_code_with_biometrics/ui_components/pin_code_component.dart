@@ -22,17 +22,19 @@ class PinCodeComponent extends StatefulWidget {
   const PinCodeComponent({
     required this.translateError,
     required this.pinLength,
+    required this.localizedReason,
     this.mapMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
-    this.translatableStrings,
     this.onError,
     super.key,
   });
 
   final int pinLength;
+
+  final String localizedReason;
 
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
@@ -55,9 +57,6 @@ class PinCodeComponent extends StatefulWidget {
   /// to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
-  /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
-  final PinLocalizedStrings? translatableStrings;
-
   /// An optional function that enable error handling out of the package, it receives
   /// the error from the errors stream and the translated error
   final Function(Object error, String translatedError)? onError;
@@ -72,8 +71,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   late AnimationController _controller;
   bool hasErrorText = true;
   bool isLoading = false;
-  static const String _activateBiometrics =
-      'Activate the biometrics of your device';
   bool pinIsDeleted = false;
 
   static final _shakeTweenSequence = TweenSequence(
@@ -502,7 +499,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           onPressed: (_) => context
               .read<PinCodeBlocType>()
               .events
-              .requestBiometricAuth(_activateBiometrics),
+              .requestBiometricAuth(widget.localizedReason),
         ),
       );
 
@@ -515,19 +512,19 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           context
               .read<PinCodeBlocType>()
               .events
-              .requestBiometricAuth(_activateBiometrics);
+              .requestBiometricAuth(widget.localizedReason);
         },
         onPressedAutoSubmit: (_) {
           context
               .read<PinCodeBlocType>()
               .events
-              .requestBiometricAuth(_activateBiometrics);
+              .requestBiometricAuth(widget.localizedReason);
         },
         onPressedDefault: (_) {
           context
               .read<PinCodeBlocType>()
               .events
-              .requestBiometricAuth(_activateBiometrics);
+              .requestBiometricAuth(widget.localizedReason);
         },
       );
 
@@ -590,7 +587,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               autoSubmit: () => context
                   .read<PinCodeBlocType>()
                   .events
-                  .requestBiometricAuth(_activateBiometrics),
+                  .requestBiometricAuth(widget.localizedReason),
               startWithAutoSubmit: false,
               isFaceScan: hasFaceScan,
               isFingerScan: hasFingerScan,
@@ -598,12 +595,12 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               onPressedAutoSubmit: (_) => context
                   .read<PinCodeBlocType>()
                   .events
-                  .requestBiometricAuth(_activateBiometrics),
+                  .requestBiometricAuth(widget.localizedReason),
               onPressedDefault: (_) {
                 context
                     .read<PinCodeBlocType>()
                     .events
-                    .setBiometrics(true, _activateBiometrics);
+                    .setBiometrics(true, widget.localizedReason);
               },
             )
           : Container();

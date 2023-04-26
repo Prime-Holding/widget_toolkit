@@ -72,7 +72,7 @@ class PinCodeBloc extends $PinCodeBloc {
   PinCodeBloc({
     required this.biometricAuthenticationService,
     required this.pinCodeService,
-    required this.localizedBiometricsMessage,
+    required this.enterPinWithBiometrics,
   }) {
     checkPinCodeInStorage();
     checkBiometricsEnabled();
@@ -86,7 +86,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   final PinBiometricsService biometricAuthenticationService;
   final PinCodeService pinCodeService;
-  final String localizedBiometricsMessage;
+  final String enterPinWithBiometrics;
 
   @override
   ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState() =>
@@ -141,7 +141,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   Future<bool> _biometricAuthentication(String localizedReason) async {
     var success = await biometricAuthenticationService.authenticate(
-        localizedReason.isEmpty ? localizedBiometricsMessage : localizedReason);
+        localizedReason.isEmpty ? enterPinWithBiometrics : localizedReason);
 
     return success;
   }

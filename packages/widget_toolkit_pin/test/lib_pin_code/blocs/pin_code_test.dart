@@ -69,7 +69,7 @@ void main() {
   PinCodeBloc pinCodeBloc({String? code, bool? returnNull, bool? throwError}) =>
       PinCodeBloc(
         biometricAuthenticationService: biometricAuthenticationService,
-        localizedBiometricsMessage: '',
+        enterPinWithBiometrics: '',
         pinCodeService: pinCodeService,
       );
 

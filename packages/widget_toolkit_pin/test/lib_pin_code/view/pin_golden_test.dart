@@ -69,6 +69,7 @@ Widget pinCodePageFactory({
           builder: (context) => PinCodeComponent(
             translateError: (error) => error.toString(),
             pinLength: pinLength,
+            localizedReason: '',
           ),
         ),
       ),

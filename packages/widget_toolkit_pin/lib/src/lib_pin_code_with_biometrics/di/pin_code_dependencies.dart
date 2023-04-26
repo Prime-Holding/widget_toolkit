@@ -13,21 +13,21 @@ class PinCodeDependencies {
   PinCodeDependencies._(
     this.pinCodeService,
     this.biometricsLocalDataSource,
-    this.translatableStrings,
+    this.localizedReason,
   );
 
   factory PinCodeDependencies.from({
     required PinCodeService pinCodeService,
     required BiometricsLocalDataSource biometricsLocalDataSource,
-    PinLocalizedStrings? translatableStrings,
+    required String localizedReason,
   }) =>
       PinCodeDependencies._(
         pinCodeService,
         biometricsLocalDataSource,
-        translatableStrings,
+        localizedReason,
       );
 
-  final PinLocalizedStrings? translatableStrings;
+  final String localizedReason;
   final PinCodeService pinCodeService;
   final BiometricsLocalDataSource biometricsLocalDataSource;
 
@@ -75,11 +75,10 @@ class PinCodeDependencies {
   late final List<SingleChildWidget> _blocs = [
     Provider<PinCodeBlocType>(
       create: (context) => PinCodeBloc(
-          biometricAuthenticationService: context.read<PinBiometricsService>(),
-          pinCodeService: pinCodeService,
-          localizedBiometricsMessage:
-              translatableStrings?.enterPinWithBiometrics ??
-                  context.getPinLocalizedStrings.enterPinWithBiometrics),
+        biometricAuthenticationService: context.read<PinBiometricsService>(),
+        pinCodeService: pinCodeService,
+        enterPinWithBiometrics: localizedReason,
+      ),
     ),
   ];
 }

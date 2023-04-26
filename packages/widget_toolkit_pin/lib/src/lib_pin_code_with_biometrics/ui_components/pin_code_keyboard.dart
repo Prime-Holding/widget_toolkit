@@ -34,7 +34,7 @@ class PinCodeKeyboard extends StatelessWidget {
     this.isPinCodeVerified,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
-    this.translatableStrings,
+    this.localizedReason,
     this.addDependencies = true,
     this.onError,
     Key? key,
@@ -69,8 +69,9 @@ class PinCodeKeyboard extends StatelessWidget {
   /// and its icon changes to empty, face, finger. Do not forget to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
-  /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
-  final PinLocalizedStrings? translatableStrings;
+  /// Provide a custom message, otherwise the default [_enterPinWithBiometrics]
+  /// will be used
+  final String? localizedReason;
 
   /// If set to true the dependencies will be injected before the building of
   /// the widget, otherwise the user should provide an implementation for the
@@ -79,6 +80,9 @@ class PinCodeKeyboard extends StatelessWidget {
 
   /// [onError] is optional function that enable error handling out of the package
   final Function(Object error, String translatedError)? onError;
+
+  static const String _enterPinWithBiometrics =
+      'Enter your pin code by authenticating with biometrics';
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
@@ -94,8 +98,8 @@ class PinCodeKeyboard extends StatelessWidget {
                 isPinCodeVerified: isPinCodeVerified,
                 deleteKeyButton: deleteKeyButton,
                 bottomRightKeyboardButton: bottomRightKeyboardButton,
-                translatableStrings: translatableStrings,
                 onError: onError,
+                localizedReason: _enterPinWithBiometrics,
               );
             }
             return Container();
@@ -109,7 +113,8 @@ class PinCodeKeyboard extends StatelessWidget {
             ...PinCodeDependencies.from(
               pinCodeService: pinCodeService,
               biometricsLocalDataSource: biometricsLocalDataSource,
-              translatableStrings: translatableStrings,
+              localizedReason:
+                  localizedReason ?? _enterPinWithBiometrics,
             ).providers,
           ],
           child: child,
