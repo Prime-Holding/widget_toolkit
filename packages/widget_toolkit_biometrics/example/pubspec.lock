@@ -470,10 +470,10 @@ packages:
     dependency: transitive
     description:
       name: theme_tailor_annotation
-      sha256: "9cb1051a6144599404bbb252345bbbb41ce84e9020d40a7175d14fa1ad24fd68"
+      sha256: e75cf627202816cf4b45910658205959524860b99951bd0d370e760bf3546424
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "2.0.0"
   url_launcher:
     dependency: transitive
     description:
@@ -576,7 +576,7 @@ packages:
       path: "../../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.1-dev7"
+    version: "0.0.1-dev8"
   widget_toolkit_biometrics:
     dependency: "direct main"
     description:

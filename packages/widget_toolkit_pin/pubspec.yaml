@@ -23,6 +23,7 @@ dependencies:
   shared_preferences: ^2.1.0
   theme_tailor_annotation: ^2.0.0
   widget_toolkit: ^0.0.1-dev7
+#    path: ../widget_toolkit
   widget_toolkit_biometrics: ^0.0.1-dev2
 
 dev_dependencies:
@@ -37,11 +38,11 @@ dev_dependencies:
   theme_tailor: ^2.0.0
 
 
-dependency_overrides:
-  widget_toolkit:
-    path: ../widget_toolkit
-  widget_toolkit_biometrics:
-    path: ../widget_toolkit_biometrics
+#dependency_overrides:
+#  widget_toolkit:
+#    path: ../widget_toolkit
+#  widget_toolkit_biometrics:
+#    path: ../widget_toolkit_biometrics
 
 
 flutter:
