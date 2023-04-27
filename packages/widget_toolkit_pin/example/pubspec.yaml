@@ -17,17 +17,10 @@ dependencies:
   provider: ^6.0.5
   rx_bloc: ^4.0.1
   widget_toolkit: ^0.0.1-dev7
-#  widget_toolkit:
-#    path: ../../widget_toolkit
   widget_toolkit_pin:
     path: ../../widget_toolkit_pin
-#  widget_toolkit: ^0.0.1-dev7
   widget_toolkit_biometrics: ^0.0.1-dev2
-#    path: ../../widget_toolkit_biometrics
 
-#dependency_overrides:
-#  widget_toolkit_biometrics: #^0.0.1-dev2
-#    path: ../../widget_toolkit_biometrics
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

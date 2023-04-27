@@ -22,7 +22,8 @@ Step 1: Add the `widget_toolkit_pin`  and `widget_toolkit_biometrics` packages a
 $ flutter pub add widget_toolkit_pin widget_toolkit_biometrics  
 ```
 
-Step 2: Follow the [integration instructions for the local_auth package](https://pub.dev/packages/local_auth) in order for the plugin to work on your desired platforms.
+Step 2: Follow the [integration instructions for the local_auth package](https://pub.dev/packages/local_auth)
+in order for the plugin to work on your desired platforms.
 
 Step 3: Pass the `WidgetToolkitTheme`,`PinCodeTheme` extensions to the `ThemeData` of your app:
 ```dart
@@ -74,20 +75,24 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
 }
 ```
 
-Step 6: Create an implementation of `PinCodeService`, for example:
+Step 6: Create an implementation of `PinCodeService`. In this example we use double encryption. The 
+pin code is first encrypted on application level and then the encrypted value is again encrypted on
+operating system level, by using the `FlutterSecureStorage` instance. In your implementation, you 
+are free to choose the types of encryption. In the example two other packages are used:
+[encrypt](https://pub.dev/packages/encrypt) and [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
+In order for the `flutter_secure_storage` plugin to work on your desired platforms, follow the 
+integration instructions.
 ```dart
 class AppPinCodeService implements PinCodeService {
-  AppPinCodeService();
-
-  Future<SharedPreferences> get _storageInstance =>
-      SharedPreferences.getInstance();
-
   static const _isPinCodeInStorage = 'pinCode';
+
+  FlutterSecureStorage get flutterSecureStorage => const FlutterSecureStorage();
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
-    final storage = await _storageInstance;
-    final isPinCodeInSecureStorage = storage.getString(_isPinCodeInStorage);
+    var isPinCodeInSecureStorage =
+    await flutterSecureStorage.read(key: _isPinCodeInStorage);
+
     if (isPinCodeInSecureStorage == null) {
       return Future.value(false);
     }
@@ -96,20 +101,27 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    final storage = await _storageInstance;
-    var isPinSaved = await storage.setString(_isPinCodeInStorage, pinCode);
-    if (isPinSaved) {
-      return Future.value(pinCode);
-    }
-    return Future.value('not saved');
+    // App specific encryption
+    final key = Key.fromSecureRandom(32);
+    final iv = encrypt.IV.fromSecureRandom(16);
+    final encrypter = Encrypter(AES(key));
+    final encryptedString = encrypter.encrypt(pinCode, iv: iv).base64;
+
+    // Platform specific encryption, save the pin in secure storage
+    await flutterSecureStorage.write(
+        key: _isPinCodeInStorage, value: encryptedString);
+    return Future.value(encryptedString);
   }
 
   @override
   Future<int> getPinLength() => Future.value(3);
 
   @override
-  Future<bool> verifyPinCode(String pinCode) {
-    if (pinCode == '111') {
+  Future<bool> verifyPinCode(String pinCode) async {
+    var pinFromStorage =
+    await flutterSecureStorage.read(key: _isPinCodeInStorage);
+
+    if (pinCode == pinFromStorage) {
       return Future.value(true);
     }
     return Future.value(false);
@@ -117,8 +129,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() async {
-    final storage = await _storageInstance;
-    var pin = storage.getString(_isPinCodeInStorage);
+    var pin = await flutterSecureStorage.read(key: _isPinCodeInStorage);
     if (pin == null) {
       return Future.value(null);
     }
