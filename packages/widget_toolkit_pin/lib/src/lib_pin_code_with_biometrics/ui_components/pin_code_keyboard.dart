@@ -8,22 +8,37 @@ import '../di/pin_code_dependencies.dart';
 import 'pin_code_component.dart';
 
 /// This Widget builds custom numeric keyboard on the screen. It presents three
-/// columns with numbers from 1 to 9 in three rows. Below them is the zero in the
-/// middle and two customizable buttons in bought directions. To define them use
-/// [deleteKeyButton] and/or [bottomRightKeyboardButton]. By default the
-/// left button will be back arrow and whenever pressed, will delete the last
-/// entered number. The right button will be submit button - enabled only if all
-/// numbers are provided. If some biometrics are available and no one digit has been entered,
-/// respective biometric icon will be displayed and clicking on the button will
-/// return the native ID authentication workflow.
-/// When the user submits the pin code, the widget should present to the user that
-/// the pin verification is in progress. Over the masked pin a Shimmer will be
-/// presented and buttons will change their appearance.
-/// The pin code from the input is auto submitted once its length reaches
+/// columns with numbers from 1 to 9 in three rows. Below them is the zero, there are
+/// in the two customizable button options on the right direction. To define them use
+/// [deleteKeyButton] and/or [bottomRightKeyboardButton]. The right button by default
+/// can be is an auto submit button, delete button and biometrics button.
+/// When the widget is loaded for the first time, on the bottom right of the
+/// page there is no button. At this moment the biometrics for the app are still
+/// not enabled. After at least 1 number has been selected the delete button
+/// shows up. When the length of the input has reached the pin code length, the
+/// button icon disappears. The pin code is encrypted and stored in the
+/// local device secure storage. Then, there is an auto submit for the selected
+/// pin code to the backend for verification. When the pin code is submitted,
+/// the widget should present to the user that the pin verification is in
+/// progress with loading animation. Over the masked pin a Shimmer will be
+/// presented and buttons will change their appearance. The pin code from the
+/// input is auto submitted once its length reaches the returned value from
 /// [PinCodeService.getPinLength()], which should return a value less than 10.
-/// When the biometrics button on the bottom right is pressed an enable biometrics
-/// question pops up after the permission is given the pressing of the button
-/// triggers a biometrics scan.
+/// After the pin has been saved
+/// successfully in the secure storage, the biometrics icon appear on the bottom
+/// right. When you press it, it triggers enabling of the biometrics event. The
+/// local authentication from the local_auth package is triggered. The user is
+/// asked, if he/she wants to allow the app to use biometrics authentication.
+/// When he/she clicks ok, the biometrics authentication is triggered. When it
+/// is successful, on the screen is displayed a message that the biometrics are
+/// enabled. The next time when the app is restarted, because the pin code
+/// will be stored in the device secure storage, the biometrics authentication
+/// will be automatically triggered and the biometrics icon will be displayed
+/// on the bottom right. When you press it every time it will trigger the
+/// biometric authentication.
+///
+/// For more information on how the widgets work check the functional specification
+/// section in the README.md file.
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
     required this.pinCodeService,
@@ -40,6 +55,7 @@ class PinCodeKeyboard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
 
   /// [mapMessageToString] will be used to translate the [BiometricsMessage]
