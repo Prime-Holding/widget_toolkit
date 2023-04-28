@@ -17,7 +17,7 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 
 ## Diagram
 
-<img src="https://github.com/Prime-Holding/widget_toolkit/tree/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/pin_biometrics_diagram.png" alt="Pin Biometrics Bloc Diagram"></img>
+![Pin Biometrics Diagram](doc/assets/pin_biometrics_diagram.png)
 
 ## Setup
 
