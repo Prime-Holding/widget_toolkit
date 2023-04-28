@@ -15,6 +15,10 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 - Optional error handling by the user
 - Biometric authentication
 
+## Diagram
+
+<img src="https://github.com/Prime-Holding/widget_toolkit/tree/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/pin_biometrics_diagram.png" alt="Pin Biometrics Bloc Diagram"></img>
+
 ## Setup
 
 Step 1: Add the `widget_toolkit_pin`  and `widget_toolkit_biometrics` packages as dependencies.
@@ -138,8 +142,8 @@ class AppPinCodeService implements PinCodeService {
 }
 ```
 
-Step 7: Use the `BiometricsSwitch` widget somewhere in your widget tree, using your implementation of `BiometricsLocalDataSource`:
-Support Android, iOS and Windows
+Step 7: Use the `PinCodeKeyboard` widget somewhere in your widget tree, using your implementation of
+`BiometricsLocalDataSource`,`PinCodeService`:
 
 ```dart
 PinCodeKeyboard(
