@@ -6,6 +6,13 @@
 The package uses the [local_auth](https://pub.dev/packages/local_auth) package, in order to provide
 an automatic prompt of a platform dialog that asks you to enable or disable biometrics at the application level.
 
+## Demo
+
+| Save Pin And Enable Biometrics|
+|--|
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/tree/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/initial_pin_save.webp" alt="Save Pin And Enable Biometrics"></img>
+
+
 ## Features
 
 - Customizable length of the pin up to 10 digits
