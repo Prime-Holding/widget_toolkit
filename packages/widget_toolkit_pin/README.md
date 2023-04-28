@@ -8,10 +8,11 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 
 ## Demo
 
-| Save Pin And Enable Biometrics | Biometrics Authentication | Biometrics Authentication On App Restart |
-|---|---|---|
+| Save Pin And Enable Biometrics  | Biometrics Authentication  | Auto Biometrics Authentication |
+|---|---|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/initial_pin_save.webp" alt="Save Pin And Enable Biometrics"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/biometrics_authentication.webp" alt="Biometrics Authentication"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/biometrics_authentication_on_app_restart.webp" alt="Biometrics Authentication On App Restart"></img> |
-
+| Biometrics Not Recognized | Biometrics Not Setup| Biometrics Not Supported                                                                                                                                                                                                                                      |
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/face_not_recognized.webp" alt="Face Not Recognized"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/biometrics_not_setup.webp" alt="Biometrics Not Setup"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/feature/pin_code_error_handling/packages/widget_toolkit_pin/doc/assets/biometrics_not_supported.webp" alt="Biometrics Not Supported"></img>                                |
 
 ## Features
 
