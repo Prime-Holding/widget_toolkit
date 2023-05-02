@@ -1,11 +1,11 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'pin_code_theme.dart';
 
 // **************************************************************************
-// TailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
@@ -411,8 +411,8 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   }
 
   @override
-  PinCodeTheme lerp(ThemeExtension<PinCodeTheme>? other, double t) {
-    if (other is! PinCodeTheme) return this;
+  PinCodeTheme lerp(covariant ThemeExtension<PinCodeTheme>? other, double t) {
+    if (other is! PinCodeTheme) return this as PinCodeTheme;
     return PinCodeTheme(
       appBarButtonIconColor:
           Color.lerp(appBarButtonIconColor, other.appBarButtonIconColor, t)!,
@@ -608,7 +608,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
   @override
   int get hashCode {
     return Object.hashAll([
-      runtimeType,
+      runtimeType.hashCode,
       const DeepCollectionEquality().hash(appBarButtonIconColor),
       const DeepCollectionEquality().hash(appBarTitleDescriptionBoldTextStyle),
       const DeepCollectionEquality().hash(appBarTitleLeadingWidth),
@@ -665,7 +665,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(titleBold),
       const DeepCollectionEquality().hash(titleButtonIconBorderColor),
       const DeepCollectionEquality().hash(transparentColor),
-      const DeepCollectionEquality().hash(white)
+      const DeepCollectionEquality().hash(white),
     ]);
   }
 }

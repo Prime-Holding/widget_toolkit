@@ -77,9 +77,16 @@ PinCodeBlocType pinCodeMockFactory({
   );
 
   when(statesMock.pinLength).thenAnswer(
-    (_) => pinLength != null
-        ? Stream<int>.value(pinLength).publish()
-        : const Stream<int>.empty().publish(),
+    (_) {
+      print('1QQQQ $pinLength');
+      if (pinLength != null) {
+        print('2QQQQ $pinLength');
+
+        return Stream<int>.value(pinLength).publish();
+      }
+      print('3QQQQ $pinLength');
+      return const Stream<int>.empty().publish();
+    },
   );
 
   return blocMock;

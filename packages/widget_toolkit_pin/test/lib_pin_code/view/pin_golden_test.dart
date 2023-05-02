@@ -8,23 +8,25 @@ import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 import '../../helpers/golden_helper.dart';
 import '../../helpers/models/scenario.dart';
+import '../../mocks/biometrics_local_data_source_mock.dart';
 import '../../mocks/pin_code_mock.dart';
+import '../../mocks/pin_code_service_mock.dart';
 
 void main() {
   runGoldenTests(
     [
       generateDeviceBuilder(
-        widget: pinCodePageFactory(
+        widget: pinCodeComponentPageFactory(
           isLoading: true,
         ),
         scenario: Scenario(name: 'pin_code_loading'),
       ),
       generateDeviceBuilder(
-        widget: pinCodePageFactory(),
+        widget: pinCodeComponentPageFactory(),
         scenario: Scenario(name: 'pin_code_success'),
       ),
       generateDeviceBuilder(
-        widget: pinCodePageFactory(
+        widget: pinCodeComponentPageFactory(
           isPinCodeInSecureStorage: true,
           isPinCodeVerified: true,
           areBiometricsEnabled: true,
@@ -33,12 +35,16 @@ void main() {
         ),
         scenario: Scenario(name: 'pin_code_biometrics_enabled'),
       ),
+      generateDeviceBuilder(
+        widget: pinCodeKeyboardPageFactory(pinLength: 6),
+        scenario: Scenario(name: 'pin_code_biometrics'),
+      )
     ],
     awaitPump: true,
   );
 }
 
-Widget pinCodePageFactory({
+Widget pinCodeComponentPageFactory({
   bool isLoading = false,
   BiometricsMessage? biometricsMessage,
   bool? isPinCodeInSecureStorage,
@@ -70,6 +76,51 @@ Widget pinCodePageFactory({
             translateError: (error) => error.toString(),
             pinLength: pinLength,
             localizedReason: '',
+          ),
+        ),
+      ),
+    );
+
+Widget pinCodeKeyboardPageFactory({
+  bool isLoading = false,
+  BiometricsMessage? biometricsMessage,
+  bool? isPinCodeInSecureStorage,
+  bool? isAuthenticatedWithBiometrics,
+  bool? isPinCodeVerified,
+  bool? areBiometricsEnabled,
+  List<BiometricsAuthType>? availableBiometrics,
+  int pinLength = 6,
+}) =>
+    Scaffold(
+      backgroundColor: Colors.transparent,
+      body: MultiProvider(
+        providers: [
+          Provider<PinCodeService>(
+            create: (context) => PinCodeServiceMock(pinCode: '123456'),
+          ),
+          Provider<BiometricsLocalDataSource>(
+            create: (context) => BiometricsLocalDataSourceMock(),
+          ),
+          RxBlocProvider<PinCodeBlocType>.value(
+            value: pinCodeMockFactory(
+              isLoading: isLoading,
+              biometricsMessage: biometricsMessage,
+              isPinCodeInSecureStorage: isPinCodeInSecureStorage,
+              isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
+              isPinCodeVerified: isPinCodeVerified,
+              areBiometricsEnabled: areBiometricsEnabled,
+              availableBiometrics: availableBiometrics,
+              pinLength: pinLength,
+            ),
+          ),
+        ],
+        child: Builder(
+          builder: (context) => PinCodeKeyboard(
+            translateError: (error) => error.toString(),
+            localizedReason: '',
+            pinCodeService: context.read<PinCodeService>(),
+            biometricsLocalDataSource:
+                context.read<BiometricsLocalDataSource>(),
           ),
         ),
       ),
