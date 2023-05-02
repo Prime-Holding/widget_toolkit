@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
@@ -173,13 +172,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           RxBlocListener<PinCodeBlocType, BiometricsMessage?>(
             state: (bloc) => bloc.states.biometricsDialog,
             listener: _onStateChanged,
-          ),
-          RxBlocListener<PinCodeBlocType, ErrorModel>(
-            state: (bloc) => bloc.states.errors,
-            listener: (context, error) {
-              final translatedError = widget.translateError(error);
-              widget.onError?.call(error, translatedError);
-            },
           ),
           _buildBuilders()
         ],

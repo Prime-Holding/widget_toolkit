@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
@@ -102,22 +103,35 @@ class PinCodeKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
-        child: RxBlocBuilder<PinCodeBlocType, int>(
-          state: (bloc) => bloc.states.pinLength,
-          builder: (context, snapshot, bloc) => (snapshot.hasData)
-              ? PinCodeComponent(
-                  pinLength: snapshot.data!,
-                  translateError: translateError,
-                  mapMessageToString: mapMessageToString,
-                  isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
-                  isPinCodeVerified: isPinCodeVerified,
-                  deleteKeyButton: deleteKeyButton,
-                  bottomRightKeyboardButton: bottomRightKeyboardButton,
-                  onError: onError,
-                  localizedReason: _enterPinWithBiometrics,
-                )
-              : Container(),
+        child: _buildErrorListener(
+          child: RxBlocBuilder<PinCodeBlocType, int>(
+            state: (bloc) => bloc.states.pinLength,
+            builder: (context, snapshot, bloc) => snapshot.hasData
+                ? PinCodeComponent(
+                    pinLength: snapshot.data!,
+                    translateError: translateError,
+                    mapMessageToString: mapMessageToString,
+                    isAuthenticatedWithBiometrics:
+                        isAuthenticatedWithBiometrics,
+                    isPinCodeVerified: isPinCodeVerified,
+                    deleteKeyButton: deleteKeyButton,
+                    bottomRightKeyboardButton: bottomRightKeyboardButton,
+                    onError: onError,
+                    localizedReason: _enterPinWithBiometrics,
+                  )
+                : Container(),
+          ),
         ),
+      );
+
+  Widget _buildErrorListener({required Widget child}) =>
+      RxBlocListener<PinCodeBlocType, ErrorModel>(
+        state: (bloc) => bloc.states.errors,
+        listener: (context, error) {
+          final translatedError = translateError(error);
+          onError?.call(error, translatedError);
+        },
+        child: child,
       );
 
   Widget _wrapWithDependencies({required Widget child}) => addDependencies
