@@ -16,6 +16,7 @@ jobs:
               "packages/widget_toolkit_otp",
               "packages/widget_toolkit_biometrics",
               "packages/widget_toolkit_qr",
+              "packages/widget_toolkit_pin"
           ]
       fail-fast: false
     runs-on: ubuntu-latest
