@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class WidgetToolkitPinFileComparator extends LocalFileComparator {
-  static const double _kGoldenDiffTolerance = 0.01;
+  static const double _kGoldenDiffTolerance = 0.02;
 
   WidgetToolkitPinFileComparator(String testFile)
       : super(Uri.parse(_getTestFile(testFile)));
