@@ -204,7 +204,7 @@ void main() {
 
   group('test pin_code_bloc_dart state biometricsDialog', () {
     rxBlocTest<PinCodeBloc, BiometricsMessage?>(
-        'test pin_code_bloc_dart state biometricsDialog',
+        'test pin_code_bloc_dart state biometricsDialog enabled',
         build: () async {
           defineWhen(
               pinCode: Stubs.pinCode,
