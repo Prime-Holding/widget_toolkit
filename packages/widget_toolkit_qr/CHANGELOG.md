@@ -1,7 +1,10 @@
-## [0.0.1-dev1]
-* Initial release of the widget_toolkit_qr
-  * includes the QrScannerWidget<T>
- 
+## [0.0.1-dev3]
+* Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
+
 ## [0.0.1-dev2]
 * Documentation improvements
 * CD Integration
+
+## [0.0.1-dev1]
+* Initial release of the widget_toolkit_qr
+  * includes the QrScannerWidget<T> 

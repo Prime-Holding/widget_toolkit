@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/theme_data.dart';
+import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -58,51 +60,75 @@ class MyHomePage extends StatelessWidget {
             extendBodyBehindAppBar: true,
             body: SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      context.pinCodeTheme.primaryGradientStart,
-                      context.pinCodeTheme.primaryGradientEnd
-                    ],
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.1,
-                    vertical: 20),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: buildWithBiometrics(context),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PinCodeKeyboard(
+                      mapMessageToString: _exampleMapMessageToString,
+                      pinCodeService: context.read<PinCodeService>(),
+                      biometricsLocalDataSource:
+                          context.read<BiometricsLocalDataSource>(),
+                      translateError: _translateError,
+                      // Optionally you can provide a [localizedReason], this should be
+                      // a localized message, which would get shown to the user when they
+                      // are prompted to confirm that they want to enable biometrics
+                      localizedReason: 'Activate the biometrics of your device',
+                      // Optionally you can provide [deleteKeyButton], which button will be
+                      // used instead of the default delete
+                      // button.
+                      deleteKeyButton: PinCodeCustomKey(
+                        buildChild: (bool isPressed) =>
+                            const Icon(Icons.delete),
+                        onTap: () {},
+                      ),
+                      // Optionally you can provide [bottomRightKeyboardButton], which button
+                      // will be used instead of the default delete button and instead of the other
+                      // functionalities provided from the default auto submit, biometrics scan buttons,
+                      // which are appearing on the bottom right of the keyboard.
+                      bottomRightKeyboardButton: PinCodeCustomKey(
+                        buildChild: (bool isPressed) => const Icon(Icons.face),
+                        onTap: () {},
+                      ),
+                      // Optionally you can provide [addDependencies] and set it to false. In
+                      // this case you will have to provide and implementation of the [LocalAuthentication],
+                      // [PinBiometricsAuthDataSource], [PinBiometricsRepository],[PinCodeBloc]
+                      addDependencies: false,
+                      // Optionally you can provide [isAuthenticatedWithBiometrics] where the
+                      // function receives a bool value showing, whether the user was authenticated with biometrics.
+                      isAuthenticatedWithBiometrics: (isAuthenticated) => true,
+                      // Optionally you can provide [isPinCodeVerified], where the function
+                      // receives a bool value showing, whether pin code is verified.
+                      isPinCodeVerified: (isPinCodeVerified) => true,
+                      // Optionally you can provide [onError] to handle errors out of the package,
+                      // or to show a notification, in practice this would only get called if the
+                      // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],
+                      // [BiometricsLocalDataSource.setBiometricsEnabled(enable)],
+                      // [PinCodeService.isPinCodeInSecureStorage()], [PinCodeService.encryptPinCode()],
+                      // [PinCodeService.getPinLength()], [PinCodeService.verifyPinCode()],
+                      //[PinCodeService.getPinCode()], throw.
+                      onError: (error, translatedError) =>
+                          _onError(error, translatedError, context),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
       );
 
-  Widget buildWithBiometrics(BuildContext context) => PinCodeKeyboard(
-        mapMessageToString: _exampleMapMessageToString,
-        keyLength: 3,
-        pinCodeService: context.read<PinCodeService>(),
-        biometricsLocalDataSource: context.read<BiometricsLocalDataSource>(),
-        errorModalConfiguration: const ErrorModalConfiguration(
-          applySafeArea: true,
-          contentAlignment: MainAxisAlignment.end,
-          haveOnlyOneSheet: true,
-          heightFactor: 0.6,
-          isDismissible: true,
-          safeAreaBottom: true,
-          showCloseButton: false,
-          showHeaderPill: true,
-          fullScreen: false,
-          dialogHasBottomPadding: true,
-        ),
-      );
+  void _onError(error, translatedError, context) {
+    showBlurredBottomSheet(
+      context: context,
+      configuration: const ModalConfiguration(safeAreaBottom: false),
+      builder: (context) => const MessagePanelWidget(
+        message: 'Could not enable biometric authentication at this time',
+        messageState: MessagePanelState.important,
+      ),
+    );
+  }
+
+  String _translateError(Object error) => 'translated error';
 
   String _exampleMapMessageToString(BiometricsMessage message) {
     switch (message) {
@@ -145,7 +171,7 @@ class AppPinCodeService implements PinCodeService {
   }
 
   @override
-  Future<int> getPinLength() => Future.value(3);
+  Future<int> getPinLength() async => Future.value(3);
 
   @override
   Future<bool> verifyPinCode(String pinCode) {

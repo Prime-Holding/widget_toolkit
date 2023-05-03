@@ -1,11 +1,11 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'qr_scanner_theme.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
@@ -30,7 +30,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     required this.backButtonTransparentColor,
     required this.backButtonWidthSpacingXXXL,
     required this.cameraIcon,
-    required this.qrAreaIcon,
     required this.cameraPermission1,
     required this.cameraPermission2,
     required this.cameraPermission3,
@@ -45,6 +44,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     required this.linearProgressIndicatorXS,
     required this.mockQrViewSpacing,
     required this.qrScanAreaIcon,
+    required this.qrScannerBlue,
     required this.qrScannerCameraPermissionBlueLightColor,
     required this.qrScannerDisabledButtonGray,
     required this.qrScannerGradientBlueStart,
@@ -60,7 +60,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     required this.qrScannerPageM,
     required this.qrScannerPageScaffoldBackgroundColor,
     required this.qrScannerPageXS,
-    required this.qrScannerBlue,
     required this.qrScannerSubtitlePadding,
     required this.titleBold,
   });
@@ -88,7 +87,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
   /// endregion
   /// region Icons
   final SvgFile cameraIcon;
-  final SvgFile qrAreaIcon;
 
   /// region paddings
   final EdgeInsets cameraPermission1;
@@ -111,6 +109,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
   /// region spacings
   final double mockQrViewSpacing;
   final SvgFile qrScanAreaIcon;
+  final Color qrScannerBlue;
   final Color qrScannerCameraPermissionBlueLightColor;
   final Color qrScannerDisabledButtonGray;
   final Color qrScannerGradientBlueStart;
@@ -129,7 +128,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
   final double qrScannerPageM;
   final Color qrScannerPageScaffoldBackgroundColor;
   final double qrScannerPageXS;
-  final Color qrScannerBlue;
   final EdgeInsets qrScannerSubtitlePadding;
   final TextStyle titleBold;
 
@@ -157,7 +155,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     backButtonTransparentColor: _$QrScannerTheme.backButtonTransparentColor[0],
     backButtonWidthSpacingXXXL: _$QrScannerTheme.backButtonWidthSpacingXXXL[0],
     cameraIcon: _$QrScannerTheme.cameraIcon[0],
-    qrAreaIcon: _$QrScannerTheme.qrScanAreaIcon[0],
     cameraPermission1: _$QrScannerTheme.cameraPermission1[0],
     cameraPermission2: _$QrScannerTheme.cameraPermission2[0],
     cameraPermission3: _$QrScannerTheme.cameraPermission3[0],
@@ -174,6 +171,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     linearProgressIndicatorXS: _$QrScannerTheme.linearProgressIndicatorXS[0],
     mockQrViewSpacing: _$QrScannerTheme.mockQrViewSpacing[0],
     qrScanAreaIcon: _$QrScannerTheme.qrScanAreaIcon[0],
+    qrScannerBlue: _$QrScannerTheme.qrScannerBlue[0],
     qrScannerCameraPermissionBlueLightColor:
         _$QrScannerTheme.qrScannerCameraPermissionBlueLightColor[0],
     qrScannerDisabledButtonGray:
@@ -195,7 +193,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     qrScannerPageScaffoldBackgroundColor:
         _$QrScannerTheme.qrScannerPageScaffoldBackgroundColor[0],
     qrScannerPageXS: _$QrScannerTheme.qrScannerPageXS[0],
-    qrScannerBlue: _$QrScannerTheme.qrScannerBlue[0],
     qrScannerSubtitlePadding: _$QrScannerTheme.qrScannerSubtitlePadding[0],
     titleBold: _$QrScannerTheme.titleBold[0],
   );
@@ -224,7 +221,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     backButtonTransparentColor: _$QrScannerTheme.backButtonTransparentColor[1],
     backButtonWidthSpacingXXXL: _$QrScannerTheme.backButtonWidthSpacingXXXL[1],
     cameraIcon: _$QrScannerTheme.cameraIcon[1],
-    qrAreaIcon: _$QrScannerTheme.qrScanAreaIcon[1],
     cameraPermission1: _$QrScannerTheme.cameraPermission1[1],
     cameraPermission2: _$QrScannerTheme.cameraPermission2[1],
     cameraPermission3: _$QrScannerTheme.cameraPermission3[1],
@@ -241,6 +237,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     linearProgressIndicatorXS: _$QrScannerTheme.linearProgressIndicatorXS[1],
     mockQrViewSpacing: _$QrScannerTheme.mockQrViewSpacing[1],
     qrScanAreaIcon: _$QrScannerTheme.qrScanAreaIcon[1],
+    qrScannerBlue: _$QrScannerTheme.qrScannerBlue[1],
     qrScannerCameraPermissionBlueLightColor:
         _$QrScannerTheme.qrScannerCameraPermissionBlueLightColor[1],
     qrScannerDisabledButtonGray:
@@ -262,7 +259,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     qrScannerPageScaffoldBackgroundColor:
         _$QrScannerTheme.qrScannerPageScaffoldBackgroundColor[1],
     qrScannerPageXS: _$QrScannerTheme.qrScannerPageXS[1],
-    qrScannerBlue: _$QrScannerTheme.qrScannerBlue[1],
     qrScannerSubtitlePadding: _$QrScannerTheme.qrScannerSubtitlePadding[1],
     titleBold: _$QrScannerTheme.titleBold[1],
   );
@@ -308,6 +304,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     double? linearProgressIndicatorXS,
     double? mockQrViewSpacing,
     SvgFile? qrScanAreaIcon,
+    Color? qrScannerBlue,
     Color? qrScannerCameraPermissionBlueLightColor,
     Color? qrScannerDisabledButtonGray,
     Color? qrScannerGradientBlueStart,
@@ -323,7 +320,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
     double? qrScannerPageM,
     Color? qrScannerPageScaffoldBackgroundColor,
     double? qrScannerPageXS,
-    Color? qrScannerBlue,
     EdgeInsets? qrScannerSubtitlePadding,
     TextStyle? titleBold,
   }) {
@@ -360,7 +356,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
       backButtonWidthSpacingXXXL:
           backButtonWidthSpacingXXXL ?? this.backButtonWidthSpacingXXXL,
       cameraIcon: cameraIcon ?? this.cameraIcon,
-      qrAreaIcon: qrAreaIcon,
       cameraPermission1: cameraPermission1 ?? this.cameraPermission1,
       cameraPermission2: cameraPermission2 ?? this.cameraPermission2,
       cameraPermission3: cameraPermission3 ?? this.cameraPermission3,
@@ -379,6 +374,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
           linearProgressIndicatorXS ?? this.linearProgressIndicatorXS,
       mockQrViewSpacing: mockQrViewSpacing ?? this.mockQrViewSpacing,
       qrScanAreaIcon: qrScanAreaIcon ?? this.qrScanAreaIcon,
+      qrScannerBlue: qrScannerBlue ?? this.qrScannerBlue,
       qrScannerCameraPermissionBlueLightColor:
           qrScannerCameraPermissionBlueLightColor ??
               this.qrScannerCameraPermissionBlueLightColor,
@@ -403,7 +399,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
           qrScannerPageScaffoldBackgroundColor ??
               this.qrScannerPageScaffoldBackgroundColor,
       qrScannerPageXS: qrScannerPageXS ?? this.qrScannerPageXS,
-      qrScannerBlue: qrScannerBlue ?? this.qrScannerBlue,
       qrScannerSubtitlePadding:
           qrScannerSubtitlePadding ?? this.qrScannerSubtitlePadding,
       titleBold: titleBold ?? this.titleBold,
@@ -411,8 +406,9 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
   }
 
   @override
-  QrScannerTheme lerp(ThemeExtension<QrScannerTheme>? other, double t) {
-    if (other is! QrScannerTheme) return this;
+  QrScannerTheme lerp(
+      covariant ThemeExtension<QrScannerTheme>? other, double t) {
+    if (other is! QrScannerTheme) return this as QrScannerTheme;
     return QrScannerTheme(
       appBarBackgroundColor:
           Color.lerp(appBarBackgroundColor, other.appBarBackgroundColor, t)!,
@@ -456,7 +452,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
           ? backButtonWidthSpacingXXXL
           : other.backButtonWidthSpacingXXXL,
       cameraIcon: t < 0.5 ? cameraIcon : other.cameraIcon,
-      qrAreaIcon: t < 0.5 ? qrAreaIcon : other.qrAreaIcon,
       cameraPermission1: t < 0.5 ? cameraPermission1 : other.cameraPermission1,
       cameraPermission2: t < 0.5 ? cameraPermission2 : other.cameraPermission2,
       cameraPermission3: t < 0.5 ? cameraPermission3 : other.cameraPermission3,
@@ -477,6 +472,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
           t < 0.5 ? linearProgressIndicatorXS : other.linearProgressIndicatorXS,
       mockQrViewSpacing: t < 0.5 ? mockQrViewSpacing : other.mockQrViewSpacing,
       qrScanAreaIcon: t < 0.5 ? qrScanAreaIcon : other.qrScanAreaIcon,
+      qrScannerBlue: Color.lerp(qrScannerBlue, other.qrScannerBlue, t)!,
       qrScannerCameraPermissionBlueLightColor: Color.lerp(
           qrScannerCameraPermissionBlueLightColor,
           other.qrScannerCameraPermissionBlueLightColor,
@@ -505,7 +501,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
           other.qrScannerPageScaffoldBackgroundColor,
           t)!,
       qrScannerPageXS: t < 0.5 ? qrScannerPageXS : other.qrScannerPageXS,
-      qrScannerBlue: Color.lerp(qrScannerBlue, other.qrScannerBlue, t)!,
       qrScannerSubtitlePadding:
           t < 0.5 ? qrScannerSubtitlePadding : other.qrScannerSubtitlePadding,
       titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
@@ -582,6 +577,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
             const DeepCollectionEquality().equals(linearProgressIndicatorXS, other.linearProgressIndicatorXS) &&
             const DeepCollectionEquality().equals(mockQrViewSpacing, other.mockQrViewSpacing) &&
             const DeepCollectionEquality().equals(qrScanAreaIcon, other.qrScanAreaIcon) &&
+            const DeepCollectionEquality().equals(qrScannerBlue, other.qrScannerBlue) &&
             const DeepCollectionEquality().equals(qrScannerCameraPermissionBlueLightColor, other.qrScannerCameraPermissionBlueLightColor) &&
             const DeepCollectionEquality().equals(qrScannerDisabledButtonGray, other.qrScannerDisabledButtonGray) &&
             const DeepCollectionEquality().equals(qrScannerGradientBlueStart, other.qrScannerGradientBlueStart) &&
@@ -597,7 +593,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
             const DeepCollectionEquality().equals(qrScannerPageM, other.qrScannerPageM) &&
             const DeepCollectionEquality().equals(qrScannerPageScaffoldBackgroundColor, other.qrScannerPageScaffoldBackgroundColor) &&
             const DeepCollectionEquality().equals(qrScannerPageXS, other.qrScannerPageXS) &&
-            const DeepCollectionEquality().equals(qrScannerBlue, other.qrScannerBlue) &&
             const DeepCollectionEquality().equals(qrScannerSubtitlePadding, other.qrScannerSubtitlePadding) &&
             const DeepCollectionEquality().equals(titleBold, other.titleBold));
   }
@@ -605,7 +600,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
   @override
   int get hashCode {
     return Object.hashAll([
-      runtimeType,
+      runtimeType.hashCode,
       const DeepCollectionEquality().hash(appBarBackgroundColor),
       const DeepCollectionEquality().hash(appBarSpacingM),
       const DeepCollectionEquality().hash(appBarSpacingXXXXL),
@@ -641,6 +636,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
       const DeepCollectionEquality().hash(linearProgressIndicatorXS),
       const DeepCollectionEquality().hash(mockQrViewSpacing),
       const DeepCollectionEquality().hash(qrScanAreaIcon),
+      const DeepCollectionEquality().hash(qrScannerBlue),
       const DeepCollectionEquality()
           .hash(qrScannerCameraPermissionBlueLightColor),
       const DeepCollectionEquality().hash(qrScannerDisabledButtonGray),
@@ -657,9 +653,8 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme> {
       const DeepCollectionEquality().hash(qrScannerPageM),
       const DeepCollectionEquality().hash(qrScannerPageScaffoldBackgroundColor),
       const DeepCollectionEquality().hash(qrScannerPageXS),
-      const DeepCollectionEquality().hash(qrScannerBlue),
       const DeepCollectionEquality().hash(qrScannerSubtitlePadding),
-      const DeepCollectionEquality().hash(titleBold)
+      const DeepCollectionEquality().hash(titleBold),
     ]);
   }
 }

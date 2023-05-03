@@ -19,8 +19,14 @@ abstract class $PinCodeBloc extends RxBlocBase
     implements PinCodeBlocEvents, PinCodeBlocStates, PinCodeBlocType {
   final _compositeSubscription = CompositeSubscription();
 
+  /// Тhe [Subject] where events sink to by calling [getPinLength]
+  final _$getPinLengthEvent = PublishSubject<int?>();
+
   /// Тhe [Subject] where events sink to by calling [checkBiometricsEnabled]
   final _$checkBiometricsEnabledEvent = BehaviorSubject<void>();
+
+  /// Тhe [Subject] where events sink to by calling [checkAvailableBiometrics]
+  final _$checkAvailableBiometricsEvent = BehaviorSubject<void>();
 
   /// Тhe [Subject] where events sink to by calling [checkPinCodeInStorage]
   final _$checkPinCodeInStorageEvent = BehaviorSubject<void>();
@@ -64,11 +70,23 @@ abstract class $PinCodeBloc extends RxBlocBase
   late final ConnectableStream<bool> _isPinCodeInSecureStorageState =
       _mapToIsPinCodeInSecureStorageState();
 
+  /// The state of [pinLength] implemented in [_mapToPinLengthState]
+  late final ConnectableStream<int> _pinLengthState = _mapToPinLengthState();
+
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
   late final Stream<bool> _isLoadingState = _mapToIsLoadingState();
 
+  /// The state of [errors] implemented in [_mapToErrorsState]
+  late final Stream<ErrorModel> _errorsState = _mapToErrorsState();
+
+  @override
+  void getPinLength(int? length) => _$getPinLengthEvent.add(length);
+
   @override
   void checkBiometricsEnabled() => _$checkBiometricsEnabledEvent.add(null);
+
+  @override
+  void checkAvailableBiometrics() => _$checkAvailableBiometricsEvent.add(null);
 
   @override
   void checkPinCodeInStorage() => _$checkPinCodeInStorageEvent.add(null);
@@ -112,7 +130,13 @@ abstract class $PinCodeBloc extends RxBlocBase
       _isPinCodeInSecureStorageState;
 
   @override
+  ConnectableStream<int> get pinLength => _pinLengthState;
+
+  @override
   Stream<bool> get isLoading => _isLoadingState;
+
+  @override
+  Stream<ErrorModel> get errors => _errorsState;
 
   Stream<bool> _mapToAreBiometricsEnabledState();
 
@@ -126,7 +150,11 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState();
 
+  ConnectableStream<int> _mapToPinLengthState();
+
   Stream<bool> _mapToIsLoadingState();
+
+  Stream<ErrorModel> _mapToErrorsState();
 
   @override
   PinCodeBlocEvents get events => this;
@@ -136,7 +164,9 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   @override
   void dispose() {
+    _$getPinLengthEvent.close();
     _$checkBiometricsEnabledEvent.close();
+    _$checkAvailableBiometricsEvent.close();
     _$checkPinCodeInStorageEvent.close();
     _$requestBiometricAuthEvent.close();
     _$autoSubmitEvent.close();

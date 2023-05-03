@@ -1,52 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
-import '../../base/resources/app_constants.dart';
 import '../di/pin_code_dependencies.dart';
 import 'pin_code_component.dart';
 
 /// This Widget builds custom numeric keyboard on the screen. It presents three
-/// columns with numbers from 1 to 9 in three rows. Below them is the zero in the
-/// middle and two customizable buttons in bought directions. To define them use
-/// [deleteKeyButton] and/or [bottomRightKeyboardButton]. By default the
-/// left button will be back arrow and whenever pressed, will delete the last
-/// entered number. The right button will be submit button - enabled only if all
-/// numbers are provided. If some biometrics are available and no one digit has been entered,
-/// respective biometric icon will be displayed and clicking on the button will
-/// return the native ID authentication workflow.
-/// When the user submits the pin code, the widget should present to the user that
-/// the pin verification is in progress. Over the masked pin a Shimmer will be
-/// presented and buttons will change their appearance.
-/// The pin code from the input is auto submitted once its length reaches [keyLength].
-/// When the biometrics button on the bottom right is pressed an enable biometrics
-/// question pops up after the permission is given the pressing of the button
-/// triggers a biometrics scan.
+/// columns with numbers from 1 to 9 in three rows. Below them is the zero, there are
+/// in the two customizable button options on the right direction. To define them use
+/// [deleteKeyButton] and/or [bottomRightKeyboardButton]. The right button by default
+/// can be is an auto submit button, delete button and biometrics button.
+/// When the widget is loaded for the first time, on the bottom right of the
+/// page there is no button. At this moment the biometrics for the app are still
+/// not enabled. After at least 1 number has been selected the delete button
+/// shows up. When the length of the input has reached the pin code length, the
+/// button icon disappears. The pin code is encrypted and stored in the
+/// local device secure storage. Then, there is an auto submit for the selected
+/// pin code to the backend for verification. When the pin code is submitted,
+/// the widget should present to the user that the pin verification is in
+/// progress with loading animation. Over the masked pin a Shimmer will be
+/// presented and buttons will change their appearance. The pin code from the
+/// input is auto submitted once its length reaches the returned value from
+/// [PinCodeService.getPinLength()], which should return a value less than 10.
+/// After the pin has been saved
+/// successfully in the secure storage, the biometrics icon appear on the bottom
+/// right. When you press it, it triggers enabling of the biometrics event. The
+/// local authentication from the local_auth package is triggered. The user is
+/// asked, if he/she wants to allow the app to use biometrics authentication.
+/// When he/she clicks ok, the biometrics authentication is triggered. When it
+/// is successful, on the screen is displayed a message that the biometrics are
+/// enabled. The next time when the app is restarted, because the pin code
+/// will be stored in the device secure storage, the biometrics authentication
+/// will be automatically triggered and the biometrics icon will be displayed
+/// on the bottom right. When you press it every time it will trigger the
+/// biometric authentication.
+///
+/// For more information on how the widgets work check the functional specification
+/// section in the README.md file.
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
-    required this.keyLength,
     required this.pinCodeService,
     required this.biometricsLocalDataSource,
+    required this.translateError,
     this.mapMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
-    this.onChangePin,
-    this.error,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
-    this.translatableStrings,
-    this.errorModalConfiguration = const ErrorModalConfiguration(),
+    this.localizedReason,
+    this.addDependencies = true,
+    this.onError,
     Key? key,
-  })  : assert(keyLength <= kPinMaxLength, 'max key length is 20'),
-        super(key: key);
+  }) : super(key: key);
+
+  /// Handle the translation of the error from the errors stream
+  final String Function(Object error) translateError;
 
   /// [mapMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
   final String Function(BiometricsMessage message)? mapMessageToString;
-
-  /// Define how many numbers contains your key. Max 10 digits
-  final int keyLength;
 
   /// Provides a contract to be implemented for the pin code related methods.
   final PinCodeService pinCodeService;
@@ -60,47 +75,75 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Returns the verification state of the input from the pin code auto submit value.
   final void Function(bool)? isPinCodeVerified;
 
-  ///Reflects every change of the code
-  final void Function()? onChangePin;
-
-  /// Expects to receive ErrorPinAttemptsModel and will translate it. Otherwise
-  /// a generic message will be displayed.
-  final ErrorModel? error;
-
-  /// Provide custom implementation for the most down left button. Do not forget
-  /// to make it clickable. Default to LeftArrow.
+  /// Provide custom implementation for the most down left button, shown when
+  /// there is pin code input on the screen. Do not forget to make it clickable.
+  /// Default to LeftArrow.
   final PinCodeCustomKey? deleteKeyButton;
 
-  /// Provide custom implementation for the most down right button. Do not forget
-  /// to make it clickable.
+  /// Provide custom implementation for the most down right button. If this
+  /// parameter is not used, a default button is used, which provides pin code
+  /// auto submit, biometrics enabling and biometrics authentication functionalities,
+  /// and its icon changes to empty, face, finger. Do not forget to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
-  /// Provide implementation of PrimePinLocalizedStrings if you want to change some default Strings ot make all of them translatable
-  final PinLocalizedStrings? translatableStrings;
+  /// Provide a custom message, otherwise the default [_enterPinWithBiometrics]
+  /// will be used
+  final String? localizedReason;
 
-  /// Customize modal sheet appearance
-  final ErrorModalConfiguration errorModalConfiguration;
+  /// If set to true the dependencies will be injected before the building of
+  /// the widget, otherwise the user should provide an implementation for the
+  /// dependencies
+  final bool addDependencies;
+
+  /// [onError] is optional function that enable error handling out of the package
+  final Function(Object error, String translatedError)? onError;
+
+  static const String _enterPinWithBiometrics =
+      'Enter your pin code by authenticating with biometrics';
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          ...PinCodeDependencies.from(
-            pinCodeService: pinCodeService,
-            biometricsLocalDataSource: biometricsLocalDataSource,
-            translatableStrings: translatableStrings,
-          ).providers,
-        ],
-        child: PinCodeComponent(
-          keyLength: keyLength,
-          mapMessageToString: mapMessageToString,
-          isAuthenticatedWithBiometrics: isAuthenticatedWithBiometrics,
-          isPinCodeVerified: isPinCodeVerified,
-          onChangePin: onChangePin,
-          error: error,
-          deleteKeyButton: deleteKeyButton,
-          bottomRightKeyboardButton: bottomRightKeyboardButton,
-          translatableStrings: translatableStrings,
-          errorModalConfiguration: errorModalConfiguration,
+  Widget build(BuildContext context) => _wrapWithDependencies(
+        child: _buildErrorListener(
+          child: RxBlocBuilder<PinCodeBlocType, int>(
+            state: (bloc) => bloc.states.pinLength,
+            builder: (context, snapshot, bloc) => snapshot.hasData
+                ? PinCodeComponent(
+                    pinLength: snapshot.data!,
+                    translateError: translateError,
+                    mapMessageToString: mapMessageToString,
+                    isAuthenticatedWithBiometrics:
+                        isAuthenticatedWithBiometrics,
+                    isPinCodeVerified: isPinCodeVerified,
+                    deleteKeyButton: deleteKeyButton,
+                    bottomRightKeyboardButton: bottomRightKeyboardButton,
+                    onError: onError,
+                    localizedReason: _enterPinWithBiometrics,
+                  )
+                : Container(),
+          ),
         ),
       );
+
+  Widget _buildErrorListener({required Widget child}) =>
+      RxBlocListener<PinCodeBlocType, ErrorModel>(
+        state: (bloc) => bloc.states.errors,
+        listener: (context, error) {
+          final translatedError = translateError(error);
+          onError?.call(error, translatedError);
+        },
+        child: child,
+      );
+
+  Widget _wrapWithDependencies({required Widget child}) => addDependencies
+      ? MultiProvider(
+          providers: [
+            ...PinCodeDependencies.from(
+              pinCodeService: pinCodeService,
+              biometricsLocalDataSource: biometricsLocalDataSource,
+              localizedReason: localizedReason ?? _enterPinWithBiometrics,
+            ).providers,
+          ],
+          child: child,
+        )
+      : child;
 }

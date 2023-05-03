@@ -69,8 +69,6 @@ class _$PinCodeTheme {
     PrimeDesignSystem.dark().colors.greenLight,
   ];
 
-  static List<Color> pinKeyboardErrorTextColor = lightRed;
-
   static List<Color> pinKeyboardErrorPinColor = lightRed;
 
   static List<Color> pinKeyboardBottomButtonTextColor = white;
@@ -109,18 +107,6 @@ class _$PinCodeTheme {
 
   static List<Color> pinKeyboardMaskedKeyColor = white;
 
-  static List<Color> errorModalCloseButtonIconColor = [
-    PrimeDesignSystem.light().colors.inactiveButtonColor,
-    PrimeDesignSystem.dark().colors.inactiveButtonColor
-  ];
-
-  static List<Color> errorModalCloseButtonGradientStartColor = [
-    PrimeDesignSystem.light().colors.inactiveButtonColor,
-    PrimeDesignSystem.dark().colors.inactiveButtonColor
-  ];
-
-  static List<Color> errorModalActionButtonTextColor = black;
-
   /// endregion
 
   /// region Common TextStyles
@@ -129,15 +115,6 @@ class _$PinCodeTheme {
           color: PrimeDesignSystem.light().colors.white,
         ),
     PrimeDesignSystem.dark().typography.descriptionBold.copyWith(
-          color: PrimeDesignSystem.dark().colors.white,
-        ),
-  ];
-
-  static List<TextStyle> errorModalTitleTextStyle = [
-    PrimeDesignSystem.light().typography.titleBold.copyWith(
-          color: PrimeDesignSystem.light().colors.black,
-        ),
-    PrimeDesignSystem.dark().typography.titleBold.copyWith(
           color: PrimeDesignSystem.dark().colors.white,
         ),
   ];
@@ -177,61 +154,11 @@ class _$PinCodeTheme {
     PrimeDesignSystem.dark().typography.errorTitle,
   ];
 
-  static List<TextStyle> pinKeyboardErrorTextStyle = captionBold;
-
   static List<TextStyle> pinKeyboardBottomButtonTextStyle = captionBold;
 
   /// endregion
 
   /// region Common Spacings
-
-  static List<EdgeInsets> errorModalCloseButtonPadding1 = [
-    EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.m,
-      left: PrimeDesignSystem.light().spacings.m,
-      right: PrimeDesignSystem.light().spacings.m,
-      bottom: PrimeDesignSystem.light().spacings.l,
-    ),
-    EdgeInsets.only(
-      top: PrimeDesignSystem.dark().spacings.m,
-      left: PrimeDesignSystem.dark().spacings.m,
-      right: PrimeDesignSystem.dark().spacings.m,
-      bottom: PrimeDesignSystem.dark().spacings.l,
-    ),
-  ];
-
-  static List<EdgeInsets> errorModalCloseButtonPadding2 = [
-    EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl,
-      left: PrimeDesignSystem.light().spacings.m,
-      right: PrimeDesignSystem.light().spacings.m,
-      bottom: PrimeDesignSystem.light().spacings.l,
-    ),
-    EdgeInsets.only(
-      top: PrimeDesignSystem.dark().spacings.xl,
-      left: PrimeDesignSystem.dark().spacings.m,
-      right: PrimeDesignSystem.dark().spacings.m,
-      bottom: PrimeDesignSystem.dark().spacings.l,
-    ),
-  ];
-
-  static List<EdgeInsets> errorModalTitlePadding = [
-    EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl,
-      left: PrimeDesignSystem.light().spacings.xl,
-      bottom: PrimeDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.only(
-      top: PrimeDesignSystem.light().spacings.xl,
-      left: PrimeDesignSystem.light().spacings.xl,
-      bottom: PrimeDesignSystem.light().spacings.m,
-    ),
-  ];
-
-  static List<EdgeInsets> errorModalErrorWidgetPadding = [
-    EdgeInsets.symmetric(horizontal: PrimeDesignSystem.light().spacings.m),
-    EdgeInsets.symmetric(horizontal: PrimeDesignSystem.light().spacings.m),
-  ];
 
   static List<double> spacingXSS1 = [
     PrimeDesignSystem.light().spacings.xss1,
@@ -344,11 +271,6 @@ class _$PinCodeTheme {
   static List<Widget> fingerScanPressedIcon = [
     PrimeDesignSystem.dark().icons.fingerScanPressed,
     PrimeDesignSystem.light().icons.fingerScanPressed,
-  ];
-
-  static List<Widget> infoCircleIcon = [
-    PrimeDesignSystem.dark().icons.infoCircle,
-    PrimeDesignSystem.light().icons.infoCircle,
   ];
 
   /// endregion

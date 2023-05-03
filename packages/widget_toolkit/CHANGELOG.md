@@ -1,3 +1,6 @@
+## [0.0.1-dev8]
+- Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
+
 ## [0.0.1-dev7]
 - Documentation improvements
 ### Breaking Changes:

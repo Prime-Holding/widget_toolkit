@@ -1,11 +1,13 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
+import '../lib_pin_code/blocs/pin_code_test.mocks.dart';
 import 'pin_code_mock.mocks.dart';
+import 'stubs.dart';
 
 @GenerateMocks([
   PinCodeBlocStates,
@@ -13,13 +15,16 @@ import 'pin_code_mock.mocks.dart';
   PinCodeBlocType,
 ])
 PinCodeBlocType pinCodeMockFactory({
+  required MockPinCodeService service,
   bool? isLoading,
   BiometricsMessage? biometricsMessage,
-  bool? isPinCodeInSecureStorage,
+  bool? isPinCodeInSecureStorage = true,
   bool? isAuthenticatedWithBiometrics,
   bool? isPinCodeVerified,
   bool? areBiometricsEnabled,
   List<BiometricsAuthType>? availableBiometrics,
+  ErrorModel? error,
+  int? pinLength = 6,
 }) {
   final blocMock = MockPinCodeBlocType();
   final eventsMock = MockPinCodeBlocEvents();
@@ -67,6 +72,34 @@ PinCodeBlocType pinCodeMockFactory({
         ? Stream.value(availableBiometrics).publish()
         : const Stream<List<BiometricsAuthType>>.empty().publish(),
   );
+
+  when(statesMock.errors).thenAnswer(
+    (_) =>
+        error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
+  );
+
+  when(statesMock.pinLength).thenAnswer(
+    (_) {
+      if (pinLength != null) {
+        return Stream<int>.value(pinLength).publish();
+      }
+      return const Stream<int>.empty().publish();
+    },
+  );
+
+  when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
+
+  when(service.isPinCodeInSecureStorage()).thenAnswer((_) async =>
+      (isPinCodeInSecureStorage != null && isPinCodeInSecureStorage)
+          ? true
+          : false);
+
+  when(service.encryptPinCode(Stubs.pinCode3))
+      .thenAnswer((_) async => Stubs.pinCode3);
+
+  when(service.getPinLength()).thenAnswer((_) async => pinLength!);
+
+  when(service.getPinCode()).thenAnswer((_) async => Stubs.pinCode3);
 
   return blocMock;
 }
