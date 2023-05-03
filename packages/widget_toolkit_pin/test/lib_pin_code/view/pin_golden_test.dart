@@ -10,9 +10,11 @@ import '../../helpers/golden_helper.dart';
 import '../../helpers/models/scenario.dart';
 import '../../mocks/biometrics_local_data_source_mock.dart';
 import '../../mocks/pin_code_mock.dart';
-import '../../mocks/pin_code_service_mock.dart';
+import '../blocs/pin_code_test.mocks.dart';
 
 void main() {
+  final MockPinCodeService service = MockPinCodeService();
+
   runGoldenTests(
     [
       generateDeviceBuilder(
@@ -36,7 +38,14 @@ void main() {
         scenario: Scenario(name: 'pin_code_biometrics_enabled'),
       ),
       generateDeviceBuilder(
-        widget: pinCodeKeyboardPageFactory(pinLength: 6),
+        widget: pinCodeKeyboardPageFactory(
+            pinLength: 6,
+            service: service,
+            isPinCodeInSecureStorage: true,
+            isPinCodeVerified: true,
+            areBiometricsEnabled: true,
+            biometricsMessage: BiometricsMessage.enabled,
+            availableBiometrics: [BiometricsAuthType.face]),
         scenario: Scenario(name: 'pin_code_biometrics'),
       )
     ],
@@ -68,6 +77,7 @@ Widget pinCodeComponentPageFactory({
               areBiometricsEnabled: areBiometricsEnabled,
               availableBiometrics: availableBiometrics,
               pinLength: pinLength,
+              service: MockPinCodeService(),
             ),
           ),
         ],
@@ -82,6 +92,7 @@ Widget pinCodeComponentPageFactory({
     );
 
 Widget pinCodeKeyboardPageFactory({
+  required MockPinCodeService service,
   bool isLoading = false,
   BiometricsMessage? biometricsMessage,
   bool? isPinCodeInSecureStorage,
@@ -92,12 +103,8 @@ Widget pinCodeKeyboardPageFactory({
   int pinLength = 6,
 }) =>
     Scaffold(
-      backgroundColor: Colors.transparent,
       body: MultiProvider(
         providers: [
-          Provider<PinCodeService>(
-            create: (context) => PinCodeServiceMock(pinCode: '123456'),
-          ),
           Provider<BiometricsLocalDataSource>(
             create: (context) => BiometricsLocalDataSourceMock(),
           ),
@@ -111,14 +118,15 @@ Widget pinCodeKeyboardPageFactory({
               areBiometricsEnabled: areBiometricsEnabled,
               availableBiometrics: availableBiometrics,
               pinLength: pinLength,
+              service: service,
             ),
-          ),
+          )
         ],
         child: Builder(
           builder: (context) => PinCodeKeyboard(
             translateError: (error) => error.toString(),
             localizedReason: '',
-            pinCodeService: context.read<PinCodeService>(),
+            pinCodeService: service,
             biometricsLocalDataSource:
                 context.read<BiometricsLocalDataSource>(),
           ),
