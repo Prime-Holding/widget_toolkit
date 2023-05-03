@@ -265,6 +265,6 @@ time it will trigger the biometric authentication.
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
-[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_biometrics/branch/master
+[codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_pin/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
