@@ -205,16 +205,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                   isPinCodeIsSecureStorage: isPinCodeInSecureStorage.hasData &&
                       isPinCodeInSecureStorage.data!,
                   context: context,
-                  hasFingerScan: areBiometricsEnabled.hasData &&
-                      areBiometricsEnabled.data! &&
-                      availableBiometrics.hasData &&
-                      availableBiometrics.data!
-                          .contains(BiometricsAuthType.fingerprint),
-                  hasFaceScan: areBiometricsEnabled.hasData &&
-                      areBiometricsEnabled.data! &&
-                      availableBiometrics.hasData &&
-                      availableBiometrics.data!
-                          .contains(BiometricsAuthType.face),
+                  hasFingerScan: _hasBiometricsScan(areBiometricsEnabled,
+                      availableBiometrics, BiometricsAuthType.fingerprint),
+                  hasFaceScan: _hasBiometricsScan(areBiometricsEnabled,
+                      availableBiometrics, BiometricsAuthType.face),
                   biometricsEnabled: areBiometricsEnabled.hasData
                       ? areBiometricsEnabled.data!
                       : false,
@@ -224,6 +218,15 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           ),
         ),
       );
+
+  bool _hasBiometricsScan(
+          AsyncSnapshot<bool> areBiometricsEnabled,
+          AsyncSnapshot<List<BiometricsAuthType>> availableBiometrics,
+          BiometricsAuthType type) =>
+      areBiometricsEnabled.hasData &&
+      areBiometricsEnabled.data! &&
+      availableBiometrics.hasData &&
+      availableBiometrics.data!.contains(type);
 
   Widget _buildPageContent({
     required int pinLength,
