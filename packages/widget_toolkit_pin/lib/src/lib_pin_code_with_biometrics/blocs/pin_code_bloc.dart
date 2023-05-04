@@ -12,12 +12,14 @@ part 'pin_code_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the PinCodeBloc.
 abstract class PinCodeBlocEvents {
+  /// Requests getting the pin code length
   void getPinLength(int? length);
 
   /// Checks whether the biometrics are enabled for the application
   @RxBlocEvent(type: RxBlocEventType.behaviour)
   void checkBiometricsEnabled();
 
+  /// Requests getting the available biometrics list
   @RxBlocEvent(type: RxBlocEventType.behaviour)
   void checkAvailableBiometrics();
 
@@ -50,6 +52,7 @@ abstract class PinCodeBlocStates {
   /// enabled, otherwise returns an empty list
   ConnectableStream<List<BiometricsAuthType>> get availableBiometrics;
 
+  /// Returns true if the user is authenticated with biometrics
   ConnectableStream<bool> get isAuthenticatedWithBiometrics;
 
   /// Message to be presented when biometrics setting are updated
@@ -58,6 +61,7 @@ abstract class PinCodeBlocStates {
   /// Returns true if there is any pin code stored in device local secure storage
   ConnectableStream<bool> get isPinCodeInSecureStorage;
 
+  /// Returns the correct length of the pin code
   ConnectableStream<int> get pinLength;
 
   /// The loading state
