@@ -92,7 +92,7 @@ class MyHomePage extends StatelessWidget {
                       // Optionally you can provide [addDependencies] and set it to false. In
                       // this case you will have to provide and implementation of the [LocalAuthentication],
                       // [PinBiometricsAuthDataSource], [PinBiometricsRepository],[PinCodeBloc]
-                      addDependencies: false,
+                      addDependencies: true,
                       // Optionally you can provide [isAuthenticatedWithBiometrics] where the
                       // function receives a bool value showing, whether the user was authenticated with biometrics.
                       isAuthenticatedWithBiometrics: (isAuthenticated) => true,
