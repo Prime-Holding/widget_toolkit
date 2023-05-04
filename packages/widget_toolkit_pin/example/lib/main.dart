@@ -117,16 +117,14 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
-  void _onError(error, translatedError, context) {
-    showBlurredBottomSheet(
-      context: context,
-      configuration: const ModalConfiguration(safeAreaBottom: false),
-      builder: (context) => const MessagePanelWidget(
-        message: 'Could not enable biometric authentication at this time',
-        messageState: MessagePanelState.important,
-      ),
-    );
-  }
+  void _onError(error, translatedError, context) => showBlurredBottomSheet(
+        context: context,
+        configuration: const ModalConfiguration(safeAreaBottom: false),
+        builder: (context) => const MessagePanelWidget(
+          message: 'Could not enable biometric authentication at this time',
+          messageState: MessagePanelState.important,
+        ),
+      );
 
   String _translateError(Object error) => 'translated error';
 
