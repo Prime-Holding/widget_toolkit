@@ -60,8 +60,8 @@ To access the content of the `widget_toolkit_pin`, you should import the files w
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 ```
 
-**Note:** The `WidgetToolkitTheme` comes from the **Widget Toolkit** package which already presence in the **Widget Toolkit Pin** package.
-It can be imported with the following line:
+**Note:** The `WidgetToolkitTheme` comes from the **Widget Toolkit** package, which is already
+present in the **Widget Toolkit Pin** package. It can be imported with the following line:
 ```dart
 import 'package:widget_toolkit/widget_toolkit.dart';
 ```  
@@ -105,10 +105,7 @@ class AppPinCodeService implements PinCodeService {
     var isPinCodeInSecureStorage =
     await flutterSecureStorage.read(key: _isPinCodeInStorage);
 
-    if (isPinCodeInSecureStorage == null) {
-      return Future.value(false);
-    }
-    return Future.value(true);
+    return isPinCodeInSecureStorage != null;
   }
 
   @override
@@ -133,20 +130,12 @@ class AppPinCodeService implements PinCodeService {
     var pinFromStorage =
     await flutterSecureStorage.read(key: _isPinCodeInStorage);
 
-    if (pinCode == pinFromStorage) {
-      return Future.value(true);
-    }
-    return Future.value(false);
+    return pinCode == pinFromStorage;
   }
 
   @override
-  Future<String?> getPinCode() async {
-    var pin = await flutterSecureStorage.read(key: _isPinCodeInStorage);
-    if (pin == null) {
-      return Future.value(null);
-    }
-    return Future.value(pin);
-  }
+  Future<String?> getPinCode() async =>
+      await flutterSecureStorage.read(key: _isPinCodeInStorage);
 }
 ```
 

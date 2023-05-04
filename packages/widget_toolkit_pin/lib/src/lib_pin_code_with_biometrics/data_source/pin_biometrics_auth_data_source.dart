@@ -13,15 +13,13 @@ class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
 
   BiometricsAuthType mapBiometric(BiometricType type) {
     switch (type) {
-      case BiometricType.face:
-        return BiometricsAuthType.face;
       case BiometricType.fingerprint:
         return BiometricsAuthType.fingerprint;
       case BiometricType.iris:
         return BiometricsAuthType.iris;
       case BiometricType.strong:
-        return BiometricsAuthType.face;
       case BiometricType.weak:
+      case BiometricType.face:
         return BiometricsAuthType.face;
     }
   }
