@@ -7,3 +7,5 @@ dependency_overrides:
     path: ../../widget_toolkit
   widget_toolkit_biometrics:
     path: ../../widget_toolkit_biometrics
+  widget_toolkit_pin:
+    path: ../../widget_toolkit_pin
