@@ -14,8 +14,7 @@ dependencies:
   provider: ^6.0.5
   rx_bloc: ^4.0.1
   widget_toolkit: ^0.0.1-dev7
-  widget_toolkit_pin:
-    path: ../../widget_toolkit_pin
+  widget_toolkit_pin: ^0.0.1-dev1
   widget_toolkit_biometrics: ^0.0.1-dev2
 
 dev_dependencies:
