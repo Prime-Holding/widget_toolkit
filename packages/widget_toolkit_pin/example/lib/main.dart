@@ -73,22 +73,6 @@ class MyHomePage extends StatelessWidget {
                       // a localized message, which would get shown to the user when they
                       // are prompted to confirm that they want to enable biometrics
                       localizedReason: 'Activate the biometrics of your device',
-                      // Optionally you can provide [deleteKeyButton], which button will be
-                      // used instead of the default delete
-                      // button.
-                      deleteKeyButton: PinCodeCustomKey(
-                        buildChild: (bool isPressed) =>
-                            const Icon(Icons.delete),
-                        onTap: () {},
-                      ),
-                      // Optionally you can provide [bottomRightKeyboardButton], which button
-                      // will be used instead of the default delete button and instead of the other
-                      // functionalities provided from the default auto submit, biometrics scan buttons,
-                      // which are appearing on the bottom right of the keyboard.
-                      bottomRightKeyboardButton: PinCodeCustomKey(
-                        buildChild: (bool isPressed) => const Icon(Icons.face),
-                        onTap: () {},
-                      ),
                       // Optionally you can provide [addDependencies] and set it to false. In
                       // this case you will have to provide and implementation of the [LocalAuthentication],
                       // [PinBiometricsAuthDataSource], [PinBiometricsRepository],[PinCodeBloc]
