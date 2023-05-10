@@ -240,9 +240,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Flexible(flex: 4, child: Container()),
-            _buildAnimatedKeysAndErrorBuilder(context, pinLength),
-            Flexible(flex: 3, child: Container()),
+            const Spacer(flex: 4,),
+            _buildAnimatedKeysBuilder(context, pinLength),
+            const Spacer(flex: 3,),
             _buildKeyboard(
               verticalSpacing: MediaQuery.of(context).size.height / 45,
               isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
@@ -258,7 +258,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   /// region Builders
 
-  Widget _buildAnimatedKeysAndErrorBuilder(
+  Widget _buildAnimatedKeysBuilder(
           BuildContext context, int pinLength) =>
       AnimatedBuilder(
         animation: _controller,
