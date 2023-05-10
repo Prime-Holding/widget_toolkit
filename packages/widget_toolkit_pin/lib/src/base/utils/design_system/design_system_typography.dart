@@ -105,17 +105,20 @@ class DesignSystemTypography {
       fontStyle: FontStyle.normal,
       height: 1.6,
       fontSize: 20.0);
+
   final descriptionThin = const TextStyle(
       fontWeight: FontWeight.w400,
       fontFamily: 'Meta',
       fontStyle: FontStyle.normal,
       fontSize: 14.0);
+
   final smallThin = const TextStyle(
       fontWeight: FontWeight.w400,
       fontFamily: 'Meta',
       fontStyle: FontStyle.normal,
       fontSize: 12.0,
       height: 1.8);
+
   final captionBold = const TextStyle(
       fontWeight: FontWeight.w600,
       fontFamily: 'Meta',
