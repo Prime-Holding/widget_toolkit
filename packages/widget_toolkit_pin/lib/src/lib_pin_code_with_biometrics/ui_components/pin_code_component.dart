@@ -22,7 +22,7 @@ class PinCodeComponent extends StatefulWidget {
     required this.translateError,
     required this.pinLength,
     required this.localizedReason,
-    this.mapMessageToString,
+    this.mapBiometricMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
     this.deleteKeyButton,
@@ -38,9 +38,9 @@ class PinCodeComponent extends StatefulWidget {
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
 
-  /// [mapMessageToString] will be used to translate the [BiometricsMessage]
+  /// [mapBiometricMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
-  final String Function(BiometricsMessage message)? mapMessageToString;
+  final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
   /// Called when a user is authenticated with biometrics successfully
   final void Function(bool)? isAuthenticatedWithBiometrics;
@@ -635,7 +635,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   }
 
   String _localizeMessage(BiometricsMessage message) =>
-      widget.mapMessageToString?.call(message) ?? message.translate();
+      widget.mapBiometricMessageToString?.call(message) ?? message.translate();
 
   Future<void> _showBiometricsMessageBottomSheet(
     BuildContext context,

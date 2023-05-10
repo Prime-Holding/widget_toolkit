@@ -152,9 +152,9 @@ PinCodeKeyboard(
 
 ## Customization
 
-Optionally you can provide `mapMessageToString`, which will be used to translate the `BiometricsMessage` to human readable text and will be used in the default notification:
+Optionally you can provide `mapBiometricMessageToString`, which will be used to translate the `BiometricsMessage` to human readable text and will be used in the default notification:
 ```dart
-mapMessageToString: (message) {  
+mapBiometricMessageToString: (message) {  
   switch (message) {  
     case BiometricsMessage.notSetup:  
       return 'To use biometrics, you need to turn it on in your device settings!';  

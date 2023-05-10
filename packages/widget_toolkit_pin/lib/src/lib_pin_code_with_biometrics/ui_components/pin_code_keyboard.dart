@@ -45,7 +45,7 @@ class PinCodeKeyboard extends StatelessWidget {
     required this.pinCodeService,
     required this.biometricsLocalDataSource,
     required this.translateError,
-    this.mapMessageToString,
+    this.mapBiometricMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
     this.deleteKeyButton,
@@ -59,9 +59,9 @@ class PinCodeKeyboard extends StatelessWidget {
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
 
-  /// [mapMessageToString] will be used to translate the [BiometricsMessage]
+  /// [mapBiometricMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
-  final String Function(BiometricsMessage message)? mapMessageToString;
+  final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
   /// Provides a contract to be implemented for the pin code related methods.
   final PinCodeService pinCodeService;
@@ -110,7 +110,7 @@ class PinCodeKeyboard extends StatelessWidget {
                 ? PinCodeComponent(
                     pinLength: snapshot.data!,
                     translateError: translateError,
-                    mapMessageToString: mapMessageToString,
+                    mapBiometricMessageToString: mapBiometricMessageToString,
                     isAuthenticatedWithBiometrics:
                         isAuthenticatedWithBiometrics,
                     isPinCodeVerified: isPinCodeVerified,

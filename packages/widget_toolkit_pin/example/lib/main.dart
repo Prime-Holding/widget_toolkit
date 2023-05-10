@@ -64,7 +64,8 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: PinCodeKeyboard(
-                      mapMessageToString: _exampleMapMessageToString,
+                      mapBiometricMessageToString:
+                          _exampleMapBiometricMessageToString,
                       pinCodeService: context.read<PinCodeService>(),
                       biometricsLocalDataSource:
                           context.read<BiometricsLocalDataSource>(),
@@ -112,7 +113,7 @@ class MyHomePage extends StatelessWidget {
 
   String _translateError(Object error) => 'translated error';
 
-  String _exampleMapMessageToString(BiometricsMessage message) {
+  String _exampleMapBiometricMessageToString(BiometricsMessage message) {
     switch (message) {
       case BiometricsMessage.notSetup:
         return 'To use biometrics, you need to turn it on in your device settings!';
