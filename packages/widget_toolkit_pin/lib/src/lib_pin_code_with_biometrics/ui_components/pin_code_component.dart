@@ -273,7 +273,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         animation: _controller,
         builder: (context, child) => Align(
           alignment: Alignment(
-            lerpDouble(-1, 1, _shakeTweenSequence.evaluate(_controller))!,
+            lerpDouble(-0.1, 0.1, _shakeTweenSequence.evaluate(_controller))!,
             0,
           ),
           child: child,
