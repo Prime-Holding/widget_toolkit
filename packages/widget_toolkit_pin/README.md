@@ -13,6 +13,8 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/initial_pin_save.webp" alt="Save Pin And Enable Biometrics"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/biometrics_authentication.webp" alt="Biometrics Authentication"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/biometrics_authentication_on_app_restart.webp" alt="Biometrics Authentication On App Restart"></img> |
 | Biometrics Not Recognized                                                                                                                                                                            | Biometrics Not Setup| Biometrics Not Supported                                                                                                                                                                                                                                    |
 | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/face_not_recognized.webp" alt="Face Not Recognized"></img>         | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/biometrics_not_setup.webp" alt="Biometrics Not Setup"></img> | <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/biometrics_not_supported.webp" alt="Biometrics Not Supported"></img>                               |
+| Wrong Pin Code                                                                                                                                                                                   |||
+| <img width=200 src="https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/develop/packages/widget_toolkit_pin/doc/assets/wrong_pin_code.webp" alt="Wrong Pin Code"></img>                   |||
 
 ## Features
 
@@ -250,7 +252,10 @@ ok, the biometrics authentication is triggered. When it is successful, on the sc
 a message that the biometrics are enabled. The next time when restart the app, because the pin code
 will be stored in the device secure storage, the biometrics authentication will be automatically
 triggered and the biometrics icon will be displayed on the bottom right. When you press it every 
-time it will trigger the biometric authentication.
+time it will trigger the biometric authentication. If a user types a wrong pin code and the error
+ErrorWrongPin is thrown from the service layer, then a shake animation is triggered on the masked
+pin code and then the text from the ErrorWrongPin's errorMessage is displayed in the place of the 
+pin code.
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
