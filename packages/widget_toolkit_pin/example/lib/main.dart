@@ -90,7 +90,7 @@ class MyHomePage extends StatelessWidget {
                       // [BiometricsLocalDataSource.setBiometricsEnabled(enable)],
                       // [PinCodeService.isPinCodeInSecureStorage()], [PinCodeService.encryptPinCode()],
                       // [PinCodeService.getPinLength()], [PinCodeService.verifyPinCode()],
-                      //[PinCodeService.getPinCode()], throw.
+                      // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
                           _onError(error, translatedError, context),
                     ),
@@ -102,16 +102,21 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
-  void _onError(error, translatedError, context) => showBlurredBottomSheet(
+  void _onError(Object error, String strValue, BuildContext context) {
+    if (error is! ErrorWrongPin) {
+      showBlurredBottomSheet(
         context: context,
         configuration: const ModalConfiguration(safeAreaBottom: false),
-        builder: (context) => const MessagePanelWidget(
-          message: 'Could not enable biometric authentication at this time',
+        builder: (context) => MessagePanelWidget(
+          message: error.toString(),
           messageState: MessagePanelState.important,
         ),
       );
+    }
+  }
 
-  String _translateError(Object error) => 'translated error';
+  String _translateError(Object error) =>
+      error is ErrorWrongPin ? error.errorMessage : 'translated error';
 
   String _exampleMapBiometricMessageToString(BiometricsMessage message) {
     switch (message) {
@@ -141,10 +146,10 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
-    if (_pinCode == null) {
-      return Future.value(false);
+    if (_pinCode == '111') {
+      return Future.value(true);
     }
-    return Future.value(true);
+    return Future.value(false);
   }
 
   @override
@@ -157,11 +162,11 @@ class AppPinCodeService implements PinCodeService {
   Future<int> getPinLength() async => Future.value(3);
 
   @override
-  Future<bool> verifyPinCode(String pinCode) {
+  Future<bool> verifyPinCode(String pinCode) async {
     if (pinCode == '111') {
       return Future.value(true);
     }
-    return Future.value(false);
+    throw ErrorWrongPin(errorMessage: 'Wrong Pin');
   }
 
   @override

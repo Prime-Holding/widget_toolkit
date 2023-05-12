@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
@@ -27,12 +28,17 @@ class PinCodeComponent extends StatefulWidget {
     this.isPinCodeVerified,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
-    this.onError,
+    this.error,
     super.key,
   });
 
+  /// Receives the error from bloc's error state
+  final ErrorModel? error;
+
+  /// The pin code length
   final int pinLength;
 
+  /// The biometrics enabling reason
   final String localizedReason;
 
   /// Handle the translation of the error from the errors stream
@@ -56,10 +62,6 @@ class PinCodeComponent extends StatefulWidget {
   /// to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
-  /// An optional function that enable error handling out of the package, it receives
-  /// the error from the errors stream and the translated error
-  final Function(Object error, String translatedError)? onError;
-
   @override
   State<PinCodeComponent> createState() => _PinCodeComponentState();
 }
@@ -68,7 +70,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     with SingleTickerProviderStateMixin {
   String pin = '';
   late AnimationController _controller;
-  bool hasErrorText = true;
+  bool hasErrorText = false;
   bool isLoading = false;
   bool pinIsDeleted = false;
 
@@ -131,6 +133,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       ),
     );
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant PinCodeComponent oldWidget) {
+    if (widget.error != null && !isLoading) {
+      _startErrorAnimation();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -240,9 +250,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(flex: 4,),
+            const Spacer(flex: 4),
             _buildAnimatedKeysBuilder(context, pinLength),
-            const Spacer(flex: 3,),
+            const Spacer(flex: 3),
             _buildKeyboard(
               verticalSpacing: MediaQuery.of(context).size.height / 45,
               isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
@@ -258,8 +268,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   /// region Builders
 
-  Widget _buildAnimatedKeysBuilder(
-          BuildContext context, int pinLength) =>
+  Widget _buildAnimatedKeysBuilder(BuildContext context, int pinLength) =>
       AnimatedBuilder(
         animation: _controller,
         builder: (context, child) => Align(
@@ -273,11 +282,53 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           duration: const Duration(milliseconds: 300),
           switchInCurve: Curves.easeOut,
           switchOutCurve: Curves.easeOut,
-          transitionBuilder: (child, animation) =>
-              AnimatedSwitcher.defaultTransitionBuilder.call(child, animation),
-          child: _buildMaskedKeysRow(context, pinLength),
+          transitionBuilder: (child, animation) {
+            if (hasErrorText) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, -1),
+                  end: const Offset(0, 0),
+                ).animate(animation),
+                child: FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              );
+            } else {
+              return AnimatedSwitcher.defaultTransitionBuilder
+                  .call(child, animation);
+            }
+          },
+          child: hasErrorText && widget.error is ErrorWrongPin
+              ? _buildErrorText(context)
+              : _buildMaskedKeysRow(context, pinLength),
         ),
       );
+
+  Widget _buildErrorText(BuildContext context) => Text(
+        widget.translateError((widget.error as ErrorWrongPin)),
+        style: context.pinCodeTheme.captionBold
+            .copyWith(color: context.pinCodeTheme.lightRed),
+      );
+
+  Future<void> _startErrorAnimation() async {
+    await _controller.forward(from: 0);
+    if (widget.error is ErrorWrongPin) {
+      setState(() {
+        hasErrorText = true;
+      });
+    }
+
+    pin = '';
+    if (widget.error is ErrorWrongPin) {
+      await Future.delayed(const Duration(seconds: 2));
+    }
+    if (mounted) {
+      setState(() {
+        hasErrorText = false;
+      });
+    }
+  }
 
   Widget _buildMaskedKeysRow(BuildContext context, int pinLength) =>
       IntrinsicWidth(

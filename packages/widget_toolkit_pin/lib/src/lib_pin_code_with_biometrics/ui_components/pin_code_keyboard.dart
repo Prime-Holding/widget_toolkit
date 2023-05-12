@@ -103,35 +103,32 @@ class PinCodeKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _wrapWithDependencies(
-        child: _buildErrorListener(
-          child: RxBlocBuilder<PinCodeBlocType, int>(
-            state: (bloc) => bloc.states.pinLength,
-            builder: (context, snapshot, bloc) => snapshot.hasData
-                ? PinCodeComponent(
-                    pinLength: snapshot.data!,
-                    translateError: translateError,
-                    mapBiometricMessageToString: mapBiometricMessageToString,
-                    isAuthenticatedWithBiometrics:
-                        isAuthenticatedWithBiometrics,
-                    isPinCodeVerified: isPinCodeVerified,
-                    deleteKeyButton: deleteKeyButton,
-                    bottomRightKeyboardButton: bottomRightKeyboardButton,
-                    onError: onError,
-                    localizedReason: _enterPinWithBiometrics,
-                  )
-                : Container(),
+        child: RxBlocListener<PinCodeBlocType, ErrorModel>(
+          state: (bloc) => bloc.states.errors,
+          listener: (context, error) =>
+              onError?.call(error, translateError(error)),
+          child: RxBlocBuilder<PinCodeBlocType, ErrorModel>(
+            state: (bloc) => bloc.states.errors,
+            builder: (context, errorSnapshot, bloc) =>
+                RxBlocBuilder<PinCodeBlocType, int>(
+              state: (bloc) => bloc.states.pinLength,
+              builder: (context, snapshot, bloc) => snapshot.hasData
+                  ? PinCodeComponent(
+                      pinLength: snapshot.data!,
+                      translateError: translateError,
+                      mapBiometricMessageToString: mapBiometricMessageToString,
+                      isAuthenticatedWithBiometrics:
+                          isAuthenticatedWithBiometrics,
+                      isPinCodeVerified: isPinCodeVerified,
+                      deleteKeyButton: deleteKeyButton,
+                      bottomRightKeyboardButton: bottomRightKeyboardButton,
+                      error: errorSnapshot.data,
+                      localizedReason: _enterPinWithBiometrics,
+                    )
+                  : Container(),
+            ),
           ),
         ),
-      );
-
-  Widget _buildErrorListener({required Widget child}) =>
-      RxBlocListener<PinCodeBlocType, ErrorModel>(
-        state: (bloc) => bloc.states.errors,
-        listener: (context, error) {
-          final translatedError = translateError(error);
-          onError?.call(error, translatedError);
-        },
-        child: child,
       );
 
   Widget _wrapWithDependencies({required Widget child}) => addDependencies
