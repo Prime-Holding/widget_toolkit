@@ -51,6 +51,16 @@ class _PinCodeKeyState extends State<PinCodeKey> {
                   isPressed = false;
                 });
               },
+        onHorizontalDragEnd: (_) {
+          setState(() {
+            isPressed = false;
+          });
+        },
+        onVerticalDragEnd: (_) {
+          setState(() {
+            isPressed = false;
+          });
+        },
         child: widget.isFingerScan
             ? AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
