@@ -16,9 +16,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  widget_toolkit_qr:
-    path: ../../widget_toolkit_qr
-
 flutter:
   uses-material-design: true

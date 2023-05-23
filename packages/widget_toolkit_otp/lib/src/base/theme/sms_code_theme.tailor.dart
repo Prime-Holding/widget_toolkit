@@ -1,142 +1,159 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'sms_code_theme.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class SmsCodeTheme extends ThemeExtension<SmsCodeTheme> {
   const SmsCodeTheme({
-    required this.primaryColor,
     required this.defaultBackgroundColor,
     required this.defaultBorderColor,
-    required this.defaultBorderWidth,
     required this.defaultBorderRadius,
-    required this.defaultTextStyle,
+    required this.defaultBorderWidth,
+    required this.disabledBackgroundColor,
     required this.errorBackgroundColor,
     required this.errorBorderColor,
-    required this.errorBorderWidth,
     required this.errorBorderRadius,
-    required this.errorTextStyle,
-    required this.descriptionBoldTextStyle,
-    required this.validityTitleTextStyle,
+    required this.errorBorderWidth,
+    required this.primaryColor,
+    required this.resendButtonActiveTextColor,
+    required this.resendButtonBackgroundColor,
+    required this.resendButtonDefaultTextStyle,
+    required this.resendButtonDisabledTextColor,
+    required this.resendButtonErrorTextColor,
+    required this.resendButtonLoadingIndicatorSize,
+    required this.resendButtonPressedColor,
+    required this.resendButtonSuccessTextColor,
+    required this.submittedBackgroundColor,
     required this.successBackgroundColor,
     required this.successBorderColor,
     required this.successBorderWidth,
-    required this.successTextStyle,
-    required this.disabledBackgroundColor,
-    required this.disabledTextStyle,
-    required this.submittedBackgroundColor,
-    required this.resendButtonLoadingIndicatorSize,
-    required this.resendButtonBackgroundColor,
-    required this.resendButtonActiveTextColor,
-    required this.resendButtonDisabledTextColor,
-    required this.resendButtonSuccessTextColor,
-    required this.resendButtonErrorTextColor,
-    required this.resendButtonPressedColor,
-    required this.resendButtonDefaultTextStyle,
+    this.defaultTextStyle,
+    this.descriptionBoldTextStyle,
+    this.disabledTextStyle,
+    this.errorTextStyle,
+    this.successTextStyle,
+    this.validityTitleTextStyle,
   });
 
-  final Color primaryColor;
   final Color defaultBackgroundColor;
   final Color defaultBorderColor;
-  final double defaultBorderWidth;
   final BorderRadius defaultBorderRadius;
-  final TextStyle? defaultTextStyle;
+  final double defaultBorderWidth;
+
+  /// endregion
+  /// region Disabled state
+  final Color disabledBackgroundColor;
+
+  /// endregion
+  /// region Error state
   final Color errorBackgroundColor;
   final Color errorBorderColor;
-  final double errorBorderWidth;
   final BorderRadius errorBorderRadius;
-  final TextStyle? errorTextStyle;
-  final TextStyle? descriptionBoldTextStyle;
-  final TextStyle? validityTitleTextStyle;
+  final double errorBorderWidth;
+
+  /// region Default state
+  final Color primaryColor;
+  final Color resendButtonActiveTextColor;
+  final Color resendButtonBackgroundColor;
+  final TextStyle resendButtonDefaultTextStyle;
+  final Color resendButtonDisabledTextColor;
+  final Color resendButtonErrorTextColor;
+
+  /// endregion
+  /// region Resend button
+  final double resendButtonLoadingIndicatorSize;
+  final Color resendButtonPressedColor;
+  final Color resendButtonSuccessTextColor;
+
+  /// endregion
+  /// region Submitted state
+  final Color submittedBackgroundColor;
+
+  /// endregion
+  /// region Success state
   final Color successBackgroundColor;
   final Color successBorderColor;
   final double successBorderWidth;
-  final TextStyle? successTextStyle;
-  final Color disabledBackgroundColor;
+  final TextStyle? defaultTextStyle;
+  final TextStyle? descriptionBoldTextStyle;
   final TextStyle? disabledTextStyle;
-  final Color submittedBackgroundColor;
-  final double resendButtonLoadingIndicatorSize;
-  final Color resendButtonBackgroundColor;
-  final Color resendButtonActiveTextColor;
-  final Color resendButtonDisabledTextColor;
-  final Color resendButtonSuccessTextColor;
-  final Color resendButtonErrorTextColor;
-  final Color resendButtonPressedColor;
-  final TextStyle resendButtonDefaultTextStyle;
+  final TextStyle? errorTextStyle;
+  final TextStyle? successTextStyle;
+  final TextStyle? validityTitleTextStyle;
 
   static final SmsCodeTheme light = SmsCodeTheme(
-    primaryColor: _$SmsCodeTheme.primaryColor[0],
     defaultBackgroundColor: _$SmsCodeTheme.defaultBackgroundColor[0],
     defaultBorderColor: _$SmsCodeTheme.defaultBorderColor[0],
-    defaultBorderWidth: _$SmsCodeTheme.defaultBorderWidth[0],
     defaultBorderRadius: _$SmsCodeTheme.defaultBorderRadius[0],
-    defaultTextStyle: _$SmsCodeTheme.defaultTextStyle[0],
+    defaultBorderWidth: _$SmsCodeTheme.defaultBorderWidth[0],
+    disabledBackgroundColor: _$SmsCodeTheme.disabledBackgroundColor[0],
     errorBackgroundColor: _$SmsCodeTheme.errorBackgroundColor[0],
     errorBorderColor: _$SmsCodeTheme.errorBorderColor[0],
-    errorBorderWidth: _$SmsCodeTheme.errorBorderWidth[0],
     errorBorderRadius: _$SmsCodeTheme.errorBorderRadius[0],
-    errorTextStyle: _$SmsCodeTheme.errorTextStyle[0],
-    descriptionBoldTextStyle: _$SmsCodeTheme.descriptionBoldTextStyle[0],
-    validityTitleTextStyle: _$SmsCodeTheme.validityTitleTextStyle[0],
+    errorBorderWidth: _$SmsCodeTheme.errorBorderWidth[0],
+    primaryColor: _$SmsCodeTheme.primaryColor[0],
+    resendButtonActiveTextColor: _$SmsCodeTheme.resendButtonActiveTextColor[0],
+    resendButtonBackgroundColor: _$SmsCodeTheme.resendButtonBackgroundColor[0],
+    resendButtonDefaultTextStyle:
+        _$SmsCodeTheme.resendButtonDefaultTextStyle[0],
+    resendButtonDisabledTextColor:
+        _$SmsCodeTheme.resendButtonDisabledTextColor[0],
+    resendButtonErrorTextColor: _$SmsCodeTheme.resendButtonErrorTextColor[0],
+    resendButtonLoadingIndicatorSize:
+        _$SmsCodeTheme.resendButtonLoadingIndicatorSize[0],
+    resendButtonPressedColor: _$SmsCodeTheme.resendButtonPressedColor[0],
+    resendButtonSuccessTextColor:
+        _$SmsCodeTheme.resendButtonSuccessTextColor[0],
+    submittedBackgroundColor: _$SmsCodeTheme.submittedBackgroundColor[0],
     successBackgroundColor: _$SmsCodeTheme.successBackgroundColor[0],
     successBorderColor: _$SmsCodeTheme.successBorderColor[0],
     successBorderWidth: _$SmsCodeTheme.successBorderWidth[0],
-    successTextStyle: _$SmsCodeTheme.successTextStyle[0],
-    disabledBackgroundColor: _$SmsCodeTheme.disabledBackgroundColor[0],
+    defaultTextStyle: _$SmsCodeTheme.defaultTextStyle[0],
+    descriptionBoldTextStyle: _$SmsCodeTheme.descriptionBoldTextStyle[0],
     disabledTextStyle: _$SmsCodeTheme.disabledTextStyle[0],
-    submittedBackgroundColor: _$SmsCodeTheme.submittedBackgroundColor[0],
-    resendButtonLoadingIndicatorSize:
-        _$SmsCodeTheme.resendButtonLoadingIndicatorSize[0],
-    resendButtonBackgroundColor: _$SmsCodeTheme.resendButtonBackgroundColor[0],
-    resendButtonActiveTextColor: _$SmsCodeTheme.resendButtonActiveTextColor[0],
-    resendButtonDisabledTextColor:
-        _$SmsCodeTheme.resendButtonDisabledTextColor[0],
-    resendButtonSuccessTextColor:
-        _$SmsCodeTheme.resendButtonSuccessTextColor[0],
-    resendButtonErrorTextColor: _$SmsCodeTheme.resendButtonErrorTextColor[0],
-    resendButtonPressedColor: _$SmsCodeTheme.resendButtonPressedColor[0],
-    resendButtonDefaultTextStyle:
-        _$SmsCodeTheme.resendButtonDefaultTextStyle[0],
+    errorTextStyle: _$SmsCodeTheme.errorTextStyle[0],
+    successTextStyle: _$SmsCodeTheme.successTextStyle[0],
+    validityTitleTextStyle: _$SmsCodeTheme.validityTitleTextStyle[0],
   );
 
   static final SmsCodeTheme dark = SmsCodeTheme(
-    primaryColor: _$SmsCodeTheme.primaryColor[1],
     defaultBackgroundColor: _$SmsCodeTheme.defaultBackgroundColor[1],
     defaultBorderColor: _$SmsCodeTheme.defaultBorderColor[1],
-    defaultBorderWidth: _$SmsCodeTheme.defaultBorderWidth[1],
     defaultBorderRadius: _$SmsCodeTheme.defaultBorderRadius[1],
-    defaultTextStyle: _$SmsCodeTheme.defaultTextStyle[1],
+    defaultBorderWidth: _$SmsCodeTheme.defaultBorderWidth[1],
+    disabledBackgroundColor: _$SmsCodeTheme.disabledBackgroundColor[1],
     errorBackgroundColor: _$SmsCodeTheme.errorBackgroundColor[1],
     errorBorderColor: _$SmsCodeTheme.errorBorderColor[1],
-    errorBorderWidth: _$SmsCodeTheme.errorBorderWidth[1],
     errorBorderRadius: _$SmsCodeTheme.errorBorderRadius[1],
-    errorTextStyle: _$SmsCodeTheme.errorTextStyle[1],
-    descriptionBoldTextStyle: _$SmsCodeTheme.descriptionBoldTextStyle[1],
-    validityTitleTextStyle: _$SmsCodeTheme.validityTitleTextStyle[1],
+    errorBorderWidth: _$SmsCodeTheme.errorBorderWidth[1],
+    primaryColor: _$SmsCodeTheme.primaryColor[1],
+    resendButtonActiveTextColor: _$SmsCodeTheme.resendButtonActiveTextColor[1],
+    resendButtonBackgroundColor: _$SmsCodeTheme.resendButtonBackgroundColor[1],
+    resendButtonDefaultTextStyle:
+        _$SmsCodeTheme.resendButtonDefaultTextStyle[1],
+    resendButtonDisabledTextColor:
+        _$SmsCodeTheme.resendButtonDisabledTextColor[1],
+    resendButtonErrorTextColor: _$SmsCodeTheme.resendButtonErrorTextColor[1],
+    resendButtonLoadingIndicatorSize:
+        _$SmsCodeTheme.resendButtonLoadingIndicatorSize[1],
+    resendButtonPressedColor: _$SmsCodeTheme.resendButtonPressedColor[1],
+    resendButtonSuccessTextColor:
+        _$SmsCodeTheme.resendButtonSuccessTextColor[1],
+    submittedBackgroundColor: _$SmsCodeTheme.submittedBackgroundColor[1],
     successBackgroundColor: _$SmsCodeTheme.successBackgroundColor[1],
     successBorderColor: _$SmsCodeTheme.successBorderColor[1],
     successBorderWidth: _$SmsCodeTheme.successBorderWidth[1],
-    successTextStyle: _$SmsCodeTheme.successTextStyle[1],
-    disabledBackgroundColor: _$SmsCodeTheme.disabledBackgroundColor[1],
+    defaultTextStyle: _$SmsCodeTheme.defaultTextStyle[1],
+    descriptionBoldTextStyle: _$SmsCodeTheme.descriptionBoldTextStyle[1],
     disabledTextStyle: _$SmsCodeTheme.disabledTextStyle[1],
-    submittedBackgroundColor: _$SmsCodeTheme.submittedBackgroundColor[1],
-    resendButtonLoadingIndicatorSize:
-        _$SmsCodeTheme.resendButtonLoadingIndicatorSize[1],
-    resendButtonBackgroundColor: _$SmsCodeTheme.resendButtonBackgroundColor[1],
-    resendButtonActiveTextColor: _$SmsCodeTheme.resendButtonActiveTextColor[1],
-    resendButtonDisabledTextColor:
-        _$SmsCodeTheme.resendButtonDisabledTextColor[1],
-    resendButtonSuccessTextColor:
-        _$SmsCodeTheme.resendButtonSuccessTextColor[1],
-    resendButtonErrorTextColor: _$SmsCodeTheme.resendButtonErrorTextColor[1],
-    resendButtonPressedColor: _$SmsCodeTheme.resendButtonPressedColor[1],
-    resendButtonDefaultTextStyle:
-        _$SmsCodeTheme.resendButtonDefaultTextStyle[1],
+    errorTextStyle: _$SmsCodeTheme.errorTextStyle[1],
+    successTextStyle: _$SmsCodeTheme.successTextStyle[1],
+    validityTitleTextStyle: _$SmsCodeTheme.validityTitleTextStyle[1],
   );
 
   static final themes = [
@@ -146,138 +163,138 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme> {
 
   @override
   SmsCodeTheme copyWith({
-    Color? primaryColor,
     Color? defaultBackgroundColor,
     Color? defaultBorderColor,
-    double? defaultBorderWidth,
     BorderRadius? defaultBorderRadius,
-    TextStyle? defaultTextStyle,
+    double? defaultBorderWidth,
+    Color? disabledBackgroundColor,
     Color? errorBackgroundColor,
     Color? errorBorderColor,
-    double? errorBorderWidth,
     BorderRadius? errorBorderRadius,
-    TextStyle? errorTextStyle,
-    TextStyle? descriptionBoldTextStyle,
-    TextStyle? validityTitleTextStyle,
+    double? errorBorderWidth,
+    Color? primaryColor,
+    Color? resendButtonActiveTextColor,
+    Color? resendButtonBackgroundColor,
+    TextStyle? resendButtonDefaultTextStyle,
+    Color? resendButtonDisabledTextColor,
+    Color? resendButtonErrorTextColor,
+    double? resendButtonLoadingIndicatorSize,
+    Color? resendButtonPressedColor,
+    Color? resendButtonSuccessTextColor,
+    Color? submittedBackgroundColor,
     Color? successBackgroundColor,
     Color? successBorderColor,
     double? successBorderWidth,
-    TextStyle? successTextStyle,
-    Color? disabledBackgroundColor,
+    TextStyle? defaultTextStyle,
+    TextStyle? descriptionBoldTextStyle,
     TextStyle? disabledTextStyle,
-    Color? submittedBackgroundColor,
-    double? resendButtonLoadingIndicatorSize,
-    Color? resendButtonBackgroundColor,
-    Color? resendButtonActiveTextColor,
-    Color? resendButtonDisabledTextColor,
-    Color? resendButtonSuccessTextColor,
-    Color? resendButtonErrorTextColor,
-    Color? resendButtonPressedColor,
-    TextStyle? resendButtonDefaultTextStyle,
+    TextStyle? errorTextStyle,
+    TextStyle? successTextStyle,
+    TextStyle? validityTitleTextStyle,
   }) {
     return SmsCodeTheme(
-      primaryColor: primaryColor ?? this.primaryColor,
       defaultBackgroundColor:
           defaultBackgroundColor ?? this.defaultBackgroundColor,
       defaultBorderColor: defaultBorderColor ?? this.defaultBorderColor,
-      defaultBorderWidth: defaultBorderWidth ?? this.defaultBorderWidth,
       defaultBorderRadius: defaultBorderRadius ?? this.defaultBorderRadius,
-      defaultTextStyle: defaultTextStyle ?? this.defaultTextStyle,
+      defaultBorderWidth: defaultBorderWidth ?? this.defaultBorderWidth,
+      disabledBackgroundColor:
+          disabledBackgroundColor ?? this.disabledBackgroundColor,
       errorBackgroundColor: errorBackgroundColor ?? this.errorBackgroundColor,
       errorBorderColor: errorBorderColor ?? this.errorBorderColor,
-      errorBorderWidth: errorBorderWidth ?? this.errorBorderWidth,
       errorBorderRadius: errorBorderRadius ?? this.errorBorderRadius,
-      errorTextStyle: errorTextStyle ?? this.errorTextStyle,
-      descriptionBoldTextStyle:
-          descriptionBoldTextStyle ?? this.descriptionBoldTextStyle,
-      validityTitleTextStyle:
-          validityTitleTextStyle ?? this.validityTitleTextStyle,
+      errorBorderWidth: errorBorderWidth ?? this.errorBorderWidth,
+      primaryColor: primaryColor ?? this.primaryColor,
+      resendButtonActiveTextColor:
+          resendButtonActiveTextColor ?? this.resendButtonActiveTextColor,
+      resendButtonBackgroundColor:
+          resendButtonBackgroundColor ?? this.resendButtonBackgroundColor,
+      resendButtonDefaultTextStyle:
+          resendButtonDefaultTextStyle ?? this.resendButtonDefaultTextStyle,
+      resendButtonDisabledTextColor:
+          resendButtonDisabledTextColor ?? this.resendButtonDisabledTextColor,
+      resendButtonErrorTextColor:
+          resendButtonErrorTextColor ?? this.resendButtonErrorTextColor,
+      resendButtonLoadingIndicatorSize: resendButtonLoadingIndicatorSize ??
+          this.resendButtonLoadingIndicatorSize,
+      resendButtonPressedColor:
+          resendButtonPressedColor ?? this.resendButtonPressedColor,
+      resendButtonSuccessTextColor:
+          resendButtonSuccessTextColor ?? this.resendButtonSuccessTextColor,
+      submittedBackgroundColor:
+          submittedBackgroundColor ?? this.submittedBackgroundColor,
       successBackgroundColor:
           successBackgroundColor ?? this.successBackgroundColor,
       successBorderColor: successBorderColor ?? this.successBorderColor,
       successBorderWidth: successBorderWidth ?? this.successBorderWidth,
-      successTextStyle: successTextStyle ?? this.successTextStyle,
-      disabledBackgroundColor:
-          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      defaultTextStyle: defaultTextStyle ?? this.defaultTextStyle,
+      descriptionBoldTextStyle:
+          descriptionBoldTextStyle ?? this.descriptionBoldTextStyle,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
-      submittedBackgroundColor:
-          submittedBackgroundColor ?? this.submittedBackgroundColor,
-      resendButtonLoadingIndicatorSize: resendButtonLoadingIndicatorSize ??
-          this.resendButtonLoadingIndicatorSize,
-      resendButtonBackgroundColor:
-          resendButtonBackgroundColor ?? this.resendButtonBackgroundColor,
-      resendButtonActiveTextColor:
-          resendButtonActiveTextColor ?? this.resendButtonActiveTextColor,
-      resendButtonDisabledTextColor:
-          resendButtonDisabledTextColor ?? this.resendButtonDisabledTextColor,
-      resendButtonSuccessTextColor:
-          resendButtonSuccessTextColor ?? this.resendButtonSuccessTextColor,
-      resendButtonErrorTextColor:
-          resendButtonErrorTextColor ?? this.resendButtonErrorTextColor,
-      resendButtonPressedColor:
-          resendButtonPressedColor ?? this.resendButtonPressedColor,
-      resendButtonDefaultTextStyle:
-          resendButtonDefaultTextStyle ?? this.resendButtonDefaultTextStyle,
+      errorTextStyle: errorTextStyle ?? this.errorTextStyle,
+      successTextStyle: successTextStyle ?? this.successTextStyle,
+      validityTitleTextStyle:
+          validityTitleTextStyle ?? this.validityTitleTextStyle,
     );
   }
 
   @override
-  SmsCodeTheme lerp(ThemeExtension<SmsCodeTheme>? other, double t) {
-    if (other is! SmsCodeTheme) return this;
+  SmsCodeTheme lerp(covariant ThemeExtension<SmsCodeTheme>? other, double t) {
+    if (other is! SmsCodeTheme) return this as SmsCodeTheme;
     return SmsCodeTheme(
-      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
       defaultBackgroundColor:
           Color.lerp(defaultBackgroundColor, other.defaultBackgroundColor, t)!,
       defaultBorderColor:
           Color.lerp(defaultBorderColor, other.defaultBorderColor, t)!,
-      defaultBorderWidth:
-          t < 0.5 ? defaultBorderWidth : other.defaultBorderWidth,
       defaultBorderRadius:
           t < 0.5 ? defaultBorderRadius : other.defaultBorderRadius,
-      defaultTextStyle:
-          TextStyle.lerp(defaultTextStyle, other.defaultTextStyle, t),
+      defaultBorderWidth:
+          t < 0.5 ? defaultBorderWidth : other.defaultBorderWidth,
+      disabledBackgroundColor: Color.lerp(
+          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
       errorBackgroundColor:
           Color.lerp(errorBackgroundColor, other.errorBackgroundColor, t)!,
       errorBorderColor:
           Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
-      errorBorderWidth: t < 0.5 ? errorBorderWidth : other.errorBorderWidth,
       errorBorderRadius: t < 0.5 ? errorBorderRadius : other.errorBorderRadius,
-      errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t),
-      descriptionBoldTextStyle: TextStyle.lerp(
-          descriptionBoldTextStyle, other.descriptionBoldTextStyle, t),
-      validityTitleTextStyle: TextStyle.lerp(
-          validityTitleTextStyle, other.validityTitleTextStyle, t),
+      errorBorderWidth: t < 0.5 ? errorBorderWidth : other.errorBorderWidth,
+      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
+      resendButtonActiveTextColor: Color.lerp(
+          resendButtonActiveTextColor, other.resendButtonActiveTextColor, t)!,
+      resendButtonBackgroundColor: Color.lerp(
+          resendButtonBackgroundColor, other.resendButtonBackgroundColor, t)!,
+      resendButtonDefaultTextStyle: TextStyle.lerp(
+          resendButtonDefaultTextStyle, other.resendButtonDefaultTextStyle, t)!,
+      resendButtonDisabledTextColor: Color.lerp(resendButtonDisabledTextColor,
+          other.resendButtonDisabledTextColor, t)!,
+      resendButtonErrorTextColor: Color.lerp(
+          resendButtonErrorTextColor, other.resendButtonErrorTextColor, t)!,
+      resendButtonLoadingIndicatorSize: t < 0.5
+          ? resendButtonLoadingIndicatorSize
+          : other.resendButtonLoadingIndicatorSize,
+      resendButtonPressedColor: Color.lerp(
+          resendButtonPressedColor, other.resendButtonPressedColor, t)!,
+      resendButtonSuccessTextColor: Color.lerp(
+          resendButtonSuccessTextColor, other.resendButtonSuccessTextColor, t)!,
+      submittedBackgroundColor: Color.lerp(
+          submittedBackgroundColor, other.submittedBackgroundColor, t)!,
       successBackgroundColor:
           Color.lerp(successBackgroundColor, other.successBackgroundColor, t)!,
       successBorderColor:
           Color.lerp(successBorderColor, other.successBorderColor, t)!,
       successBorderWidth:
           t < 0.5 ? successBorderWidth : other.successBorderWidth,
-      successTextStyle:
-          TextStyle.lerp(successTextStyle, other.successTextStyle, t),
-      disabledBackgroundColor: Color.lerp(
-          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
+      defaultTextStyle:
+          TextStyle.lerp(defaultTextStyle, other.defaultTextStyle, t),
+      descriptionBoldTextStyle: TextStyle.lerp(
+          descriptionBoldTextStyle, other.descriptionBoldTextStyle, t),
       disabledTextStyle:
           TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t),
-      submittedBackgroundColor: Color.lerp(
-          submittedBackgroundColor, other.submittedBackgroundColor, t)!,
-      resendButtonLoadingIndicatorSize: t < 0.5
-          ? resendButtonLoadingIndicatorSize
-          : other.resendButtonLoadingIndicatorSize,
-      resendButtonBackgroundColor: Color.lerp(
-          resendButtonBackgroundColor, other.resendButtonBackgroundColor, t)!,
-      resendButtonActiveTextColor: Color.lerp(
-          resendButtonActiveTextColor, other.resendButtonActiveTextColor, t)!,
-      resendButtonDisabledTextColor: Color.lerp(resendButtonDisabledTextColor,
-          other.resendButtonDisabledTextColor, t)!,
-      resendButtonSuccessTextColor: Color.lerp(
-          resendButtonSuccessTextColor, other.resendButtonSuccessTextColor, t)!,
-      resendButtonErrorTextColor: Color.lerp(
-          resendButtonErrorTextColor, other.resendButtonErrorTextColor, t)!,
-      resendButtonPressedColor: Color.lerp(
-          resendButtonPressedColor, other.resendButtonPressedColor, t)!,
-      resendButtonDefaultTextStyle: TextStyle.lerp(
-          resendButtonDefaultTextStyle, other.resendButtonDefaultTextStyle, t)!,
+      errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t),
+      successTextStyle:
+          TextStyle.lerp(successTextStyle, other.successTextStyle, t),
+      validityTitleTextStyle: TextStyle.lerp(
+          validityTitleTextStyle, other.validityTitleTextStyle, t),
     );
   }
 
@@ -287,31 +304,44 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme> {
         (other.runtimeType == runtimeType &&
             other is SmsCodeTheme &&
             const DeepCollectionEquality()
-                .equals(primaryColor, other.primaryColor) &&
-            const DeepCollectionEquality()
                 .equals(defaultBackgroundColor, other.defaultBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(defaultBorderColor, other.defaultBorderColor) &&
             const DeepCollectionEquality()
-                .equals(defaultBorderWidth, other.defaultBorderWidth) &&
-            const DeepCollectionEquality()
                 .equals(defaultBorderRadius, other.defaultBorderRadius) &&
             const DeepCollectionEquality()
-                .equals(defaultTextStyle, other.defaultTextStyle) &&
+                .equals(defaultBorderWidth, other.defaultBorderWidth) &&
+            const DeepCollectionEquality().equals(
+                disabledBackgroundColor, other.disabledBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(errorBackgroundColor, other.errorBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(errorBorderColor, other.errorBorderColor) &&
             const DeepCollectionEquality()
-                .equals(errorBorderWidth, other.errorBorderWidth) &&
-            const DeepCollectionEquality()
                 .equals(errorBorderRadius, other.errorBorderRadius) &&
             const DeepCollectionEquality()
-                .equals(errorTextStyle, other.errorTextStyle) &&
-            const DeepCollectionEquality().equals(
-                descriptionBoldTextStyle, other.descriptionBoldTextStyle) &&
+                .equals(errorBorderWidth, other.errorBorderWidth) &&
             const DeepCollectionEquality()
-                .equals(validityTitleTextStyle, other.validityTitleTextStyle) &&
+                .equals(primaryColor, other.primaryColor) &&
+            const DeepCollectionEquality().equals(resendButtonActiveTextColor,
+                other.resendButtonActiveTextColor) &&
+            const DeepCollectionEquality().equals(resendButtonBackgroundColor,
+                other.resendButtonBackgroundColor) &&
+            const DeepCollectionEquality().equals(resendButtonDefaultTextStyle,
+                other.resendButtonDefaultTextStyle) &&
+            const DeepCollectionEquality().equals(resendButtonDisabledTextColor,
+                other.resendButtonDisabledTextColor) &&
+            const DeepCollectionEquality().equals(
+                resendButtonErrorTextColor, other.resendButtonErrorTextColor) &&
+            const DeepCollectionEquality().equals(
+                resendButtonLoadingIndicatorSize,
+                other.resendButtonLoadingIndicatorSize) &&
+            const DeepCollectionEquality().equals(
+                resendButtonPressedColor, other.resendButtonPressedColor) &&
+            const DeepCollectionEquality().equals(resendButtonSuccessTextColor,
+                other.resendButtonSuccessTextColor) &&
+            const DeepCollectionEquality().equals(
+                submittedBackgroundColor, other.submittedBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(successBackgroundColor, other.successBackgroundColor) &&
             const DeepCollectionEquality()
@@ -319,64 +349,51 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme> {
             const DeepCollectionEquality()
                 .equals(successBorderWidth, other.successBorderWidth) &&
             const DeepCollectionEquality()
-                .equals(successTextStyle, other.successTextStyle) &&
+                .equals(defaultTextStyle, other.defaultTextStyle) &&
             const DeepCollectionEquality().equals(
-                disabledBackgroundColor, other.disabledBackgroundColor) &&
+                descriptionBoldTextStyle, other.descriptionBoldTextStyle) &&
             const DeepCollectionEquality()
                 .equals(disabledTextStyle, other.disabledTextStyle) &&
-            const DeepCollectionEquality().equals(
-                submittedBackgroundColor, other.submittedBackgroundColor) &&
-            const DeepCollectionEquality().equals(
-                resendButtonLoadingIndicatorSize,
-                other.resendButtonLoadingIndicatorSize) &&
-            const DeepCollectionEquality().equals(resendButtonBackgroundColor,
-                other.resendButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(resendButtonActiveTextColor,
-                other.resendButtonActiveTextColor) &&
-            const DeepCollectionEquality().equals(resendButtonDisabledTextColor,
-                other.resendButtonDisabledTextColor) &&
-            const DeepCollectionEquality().equals(resendButtonSuccessTextColor,
-                other.resendButtonSuccessTextColor) &&
-            const DeepCollectionEquality().equals(
-                resendButtonErrorTextColor, other.resendButtonErrorTextColor) &&
-            const DeepCollectionEquality().equals(
-                resendButtonPressedColor, other.resendButtonPressedColor) &&
-            const DeepCollectionEquality().equals(resendButtonDefaultTextStyle,
-                other.resendButtonDefaultTextStyle));
+            const DeepCollectionEquality()
+                .equals(errorTextStyle, other.errorTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(successTextStyle, other.successTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(validityTitleTextStyle, other.validityTitleTextStyle));
   }
 
   @override
   int get hashCode {
     return Object.hashAll([
-      runtimeType,
-      const DeepCollectionEquality().hash(primaryColor),
+      runtimeType.hashCode,
       const DeepCollectionEquality().hash(defaultBackgroundColor),
       const DeepCollectionEquality().hash(defaultBorderColor),
-      const DeepCollectionEquality().hash(defaultBorderWidth),
       const DeepCollectionEquality().hash(defaultBorderRadius),
-      const DeepCollectionEquality().hash(defaultTextStyle),
+      const DeepCollectionEquality().hash(defaultBorderWidth),
+      const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(errorBackgroundColor),
       const DeepCollectionEquality().hash(errorBorderColor),
-      const DeepCollectionEquality().hash(errorBorderWidth),
       const DeepCollectionEquality().hash(errorBorderRadius),
-      const DeepCollectionEquality().hash(errorTextStyle),
-      const DeepCollectionEquality().hash(descriptionBoldTextStyle),
-      const DeepCollectionEquality().hash(validityTitleTextStyle),
+      const DeepCollectionEquality().hash(errorBorderWidth),
+      const DeepCollectionEquality().hash(primaryColor),
+      const DeepCollectionEquality().hash(resendButtonActiveTextColor),
+      const DeepCollectionEquality().hash(resendButtonBackgroundColor),
+      const DeepCollectionEquality().hash(resendButtonDefaultTextStyle),
+      const DeepCollectionEquality().hash(resendButtonDisabledTextColor),
+      const DeepCollectionEquality().hash(resendButtonErrorTextColor),
+      const DeepCollectionEquality().hash(resendButtonLoadingIndicatorSize),
+      const DeepCollectionEquality().hash(resendButtonPressedColor),
+      const DeepCollectionEquality().hash(resendButtonSuccessTextColor),
+      const DeepCollectionEquality().hash(submittedBackgroundColor),
       const DeepCollectionEquality().hash(successBackgroundColor),
       const DeepCollectionEquality().hash(successBorderColor),
       const DeepCollectionEquality().hash(successBorderWidth),
-      const DeepCollectionEquality().hash(successTextStyle),
-      const DeepCollectionEquality().hash(disabledBackgroundColor),
+      const DeepCollectionEquality().hash(defaultTextStyle),
+      const DeepCollectionEquality().hash(descriptionBoldTextStyle),
       const DeepCollectionEquality().hash(disabledTextStyle),
-      const DeepCollectionEquality().hash(submittedBackgroundColor),
-      const DeepCollectionEquality().hash(resendButtonLoadingIndicatorSize),
-      const DeepCollectionEquality().hash(resendButtonBackgroundColor),
-      const DeepCollectionEquality().hash(resendButtonActiveTextColor),
-      const DeepCollectionEquality().hash(resendButtonDisabledTextColor),
-      const DeepCollectionEquality().hash(resendButtonSuccessTextColor),
-      const DeepCollectionEquality().hash(resendButtonErrorTextColor),
-      const DeepCollectionEquality().hash(resendButtonPressedColor),
-      const DeepCollectionEquality().hash(resendButtonDefaultTextStyle)
+      const DeepCollectionEquality().hash(errorTextStyle),
+      const DeepCollectionEquality().hash(successTextStyle),
+      const DeepCollectionEquality().hash(validityTitleTextStyle),
     ]);
   }
 }

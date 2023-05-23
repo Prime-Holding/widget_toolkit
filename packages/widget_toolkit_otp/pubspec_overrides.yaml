@@ -1,0 +1,7 @@
+# Here we can add all dependency_overrides which we would add to pubspec.yaml but we do not want to have them in our published package.
+# Since this file is added to .pubignore, it will be available in our repository but won't be published to pub.dev.
+# We do not need to maintain manually dependency_overrides any more.
+
+dependency_overrides:
+  widget_toolkit:
+    path: ../widget_toolkit

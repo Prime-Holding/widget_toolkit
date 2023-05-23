@@ -64,7 +64,7 @@ Future<T?> showBlurredBottomSheet<T>({
       tween: Tween(begin: 0.0, end: 5.0),
       child: _ModalContent(
         heightFactor: (configuration.fullScreen ?? false)
-            ? _calculateFullScreenRatio()
+            ? _calculateFullScreenRatio(context)
             : configuration.heightFactor,
         builder: builder,
         onClosePressed: onCancelPressed,
@@ -132,7 +132,7 @@ class _ModalContent extends StatelessWidget {
   Widget build(BuildContext context) => heightFactor == null
       ? Container(
           margin: EdgeInsets.only(
-            top: MediaQueryData.fromWindow(window).padding.top,
+            top: MediaQueryData.fromView(View.of(context)).padding.top,
           ),
           child: _buildContent(context))
       : FractionallySizedBox(
@@ -325,8 +325,8 @@ class ModalConfiguration {
   final MainAxisAlignment? contentAlignment;
 }
 
-double _calculateFullScreenRatio() {
-  final statusBarHeight = MediaQueryData.fromWindow(window).padding.top;
-  final totalHeight = MediaQueryData.fromWindow(window).size.height;
+double _calculateFullScreenRatio(BuildContext context) {
+  final statusBarHeight = MediaQueryData.fromView(View.of(context)).padding.top;
+  final totalHeight = MediaQueryData.fromView(View.of(context)).size.height;
   return 1 - statusBarHeight / totalHeight;
 }
