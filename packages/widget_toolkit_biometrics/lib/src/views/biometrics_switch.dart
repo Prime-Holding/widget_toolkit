@@ -38,7 +38,7 @@ class BiometricsSwitch extends StatelessWidget {
     super.key,
   }) : _addDependencies = false;
 
-  /// [biometricsLocalDataSource] is an interface that the user of thi widget
+  /// [biometricsLocalDataSource] is an interface that the user of this widget
   /// is required to implement in order to be able to save the state of approval
   /// to use the biometrics.
   final BiometricsLocalDataSource biometricsLocalDataSource;

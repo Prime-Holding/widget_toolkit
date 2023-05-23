@@ -89,6 +89,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.2.7"
+  build_test:
+    dependency: transitive
+    description:
+      name: build_test
+      sha256: "927ef98b58c5603ec58923c0bb943a74743e58149732665885bb1eb92983befe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.7"
   built_collection:
     dependency: transitive
     description:
@@ -201,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: b36c7f7e24c0bdf1bf9a3da461c837d1de64b9f8beb190c9011d8c72a3dfd745
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.2"
   dart_style:
     dependency: transitive
     description:
@@ -317,6 +333,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.2"
   http_multi_server:
     dependency: transitive
     description:
@@ -618,6 +642,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.7"
+  source_gen_test:
+    dependency: transitive
+    description:
+      name: source_gen_test
+      sha256: cefb6e3a798e076f5052f6648d0ca623a724ac57c5ea252f56a5275658246da3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   source_helper:
     dependency: transitive
     description:
@@ -718,18 +750,18 @@ packages:
     dependency: "direct dev"
     description:
       name: theme_tailor
-      sha256: c5c8f77b7c4f0d6b50a2ffa62fb5b27ad41a6ee451dbbd48b8abcc2794a406af
+      sha256: ef13093d0c2779830a17d2a4f41a0a48ef130fa4f7383541a96b5b2f26478e56
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.8"
+    version: "2.0.0"
   theme_tailor_annotation:
     dependency: "direct main"
     description:
       name: theme_tailor_annotation
-      sha256: df470ef7dd2f1c7a21f22f219c8e3975dff87dae17a5cf349a07f533314c99c1
+      sha256: e75cf627202816cf4b45910658205959524860b99951bd0d370e760bf3546424
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "2.0.0"
   timing:
     dependency: transitive
     description:

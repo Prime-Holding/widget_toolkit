@@ -56,8 +56,8 @@ class MyHomePage extends StatelessWidget {
                       onChanged: onChanged,
                     ),
                   ),
-                  Column(
-                    children: const [
+                  const Column(
+                    children: [
                       Text(
                         '*hint* The correct code might be 0000...',
                         style: TextStyle(color: Colors.grey),

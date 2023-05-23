@@ -1,3 +1,6 @@
+## [0.0.1-dev3]
+- Update major versions of these dependencies: `theme_tailor_annotation` and `theme_tailor`
+
 ## [0.0.1-dev2]
 - Fixes code formatting issues
 - Fixes wrong repository URL in the pubspec.yaml
