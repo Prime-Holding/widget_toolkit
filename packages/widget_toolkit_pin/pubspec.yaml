@@ -54,3 +54,21 @@ flutter:
     - packages/widget_toolkit_pin/icons/fingerScanPressed.svg
     - packages/widget_toolkit_pin/icons/pinDeleteAction.svg
     - packages/widget_toolkit_pin/icons/pinDeleteDefault.svg
+
+screenshots:
+  - description: "Biometrics Authentication Scenario"
+    path: doc/assets/biometrics_authentication.webp
+  - description: "Biometrics Authentication On App Restart Scenario"
+    path: doc/assets/biometrics_authentication_on_app_restart.webp
+  - description: "Biometrics Not Setup Scenario"
+    path: doc/assets/biometrics_not_setup.webp
+  - description: "Biometrics Not Supported Scenario"
+    path: doc/assets/biometrics_not_supported.webp
+  - description: "Face Not Recognized Scenario"
+    path: doc/assets/face_not_recognized.webp
+  - description: "Initial Pin Save Scenario"
+    path: doc/assets/initial_pin_save.webp
+  - description: "Pin Biometrics Diagram"
+    path: doc/assets/pin_biometrics_diagram.png
+  - description: "Wrong Pin Code Scenario"
+    path: doc/assets/wrong_pin_code.webp
