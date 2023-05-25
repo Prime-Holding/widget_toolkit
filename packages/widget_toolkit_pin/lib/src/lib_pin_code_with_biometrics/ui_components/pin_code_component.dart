@@ -4,8 +4,8 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:widget_toolkit/models.dart';
+import 'package:widget_toolkit/shimmer.dart';
 import 'package:widget_toolkit/theme_data.dart';
 import 'package:widget_toolkit/ui_components.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
@@ -333,9 +333,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   Widget _buildMaskedKeysRow(BuildContext context, int pinLength) =>
       IntrinsicWidth(
         child: isLoading
-            ? Shimmer.fromColors(
+            ? ShimmerWrapper(
                 baseColor: context.pinCodeTheme.shimmerBaseColor,
                 highlightColor: context.pinCodeTheme.shimmerHighlightColor,
+                showShimmer: true,
                 child: _buildInLayout(pinLength),
               )
             : _buildInLayout(pinLength),
