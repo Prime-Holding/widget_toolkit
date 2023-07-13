@@ -11,11 +11,11 @@ dependencies:
     sdk: flutter
   flutter_rx_bloc: ^5.0.2
   rxdart:
-  widget_toolkit: ^0.0.1-dev5
+  widget_toolkit: ^0.0.1-dev8
 
 dev_dependencies:
-  build_runner: ^2.3.3
-  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
 
