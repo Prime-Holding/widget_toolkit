@@ -8,11 +8,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  widget_toolkit: ^0.0.1-dev6
+  widget_toolkit: ^0.0.1-dev8
   widget_toolkit_qr:
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
 

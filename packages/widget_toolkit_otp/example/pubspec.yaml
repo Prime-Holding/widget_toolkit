@@ -9,14 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  widget_toolkit: ^0.0.1-dev5
-  widget_toolkit_otp: ^0.0.1-dev5
+  cupertino_icons: ^1.0.5
+  widget_toolkit: ^0.0.1-dev8
+  widget_toolkit_otp: ^0.0.1-dev3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
