@@ -4,14 +4,14 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.4 <3.0.0'
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  widget_toolkit: ^0.0.1-dev8
-  widget_toolkit_otp: ^0.0.1-dev3
+  widget_toolkit: ^0.0.1-dev9
+  widget_toolkit_otp: ^0.0.1-dev4
 
 dev_dependencies:
   flutter_test:
