@@ -20,7 +20,8 @@ abstract class $BiometricsBloc extends RxBlocBase
   final _compositeSubscription = CompositeSubscription();
 
   /// Тhe [Subject] where events sink to by calling [setBiometrics]
-  final _$setBiometricsEvent = PublishSubject<_SetBiometricsEventArgs>();
+  final _$setBiometricsEvent =
+      PublishSubject<({bool enabled, String localizedReason})>();
 
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
   late final Stream<bool> _isLoadingState = _mapToIsLoadingState();
@@ -43,9 +44,9 @@ abstract class $BiometricsBloc extends RxBlocBase
     bool enabled,
     String localizedReason,
   ) =>
-      _$setBiometricsEvent.add(_SetBiometricsEventArgs(
-        enabled,
-        localizedReason,
+      _$setBiometricsEvent.add((
+        enabled: enabled,
+        localizedReason: localizedReason,
       ));
 
   @override
@@ -82,15 +83,5 @@ abstract class $BiometricsBloc extends RxBlocBase
   }
 }
 
-/// Helps providing the arguments in the [Subject.add] for
-/// [BiometricsBlocEvents.setBiometrics] event
-class _SetBiometricsEventArgs {
-  const _SetBiometricsEventArgs(
-    this.enabled,
-    this.localizedReason,
-  );
-
-  final bool enabled;
-
-  final String localizedReason;
-}
+// ignore: unused_element
+typedef _SetBiometricsEventArgs = ({bool enabled, String localizedReason});

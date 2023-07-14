@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SystemPermissionsRepository {
@@ -11,5 +12,5 @@ class SystemPermissionsRepository {
   Future<PermissionStatus> requestCameraPermission() =>
       Permission.camera.request();
 
-  Future<bool> openPhoneAppSettings() => openAppSettings();
+  Future<void> openPhoneAppSettings() => AppSettings.openAppSettings();
 }

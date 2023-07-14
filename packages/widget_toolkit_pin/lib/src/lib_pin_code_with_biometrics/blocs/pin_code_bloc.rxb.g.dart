@@ -38,7 +38,8 @@ abstract class $PinCodeBloc extends RxBlocBase
   final _$autoSubmitEvent = PublishSubject<String>();
 
   /// Тhe [Subject] where events sink to by calling [setBiometrics]
-  final _$setBiometricsEvent = PublishSubject<_SetBiometricsEventArgs>();
+  final _$setBiometricsEvent =
+      PublishSubject<({bool enabled, String localizedReason})>();
 
   /// The state of [areBiometricsEnabled] implemented in
   /// [_mapToAreBiometricsEnabledState]
@@ -103,9 +104,9 @@ abstract class $PinCodeBloc extends RxBlocBase
     bool enabled,
     String localizedReason,
   ) =>
-      _$setBiometricsEvent.add(_SetBiometricsEventArgs(
-        enabled,
-        localizedReason,
+      _$setBiometricsEvent.add((
+        enabled: enabled,
+        localizedReason: localizedReason,
       ));
 
   @override
@@ -176,15 +177,5 @@ abstract class $PinCodeBloc extends RxBlocBase
   }
 }
 
-/// Helps providing the arguments in the [Subject.add] for
-/// [PinCodeBlocEvents.setBiometrics] event
-class _SetBiometricsEventArgs {
-  const _SetBiometricsEventArgs(
-    this.enabled,
-    this.localizedReason,
-  );
-
-  final bool enabled;
-
-  final String localizedReason;
-}
+// ignore: unused_element
+typedef _SetBiometricsEventArgs = ({bool enabled, String localizedReason});

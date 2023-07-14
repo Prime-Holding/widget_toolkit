@@ -148,7 +148,9 @@ class MyHomePage extends StatelessWidget {
                   if (message == BiometricsMessage.notSetup)
                     SmallButton(
                       onPressed: () {
-                        AppSettings.openSecuritySettings();
+                        AppSettings.openAppSettings(
+                          type: AppSettingsType.security,
+                        );
                         Navigator.of(context).pop();
                       },
                       icon: Icons.settings,
