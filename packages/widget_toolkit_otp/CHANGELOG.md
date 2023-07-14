@@ -1,3 +1,7 @@
+## [0.0.1-dev4]
+* Requires Dart `3.0`
+* Update dependencies
+
 ## [0.0.1-dev3]
 * Update major versions of these dependencies: `theme_tailor_annotation` and `theme_tailor`
 
