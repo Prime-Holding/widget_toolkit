@@ -27,7 +27,7 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 
 ## Diagram
 
-![Pin Biometrics Diagram](doc/assets/pin_biometrics_diagram.png)
+![Pin Biometrics Diagram][diagram]
 
 ## Setup
 
@@ -44,6 +44,7 @@ Step 3: Pass the `WidgetToolkitTheme`,`PinCodeTheme` extensions to the `ThemeDat
 MaterialApp(  
   theme: ThemeData.light().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),
+    extensions: [
       PinCodeTheme.light,
       WidgetToolkitTheme.light,  
     ],  
@@ -262,3 +263,4 @@ pin code.
 [codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_pin/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
+[diagram]: https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_pin/doc/assets/pin_biometrics_diagram.png

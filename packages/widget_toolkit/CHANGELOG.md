@@ -1,3 +1,7 @@
+## [0.0.1-dev9]
+- Requires Dart `3.0`
+- Upgrade dependencies
+
 ## [0.0.1-dev8]
 - Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
 
