@@ -239,10 +239,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_rx_bloc
-      sha256: "1c37acd5e22a84de1d87202d86accc6e049b933b00531df81350da6fb718f033"
+      sha256: "93667a8a57862251c81197c11e28a302335fa951a4525040de54a2b7f5b68d5d"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.2"
+    version: "6.0.0"
   flutter_svg:
     dependency: transitive
     description:
@@ -465,10 +465,10 @@ packages:
     dependency: transitive
     description:
       name: rx_bloc
-      sha256: "22919d1c30b64702c63ff67f0c9a6ca615e43e637022544c6d14f0297fd37afa"
+      sha256: f62b14ae6356b747ed0adfa2dc7d7c1b769e854fb4d7e251333fa2c49a33f1f8
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "5.0.0"
   rxdart:
     dependency: "direct main"
     description:
@@ -622,10 +622,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-      sha256: "91ee3e75ea9dadf38036200c5d3743518f4a5eb77a8d13fda1ee5764373f185e"
+      sha256: "1c4fdc0bfea61a70792ce97157e5cc17260f61abbe4f39354513f39ec6fd73b1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -704,7 +704,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1-dev8"
+    version: "0.0.1-dev9"
   xml:
     dependency: transitive
     description:
@@ -722,5 +722,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0 <3.2.0"
+  dart: ">=3.0.5 <3.2.0"
   flutter: ">=3.10.0"

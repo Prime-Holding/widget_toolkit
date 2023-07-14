@@ -279,10 +279,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_rx_bloc
-      sha256: "1c37acd5e22a84de1d87202d86accc6e049b933b00531df81350da6fb718f033"
+      sha256: "93667a8a57862251c81197c11e28a302335fa951a4525040de54a2b7f5b68d5d"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.2"
+    version: "6.0.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -561,26 +561,26 @@ packages:
     dependency: "direct main"
     description:
       name: rx_bloc
-      sha256: "22919d1c30b64702c63ff67f0c9a6ca615e43e637022544c6d14f0297fd37afa"
+      sha256: f62b14ae6356b747ed0adfa2dc7d7c1b769e854fb4d7e251333fa2c49a33f1f8
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "5.0.0"
   rx_bloc_generator:
     dependency: "direct dev"
     description:
       name: rx_bloc_generator
-      sha256: e51d83485ace36e6bf5bb572069a251c316abef0ab65329743dc5a88f4936730
+      sha256: "9c1a7b204c3eef20e6d6dbbbff7f89b81483163da985105ba73b727460502311"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.2"
+    version: "7.0.0"
   rx_bloc_test:
     dependency: "direct dev"
     description:
       name: rx_bloc_test
-      sha256: "6e5eba2d5b68a131e07a69a7d7792bb945ba17c4d0597fd1c69c15ea1b8024fb"
+      sha256: "2a33a0fcdd5309a08d03cedfb3bc162fea6812ad4a35118d4502d8fd603e588a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.3"
+    version: "4.0.0"
   rxdart:
     dependency: "direct main"
     description:
@@ -814,10 +814,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-      sha256: "91ee3e75ea9dadf38036200c5d3743518f4a5eb77a8d13fda1ee5764373f185e"
+      sha256: "1c4fdc0bfea61a70792ce97157e5cc17260f61abbe4f39354513f39ec6fd73b1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -923,5 +923,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0 <4.0.0"
+  dart: ">=3.0.5 <4.0.0"
   flutter: ">=3.10.0"

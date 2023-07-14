@@ -20,7 +20,7 @@ abstract class $OpenUriBloc extends RxBlocBase
   final _compositeSubscription = CompositeSubscription();
 
   /// Тhe [Subject] where events sink to by calling [openURI]
-  final _$openURIEvent = PublishSubject<_OpenURIEventArgs>();
+  final _$openURIEvent = PublishSubject<({String uri, UriType type})>();
 
   /// The state of [onUriClick] implemented in [_mapToOnUriClickState]
   late final ConnectableStream<Result<void>> _onUriClickState =
@@ -31,8 +31,8 @@ abstract class $OpenUriBloc extends RxBlocBase
     String uri, {
     UriType type = UriType.https,
   }) =>
-      _$openURIEvent.add(_OpenURIEventArgs(
-        uri,
+      _$openURIEvent.add((
+        uri: uri,
         type: type,
       ));
 
@@ -55,15 +55,5 @@ abstract class $OpenUriBloc extends RxBlocBase
   }
 }
 
-/// Helps providing the arguments in the [Subject.add] for
-/// [OpenUriBlocEvents.openURI] event
-class _OpenURIEventArgs {
-  const _OpenURIEventArgs(
-    this.uri, {
-    this.type = UriType.https,
-  });
-
-  final String uri;
-
-  final UriType type;
-}
+// ignore: unused_element
+typedef _OpenURIEventArgs = ({String uri, UriType type});
