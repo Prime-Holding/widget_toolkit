@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pinput/pinput.dart';
-import 'package:widget_toolkit_otp/src/base/models/error/error_model.dart';
+import 'package:widget_toolkit/models.dart';
 
 class Stubs {
   static Key buttonKey = const ValueKey('resendButtonKey');

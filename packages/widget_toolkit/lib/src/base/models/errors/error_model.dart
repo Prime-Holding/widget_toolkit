@@ -1,5 +1,5 @@
 part 'empty_list_error_model.dart';
-part 'error_unknown.dart';
+part 'unknown_error_model.dart';
 part 'generic_error_model.dart';
 part 'open_url/access_denied_error_model.dart';
 

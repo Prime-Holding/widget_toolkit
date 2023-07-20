@@ -1,3 +1,6 @@
+## [0.0.1-dev5]
+* Upgrade `widget_toolkit` dependency
+
 ## [0.0.1-dev4]
 * Requires Dart `3.0`
 * Upgrade dependencies

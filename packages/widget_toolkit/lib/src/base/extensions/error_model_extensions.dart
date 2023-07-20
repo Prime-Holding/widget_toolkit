@@ -2,7 +2,7 @@ import '../models/errors/error_model.dart';
 
 extension ExceptionToErrorModel on Exception {
   ErrorModel asErrorModel() =>
-      this is ErrorModel ? this as ErrorModel : ErrorUnknown(exception: this);
+      this is ErrorModel ? this as ErrorModel : UnknownErrorModel(exception: this);
 }
 
 extension StreamExceptionToErrorModel on Stream<Exception> {
