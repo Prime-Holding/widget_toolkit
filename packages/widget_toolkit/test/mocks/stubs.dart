@@ -20,7 +20,7 @@ class Stubs {
     ],
   );
   static Result<List<ItemPickerDataMock>> itemPickerError =
-      Result<List<ItemPickerDataMock>>.error(GenericErrorModel());
+      Result<List<ItemPickerDataMock>>.error(GenericErrorModel(''));
   static Result<List<ItemPickerDataMock>> itemPickerLoading =
       Result<List<ItemPickerDataMock>>.loading();
 
@@ -104,7 +104,7 @@ class Stubs {
       Result<String>.loading(tag: '');
 
   static Result<String> textFieldDialogResultError =
-      Result<String>.error(GenericErrorModel());
+      Result<String>.error(GenericErrorModel(''));
 
   static String city = 'Sofia';
   static String street = 'str1';

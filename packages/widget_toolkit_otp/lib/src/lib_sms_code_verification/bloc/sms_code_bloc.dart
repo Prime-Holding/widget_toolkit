@@ -1,8 +1,7 @@
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:widget_toolkit/widget_toolkit.dart';
 
-import '../../base/extensions/error_model_extensions.dart';
-import '../../base/models/error/error_model.dart';
 import '../../base/models/temporary_code_state.dart';
 import '../../lib_countdown_widget/services/countdown_service.dart';
 import '../services/sms_code_service.dart';

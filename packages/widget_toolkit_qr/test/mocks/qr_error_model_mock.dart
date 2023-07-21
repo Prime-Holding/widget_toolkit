@@ -1,4 +1,4 @@
-import 'package:widget_toolkit/widget_toolkit.dart';
+import 'package:widget_toolkit/models.dart';
 
 class QrErrorModelMock implements ErrorModel {
   QrErrorModelMock({this.customMessage});

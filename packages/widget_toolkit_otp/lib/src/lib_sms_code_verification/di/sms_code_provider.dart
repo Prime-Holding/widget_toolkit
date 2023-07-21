@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:widget_toolkit/models.dart';
 
-import '../../base/models/error/error_model.dart';
 import '../../base/models/temporary_code_state.dart';
 import '../../lib_countdown_widget/services/countdown_service.dart';
 import '../../lib_countdown_widget/services/countdown_service_impl.dart';

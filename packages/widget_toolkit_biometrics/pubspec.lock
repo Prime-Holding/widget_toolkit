@@ -880,7 +880,7 @@ packages:
       path: "../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.1-dev9"
+    version: "0.0.1-dev10"
   xml:
     dependency: transitive
     description:

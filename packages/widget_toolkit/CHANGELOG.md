@@ -1,3 +1,6 @@
+## [0.0.1-dev10]
+- Renamed `ErrorUnknown` to `UnknownErrorModel`
+
 ## [0.0.1-dev9]
 - Requires Dart `3.0`
 - Upgrade dependencies

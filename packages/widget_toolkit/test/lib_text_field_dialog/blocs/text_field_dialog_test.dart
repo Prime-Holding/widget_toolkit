@@ -69,7 +69,7 @@ void main() {
       state: (bloc) => bloc.states.submittedValue,
       expect: [
         Result<dynamic>.loading(),
-        Result<dynamic>.error(GenericErrorModel()),
+        Result<dynamic>.error(GenericErrorModel('server_side_message_length_error_key')),
       ]);
 }
 
@@ -81,9 +81,8 @@ void _defineWhenValidationReturns() {
 
 void _defineWhenValidationThrows() {
   when(serviceValidator.validateOnSubmit(Stubs.textFieldDialogExceptionValue))
-      .thenAnswer((realInvocation) => throw GenericErrorModel(
-            customMessage: 'Server side message, enter at most 6 symbols',
-          ));
+      .thenAnswer((realInvocation) =>
+          throw GenericErrorModel('server_side_message_length_error_key'));
 }
 
 TextFieldDialogBloc textFieldDialogBlocWithString() => TextFieldDialogBloc(
