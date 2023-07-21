@@ -160,7 +160,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
               ? Padding(
                   padding: context.itemPickerTheme.contentListPadding,
                   child: widget.emptyBuilder?.call() ??
-                      const ErrorCardWidget(text: ''),
+                      const ErrorCardWidget(text: 'No items'),
                 )
               : _buildList(list as List<T>),
           buildLoading: (context, bloc) => widget.isStatic
