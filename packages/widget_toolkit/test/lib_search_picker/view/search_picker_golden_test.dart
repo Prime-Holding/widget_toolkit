@@ -39,7 +39,7 @@ void main() {
     generateDeviceBuilder(
         widget: searchPickerFactory(
           searchPickerRepository: searchRepository,
-          searchResult: Result.error(GenericErrorModel()),
+          searchResult: Result.error(GenericErrorModel('')),
         ),
         scenario: Scenario(name: 'search_picker_error'))
   ]);

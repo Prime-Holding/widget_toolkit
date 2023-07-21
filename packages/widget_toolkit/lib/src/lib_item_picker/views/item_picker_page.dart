@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../base/models/errors/error_model.dart';
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
 import '../../base/utils/easy_fade_transition.dart';
@@ -151,10 +150,8 @@ class _ItemPickerPageState<T extends PickerItemModel>
           buildError: (context, error, bloc) => Padding(
             padding: context.itemPickerTheme.errorPadding,
             child: widget.errorBuilder?.call(error) ??
-
-                /// TODO (david.djordjevic): Find a way to pass an error message directly
                 ErrorCardWidget(
-                  text: GenericErrorModel().toString(),
+                  text: error.toString(),
                   retryButtonVisible: true,
                   onRetryPressed: () => bloc.events.loadItems(),
                 ),
@@ -163,11 +160,7 @@ class _ItemPickerPageState<T extends PickerItemModel>
               ? Padding(
                   padding: context.itemPickerTheme.contentListPadding,
                   child: widget.emptyBuilder?.call() ??
-
-                      /// TODO (david.djordjevic): Find a way to pass an error message directly
-                      ErrorCardWidget(
-                        text: EmptyListErrorModel().toString(),
-                      ),
+                      const ErrorCardWidget(text: ''),
                 )
               : _buildList(list as List<T>),
           buildLoading: (context, bloc) => widget.isStatic
