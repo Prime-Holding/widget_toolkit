@@ -1,3 +1,7 @@
+## [0.0.2-dev.1]
+* Update `widget_toolkit` dependency
+* Remove redundant error models from package
+
 ## [0.0.1-dev5]
 * Update `widget_toolkit` dependency
 * Remove redundant error models from package
