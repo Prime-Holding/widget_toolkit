@@ -6,7 +6,6 @@ import '../models/biometrics_authentication_type.dart';
 class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
   PinBiometricsAuthDataSource({required this.localAuthentication});
 
-  @override
   final LocalAuthentication localAuthentication;
 
   Future<List<BiometricsAuthType>> get availableBiometrics =>
