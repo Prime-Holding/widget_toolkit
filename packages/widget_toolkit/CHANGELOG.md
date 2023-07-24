@@ -3,11 +3,6 @@
 - Added `L10nErrorKeyProvider` abstract class, used to provide localization keys for error messages
 - `GenericErrorModel` and `EmptyListErrorModel` now implement `L10nErrorKeyProvider`
 
-## [0.0.1-dev10]
-- Renamed `ErrorUnknown` to `UnknownErrorModel`
-- Added `L10nErrorKeyProvider` abstract class, used to provide localization keys for error messages
-- `GenericErrorModel` and `EmptyListErrorModel` now implement `L10nErrorKeyProvider`
-
 ## [0.0.1-dev9]
 - Requires Dart `3.0`
 - Upgrade dependencies
