@@ -23,6 +23,7 @@ class PinCodeComponent extends StatefulWidget {
     required this.translateError,
     required this.pinLength,
     required this.localizedReason,
+    this.biometricsLocalDataSource,
     this.mapBiometricMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
@@ -40,6 +41,9 @@ class PinCodeComponent extends StatefulWidget {
 
   /// The biometrics enabling reason
   final String localizedReason;
+
+  /// Data source, which stores a flag if biometrics are enabled for the app.
+  final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;
@@ -457,8 +461,13 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 isLoading: isLoading,
                 onPressed: (key) => _onKeyPressed(key, pinLength),
               ),
-              _buildBiometricsButton(context, isPinCodeIsSecureStorage,
-                  hasFingerScan, hasFaceScan, biometricsEnabled, pinLength),
+              widget.biometricsLocalDataSource != null
+                  ? _buildBiometricsButton(context, isPinCodeIsSecureStorage,
+                      hasFingerScan, hasFaceScan, biometricsEnabled, pinLength)
+                  : SizedBox(
+                      height: calculateKeyboardButtonSize(context),
+                      width: calculateKeyboardButtonSize(context),
+                    ),
             ],
           ),
         ],
