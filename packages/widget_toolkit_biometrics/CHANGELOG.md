@@ -1,5 +1,6 @@
 ## [0.0.2-dev.1]
 - Update `widget_toolkit` dependency
+- Make `BiometricsAuthDataSource`, `BiometricsRepository` abstract
 
 ## [0.0.1-dev4]
 - Requires Dart `3.0`
