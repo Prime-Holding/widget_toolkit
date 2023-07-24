@@ -256,7 +256,8 @@ triggered and the biometrics icon will be displayed on the bottom right. When yo
 time it will trigger the biometric authentication. If a user types a wrong pin code and the error
 ErrorWrongPin is thrown from the service layer, then a shake animation is triggered on the masked
 pin code and then the text from the ErrorWrongPin's errorMessage is displayed in the place of the 
-pin code.
+pin code. Note: If `biometricsLocalDataSource`parameter is not provided to `PinCodeKeyboard` the 
+biometrics authentication feature cannot be used.
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg

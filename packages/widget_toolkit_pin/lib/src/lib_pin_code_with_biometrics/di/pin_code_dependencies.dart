@@ -4,8 +4,8 @@ import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
+import '../data_source/biometrics_disabled_local_data_source.dart';
 import '../data_source/pin_biometrics_auth_data_source.dart';
-import '../data_source/pin_biometrics_local_data_source.dart';
 import '../repositories/pin_biometrics_repository.dart';
 import '../services/pin_biometrics_service.dart';
 
@@ -18,7 +18,7 @@ class PinCodeDependencies {
 
   factory PinCodeDependencies.from({
     required PinCodeService pinCodeService,
-    required BiometricsLocalDataSource biometricsLocalDataSource,
+    required BiometricsLocalDataSource? biometricsLocalDataSource,
     required String localizedReason,
   }) =>
       PinCodeDependencies._(
@@ -29,7 +29,7 @@ class PinCodeDependencies {
 
   final String localizedReason;
   final PinCodeService pinCodeService;
-  final BiometricsLocalDataSource biometricsLocalDataSource;
+  final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   late List<SingleChildWidget> providers = [
     ..._localAuthentication,
@@ -46,21 +46,26 @@ class PinCodeDependencies {
   ];
 
   late final List<SingleChildWidget> _dataSources = [
-    Provider<PinBiometricsLocalDataSource>(
-      create: (context) => PinBiometricsLocalDataSource(),
-    ),
     Provider<PinBiometricsAuthDataSource>(
       create: (context) => PinBiometricsAuthDataSource(
         localAuthentication: context.read<LocalAuthentication>(),
       ),
     ),
+    if (biometricsLocalDataSource == null)
+      Provider<BiometricsLocalDataSource>(
+        create: (context) => BiometricsDisabledLocalDataSource(),
+      )
+    else
+      Provider<BiometricsLocalDataSource>.value(
+        value: biometricsLocalDataSource!,
+      ),
   ];
 
   late final List<SingleChildWidget> _repositories = [
     Provider<PinBiometricsRepository>(
       create: (context) => PinBiometricsRepository(
         context.read<PinBiometricsAuthDataSource>(),
-        biometricsLocalDataSource,
+        context.read<BiometricsLocalDataSource>(),
       ),
     ),
   ];

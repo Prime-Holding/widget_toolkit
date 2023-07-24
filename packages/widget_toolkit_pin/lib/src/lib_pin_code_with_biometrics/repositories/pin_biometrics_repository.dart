@@ -5,12 +5,33 @@ import '../models/biometrics_authentication_type.dart';
 
 class PinBiometricsRepository extends BiometricsRepository {
   PinBiometricsRepository(
-      this.biometricAuthenticationDataSource, this.localDataSource)
-      : super(biometricAuthenticationDataSource, localDataSource);
+      this.biometricAuthenticationDataSource, this.localDataSource);
 
-  PinBiometricsAuthDataSource biometricAuthenticationDataSource;
-  BiometricsLocalDataSource localDataSource;
+  @override
+  final PinBiometricsAuthDataSource biometricAuthenticationDataSource;
+
+  @override
+  final BiometricsLocalDataSource localDataSource;
 
   Future<List<BiometricsAuthType>> get availableBiometrics =>
       biometricAuthenticationDataSource.availableBiometrics;
+
+  @override
+  Future<bool> areBiometricsEnabled() => localDataSource.areBiometricsEnabled();
+
+  @override
+  Future<bool> authenticate(String localizedReason) =>
+      biometricAuthenticationDataSource.authenticate(localizedReason);
+
+  @override
+  Future<bool> get canCheckBiometrics =>
+      biometricAuthenticationDataSource.canCheckBiometrics;
+
+  @override
+  Future<bool> get isDeviceSupported =>
+      biometricAuthenticationDataSource.isDeviceSupported;
+
+  @override
+  Future<void> setBiometricsEnabled(bool areBiometricsEnabled) =>
+      localDataSource.setBiometricsEnabled(areBiometricsEnabled);
 }

@@ -8,9 +8,11 @@ import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../blocs/biometrics_bloc.dart';
 import '../data_sources/biometrics_auth_data_source.dart';
+import '../data_sources/biometrics_auth_data_source_impl.dart';
 import '../data_sources/biometrics_local_data_source.dart';
 import '../models/biometrics_setting_message_type.dart';
 import '../repositories/biometrics_repository.dart';
+import '../repositories/biometrics_repository_impl.dart';
 import '../resources/constants.dart';
 import '../services/biometrics_service.dart';
 
@@ -89,7 +91,6 @@ class BiometricsSwitch extends StatelessWidget {
               state: (bloc) => bloc.states.areBiometricsEnabled,
               builder: (context, enabled, bloc) {
                 final areEnabled = enabled.hasData && (enabled.data ?? false);
-
                 if (builder != null) {
                   return builder!.call(
                     context,
@@ -223,12 +224,12 @@ class BiometricsSwitch extends StatelessWidget {
           create: (context) => biometricsLocalDataSource,
         ),
         Provider<BiometricsAuthDataSource>(
-          create: (context) => BiometricsAuthDataSource(
+          create: (context) => BiometricsAuthDataSourceImpl(
             localAuthentication: context.read<LocalAuthentication>(),
           ),
         ),
         Provider<BiometricsRepository>(
-          create: (context) => BiometricsRepository(
+          create: (context) => BiometricsRepositoryImpl(
             context.read<BiometricsAuthDataSource>(),
             context.read<BiometricsLocalDataSource>(),
           ),
