@@ -1,6 +1,8 @@
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
-class PinBiometricsLocalDataSource implements BiometricsLocalDataSource {
+/// A data source implementation used by default, when the biometrics
+/// authentication feature is not required.
+class BiometricsDisabledLocalDataSource implements BiometricsLocalDataSource {
   @override
   Future<bool> areBiometricsEnabled() async => false;
 
