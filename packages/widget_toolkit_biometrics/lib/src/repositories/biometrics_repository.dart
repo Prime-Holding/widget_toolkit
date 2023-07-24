@@ -1,27 +1,18 @@
 import '../data_sources/biometrics_auth_data_source.dart';
 import '../data_sources/biometrics_local_data_source.dart';
 
-class BiometricsRepository {
-  final BiometricsAuthDataSource _biometricAuthenticationDataSource;
-  final BiometricsLocalDataSource _localDataSource;
+abstract class BiometricsRepository {
+  BiometricsAuthDataSource get biometricAuthenticationDataSource;
 
-  BiometricsRepository(
-    this._biometricAuthenticationDataSource,
-    this._localDataSource,
-  );
+  BiometricsLocalDataSource get localDataSource;
 
-  Future<bool> get canCheckBiometrics =>
-      _biometricAuthenticationDataSource.canCheckBiometrics;
+  Future<bool> get canCheckBiometrics;
 
-  Future<bool> get isDeviceSupported =>
-      _biometricAuthenticationDataSource.isDeviceSupported;
+  Future<bool> get isDeviceSupported;
 
-  Future<bool> authenticate(String localizedReason) =>
-      _biometricAuthenticationDataSource.authenticate(localizedReason);
+  Future<bool> authenticate(String localizedReason);
 
-  Future<void> setBiometricsEnabled(bool areBiometricsEnabled) =>
-      _localDataSource.setBiometricsEnabled(areBiometricsEnabled);
+  Future<void> setBiometricsEnabled(bool areBiometricsEnabled);
 
-  Future<bool> areBiometricsEnabled() =>
-      _localDataSource.areBiometricsEnabled();
+  Future<bool> areBiometricsEnabled();
 }

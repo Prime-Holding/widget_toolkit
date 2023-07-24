@@ -43,8 +43,8 @@ import 'pin_code_component.dart';
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
     required this.pinCodeService,
-    required this.biometricsLocalDataSource,
     required this.translateError,
+    this.biometricsLocalDataSource,
     this.mapBiometricMessageToString,
     this.isAuthenticatedWithBiometrics,
     this.isPinCodeVerified,
@@ -67,7 +67,7 @@ class PinCodeKeyboard extends StatelessWidget {
   final PinCodeService pinCodeService;
 
   /// Provides a contract to be implemented for the biometrics related methods.
-  final BiometricsLocalDataSource biometricsLocalDataSource;
+  final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   /// Called when a user is authenticated with biometrics successfully
   final void Function(bool)? isAuthenticatedWithBiometrics;

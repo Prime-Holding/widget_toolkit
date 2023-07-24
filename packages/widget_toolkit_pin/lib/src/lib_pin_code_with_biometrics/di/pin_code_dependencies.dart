@@ -18,7 +18,7 @@ class PinCodeDependencies {
 
   factory PinCodeDependencies.from({
     required PinCodeService pinCodeService,
-    required BiometricsLocalDataSource biometricsLocalDataSource,
+    required BiometricsLocalDataSource? biometricsLocalDataSource,
     required String localizedReason,
   }) =>
       PinCodeDependencies._(
@@ -29,7 +29,7 @@ class PinCodeDependencies {
 
   final String localizedReason;
   final PinCodeService pinCodeService;
-  final BiometricsLocalDataSource biometricsLocalDataSource;
+  final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   late List<SingleChildWidget> providers = [
     ..._localAuthentication,
@@ -46,7 +46,7 @@ class PinCodeDependencies {
   ];
 
   late final List<SingleChildWidget> _dataSources = [
-    Provider<PinBiometricsLocalDataSource>(
+    Provider<BiometricsLocalDataSource>(
       create: (context) => PinBiometricsLocalDataSource(),
     ),
     Provider<PinBiometricsAuthDataSource>(
@@ -60,7 +60,7 @@ class PinCodeDependencies {
     Provider<PinBiometricsRepository>(
       create: (context) => PinBiometricsRepository(
         context.read<PinBiometricsAuthDataSource>(),
-        biometricsLocalDataSource,
+        biometricsLocalDataSource ?? context.read<BiometricsLocalDataSource>(),
       ),
     ),
   ];
