@@ -5,7 +5,6 @@ import './biometrics_auth_data_source.dart';
 class BiometricsAuthDataSourceImpl extends BiometricsAuthDataSource {
   BiometricsAuthDataSourceImpl({required this.localAuthentication});
 
-  @override
   final LocalAuthentication localAuthentication;
 
   @override

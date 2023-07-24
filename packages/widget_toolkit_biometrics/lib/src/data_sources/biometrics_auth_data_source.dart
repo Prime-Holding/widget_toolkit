@@ -1,10 +1,6 @@
-import 'package:local_auth/local_auth.dart';
-
 /// [BiometricsAuthDataSource] is a wrapper of the plugin [local_auth] and
 /// expose its properties
 abstract class BiometricsAuthDataSource {
-  LocalAuthentication get localAuthentication;
-
   /// Returns true if the device is capable of checking biometrics.
   Future<bool> get canCheckBiometrics;
 

@@ -11,8 +11,8 @@ import '../data_sources/biometrics_auth_data_source.dart';
 import '../data_sources/biometrics_auth_data_source_impl.dart';
 import '../data_sources/biometrics_local_data_source.dart';
 import '../models/biometrics_setting_message_type.dart';
-import '../repositories/biometric_repository_impl.dart';
 import '../repositories/biometrics_repository.dart';
+import '../repositories/biometrics_repository_impl.dart';
 import '../resources/constants.dart';
 import '../services/biometrics_service.dart';
 
