@@ -1,12 +1,11 @@
 part of 'error_model.dart';
 
-class EmptyListErrorModel extends ErrorModel {
-  EmptyListErrorModel({this.customMessage});
-
-  final String? customMessage;
+class EmptyListErrorModel extends ErrorModel implements L10nErrorKeyProvider {
+  EmptyListErrorModel(this.l10nErrorKey);
 
   @override
-  String toString() {
-    return 'EmptyListErrorModel';
-  }
+  final String l10nErrorKey;
+
+  @override
+  String toString() => 'EmptyListError. TranslationKey: $l10nErrorKey';
 }

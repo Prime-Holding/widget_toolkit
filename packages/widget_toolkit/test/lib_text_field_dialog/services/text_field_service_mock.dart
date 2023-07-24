@@ -7,9 +7,7 @@ class TextFieldDialogServiceMock extends TextFieldValidator<String> {
   @override
   Future<String> validateOnSubmit(String text) async {
     if (text.length >= maxLengthRequired) {
-      throw GenericErrorModel(
-        customMessage: 'Server side message, enter at most 6 symbols',
-      );
+      throw GenericErrorModel('server_side_message_length_error_key');
     }
     return text;
   }

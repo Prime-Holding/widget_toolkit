@@ -72,7 +72,7 @@ void main() {
         'test search_picker_bloc state itemsList with error',
         build: () async {
           when(_repository.searchList)
-              .thenAnswer((_) => throw GenericErrorModel());
+              .thenAnswer((_) => throw GenericErrorModel(''));
 
           return searchPickerBloc();
         },
@@ -80,7 +80,7 @@ void main() {
         state: (bloc) => bloc.states.itemsList,
         expect: [
           Result.loading(),
-          Result.error(GenericErrorModel()),
+          Result.error(GenericErrorModel('')),
         ]);
   });
 }

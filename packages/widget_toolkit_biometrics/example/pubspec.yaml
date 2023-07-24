@@ -14,8 +14,8 @@ dependencies:
   provider: ^6.0.5
   rxdart: ^0.27.7
   shared_preferences: ^2.2.0
-  widget_toolkit: ^0.0.1-dev9
-  widget_toolkit_biometrics: ^0.0.1-dev4
+  widget_toolkit: ^0.0.1-dev10
+  widget_toolkit_biometrics: ^0.0.1-dev5
 
 dev_dependencies:
   flutter_lints: ^2.0.1
