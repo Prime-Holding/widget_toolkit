@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  widget_toolkit: ^0.0.1-dev10
-  widget_toolkit_otp: ^0.0.1-dev5
+  widget_toolkit: ^0.0.2-dev.1
+  widget_toolkit_otp: ^0.0.2-dev.1
 
 dev_dependencies:
   flutter_test:
