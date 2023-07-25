@@ -1,3 +1,6 @@
+## [0.0.2-dev.2]
+* Fix pin code auto submit, when biometrics authentication is disabled
+
 ## [0.0.2-dev.1]
 * Update `widget_toolkit` and `widget_toolkit_biometrics` dependencies
 * Update parameter `biometricsLocalDataSource` in `PinCodeKeyboard` to be optional

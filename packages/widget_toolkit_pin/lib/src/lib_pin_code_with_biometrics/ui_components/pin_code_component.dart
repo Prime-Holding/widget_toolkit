@@ -461,13 +461,8 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 isLoading: isLoading,
                 onPressed: (key) => _onKeyPressed(key, pinLength),
               ),
-              widget.biometricsLocalDataSource != null
-                  ? _buildBiometricsButton(context, isPinCodeIsSecureStorage,
-                      hasFingerScan, hasFaceScan, biometricsEnabled, pinLength)
-                  : SizedBox(
-                      height: calculateKeyboardButtonSize(context),
-                      width: calculateKeyboardButtonSize(context),
-                    ),
+              _buildBiometricsButton(context, isPinCodeIsSecureStorage,
+                  hasFingerScan, hasFaceScan, biometricsEnabled, pinLength),
             ],
           ),
         ],
@@ -500,6 +495,18 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       bool hasFaceScan,
       bool biometricsEnabled,
       int pinLength) {
+    if (widget.biometricsLocalDataSource == null) {
+      if (pin.length == pinLength) {
+        return AutoSubmitWidget(
+          onAutoSubmit: () {
+            context.read<PinCodeBlocType>().events.autoSubmit(pin);
+            context.read<PinCodeBlocType>().events.checkPinCodeInStorage();
+          },
+          child: Container(),
+        );
+      }
+      return Container();
+    }
     if (!isPinCodeIsSecureStorage && pin.length == pinLength) {
       return AutoSubmitWidget(
         onAutoSubmit: () {
