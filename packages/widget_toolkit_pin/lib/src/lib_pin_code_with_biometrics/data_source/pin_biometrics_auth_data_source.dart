@@ -4,7 +4,9 @@ import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import '../models/biometrics_authentication_type.dart';
 
 class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
-  PinBiometricsAuthDataSource({required super.localAuthentication});
+  PinBiometricsAuthDataSource({required this.localAuthentication});
+
+  final LocalAuthentication localAuthentication;
 
   Future<List<BiometricsAuthType>> get availableBiometrics =>
       localAuthentication
@@ -23,4 +25,20 @@ class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
         return BiometricsAuthType.face;
     }
   }
+
+  @override
+  Future<bool> get canCheckBiometrics => localAuthentication.canCheckBiometrics;
+
+  @override
+  Future<bool> get isDeviceSupported => localAuthentication.isDeviceSupported();
+
+  @override
+  Future<bool> authenticate(String localizedReason) =>
+      localAuthentication.authenticate(
+        localizedReason: localizedReason,
+        options: const AuthenticationOptions(
+          biometricOnly: false,
+          useErrorDialogs: false,
+        ),
+      );
 }

@@ -67,6 +67,8 @@ class MyHomePage extends StatelessWidget {
                       mapBiometricMessageToString:
                           _exampleMapBiometricMessageToString,
                       pinCodeService: context.read<PinCodeService>(),
+                      // Optionally you can provide a [biometricsLocalDataSource],
+                      // which enables the usage of biometrics authentication
                       biometricsLocalDataSource:
                           context.read<BiometricsLocalDataSource>(),
                       translateError: _translateError,
