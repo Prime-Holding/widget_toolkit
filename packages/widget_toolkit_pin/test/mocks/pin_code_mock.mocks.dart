@@ -68,6 +68,41 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
   }
 
   @override
+  _i4.Stream<int> get digitsCount => (super.noSuchMethod(
+        Invocation.getter(#digitsCount),
+        returnValue: _i4.Stream<int>.empty(),
+      ) as _i4.Stream<int>);
+  @override
+  _i2.ConnectableStream<bool> get showBiometricsButton => (super.noSuchMethod(
+        Invocation.getter(#showBiometricsButton),
+        returnValue: _FakeConnectableStream_0<bool>(
+          this,
+          Invocation.getter(#showBiometricsButton),
+        ),
+      ) as _i2.ConnectableStream<bool>);
+  @override
+  _i2.ConnectableStream<void> get requestBiometricsAuthentication =>
+      (super.noSuchMethod(
+        Invocation.getter(#requestBiometricsAuthentication),
+        returnValue: _FakeConnectableStream_0<void>(
+          this,
+          Invocation.getter(#requestBiometricsAuthentication),
+        ),
+      ) as _i2.ConnectableStream<void>);
+  @override
+  _i2.ConnectableStream<void> get authenticated => (super.noSuchMethod(
+        Invocation.getter(#authenticated),
+        returnValue: _FakeConnectableStream_0<void>(
+          this,
+          Invocation.getter(#authenticated),
+        ),
+      ) as _i2.ConnectableStream<void>);
+  @override
+  _i4.Stream<String> get pin => (super.noSuchMethod(
+        Invocation.getter(#pin),
+        returnValue: _i4.Stream<String>.empty(),
+      ) as _i4.Stream<String>);
+  @override
   _i4.Stream<bool> get areBiometricsEnabled => (super.noSuchMethod(
         Invocation.getter(#areBiometricsEnabled),
         returnValue: _i4.Stream<bool>.empty(),
@@ -90,15 +125,6 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
         ),
       ) as _i2.ConnectableStream<List<_i5.BiometricsAuthType>>);
   @override
-  _i2.ConnectableStream<bool> get isAuthenticatedWithBiometrics =>
-      (super.noSuchMethod(
-        Invocation.getter(#isAuthenticatedWithBiometrics),
-        returnValue: _FakeConnectableStream_0<bool>(
-          this,
-          Invocation.getter(#isAuthenticatedWithBiometrics),
-        ),
-      ) as _i2.ConnectableStream<bool>);
-  @override
   _i4.Stream<_i6.BiometricsMessage?> get biometricsDialog =>
       (super.noSuchMethod(
         Invocation.getter(#biometricsDialog),
@@ -113,14 +139,6 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
           Invocation.getter(#isPinCodeInSecureStorage),
         ),
       ) as _i2.ConnectableStream<bool>);
-  @override
-  _i2.ConnectableStream<int> get pinLength => (super.noSuchMethod(
-        Invocation.getter(#pinLength),
-        returnValue: _FakeConnectableStream_0<int>(
-          this,
-          Invocation.getter(#pinLength),
-        ),
-      ) as _i2.ConnectableStream<int>);
   @override
   _i4.Stream<bool> get isLoading => (super.noSuchMethod(
         Invocation.getter(#isLoading),
@@ -142,6 +160,30 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
   }
 
   @override
+  void addDigit(String? digit) => super.noSuchMethod(
+        Invocation.method(
+          #addDigit,
+          [digit],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void deleteDigit() => super.noSuchMethod(
+        Invocation.method(
+          #deleteDigit,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void biometricsButtonPressed(String? reason) => super.noSuchMethod(
+        Invocation.method(
+          #biometricsButtonPressed,
+          [reason],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   void getPinLength(int? length) => super.noSuchMethod(
         Invocation.method(
           #getPinLength,
@@ -153,14 +195,6 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
   void checkBiometricsEnabled() => super.noSuchMethod(
         Invocation.method(
           #checkBiometricsEnabled,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void checkAvailableBiometrics() => super.noSuchMethod(
-        Invocation.method(
-          #checkAvailableBiometrics,
           [],
         ),
         returnValueForMissingStub: null,

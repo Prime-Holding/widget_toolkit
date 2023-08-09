@@ -12,16 +12,21 @@ part 'pin_code_bloc.rxb.g.dart';
 
 /// A contract class containing all events of the PinCodeBloc.
 abstract class PinCodeBlocEvents {
+  ///Triggered when user tap on the digit
+  void addDigit(String digit);
+
+  ///Triggered when user delete digit
+  void deleteDigit();
+
+  ///Triggered when user tap on biometrics button
+  void biometricsButtonPressed(String reason);
+
   /// Requests getting the pin code length
   void getPinLength(int? length);
 
   /// Checks whether the biometrics are enabled for the application
   @RxBlocEvent(type: RxBlocEventType.behaviour)
   void checkBiometricsEnabled();
-
-  /// Requests getting the available biometrics list
-  @RxBlocEvent(type: RxBlocEventType.behaviour)
-  void checkAvailableBiometrics();
 
   /// Checks whether there is a pin code stored in the device secure storage
   @RxBlocEvent(type: RxBlocEventType.behaviour)
@@ -42,6 +47,20 @@ abstract class PinCodeBlocEvents {
 
 /// A contract class containing all states of the PinCodeBloc.
 abstract class PinCodeBlocStates {
+  ///Indicating how much dots to present
+  Stream<int> get digitsCount;
+
+  ///Indicating the biometrics button must be presented
+  ConnectableStream<bool> get showBiometricsButton;
+
+  ///Emits when biometrics must be presented to the user
+  ConnectableStream<void> get requestBiometricsAuthentication;
+
+  ///Emits when user successfully authenticate (pin/biometrics)
+  ConnectableStream<void> get authenticated;
+
+  Stream<String> get pin;
+
   /// Returns true if the biometrics of the phone are enabled for usage from the app
   Stream<bool> get areBiometricsEnabled;
 
@@ -53,7 +72,7 @@ abstract class PinCodeBlocStates {
   ConnectableStream<List<BiometricsAuthType>> get availableBiometrics;
 
   /// Returns true if the user is authenticated with biometrics
-  ConnectableStream<bool> get isAuthenticatedWithBiometrics;
+  // ConnectableStream<bool> get isAuthenticatedWithBiometrics;
 
   /// Message to be presented when biometrics setting are updated
   Stream<BiometricsMessage?> get biometricsDialog;
@@ -62,7 +81,7 @@ abstract class PinCodeBlocStates {
   ConnectableStream<bool> get isPinCodeInSecureStorage;
 
   /// Returns the correct length of the pin code
-  ConnectableStream<int> get pinLength;
+  // ConnectableStream<int> get pinLength;
 
   /// The loading state
   Stream<bool> get isLoading;
@@ -80,17 +99,19 @@ class PinCodeBloc extends $PinCodeBloc {
   }) {
     checkPinCodeInStorage();
     checkBiometricsEnabled();
-    checkAvailableBiometrics();
     isPinCodeInSecureStorage.connect().addTo(_compositeSubscription);
-    isAuthenticatedWithBiometrics.connect().addTo(_compositeSubscription);
+    authenticated.connect().addTo(_compositeSubscription);
     isPinCodeVerified.connect().addTo(_compositeSubscription);
     availableBiometrics.connect().addTo(_compositeSubscription);
-    pinLength.connect().addTo(_compositeSubscription);
+    showBiometricsButton.connect().addTo(_compositeSubscription);
+    requestBiometricsAuthentication.connect().addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
   final PinCodeService pinCodeService;
   final String enterPinWithBiometrics;
+
+  String pinCode = '';
 
   @override
   ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState() =>
@@ -109,15 +130,14 @@ class PinCodeBloc extends $PinCodeBloc {
           .whereSuccess();
 
   Future<bool> getAreBiometricsEnabled() async {
-    var isDeviceSupported =
+    bool isDeviceSupported =
         await biometricAuthenticationService.isDeviceSupported;
-    var canCheckBiometrics =
+    bool canCheckBiometrics =
         await biometricAuthenticationService.canCheckBiometrics;
-    var biometricsEnabled =
+    bool biometricsEnabled =
         await biometricAuthenticationService.areBiometricsEnabled();
 
-    var pinCode = await pinCodeService.getPinCode();
-
+    String? pinCode = await pinCodeService.getPinCode();
     return isDeviceSupported &&
         canCheckBiometrics &&
         biometricsEnabled &&
@@ -126,7 +146,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<List<BiometricsAuthType>>
-      _mapToAvailableBiometricsState() => _$checkAvailableBiometricsEvent
+      _mapToAvailableBiometricsState() => _$checkBiometricsEnabledEvent
           .switchMap((value) => biometricAuthenticationService
               .availableBiometrics
               .asResultStream())
@@ -134,21 +154,22 @@ class PinCodeBloc extends $PinCodeBloc {
           .whereSuccess()
           .publishReplay();
 
-  @override
-  ConnectableStream<bool> _mapToIsAuthenticatedWithBiometricsState() =>
-      _$requestBiometricAuthEvent
-          .switchMap(
-              (value) => _biometricAuthentication(value).asResultStream())
-          .setResultStateHandler(this)
-          .whereSuccess()
-          .publishReplay(maxSize: 1);
-
-  Future<bool> _biometricAuthentication(String localizedReason) async {
-    var success = await biometricAuthenticationService.authenticate(
-        localizedReason.isEmpty ? enterPinWithBiometrics : localizedReason);
-
-    return success;
-  }
+  //
+  // @override
+  // ConnectableStream<bool> _mapToIsAuthenticatedWithBiometricsState() =>
+  //     _$requestBiometricAuthEvent
+  //         .switchMap(
+  //             (value) => _biometricAuthentication(value).asResultStream())
+  //         .setResultStateHandler(this)
+  //         .whereSuccess()
+  //         .publishReplay(maxSize: 1);
+  //
+  // Future<bool> _biometricAuthentication(String localizedReason) async {
+  //   bool success = await biometricAuthenticationService.authenticate(
+  //       localizedReason.isEmpty ? enterPinWithBiometrics : localizedReason);
+  //
+  //   return success;
+  // }
 
   @override
   ConnectableStream<bool> _mapToIsPinCodeVerifiedState() => _$autoSubmitEvent
@@ -158,8 +179,8 @@ class PinCodeBloc extends $PinCodeBloc {
       .publishReplay(maxSize: 1);
 
   Future<bool> encryptAndVerify(String pinCode) async {
-    var encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    var verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
+    String encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    bool verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
     return verifiedPin;
   }
 
@@ -178,16 +199,75 @@ class PinCodeBloc extends $PinCodeBloc {
       });
 
   @override
-  ConnectableStream<int> _mapToPinLengthState() => _$getPinLengthEvent
+  Stream<int> _mapToDigitsCountState() => _$getPinLengthEvent
       .startWith(null)
       .switchMap((value) => pinCodeService.getPinLength().asResultStream())
       .setResultStateHandler(this)
-      .whereSuccess()
-      .publish();
+      .whereSuccess();
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;
 
   @override
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
+
+  @override
+  ConnectableStream<void> _mapToAuthenticatedState() {
+    String pin = '';
+    return Rx.merge([
+      _$biometricsButtonPressedEvent.switchMap(
+          (reason) => _biometricAuthentication(reason).asResultStream()),
+      _$addDigitEvent.switchMap((digit) {
+        pin += digit;
+        return pinCodeService.getPinLength().then((pinLength) async {
+          print(pin);
+          if (pinLength == pin.length) {
+            await encryptAndVerify(pin);
+            events.checkPinCodeInStorage();
+          }
+        }).asResultStream();
+      })
+    ]).setResultStateHandler(this).whereSuccess().publish();
+  }
+
+  Future<bool> _biometricAuthentication(String localizedReason) async {
+    bool success = await biometricAuthenticationService.authenticate(
+        localizedReason.isEmpty ? enterPinWithBiometrics : localizedReason);
+
+    return success;
+  }
+
+  @override
+  ConnectableStream<void> _mapToRequestBiometricsAuthenticationState() =>
+      _$checkBiometricsEnabledEvent
+          .switchMap((value) => biometricAuthenticationService
+              .availableBiometrics
+              .asResultStream())
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publishReplay();
+
+  @override
+  ConnectableStream<bool> _mapToShowBiometricsButtonState() =>
+      _$checkBiometricsEnabledEvent
+          .switchMap((value) => getAreBiometricsEnabled().asResultStream())
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publish();
+
+  @override
+  Stream<String> _mapToPinState() {
+    return Rx.merge([
+      _$addDigitEvent
+          .switchMap((digit) => _digitsCountState.switchMap((length) {
+                if (pinCode.length < length) {
+                  return Stream.value(pinCode += digit);
+                }
+                print(pinCode);
+                return Stream.value(pinCode);
+              })),
+      _$deleteDigitEvent.switchMap((value) =>
+          Stream.value(pinCode = pinCode.substring(0, pinCode.length - 1))),
+    ]).share();
+  }
 }

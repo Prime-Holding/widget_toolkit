@@ -48,8 +48,7 @@ class PinCodeKeyboard extends StatelessWidget {
     required this.translateError,
     this.biometricsLocalDataSource,
     this.mapBiometricMessageToString,
-    this.isAuthenticatedWithBiometrics,
-    this.isPinCodeVerified,
+    this.onAuthenticated,
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
     this.localizedReason,
@@ -74,10 +73,7 @@ class PinCodeKeyboard extends StatelessWidget {
   final BiometricsLocalDataSource? biometricsLocalDataSource;
 
   /// Called when a user is authenticated with biometrics successfully
-  final void Function(bool)? isAuthenticatedWithBiometrics;
-
-  /// Returns the verification state of the input from the pin code auto submit value.
-  final void Function(bool)? isPinCodeVerified;
+  final void Function(bool)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button, shown when
   /// there is pin code input on the screen. Do not forget to make it clickable.
@@ -115,16 +111,14 @@ class PinCodeKeyboard extends StatelessWidget {
             state: (bloc) => bloc.states.errors,
             builder: (context, errorSnapshot, bloc) =>
                 RxBlocBuilder<PinCodeBlocType, int>(
-              state: (bloc) => bloc.states.pinLength,
+              state: (bloc) => bloc.states.digitsCount,
               builder: (context, snapshot, bloc) => snapshot.hasData
                   ? PinCodeComponent(
                       pinLength: snapshot.data!,
                       translateError: translateError,
                       mapBiometricMessageToString: mapBiometricMessageToString,
                       biometricsLocalDataSource: biometricsLocalDataSource,
-                      isAuthenticatedWithBiometrics:
-                          isAuthenticatedWithBiometrics,
-                      isPinCodeVerified: isPinCodeVerified,
+                      onAuthenticated: onAuthenticated,
                       deleteKeyButton: deleteKeyButton,
                       bottomRightKeyboardButton: bottomRightKeyboardButton,
                       error: errorSnapshot.data,
