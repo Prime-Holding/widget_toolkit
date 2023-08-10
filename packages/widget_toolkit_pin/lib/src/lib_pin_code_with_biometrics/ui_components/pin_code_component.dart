@@ -542,41 +542,56 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         );
       }
     } else if (pin.length == pinLength) {
-      return PinCodeBiometricKeyWithAutoSubmit(
-        startWithAutoSubmit: pinIsDeleted ? false : true,
-        isFaceScan: true,
-        isLoading: isLoading,
-        autoSubmit: () {
-          // context
-          //     .read<PinCodeBlocType>()
-          //     .events
-          //     .requestBiometricAuth(widget.localizedReason);
-          context
-              .read<PinCodeBlocType>()
-              .events
-              .biometricsButtonPressed(widget.localizedReason);
-        },
-        // onPressedAutoSubmit: (_) {
-        //   // context
-        //   //     .read<PinCodeBlocType>()
-        //   //     .events
-        //   //     .requestBiometricAuth(widget.localizedReason);
-        //   context
-        //       .read<PinCodeBlocType>()
-        //       .events
-        //       .biometricsButtonPressed(widget.localizedReason);
-        // },
-        onPressedDefault: (_) {
-          // context
-          //     .read<PinCodeBlocType>()
-          //     .events
-          //     .requestBiometricAuth(widget.localizedReason);
-          context
-              .read<PinCodeBlocType>()
-              .events
-              .biometricsButtonPressed(widget.localizedReason);
-        },
+      return _buildEnableBiometricsButton(
+        biometricsEnabled,
+        context,
+        isPinCodeIsSecureStorage,
+        hasFaceScan,
+        hasFingerScan,
       );
+      // return PinCodeBiometricKeyWithAutoSubmit(
+      //   startWithAutoSubmit: pinIsDeleted ? false : true,
+      //   isFaceScan: true,
+      //   isLoading: isLoading,
+      //   autoSubmit: () {
+      //     // context
+      //     //     .read<PinCodeBlocType>()
+      //     //     .events
+      //     //     .requestBiometricAuth(widget.localizedReason);
+      //     context
+      //         .read<PinCodeBlocType>()
+      //         .events
+      //         .biometricsButtonPressed(widget.localizedReason);
+      //     context
+      //         .read<PinCodeBlocType>()
+      //         .events
+      //         .setBiometrics(true, widget.localizedReason);
+      //   },
+      //   // onPressedAutoSubmit: (_) {
+      //   //   // context
+      //   //   //     .read<PinCodeBlocType>()
+      //   //   //     .events
+      //   //   //     .requestBiometricAuth(widget.localizedReason);
+      //   //   context
+      //   //       .read<PinCodeBlocType>()
+      //   //       .events
+      //   //       .biometricsButtonPressed(widget.localizedReason);
+      //   // },
+      //   onPressedDefault: (_) {
+      //     // context
+      //     //     .read<PinCodeBlocType>()
+      //     //     .events
+      //     //     .requestBiometricAuth(widget.localizedReason);
+      //     context
+      //         .read<PinCodeBlocType>()
+      //         .events
+      //         .biometricsButtonPressed(widget.localizedReason);
+      //     context
+      //         .read<PinCodeBlocType>()
+      //         .events
+      //         .setBiometrics(true, widget.localizedReason);
+      //   },
+      // );
       // return AutoSubmitWidget(
       //   onAutoSubmit: () {
       //     context.read<PinCodeBlocType>().events.autoSubmit(pin);

@@ -29,8 +29,8 @@ abstract class PinCodeBlocEvents {
   void checkBiometricsEnabled();
 
   /// Checks whether there is a pin code stored in the device secure storage
-  @RxBlocEvent(type: RxBlocEventType.behaviour)
-  void checkPinCodeInStorage();
+  // @RxBlocEvent(type: RxBlocEventType.behaviour)
+  // void checkPinCodeInStorage();
 
   /// Requests biometric authentication
   void requestBiometricAuth(String localizedMessage);
@@ -223,7 +223,7 @@ class PinCodeBloc extends $PinCodeBloc {
           print(pin);
           if (pinLength == pin.length) {
             await encryptAndVerify(pin);
-            events.checkPinCodeInStorage();
+            checkPinCodeInStorage();
           }
         }).asResultStream();
       })
