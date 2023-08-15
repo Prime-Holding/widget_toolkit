@@ -12,7 +12,7 @@ import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
 import '../../base/utils/utils.dart';
-import '../models/biometrics_authentication_type.dart';
+import '../models/error_enable_biometrics.dart';
 import 'pin_code_biometric_key_with_auto_submit.dart';
 import 'pin_code_delete_key.dart';
 import 'pin_code_key.dart';
@@ -49,9 +49,6 @@ class PinCodeComponent extends StatefulWidget {
   /// [mapBiometricMessageToString] will be used to translate the [BiometricsMessage]
   /// to human readable text and will be used into the default notification
   final String Function(BiometricsMessage message)? mapBiometricMessageToString;
-
-  /// Called when a user is authenticated with biometrics successfully
-  // final void Function(bool)? isAuthenticatedWithBiometrics;
 
   /// Returns the verification state of the input from the pin code auto submit value.
   final void Function(bool)? onAuthenticated;
@@ -164,10 +161,12 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               });
             },
           ),
-          RxBlocListener<PinCodeBlocType, void>(
-            state: (bloc) => bloc.states.authenticated,
-            listener: (context, isAuthenticated) {
-              _onStateChanged;
+          RxBlocListener<PinCodeBlocType, ErrorModel>(
+            state: (bloc) => bloc.states.errors,
+            listener: (context, errors) {
+              if (errors is ErrorEnableBiometrics) {
+                _onStateChanged(context, errors.message);
+              }
             },
           ),
           _buildBuilders()
@@ -205,15 +204,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     }
     return 0;
   }
-
-  bool _hasBiometricsScan(
-          AsyncSnapshot<bool> areBiometricsEnabled,
-          AsyncSnapshot<List<BiometricsAuthType>> availableBiometrics,
-          BiometricsAuthType type) =>
-      areBiometricsEnabled.hasData &&
-      areBiometricsEnabled.data! &&
-      availableBiometrics.hasData &&
-      availableBiometrics.data!.contains(type);
 
   Widget _buildPageContent({
     required int pinLength,
@@ -448,11 +438,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   Widget _buildButtonContent(
     BuildContext context,
     bool showBiometricsButton,
-    // bool hasFingerScan,
-    // bool hasFaceScan,
-    // bool biometricsEnabled,
     int pinLength,
-    // String pin,
   ) {
     return RxBlocBuilder<PinCodeBlocType, int>(
         state: (bloc) => bloc.states.digitsCount,
@@ -512,10 +498,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               startWithAutoSubmit: false,
               isLoading: isLoading,
               onPressedDefault: (_) {
-                // context
-                //     .read<PinCodeBlocType>()
-                //     .events
-                //     .requestBiometricAuth(BiometricsMessage.notSetup.name);
                 context
                     .read<PinCodeBlocType>()
                     .events
@@ -523,7 +505,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 context
                     .read<PinCodeBlocType>()
                     .events
-                    .setBiometrics(true, 'Your biometrics are enabled!');
+                    .setBiometrics(true, widget.localizedReason);
               },
             )
           : Container();

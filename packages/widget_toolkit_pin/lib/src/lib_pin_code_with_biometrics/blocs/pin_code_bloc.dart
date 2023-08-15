@@ -4,6 +4,8 @@ import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
+import '../models/error_enable_biometrics.dart';
+import '../models/error_wrong_pin.dart';
 import '../services/pin_biometrics_service.dart';
 import '../services/pin_code_service.dart';
 
@@ -101,67 +103,71 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 
   @override
-  ConnectableStream<void> _mapToAuthenticatedState() {
-    return Rx.merge([
-      Rx.combineLatest2(
-          _digitsCountState, pinCodeService.getPinLength().asStream(),
-          // _$biometricsButtonPressedEvent,
-          (pinLength, storedPinLength) async {
+  ConnectableStream<void> _mapToAuthenticatedState() => Rx.combineLatest2(
+              _digitsCountState, pinCodeService.getPinLength().asStream(),
+              (pinLength, storedPinLength) async {
         if (pinLength == storedPinLength) {
           bool isCorrect = await encryptAndVerify(pinCode.value);
           if (isCorrect) {
             await pinCodeService.isPinCodeInSecureStorage();
           }
         }
-      }),
-      _$biometricsButtonPressedEvent.flatMap((value) {
-        _biometricAuthentication(value);
-        return biometricAuthenticationService
-            .enableBiometrics(true, 'Your biometrics are enabled!')
-            .asResultStream()
-            .whereSuccess()
-            .doOnData((event) async {
-          if (event == BiometricsMessage.enabled) {
-            return await biometricAuthenticationService
-                .setBiometricsEnabled(true);
-          }
-          return await biometricAuthenticationService
-              .setBiometricsEnabled(false);
-        });
       })
-    ])
-        .asResultStream()
-        .setResultStateHandler(this)
-        .whereSuccess()
-        .publishReplay(maxSize: 1);
-  }
+          .asResultStream()
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publishReplay(maxSize: 1);
 
-  Future<bool> _biometricAuthentication(String localizedReason) async {
-    bool success = await biometricAuthenticationService.authenticate(
-        localizedReason.isEmpty ? enterPinWithBiometrics : localizedReason);
+  Future<bool> getAreBiometricsEnabled() async {
+    bool isDeviceSupported =
+        await biometricAuthenticationService.isDeviceSupported;
+    bool canCheckBiometrics =
+        await biometricAuthenticationService.canCheckBiometrics;
+    bool biometricsEnabled =
+        await biometricAuthenticationService.areBiometricsEnabled();
 
-    return success;
+    String? pinCode = await pinCodeService.getPinCode();
+
+    return isDeviceSupported &&
+        canCheckBiometrics &&
+        biometricsEnabled &&
+        pinCode != null;
   }
 
   @override
   ConnectableStream<void> _mapToRequestBiometricsAuthenticationState() =>
       Rx.merge([
-        biometricAuthenticationService.availableBiometrics.asResultStream()
+        biometricAuthenticationService.availableBiometrics.asResultStream(),
+        _$setBiometricsEvent.switchMap((biometric) =>
+            biometricAuthenticationService
+                .enableBiometrics(biometric.enabled, biometric.localizedReason)
+                .then((value) async {
+              print(value);
+              if (value != null && value != BiometricsMessage.enabled) {
+                throw ErrorEnableBiometrics(value);
+              }
+              await getAreBiometricsEnabled();
+              return value;
+            }).asResultStream())
       ]).setResultStateHandler(this).whereSuccess().publish();
 
   @override
-  ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
-        Rx.combineLatest2(
-            _digitsCountState, pinCodeService.getPinLength().asStream(),
-            (digitsCount, pinLength) {
-          if (digitsCount == pinLength) {
-            return true;
-          }
-          return false;
-        }).switchMap((value) async* {
-          if (value) {
-            yield await encryptAndVerify(pinCode.value);
-          }
-        }).asResultStream(),
-      ]).setResultStateHandler(this).whereSuccess().publish();
+  ConnectableStream<bool> _mapToShowBiometricsButtonState() =>
+      Rx.combineLatest2(
+              _digitsCountState, pinCodeService.getPinLength().asStream(),
+              (digitsCount, pinLength) {
+        if (digitsCount == pinLength) {
+          return true;
+        }
+        return false;
+      })
+          .switchMap((value) async* {
+            if (value) {
+              yield await encryptAndVerify(pinCode.value);
+            }
+          })
+          .asResultStream()
+          .setResultStateHandler(this)
+          .whereSuccess()
+          .publish();
 }
