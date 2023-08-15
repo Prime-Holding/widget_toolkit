@@ -28,21 +28,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// Тhe [Subject] where events sink to by calling [biometricsButtonPressed]
   final _$biometricsButtonPressedEvent = PublishSubject<String>();
 
-  /// Тhe [Subject] where events sink to by calling [getPinLength]
-  final _$getPinLengthEvent = PublishSubject<int?>();
-
-  /// Тhe [Subject] where events sink to by calling [checkBiometricsEnabled]
-  final _$checkBiometricsEnabledEvent = BehaviorSubject<void>();
-
-  /// Тhe [Subject] where events sink to by calling [checkPinCodeInStorage]
-  final _$checkPinCodeInStorageEvent = BehaviorSubject<void>();
-
-  /// Тhe [Subject] where events sink to by calling [requestBiometricAuth]
-  final _$requestBiometricAuthEvent = PublishSubject<String>();
-
-  /// Тhe [Subject] where events sink to by calling [autoSubmit]
-  final _$autoSubmitEvent = PublishSubject<String>();
-
   /// Тhe [Subject] where events sink to by calling [setBiometrics]
   final _$setBiometricsEvent =
       PublishSubject<({bool enabled, String localizedReason})>();
@@ -64,34 +49,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   late final ConnectableStream<void> _authenticatedState =
       _mapToAuthenticatedState();
 
-  /// The state of [pin] implemented in [_mapToPinState]
-  late final Stream<String> _pinState = _mapToPinState();
-
-  /// The state of [areBiometricsEnabled] implemented in
-  /// [_mapToAreBiometricsEnabledState]
-  late final Stream<bool> _areBiometricsEnabledState =
-      _mapToAreBiometricsEnabledState();
-
-  /// The state of [isPinCodeVerified] implemented in
-  /// [_mapToIsPinCodeVerifiedState]
-  late final ConnectableStream<bool> _isPinCodeVerifiedState =
-      _mapToIsPinCodeVerifiedState();
-
-  /// The state of [availableBiometrics] implemented in
-  /// [_mapToAvailableBiometricsState]
-  late final ConnectableStream<List<BiometricsAuthType>>
-      _availableBiometricsState = _mapToAvailableBiometricsState();
-
-  /// The state of [biometricsDialog] implemented in
-  /// [_mapToBiometricsDialogState]
-  late final Stream<BiometricsMessage?> _biometricsDialogState =
-      _mapToBiometricsDialogState();
-
-  /// The state of [isPinCodeInSecureStorage] implemented in
-  /// [_mapToIsPinCodeInSecureStorageState]
-  late final ConnectableStream<bool> _isPinCodeInSecureStorageState =
-      _mapToIsPinCodeInSecureStorageState();
-
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
   late final Stream<bool> _isLoadingState = _mapToIsLoadingState();
 
@@ -107,22 +64,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   @override
   void biometricsButtonPressed(String reason) =>
       _$biometricsButtonPressedEvent.add(reason);
-
-  @override
-  void getPinLength(int? length) => _$getPinLengthEvent.add(length);
-
-  @override
-  void checkBiometricsEnabled() => _$checkBiometricsEnabledEvent.add(null);
-
-  @override
-  void checkPinCodeInStorage() => _$checkPinCodeInStorageEvent.add(null);
-
-  @override
-  void requestBiometricAuth(String localizedMessage) =>
-      _$requestBiometricAuthEvent.add(localizedMessage);
-
-  @override
-  void autoSubmit(String pin) => _$autoSubmitEvent.add(pin);
 
   @override
   void setBiometrics(
@@ -149,26 +90,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   ConnectableStream<void> get authenticated => _authenticatedState;
 
   @override
-  Stream<String> get pin => _pinState;
-
-  @override
-  Stream<bool> get areBiometricsEnabled => _areBiometricsEnabledState;
-
-  @override
-  ConnectableStream<bool> get isPinCodeVerified => _isPinCodeVerifiedState;
-
-  @override
-  ConnectableStream<List<BiometricsAuthType>> get availableBiometrics =>
-      _availableBiometricsState;
-
-  @override
-  Stream<BiometricsMessage?> get biometricsDialog => _biometricsDialogState;
-
-  @override
-  ConnectableStream<bool> get isPinCodeInSecureStorage =>
-      _isPinCodeInSecureStorageState;
-
-  @override
   Stream<bool> get isLoading => _isLoadingState;
 
   @override
@@ -181,18 +102,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   ConnectableStream<void> _mapToRequestBiometricsAuthenticationState();
 
   ConnectableStream<void> _mapToAuthenticatedState();
-
-  Stream<String> _mapToPinState();
-
-  Stream<bool> _mapToAreBiometricsEnabledState();
-
-  ConnectableStream<bool> _mapToIsPinCodeVerifiedState();
-
-  ConnectableStream<List<BiometricsAuthType>> _mapToAvailableBiometricsState();
-
-  Stream<BiometricsMessage?> _mapToBiometricsDialogState();
-
-  ConnectableStream<bool> _mapToIsPinCodeInSecureStorageState();
 
   Stream<bool> _mapToIsLoadingState();
 
@@ -209,11 +118,6 @@ abstract class $PinCodeBloc extends RxBlocBase
     _$addDigitEvent.close();
     _$deleteDigitEvent.close();
     _$biometricsButtonPressedEvent.close();
-    _$getPinLengthEvent.close();
-    _$checkBiometricsEnabledEvent.close();
-    _$checkPinCodeInStorageEvent.close();
-    _$requestBiometricAuthEvent.close();
-    _$autoSubmitEvent.close();
     _$setBiometricsEvent.close();
     _compositeSubscription.dispose();
     super.dispose();

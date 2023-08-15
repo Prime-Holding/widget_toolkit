@@ -164,77 +164,36 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               });
             },
           ),
-          // RxBlocListener<PinCodeBlocType, bool>(
-          //   state: (bloc) => bloc.states.isAuthenticatedWithBiometrics,
-          //   listener: (context, isAuthenticated) {
-          //     if (widget.isAuthenticatedWithBiometrics != null) {
-          //       widget.isAuthenticatedWithBiometrics!(isAuthenticated);
-          //     }
-          //   },
-          // ),
-          // RxBlocListener<PinCodeBlocType, bool>(
-          //   state: (bloc) => bloc.states.isPinCodeVerified,
-          //   listener: (context, isPinCodeVerified) {
-          //     if (widget.isPinCodeVerified != null) {
-          //       widget.isPinCodeVerified!(isPinCodeVerified);
-          //     }
-          //   },
-          // ),
-          RxBlocListener<PinCodeBlocType, BiometricsMessage?>(
-            state: (bloc) => bloc.states.biometricsDialog,
-            listener: _onStateChanged,
+          RxBlocListener<PinCodeBlocType, void>(
+            state: (bloc) => bloc.states.authenticated,
+            listener: (context, isAuthenticated) {
+              _onStateChanged;
+            },
           ),
           _buildBuilders()
         ],
       );
 
   Widget _buildBuilders() => Expanded(
-        child: RxBlocBuilder<PinCodeBlocType, bool>(
-          state: (bloc) => bloc.states.isPinCodeInSecureStorage,
-          builder: (context, isPinCodeInSecureStorage, bloc) =>
-              RxBlocBuilder<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.areBiometricsEnabled,
-            builder: (context, areBiometricsEnabled, bloc) =>
-                RxBlocBuilder<PinCodeBlocType, List<BiometricsAuthType>>(
-              state: (bloc) => bloc.states.availableBiometrics,
-              builder: (context, availableBiometrics, bloc) => Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      context.pinCodeTheme.primaryGradientStart,
-                      context.pinCodeTheme.primaryGradientEnd
-                    ],
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.1,
-                    vertical: 20),
-                child: RxBlocBuilder<PinCodeBlocType, int>(
-                  state: (bloc) => bloc.states.digitsCount,
-                  builder: (context, pinLength, bloc) =>
-                      RxBlocBuilder<PinCodeBlocType, String?>(
-                    state: (bloc) => bloc.states.pin,
-                    builder: (context, pin, bloc) => _buildPageContent(
-                        pinLength: _pinLengthData(pinLength),
-                        isPinCodeIsSecureStorage:
-                            isPinCodeInSecureStorage.hasData &&
-                                isPinCodeInSecureStorage.data!,
-                        context: context,
-                        hasFingerScan: _hasBiometricsScan(
-                            areBiometricsEnabled,
-                            availableBiometrics,
-                            BiometricsAuthType.fingerprint),
-                        hasFaceScan: _hasBiometricsScan(areBiometricsEnabled,
-                            availableBiometrics, BiometricsAuthType.face),
-                        biometricsEnabled: areBiometricsEnabled.hasData
-                            ? areBiometricsEnabled.data!
-                            : false,
-                        pin: pin.data ?? ''),
-                  ),
-                ),
-              ),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                context.pinCodeTheme.primaryGradientStart,
+                context.pinCodeTheme.primaryGradientEnd
+              ],
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.1,
+              vertical: 20),
+          child: RxBlocBuilder<PinCodeBlocType, int>(
+            state: (bloc) => bloc.states.digitsCount,
+            builder: (context, pinLength, bloc) => _buildPageContent(
+              pinLength: _pinLengthData(pinLength),
+              context: context,
             ),
           ),
         ),
@@ -258,12 +217,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   Widget _buildPageContent({
     required int pinLength,
-    required bool isPinCodeIsSecureStorage,
     required BuildContext context,
-    required bool hasFingerScan,
-    required bool hasFaceScan,
-    required bool biometricsEnabled,
-    required String pin,
   }) =>
       SafeArea(
         child: Column(
@@ -273,14 +227,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
             _buildAnimatedKeysBuilder(context, pinLength),
             const Spacer(flex: 3),
             _buildKeyboard(
-                verticalSpacing: MediaQuery.of(context).size.height / 45,
-                isPinCodeIsSecureStorage: isPinCodeIsSecureStorage,
-                context: context,
-                hasFingerScan: hasFingerScan,
-                hasFaceScan: hasFaceScan,
-                biometricsEnabled: biometricsEnabled,
-                pinLength: pinLength,
-                pin: pin),
+              verticalSpacing: MediaQuery.of(context).size.height / 45,
+              context: context,
+              pinLength: pinLength,
+            ),
           ],
         ),
       );
@@ -320,10 +270,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           },
           child: hasErrorText && widget.error is ErrorWrongPin
               ? _buildErrorText(context)
-              : RxBlocBuilder<PinCodeBlocType, String?>(
-                  state: (bloc) => bloc.states.pin,
-                  builder: (context, pin, bloc) =>
-                      _buildMaskedKeysRow(context, pinLength, pin.data ?? ''),
+              : RxBlocBuilder<PinCodeBlocType, int>(
+                  state: (bloc) => bloc.states.digitsCount,
+                  builder: (context, pinLength, bloc) =>
+                      _buildMaskedKeysRow(context, pinLength.data ?? 0),
                 ),
         ),
       );
@@ -352,42 +302,38 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     }
   }
 
-  num _pinLength(int pinLength, String pin) =>
-      pin.isEmpty && isLoading ? pinLength : pin.length;
-
-  Widget _buildMaskedKeysRow(BuildContext context, int pinLength, String pin) =>
+  Widget _buildMaskedKeysRow(BuildContext context, int pinLength) =>
       IntrinsicWidth(
         child: isLoading
             ? ShimmerWrapper(
                 baseColor: context.pinCodeTheme.shimmerBaseColor,
                 highlightColor: context.pinCodeTheme.shimmerHighlightColor,
                 showShimmer: true,
-                child: _buildInLayout(pinLength, pin),
+                child: _buildInLayout(pinLength),
               )
-            : _buildInLayout(pinLength, pin),
+            : _buildInLayout(pinLength),
       );
 
-  Widget _buildInLayout(int pinLength, String pin) =>
-      pin.length <= _calculateRowLength()
-          ? Row(
-              children: _buildMaskedKeys(true, pinLength, pin),
-            )
-          : SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: GridView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: _calculateMaskSize(context),
-                    crossAxisSpacing: _getDistance(),
-                    mainAxisSpacing: _calculateMaskSize(context),
-                  ),
-                  children: _buildMaskedKeys(false, pinLength, pin)),
-            );
+  Widget _buildInLayout(int pinLength) => pinLength <= _calculateRowLength()
+      ? Row(
+          children: _buildMaskedKeys(true, pinLength),
+        )
+      : SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: GridView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: _calculateMaskSize(context),
+                crossAxisSpacing: _getDistance(),
+                mainAxisSpacing: _calculateMaskSize(context),
+              ),
+              children: _buildMaskedKeys(false, pinLength)),
+        );
 
-  List<Widget> _buildMaskedKeys(bool row, int pinLength, String pin) {
+  List<Widget> _buildMaskedKeys(bool row, int pinLength) {
     List<Widget> widgets = [];
-    for (int i = 0; i < _pinLength(pinLength, pin); i++) {
+    for (int i = 0; i < pinLength; i++) {
       if (i != 0 && row) widgets.add(SizedBox(width: _getDistance()));
       widgets.add(_buildMaskedKey());
     }
@@ -423,13 +369,8 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   Widget _buildKeyboard({
     required double verticalSpacing,
-    required bool isPinCodeIsSecureStorage,
     required BuildContext context,
-    required bool hasFingerScan,
-    required bool hasFaceScan,
-    required bool biometricsEnabled,
     required int pinLength,
-    required String pin,
   }) =>
       Column(
         children: [
@@ -463,13 +404,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               ),
               _buildPinCodeKey(context, 0, 0),
               _buildBiometricsButton(
-                  context,
-                  isPinCodeIsSecureStorage,
-                  hasFingerScan,
-                  hasFaceScan,
-                  biometricsEnabled,
-                  pinLength,
-                  pin),
+                context,
+                pinLength,
+                // pin
+              ),
             ],
           ),
         ],
@@ -486,12 +424,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   Widget _buildBiometricsButton(
     BuildContext context,
-    bool isPinCodeIsSecureStorage,
-    bool hasFingerScan,
-    bool hasFaceScan,
-    bool biometricsEnabled,
     int pinLength,
-    String pin,
   ) =>
       SizedBox(
         height: calculateKeyboardButtonSize(context),
@@ -500,185 +433,57 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           child: widget.bottomRightKeyboardButton ??
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
-                child: _buildButtonContent(
+                child: RxBlocBuilder<PinCodeBlocType, bool>(
+                  state: (bloc) => bloc.states.showBiometricsButton,
+                  builder: (context, snapshot, bloc) => _buildButtonContent(
                     context,
-                    isPinCodeIsSecureStorage,
-                    hasFingerScan,
-                    hasFaceScan,
-                    biometricsEnabled,
+                    snapshot.data ?? false,
                     pinLength,
-                    pin),
+                  ),
+                ),
               ),
         ),
       );
 
   Widget _buildButtonContent(
     BuildContext context,
-    bool isPinCodeIsSecureStorage,
-    bool hasFingerScan,
-    bool hasFaceScan,
-    bool biometricsEnabled,
+    bool showBiometricsButton,
+    // bool hasFingerScan,
+    // bool hasFaceScan,
+    // bool biometricsEnabled,
     int pinLength,
-    String pin,
+    // String pin,
   ) {
-    if (!isPinCodeIsSecureStorage && pin.length == pinLength) {
-      return RxBlocBuilder<PinCodeBlocType, String?>(
-        state: (bloc) => bloc.states.pin,
-        builder: (context, pin, bloc) => PinCodeDeleteKey(
-          isLoading: isLoading,
-          onTap: () => bloc.events.deleteDigit(),
-        ),
-      );
-    } else if (pin.isEmpty && isPinCodeIsSecureStorage) {
-      if (hasFaceScan) {
-        return _faceScanPinCodeKey(context);
-      } else if (hasFingerScan) {
-        return _fingerScanPinCodeKey(context);
-      } else {
-        return Opacity(
-          opacity: isLoading ? 0.5 : 1,
-          child: _buildIconContent(context, biometricsEnabled, hasFingerScan,
-              hasFaceScan, isPinCodeIsSecureStorage, pinLength, pin),
-        );
-      }
-    } else if (pin.length == pinLength) {
-      return _buildEnableBiometricsButton(
-        biometricsEnabled,
-        context,
-        isPinCodeIsSecureStorage,
-        hasFaceScan,
-        hasFingerScan,
-      );
-      // return PinCodeBiometricKeyWithAutoSubmit(
-      //   startWithAutoSubmit: pinIsDeleted ? false : true,
-      //   isFaceScan: true,
-      //   isLoading: isLoading,
-      //   autoSubmit: () {
-      //     // context
-      //     //     .read<PinCodeBlocType>()
-      //     //     .events
-      //     //     .requestBiometricAuth(widget.localizedReason);
-      //     context
-      //         .read<PinCodeBlocType>()
-      //         .events
-      //         .biometricsButtonPressed(widget.localizedReason);
-      //     context
-      //         .read<PinCodeBlocType>()
-      //         .events
-      //         .setBiometrics(true, widget.localizedReason);
-      //   },
-      //   // onPressedAutoSubmit: (_) {
-      //   //   // context
-      //   //   //     .read<PinCodeBlocType>()
-      //   //   //     .events
-      //   //   //     .requestBiometricAuth(widget.localizedReason);
-      //   //   context
-      //   //       .read<PinCodeBlocType>()
-      //   //       .events
-      //   //       .biometricsButtonPressed(widget.localizedReason);
-      //   // },
-      //   onPressedDefault: (_) {
-      //     // context
-      //     //     .read<PinCodeBlocType>()
-      //     //     .events
-      //     //     .requestBiometricAuth(widget.localizedReason);
-      //     context
-      //         .read<PinCodeBlocType>()
-      //         .events
-      //         .biometricsButtonPressed(widget.localizedReason);
-      //     context
-      //         .read<PinCodeBlocType>()
-      //         .events
-      //         .setBiometrics(true, widget.localizedReason);
-      //   },
-      // );
-      // return AutoSubmitWidget(
-      //   onAutoSubmit: () {
-      //     context.read<PinCodeBlocType>().events.autoSubmit(pin);
-      //     context.read<PinCodeBlocType>().events.checkPinCodeInStorage();
-      //   },
-      //   child: Opacity(
-      //     opacity: isLoading ? 0.5 : 1,
-      //     child: _buildIconContent(context, biometricsEnabled, hasFingerScan,
-      //         hasFaceScan, isPinCodeIsSecureStorage, pinLength, pin),
-      //   ),
-      // );
-    } else {
-      return Opacity(
-        opacity: isLoading ? 0.5 : 1,
-        child: _buildIconContent(context, biometricsEnabled, hasFingerScan,
-            hasFaceScan, isPinCodeIsSecureStorage, pinLength, pin),
-      );
-    }
+    return RxBlocBuilder<PinCodeBlocType, int>(
+        state: (bloc) => bloc.states.digitsCount,
+        builder: (context, digitCount, bloc) {
+          if (!showBiometricsButton && digitCount.data == pinLength) {
+            return PinCodeDeleteKey(
+              isLoading: isLoading,
+              onTap: () => bloc.events.deleteDigit(),
+            );
+          } else if (showBiometricsButton) {
+            return _buildEnableBiometricsButton(
+              context,
+              showBiometricsButton,
+            );
+          } else {
+            return Opacity(
+              opacity: isLoading ? 0.5 : 1,
+              child: _buildIconContent(context, showBiometricsButton, pinLength,
+                  digitCount.data ?? 0),
+            );
+          }
+        });
   }
-
-  Widget _fingerScanPinCodeKey(BuildContext context) =>
-      // AutoSubmitWidget(
-      //   onAutoSubmit: () {
-      //     context.read<PinCodeBlocType>().events.requestBiometricAuth('');
-      //   },
-      //   child:
-      PinCodeKey(
-        isFingerScan: true,
-        isLoading: isLoading,
-        onPressed: (_) {
-          context
-              .read<PinCodeBlocType>()
-              .events
-              .biometricsButtonPressed(widget.localizedReason);
-          // context
-          //     .read<PinCodeBlocType>()
-          //     .events
-          //     .requestBiometricAuth(widget.localizedReason);
-        },
-        // ),
-      );
-
-  Widget _faceScanPinCodeKey(BuildContext context) =>
-      PinCodeBiometricKeyWithAutoSubmit(
-        startWithAutoSubmit: pinIsDeleted ? false : true,
-        isFaceScan: true,
-        isLoading: isLoading,
-        autoSubmit: () {
-          context
-              .read<PinCodeBlocType>()
-              .events
-              .biometricsButtonPressed(widget.localizedReason);
-          //
-          // context
-          //     .read<PinCodeBlocType>()
-          //     .events
-          //     .requestBiometricAuth(widget.localizedReason);
-        },
-        // onPressedAutoSubmit: (_) {
-        //   context.read<PinCodeBlocType>().events.biometricsButtonPressed(widget.localizedReason);
-        //   // context
-        //   //     .read<PinCodeBlocType>()
-        //   //     .events
-        //   //     .requestBiometricAuth(widget.localizedReason);
-        // },
-        onPressedDefault: (_) {
-          context
-              .read<PinCodeBlocType>()
-              .events
-              .biometricsButtonPressed(widget.localizedReason);
-          // context
-          //     .read<PinCodeBlocType>()
-          //     .events
-          //     .requestBiometricAuth(widget.localizedReason);
-        },
-      );
 
   Widget _buildIconContent(
     BuildContext context,
-    bool biometricsEnabled,
-    bool hasFingerScan,
-    bool hasFaceScan,
-    bool isPinCodeIsSecureStorage,
+    bool showBiometricsButton,
     int pinLength,
-    String pin,
+    int pin,
   ) {
-    if (pin.isNotEmpty && (pin.length < pinLength)) {
+    if (pin > 0 && (pin < pinLength)) {
       if (widget.deleteKeyButton != null) {
         return widget.deleteKeyButton!;
       } else {
@@ -687,66 +492,38 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           onTap: () => context.read<PinCodeBlocType>().events.deleteDigit(),
         );
       }
-    } else if (pin.length == pinLength) {
-      if (biometricsEnabled && (hasFingerScan || hasFaceScan)) {
-        return PinCodeKey(
-          onPressed: (_) {
-            context
-                .read<PinCodeBlocType>()
-                .events
-                .biometricsButtonPressed(widget.localizedReason);
-          },
-          isLoading: isLoading,
-          isFingerScan: hasFingerScan,
-          isFaceScan: hasFaceScan,
-        );
-      } else if (isPinCodeIsSecureStorage) {
-        return _buildEnableBiometricsButton(
-          biometricsEnabled,
-          context,
-          isPinCodeIsSecureStorage,
-          hasFaceScan,
-          hasFingerScan,
-        );
-      }
+    } else if (pin == 0) {
       return Container();
-    } else {
+    } else if (showBiometricsButton) {
       return _buildEnableBiometricsButton(
-        biometricsEnabled,
         context,
-        isPinCodeIsSecureStorage,
-        hasFaceScan,
-        hasFingerScan,
+        showBiometricsButton,
       );
     }
+    return Container();
   }
 
   Widget _buildEnableBiometricsButton(
-    bool biometricsEnabled,
     BuildContext context,
-    bool isPinCodeIsSecureStorage,
-    bool hasFaceScan,
-    bool hasFingerScan,
+    bool showBiometricsButton,
   ) =>
-      (isPinCodeIsSecureStorage && (biometricsEnabled != true))
-          ? PinCodeBiometricKeyWithAutoSubmit(
-              autoSubmit: () => context
-                  .read<PinCodeBlocType>()
-                  .events
-                  .requestBiometricAuth(widget.localizedReason),
+      (showBiometricsButton)
+          ? PinCodeBiometricKey(
               startWithAutoSubmit: false,
-              isFaceScan: hasFaceScan,
-              isFingerScan: hasFingerScan,
               isLoading: isLoading,
-              // onPressedAutoSubmit: (_) => context
-              //     .read<PinCodeBlocType>()
-              //     .events
-              //     .requestBiometricAuth(widget.localizedReason),
               onPressedDefault: (_) {
+                // context
+                //     .read<PinCodeBlocType>()
+                //     .events
+                //     .requestBiometricAuth(BiometricsMessage.notSetup.name);
                 context
                     .read<PinCodeBlocType>()
                     .events
-                    .setBiometrics(true, widget.localizedReason);
+                    .biometricsButtonPressed(widget.localizedReason);
+                context
+                    .read<PinCodeBlocType>()
+                    .events
+                    .setBiometrics(true, 'Your biometrics are enabled!');
               },
             )
           : Container();
@@ -754,28 +531,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   /// endregion
 
   /// region Callbacks
-
-  // void _onKeyPressed(int? key, int pinLength, String typePin) =>
-  //     typePin.length < pinLength
-  //         ? setState(() {
-  //             typePin += key.toString();
-  //             print(typePin);
-  //             print(key);
-  //             print(pinLength);
-  //             if (pinIsDeleted) {
-  //               pinIsDeleted = false;
-  //             }
-  //           })
-  //         : {};
-  //
-  // void _onDeletePressed(String pin) => pin.isNotEmpty
-  //     ? setState(() {
-  //         pin = pin.substring(0, pin.length - 1);
-  //         if (pin.isEmpty) {
-  //           pinIsDeleted = true;
-  //         }
-  //       })
-  //     : null;
 
   void _onStateChanged(BuildContext context, BiometricsMessage? message) {
     if (message == null) {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pin_code_key.dart';
 
-class PinCodeBiometricKeyWithAutoSubmit extends StatefulWidget {
-  const PinCodeBiometricKeyWithAutoSubmit({
-    required this.autoSubmit,
-    // required this.onPressedAutoSubmit,
+class PinCodeBiometricKey extends StatefulWidget {
+  const PinCodeBiometricKey({
     required this.onPressedDefault,
     required this.startWithAutoSubmit,
     this.withAutoSubmitOnInitState = true,
@@ -14,55 +12,21 @@ class PinCodeBiometricKeyWithAutoSubmit extends StatefulWidget {
     super.key,
   });
 
-  final Function autoSubmit;
   final bool withAutoSubmitOnInitState;
   final bool isFingerScan;
   final bool startWithAutoSubmit;
   final bool isFaceScan;
   final bool isLoading;
-  // final void Function(int?) onPressedAutoSubmit;
   final void Function(int?) onPressedDefault;
 
   @override
-  State<PinCodeBiometricKeyWithAutoSubmit> createState() =>
-      _PinCodeBiometricKeyWithAutoSubmitState();
+  State<PinCodeBiometricKey> createState() => _PinCodeBiometricKeyState();
 }
 
-class _PinCodeBiometricKeyWithAutoSubmitState
-    extends State<PinCodeBiometricKeyWithAutoSubmit> {
+class _PinCodeBiometricKeyState extends State<PinCodeBiometricKey> {
   bool isPressed = false;
-  // late bool startWithAutoSubmit;
-
-  // @override
-  // void initState() {
-  //   startWithAutoSubmit = widget.startWithAutoSubmit;
-  //   super.initState();
-  // }
-  //
-  // @override
-  // void didUpdateWidget(covariant PinCodeBiometricKeyWithAutoSubmit oldWidget) {
-  //   if (startWithAutoSubmit) {
-  //     setState(() {
-  //       startWithAutoSubmit = !startWithAutoSubmit;
-  //     });
-  //   }
-  //   super.didUpdateWidget(oldWidget);
-  // }
-
   @override
-  Widget build(BuildContext context) =>
-      // startWithAutoSubmit
-      // ? AutoSubmitWidget(
-      //     onAutoSubmit: () => widget.autoSubmit(),
-      //     child: PinCodeKey(
-      //       onPressed: widget.onPressedAutoSubmit,
-      //       isFingerScan: widget.isFingerScan,
-      //       isFaceScan: widget.isFaceScan,
-      //       isLoading: widget.isLoading,
-      //     ),
-      //   )
-      // :
-      PinCodeKey(
+  Widget build(BuildContext context) => PinCodeKey(
         onPressed: (_) => widget.onPressedDefault(_),
         isFingerScan: widget.isFingerScan,
         isFaceScan: widget.isFaceScan,

@@ -81,12 +81,8 @@ class MyHomePage extends StatelessWidget {
                       // [PinBiometricsAuthDataSource], [PinBiometricsRepository],[PinCodeBloc]
                       addDependencies: true,
                       // Optionally you can provide [isAuthenticatedWithBiometrics] where the
-                      // function receives a bool value showing, whether the user was authenticated with biometrics.
-                      // isAuthenticatedWithBiometrics: (isAuthenticated) => true,
+                      // function receives a bool value showing, whether the user was authenticated.
                       onAuthenticated: (onAuthenticated) => true,
-                      // Optionally you can provide [isPinCodeVerified], where the function
-                      // receives a bool value showing, whether pin code is verified.
-                      // isPinCodeVerified: (isPinCodeVerified) => true,
                       // Optionally you can provide [onError] to handle errors out of the package,
                       // or to show a notification, in practice this would only get called if the
                       // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],

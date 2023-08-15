@@ -49,11 +49,11 @@ PinCodeBlocType pinCodeMockFactory({
     (_) => isLoading != null ? Stream.value(isLoading) : const Stream.empty(),
   );
 
-  when(statesMock.isAuthenticatedWithBiometrics).thenAnswer(
-    (_) => isAuthenticatedWithBiometrics != null
-        ? Stream.value(isAuthenticatedWithBiometrics).publish()
-        : const Stream<bool>.empty().publish(),
-  );
+  // when(statesMock.isAuthenticatedWithBiometrics).thenAnswer(
+  //   (_) => isAuthenticatedWithBiometrics != null
+  //       ? Stream.value(isAuthenticatedWithBiometrics).publish()
+  //       : const Stream<bool>.empty().publish(),
+  // );
 
   when(statesMock.isPinCodeVerified).thenAnswer(
     (_) => isPinCodeVerified != null
@@ -78,14 +78,14 @@ PinCodeBlocType pinCodeMockFactory({
         error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
   );
 
-  when(statesMock.pinLength).thenAnswer(
-    (_) {
-      if (pinLength != null) {
-        return Stream<int>.value(pinLength).publish();
-      }
-      return const Stream<int>.empty().publish();
-    },
-  );
+  // when(statesMock.pinLength).thenAnswer(
+  //   (_) {
+  //     if (pinLength != null) {
+  //       return Stream<int>.value(pinLength).publish();
+  //     }
+  //     return const Stream<int>.empty().publish();
+  //   },
+  // );
 
   when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
 
