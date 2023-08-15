@@ -110,7 +110,6 @@ class PinCodeBloc extends $PinCodeBloc {
         if (pinLength == storedPinLength) {
           bool isCorrect = await encryptAndVerify(pinCode.value);
           if (isCorrect) {
-            // print('Za pritisnuto $pressed');
             await pinCodeService.isPinCodeInSecureStorage();
           }
         }
@@ -122,13 +121,10 @@ class PinCodeBloc extends $PinCodeBloc {
             .asResultStream()
             .whereSuccess()
             .doOnData((event) async {
-          print('Event je $event');
           if (event == BiometricsMessage.enabled) {
-            print('USOOO');
             return await biometricAuthenticationService
                 .setBiometricsEnabled(true);
           }
-          print('uso ispod');
           return await biometricAuthenticationService
               .setBiometricsEnabled(false);
         });
