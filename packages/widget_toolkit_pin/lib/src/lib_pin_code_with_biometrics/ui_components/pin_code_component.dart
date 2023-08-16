@@ -70,8 +70,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   late AnimationController _controller;
   bool hasErrorText = false;
   bool isLoading = false;
-  bool pinIsDeleted = false;
-
+  bool hideButton = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -134,14 +133,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   }
 
   @override
-  void didUpdateWidget(covariant PinCodeComponent oldWidget) {
-    if (widget.error != null && !isLoading) {
-      _startErrorAnimation();
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -164,9 +155,21 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           RxBlocListener<PinCodeBlocType, ErrorModel>(
             state: (bloc) => bloc.states.errors,
             listener: (context, errors) {
+              if (errors is ErrorWrongPin) {
+                _startErrorAnimation();
+              }
               if (errors is ErrorEnableBiometrics) {
                 _onStateChanged(context, errors.message);
               }
+            },
+          ),
+          RxBlocListener<PinCodeBlocType, void>(
+            state: (bloc) => bloc.states.authenticated,
+            listener: (context, auth) {
+              setState(() {
+                hideButton = true;
+              });
+              _onStateChanged(context, BiometricsMessage.enabled);
             },
           ),
           _buildBuilders()
@@ -443,7 +446,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     return RxBlocBuilder<PinCodeBlocType, int>(
         state: (bloc) => bloc.states.digitsCount,
         builder: (context, digitCount, bloc) {
-          if (!showBiometricsButton && digitCount.data == pinLength) {
+          if (!showBiometricsButton &&
+              digitCount.data == pinLength &&
+              digitCount.data != 0) {
             return PinCodeDeleteKey(
               isLoading: isLoading,
               onTap: () => bloc.events.deleteDigit(),
@@ -493,20 +498,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     bool showBiometricsButton,
   ) =>
-      (showBiometricsButton)
+      (showBiometricsButton && !hideButton)
           ? PinCodeBiometricKey(
               startWithAutoSubmit: false,
               isLoading: isLoading,
-              onPressedDefault: (_) {
-                context
-                    .read<PinCodeBlocType>()
-                    .events
-                    .biometricsButtonPressed(widget.localizedReason);
-                context
-                    .read<PinCodeBlocType>()
-                    .events
-                    .setBiometrics(true, widget.localizedReason);
-              },
+              onPressedDefault: (_) => context
+                  .read<PinCodeBlocType>()
+                  .events
+                  .biometricsButtonPressed(widget.localizedReason),
             )
           : Container();
 

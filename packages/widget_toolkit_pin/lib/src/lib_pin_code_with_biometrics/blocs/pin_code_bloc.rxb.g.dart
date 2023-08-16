@@ -28,10 +28,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// Тhe [Subject] where events sink to by calling [biometricsButtonPressed]
   final _$biometricsButtonPressedEvent = PublishSubject<String>();
 
-  /// Тhe [Subject] where events sink to by calling [setBiometrics]
-  final _$setBiometricsEvent =
-      PublishSubject<({bool enabled, String localizedReason})>();
-
   /// The state of [digitsCount] implemented in [_mapToDigitsCountState]
   late final Stream<int> _digitsCountState = _mapToDigitsCountState();
 
@@ -39,11 +35,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// [_mapToShowBiometricsButtonState]
   late final ConnectableStream<bool> _showBiometricsButtonState =
       _mapToShowBiometricsButtonState();
-
-  /// The state of [requestBiometricsAuthentication] implemented in
-  /// [_mapToRequestBiometricsAuthenticationState]
-  late final ConnectableStream<void> _requestBiometricsAuthenticationState =
-      _mapToRequestBiometricsAuthenticationState();
 
   /// The state of [authenticated] implemented in [_mapToAuthenticatedState]
   late final ConnectableStream<void> _authenticatedState =
@@ -66,25 +57,11 @@ abstract class $PinCodeBloc extends RxBlocBase
       _$biometricsButtonPressedEvent.add(reason);
 
   @override
-  void setBiometrics(
-    bool enabled,
-    String localizedReason,
-  ) =>
-      _$setBiometricsEvent.add((
-        enabled: enabled,
-        localizedReason: localizedReason,
-      ));
-
-  @override
   Stream<int> get digitsCount => _digitsCountState;
 
   @override
   ConnectableStream<bool> get showBiometricsButton =>
       _showBiometricsButtonState;
-
-  @override
-  ConnectableStream<void> get requestBiometricsAuthentication =>
-      _requestBiometricsAuthenticationState;
 
   @override
   ConnectableStream<void> get authenticated => _authenticatedState;
@@ -98,8 +75,6 @@ abstract class $PinCodeBloc extends RxBlocBase
   Stream<int> _mapToDigitsCountState();
 
   ConnectableStream<bool> _mapToShowBiometricsButtonState();
-
-  ConnectableStream<void> _mapToRequestBiometricsAuthenticationState();
 
   ConnectableStream<void> _mapToAuthenticatedState();
 
@@ -118,11 +93,7 @@ abstract class $PinCodeBloc extends RxBlocBase
     _$addDigitEvent.close();
     _$deleteDigitEvent.close();
     _$biometricsButtonPressedEvent.close();
-    _$setBiometricsEvent.close();
     _compositeSubscription.dispose();
     super.dispose();
   }
 }
-
-// ignore: unused_element
-typedef _SetBiometricsEventArgs = ({bool enabled, String localizedReason});

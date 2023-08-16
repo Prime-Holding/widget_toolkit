@@ -77,15 +77,6 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
         ),
       ) as _i2.ConnectableStream<bool>);
   @override
-  _i2.ConnectableStream<void> get requestBiometricsAuthentication =>
-      (super.noSuchMethod(
-        Invocation.getter(#requestBiometricsAuthentication),
-        returnValue: _FakeConnectableStream_0<void>(
-          this,
-          Invocation.getter(#requestBiometricsAuthentication),
-        ),
-      ) as _i2.ConnectableStream<void>);
-  @override
   _i2.ConnectableStream<void> get authenticated => (super.noSuchMethod(
         Invocation.getter(#authenticated),
         returnValue: _FakeConnectableStream_0<void>(
@@ -134,21 +125,6 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
         Invocation.method(
           #biometricsButtonPressed,
           [reason],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void setBiometrics(
-    bool? enabled,
-    String? localizedReason,
-  ) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #setBiometrics,
-          [
-            enabled,
-            localizedReason,
-          ],
         ),
         returnValueForMissingStub: null,
       );
