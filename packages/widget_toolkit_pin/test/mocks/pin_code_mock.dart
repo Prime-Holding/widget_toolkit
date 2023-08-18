@@ -33,44 +33,20 @@ PinCodeBlocType pinCodeMockFactory({
   when(blocMock.events).thenReturn(eventsMock);
   when(blocMock.states).thenReturn(statesMock);
 
-  when(statesMock.biometricsDialog).thenAnswer(
-    (_) => isLoading != null
-        ? Stream.value(biometricsMessage)
-        : const Stream.empty(),
-  );
-
-  when(statesMock.isPinCodeInSecureStorage).thenAnswer(
-    (_) => isPinCodeInSecureStorage != null
-        ? Stream.value(isPinCodeInSecureStorage).publish()
-        : const Stream<bool>.empty().publish(),
+  when(statesMock.showBiometricsButton).thenAnswer(
+    (_) => isPinCodeVerified ?? false
+        ? Stream.value(true).publish()
+        : Stream.value(false).publish(),
   );
 
   when(statesMock.isLoading).thenAnswer(
     (_) => isLoading != null ? Stream.value(isLoading) : const Stream.empty(),
   );
 
-  // when(statesMock.isAuthenticatedWithBiometrics).thenAnswer(
-  //   (_) => isAuthenticatedWithBiometrics != null
-  //       ? Stream.value(isAuthenticatedWithBiometrics).publish()
-  //       : const Stream<bool>.empty().publish(),
-  // );
-
-  when(statesMock.isPinCodeVerified).thenAnswer(
-    (_) => isPinCodeVerified != null
-        ? Stream.value(isPinCodeVerified).publish()
+  when(statesMock.authenticated).thenAnswer(
+    (_) => isAuthenticatedWithBiometrics != null
+        ? Stream.value(isAuthenticatedWithBiometrics).publish()
         : const Stream<bool>.empty().publish(),
-  );
-
-  when(statesMock.areBiometricsEnabled).thenAnswer(
-    (_) => areBiometricsEnabled != null
-        ? Stream.value(areBiometricsEnabled)
-        : const Stream.empty(),
-  );
-
-  when(statesMock.availableBiometrics).thenAnswer(
-    (_) => availableBiometrics != null
-        ? Stream.value(availableBiometrics).publish()
-        : const Stream<List<BiometricsAuthType>>.empty().publish(),
   );
 
   when(statesMock.errors).thenAnswer(
@@ -78,14 +54,14 @@ PinCodeBlocType pinCodeMockFactory({
         error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
   );
 
-  // when(statesMock.pinLength).thenAnswer(
-  //   (_) {
-  //     if (pinLength != null) {
-  //       return Stream<int>.value(pinLength).publish();
-  //     }
-  //     return const Stream<int>.empty().publish();
-  //   },
-  // );
+  when(statesMock.digitsCount).thenAnswer(
+    (_) {
+      if (pinLength != null) {
+        return Stream<int>.value(pinLength).publish();
+      }
+      return const Stream<int>.empty().publish();
+    },
+  );
 
   when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
 

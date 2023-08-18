@@ -12,4 +12,5 @@ class Stubs {
   static const pinCode2 = '123567';
   static const pinCode3 = '123456';
   static const pinCode = '000000';
+  static const pinCodeDeleteDigit = '00000';
 }
