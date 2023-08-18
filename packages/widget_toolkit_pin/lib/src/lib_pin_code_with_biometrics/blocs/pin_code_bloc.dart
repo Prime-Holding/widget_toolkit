@@ -20,14 +20,6 @@ abstract class PinCodeBlocEvents {
 
   ///Triggered when user tap on biometrics button
   void biometricsButtonPressed(String reason);
-
-  /// Requests biometric authentication
-  // void requestBiometricAuth(String localizedMessage);
-
-  /// When biometrics are not enable, this event is called with enabled true to
-  /// enable the biometrics, the localizedReason is the message with a reason
-  /// for enabling the biometrics displayed on the screen
-  // void setBiometrics(bool enabled, String localizedReason);
 }
 
 /// A contract class containing all states of the PinCodeBloc.
@@ -103,7 +95,6 @@ class PinCodeBloc extends $PinCodeBloc {
           .switchMap((localizedReason) => biometricAuthenticationService
                   .enableBiometrics(true, localizedReason)
                   .then((value) async {
-                print(value);
                 if (value != null && value != BiometricsMessage.enabled) {
                   throw ErrorEnableBiometrics(value);
                 }
@@ -131,16 +122,20 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => _digitsCountState
-      .switchMap((value) async* {
+      .switchMap((digitsCount) async* {
         int storedPinLength = await pinCodeService.getPinLength();
-        if (value == storedPinLength) {
-          print('Pin je ${pinCode.value}');
-          yield await pinCodeService.verifyPinCode(pinCode.value);
+        if (digitsCount == storedPinLength) {
+          yield await encryptAndVerify(pinCode.value);
         }
       })
-      .startWith(false)
       .asResultStream()
       .setResultStateHandler(this)
       .whereSuccess()
       .publish();
+
+  @override
+  void dispose() {
+    pinCode.close();
+    super.dispose();
+  }
 }

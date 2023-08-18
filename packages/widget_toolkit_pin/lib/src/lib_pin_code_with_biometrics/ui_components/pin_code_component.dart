@@ -50,7 +50,7 @@ class PinCodeComponent extends StatefulWidget {
   /// to human readable text and will be used into the default notification
   final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
-  /// Returns the verification state of the input from the pin code auto submit value.
+  /// Returns the verification state of the input from the pin code value.
   final void Function(bool)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button. Do not forget
@@ -166,6 +166,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           RxBlocListener<PinCodeBlocType, void>(
             state: (bloc) => bloc.states.authenticated,
             listener: (context, auth) {
+              if (widget.onAuthenticated != null) {
+                widget.onAuthenticated!(true);
+              }
               setState(() {
                 hideButton = true;
               });
@@ -423,46 +426,49 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         height: calculateKeyboardButtonSize(context),
         width: calculateKeyboardButtonSize(context),
         child: Center(
-          child: widget.bottomRightKeyboardButton ??
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child: RxBlocBuilder<PinCodeBlocType, bool>(
-                  state: (bloc) => bloc.states.showBiometricsButton,
-                  builder: (context, snapshot, bloc) => _buildButtonContent(
-                    context,
-                    snapshot.data ?? false,
-                    pinLength,
+            child: widget.bottomRightKeyboardButton ??
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: RxBlocBuilder<PinCodeBlocType, bool>(
+                    state: (bloc) => bloc.states.showBiometricsButton,
+                    builder: (context, showButton, bloc) => _buildButtonContent(
+                      context,
+                      showButton.data ?? false,
+                      pinLength,
+                    ),
                   ),
-                ),
-              ),
-        ),
+                )),
       );
 
   Widget _buildButtonContent(
     BuildContext context,
-    bool showBiometricsButton,
+    bool showButton,
     int pinLength,
   ) {
     return RxBlocBuilder<PinCodeBlocType, int>(
         state: (bloc) => bloc.states.digitsCount,
         builder: (context, digitCount, bloc) {
-          if (!showBiometricsButton &&
+          if (!showButton &&
               digitCount.data == pinLength &&
               digitCount.data != 0) {
             return PinCodeDeleteKey(
               isLoading: isLoading,
               onTap: () => bloc.events.deleteDigit(),
             );
-          } else if (showBiometricsButton) {
+          } else if (digitCount.data == pinLength && showButton) {
             return _buildEnableBiometricsButton(
               context,
-              showBiometricsButton,
+              showButton,
             );
           } else {
             return Opacity(
               opacity: isLoading ? 0.5 : 1,
-              child: _buildIconContent(context, showBiometricsButton, pinLength,
-                  digitCount.data ?? 0),
+              child: _buildIconContent(
+                context,
+                showButton,
+                pinLength,
+                digitCount.data ?? 0,
+              ),
             );
           }
         });
@@ -500,7 +506,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   ) =>
       (showBiometricsButton && !hideButton)
           ? PinCodeBiometricKey(
-              startWithAutoSubmit: false,
               isLoading: isLoading,
               onPressedDefault: (_) => context
                   .read<PinCodeBlocType>()
