@@ -13,7 +13,7 @@ import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 import '../../../widget_toolkit_pin.dart';
 import '../../base/utils/utils.dart';
 import '../models/error_enable_biometrics.dart';
-import 'pin_code_biometric_key_with_auto_submit.dart';
+import 'pin_code_biometric_key.dart';
 import 'pin_code_delete_key.dart';
 import 'pin_code_key.dart';
 
@@ -71,6 +71,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   bool hasErrorText = false;
   bool isLoading = false;
   bool hideButton = false;
+  bool hideDelete = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -285,6 +286,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     if (widget.error is ErrorWrongPin) {
       setState(() {
         hasErrorText = true;
+        hideDelete = true;
       });
     }
 
@@ -415,6 +417,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         isLoading: isLoading,
         onPressed: (key) {
           context.read<PinCodeBlocType>().events.addDigit(key.toString());
+          hideDelete = false;
         },
       );
 
@@ -449,8 +452,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         state: (bloc) => bloc.states.digitsCount,
         builder: (context, digitCount, bloc) {
           if (!showButton &&
-              digitCount.data == pinLength &&
-              digitCount.data != 0) {
+              digitCount.data != 0 &&
+              digitCount.data != null &&
+              !hideDelete) {
             return PinCodeDeleteKey(
               isLoading: isLoading,
               onTap: () => bloc.events.deleteDigit(),

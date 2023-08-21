@@ -3,7 +3,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
-import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/error_enable_biometrics.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/services/pin_biometrics_service.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -93,21 +92,15 @@ void main() {
         'test pin_code_bloc_dart state digitsCount with addDigit and deleteDigit event',
         build: () async {
           when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
-          when(pinCodeService.encryptPinCode(Stubs.pinCodeDeleteDigit))
-              .thenAnswer((_) => Future.value(Stubs
-                  .pinCodeDeleteDigit)); // encrypt pinCode with one digit deleted
-          when(pinCodeService.verifyPinCode(Stubs
-                  .pinCodeDeleteDigit)) // verify pinCode with one digit deleted
-              .thenAnswer((_) => Future.value(true));
+              .thenAnswer((_) => Future.value(3));
           return pinCodeBloc(code: Stubs.pinCode);
         },
         act: (bloc) async {
-          bloc.events.addDigit(Stubs.pinCode);
+          bloc.events.addDigit('0');
           bloc.events.deleteDigit();
         },
         state: (bloc) => bloc.states.digitsCount,
-        expect: [6, 5]);
+        expect: [1, 0]);
   });
 
   group('test pin_code_bloc_dart state authenticated', () {
@@ -166,6 +159,7 @@ void main() {
           bloc.events.addDigit(Stubs.pinCode);
         },
         state: (bloc) => bloc.states.showBiometricsButton,
+        skip: 1,
         expect: [true]);
 
     rxBlocTest<PinCodeBloc, bool>(
@@ -194,5 +188,8 @@ void main() {
         expect: [false]);
   });
 
-  test('dispose test', () => pinCodeBloc().dispose());
+  test('dispose test', () {
+    when(pinCodeService.getPinLength()).thenAnswer((_) => Future.value(6));
+    pinCodeBloc().dispose();
+  });
 }

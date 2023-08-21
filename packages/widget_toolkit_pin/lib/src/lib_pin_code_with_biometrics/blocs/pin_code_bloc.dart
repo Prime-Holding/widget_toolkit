@@ -5,6 +5,7 @@ import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../models/error_enable_biometrics.dart';
+import '../models/error_wrong_pin.dart';
 import '../services/pin_biometrics_service.dart';
 import '../services/pin_code_service.dart';
 
@@ -58,24 +59,22 @@ class PinCodeBloc extends $PinCodeBloc {
   BehaviorSubject<String> pinCode = BehaviorSubject.seeded('');
 
   Future<bool> encryptAndVerify(String pinCode) async {
-    String encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    bool verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
+    final String encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    final bool verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
     return verifiedPin;
   }
 
   @override
   Stream<int> _mapToDigitsCountState() => Rx.merge([
-        Rx.combineLatest2(
-            _$addDigitEvent, pinCodeService.getPinLength().asStream(),
-            (digits, pinLength) {
+        _$addDigitEvent.asyncMap((digit) async {
+          final pinLength = await pinCodeService.getPinLength();
           if (pinCode.value.length < pinLength) {
-            pinCode.add(pinCode.value += digits);
-            return pinCode.value.length;
+            pinCode.add(pinCode.value += digit);
           }
           return pinCode.value.length;
         }),
         _$deleteDigitEvent.switchMap(
-          (value) {
+          (_) {
             pinCode.add(pinCode.value.substring(
                 0, pinCode.value.isNotEmpty ? pinCode.value.length - 1 : 0));
             return Stream.value(pinCode.value.length);
@@ -92,27 +91,29 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   ConnectableStream<void> _mapToAuthenticatedState() =>
       _$biometricsButtonPressedEvent
-          .switchMap((localizedReason) => biometricAuthenticationService
-                  .enableBiometrics(true, localizedReason)
-                  .then((value) async {
-                if (value != null && value != BiometricsMessage.enabled) {
-                  throw ErrorEnableBiometrics(value);
-                }
-                await getAreBiometricsEnabled();
-              }).asResultStream())
+          .asyncMap((localizedReason) async {
+            final result = await biometricAuthenticationService
+                .enableBiometrics(true, localizedReason);
+
+            if (result != null && result != BiometricsMessage.enabled) {
+              throw ErrorEnableBiometrics(result);
+            }
+            await getAreBiometricsEnabled();
+          })
+          .asResultStream()
           .setResultStateHandler(this)
           .whereSuccess()
           .publish();
 
   Future<bool> getAreBiometricsEnabled() async {
-    bool isDeviceSupported =
+    final bool isDeviceSupported =
         await biometricAuthenticationService.isDeviceSupported;
-    bool canCheckBiometrics =
+    final bool canCheckBiometrics =
         await biometricAuthenticationService.canCheckBiometrics;
-    bool biometricsEnabled =
+    final bool biometricsEnabled =
         await biometricAuthenticationService.areBiometricsEnabled();
 
-    String? pinCode = await pinCodeService.getPinCode();
+    final String? pinCode = await pinCodeService.getPinCode();
 
     return isDeviceSupported &&
         canCheckBiometrics &&
@@ -122,11 +123,18 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => _digitsCountState
-      .switchMap((digitsCount) async* {
-        int storedPinLength = await pinCodeService.getPinLength();
+      .asyncMap((digitsCount) async {
+        final int storedPinLength = await pinCodeService.getPinLength();
         if (digitsCount == storedPinLength) {
-          yield await encryptAndVerify(pinCode.value);
+          bool isCorrectPin = await encryptAndVerify(pinCode.value);
+          if (isCorrectPin) {
+            return true;
+          } else {
+            pinCode.value = '';
+            throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+          }
         }
+        return false;
       })
       .asResultStream()
       .setResultStateHandler(this)

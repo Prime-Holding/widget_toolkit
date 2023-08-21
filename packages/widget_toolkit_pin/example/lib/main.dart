@@ -165,7 +165,7 @@ class AppPinCodeService implements PinCodeService {
     if (pinCode == '111') {
       return Future.value(true);
     }
-    throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+    return false;
   }
 
   @override
