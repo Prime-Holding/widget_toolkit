@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
+import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/error_enable_biometrics.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/services/pin_biometrics_service.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
@@ -110,6 +111,26 @@ void main() {
   });
 
   group('test pin_code_bloc_dart state authenticated', () {
+    rxBlocTest<PinCodeBloc, void>(
+        'test pin_code_bloc_dart state authenticated failing',
+        build: () async {
+          when(pinCodeService.getPinLength())
+              .thenAnswer((_) => Future.value(6));
+          when(biometricAuthenticationService.areBiometricsEnabled())
+              .thenAnswer((_) => Future.value(false));
+
+          when(biometricAuthenticationService.enableBiometrics(
+                  true, Stubs.authMessage))
+              .thenAnswer((_) => Future.value(BiometricsMessage.notSetup));
+
+          return pinCodeBloc();
+        },
+        act: (bloc) async {
+          bloc.events.biometricsButtonPressed(Stubs.authMessage);
+        },
+        state: (bloc) => bloc.states.authenticated,
+        expect: []);
+
     rxBlocTest<PinCodeBloc, void>('test pin_code_bloc_dart state authenticated',
         build: () async {
           when(pinCodeService.getPinLength())
@@ -172,4 +193,6 @@ void main() {
         state: (bloc) => bloc.states.showBiometricsButton,
         expect: [false]);
   });
+
+  test('dispose test', () => pinCodeBloc().dispose());
 }
