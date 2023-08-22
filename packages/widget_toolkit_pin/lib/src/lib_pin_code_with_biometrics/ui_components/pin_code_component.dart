@@ -4,7 +4,6 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/shimmer.dart';
 import 'package:widget_toolkit/theme_data.dart';
