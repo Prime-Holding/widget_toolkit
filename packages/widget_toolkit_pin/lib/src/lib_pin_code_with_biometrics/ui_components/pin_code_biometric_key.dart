@@ -4,14 +4,12 @@ import 'pin_code_key.dart';
 class PinCodeBiometricKey extends StatefulWidget {
   const PinCodeBiometricKey({
     required this.onPressedDefault,
-    this.withAutoSubmitOnInitState = true,
     this.isFingerScan = false,
     this.isFaceScan = false,
     this.isLoading = false,
     super.key,
   });
 
-  final bool withAutoSubmitOnInitState;
   final bool isFingerScan;
   final bool isFaceScan;
   final bool isLoading;

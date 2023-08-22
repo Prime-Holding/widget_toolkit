@@ -93,7 +93,7 @@ void main() {
         build: () async {
           when(pinCodeService.getPinLength())
               .thenAnswer((_) => Future.value(3));
-          return pinCodeBloc(code: Stubs.pinCode);
+          return pinCodeBloc();
         },
         act: (bloc) async {
           bloc.events.addDigit('0');
@@ -109,14 +109,19 @@ void main() {
         build: () async {
           when(pinCodeService.getPinLength())
               .thenAnswer((_) => Future.value(6));
-          when(biometricAuthenticationService.areBiometricsEnabled())
-              .thenAnswer((_) => Future.value(false));
 
           when(biometricAuthenticationService.enableBiometrics(
                   true, Stubs.authMessage))
               .thenAnswer((_) => Future.value(BiometricsMessage.notSetup));
 
-          return pinCodeBloc();
+          defineWhen(
+            isDeviceSupported: false,
+            areBiometricsEnabled: false,
+            enableBiometrics: false,
+            biometricsMessage: BiometricsMessage.notSetup,
+          );
+
+          return pinCodeBloc(throwError: true);
         },
         act: (bloc) async {
           bloc.events.biometricsButtonPressed(Stubs.authMessage);
@@ -128,6 +133,13 @@ void main() {
         build: () async {
           when(pinCodeService.getPinLength())
               .thenAnswer((_) => Future.value(6));
+          defineWhen(
+            isDeviceSupported: true,
+            isPinCodeInSecureStorage: true,
+            isPinVerified: true,
+            canCheckBiometrics: true,
+            pinCode: Stubs.pinCode,
+          );
           return pinCodeBloc();
         },
         act: (bloc) async {
@@ -141,14 +153,12 @@ void main() {
     rxBlocTest<PinCodeBloc, bool>(
         'test pin_code_bloc_dart state showBiometricsButton true',
         build: () async {
-          when(pinCodeService.verifyPinCode(Stubs.pinCode))
-              .thenAnswer((_) => Future.value(true));
-
-          when(pinCodeService.encryptPinCode(Stubs.pinCode))
-              .thenAnswer((_) => Future.value(Stubs.pinCode));
-
-          when(pinCodeService.isPinCodeInSecureStorage())
-              .thenAnswer((_) => Future.value(true));
+          defineWhen(
+            pinCode: Stubs.pinCode,
+            isPinVerified: true,
+            enableBiometrics: true,
+            isPinCodeInSecureStorage: true,
+          );
 
           when(pinCodeService.getPinLength())
               .thenAnswer((_) => Future.value(6));
@@ -165,25 +175,18 @@ void main() {
     rxBlocTest<PinCodeBloc, bool>(
         'test pin_code_bloc_dart state showBiometricsButton false',
         build: () async {
-          when(pinCodeService.verifyPinCode(Stubs.pinCode2))
-              .thenAnswer((_) => Future.value(false));
-
-          when(pinCodeService.encryptPinCode(Stubs.pinCode2))
-              .thenAnswer((_) => Future.value(Stubs.pinCode2));
-
-          when(pinCodeService.isPinCodeInSecureStorage())
-              .thenAnswer((_) => Future.value(true));
+          defineWhen(
+            pinCode: Stubs.pinCode2,
+            isPinVerified: false,
+            isPinCodeInSecureStorage: true,
+          );
 
           when(pinCodeService.getPinLength())
               .thenAnswer((_) => Future.value(6));
 
           return pinCodeBloc();
         },
-        act: (bloc) async {
-          bloc.events.addDigit(Stubs.pinCode2);
-
-          /// giving wrong pin so we will get false
-        },
+        act: (bloc) async {},
         state: (bloc) => bloc.states.showBiometricsButton,
         expect: [false]);
   });
