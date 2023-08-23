@@ -72,6 +72,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   bool isLoading = false;
   bool authenticatedBiometrics = true;
   bool hideDelete = false;
+  bool showBiometricsButton = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -176,6 +177,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               if (authenticatedBiometrics) {
                 _onStateChanged(context, BiometricsMessage.enabled);
               }
+            },
+          ),
+          RxBlocListener<PinCodeBlocType, bool>(
+            state: (bloc) => bloc.states.showBiometricsButton,
+            listener: (context, showButton) {
+              setState(() {
+                showBiometricsButton = showButton;
+              });
             },
           ),
           _buildBuilders()
@@ -431,18 +440,16 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         height: calculateKeyboardButtonSize(context),
         width: calculateKeyboardButtonSize(context),
         child: Center(
-            child: widget.bottomRightKeyboardButton ??
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: RxBlocBuilder<PinCodeBlocType, bool>(
-                    state: (bloc) => bloc.states.showBiometricsButton,
-                    builder: (context, showButton, bloc) => _buildButtonContent(
-                      context,
-                      showButton.data ?? false,
-                      pinLength,
-                    ),
-                  ),
-                )),
+          child: widget.bottomRightKeyboardButton ??
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: _buildButtonContent(
+                  context,
+                  showBiometricsButton,
+                  pinLength,
+                ),
+              ),
+        ),
       );
 
   Widget _buildButtonContent(
@@ -461,7 +468,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               isLoading: isLoading,
               onTap: () => bloc.events.deleteDigit(),
             );
-          } else if (digitCount.data == pinLength && showButton) {
+          } else if (showButton) {
             return _buildEnableBiometricsButton(
               context,
               showButton,
@@ -510,7 +517,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     bool showBiometricsButton,
   ) =>
-      (showBiometricsButton && !authenticatedBiometrics)
+      (showBiometricsButton)
           ? PinCodeBiometricKey(
               isLoading: isLoading,
               onPressedDefault: (_) => context

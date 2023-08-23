@@ -120,25 +120,30 @@ class PinCodeBloc extends $PinCodeBloc {
   }
 
   @override
-  ConnectableStream<bool> _mapToShowBiometricsButtonState() => _digitsCountState
-      .asyncMap((digitsCount) async {
-        final storedPinLength = await pinCodeService.getPinLength();
-        if (digitsCount == storedPinLength) {
-          final isCorrectPin = await encryptAndVerify(_pinCode.value);
-          if (isCorrectPin) {
-            _pinAuth.add(true);
-            return true;
-          } else {
-            _pinCode.value = '';
-            throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+  ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
+        _digitsCountState.asyncMap((digitsCount) async {
+          final storedPinLength = await pinCodeService.getPinLength();
+          final isPinStored = await pinCodeService.isPinCodeInSecureStorage();
+          if (digitsCount == storedPinLength) {
+            final isCorrectPin = await encryptAndVerify(_pinCode.value);
+            if (isCorrectPin || isPinStored) {
+              _pinAuth.add(true);
+              return true;
+            } else {
+              _pinCode.value = '';
+              throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+            }
           }
-        }
-        return false;
-      })
-      .asResultStream()
-      .setResultStateHandler(this)
-      .whereSuccess()
-      .publish();
+          return false;
+        }),
+        _$biometricsButtonPressedEvent.asyncMap((event) async {
+          final isPinStored = await pinCodeService.isPinCodeInSecureStorage();
+          if (isPinStored) {
+            return true;
+          }
+          return false;
+        })
+      ]).asResultStream().setResultStateHandler(this).whereSuccess().publish();
 
   @override
   void dispose() {
