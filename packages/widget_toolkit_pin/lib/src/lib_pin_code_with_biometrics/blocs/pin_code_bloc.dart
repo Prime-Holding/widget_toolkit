@@ -123,10 +123,9 @@ class PinCodeBloc extends $PinCodeBloc {
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
         _digitsCountState.asyncMap((digitsCount) async {
           final storedPinLength = await pinCodeService.getPinLength();
-          final isPinStored = await pinCodeService.isPinCodeInSecureStorage();
           if (digitsCount == storedPinLength) {
             final isCorrectPin = await encryptAndVerify(_pinCode.value);
-            if (isCorrectPin || isPinStored) {
+            if (isCorrectPin) {
               _pinAuth.add(true);
               return true;
             } else {
