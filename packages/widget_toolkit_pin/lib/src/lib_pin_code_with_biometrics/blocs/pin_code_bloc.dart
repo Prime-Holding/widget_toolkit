@@ -56,11 +56,12 @@ class PinCodeBloc extends $PinCodeBloc {
   final PinCodeService pinCodeService;
   final String enterPinWithBiometrics;
 
-  BehaviorSubject<String> pinCode = BehaviorSubject.seeded('');
-  BehaviorSubject<bool> pinAuth = BehaviorSubject.seeded(false);
+  final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
+  final BehaviorSubject<bool> _pinAuth = BehaviorSubject.seeded(false);
+
   Future<bool> encryptAndVerify(String pinCode) async {
-    final String encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    final bool verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
+    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
     return verifiedPin;
   }
 
@@ -68,16 +69,16 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<int> _mapToDigitsCountState() => Rx.merge([
         _$addDigitEvent.asyncMap((digit) async {
           final pinLength = await pinCodeService.getPinLength();
-          if (pinCode.value.length < pinLength) {
-            pinCode.add(pinCode.value += digit);
+          if (_pinCode.value.length < pinLength) {
+            _pinCode.add(_pinCode.value += digit);
           }
-          return pinCode.value.length;
+          return _pinCode.value.length;
         }),
         _$deleteDigitEvent.switchMap(
           (_) {
-            pinCode.add(pinCode.value.substring(
-                0, pinCode.value.isNotEmpty ? pinCode.value.length - 1 : 0));
-            return Stream.value(pinCode.value.length);
+            _pinCode.add(_pinCode.value.substring(
+                0, _pinCode.value.isNotEmpty ? _pinCode.value.length - 1 : 0));
+            return Stream.value(_pinCode.value.length);
           },
         ),
       ]).startWith(0).share();
@@ -99,18 +100,18 @@ class PinCodeBloc extends $PinCodeBloc {
           }
           await getAreBiometricsEnabled();
         }),
-        pinAuth.asResultStream(),
+        _pinAuth.asResultStream(),
       ]).asResultStream().setResultStateHandler(this).whereSuccess().publish();
 
   Future<bool> getAreBiometricsEnabled() async {
-    final bool isDeviceSupported =
+    final isDeviceSupported =
         await biometricAuthenticationService.isDeviceSupported;
-    final bool canCheckBiometrics =
+    final canCheckBiometrics =
         await biometricAuthenticationService.canCheckBiometrics;
-    final bool biometricsEnabled =
+    final biometricsEnabled =
         await biometricAuthenticationService.areBiometricsEnabled();
 
-    final String? pinCode = await pinCodeService.getPinCode();
+    final pinCode = await pinCodeService.getPinCode();
 
     return isDeviceSupported &&
         canCheckBiometrics &&
@@ -121,14 +122,14 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => _digitsCountState
       .asyncMap((digitsCount) async {
-        final int storedPinLength = await pinCodeService.getPinLength();
+        final storedPinLength = await pinCodeService.getPinLength();
         if (digitsCount == storedPinLength) {
-          bool isCorrectPin = await encryptAndVerify(pinCode.value);
+          final isCorrectPin = await encryptAndVerify(_pinCode.value);
           if (isCorrectPin) {
-            pinAuth.add(true);
+            _pinAuth.add(true);
             return true;
           } else {
-            pinCode.value = '';
+            _pinCode.value = '';
             throw ErrorWrongPin(errorMessage: 'Wrong Pin');
           }
         }
@@ -141,8 +142,8 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   void dispose() {
-    pinAuth.close();
-    pinCode.close();
+    _pinAuth.close();
+    _pinCode.close();
     super.dispose();
   }
 }

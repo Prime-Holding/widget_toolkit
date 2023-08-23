@@ -20,7 +20,6 @@ class PinCodeBiometricKey extends StatefulWidget {
 }
 
 class _PinCodeBiometricKeyState extends State<PinCodeBiometricKey> {
-  bool isPressed = false;
   @override
   Widget build(BuildContext context) => PinCodeKey(
         onPressed: (_) => widget.onPressedDefault(_),

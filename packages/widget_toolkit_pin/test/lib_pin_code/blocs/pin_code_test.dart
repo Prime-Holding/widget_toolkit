@@ -192,7 +192,8 @@ void main() {
   });
 
   test('dispose test', () {
-    when(pinCodeService.getPinLength()).thenAnswer((_) => Future.value(6));
+    defineWhen();
+
     pinCodeBloc().dispose();
   });
 }
