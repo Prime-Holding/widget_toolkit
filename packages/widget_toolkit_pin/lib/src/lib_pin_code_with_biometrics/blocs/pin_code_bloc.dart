@@ -57,7 +57,7 @@ class PinCodeBloc extends $PinCodeBloc {
   final String enterPinWithBiometrics;
 
   BehaviorSubject<String> pinCode = BehaviorSubject.seeded('');
-
+  BehaviorSubject<bool> pinAuth = BehaviorSubject.seeded(false);
   Future<bool> encryptAndVerify(String pinCode) async {
     final String encryptedPin = await pinCodeService.encryptPinCode(pinCode);
     final bool verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
@@ -89,21 +89,18 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 
   @override
-  ConnectableStream<void> _mapToAuthenticatedState() =>
-      _$biometricsButtonPressedEvent
-          .asyncMap((localizedReason) async {
-            final result = await biometricAuthenticationService
-                .enableBiometrics(true, localizedReason);
+  ConnectableStream<void> _mapToAuthenticatedState() => Rx.merge([
+        _$biometricsButtonPressedEvent.asyncMap((localizedReason) async {
+          final result = await biometricAuthenticationService.enableBiometrics(
+              true, localizedReason);
 
-            if (result != null && result != BiometricsMessage.enabled) {
-              throw ErrorEnableBiometrics(result);
-            }
-            await getAreBiometricsEnabled();
-          })
-          .asResultStream()
-          .setResultStateHandler(this)
-          .whereSuccess()
-          .publish();
+          if (result != null && result != BiometricsMessage.enabled) {
+            throw ErrorEnableBiometrics(result);
+          }
+          await getAreBiometricsEnabled();
+        }),
+        pinAuth.asResultStream(),
+      ]).asResultStream().setResultStateHandler(this).whereSuccess().publish();
 
   Future<bool> getAreBiometricsEnabled() async {
     final bool isDeviceSupported =
@@ -128,6 +125,7 @@ class PinCodeBloc extends $PinCodeBloc {
         if (digitsCount == storedPinLength) {
           bool isCorrectPin = await encryptAndVerify(pinCode.value);
           if (isCorrectPin) {
+            pinAuth.add(true);
             return true;
           } else {
             pinCode.value = '';
@@ -143,6 +141,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   void dispose() {
+    pinAuth.close();
     pinCode.close();
     super.dispose();
   }

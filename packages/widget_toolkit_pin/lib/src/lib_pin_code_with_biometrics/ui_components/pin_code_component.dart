@@ -70,7 +70,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   late AnimationController _controller;
   bool hasErrorText = false;
   bool isLoading = false;
-  bool hideButton = false;
+  bool authenticatedBiometrics = true;
   bool hideDelete = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
@@ -171,9 +171,11 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 widget.onAuthenticated!(true);
               }
               setState(() {
-                hideButton = true;
+                authenticatedBiometrics = !authenticatedBiometrics;
               });
-              _onStateChanged(context, BiometricsMessage.enabled);
+              if (authenticatedBiometrics) {
+                _onStateChanged(context, BiometricsMessage.enabled);
+              }
             },
           ),
           _buildBuilders()
@@ -508,7 +510,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     bool showBiometricsButton,
   ) =>
-      (showBiometricsButton && !hideButton)
+      (showBiometricsButton && !authenticatedBiometrics)
           ? PinCodeBiometricKey(
               isLoading: isLoading,
               onPressedDefault: (_) => context
