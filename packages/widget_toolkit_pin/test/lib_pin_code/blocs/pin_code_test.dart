@@ -66,8 +66,7 @@ void main() {
     when(pinCodeService.getPinCode()).thenAnswer((_) => Future.value(pinCode));
   }
 
-  PinCodeBloc pinCodeBloc({String? code, bool? returnNull, bool? throwError}) =>
-      PinCodeBloc(
+  PinCodeBloc pinCodeBloc() => PinCodeBloc(
         biometricAuthenticationService: biometricAuthenticationService,
         enterPinWithBiometrics: '',
         pinCodeService: pinCodeService,
@@ -78,7 +77,7 @@ void main() {
         'test pin_code_bloc_dart state digitsCount with addDigit event',
         build: () async {
           defineWhen(pinCode: Stubs.pinCode);
-          return pinCodeBloc(code: Stubs.pinCode);
+          return pinCodeBloc();
         },
         act: (bloc) async {
           bloc.events.addDigit(Stubs.pinCode);
@@ -111,7 +110,7 @@ void main() {
             biometricsMessage: BiometricsMessage.notSetup,
           );
 
-          return pinCodeBloc(throwError: true);
+          return pinCodeBloc();
         },
         act: (bloc) async {
           bloc.events.biometricsButtonPressed(Stubs.authMessage);
@@ -148,7 +147,7 @@ void main() {
             isPinCodeInSecureStorage: true,
           );
 
-          return pinCodeBloc(code: Stubs.pinCode);
+          return pinCodeBloc();
         },
         act: (bloc) async {
           bloc.events.addDigit(Stubs.pinCode);
