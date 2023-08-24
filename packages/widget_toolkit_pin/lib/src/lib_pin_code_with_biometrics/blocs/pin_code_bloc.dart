@@ -21,6 +21,8 @@ abstract class PinCodeBlocEvents {
 
   ///Triggered when user tap on biometrics button
   void biometricsButtonPressed(String reason);
+
+  void checkIfPinIsStored();
 }
 
 /// A contract class containing all states of the PinCodeBloc.
@@ -121,13 +123,18 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
+        _$checkIfPinIsStoredEvent.asyncMap(
+            (event) async => await pinCodeService.isPinCodeInSecureStorage()),
         _digitsCountState.asyncMap((digitsCount) async {
           final storedPinLength = await pinCodeService.getPinLength();
           if (digitsCount == storedPinLength) {
             final isCorrectPin = await encryptAndVerify(_pinCode.value);
             if (isCorrectPin) {
-              _pinAuth.add(true);
-              return true;
+              final isSaved = await pinCodeService.isPinCodeInSecureStorage();
+              if (isSaved) {
+                _pinAuth.add(true);
+                return true;
+              }
             } else {
               _pinCode.value = '';
               throw ErrorWrongPin(errorMessage: 'Wrong Pin');
@@ -135,13 +142,6 @@ class PinCodeBloc extends $PinCodeBloc {
           }
           return false;
         }),
-        _$biometricsButtonPressedEvent.asyncMap((event) async {
-          final isPinStored = await pinCodeService.isPinCodeInSecureStorage();
-          if (isPinStored) {
-            return true;
-          }
-          return false;
-        })
       ]).asResultStream().setResultStateHandler(this).whereSuccess().publish();
 
   @override

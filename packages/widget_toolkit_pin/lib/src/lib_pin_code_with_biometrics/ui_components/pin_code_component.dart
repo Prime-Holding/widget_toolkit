@@ -72,7 +72,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   bool isLoading = false;
   bool authenticatedBiometrics = true;
   bool hideDelete = false;
-  bool showBiometricsButton = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -131,6 +130,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         curve: Curves.ease,
       ),
     );
+    context.read<PinCodeBlocType>().events.checkIfPinIsStored();
     super.initState();
   }
 
@@ -177,14 +177,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               if (authenticatedBiometrics) {
                 _onStateChanged(context, BiometricsMessage.enabled);
               }
-            },
-          ),
-          RxBlocListener<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.showBiometricsButton,
-            listener: (context, showButton) {
-              setState(() {
-                showBiometricsButton = showButton;
-              });
             },
           ),
           _buildBuilders()
@@ -412,11 +404,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 ),
               ),
               _buildPinCodeKey(context, 0, 0),
-              _buildBiometricsButton(
-                context,
-                pinLength,
-                // pin
-              ),
+              _buildBiometricsButton(context, pinLength
+                  // pin
+                  ),
             ],
           ),
         ],
@@ -443,10 +433,13 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           child: widget.bottomRightKeyboardButton ??
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
-                child: _buildButtonContent(
-                  context,
-                  showBiometricsButton,
-                  pinLength,
+                child: RxBlocBuilder<PinCodeBlocType, bool>(
+                  state: (bloc) => bloc.states.showBiometricsButton,
+                  builder: (context, showButton, bloc) => _buildButtonContent(
+                    context,
+                    showButton.hasData && showButton.data!,
+                    pinLength,
+                  ),
                 ),
               ),
         ),
@@ -457,43 +450,34 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     bool showButton,
     int pinLength,
   ) {
-    return RxBlocBuilder<PinCodeBlocType, int>(
-        state: (bloc) => bloc.states.digitsCount,
-        builder: (context, digitCount, bloc) {
-          if (!showButton &&
-              digitCount.data != 0 &&
-              digitCount.data != null &&
-              !hideDelete) {
-            return PinCodeDeleteKey(
-              isLoading: isLoading,
-              onTap: () => bloc.events.deleteDigit(),
-            );
-          } else if (showButton) {
-            return _buildEnableBiometricsButton(
-              context,
-              showButton,
-            );
-          } else {
-            return Opacity(
-              opacity: isLoading ? 0.5 : 1,
-              child: _buildIconContent(
-                context,
-                showButton,
-                pinLength,
-                digitCount.data ?? 0,
-              ),
-            );
-          }
-        });
+    if (!showButton && pinLength != 0 && !hideDelete) {
+      return PinCodeDeleteKey(
+        isLoading: isLoading,
+        onTap: () => context.read<PinCodeBlocType>().events.deleteDigit(),
+      );
+    } else if (showButton) {
+      return _buildEnableBiometricsButton(
+        context,
+        showButton,
+      );
+    } else {
+      return Opacity(
+        opacity: isLoading ? 0.5 : 1,
+        child: _buildIconContent(
+          context,
+          showButton,
+          pinLength,
+        ),
+      );
+    }
   }
 
   Widget _buildIconContent(
     BuildContext context,
     bool showBiometricsButton,
-    int pinLength,
     int pin,
   ) {
-    if (pin > 0 && (pin < pinLength)) {
+    if (pin > 0 && !hideDelete) {
       if (widget.deleteKeyButton != null) {
         return widget.deleteKeyButton!;
       } else {

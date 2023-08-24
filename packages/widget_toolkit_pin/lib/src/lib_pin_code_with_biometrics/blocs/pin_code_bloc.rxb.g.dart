@@ -28,6 +28,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// Тhe [Subject] where events sink to by calling [biometricsButtonPressed]
   final _$biometricsButtonPressedEvent = PublishSubject<String>();
 
+  /// Тhe [Subject] where events sink to by calling [checkIfPinIsStored]
+  final _$checkIfPinIsStoredEvent = PublishSubject<void>();
+
   /// The state of [digitsCount] implemented in [_mapToDigitsCountState]
   late final Stream<int> _digitsCountState = _mapToDigitsCountState();
 
@@ -55,6 +58,9 @@ abstract class $PinCodeBloc extends RxBlocBase
   @override
   void biometricsButtonPressed(String reason) =>
       _$biometricsButtonPressedEvent.add(reason);
+
+  @override
+  void checkIfPinIsStored() => _$checkIfPinIsStoredEvent.add(null);
 
   @override
   Stream<int> get digitsCount => _digitsCountState;
@@ -93,6 +99,7 @@ abstract class $PinCodeBloc extends RxBlocBase
     _$addDigitEvent.close();
     _$deleteDigitEvent.close();
     _$biometricsButtonPressedEvent.close();
+    _$checkIfPinIsStoredEvent.close();
     _compositeSubscription.dispose();
     super.dispose();
   }

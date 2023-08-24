@@ -78,8 +78,6 @@ void main() {
         'test pin_code_bloc_dart state digitsCount with addDigit event',
         build: () async {
           defineWhen(pinCode: Stubs.pinCode);
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
           return pinCodeBloc(code: Stubs.pinCode);
         },
         act: (bloc) async {
@@ -91,8 +89,7 @@ void main() {
     rxBlocTest<PinCodeBloc, int>(
         'test pin_code_bloc_dart state digitsCount with addDigit and deleteDigit event',
         build: () async {
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(3));
+          defineWhen();
           return pinCodeBloc();
         },
         act: (bloc) async {
@@ -107,13 +104,6 @@ void main() {
     rxBlocTest<PinCodeBloc, void>(
         'test pin_code_bloc_dart state authenticated failing',
         build: () async {
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
-
-          when(biometricAuthenticationService.enableBiometrics(
-                  true, Stubs.authMessage))
-              .thenAnswer((_) => Future.value(BiometricsMessage.notSetup));
-
           defineWhen(
             isDeviceSupported: false,
             areBiometricsEnabled: false,
@@ -131,8 +121,6 @@ void main() {
 
     rxBlocTest<PinCodeBloc, void>('test pin_code_bloc_dart state authenticated',
         build: () async {
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
           defineWhen(
             isDeviceSupported: true,
             isPinCodeInSecureStorage: true,
@@ -160,9 +148,6 @@ void main() {
             isPinCodeInSecureStorage: true,
           );
 
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
-
           return pinCodeBloc(code: Stubs.pinCode);
         },
         act: (bloc) async {
@@ -180,9 +165,6 @@ void main() {
             isPinVerified: false,
             isPinCodeInSecureStorage: true,
           );
-
-          when(pinCodeService.getPinLength())
-              .thenAnswer((_) => Future.value(6));
 
           return pinCodeBloc();
         },

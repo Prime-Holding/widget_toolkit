@@ -128,6 +128,14 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
         ),
         returnValueForMissingStub: null,
       );
+  @override
+  void checkIfPinIsStored() => super.noSuchMethod(
+        Invocation.method(
+          #checkIfPinIsStored,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [PinCodeBlocType].
