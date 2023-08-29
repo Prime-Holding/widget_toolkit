@@ -121,10 +121,10 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
         returnValueForMissingStub: null,
       );
   @override
-  void biometricsButtonPressed(String? reason) => super.noSuchMethod(
+  void biometricsButtonPressed() => super.noSuchMethod(
         Invocation.method(
           #biometricsButtonPressed,
-          [reason],
+          [],
         ),
         returnValueForMissingStub: null,
       );

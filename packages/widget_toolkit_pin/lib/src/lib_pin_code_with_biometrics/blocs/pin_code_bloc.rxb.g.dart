@@ -26,7 +26,7 @@ abstract class $PinCodeBloc extends RxBlocBase
   final _$deleteDigitEvent = PublishSubject<void>();
 
   /// Тhe [Subject] where events sink to by calling [biometricsButtonPressed]
-  final _$biometricsButtonPressedEvent = PublishSubject<String>();
+  final _$biometricsButtonPressedEvent = PublishSubject<void>();
 
   /// Тhe [Subject] where events sink to by calling [checkIfPinIsStored]
   final _$checkIfPinIsStoredEvent = PublishSubject<void>();
@@ -56,8 +56,7 @@ abstract class $PinCodeBloc extends RxBlocBase
   void deleteDigit() => _$deleteDigitEvent.add(null);
 
   @override
-  void biometricsButtonPressed(String reason) =>
-      _$biometricsButtonPressedEvent.add(reason);
+  void biometricsButtonPressed() => _$biometricsButtonPressedEvent.add(null);
 
   @override
   void checkIfPinIsStored() => _$checkIfPinIsStoredEvent.add(null);

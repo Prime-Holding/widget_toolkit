@@ -114,7 +114,6 @@ class PinCodeKeyboard extends StatelessWidget {
               state: (bloc) => bloc.states.digitsCount,
               builder: (context, snapshot, bloc) => snapshot.hasData
                   ? PinCodeComponent(
-                      pinLength: snapshot.data!,
                       translateError: translateError,
                       mapBiometricMessageToString: mapBiometricMessageToString,
                       biometricsLocalDataSource: biometricsLocalDataSource,

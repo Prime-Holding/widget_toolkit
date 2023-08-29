@@ -20,7 +20,6 @@ import 'pin_code_key.dart';
 class PinCodeComponent extends StatefulWidget {
   const PinCodeComponent({
     required this.translateError,
-    required this.pinLength,
     required this.localizedReason,
     this.biometricsLocalDataSource,
     this.mapBiometricMessageToString,
@@ -33,9 +32,6 @@ class PinCodeComponent extends StatefulWidget {
 
   /// Receives the error from bloc's error state
   final ErrorModel? error;
-
-  /// The pin code length
-  final int pinLength;
 
   /// The biometrics enabling reason
   final String localizedReason;
@@ -170,12 +166,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
             listener: (context, auth) {
               if (widget.onAuthenticated != null) {
                 widget.onAuthenticated!(true);
-              }
-              setState(() {
-                authenticatedBiometrics = !authenticatedBiometrics;
-              });
-              if (authenticatedBiometrics) {
-                _onStateChanged(context, BiometricsMessage.enabled);
               }
             },
           ),
@@ -507,7 +497,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               onPressedDefault: (_) => context
                   .read<PinCodeBlocType>()
                   .events
-                  .biometricsButtonPressed(widget.localizedReason),
+                  .biometricsButtonPressed(),
             )
           : Container();
 

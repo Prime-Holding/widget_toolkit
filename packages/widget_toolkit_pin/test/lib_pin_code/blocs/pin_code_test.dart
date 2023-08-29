@@ -92,11 +92,14 @@ void main() {
           return pinCodeBloc();
         },
         act: (bloc) async {
-          bloc.events.addDigit('0');
+          bloc.events.addDigit('1');
+          bloc.events.deleteDigit();
+          bloc.events.addDigit('2');
+          bloc.events.addDigit('1');
           bloc.events.deleteDigit();
         },
         state: (bloc) => bloc.states.digitsCount,
-        expect: [1, 0]);
+        expect: [0, 0, 2]);
   });
 
   group('test pin_code_bloc_dart state authenticated', () {
@@ -113,7 +116,7 @@ void main() {
           return pinCodeBloc();
         },
         act: (bloc) async {
-          bloc.events.biometricsButtonPressed(Stubs.authMessage);
+          bloc.events.biometricsButtonPressed();
         },
         state: (bloc) => bloc.states.authenticated,
         expect: []);
@@ -130,7 +133,7 @@ void main() {
           return pinCodeBloc();
         },
         act: (bloc) async {
-          bloc.events.biometricsButtonPressed(Stubs.authMessage);
+          bloc.events.biometricsButtonPressed();
         },
         state: (bloc) => bloc.states.authenticated,
         expect: []);
