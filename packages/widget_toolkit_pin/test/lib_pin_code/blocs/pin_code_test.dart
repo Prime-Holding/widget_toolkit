@@ -68,7 +68,7 @@ void main() {
 
   PinCodeBloc pinCodeBloc() => PinCodeBloc(
         biometricAuthenticationService: biometricAuthenticationService,
-        enterPinWithBiometrics: '',
+        localizedReason: '',
         pinCodeService: pinCodeService,
       );
 

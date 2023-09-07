@@ -46,7 +46,7 @@ class PinCodeBloc extends $PinCodeBloc {
   PinCodeBloc({
     required this.biometricAuthenticationService,
     required this.pinCodeService,
-    required this.enterPinWithBiometrics,
+    required this.localizedReason,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
     showBiometricsButton.connect().addTo(_compositeSubscription);
@@ -54,7 +54,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   final PinBiometricsService biometricAuthenticationService;
   final PinCodeService pinCodeService;
-  final String enterPinWithBiometrics;
+  final String localizedReason;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
   final BehaviorSubject<bool> _pinAuth = BehaviorSubject();
@@ -68,7 +68,7 @@ class PinCodeBloc extends $PinCodeBloc {
   Future<int> _addDigit(String digit) async {
     final pinLength = await pinCodeService.getPinLength();
     if (_pinCode.value.length < pinLength) {
-      _pinCode.add(_pinCode.value += digit);
+      _pinCode.add(_pinCode.value + digit);
     }
     return _pinCode.value.length;
   }
@@ -95,7 +95,7 @@ class PinCodeBloc extends $PinCodeBloc {
   ConnectableStream<void> _mapToAuthenticatedState() => Rx.merge([
         _$biometricsButtonPressedEvent.switchMap((_) =>
             biometricAuthenticationService
-                .authenticate(enterPinWithBiometrics)
+                .authenticate(localizedReason)
                 .asResultStream()),
         _pinAuth.asResultStream(),
       ]).setResultStateHandler(this).whereSuccess().publish();
