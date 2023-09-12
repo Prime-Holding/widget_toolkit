@@ -98,7 +98,7 @@ ThemeData getThemeData(bool inLightMode) {
           PinCodeTheme.light,
         ])
       : ThemeData.dark().copyWith(extensions: [
-          WidgetToolkitTheme.light.copyWith(
+          WidgetToolkitTheme.dark.copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
