@@ -47,7 +47,7 @@ class PinCodeComponent extends StatefulWidget {
   final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
   /// Returns the verification state of the input from the pin code value.
-  final void Function(bool)? onAuthenticated;
+  final VoidCallback? onAuthenticated;
 
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
@@ -168,7 +168,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 authenticatedPin = true;
               });
               if (widget.onAuthenticated != null) {
-                widget.onAuthenticated!(true);
+                widget.onAuthenticated!();
               }
             },
           ),

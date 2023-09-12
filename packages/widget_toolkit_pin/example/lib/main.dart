@@ -81,8 +81,10 @@ class MyHomePage extends StatelessWidget {
                       // [PinBiometricsAuthDataSource], [PinBiometricsRepository],[PinCodeBloc]
                       addDependencies: true,
                       // Optionally you can provide [onAuthenticated] where the
-                      // function receives a bool value showing, whether the user was authenticated.
-                      onAuthenticated: (onAuthenticated) => true,
+                      // function is invoked when the user is authenticated.
+                      onAuthenticated: () {
+                        _onAuthenticated(context);
+                      },
                       // Optionally you can provide [onError] to handle errors out of the package,
                       // or to show a notification, in practice this would only get called if the
                       // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],
@@ -101,13 +103,24 @@ class MyHomePage extends StatelessWidget {
         ),
       );
 
+  void _onAuthenticated(BuildContext context) {
+    showBlurredBottomSheet(
+      context: context,
+      configuration: const ModalConfiguration(safeAreaBottom: false),
+      builder: (context) => const MessagePanelWidget(
+        message: 'You authenticated successfully',
+        messageState: MessagePanelState.positive,
+      ),
+    );
+  }
+
   void _onError(Object error, String strValue, BuildContext context) {
     if (error is! ErrorWrongPin) {
       showBlurredBottomSheet(
         context: context,
         configuration: const ModalConfiguration(safeAreaBottom: false),
         builder: (context) => MessagePanelWidget(
-          message: error.toString(),
+          message: _translateError(error),
           messageState: MessagePanelState.important,
         ),
       );
@@ -115,7 +128,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   String _translateError(Object error) =>
-      error is ErrorWrongPin ? error.errorMessage : 'translated error';
+      error is ErrorWrongPin ? error.errorMessage : 'An error has occurred';
 
   String _exampleMapBiometricMessageToString(BiometricsMessage message) {
     switch (message) {

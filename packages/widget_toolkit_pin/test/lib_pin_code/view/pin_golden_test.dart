@@ -97,7 +97,6 @@ Widget pinCodeComponentPageFactory({
             translateError: (error) => error.toString(),
             localizedReason: localizedReason,
             biometricsLocalDataSource: context.read(),
-            onAuthenticated: (authenticated) => authenticated,
             error: error,
           ),
         ),
@@ -141,7 +140,6 @@ Widget pinCodeKeyboardPageFactory({
             pinCodeService: service,
             biometricsLocalDataSource:
                 context.read<BiometricsLocalDataSource>(),
-            onAuthenticated: (authenticated) => authenticated,
           ),
         ),
       ),
