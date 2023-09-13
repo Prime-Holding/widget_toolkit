@@ -408,9 +408,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         number: index + number,
         isLoading: isLoading,
         onPressed: (key) {
-          authenticatedPin
-              ? null
-              : context.read<PinCodeBlocType>().events.addDigit(key.toString());
+          if (!authenticatedPin) {
+            context.read<PinCodeBlocType>().events.addDigit(key.toString());
+          }
           hideDelete = false;
         },
       );
