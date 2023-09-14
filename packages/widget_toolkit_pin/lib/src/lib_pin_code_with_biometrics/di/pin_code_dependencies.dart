@@ -82,7 +82,7 @@ class PinCodeDependencies {
       create: (context) => PinCodeBloc(
         biometricAuthenticationService: context.read<PinBiometricsService>(),
         pinCodeService: pinCodeService,
-        enterPinWithBiometrics: localizedReason,
+        localizedReason: localizedReason,
       ),
     ),
   ];

@@ -2,7 +2,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/models.dart';
-import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
 
 import '../lib_pin_code/blocs/pin_code_test.mocks.dart';
@@ -16,15 +15,13 @@ import 'stubs.dart';
 ])
 PinCodeBlocType pinCodeMockFactory({
   required MockPinCodeService service,
+  required MockPinBiometricsService biometricsService,
+  required String localizedReason,
+  required int digitsCount,
+  bool? showBiometricsButton,
   bool? isLoading,
-  BiometricsMessage? biometricsMessage,
-  bool? isPinCodeInSecureStorage = true,
-  bool? isAuthenticatedWithBiometrics,
-  bool? isPinCodeVerified,
-  bool? areBiometricsEnabled,
-  List<BiometricsAuthType>? availableBiometrics,
+  bool? authenticated,
   ErrorModel? error,
-  int? pinLength = 6,
 }) {
   final blocMock = MockPinCodeBlocType();
   final eventsMock = MockPinCodeBlocEvents();
@@ -33,44 +30,22 @@ PinCodeBlocType pinCodeMockFactory({
   when(blocMock.events).thenReturn(eventsMock);
   when(blocMock.states).thenReturn(statesMock);
 
-  when(statesMock.biometricsDialog).thenAnswer(
-    (_) => isLoading != null
-        ? Stream.value(biometricsMessage)
-        : const Stream.empty(),
-  );
-
-  when(statesMock.isPinCodeInSecureStorage).thenAnswer(
-    (_) => isPinCodeInSecureStorage != null
-        ? Stream.value(isPinCodeInSecureStorage).publish()
-        : const Stream<bool>.empty().publish(),
+  when(statesMock.showBiometricsButton).thenAnswer(
+    (_) {
+      service.verifyPinCode(Stubs.pinCode3);
+      service.isPinCodeInSecureStorage();
+      return showBiometricsButton != null
+          ? Stream.value(showBiometricsButton).publishReplay(maxSize: 1)
+          : Stream.value(false).publishReplay(maxSize: 1)
+        ..connect();
+    },
   );
 
   when(statesMock.isLoading).thenAnswer(
-    (_) => isLoading != null ? Stream.value(isLoading) : const Stream.empty(),
-  );
+      (_) => isLoading != null ? Stream.value(isLoading) : Stream.value(false));
 
-  when(statesMock.isAuthenticatedWithBiometrics).thenAnswer(
-    (_) => isAuthenticatedWithBiometrics != null
-        ? Stream.value(isAuthenticatedWithBiometrics).publish()
-        : const Stream<bool>.empty().publish(),
-  );
-
-  when(statesMock.isPinCodeVerified).thenAnswer(
-    (_) => isPinCodeVerified != null
-        ? Stream.value(isPinCodeVerified).publish()
-        : const Stream<bool>.empty().publish(),
-  );
-
-  when(statesMock.areBiometricsEnabled).thenAnswer(
-    (_) => areBiometricsEnabled != null
-        ? Stream.value(areBiometricsEnabled)
-        : const Stream.empty(),
-  );
-
-  when(statesMock.availableBiometrics).thenAnswer(
-    (_) => availableBiometrics != null
-        ? Stream.value(availableBiometrics).publish()
-        : const Stream<List<BiometricsAuthType>>.empty().publish(),
+  when(statesMock.authenticated).thenAnswer(
+    (_) => Stream<void>.value(null).publish()..connect(),
   );
 
   when(statesMock.errors).thenAnswer(
@@ -78,28 +53,19 @@ PinCodeBlocType pinCodeMockFactory({
         error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
   );
 
-  when(statesMock.pinLength).thenAnswer(
-    (_) {
-      if (pinLength != null) {
-        return Stream<int>.value(pinLength).publish();
-      }
-      return const Stream<int>.empty().publish();
-    },
+  when(service.getPinLength()).thenAnswer((_) async => Stubs.pinCode3.length);
+
+  when(statesMock.digitsCount).thenAnswer(
+    (_) => Stream.value(digitsCount).startWith(0).publishReplay(maxSize: 1)
+      ..connect(),
   );
 
   when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
 
-  when(service.isPinCodeInSecureStorage()).thenAnswer((_) async =>
-      (isPinCodeInSecureStorage != null && isPinCodeInSecureStorage)
-          ? true
-          : false);
+  when(service.isPinCodeInSecureStorage()).thenAnswer((_) async => true);
 
   when(service.encryptPinCode(Stubs.pinCode3))
       .thenAnswer((_) async => Stubs.pinCode3);
-
-  when(service.getPinLength()).thenAnswer((_) async => pinLength!);
-
-  when(service.getPinCode()).thenAnswer((_) async => Stubs.pinCode3);
 
   return blocMock;
 }
