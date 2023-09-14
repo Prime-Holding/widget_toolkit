@@ -1,3 +1,7 @@
+## [0.0.2-dev.3]
+* Remove `isAuthenticatedWithBiometrics` and `isPinCodeVerified` callbacks.
+* Add `onAuthenticated` callback.
+
 ## [0.0.2-dev.2]
 * Fix pin code auto submit, when biometrics authentication is disabled
 

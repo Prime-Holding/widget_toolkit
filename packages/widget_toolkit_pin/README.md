@@ -201,16 +201,12 @@ and implementation of the `LocalAuthentication`, `PinBiometricsAuthDataSource`, 
 addDependencies: false,
 ```
 
-Optionally you can provide `isAuthenticatedWithBiometrics` where the function receives a bool value showing,
-whether the user was authenticated with biometrics.
+Optionally you can provide `onAuthenticated` where the function is called 
+when the user is authenticated.
 ```dart
-isAuthenticatedWithBiometrics: (isAuthenticated) => true,
-```
-
-Optionally you can provide `isPinCodeVerified`, where the function receives a bool value showing,
-whether pin code is verified.
-```dart
-isPinCodeVerified: (isPinCodeVerified) => true,
+onAuthenticated: () {
+  // ...
+},
 ```
 
 Optionally you can provide `deleteKeyButton`, which button will be used instead of the default delete
