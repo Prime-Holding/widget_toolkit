@@ -419,24 +419,30 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     int pinLength,
   ) =>
-      SizedBox(
-        height: calculateKeyboardButtonSize(context),
-        width: calculateKeyboardButtonSize(context),
-        child: Center(
-          child: widget.bottomRightKeyboardButton ??
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child: RxBlocBuilder<PinCodeBlocType, bool>(
-                  state: (bloc) => bloc.states.showBiometricsButton,
-                  builder: (context, showButton, bloc) => _buildButtonContent(
-                    context,
-                    showButton.hasData && showButton.data!,
-                    pinLength,
-                  ),
-                ),
+      widget.biometricsLocalDataSource == null
+          ? SizedBox(
+              height: calculateKeyboardButtonSize(context),
+              width: calculateKeyboardButtonSize(context),
+            )
+          : SizedBox(
+              height: calculateKeyboardButtonSize(context),
+              width: calculateKeyboardButtonSize(context),
+              child: Center(
+                child: widget.bottomRightKeyboardButton ??
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: RxBlocBuilder<PinCodeBlocType, bool>(
+                        state: (bloc) => bloc.states.showBiometricsButton,
+                        builder: (context, showButton, bloc) =>
+                            _buildButtonContent(
+                          context,
+                          showButton.hasData && showButton.data!,
+                          pinLength,
+                        ),
+                      ),
+                    ),
               ),
-        ),
-      );
+            );
 
   Widget _buildButtonContent(
     BuildContext context,
