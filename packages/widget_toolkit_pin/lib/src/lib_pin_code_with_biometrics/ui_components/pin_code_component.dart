@@ -494,7 +494,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     bool showBiometricsButton,
   ) =>
-      (showBiometricsButton)
+      (widget.biometricsLocalDataSource != null && showBiometricsButton)
           ? PinCodeBiometricKey(
               isLoading: isLoading,
               onPressedDefault: (_) => context
