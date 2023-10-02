@@ -1,6 +1,6 @@
 name: widget_toolkit_otp
 description: Package helping with building sms or pin code fields and screens in a matter of minutes
-version: 0.0.2-dev.1
+version: 0.0.2-dev.2
 homepage: https://primeholding.com/
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_rx_bloc: ^6.0.0
-  pinput: ^2.2.31
+  pinput: ^3.0.1
   provider: ^6.0.5
   rx_bloc: ^5.0.0
   rxdart: ^0.27.7
