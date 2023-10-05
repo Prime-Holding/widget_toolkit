@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../base/models/temporary_code_state.dart';
 import '../base/theme/sms_code_theme.dart';
@@ -265,7 +266,9 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         errorBuilder: widget.errorBuilder,
         forceErrorState: forceErrorState,
         closeKeyboardWhenCompleted: widget.closeKeyboardOnDone,
-        separator: widget.separator,
+        separatorBuilder: (_) =>
+            widget.separator ??
+            SizedBox(width: context.widgetToolkitTheme.spacingXS),
         cursor: widget.cursor ??
             Container(
               width: 1.1,
