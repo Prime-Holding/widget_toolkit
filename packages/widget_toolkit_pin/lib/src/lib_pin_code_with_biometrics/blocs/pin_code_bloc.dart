@@ -118,6 +118,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
+        _pinCode.doOnError((_, __) {}).mapTo(true).asResultStream(),
         _$checkIfPinIsStoredEvent.switchMap(
             (_) => pinCodeService.isPinCodeInSecureStorage().asResultStream()),
         _digitsCountState.switchMap(
