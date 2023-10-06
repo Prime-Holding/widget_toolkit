@@ -139,6 +139,8 @@ class PinCodeBloc extends $PinCodeBloc {
         _pinCode.value = '';
         throw ErrorWrongPin(errorMessage: 'Wrong Pin');
       }
+    } else if (digits == 0) {
+      return true;
     }
     return false;
   }
