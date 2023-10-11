@@ -22,7 +22,7 @@ dependencies:
   rxdart: ^0.27.7
   shared_preferences: ^2.2.2
   theme_tailor_annotation: ^2.0.0
-  widget_toolkit: ^0.0.2-dev.2
+  widget_toolkit: ^0.0.2-dev.1
   widget_toolkit_biometrics: ^0.0.2-dev.1
 
 dev_dependencies:
