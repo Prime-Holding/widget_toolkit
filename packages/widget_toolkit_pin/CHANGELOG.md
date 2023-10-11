@@ -1,3 +1,7 @@
+## [0.0.2-dev.5]
+* Fix loading animation not being displayed when pin is submited
+* Update dependencies 
+
 ## [0.0.2-dev.4]
 * Fix biometrics button being displayed when `biometricsLocalDataSource` is not provided
 * Update dependencies 

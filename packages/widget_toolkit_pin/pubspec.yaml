@@ -2,7 +2,7 @@ name: widget_toolkit_pin
 description: This package provide out of the box entering PIN code
   functionality, which can be used with biometric authentication.
 
-version: 0.0.2-dev.4
+version: 0.0.2-dev.5
 homepage: https://primeholding.com/
 
 environment:
@@ -20,9 +20,9 @@ dependencies:
   rx_bloc: ^5.0.0
   rx_bloc_list: ^4.0.0
   rxdart: ^0.27.7
-  shared_preferences: ^2.2.1
+  shared_preferences: ^2.2.2
   theme_tailor_annotation: ^2.0.0
-  widget_toolkit: ^0.0.2-dev.1
+  widget_toolkit: ^0.0.2-dev.2
   widget_toolkit_biometrics: ^0.0.2-dev.1
 
 dev_dependencies:
