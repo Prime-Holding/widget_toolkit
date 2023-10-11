@@ -83,7 +83,7 @@ class PinCodeBloc extends $PinCodeBloc {
             return Stream.value(_pinCode.value.length);
           },
         ).asResultStream(),
-      ]).setResultStateHandler(this).whereSuccess().startWith(0).share();
+      ]).whereSuccess().startWith(0).share();
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;
@@ -98,7 +98,7 @@ class PinCodeBloc extends $PinCodeBloc {
                 .authenticate(localizedReason)
                 .asResultStream()),
         _pinAuth.asResultStream(),
-      ]).setResultStateHandler(this).whereSuccess().publish();
+      ]).whereSuccess().publish();
 
   Future<bool> getAreBiometricsEnabled() async {
     final isDeviceSupported =
