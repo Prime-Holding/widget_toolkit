@@ -1,5 +1,5 @@
 ## [0.0.2-dev.5]
-* Fix loading animation not being displayed when pin is submited
+* Fix loading animation not being displayed when pin is submitted
 * Update dependencies 
 
 ## [0.0.2-dev.4]
