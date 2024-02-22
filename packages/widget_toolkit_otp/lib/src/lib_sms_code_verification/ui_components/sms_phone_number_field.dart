@@ -8,8 +8,10 @@ import '../bloc/sms_code_bloc.dart';
 /// so make sure you have that bloc provided in the context above this widget.
 /// Use [builder] method to create UI component, such as PrimeTextFieldDialog.
 class SmsPhoneNumberField extends StatelessWidget {
-  const SmsPhoneNumberField({required this.builder, Key? key})
-      : super(key: key);
+  const SmsPhoneNumberField({
+    required this.builder,
+    super.key,
+  });
 
   final Widget Function(BuildContext context, String? phoneNumber,
       void Function(String newNumber) updatePhoneNumber) builder;

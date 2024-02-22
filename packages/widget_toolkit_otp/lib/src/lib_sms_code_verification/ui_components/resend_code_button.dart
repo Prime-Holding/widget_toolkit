@@ -9,22 +9,22 @@ import '../../base/utils/localized_strings.dart';
 import '../bloc/sms_code_bloc.dart';
 
 class ResendCodeButton extends StatelessWidget {
-  const ResendCodeButton(
-      {this.label,
-      this.onPressed,
-      this.textStyle,
-      this.buttonColorStyle,
-      this.strings,
-      this.activeStateIcon,
-      this.pressedStateIcon,
-      this.disabledStateIcon,
-      this.loadingStateIcon,
-      this.capitalizeLabels = true,
-      this.splashEffectEnabled = false,
-      this.useInternalCommunication = true,
-      this.state = ButtonStateModel.enabled,
-      Key? key})
-      : assert(
+  const ResendCodeButton({
+    this.label,
+    this.onPressed,
+    this.textStyle,
+    this.buttonColorStyle,
+    this.strings,
+    this.activeStateIcon,
+    this.pressedStateIcon,
+    this.disabledStateIcon,
+    this.loadingStateIcon,
+    this.capitalizeLabels = true,
+    this.splashEffectEnabled = false,
+    this.useInternalCommunication = true,
+    this.state = ButtonStateModel.enabled,
+    super.key,
+  })  : assert(
             activeStateIcon is IconData ||
                 activeStateIcon is Widget ||
                 activeStateIcon == null,
@@ -43,8 +43,8 @@ class ResendCodeButton extends StatelessWidget {
             disabledStateIcon is IconData ||
                 disabledStateIcon is Widget ||
                 disabledStateIcon == null,
-            'Provide Widget, IconData or null for errorStateIcon.'),
-        super(key: key);
+            'Provide Widget, IconData or null for errorStateIcon.');
+
   final String? label;
 
   final void Function()? onPressed;

@@ -585,10 +585,10 @@ packages:
     dependency: "direct main"
     description:
       name: rx_bloc
-      sha256: c049e8f9a65f873740f641642d8eb1cee387567e822a26b74d88fff502efb772
+      sha256: "1e719a3f59af421379b3bbb2d19cf81cab220c7580e18e292f3dfcc5551ec2df"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   rx_bloc_generator:
     dependency: "direct dev"
     description:
@@ -920,7 +920,7 @@ packages:
       path: "../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.2-dev.1"
+    version: "0.0.2-dev.2"
   xml:
     dependency: transitive
     description:

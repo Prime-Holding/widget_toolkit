@@ -7,8 +7,8 @@ class PinCodeDeleteKey extends StatefulWidget {
   const PinCodeDeleteKey({
     this.isLoading = false,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final bool isLoading;
   final void Function() onTap;

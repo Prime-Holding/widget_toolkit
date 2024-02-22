@@ -1,3 +1,6 @@
+## [0.0.2-dev.2]
+- Support flutter 3.19
+
 ## [0.0.2-dev.1]
 - Update `widget_toolkit` dependency
 - Make `BiometricsAuthDataSource`, `BiometricsRepository` abstract

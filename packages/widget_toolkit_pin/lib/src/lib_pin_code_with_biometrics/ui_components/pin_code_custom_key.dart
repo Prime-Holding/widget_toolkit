@@ -7,8 +7,8 @@ class PinCodeCustomKey extends StatefulWidget {
     required this.buildChild,
     required this.onTap,
     this.isLoading = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final bool isLoading;
   final void Function() onTap;
