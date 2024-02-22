@@ -17,8 +17,8 @@ class MessagePanelError<BlocType extends RxBlocTypeBase>
     this.padding = EdgeInsets.zero,
     this.errorBuilder,
     this.messageState = MessagePanelState.important,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ErrorStateCallback<BlocType> errorState;
   final EdgeInsets padding;

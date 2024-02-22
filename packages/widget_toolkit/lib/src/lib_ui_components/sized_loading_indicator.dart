@@ -9,8 +9,8 @@ class SizedLoadingIndicator extends StatelessWidget {
     this.size = const Size(68, 68),
     this.strokeWidth = 3,
     this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   factory SizedLoadingIndicator.innerCircleValue(BuildContext context) =>
       const SizedLoadingIndicator(

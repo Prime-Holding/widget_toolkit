@@ -86,7 +86,6 @@ Future<T?> showBlurredBottomSheet<T>({
 /// contents are being rendered on screen.
 class _ModalContent extends StatelessWidget {
   const _ModalContent({
-    Key? key,
     required this.builder,
     required this.showCloseButton,
     required this.showHeaderPill,
@@ -96,7 +95,7 @@ class _ModalContent extends StatelessWidget {
     this.heightFactor,
     this.contentAlignment,
     this.onClosePressed,
-  }) : super(key: key);
+  });
 
   /// The builder method returning the contents of the modal sheet
   final WidgetBuilder builder;

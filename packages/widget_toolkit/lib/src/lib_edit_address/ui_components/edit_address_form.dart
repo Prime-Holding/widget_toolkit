@@ -24,8 +24,8 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
     this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
     this.countryPickerModalConfiguration =
         const SearchPickerModalConfiguration(),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final EditAddressLocalizedStrings? editAddressLocalizedStrings;
   final OnAddressChange onAddressChange;

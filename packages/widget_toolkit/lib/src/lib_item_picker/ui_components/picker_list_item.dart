@@ -11,9 +11,8 @@ class PickerListItem extends StatelessWidget {
     this.isSelected = false,
     this.isLoading = false,
     this.overrideStyle = true,
-    Key? key,
-  })  : assert((text != null || child != null) || isLoading),
-        super(key: key);
+    super.key,
+  }) : assert((text != null || child != null) || isLoading);
 
   final String? text;
   final Widget? child;

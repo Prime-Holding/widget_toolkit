@@ -23,7 +23,6 @@ class ItemPickerPage<T extends PickerItemModel> extends StatefulWidget {
     bool? isItemSelectionRequired,
     int? loadingItemsCount,
     double? loadingItemHeight,
-    Key? key,
     this.title,
     this.saveButtonText,
     this.itemBuilder,
@@ -32,13 +31,13 @@ class ItemPickerPage<T extends PickerItemModel> extends StatefulWidget {
     this.errorBuilder,
     this.emptyBuilder,
     this.loadingBuilder,
+    super.key,
   })  : selectedItems = selectedItems ?? const [],
         isMultiSelect = isMultiSelect ?? false,
         isStatic = isStatic ?? true,
         isItemSelectionRequired = isItemSelectionRequired ?? true,
         loadingItemsCount = loadingItemsCount ?? 3,
-        loadingItemHeight = loadingItemHeight ?? 60,
-        super(key: key);
+        loadingItemHeight = loadingItemHeight ?? 60;
 
   final String? title;
   final String? saveButtonText;

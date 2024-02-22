@@ -100,26 +100,17 @@ void showChangeLanguageBottomSheet({
     );
 
 class LanguagePickerModalConfiguration extends ModalConfiguration {
-  const LanguagePickerModalConfiguration(
-      {bool safeAreaBottom = false,
-      MainAxisAlignment? contentAlignment,
-      bool? fullScreen = false,
-      bool haveOnlyOneSheet = true,
-      bool showHeaderPill = false,
-      bool showCloseButton = false,
-      double? heightFactor,
-      bool dialogHasBottomPadding = false,
-      bool isDismissible = true})
-      : super(
-            safeAreaBottom: safeAreaBottom,
-            contentAlignment: contentAlignment,
-            fullScreen: fullScreen,
-            haveOnlyOneSheet: haveOnlyOneSheet,
-            showHeaderPill: showHeaderPill,
-            showCloseButton: showCloseButton,
-            heightFactor: heightFactor,
-            dialogHasBottomPadding: dialogHasBottomPadding,
-            isDismissible: isDismissible);
+  const LanguagePickerModalConfiguration({
+    super.safeAreaBottom,
+    super.contentAlignment,
+    super.fullScreen,
+    super.haveOnlyOneSheet,
+    super.showHeaderPill = false,
+    super.showCloseButton = false,
+    super.heightFactor,
+    super.dialogHasBottomPadding = false,
+    super.isDismissible,
+  });
 }
 
 class ChangeLanguageWidget extends StatelessWidget {
@@ -130,8 +121,8 @@ class ChangeLanguageWidget extends StatelessWidget {
     required this.translate,
     this.itemBuilder,
     this.errorBuilder,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String Function(LanguageModel) translate;
   final Widget Function(
@@ -197,7 +188,7 @@ class ChangeLanguageWidget extends StatelessWidget {
                             .setCurrent(languageModel.language),
                   );
                 },
-              ).toList(),
+              ),
               SizedBox(
                 height: context.languagePickerTheme.changeLanguageSizedBox,
               ),
@@ -227,8 +218,7 @@ class _ChooseLanguage extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
     this.padding = EdgeInsets.zero,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final SelectedLanguageModel languageModel;
   final String Function(LanguageModel) translate;

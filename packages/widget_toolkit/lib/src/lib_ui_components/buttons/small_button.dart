@@ -20,15 +20,15 @@ class SmallButton extends StatelessWidget {
   final ButtonColorStyle? colorStyle;
   final SmallButtonType type;
 
-  SmallButton(
-      {Key? key,
-      this.tooltip,
-      required this.onPressed,
-      required this.icon,
-      this.type = SmallButtonType.outline,
-      this.state = ButtonStateModel.enabled,
-      this.colorStyle})
-      : super(key: key) {
+  SmallButton({
+    this.tooltip,
+    required this.onPressed,
+    required this.icon,
+    this.type = SmallButtonType.outline,
+    this.state = ButtonStateModel.enabled,
+    this.colorStyle,
+    super.key,
+  }) {
     assert(icon == null ||
         icon is IconData ||
         icon is SvgPicture ||

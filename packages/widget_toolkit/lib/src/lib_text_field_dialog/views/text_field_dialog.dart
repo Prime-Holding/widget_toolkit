@@ -89,12 +89,11 @@ class TextFieldDialog<T> extends StatefulWidget {
     this.editFieldType = EditFieldType.editfield,
     this.modalConfiguration = const TextFieldModalConfiguration(),
     this.enabled = true,
-    Key? key,
-  })  : assert(editFieldCustomIcon == null ||
+    super.key,
+  }) : assert(editFieldCustomIcon == null ||
             editFieldCustomIcon is IconData ||
             editFieldCustomIcon is SvgPicture ||
-            editFieldCustomIcon is SvgFile),
-        super(key: key);
+            editFieldCustomIcon is SvgFile);
 
   final T? value;
   final String label;
@@ -224,24 +223,15 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
 }
 
 class TextFieldModalConfiguration extends ModalConfiguration {
-  const TextFieldModalConfiguration(
-      {bool safeAreaBottom = false,
-      MainAxisAlignment? contentAlignment,
-      bool? fullScreen = false,
-      bool haveOnlyOneSheet = true,
-      bool showHeaderPill = true,
-      bool showCloseButton = true,
-      double? heightFactor,
-      bool dialogHasBottomPadding = true,
-      bool isDismissible = true})
-      : super(
-            safeAreaBottom: safeAreaBottom,
-            contentAlignment: contentAlignment,
-            fullScreen: fullScreen,
-            haveOnlyOneSheet: haveOnlyOneSheet,
-            showHeaderPill: showHeaderPill,
-            showCloseButton: showCloseButton,
-            heightFactor: heightFactor,
-            dialogHasBottomPadding: dialogHasBottomPadding,
-            isDismissible: isDismissible);
+  const TextFieldModalConfiguration({
+    super.safeAreaBottom,
+    super.contentAlignment,
+    super.fullScreen,
+    super.haveOnlyOneSheet,
+    super.showHeaderPill,
+    super.showCloseButton,
+    super.heightFactor,
+    super.dialogHasBottomPadding,
+    super.isDismissible,
+  });
 }
