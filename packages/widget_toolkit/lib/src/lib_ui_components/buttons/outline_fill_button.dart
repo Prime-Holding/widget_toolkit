@@ -19,7 +19,6 @@ class OutlineFillButton extends StatelessWidget {
   final double elevation;
 
   OutlineFillButton({
-    Key? key,
     required this.text,
     required this.onPressed,
     this.radius = 24,
@@ -33,7 +32,8 @@ class OutlineFillButton extends StatelessWidget {
     this.colorStyle,
     this.areIconsClose = false,
     this.elevation = 1,
-  }) : super(key: key) {
+    super.key,
+  }) {
     assert(iconLeft == null || iconLeft is IconData || iconLeft is SvgPicture);
     assert(
         iconRight == null || iconRight is IconData || iconRight is SvgPicture);

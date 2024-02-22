@@ -12,14 +12,14 @@ import '../bloc/sms_code_bloc.dart';
 /// so make sure you have that bloc provided in the context above this widget.
 /// It can be customised a bit or implemented on your own way using [builder] method.
 class ValidityWidget extends StatelessWidget {
-  const ValidityWidget(
-      {this.title,
-      this.builder,
-      this.placeholder,
-      this.timeFormat = CountdownTimeFormat.minutes,
-      this.textStyle,
-      Key? key})
-      : super(key: key);
+  const ValidityWidget({
+    this.title,
+    this.builder,
+    this.placeholder,
+    this.timeFormat = CountdownTimeFormat.minutes,
+    this.textStyle,
+    super.key,
+  });
 
   /// Text to be displayed on top of the counter
   final String? title;

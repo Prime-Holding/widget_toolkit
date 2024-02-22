@@ -11,8 +11,8 @@ class PinCodeKey extends StatefulWidget {
     this.isFaceScan = false,
     this.isLoading = false,
     this.showDefaultIcon = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final int? number;
   final bool isFingerScan;

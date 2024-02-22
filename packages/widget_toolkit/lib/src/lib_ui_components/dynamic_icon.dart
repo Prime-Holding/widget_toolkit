@@ -9,13 +9,12 @@ class DynamicIcon extends StatelessWidget {
     this.color,
     this.semanticLabel,
     this.size,
-    Key? key,
-  })  : assert(icon == null ||
+    super.key,
+  }) : assert(icon == null ||
             icon is IconData ||
             icon is SvgPicture ||
             icon is String ||
-            icon is SvgFile),
-        super(key: key);
+            icon is SvgFile);
 
   /// Provide an IconData
   final dynamic icon;

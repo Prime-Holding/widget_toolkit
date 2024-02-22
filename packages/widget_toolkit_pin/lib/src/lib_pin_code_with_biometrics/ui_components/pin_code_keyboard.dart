@@ -54,8 +54,8 @@ class PinCodeKeyboard extends StatelessWidget {
     this.localizedReason,
     this.addDependencies = true,
     this.onError,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Handle the translation of the error from the errors stream
   final String Function(Object error) translateError;

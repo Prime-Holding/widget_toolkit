@@ -1,3 +1,6 @@
+## [0.0.2-dev.3]
+* Support flutter 3.19
+
 ## [0.0.2-dev.2]
 * Update `pinput` dependency
 

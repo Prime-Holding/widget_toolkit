@@ -10,14 +10,14 @@ import '../bloc/sms_code_bloc.dart';
 /// context above this widget. It can be customised a bit or implemented on your
 /// own way using [builder] method.
 class ResendButtonTimer extends StatelessWidget {
-  const ResendButtonTimer(
-      {this.title,
-      this.builder,
-      this.placeholder,
-      this.timeFormat = CountdownTimeFormat.minutes,
-      this.textStyle,
-      Key? key})
-      : super(key: key);
+  const ResendButtonTimer({
+    this.title,
+    this.builder,
+    this.placeholder,
+    this.timeFormat = CountdownTimeFormat.minutes,
+    this.textStyle,
+    super.key,
+  });
 
   /// Text to be displayed on top of the counter
   final String? title;

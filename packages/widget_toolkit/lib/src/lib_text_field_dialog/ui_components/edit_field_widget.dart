@@ -15,14 +15,14 @@ class EditFieldWidget extends StatelessWidget {
   final dynamic customIcon;
 
   const EditFieldWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     this.type = EditFieldType.editfield,
     required this.state,
     required this.onTap,
     this.customIcon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => InkWell(

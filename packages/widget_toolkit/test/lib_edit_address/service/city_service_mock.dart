@@ -1,8 +1,7 @@
 import 'package:widget_toolkit/src/lib_edit_address/services/city_service.dart';
 
 class CityServiceMock extends CityService {
-  CityServiceMock({required editAddressService})
-      : super(editAddressService: editAddressService);
+  CityServiceMock({required super.editAddressService});
 
   @override
   Future<String> validateOnSubmit(String text) =>

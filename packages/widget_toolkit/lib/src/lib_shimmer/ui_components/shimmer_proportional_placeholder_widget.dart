@@ -18,8 +18,8 @@ class ShimmerProportionalPlaceholderWidget extends StatelessWidget {
     this.textColor,
     this.leadingFlex = 1,
     this.trailingFlex = 1,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// The placeholder text to be displayed
   final String placeholderText;

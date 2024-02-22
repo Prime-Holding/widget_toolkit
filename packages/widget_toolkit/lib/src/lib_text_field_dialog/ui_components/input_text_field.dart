@@ -30,8 +30,8 @@ class InputTextField extends StatefulWidget {
     this.suffixIcon,
     this.obBlurCallback,
     this.keyBoardType = TextInputType.text,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String label;
   final String? addFieldLabel;
@@ -359,10 +359,7 @@ extension _InputTextFieldStateModelX on InputTextFieldStateModel {
 }
 
 class _PrefixIconWidget extends StatelessWidget {
-  const _PrefixIconWidget({
-    required this.state,
-    Key? key,
-  }) : super(key: key);
+  const _PrefixIconWidget({required this.state});
 
   final InputTextFieldStateModel state;
 
@@ -386,10 +383,7 @@ class _PrefixIconWidget extends StatelessWidget {
 }
 
 class _SuffixIconWidget extends StatelessWidget {
-  const _SuffixIconWidget({
-    required this.state,
-    Key? key,
-  }) : super(key: key);
+  const _SuffixIconWidget({required this.state});
 
   final InputTextFieldStateModel state;
 

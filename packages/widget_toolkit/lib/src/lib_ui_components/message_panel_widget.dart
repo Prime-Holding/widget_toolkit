@@ -17,8 +17,8 @@ class MessagePanelWidget extends StatelessWidget {
     this.textDecoration,
     this.isLoading = false,
     this.errorPanelIcon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final MessagePanelState messageState;
   final TextDecoration? textDecoration;
@@ -135,8 +135,7 @@ class _IconWidget extends StatelessWidget {
     required this.state,
     this.color,
     this.errorPanelIcon,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final MessagePanelState state;
   final Color? color;

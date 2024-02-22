@@ -44,8 +44,8 @@ Future<T?> showErrorBlurredBottomSheet<T>({
       context: context,
       onCancelPressed: onCancelCallback,
       configuration: configuration,
-      builder: (ctx) => WillPopScope(
-        onWillPop: () => Future.value(false),
+      builder: (ctx) => PopScope(
+        canPop: false,
         child: _ErrorModalContent(
           error: error,
           titleWidget: headerWidget,

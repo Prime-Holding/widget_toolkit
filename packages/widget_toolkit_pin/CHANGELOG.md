@@ -1,3 +1,6 @@
+## [0.0.2-dev.6]
+* Support flutter 3.19
+
 ## [0.0.2-dev.5]
 * Fix loading animation not being displayed when pin is submitted
 * Update dependencies 

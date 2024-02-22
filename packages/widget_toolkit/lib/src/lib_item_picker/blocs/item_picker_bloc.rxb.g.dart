@@ -8,18 +8,15 @@ part of 'item_picker_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
 /// @nodoc
-abstract class ItemPickerBlocType<T> extends RxBlocTypeBase {
+abstract class ItemPickerBlocType extends RxBlocTypeBase {
   ItemPickerBlocEvents get events;
-  ItemPickerBlocStates<T> get states;
+  ItemPickerBlocStates get states;
 }
 
 /// [$ItemPickerBloc<T>] extended by the [ItemPickerBloc<T>]
 /// @nodoc
 abstract class $ItemPickerBloc<T> extends RxBlocBase
-    implements
-        ItemPickerBlocEvents,
-        ItemPickerBlocStates<T>,
-        ItemPickerBlocType<T> {
+    implements ItemPickerBlocEvents, ItemPickerBlocStates, ItemPickerBlocType {
   final _compositeSubscription = CompositeSubscription();
 
   /// Тhe [Subject] where events sink to by calling [loadItems]
@@ -40,7 +37,7 @@ abstract class $ItemPickerBloc<T> extends RxBlocBase
   ItemPickerBlocEvents get events => this;
 
   @override
-  ItemPickerBlocStates<T> get states => this;
+  ItemPickerBlocStates get states => this;
 
   @override
   void dispose() {
