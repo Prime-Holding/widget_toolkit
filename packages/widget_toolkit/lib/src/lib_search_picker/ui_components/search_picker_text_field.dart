@@ -10,8 +10,8 @@ class SearchPickerTextField extends StatefulWidget {
     this.isFocused = false,
     this.controller,
     this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String? hintText;
   final bool isFocused;

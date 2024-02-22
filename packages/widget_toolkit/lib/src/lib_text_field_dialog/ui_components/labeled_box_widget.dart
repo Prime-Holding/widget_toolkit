@@ -17,12 +17,11 @@ class LabeledBoxWidget extends StatelessWidget {
     this.labelColor,
     this.leadingIcon,
     this.type = LabeledBoxType.filled,
-    Key? key,
-  })  : assert(leadingIcon == null ||
+    super.key,
+  }) : assert(leadingIcon == null ||
             leadingIcon is IconData ||
             leadingIcon is SvgPicture ||
-            leadingIcon is SvgFile),
-        super(key: key);
+            leadingIcon is SvgFile);
 
   final String label;
   final Function() onTap;

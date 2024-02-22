@@ -33,7 +33,6 @@ import '../ui_components/input_text_field.dart';
 /// above it
 class TextFieldDialogPage<T> extends StatelessWidget {
   const TextFieldDialogPage({
-    Key? key,
     required this.callback,
     required this.label,
     required this.fillButtonText,
@@ -44,7 +43,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
     this.isMultiLinedInputField = false,
     this.dialogHasBottomPadding = false,
     this.maxLines,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String label;
   final String fillButtonText;

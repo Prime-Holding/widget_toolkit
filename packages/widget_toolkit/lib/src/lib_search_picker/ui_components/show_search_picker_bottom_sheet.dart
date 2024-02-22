@@ -66,24 +66,15 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
 }
 
 class SearchPickerModalConfiguration extends ModalConfiguration {
-  const SearchPickerModalConfiguration(
-      {bool safeAreaBottom = true,
-      MainAxisAlignment? contentAlignment,
-      bool? fullScreen = true,
-      bool haveOnlyOneSheet = true,
-      bool showHeaderPill = true,
-      bool showCloseButton = false,
-      double? heightFactor,
-      bool dialogHasBottomPadding = true,
-      bool isDismissible = true})
-      : super(
-            safeAreaBottom: safeAreaBottom,
-            contentAlignment: contentAlignment,
-            fullScreen: fullScreen,
-            haveOnlyOneSheet: haveOnlyOneSheet,
-            showHeaderPill: showHeaderPill,
-            showCloseButton: showCloseButton,
-            heightFactor: heightFactor,
-            dialogHasBottomPadding: dialogHasBottomPadding,
-            isDismissible: isDismissible);
+  const SearchPickerModalConfiguration({
+    super.safeAreaBottom = true,
+    super.contentAlignment,
+    super.fullScreen = true,
+    super.haveOnlyOneSheet = true,
+    super.showHeaderPill = true,
+    super.showCloseButton = false,
+    super.heightFactor,
+    super.dialogHasBottomPadding = true,
+    super.isDismissible = true,
+  });
 }

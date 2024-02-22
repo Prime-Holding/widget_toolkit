@@ -91,24 +91,15 @@ class ItemPickerConfiguration {
 }
 
 class ItemPickerModalConfiguration extends ModalConfiguration {
-  const ItemPickerModalConfiguration(
-      {bool safeAreaBottom = false,
-      MainAxisAlignment? contentAlignment,
-      bool? fullScreen = false,
-      bool haveOnlyOneSheet = true,
-      bool showHeaderPill = true,
-      bool showCloseButton = true,
-      double? heightFactor,
-      bool dialogHasBottomPadding = true,
-      bool isDismissible = true})
-      : super(
-            safeAreaBottom: safeAreaBottom,
-            contentAlignment: contentAlignment,
-            fullScreen: fullScreen,
-            haveOnlyOneSheet: haveOnlyOneSheet,
-            showHeaderPill: showHeaderPill,
-            showCloseButton: showCloseButton,
-            heightFactor: heightFactor,
-            dialogHasBottomPadding: dialogHasBottomPadding,
-            isDismissible: isDismissible);
+  const ItemPickerModalConfiguration({
+    super.safeAreaBottom = false,
+    super.contentAlignment,
+    super.fullScreen = false,
+    super.haveOnlyOneSheet = true,
+    super.showHeaderPill = true,
+    super.showCloseButton = true,
+    super.heightFactor,
+    super.dialogHasBottomPadding = true,
+    super.isDismissible = true,
+  });
 }

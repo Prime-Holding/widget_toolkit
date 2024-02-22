@@ -1,3 +1,6 @@
+## [0.0.2-dev.2]
+- Support flutter 3.19
+
 ## [0.0.2-dev.1]
 - Renamed `ErrorUnknown` to `UnknownErrorModel`
 - Added `L10nErrorKeyProvider` abstract class, used to provide localization keys for error messages

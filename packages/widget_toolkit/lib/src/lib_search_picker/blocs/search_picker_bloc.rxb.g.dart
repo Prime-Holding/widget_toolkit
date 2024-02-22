@@ -8,9 +8,9 @@ part of 'search_picker_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
 /// @nodoc
-abstract class SearchPickerBlocType<T> extends RxBlocTypeBase {
+abstract class SearchPickerBlocType extends RxBlocTypeBase {
   SearchPickerBlocEvents get events;
-  SearchPickerBlocStates<T> get states;
+  SearchPickerBlocStates get states;
 }
 
 /// [$SearchPickerBloc<T>] extended by the [SearchPickerBloc<T>]
@@ -18,8 +18,8 @@ abstract class SearchPickerBlocType<T> extends RxBlocTypeBase {
 abstract class $SearchPickerBloc<T> extends RxBlocBase
     implements
         SearchPickerBlocEvents,
-        SearchPickerBlocStates<T>,
-        SearchPickerBlocType<T> {
+        SearchPickerBlocStates,
+        SearchPickerBlocType {
   final _compositeSubscription = CompositeSubscription();
 
   /// Тhe [Subject] where events sink to by calling [loadItems]
@@ -46,7 +46,7 @@ abstract class $SearchPickerBloc<T> extends RxBlocBase
   SearchPickerBlocEvents get events => this;
 
   @override
-  SearchPickerBlocStates<T> get states => this;
+  SearchPickerBlocStates get states => this;
 
   @override
   void dispose() {

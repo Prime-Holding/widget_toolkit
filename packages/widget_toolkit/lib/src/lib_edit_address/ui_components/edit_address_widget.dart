@@ -62,8 +62,8 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
     this.textFieldsModalConfiguration = const TextFieldModalConfiguration(),
     this.countryPickerModalConfiguration =
         const SearchPickerModalConfiguration(),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Function(AddressModel? addressModel)? onChanged;
   final Function(AddressModel addressModel)? onSaved;
@@ -220,8 +220,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
 class _IconWidget extends StatelessWidget {
   const _IconWidget({
     required this.type,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final UserProfileCardTypes type;
 
@@ -242,10 +241,7 @@ class _IconWidget extends StatelessWidget {
 }
 
 class _AddressWidget extends StatelessWidget {
-  const _AddressWidget({
-    required this.address,
-    Key? key,
-  }) : super(key: key);
+  const _AddressWidget({required this.address});
 
   final AddressModel? address;
 
@@ -280,26 +276,17 @@ class _AddressWidget extends StatelessWidget {
 }
 
 class EditAddressConfiguration extends ModalConfiguration {
-  const EditAddressConfiguration(
-      {bool safeAreaBottom = true,
-      MainAxisAlignment? contentAlignment,
-      bool? fullScreen = false,
-      bool haveOnlyOneSheet = false,
-      bool showHeaderPill = true,
-      bool showCloseButton = true,
-      double? heightFactor,
-      bool dialogHasBottomPadding = true,
-      bool isDismissible = true})
-      : super(
-            safeAreaBottom: safeAreaBottom,
-            contentAlignment: contentAlignment,
-            fullScreen: fullScreen,
-            haveOnlyOneSheet: haveOnlyOneSheet,
-            showHeaderPill: showHeaderPill,
-            showCloseButton: showCloseButton,
-            heightFactor: heightFactor,
-            dialogHasBottomPadding: dialogHasBottomPadding,
-            isDismissible: isDismissible);
+  const EditAddressConfiguration({
+    super.safeAreaBottom = true,
+    super.contentAlignment,
+    super.fullScreen = false,
+    super.haveOnlyOneSheet = false,
+    super.showHeaderPill = true,
+    super.showCloseButton = true,
+    super.heightFactor,
+    super.dialogHasBottomPadding = true,
+    super.isDismissible = true,
+  });
 }
 
 class SearchCountryCustomBuilders<T> {

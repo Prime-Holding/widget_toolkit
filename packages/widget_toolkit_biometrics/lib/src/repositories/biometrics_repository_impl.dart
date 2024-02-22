@@ -1,6 +1,6 @@
-import './biometrics_repository.dart';
 import '../data_sources/biometrics_auth_data_source.dart';
 import '../data_sources/biometrics_local_data_source.dart';
+import './biometrics_repository.dart';
 
 class BiometricsRepositoryImpl extends BiometricsRepository {
   BiometricsRepositoryImpl(

@@ -24,8 +24,7 @@ class _PermanentAddressBottomSheetWidget extends StatelessWidget {
   const _PermanentAddressBottomSheetWidget({
     required this.headerText,
     required this.permanentAddressContentMessage,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String headerText;
   final String permanentAddressContentMessage;

@@ -41,7 +41,6 @@ class SelectLanguageItem extends StatelessWidget {
   final String Function(LanguageModel) translate;
 
   const SelectLanguageItem._({
-    Key? key,
     required this.languageKey,
     required this.code,
     required this.languageModel,
@@ -51,7 +50,8 @@ class SelectLanguageItem extends StatelessWidget {
     this.radius = 8,
     this.state = ButtonStateModel.enabled,
     this.colorStyle,
-  }) : super(key: key);
+    super.key,
+  });
 
   factory SelectLanguageItem.selected({
     Key? key,

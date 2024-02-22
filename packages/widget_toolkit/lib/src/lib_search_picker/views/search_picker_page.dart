@@ -28,8 +28,8 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
     this.emptyBuilder,
     this.errorBuilder,
     this.showEmptyWidgetWhenNoResultsAreFound = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   ///Search picker title
   final String title;
