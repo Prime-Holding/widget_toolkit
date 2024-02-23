@@ -7,14 +7,14 @@
 part of 'biometrics_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class BiometricsBlocType extends RxBlocTypeBase {
   BiometricsBlocEvents get events;
   BiometricsBlocStates get states;
 }
 
 /// [$BiometricsBloc] extended by the [BiometricsBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $BiometricsBloc extends RxBlocBase
     implements BiometricsBlocEvents, BiometricsBlocStates, BiometricsBlocType {
   final _compositeSubscription = CompositeSubscription();
