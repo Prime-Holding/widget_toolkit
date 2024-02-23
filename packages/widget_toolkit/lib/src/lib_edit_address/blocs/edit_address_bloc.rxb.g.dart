@@ -7,14 +7,14 @@
 part of 'edit_address_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class EditAddressBlocType extends RxBlocTypeBase {
   EditAddressBlocEvents get events;
   EditAddressBlocStates get states;
 }
 
 /// [$EditAddressBloc] extended by the [EditAddressBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $EditAddressBloc extends RxBlocBase
     implements
         EditAddressBlocEvents,
