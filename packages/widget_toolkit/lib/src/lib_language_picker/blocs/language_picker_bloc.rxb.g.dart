@@ -7,14 +7,14 @@
 part of 'language_picker_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class LanguagePickerBlocType extends RxBlocTypeBase {
   LanguagePickerBlocEvents get events;
   LanguagePickerBlocStates get states;
 }
 
 /// [$LanguagePickerBloc] extended by the [LanguagePickerBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $LanguagePickerBloc extends RxBlocBase
     implements
         LanguagePickerBlocEvents,

@@ -7,14 +7,14 @@
 part of 'qr_scanner_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class QrScannerBlocType<T> extends RxBlocTypeBase {
   QrScannerBlocEvents get events;
   QrScannerBlocStates<T> get states;
 }
 
 /// [$QrScannerBloc<T>] extended by the [QrScannerBloc<T>]
-/// {@nodoc}
+/// @nodoc
 abstract class $QrScannerBloc<T> extends RxBlocBase
     implements
         QrScannerBlocEvents,

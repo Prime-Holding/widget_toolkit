@@ -7,14 +7,14 @@
 part of 'open_uri_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class OpenUriBlocType extends RxBlocTypeBase {
   OpenUriBlocEvents get events;
   OpenUriBlocStates get states;
 }
 
 /// [$OpenUriBloc] extended by the [OpenUriBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $OpenUriBloc extends RxBlocBase
     implements OpenUriBlocEvents, OpenUriBlocStates, OpenUriBlocType {
   final _compositeSubscription = CompositeSubscription();

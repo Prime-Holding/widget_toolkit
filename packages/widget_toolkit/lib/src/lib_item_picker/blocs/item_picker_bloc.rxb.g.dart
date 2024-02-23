@@ -4,7 +4,12 @@
 // Generator: RxBlocGeneratorForAnnotation
 // **************************************************************************
 
-part of 'item_picker_bloc.dart';
+import 'package:rx_bloc/rx_bloc.dart';
+import 'package:rxdart/rxdart.dart';
+
+import 'item_picker_bloc.dart';
+
+//part of 'item_picker_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
 /// @nodoc

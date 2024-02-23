@@ -1,6 +1,6 @@
 name: widget_toolkit_qr
 description: A Flutter package which provides a QR scanner widget easy integratable into the application.
-version: 0.0.2-dev.3
+version: 0.0.2-dev.4
 repository: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_qr
 issue_tracker: https://github.com/orgs/Prime-Holding/projects/6
 homepage: https://primeholding.com/

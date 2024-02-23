@@ -7,14 +7,14 @@
 part of 'text_field_dialog_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class TextFieldDialogBlocType extends RxBlocTypeBase {
   TextFieldDialogBlocEvents get events;
   TextFieldDialogBlocStates get states;
 }
 
 /// [$TextFieldDialogBloc<T>] extended by the [TextFieldDialogBloc<T>]
-/// {@nodoc}
+/// @nodoc
 abstract class $TextFieldDialogBloc<T> extends RxBlocBase
     implements
         TextFieldDialogBlocEvents,

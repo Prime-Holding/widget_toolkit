@@ -54,8 +54,7 @@ class _CameraPermissionWidget extends StatelessWidget {
     this.cameraPermissionButtonText,
     this.cameraAccessTitleText,
     this.cameraAccessLabelText,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onPermissionTab;
   final String? cameraPermissionButtonText;
