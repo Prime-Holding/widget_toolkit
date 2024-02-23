@@ -7,14 +7,14 @@
 part of 'sms_code_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class SmsCodeBlocType extends RxBlocTypeBase {
   SmsCodeBlocEvents get events;
   SmsCodeBlocStates get states;
 }
 
 /// [$SmsCodeBloc] extended by the [SmsCodeBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $SmsCodeBloc extends RxBlocBase
     implements SmsCodeBlocEvents, SmsCodeBlocStates, SmsCodeBlocType {
   final _compositeSubscription = CompositeSubscription();
