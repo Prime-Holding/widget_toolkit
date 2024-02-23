@@ -9,8 +9,8 @@ class PrimeLinearProgressIndicator extends StatelessWidget {
     this.valueColor,
     this.minHeight,
     this.borderRadius,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Color? backgroundColor;
   final Color? color;

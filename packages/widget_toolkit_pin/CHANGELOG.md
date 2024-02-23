@@ -1,3 +1,6 @@
+## [0.0.2-dev.7]
+* Fixes and improvements
+
 ## [0.0.2-dev.6]
 * Support flutter 3.19
 

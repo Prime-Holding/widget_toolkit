@@ -7,14 +7,14 @@
 part of 'pin_code_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class PinCodeBlocType extends RxBlocTypeBase {
   PinCodeBlocEvents get events;
   PinCodeBlocStates get states;
 }
 
 /// [$PinCodeBloc] extended by the [PinCodeBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $PinCodeBloc extends RxBlocBase
     implements PinCodeBlocEvents, PinCodeBlocStates, PinCodeBlocType {
   final _compositeSubscription = CompositeSubscription();

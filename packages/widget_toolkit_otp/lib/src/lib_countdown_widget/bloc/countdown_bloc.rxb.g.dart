@@ -7,14 +7,14 @@
 part of 'countdown_bloc.dart';
 
 /// Used as a contractor for the bloc, events and states classes
-/// {@nodoc}
+/// @nodoc
 abstract class CountdownBlocType extends RxBlocTypeBase {
   CountdownBlocEvents get events;
   CountdownBlocStates get states;
 }
 
 /// [$CountdownBloc] extended by the [CountdownBloc]
-/// {@nodoc}
+/// @nodoc
 abstract class $CountdownBloc extends RxBlocBase
     implements CountdownBlocEvents, CountdownBlocStates, CountdownBlocType {
   final _compositeSubscription = CompositeSubscription();

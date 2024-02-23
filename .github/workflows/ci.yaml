@@ -27,12 +27,18 @@ jobs:
           channel: "stable"
       - run: dart --version
       - run: flutter --version
+      - run: dart pub global activate pana
       - name: Install Dependencies
         working-directory: ${{ matrix.folder }}
         run: flutter pub get
       - name: Analyze
         working-directory: ${{ matrix.folder }}
         run: flutter analyze lib
+      - name: Verify package for publishing
+        working-directory: ${{ matrix.folder }}
+        run: |
+          dart pub global run pana .
+          dart pub publish --dry-run
       - name: Run tests
         working-directory: ${{ matrix.folder }}
         run: |

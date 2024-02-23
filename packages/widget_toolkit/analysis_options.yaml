@@ -15,6 +15,5 @@ linter:
 
 analyzer:
   exclude:
-    - '**/*.g.dart'
     - lib/assets.dart
     - dart_test.yaml
