@@ -22,8 +22,8 @@ class QrScannerComponent<T> extends StatelessWidget {
     this.cameraPermissionBottomSheetConfiguration,
     this.spaceBetweenScannerAndLoadingWidget,
     this.isLoadingIndicatorVisible = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Function(Object)? onError;
   final Function(String)? onCodeScanned;
@@ -148,8 +148,7 @@ class _QRBarScannerCamera extends StatelessWidget {
     this.formats,
     this.notStartedBuilder,
     this.offscreenBuilder,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final WidgetBuilder? notStartedBuilder;
   final WidgetBuilder? offscreenBuilder;
