@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
         WidgetToolkitTheme.light,
-        ItemPickerTheme.light,
+        ItemPickerTheme.light(),
         SearchPickerTheme.light,
         TextFieldDialogTheme.light,
         EditAddressTheme.light,
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
         WidgetToolkitTheme.dark,
-        ItemPickerTheme.dark,
+        ItemPickerTheme.dark(),
         SearchPickerTheme.dark,
         TextFieldDialogTheme.dark,
         EditAddressTheme.dark,

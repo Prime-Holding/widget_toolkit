@@ -99,8 +99,8 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          ItemPickerTheme.light,
-          LanguagePickerTheme.light.copyWith(
+          ItemPickerTheme.light(),
+          LanguagePickerTheme.light().copyWith(
             descriptionThin: const TextStyle(
               inherit: true,
             ),
@@ -136,8 +136,8 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          ItemPickerTheme.dark,
-          LanguagePickerTheme.dark.copyWith(
+          ItemPickerTheme.dark(),
+          LanguagePickerTheme.dark().copyWith(
             descriptionThin: const TextStyle(
               inherit: true,
             ),
