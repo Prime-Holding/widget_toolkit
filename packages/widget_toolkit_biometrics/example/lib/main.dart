@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         // You have to provide the [WidgetToolkitTheme]s in order for the
         // [BiometricsSwitch] to work
         extensions: [
-          WidgetToolkitTheme.light,
+          WidgetToolkitTheme.light(),
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         extensions: [
           // You have to provide the [WidgetToolkitTheme]s in order for the
           // [BiometricsSwitch] to work
-          WidgetToolkitTheme.dark,
+          WidgetToolkitTheme.dark(),
         ],
       ),
       home: const MyHomePage(title: 'Widget Toolkit Biometrics Demo'),

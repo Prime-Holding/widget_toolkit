@@ -88,9 +88,9 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
       builder,
       theme: theme == Themes.light
           ? ThemeData.light().copyWith(
-              extensions: [WidgetToolkitTheme.light, QrScannerTheme.light])
+              extensions: [WidgetToolkitTheme.light(), QrScannerTheme.light()])
           : ThemeData.dark().copyWith(
-              extensions: [WidgetToolkitTheme.dark, QrScannerTheme.dark]),
+              extensions: [WidgetToolkitTheme.dark(), QrScannerTheme.dark()]),
     );
 
 /// Wraps a [DeviceBuilder] in a [materialAppWrapper] using any of the

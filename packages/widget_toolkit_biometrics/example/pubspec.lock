@@ -624,14 +624,14 @@ packages:
       path: "../../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.2-dev.2"
+    version: "0.0.2-dev.3"
   widget_toolkit_biometrics:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.2-dev.2"
+    version: "0.0.2-dev.3"
   win32:
     dependency: transitive
     description:

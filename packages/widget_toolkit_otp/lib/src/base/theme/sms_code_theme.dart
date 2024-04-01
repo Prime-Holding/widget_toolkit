@@ -3,179 +3,214 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'sms_code_theme.tailor.dart';
 
-@Tailor(themeGetter: ThemeGetter.none)
-class _$SmsCodeTheme {
-  /// region Default state
+@TailorMixinComponent()
+class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
+    with _$SmsCodeThemeTailorMixin {
+  const SmsCodeTheme({
+    required this.primaryColor,
+    required this.defaultBackgroundColor,
+    required this.defaultBorderColor,
+    required this.defaultBorderWidth,
+    required this.defaultBorderRadius,
+    required this.defaultTextStyle,
+    required this.errorBackgroundColor,
+    required this.errorBorderColor,
+    required this.errorBorderWidth,
+    required this.errorBorderRadius,
+    required this.errorTextStyle,
+    required this.descriptionBoldTextStyle,
+    required this.validityTitleTextStyle,
+    required this.successBackgroundColor,
+    required this.successBorderColor,
+    required this.successBorderWidth,
+    required this.successTextStyle,
+    required this.disabledBackgroundColor,
+    required this.disabledTextStyle,
+    required this.submittedBackgroundColor,
+    required this.resendButtonLoadingIndicatorSize,
+    required this.resendButtonBackgroundColor,
+    required this.resendButtonActiveTextColor,
+    required this.resendButtonDisabledTextColor,
+    required this.resendButtonSuccessTextColor,
+    required this.resendButtonErrorTextColor,
+    required this.resendButtonPressedColor,
+    required this.gray,
+    required this.captionBold,
+    required this.resendButtonDefaultTextStyle,
+  });
 
-  static List<Color> primaryColor = [
-    const Color(0xff2196f3),
-    const Color(0xffce93d8),
-  ];
+  /// region Themes
 
-  static List<Color> defaultBackgroundColor = [
-    const Color.fromRGBO(222, 231, 240, .57),
-    const Color.fromRGBO(222, 231, 240, .9),
-  ];
+  SmsCodeTheme.light()
+      : primaryColor = const Color(0xff2196f3),
+        defaultBackgroundColor = const Color.fromRGBO(222, 231, 240, .57),
+        defaultBorderColor = Colors.black54.withOpacity(0.4),
+        defaultBorderWidth = 1.5,
+        defaultBorderRadius = const BorderRadius.all(Radius.circular(8)),
+        defaultTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+        errorBackgroundColor = Colors.redAccent.withOpacity(0.3),
+        errorBorderColor = Colors.red,
+        errorBorderWidth = 2,
+        errorBorderRadius = const BorderRadius.all(Radius.circular(8)),
+        errorTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+        descriptionBoldTextStyle =
+            const TextStyle(fontSize: 14, color: Colors.black, height: 1.6),
+        validityTitleTextStyle =
+            const TextStyle(fontSize: 14, color: Colors.black, height: 1.6),
+        successBackgroundColor = Colors.greenAccent.withOpacity(0.3),
+        successBorderColor = Colors.green,
+        successBorderWidth = 2,
+        successTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+        disabledBackgroundColor = const Color.fromRGBO(222, 231, 240, .18),
+        disabledTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Color.fromRGBO(0, 0, 0, .3),
+        ),
+        submittedBackgroundColor = const Color.fromRGBO(222, 231, 240, .9),
+        resendButtonLoadingIndicatorSize = 16,
+        resendButtonBackgroundColor = Colors.transparent,
+        resendButtonActiveTextColor = const Color(0xff2196f3),
+        resendButtonDisabledTextColor = const Color(0xff9da2a6),
+        resendButtonSuccessTextColor = Colors.green,
+        resendButtonErrorTextColor = Colors.red,
+        resendButtonPressedColor = Colors.transparent,
+        gray = const Color(0xff9da2a6),
+        captionBold = const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal,
+            letterSpacing: 0.8,
+            fontSize: 10.0),
+        resendButtonDefaultTextStyle = const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal,
+            letterSpacing: 0.8,
+            fontSize: 10.0);
 
-  static List<Color> defaultBorderColor = [
-    Colors.black54.withOpacity(0.4),
-    Colors.black54.withOpacity(0.4),
-  ];
-
-  static List<double> defaultBorderWidth = [1.5, 1.5];
-
-  static List<BorderRadius> defaultBorderRadius = [
-    const BorderRadius.all(Radius.circular(8)),
-    const BorderRadius.all(Radius.circular(8)),
-  ];
-
-  static List<TextStyle?> defaultTextStyle = [
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.black,
-    ),
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.white,
-    ),
-  ];
-
-  /// endregion
-
-  /// region Error state
-
-  static List<Color> errorBackgroundColor = [
-    Colors.redAccent.withOpacity(0.3),
-    Colors.redAccent.withOpacity(0.3),
-  ];
-
-  static List<Color> errorBorderColor = [
-    Colors.red,
-    Colors.red,
-  ];
-
-  static List<double> errorBorderWidth = [2, 2];
-
-  static List<BorderRadius> errorBorderRadius = [
-    const BorderRadius.all(Radius.circular(8)),
-    const BorderRadius.all(Radius.circular(8)),
-  ];
-
-  static List<TextStyle?> errorTextStyle = [
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.black,
-    ),
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.white,
-    ),
-  ];
-
-  static List<TextStyle?> descriptionBoldTextStyle = [
-    const TextStyle(fontSize: 14, color: Colors.black, height: 1.6),
-    const TextStyle(fontSize: 14, color: Colors.white, height: 1.6),
-  ];
-
-  static List<TextStyle?> validityTitleTextStyle = descriptionBoldTextStyle;
-
-  /// endregion
-
-  /// region Success state
-
-  static List<Color> successBackgroundColor = [
-    Colors.greenAccent.withOpacity(0.3),
-    Colors.greenAccent.withOpacity(0.3),
-  ];
-
-  static List<Color> successBorderColor = [
-    Colors.green,
-    Colors.green,
-  ];
-
-  static List<double> successBorderWidth = [2, 2];
-
-  static List<TextStyle?> successTextStyle = [
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.black,
-    ),
-    const TextStyle(
-      fontSize: 18,
-      color: Colors.white,
-    ),
-  ];
-
-  /// endregion
-
-  /// region Disabled state
-
-  static List<Color> disabledBackgroundColor = [
-    const Color.fromRGBO(222, 231, 240, .18),
-    const Color.fromRGBO(222, 231, 240, .3),
-  ];
-
-  static List<TextStyle?> disabledTextStyle = [
-    const TextStyle(
-      fontSize: 18,
-      color: Color.fromRGBO(0, 0, 0, .3),
-    ),
-    const TextStyle(
-      fontSize: 18,
-      color: Color.fromRGBO(0, 0, 0, .3),
-    ),
-  ];
-
-  /// endregion
-
-  /// region Submitted state
-
-  static List<Color> submittedBackgroundColor = [
-    const Color.fromRGBO(222, 231, 240, .9),
-    const Color.fromRGBO(222, 231, 240, .57),
-  ];
-
-  /// endregion
-
-  /// region Resend button
-
-  static List<double> resendButtonLoadingIndicatorSize = [16, 16];
-
-  static List<Color> resendButtonBackgroundColor = [
-    Colors.transparent,
-    Colors.transparent
-  ];
-
-  static List<Color> resendButtonActiveTextColor = primaryColor;
-
-  static List<Color> resendButtonDisabledTextColor = [gray, gray];
-
-  static List<Color> resendButtonSuccessTextColor = [
-    Colors.green,
-    Colors.green
-  ];
-
-  static List<Color> resendButtonErrorTextColor = [Colors.red, Colors.red];
-
-  static List<Color> resendButtonPressedColor = [
-    Colors.transparent,
-    Colors.transparent
-  ];
+  SmsCodeTheme.dark()
+      : primaryColor = const Color(0xffce93d8),
+        defaultBackgroundColor = const Color.fromRGBO(222, 231, 240, .9),
+        defaultBorderColor = Colors.black54.withOpacity(0.4),
+        defaultBorderWidth = 1.5,
+        defaultBorderRadius = const BorderRadius.all(Radius.circular(8)),
+        defaultTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+        ),
+        errorBackgroundColor = Colors.redAccent.withOpacity(0.3),
+        errorBorderColor = Colors.red,
+        errorBorderWidth = 2,
+        errorBorderRadius = const BorderRadius.all(Radius.circular(8)),
+        errorTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+        ),
+        descriptionBoldTextStyle =
+            const TextStyle(fontSize: 14, color: Colors.white, height: 1.6),
+        validityTitleTextStyle =
+            const TextStyle(fontSize: 14, color: Colors.white, height: 1.6),
+        successBackgroundColor = Colors.greenAccent.withOpacity(0.3),
+        successBorderColor = Colors.green,
+        successBorderWidth = 2,
+        successTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+        ),
+        disabledBackgroundColor = const Color.fromRGBO(222, 231, 240, .3),
+        disabledTextStyle = const TextStyle(
+          fontSize: 18,
+          color: Color.fromRGBO(0, 0, 0, .3),
+        ),
+        submittedBackgroundColor = const Color.fromRGBO(222, 231, 240, .57),
+        resendButtonLoadingIndicatorSize = 16,
+        resendButtonBackgroundColor = Colors.transparent,
+        resendButtonActiveTextColor = const Color(0xffce93d8),
+        resendButtonDisabledTextColor = const Color(0xff9da2a6),
+        resendButtonSuccessTextColor = Colors.green,
+        resendButtonErrorTextColor = Colors.red,
+        resendButtonPressedColor = Colors.transparent,
+        gray = const Color(0xff9da2a6),
+        captionBold = const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal,
+            letterSpacing: 0.8,
+            fontSize: 10.0),
+        resendButtonDefaultTextStyle = const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal,
+            letterSpacing: 0.8,
+            fontSize: 10.0);
 
   /// endregion
 
-  static Color gray = const Color(0xff9da2a6);
-
-  static TextStyle captionBold = const TextStyle(
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-      letterSpacing: 0.8,
-      fontSize: 10.0);
-
-  static List<TextStyle> resendButtonDefaultTextStyle = [
-    captionBold,
-    captionBold
-  ];
+  @override
+  final Color primaryColor;
+  @override
+  final Color defaultBackgroundColor;
+  @override
+  final Color defaultBorderColor;
+  @override
+  final double defaultBorderWidth;
+  @override
+  final BorderRadius defaultBorderRadius;
+  @override
+  final TextStyle? defaultTextStyle;
+  @override
+  final Color errorBackgroundColor;
+  @override
+  final Color errorBorderColor;
+  @override
+  final double errorBorderWidth;
+  @override
+  final BorderRadius errorBorderRadius;
+  @override
+  final TextStyle? errorTextStyle;
+  @override
+  final TextStyle? descriptionBoldTextStyle;
+  @override
+  final TextStyle? validityTitleTextStyle;
+  @override
+  final Color successBackgroundColor;
+  @override
+  final Color successBorderColor;
+  @override
+  final double successBorderWidth;
+  @override
+  final TextStyle? successTextStyle;
+  @override
+  final Color disabledBackgroundColor;
+  @override
+  final TextStyle? disabledTextStyle;
+  @override
+  final Color submittedBackgroundColor;
+  @override
+  final double resendButtonLoadingIndicatorSize;
+  @override
+  final Color resendButtonBackgroundColor;
+  @override
+  final Color resendButtonActiveTextColor;
+  @override
+  final Color resendButtonDisabledTextColor;
+  @override
+  final Color resendButtonSuccessTextColor;
+  @override
+  final Color resendButtonErrorTextColor;
+  @override
+  final Color resendButtonPressedColor;
+  @override
+  final Color gray;
+  @override
+  final TextStyle captionBold;
+  @override
+  final TextStyle resendButtonDefaultTextStyle;
 }
 
 extension SmsCodeThemeContextExtension on BuildContext {
