@@ -1,6 +1,6 @@
 name: widget_toolkit
 description: The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
-version: 0.0.2-dev.3
+version: 0.0.2
 repository: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit
 issue_tracker: https://github.com/orgs/Prime-Holding/projects/6
 homepage: https://www.primeholding.com
@@ -22,7 +22,7 @@ dependencies:
   rx_bloc: ^5.0.0
   rxdart: ^0.27.7
   shimmer: ^3.0.0
-  theme_tailor_annotation: ^2.0.0
+  theme_tailor_annotation: ^3.0.0
   url_launcher: ^6.1.12
 
 dev_dependencies:
@@ -38,7 +38,7 @@ dev_dependencies:
   r_flutter: ^0.9.0
   rx_bloc_generator: ^7.0.0
   rx_bloc_test: ^4.0.0
-  theme_tailor: ^2.0.0
+  theme_tailor: ^3.0.0
 
 flutter:
   uses-material-design: true
