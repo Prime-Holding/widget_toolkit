@@ -8,55 +8,25 @@ part of 'search_picker_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class SearchPickerTheme extends ThemeExtension<SearchPickerTheme> {
-  const SearchPickerTheme({
-    required this.errorEdgeInsets,
-    required this.searchFieldOuterEdgeInsets,
-    required this.titlePadding,
-    required this.titleStyle,
-  });
-
-  final EdgeInsets errorEdgeInsets;
-  final EdgeInsets searchFieldOuterEdgeInsets;
-
-  /// region SearchPickerPage
-  final EdgeInsets titlePadding;
-  final TextStyle titleStyle;
-
-  static final SearchPickerTheme light = SearchPickerTheme(
-    errorEdgeInsets: _$SearchPickerTheme.errorEdgeInsets[0],
-    searchFieldOuterEdgeInsets:
-        _$SearchPickerTheme.searchFieldOuterEdgeInsets[0],
-    titlePadding: _$SearchPickerTheme.titlePadding[0],
-    titleStyle: _$SearchPickerTheme.titleStyle[0],
-  );
-
-  static final SearchPickerTheme dark = SearchPickerTheme(
-    errorEdgeInsets: _$SearchPickerTheme.errorEdgeInsets[1],
-    searchFieldOuterEdgeInsets:
-        _$SearchPickerTheme.searchFieldOuterEdgeInsets[1],
-    titlePadding: _$SearchPickerTheme.titlePadding[1],
-    titleStyle: _$SearchPickerTheme.titleStyle[1],
-  );
-
-  static final themes = [
-    light,
-    dark,
-  ];
+mixin _$SearchPickerThemeTailorMixin on ThemeExtension<SearchPickerTheme> {
+  EdgeInsets get titlePadding;
+  TextStyle get titleStyle;
+  EdgeInsets get searchFieldOuterEdgeInsets;
+  EdgeInsets get errorEdgeInsets;
 
   @override
   SearchPickerTheme copyWith({
-    EdgeInsets? errorEdgeInsets,
-    EdgeInsets? searchFieldOuterEdgeInsets,
     EdgeInsets? titlePadding,
     TextStyle? titleStyle,
+    EdgeInsets? searchFieldOuterEdgeInsets,
+    EdgeInsets? errorEdgeInsets,
   }) {
     return SearchPickerTheme(
-      errorEdgeInsets: errorEdgeInsets ?? this.errorEdgeInsets,
-      searchFieldOuterEdgeInsets:
-          searchFieldOuterEdgeInsets ?? this.searchFieldOuterEdgeInsets,
       titlePadding: titlePadding ?? this.titlePadding,
       titleStyle: titleStyle ?? this.titleStyle,
+      searchFieldOuterEdgeInsets:
+          searchFieldOuterEdgeInsets ?? this.searchFieldOuterEdgeInsets,
+      errorEdgeInsets: errorEdgeInsets ?? this.errorEdgeInsets,
     );
   }
 
@@ -65,12 +35,12 @@ class SearchPickerTheme extends ThemeExtension<SearchPickerTheme> {
       covariant ThemeExtension<SearchPickerTheme>? other, double t) {
     if (other is! SearchPickerTheme) return this as SearchPickerTheme;
     return SearchPickerTheme(
-      errorEdgeInsets: t < 0.5 ? errorEdgeInsets : other.errorEdgeInsets,
+      titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
+      titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
       searchFieldOuterEdgeInsets: t < 0.5
           ? searchFieldOuterEdgeInsets
           : other.searchFieldOuterEdgeInsets,
-      titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
-      titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
+      errorEdgeInsets: t < 0.5 ? errorEdgeInsets : other.errorEdgeInsets,
     );
   }
 
@@ -80,23 +50,23 @@ class SearchPickerTheme extends ThemeExtension<SearchPickerTheme> {
         (other.runtimeType == runtimeType &&
             other is SearchPickerTheme &&
             const DeepCollectionEquality()
-                .equals(errorEdgeInsets, other.errorEdgeInsets) &&
+                .equals(titlePadding, other.titlePadding) &&
+            const DeepCollectionEquality()
+                .equals(titleStyle, other.titleStyle) &&
             const DeepCollectionEquality().equals(
                 searchFieldOuterEdgeInsets, other.searchFieldOuterEdgeInsets) &&
             const DeepCollectionEquality()
-                .equals(titlePadding, other.titlePadding) &&
-            const DeepCollectionEquality()
-                .equals(titleStyle, other.titleStyle));
+                .equals(errorEdgeInsets, other.errorEdgeInsets));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(errorEdgeInsets),
-      const DeepCollectionEquality().hash(searchFieldOuterEdgeInsets),
       const DeepCollectionEquality().hash(titlePadding),
       const DeepCollectionEquality().hash(titleStyle),
+      const DeepCollectionEquality().hash(searchFieldOuterEdgeInsets),
+      const DeepCollectionEquality().hash(errorEdgeInsets),
     );
   }
 }

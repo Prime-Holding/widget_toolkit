@@ -9,8 +9,6 @@ part 'language_picker_theme.tailor.dart';
 @TailorMixinComponent()
 class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
     with _$LanguagePickerThemeTailorMixin {
-  /// region Constructors
-
   const LanguagePickerTheme({
     required this.descriptionThin,
     required this.titleBold,
@@ -40,6 +38,67 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
     required this.chooseLanguageInactiveEdgeInsets,
     required this.messagePanelErrorEdgeInsets,
   });
+
+  @override
+  final EdgeInsets changeLanguagePadding;
+  @override
+  final EdgeInsets chooseLanguagePadding;
+  @override
+  final EdgeInsets chooseLanguageActiveEdgeInsets;
+  @override
+  final EdgeInsets chooseLanguageInactiveEdgeInsets;
+
+  @override
+  final TextStyle descriptionThin;
+  @override
+  final TextStyle titleBold;
+  @override
+  final TextStyle languageCodeInLanguagePickerTitleBold;
+
+  @override
+  final double spacingS;
+  @override
+  final double changeLanguageSizedBox;
+  @override
+  final double spacingM;
+  @override
+  final double spacingXXXXL1;
+  @override
+  final EdgeInsets messagePanelErrorEdgeInsets;
+
+  @override
+  final Color activeButtonLanguageTextColor;
+  @override
+  final Color disabledFilledButtonBackgroundColor;
+  @override
+  final Color activeGradientEnd;
+  @override
+  final Color languageGradientStart;
+  @override
+  final Color languageGradientEnd;
+  @override
+  final Color filledButtonBackgroundColorDisabled;
+  @override
+  final Color buttonTextColor;
+  @override
+  final Color filledButtonTextColorDisabled;
+  @override
+  final Color textColorWhite;
+  @override
+  final Color boxShadowColor;
+  @override
+  final Color bodyTextColor2;
+  @override
+  final Color buttonBlueGradientEnd;
+  @override
+  final Color elevatedButtonBackgroundColor;
+  @override
+  final Color outlineButtonBackgroundColor;
+
+  @override
+  final SvgFile checkIcon;
+
+  /// region Themes
 
   LanguagePickerTheme.light()
       : changeLanguagePadding = EdgeInsets.zero,
@@ -128,65 +187,6 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
         checkIcon = WidgetToolkitDesignSystem.light().icons.checkIcon;
 
   /// endregion
-
-  @override
-  final EdgeInsets changeLanguagePadding;
-  @override
-  final EdgeInsets chooseLanguagePadding;
-  @override
-  final EdgeInsets chooseLanguageActiveEdgeInsets;
-  @override
-  final EdgeInsets chooseLanguageInactiveEdgeInsets;
-
-  @override
-  final TextStyle descriptionThin;
-  @override
-  final TextStyle titleBold;
-  @override
-  final TextStyle languageCodeInLanguagePickerTitleBold;
-
-  @override
-  final double spacingS;
-  @override
-  final double changeLanguageSizedBox;
-  @override
-  final double spacingM;
-  @override
-  final double spacingXXXXL1;
-  @override
-  final EdgeInsets messagePanelErrorEdgeInsets;
-
-  @override
-  final Color activeButtonLanguageTextColor;
-  @override
-  final Color disabledFilledButtonBackgroundColor;
-  @override
-  final Color activeGradientEnd;
-  @override
-  final Color languageGradientStart;
-  @override
-  final Color languageGradientEnd;
-  @override
-  final Color filledButtonBackgroundColorDisabled;
-  @override
-  final Color buttonTextColor;
-  @override
-  final Color filledButtonTextColorDisabled;
-  @override
-  final Color textColorWhite;
-  @override
-  final Color boxShadowColor;
-  @override
-  final Color bodyTextColor2;
-  @override
-  final Color buttonBlueGradientEnd;
-  @override
-  final Color elevatedButtonBackgroundColor;
-  @override
-  final Color outlineButtonBackgroundColor;
-
-  @override
-  final SvgFile checkIcon;
 }
 
 extension LanguagePickerThemeContextExtension on BuildContext {

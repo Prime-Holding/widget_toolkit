@@ -16,24 +16,15 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme>
     required this.footerPadding,
   });
 
-  @override
-  final EdgeInsets titlePadding;
-  @override
-  final TextStyle titleStyle;
-  @override
-  final EdgeInsets errorPadding;
-  @override
-  final EdgeInsets contentListPadding;
-  @override
-  final EdgeInsets footerPadding;
+  /// region Themes
 
   ItemPickerTheme.light()
-      : titlePadding = EdgeInsets.only(
+      : contentListPadding = EdgeInsets.zero,
+        titlePadding = EdgeInsets.only(
             bottom: WidgetToolkitDesignSystem.light().spacings.m,
             left: WidgetToolkitDesignSystem.light().spacings.xs),
         titleStyle = WidgetToolkitDesignSystem.light().typography.titleStyle,
         errorPadding = EdgeInsets.zero,
-        contentListPadding = EdgeInsets.zero,
         footerPadding =
             EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m);
 
@@ -46,6 +37,19 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme>
         contentListPadding = EdgeInsets.zero,
         footerPadding =
             EdgeInsets.only(top: WidgetToolkitDesignSystem.dark().spacings.m);
+
+  /// endregion
+
+  @override
+  final EdgeInsets titlePadding;
+  @override
+  final TextStyle titleStyle;
+  @override
+  final EdgeInsets errorPadding;
+  @override
+  final EdgeInsets contentListPadding;
+  @override
+  final EdgeInsets footerPadding;
 }
 
 extension ItemPickerThemeContextExtension on BuildContext {

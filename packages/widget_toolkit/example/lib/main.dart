@@ -17,19 +17,19 @@ class MyApp extends StatelessWidget {
       title: 'Widget Toolkit Demo',
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.light,
+        WidgetToolkitTheme.light(),
         ItemPickerTheme.light(),
-        SearchPickerTheme.light,
-        TextFieldDialogTheme.light,
-        EditAddressTheme.light,
+        SearchPickerTheme.light(),
+        TextFieldDialogTheme.light(),
+        EditAddressTheme.light(),
       ]),
       darkTheme: ThemeData.dark()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.dark,
+        WidgetToolkitTheme.dark(),
         ItemPickerTheme.dark(),
-        SearchPickerTheme.dark,
-        TextFieldDialogTheme.dark,
-        EditAddressTheme.dark,
+        SearchPickerTheme.dark(),
+        TextFieldDialogTheme.dark(),
+        EditAddressTheme.dark(),
       ]),
       home: const MyHomePage(),
     );
