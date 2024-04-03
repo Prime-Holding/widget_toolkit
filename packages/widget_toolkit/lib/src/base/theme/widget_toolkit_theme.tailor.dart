@@ -34,9 +34,9 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   TextStyle get textButtonTextStyle;
   Color get errorCardIconColor;
   Color get errorCardBackgroundColor;
-  Color get lightRed;
-  Color get blueLight;
-  Color get greenLight;
+  Color get messagePanelBackgroundColorImportant;
+  Color get messagePanelBackgroundColorInformative;
+  Color get messagePanelBackgroundColorPositive;
   Color get errorCardTextColor;
   Color get bottomSheetBarrierColor;
   Color get messagePanelBackgroundColor;
@@ -59,7 +59,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   Color get buttonTextColor;
   Color get shimmerBaseColor;
   Color get shimmerHighlightColor;
-  Color get white;
+  Color get messagePanelColorNeutral;
   Color get buttonBlueGradientEnd;
   Color get elevatedButtonBackgroundColor;
   Color get textColorWhite;
@@ -69,15 +69,16 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   Color get activeButtonLanguageTextColor;
   Color get activeButtonTextColor;
   Color get disabledButtonTextColor;
-  Color get black;
+  Color get shimmerTextColor;
   Color get activeGradientColorStart;
   Color get activeGradientColorEnd;
   Color get boxShadowColor;
-  Color get red;
-  Color get orange;
-  Color get orangeLight;
-  Color get darkBlue;
-  Color get darkGreen;
+  Color get messagePanelBackgroundColorNeutral;
+  Color get messagePanelColorLessImportant;
+  Color get messagePanelBackgroundColorLessImportant;
+  Color get messagePanelColorInformative;
+  Color get messagePanelColorImportant;
+  Color get messagePanelColorPositive;
   Color get textButtonLoadingIndicatorColor;
   Color get buttonShadowColor;
   Color get buttonPressedColor;
@@ -96,9 +97,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   EdgeInsets get bottomSheetContentPadding;
   EdgeInsets get messagePanelErrorEdgeInsets;
   EdgeInsets get errorModalContentTitleInsets;
-  EdgeInsets get smallEdgeInsets;
-  EdgeInsets get mediumEdgeInsets;
-  EdgeInsets get largeEdgeInsets;
+  EdgeInsets get smallButtonPadding;
+  EdgeInsets get gradientFillButtonDefaultPadding;
   EdgeInsets get messagePanelEdgeInsets;
   double get spacingXS1;
   double get spacingXS;
@@ -149,9 +149,9 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     TextStyle? textButtonTextStyle,
     Color? errorCardIconColor,
     Color? errorCardBackgroundColor,
-    Color? lightRed,
-    Color? blueLight,
-    Color? greenLight,
+    Color? messagePanelBackgroundColorImportant,
+    Color? messagePanelBackgroundColorInformative,
+    Color? messagePanelBackgroundColorPositive,
     Color? errorCardTextColor,
     Color? bottomSheetBarrierColor,
     Color? messagePanelBackgroundColor,
@@ -174,7 +174,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     Color? buttonTextColor,
     Color? shimmerBaseColor,
     Color? shimmerHighlightColor,
-    Color? white,
+    Color? messagePanelColorNeutral,
     Color? buttonBlueGradientEnd,
     Color? elevatedButtonBackgroundColor,
     Color? textColorWhite,
@@ -184,15 +184,16 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     Color? activeButtonLanguageTextColor,
     Color? activeButtonTextColor,
     Color? disabledButtonTextColor,
-    Color? black,
+    Color? shimmerTextColor,
     Color? activeGradientColorStart,
     Color? activeGradientColorEnd,
     Color? boxShadowColor,
-    Color? red,
-    Color? orange,
-    Color? orangeLight,
-    Color? darkBlue,
-    Color? darkGreen,
+    Color? messagePanelBackgroundColorNeutral,
+    Color? messagePanelColorLessImportant,
+    Color? messagePanelBackgroundColorLessImportant,
+    Color? messagePanelColorInformative,
+    Color? messagePanelColorImportant,
+    Color? messagePanelColorPositive,
     Color? textButtonLoadingIndicatorColor,
     Color? buttonShadowColor,
     Color? buttonPressedColor,
@@ -211,9 +212,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     EdgeInsets? bottomSheetContentPadding,
     EdgeInsets? messagePanelErrorEdgeInsets,
     EdgeInsets? errorModalContentTitleInsets,
-    EdgeInsets? smallEdgeInsets,
-    EdgeInsets? mediumEdgeInsets,
-    EdgeInsets? largeEdgeInsets,
+    EdgeInsets? smallButtonPadding,
+    EdgeInsets? gradientFillButtonDefaultPadding,
     EdgeInsets? messagePanelEdgeInsets,
     double? spacingXS1,
     double? spacingXS,
@@ -281,9 +281,15 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       errorCardIconColor: errorCardIconColor ?? this.errorCardIconColor,
       errorCardBackgroundColor:
           errorCardBackgroundColor ?? this.errorCardBackgroundColor,
-      lightRed: lightRed ?? this.lightRed,
-      blueLight: blueLight ?? this.blueLight,
-      greenLight: greenLight ?? this.greenLight,
+      messagePanelBackgroundColorImportant:
+          messagePanelBackgroundColorImportant ??
+              this.messagePanelBackgroundColorImportant,
+      messagePanelBackgroundColorInformative:
+          messagePanelBackgroundColorInformative ??
+              this.messagePanelBackgroundColorInformative,
+      messagePanelBackgroundColorPositive:
+          messagePanelBackgroundColorPositive ??
+              this.messagePanelBackgroundColorPositive,
       errorCardTextColor: errorCardTextColor ?? this.errorCardTextColor,
       bottomSheetBarrierColor:
           bottomSheetBarrierColor ?? this.bottomSheetBarrierColor,
@@ -322,7 +328,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       shimmerBaseColor: shimmerBaseColor ?? this.shimmerBaseColor,
       shimmerHighlightColor:
           shimmerHighlightColor ?? this.shimmerHighlightColor,
-      white: white ?? this.white,
+      messagePanelColorNeutral:
+          messagePanelColorNeutral ?? this.messagePanelColorNeutral,
       buttonBlueGradientEnd:
           buttonBlueGradientEnd ?? this.buttonBlueGradientEnd,
       elevatedButtonBackgroundColor:
@@ -339,17 +346,25 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           activeButtonTextColor ?? this.activeButtonTextColor,
       disabledButtonTextColor:
           disabledButtonTextColor ?? this.disabledButtonTextColor,
-      black: black ?? this.black,
+      shimmerTextColor: shimmerTextColor ?? this.shimmerTextColor,
       activeGradientColorStart:
           activeGradientColorStart ?? this.activeGradientColorStart,
       activeGradientColorEnd:
           activeGradientColorEnd ?? this.activeGradientColorEnd,
       boxShadowColor: boxShadowColor ?? this.boxShadowColor,
-      red: red ?? this.red,
-      orange: orange ?? this.orange,
-      orangeLight: orangeLight ?? this.orangeLight,
-      darkBlue: darkBlue ?? this.darkBlue,
-      darkGreen: darkGreen ?? this.darkGreen,
+      messagePanelBackgroundColorNeutral: messagePanelBackgroundColorNeutral ??
+          this.messagePanelBackgroundColorNeutral,
+      messagePanelColorLessImportant:
+          messagePanelColorLessImportant ?? this.messagePanelColorLessImportant,
+      messagePanelBackgroundColorLessImportant:
+          messagePanelBackgroundColorLessImportant ??
+              this.messagePanelBackgroundColorLessImportant,
+      messagePanelColorInformative:
+          messagePanelColorInformative ?? this.messagePanelColorInformative,
+      messagePanelColorImportant:
+          messagePanelColorImportant ?? this.messagePanelColorImportant,
+      messagePanelColorPositive:
+          messagePanelColorPositive ?? this.messagePanelColorPositive,
       textButtonLoadingIndicatorColor: textButtonLoadingIndicatorColor ??
           this.textButtonLoadingIndicatorColor,
       buttonShadowColor: buttonShadowColor ?? this.buttonShadowColor,
@@ -383,9 +398,9 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           messagePanelErrorEdgeInsets ?? this.messagePanelErrorEdgeInsets,
       errorModalContentTitleInsets:
           errorModalContentTitleInsets ?? this.errorModalContentTitleInsets,
-      smallEdgeInsets: smallEdgeInsets ?? this.smallEdgeInsets,
-      mediumEdgeInsets: mediumEdgeInsets ?? this.mediumEdgeInsets,
-      largeEdgeInsets: largeEdgeInsets ?? this.largeEdgeInsets,
+      smallButtonPadding: smallButtonPadding ?? this.smallButtonPadding,
+      gradientFillButtonDefaultPadding: gradientFillButtonDefaultPadding ??
+          this.gradientFillButtonDefaultPadding,
       messagePanelEdgeInsets:
           messagePanelEdgeInsets ?? this.messagePanelEdgeInsets,
       spacingXS1: spacingXS1 ?? this.spacingXS1,
@@ -473,9 +488,18 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(errorCardIconColor, other.errorCardIconColor, t)!,
       errorCardBackgroundColor: Color.lerp(
           errorCardBackgroundColor, other.errorCardBackgroundColor, t)!,
-      lightRed: Color.lerp(lightRed, other.lightRed, t)!,
-      blueLight: Color.lerp(blueLight, other.blueLight, t)!,
-      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
+      messagePanelBackgroundColorImportant: Color.lerp(
+          messagePanelBackgroundColorImportant,
+          other.messagePanelBackgroundColorImportant,
+          t)!,
+      messagePanelBackgroundColorInformative: Color.lerp(
+          messagePanelBackgroundColorInformative,
+          other.messagePanelBackgroundColorInformative,
+          t)!,
+      messagePanelBackgroundColorPositive: Color.lerp(
+          messagePanelBackgroundColorPositive,
+          other.messagePanelBackgroundColorPositive,
+          t)!,
       errorCardTextColor:
           Color.lerp(errorCardTextColor, other.errorCardTextColor, t)!,
       bottomSheetBarrierColor: Color.lerp(
@@ -523,7 +547,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(shimmerBaseColor, other.shimmerBaseColor, t)!,
       shimmerHighlightColor:
           Color.lerp(shimmerHighlightColor, other.shimmerHighlightColor, t)!,
-      white: Color.lerp(white, other.white, t)!,
+      messagePanelColorNeutral: Color.lerp(
+          messagePanelColorNeutral, other.messagePanelColorNeutral, t)!,
       buttonBlueGradientEnd:
           Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
       elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
@@ -542,17 +567,29 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(activeButtonTextColor, other.activeButtonTextColor, t)!,
       disabledButtonTextColor: Color.lerp(
           disabledButtonTextColor, other.disabledButtonTextColor, t)!,
-      black: Color.lerp(black, other.black, t)!,
+      shimmerTextColor:
+          Color.lerp(shimmerTextColor, other.shimmerTextColor, t)!,
       activeGradientColorStart: Color.lerp(
           activeGradientColorStart, other.activeGradientColorStart, t)!,
       activeGradientColorEnd:
           Color.lerp(activeGradientColorEnd, other.activeGradientColorEnd, t)!,
       boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
-      red: Color.lerp(red, other.red, t)!,
-      orange: Color.lerp(orange, other.orange, t)!,
-      orangeLight: Color.lerp(orangeLight, other.orangeLight, t)!,
-      darkBlue: Color.lerp(darkBlue, other.darkBlue, t)!,
-      darkGreen: Color.lerp(darkGreen, other.darkGreen, t)!,
+      messagePanelBackgroundColorNeutral: Color.lerp(
+          messagePanelBackgroundColorNeutral,
+          other.messagePanelBackgroundColorNeutral,
+          t)!,
+      messagePanelColorLessImportant: Color.lerp(messagePanelColorLessImportant,
+          other.messagePanelColorLessImportant, t)!,
+      messagePanelBackgroundColorLessImportant: Color.lerp(
+          messagePanelBackgroundColorLessImportant,
+          other.messagePanelBackgroundColorLessImportant,
+          t)!,
+      messagePanelColorInformative: Color.lerp(
+          messagePanelColorInformative, other.messagePanelColorInformative, t)!,
+      messagePanelColorImportant: Color.lerp(
+          messagePanelColorImportant, other.messagePanelColorImportant, t)!,
+      messagePanelColorPositive: Color.lerp(
+          messagePanelColorPositive, other.messagePanelColorPositive, t)!,
       textButtonLoadingIndicatorColor: Color.lerp(
           textButtonLoadingIndicatorColor,
           other.textButtonLoadingIndicatorColor,
@@ -597,9 +634,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       errorModalContentTitleInsets: t < 0.5
           ? errorModalContentTitleInsets
           : other.errorModalContentTitleInsets,
-      smallEdgeInsets: t < 0.5 ? smallEdgeInsets : other.smallEdgeInsets,
-      mediumEdgeInsets: t < 0.5 ? mediumEdgeInsets : other.mediumEdgeInsets,
-      largeEdgeInsets: t < 0.5 ? largeEdgeInsets : other.largeEdgeInsets,
+      smallButtonPadding:
+          t < 0.5 ? smallButtonPadding : other.smallButtonPadding,
+      gradientFillButtonDefaultPadding: t < 0.5
+          ? gradientFillButtonDefaultPadding
+          : other.gradientFillButtonDefaultPadding,
       messagePanelEdgeInsets:
           t < 0.5 ? messagePanelEdgeInsets : other.messagePanelEdgeInsets,
       spacingXS1: t < 0.5 ? spacingXS1 : other.spacingXS1,
@@ -681,9 +720,9 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(textButtonTextStyle, other.textButtonTextStyle) &&
             const DeepCollectionEquality().equals(errorCardIconColor, other.errorCardIconColor) &&
             const DeepCollectionEquality().equals(errorCardBackgroundColor, other.errorCardBackgroundColor) &&
-            const DeepCollectionEquality().equals(lightRed, other.lightRed) &&
-            const DeepCollectionEquality().equals(blueLight, other.blueLight) &&
-            const DeepCollectionEquality().equals(greenLight, other.greenLight) &&
+            const DeepCollectionEquality().equals(messagePanelBackgroundColorImportant, other.messagePanelBackgroundColorImportant) &&
+            const DeepCollectionEquality().equals(messagePanelBackgroundColorInformative, other.messagePanelBackgroundColorInformative) &&
+            const DeepCollectionEquality().equals(messagePanelBackgroundColorPositive, other.messagePanelBackgroundColorPositive) &&
             const DeepCollectionEquality().equals(errorCardTextColor, other.errorCardTextColor) &&
             const DeepCollectionEquality().equals(bottomSheetBarrierColor, other.bottomSheetBarrierColor) &&
             const DeepCollectionEquality().equals(messagePanelBackgroundColor, other.messagePanelBackgroundColor) &&
@@ -706,7 +745,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(buttonTextColor, other.buttonTextColor) &&
             const DeepCollectionEquality().equals(shimmerBaseColor, other.shimmerBaseColor) &&
             const DeepCollectionEquality().equals(shimmerHighlightColor, other.shimmerHighlightColor) &&
-            const DeepCollectionEquality().equals(white, other.white) &&
+            const DeepCollectionEquality().equals(messagePanelColorNeutral, other.messagePanelColorNeutral) &&
             const DeepCollectionEquality().equals(buttonBlueGradientEnd, other.buttonBlueGradientEnd) &&
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(textColorWhite, other.textColorWhite) &&
@@ -716,15 +755,16 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(activeButtonLanguageTextColor, other.activeButtonLanguageTextColor) &&
             const DeepCollectionEquality().equals(activeButtonTextColor, other.activeButtonTextColor) &&
             const DeepCollectionEquality().equals(disabledButtonTextColor, other.disabledButtonTextColor) &&
-            const DeepCollectionEquality().equals(black, other.black) &&
+            const DeepCollectionEquality().equals(shimmerTextColor, other.shimmerTextColor) &&
             const DeepCollectionEquality().equals(activeGradientColorStart, other.activeGradientColorStart) &&
             const DeepCollectionEquality().equals(activeGradientColorEnd, other.activeGradientColorEnd) &&
             const DeepCollectionEquality().equals(boxShadowColor, other.boxShadowColor) &&
-            const DeepCollectionEquality().equals(red, other.red) &&
-            const DeepCollectionEquality().equals(orange, other.orange) &&
-            const DeepCollectionEquality().equals(orangeLight, other.orangeLight) &&
-            const DeepCollectionEquality().equals(darkBlue, other.darkBlue) &&
-            const DeepCollectionEquality().equals(darkGreen, other.darkGreen) &&
+            const DeepCollectionEquality().equals(messagePanelBackgroundColorNeutral, other.messagePanelBackgroundColorNeutral) &&
+            const DeepCollectionEquality().equals(messagePanelColorLessImportant, other.messagePanelColorLessImportant) &&
+            const DeepCollectionEquality().equals(messagePanelBackgroundColorLessImportant, other.messagePanelBackgroundColorLessImportant) &&
+            const DeepCollectionEquality().equals(messagePanelColorInformative, other.messagePanelColorInformative) &&
+            const DeepCollectionEquality().equals(messagePanelColorImportant, other.messagePanelColorImportant) &&
+            const DeepCollectionEquality().equals(messagePanelColorPositive, other.messagePanelColorPositive) &&
             const DeepCollectionEquality().equals(textButtonLoadingIndicatorColor, other.textButtonLoadingIndicatorColor) &&
             const DeepCollectionEquality().equals(buttonShadowColor, other.buttonShadowColor) &&
             const DeepCollectionEquality().equals(buttonPressedColor, other.buttonPressedColor) &&
@@ -743,9 +783,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(bottomSheetContentPadding, other.bottomSheetContentPadding) &&
             const DeepCollectionEquality().equals(messagePanelErrorEdgeInsets, other.messagePanelErrorEdgeInsets) &&
             const DeepCollectionEquality().equals(errorModalContentTitleInsets, other.errorModalContentTitleInsets) &&
-            const DeepCollectionEquality().equals(smallEdgeInsets, other.smallEdgeInsets) &&
-            const DeepCollectionEquality().equals(mediumEdgeInsets, other.mediumEdgeInsets) &&
-            const DeepCollectionEquality().equals(largeEdgeInsets, other.largeEdgeInsets) &&
+            const DeepCollectionEquality().equals(smallButtonPadding, other.smallButtonPadding) &&
+            const DeepCollectionEquality().equals(gradientFillButtonDefaultPadding, other.gradientFillButtonDefaultPadding) &&
             const DeepCollectionEquality().equals(messagePanelEdgeInsets, other.messagePanelEdgeInsets) &&
             const DeepCollectionEquality().equals(spacingXS1, other.spacingXS1) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
@@ -799,9 +838,10 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(textButtonTextStyle),
       const DeepCollectionEquality().hash(errorCardIconColor),
       const DeepCollectionEquality().hash(errorCardBackgroundColor),
-      const DeepCollectionEquality().hash(lightRed),
-      const DeepCollectionEquality().hash(blueLight),
-      const DeepCollectionEquality().hash(greenLight),
+      const DeepCollectionEquality().hash(messagePanelBackgroundColorImportant),
+      const DeepCollectionEquality()
+          .hash(messagePanelBackgroundColorInformative),
+      const DeepCollectionEquality().hash(messagePanelBackgroundColorPositive),
       const DeepCollectionEquality().hash(errorCardTextColor),
       const DeepCollectionEquality().hash(bottomSheetBarrierColor),
       const DeepCollectionEquality().hash(messagePanelBackgroundColor),
@@ -824,7 +864,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(buttonTextColor),
       const DeepCollectionEquality().hash(shimmerBaseColor),
       const DeepCollectionEquality().hash(shimmerHighlightColor),
-      const DeepCollectionEquality().hash(white),
+      const DeepCollectionEquality().hash(messagePanelColorNeutral),
       const DeepCollectionEquality().hash(buttonBlueGradientEnd),
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
       const DeepCollectionEquality().hash(textColorWhite),
@@ -834,15 +874,17 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(activeButtonLanguageTextColor),
       const DeepCollectionEquality().hash(activeButtonTextColor),
       const DeepCollectionEquality().hash(disabledButtonTextColor),
-      const DeepCollectionEquality().hash(black),
+      const DeepCollectionEquality().hash(shimmerTextColor),
       const DeepCollectionEquality().hash(activeGradientColorStart),
       const DeepCollectionEquality().hash(activeGradientColorEnd),
       const DeepCollectionEquality().hash(boxShadowColor),
-      const DeepCollectionEquality().hash(red),
-      const DeepCollectionEquality().hash(orange),
-      const DeepCollectionEquality().hash(orangeLight),
-      const DeepCollectionEquality().hash(darkBlue),
-      const DeepCollectionEquality().hash(darkGreen),
+      const DeepCollectionEquality().hash(messagePanelBackgroundColorNeutral),
+      const DeepCollectionEquality().hash(messagePanelColorLessImportant),
+      const DeepCollectionEquality()
+          .hash(messagePanelBackgroundColorLessImportant),
+      const DeepCollectionEquality().hash(messagePanelColorInformative),
+      const DeepCollectionEquality().hash(messagePanelColorImportant),
+      const DeepCollectionEquality().hash(messagePanelColorPositive),
       const DeepCollectionEquality().hash(textButtonLoadingIndicatorColor),
       const DeepCollectionEquality().hash(buttonShadowColor),
       const DeepCollectionEquality().hash(buttonPressedColor),
@@ -861,9 +903,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(bottomSheetContentPadding),
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
       const DeepCollectionEquality().hash(errorModalContentTitleInsets),
-      const DeepCollectionEquality().hash(smallEdgeInsets),
-      const DeepCollectionEquality().hash(mediumEdgeInsets),
-      const DeepCollectionEquality().hash(largeEdgeInsets),
+      const DeepCollectionEquality().hash(smallButtonPadding),
+      const DeepCollectionEquality().hash(gradientFillButtonDefaultPadding),
       const DeepCollectionEquality().hash(messagePanelEdgeInsets),
       const DeepCollectionEquality().hash(spacingXS1),
       const DeepCollectionEquality().hash(spacingXS),

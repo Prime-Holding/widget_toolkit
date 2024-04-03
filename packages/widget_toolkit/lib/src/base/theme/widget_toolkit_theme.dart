@@ -35,9 +35,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.textButtonTextStyle,
     required this.errorCardIconColor,
     required this.errorCardBackgroundColor,
-    required this.lightRed,
-    required this.blueLight,
-    required this.greenLight,
+    required this.messagePanelBackgroundColorImportant,
+    required this.messagePanelBackgroundColorInformative,
+    required this.messagePanelBackgroundColorPositive,
     required this.errorCardTextColor,
     required this.bottomSheetBarrierColor,
     required this.messagePanelBackgroundColor,
@@ -60,7 +60,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.buttonTextColor,
     required this.shimmerBaseColor,
     required this.shimmerHighlightColor,
-    required this.white,
+    required this.messagePanelColorNeutral,
     required this.buttonBlueGradientEnd,
     required this.elevatedButtonBackgroundColor,
     required this.textColorWhite,
@@ -70,15 +70,16 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.activeButtonLanguageTextColor,
     required this.activeButtonTextColor,
     required this.disabledButtonTextColor,
-    required this.black,
+    required this.shimmerTextColor,
     required this.activeGradientColorStart,
     required this.activeGradientColorEnd,
     required this.boxShadowColor,
-    required this.red,
-    required this.orange,
-    required this.orangeLight,
-    required this.darkBlue,
-    required this.darkGreen,
+    required this.messagePanelBackgroundColorNeutral,
+    required this.messagePanelColorLessImportant,
+    required this.messagePanelBackgroundColorLessImportant,
+    required this.messagePanelColorImportant,
+    required this.messagePanelColorInformative,
+    required this.messagePanelColorPositive,
     required this.textButtonLoadingIndicatorColor,
     required this.buttonShadowColor,
     required this.buttonPressedColor,
@@ -97,9 +98,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.bottomSheetContentPadding,
     required this.messagePanelErrorEdgeInsets,
     required this.errorModalContentTitleInsets,
-    required this.smallEdgeInsets,
-    required this.mediumEdgeInsets,
-    required this.largeEdgeInsets,
+    required this.smallButtonPadding,
+    required this.gradientFillButtonDefaultPadding,
     required this.messagePanelEdgeInsets,
     required this.spacingXS1,
     required this.spacingXS,
@@ -180,9 +180,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         errorCardIconColor = WidgetToolkitDesignSystem.light().colors.black87,
         errorCardBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.lightRed,
-        lightRed = WidgetToolkitDesignSystem.light().colors.lightRed,
-        blueLight = WidgetToolkitDesignSystem.light().colors.blueLight,
-        greenLight = WidgetToolkitDesignSystem.light().colors.greenLight,
+        messagePanelBackgroundColorImportant =
+            WidgetToolkitDesignSystem.light().colors.lightRed,
+        messagePanelBackgroundColorInformative =
+            WidgetToolkitDesignSystem.light().colors.blueLight,
+        messagePanelBackgroundColorPositive =
+            WidgetToolkitDesignSystem.light().colors.greenLight,
         errorCardTextColor = WidgetToolkitDesignSystem.light().colors.black87,
         bottomSheetBarrierColor =
             WidgetToolkitDesignSystem.light().colors.bottomSheetBarrierColor,
@@ -222,7 +225,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             WidgetToolkitDesignSystem.light().colors.shimmerBaseColor,
         shimmerHighlightColor =
             WidgetToolkitDesignSystem.light().colors.shimmerHighlightColor,
-        white = WidgetToolkitDesignSystem.light().colors.textColorWhite,
+        messagePanelColorNeutral =
+            WidgetToolkitDesignSystem.light().colors.textColorWhite,
         buttonBlueGradientEnd =
             WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
@@ -240,17 +244,24 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         activeButtonTextColor =
             WidgetToolkitDesignSystem.light().colors.black87,
         disabledButtonTextColor = WidgetToolkitDesignSystem.light().colors.gray,
-        black = WidgetToolkitDesignSystem.light().colors.black,
+        shimmerTextColor = WidgetToolkitDesignSystem.light().colors.black,
         activeGradientColorStart =
             WidgetToolkitDesignSystem.light().colors.blue,
         activeGradientColorEnd =
             WidgetToolkitDesignSystem.light().colors.lightGray,
         boxShadowColor = WidgetToolkitDesignSystem.light().colors.red,
-        red = WidgetToolkitDesignSystem.light().colors.red,
-        orange = WidgetToolkitDesignSystem.light().colors.orange,
-        orangeLight = WidgetToolkitDesignSystem.light().colors.orangeLight,
-        darkBlue = WidgetToolkitDesignSystem.light().colors.darkBlue,
-        darkGreen = WidgetToolkitDesignSystem.light().colors.darkGreen,
+        messagePanelBackgroundColorNeutral =
+            WidgetToolkitDesignSystem.light().colors.red,
+        messagePanelColorLessImportant =
+            WidgetToolkitDesignSystem.light().colors.orange,
+        messagePanelBackgroundColorLessImportant =
+            WidgetToolkitDesignSystem.light().colors.orangeLight,
+        messagePanelColorInformative =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        messagePanelColorImportant =
+            WidgetToolkitDesignSystem.light().colors.red,
+        messagePanelColorPositive =
+            WidgetToolkitDesignSystem.light().colors.darkGreen,
         textButtonLoadingIndicatorColor =
             WidgetToolkitDesignSystem.light().colors.redDark,
         buttonShadowColor = WidgetToolkitDesignSystem.light().colors.white,
@@ -280,9 +291,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         bottomSheetContentPadding = const EdgeInsets.fromLTRB(20, 20, 20, 0),
         messagePanelErrorEdgeInsets = const EdgeInsets.only(bottom: 20),
         errorModalContentTitleInsets = const EdgeInsets.only(bottom: 8),
-        smallEdgeInsets = const EdgeInsets.all(12),
-        mediumEdgeInsets = const EdgeInsets.all(16),
-        largeEdgeInsets = const EdgeInsets.all(22),
+        smallButtonPadding = const EdgeInsets.all(12),
+        gradientFillButtonDefaultPadding = const EdgeInsets.all(16),
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
         spacingXS1 = WidgetToolkitDesignSystem.light().spacings.xs1,
@@ -365,9 +375,12 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             WidgetToolkitDesignSystem.dark().colors.mediumWhite,
         errorCardBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.redDark,
-        lightRed = WidgetToolkitDesignSystem.dark().colors.lightRed,
-        blueLight = WidgetToolkitDesignSystem.dark().colors.blueLight,
-        greenLight = WidgetToolkitDesignSystem.dark().colors.greenLight,
+        messagePanelBackgroundColorImportant =
+            WidgetToolkitDesignSystem.dark().colors.lightRed,
+        messagePanelBackgroundColorInformative =
+            WidgetToolkitDesignSystem.dark().colors.blueLight,
+        messagePanelBackgroundColorPositive =
+            WidgetToolkitDesignSystem.dark().colors.greenLight,
         errorCardTextColor = WidgetToolkitDesignSystem.dark().colors.white,
         bottomSheetBarrierColor =
             WidgetToolkitDesignSystem.dark().colors.bottomSheetBarrierColor,
@@ -407,7 +420,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             WidgetToolkitDesignSystem.dark().colors.shimmerBaseColor,
         shimmerHighlightColor =
             WidgetToolkitDesignSystem.dark().colors.shimmerHighlightColor,
-        white = WidgetToolkitDesignSystem.dark().colors.textColorWhite,
+        messagePanelColorNeutral =
+            WidgetToolkitDesignSystem.dark().colors.textColorWhite,
         buttonBlueGradientEnd =
             WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
@@ -424,16 +438,23 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             .activeButtonLanguageTextColor,
         activeButtonTextColor = WidgetToolkitDesignSystem.dark().colors.white,
         disabledButtonTextColor = WidgetToolkitDesignSystem.dark().colors.gray,
-        black = WidgetToolkitDesignSystem.dark().colors.white,
+        shimmerTextColor = WidgetToolkitDesignSystem.dark().colors.white,
         activeGradientColorStart = WidgetToolkitDesignSystem.dark().colors.blue,
         activeGradientColorEnd =
             WidgetToolkitDesignSystem.dark().colors.lightGray,
         boxShadowColor = WidgetToolkitDesignSystem.dark().colors.red,
-        red = WidgetToolkitDesignSystem.dark().colors.red,
-        orange = WidgetToolkitDesignSystem.dark().colors.orange,
-        orangeLight = WidgetToolkitDesignSystem.dark().colors.orangeLight,
-        darkBlue = WidgetToolkitDesignSystem.dark().colors.darkBlue,
-        darkGreen = WidgetToolkitDesignSystem.dark().colors.darkGreen,
+        messagePanelBackgroundColorNeutral =
+            WidgetToolkitDesignSystem.dark().colors.red,
+        messagePanelColorLessImportant =
+            WidgetToolkitDesignSystem.dark().colors.orange,
+        messagePanelBackgroundColorLessImportant =
+            WidgetToolkitDesignSystem.dark().colors.orangeLight,
+        messagePanelColorInformative =
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        messagePanelColorImportant =
+            WidgetToolkitDesignSystem.dark().colors.red,
+        messagePanelColorPositive =
+            WidgetToolkitDesignSystem.dark().colors.darkGreen,
         textButtonLoadingIndicatorColor =
             WidgetToolkitDesignSystem.dark().colors.redDark,
         buttonShadowColor = WidgetToolkitDesignSystem.dark().colors.white,
@@ -462,9 +483,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         bottomSheetContentPadding = const EdgeInsets.fromLTRB(20, 20, 20, 0),
         messagePanelErrorEdgeInsets = const EdgeInsets.only(bottom: 20),
         errorModalContentTitleInsets = const EdgeInsets.only(bottom: 8),
-        smallEdgeInsets = const EdgeInsets.all(12),
-        mediumEdgeInsets = const EdgeInsets.all(16),
-        largeEdgeInsets = const EdgeInsets.all(22),
+        smallButtonPadding = const EdgeInsets.all(12),
+        gradientFillButtonDefaultPadding = const EdgeInsets.all(16),
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
         spacingXS1 = WidgetToolkitDesignSystem.dark().spacings.xs1,
@@ -544,11 +564,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final Color errorCardBackgroundColor;
   @override
-  final Color lightRed;
+  final Color messagePanelBackgroundColorImportant;
   @override
-  final Color blueLight;
+  final Color messagePanelBackgroundColorInformative;
   @override
-  final Color greenLight;
+  final Color messagePanelBackgroundColorPositive;
   @override
   final Color errorCardTextColor;
   @override
@@ -594,7 +614,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final Color shimmerHighlightColor;
   @override
-  final Color white;
+  final Color messagePanelColorNeutral;
   @override
   final Color buttonBlueGradientEnd;
   @override
@@ -614,7 +634,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final Color disabledButtonTextColor;
   @override
-  final Color black;
+  final Color shimmerTextColor;
   @override
   final Color activeGradientColorStart;
   @override
@@ -622,15 +642,17 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final Color boxShadowColor;
   @override
-  final Color red;
+  final Color messagePanelBackgroundColorNeutral;
   @override
-  final Color orange;
+  final Color messagePanelColorLessImportant;
   @override
-  final Color orangeLight;
+  final Color messagePanelBackgroundColorLessImportant;
   @override
-  final Color darkBlue;
+  final Color messagePanelColorInformative;
   @override
-  final Color darkGreen;
+  final Color messagePanelColorImportant;
+  @override
+  final Color messagePanelColorPositive;
   @override
   final Color textButtonLoadingIndicatorColor;
   @override
@@ -668,11 +690,9 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final EdgeInsets errorModalContentTitleInsets;
   @override
-  final EdgeInsets smallEdgeInsets;
+  final EdgeInsets smallButtonPadding;
   @override
-  final EdgeInsets mediumEdgeInsets;
-  @override
-  final EdgeInsets largeEdgeInsets;
+  final EdgeInsets gradientFillButtonDefaultPadding;
   @override
   final EdgeInsets messagePanelEdgeInsets;
   @override

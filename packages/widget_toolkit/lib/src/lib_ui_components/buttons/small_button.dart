@@ -62,7 +62,7 @@ class SmallButton extends StatelessWidget {
     ]);
 
     final text = Ink(
-      padding: context.widgetToolkitTheme.smallEdgeInsets,
+      padding: context.widgetToolkitTheme.smallButtonPadding,
       decoration: BoxDecoration(
         color: state != ButtonStateModel.disabled
             ? context.widgetToolkitTheme.smallButtonBackgroundColor
