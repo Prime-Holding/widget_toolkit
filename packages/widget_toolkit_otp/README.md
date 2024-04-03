@@ -72,15 +72,15 @@ return MaterialApp(
   theme: ThemeData.light().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),  
     extensions: [  
-      WidgetToolkitTheme.light,  
-      SmsCodeTheme.light, 
+      WidgetToolkitTheme.light(),  
+      SmsCodeTheme.light(), 
     ],  
   ),  
   darkTheme: ThemeData.dark().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),  
     extensions: [  
-      WidgetToolkitTheme.dark,  
-      SmsCodeTheme.dark,
+      WidgetToolkitTheme.dark(),  
+      SmsCodeTheme.dark(),
     ],  
   ),  
   ...  

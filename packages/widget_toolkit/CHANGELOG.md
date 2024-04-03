@@ -1,3 +1,9 @@
+## [0.0.2]
+- Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
+### Breaking changes:
+- Added `light()` and `dark()` constructors for each theme that previously has static `light` and `dark` fields
+- Removed static fields `light` and `dark` for each of the themes
+
 ## [0.0.2-dev.3]
 - Fixes and improvements
 

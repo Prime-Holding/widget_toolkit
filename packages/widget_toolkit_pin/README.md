@@ -45,15 +45,15 @@ MaterialApp(
   theme: ThemeData.light().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),
     extensions: [
-      PinCodeTheme.light,
-      WidgetToolkitTheme.light,  
+      PinCodeTheme.light(),
+      WidgetToolkitTheme.light(),  
     ],  
   ),  
   darkTheme: ThemeData.dark().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),  
     extensions: [
-      PinCodeTheme.dark,
-      WidgetToolkitTheme.dark,
+      PinCodeTheme.dark(),
+      WidgetToolkitTheme.dark(),
     ],
   ),  
 );
