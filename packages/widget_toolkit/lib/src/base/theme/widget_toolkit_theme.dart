@@ -102,9 +102,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.bottomSheetPaddingAlternative,
     required this.spacingXS,
     required this.spacingS,
+    required this.spacingL,
     required this.spacingM,
     required this.spacingXL,
     required this.spacingXXL,
+    required this.spacingXXXXL,
     required this.textButtonIconRightPadding,
     required this.textButtonPadding,
     required this.appBarTextButtonPadding,
@@ -290,9 +292,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         bottomSheetPaddingAlternative = const EdgeInsets.all(16),
         spacingXS = WidgetToolkitDesignSystem.light().spacings.xs1,
         spacingS = WidgetToolkitDesignSystem.light().spacings.s,
+        spacingL = WidgetToolkitDesignSystem.light().spacings.l,
         spacingM = WidgetToolkitDesignSystem.light().spacings.m,
         spacingXL = WidgetToolkitDesignSystem.light().spacings.xl,
         spacingXXL = WidgetToolkitDesignSystem.light().spacings.xxl,
+        spacingXXXXL = WidgetToolkitDesignSystem.light().spacings.xxxxl,
         textButtonIconRightPadding =
             WidgetToolkitDesignSystem.light().spacings.s,
         textButtonPadding = WidgetToolkitDesignSystem.light().spacings.xs,
@@ -476,9 +480,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         bottomSheetPaddingAlternative = const EdgeInsets.all(16),
         spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs1,
         spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
+        spacingL = WidgetToolkitDesignSystem.dark().spacings.l,
         spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
         spacingXL = WidgetToolkitDesignSystem.dark().spacings.xl,
         spacingXXL = WidgetToolkitDesignSystem.dark().spacings.xxl,
+        spacingXXXXL = WidgetToolkitDesignSystem.dark().spacings.xxxxl,
         textButtonIconRightPadding =
             WidgetToolkitDesignSystem.dark().spacings.s,
         textButtonPadding = WidgetToolkitDesignSystem.dark().spacings.xs,
@@ -676,16 +682,22 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   final EdgeInsets messagePanelEdgeInsets;
   @override
   final EdgeInsets bottomSheetPaddingAlternative;
+
   @override
   final double spacingXS;
   @override
   final double spacingS;
+  @override
+  final double spacingL;
   @override
   final double spacingM;
   @override
   final double spacingXL;
   @override
   final double spacingXXL;
+  @override
+  final double spacingXXXXL;
+
   @override
   final double textButtonIconRightPadding;
   @override

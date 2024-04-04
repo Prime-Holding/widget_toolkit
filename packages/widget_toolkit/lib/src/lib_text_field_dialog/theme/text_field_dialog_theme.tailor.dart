@@ -21,7 +21,6 @@ mixin _$TextFieldDialogThemeTailorMixin
   double get spacingXSS;
   double get spacingS;
   double get spacingM;
-  double get spacingL;
   double get spacingXL;
   double get spacingXXXS;
   TextStyle get descriptionThin;
@@ -109,7 +108,6 @@ mixin _$TextFieldDialogThemeTailorMixin
     double? spacingXSS,
     double? spacingS,
     double? spacingM,
-    double? spacingL,
     double? spacingXL,
     double? spacingXXXS,
     TextStyle? descriptionThin,
@@ -203,7 +201,6 @@ mixin _$TextFieldDialogThemeTailorMixin
       spacingXSS: spacingXSS ?? this.spacingXSS,
       spacingS: spacingS ?? this.spacingS,
       spacingM: spacingM ?? this.spacingM,
-      spacingL: spacingL ?? this.spacingL,
       spacingXL: spacingXL ?? this.spacingXL,
       spacingXXXS: spacingXXXS ?? this.spacingXXXS,
       descriptionThin: descriptionThin ?? this.descriptionThin,
@@ -362,7 +359,6 @@ mixin _$TextFieldDialogThemeTailorMixin
       spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
       spacingM: t < 0.5 ? spacingM : other.spacingM,
-      spacingL: t < 0.5 ? spacingL : other.spacingL,
       spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
       spacingXXXS: t < 0.5 ? spacingXXXS : other.spacingXXXS,
       descriptionThin:
@@ -547,7 +543,6 @@ mixin _$TextFieldDialogThemeTailorMixin
                 .equals(spacingXSS, other.spacingXSS) &&
             const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
             const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
-            const DeepCollectionEquality().equals(spacingL, other.spacingL) &&
             const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
             const DeepCollectionEquality()
                 .equals(spacingXXXS, other.spacingXXXS) &&
@@ -649,7 +644,6 @@ mixin _$TextFieldDialogThemeTailorMixin
       const DeepCollectionEquality().hash(spacingXSS),
       const DeepCollectionEquality().hash(spacingS),
       const DeepCollectionEquality().hash(spacingM),
-      const DeepCollectionEquality().hash(spacingL),
       const DeepCollectionEquality().hash(spacingXL),
       const DeepCollectionEquality().hash(spacingXXXS),
       const DeepCollectionEquality().hash(descriptionThin),

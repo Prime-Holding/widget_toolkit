@@ -23,13 +23,12 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
     required this.labelBoxOptionalBackground,
     required this.labelBoxOptionalBorder,
     required this.editFieldBorderRadius,
-    required this.spacingXS,
+    required this.spacingXXXS,
     required this.spacingXSS,
+    required this.spacingXS,
     required this.spacingS,
     required this.spacingM,
-    required this.spacingL,
     required this.spacingXL,
-    required this.spacingXXXS,
     required this.descriptionThin,
     required this.titleBold,
     required this.descriptionBold,
@@ -128,7 +127,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
         spacingS = WidgetToolkitDesignSystem.light().spacings.s,
         spacingM = WidgetToolkitDesignSystem.light().spacings.m,
-        spacingL = WidgetToolkitDesignSystem.light().spacings.l,
         spacingXL = WidgetToolkitDesignSystem.light().spacings.xl,
         spacingXXXS = WidgetToolkitDesignSystem.light().spacings.xxxs,
         descriptionThin =
@@ -285,7 +283,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
         spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
         spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
-        spacingL = WidgetToolkitDesignSystem.dark().spacings.l,
         spacingXL = WidgetToolkitDesignSystem.dark().spacings.xl,
         spacingXXXS = WidgetToolkitDesignSystem.dark().spacings.xxxs,
         descriptionThin =
@@ -437,8 +434,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   final double spacingS;
   @override
   final double spacingM;
-  @override
-  final double spacingL;
   @override
   final double spacingXL;
   @override

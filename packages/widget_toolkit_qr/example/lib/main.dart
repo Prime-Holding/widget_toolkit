@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: context.widgetToolkitTheme.spacingXXXXL1,
+            horizontal: context.widgetToolkitTheme.spacingXXXXL,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

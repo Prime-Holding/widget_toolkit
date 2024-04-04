@@ -101,9 +101,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   EdgeInsets get bottomSheetPaddingAlternative;
   double get spacingXS;
   double get spacingS;
+  double get spacingL;
   double get spacingM;
   double get spacingXL;
   double get spacingXXL;
+  double get spacingXXXXL;
   double get textButtonIconRightPadding;
   double get textButtonPadding;
   double get appBarTextButtonPadding;
@@ -211,9 +213,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     EdgeInsets? bottomSheetPaddingAlternative,
     double? spacingXS,
     double? spacingS,
+    double? spacingL,
     double? spacingM,
     double? spacingXL,
     double? spacingXXL,
+    double? spacingXXXXL,
     double? textButtonIconRightPadding,
     double? textButtonPadding,
     double? appBarTextButtonPadding,
@@ -395,9 +399,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           bottomSheetPaddingAlternative ?? this.bottomSheetPaddingAlternative,
       spacingXS: spacingXS ?? this.spacingXS,
       spacingS: spacingS ?? this.spacingS,
+      spacingL: spacingL ?? this.spacingL,
       spacingM: spacingM ?? this.spacingM,
       spacingXL: spacingXL ?? this.spacingXL,
       spacingXXL: spacingXXL ?? this.spacingXXL,
+      spacingXXXXL: spacingXXXXL ?? this.spacingXXXXL,
       textButtonIconRightPadding:
           textButtonIconRightPadding ?? this.textButtonIconRightPadding,
       textButtonPadding: textButtonPadding ?? this.textButtonPadding,
@@ -630,9 +636,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           : other.bottomSheetPaddingAlternative,
       spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
+      spacingL: t < 0.5 ? spacingL : other.spacingL,
       spacingM: t < 0.5 ? spacingM : other.spacingM,
       spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
       spacingXXL: t < 0.5 ? spacingXXL : other.spacingXXL,
+      spacingXXXXL: t < 0.5 ? spacingXXXXL : other.spacingXXXXL,
       textButtonIconRightPadding: t < 0.5
           ? textButtonIconRightPadding
           : other.textButtonIconRightPadding,
@@ -770,9 +778,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(bottomSheetPaddingAlternative, other.bottomSheetPaddingAlternative) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
             const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
+            const DeepCollectionEquality().equals(spacingL, other.spacingL) &&
             const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
             const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
             const DeepCollectionEquality().equals(spacingXXL, other.spacingXXL) &&
+            const DeepCollectionEquality().equals(spacingXXXXL, other.spacingXXXXL) &&
             const DeepCollectionEquality().equals(textButtonIconRightPadding, other.textButtonIconRightPadding) &&
             const DeepCollectionEquality().equals(textButtonPadding, other.textButtonPadding) &&
             const DeepCollectionEquality().equals(appBarTextButtonPadding, other.appBarTextButtonPadding) &&
@@ -885,9 +895,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(bottomSheetPaddingAlternative),
       const DeepCollectionEquality().hash(spacingXS),
       const DeepCollectionEquality().hash(spacingS),
+      const DeepCollectionEquality().hash(spacingL),
       const DeepCollectionEquality().hash(spacingM),
       const DeepCollectionEquality().hash(spacingXL),
       const DeepCollectionEquality().hash(spacingXXL),
+      const DeepCollectionEquality().hash(spacingXXXXL),
       const DeepCollectionEquality().hash(textButtonIconRightPadding),
       const DeepCollectionEquality().hash(textButtonPadding),
       const DeepCollectionEquality().hash(appBarTextButtonPadding),

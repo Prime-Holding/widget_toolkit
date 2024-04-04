@@ -77,7 +77,7 @@ class _CameraPermissionWidget extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      context.widgetToolkitTheme.spacingXS1,
+                      context.widgetToolkitTheme.spacingXS,
                     ),
                     border: Border.all(
                       color: context.qrScannerTheme
