@@ -105,7 +105,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
               suffixIcon: _isFieldErrorVisible(fieldState)
                   ? null
                   : context.textFieldDialogTheme.editPenIcon.copyWith(
-                      color: context.textFieldDialogTheme.blue,
+                      color:
+                          context.textFieldDialogTheme.textFieldDialogIconColor,
                     ),
               state: _getFieldState(fieldState),
               errorMessage: fieldState.error ?? '',

@@ -62,8 +62,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   Color get messagePanelColorNeutral;
   Color get buttonBlueGradientEnd;
   Color get elevatedButtonBackgroundColor;
-  Color get textColorWhite;
-  Color get bodyTextColor2;
   Color get smallButtonFilledBackgroundColor;
   Color get smallButtonOutlinedBorderColor;
   Color get activeButtonLanguageTextColor;
@@ -101,15 +99,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   EdgeInsets get gradientFillButtonDefaultPadding;
   EdgeInsets get messagePanelEdgeInsets;
   EdgeInsets get bottomSheetPaddingAlternative;
-  double get spacingXS1;
   double get spacingXS;
-  double get spacingXSS;
   double get spacingS;
   double get spacingM;
-  double get spacingL;
   double get spacingXL;
   double get spacingXXL;
-  double get spacingXXXXL1;
   double get textButtonIconRightPadding;
   double get textButtonPadding;
   double get appBarTextButtonPadding;
@@ -178,8 +172,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     Color? messagePanelColorNeutral,
     Color? buttonBlueGradientEnd,
     Color? elevatedButtonBackgroundColor,
-    Color? textColorWhite,
-    Color? bodyTextColor2,
     Color? smallButtonFilledBackgroundColor,
     Color? smallButtonOutlinedBorderColor,
     Color? activeButtonLanguageTextColor,
@@ -216,16 +208,12 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     EdgeInsets? smallButtonPadding,
     EdgeInsets? gradientFillButtonDefaultPadding,
     EdgeInsets? messagePanelEdgeInsets,
-    EdgeInsets? biometricsBottomSheetPadding,
-    double? spacingXS1,
+    EdgeInsets? bottomSheetPaddingAlternative,
     double? spacingXS,
-    double? spacingXSS,
     double? spacingS,
     double? spacingM,
-    double? spacingL,
     double? spacingXL,
     double? spacingXXL,
-    double? spacingXXXXL1,
     double? textButtonIconRightPadding,
     double? textButtonPadding,
     double? appBarTextButtonPadding,
@@ -336,8 +324,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           buttonBlueGradientEnd ?? this.buttonBlueGradientEnd,
       elevatedButtonBackgroundColor:
           elevatedButtonBackgroundColor ?? this.elevatedButtonBackgroundColor,
-      textColorWhite: textColorWhite ?? this.textColorWhite,
-      bodyTextColor2: bodyTextColor2 ?? this.bodyTextColor2,
       smallButtonFilledBackgroundColor: smallButtonFilledBackgroundColor ??
           this.smallButtonFilledBackgroundColor,
       smallButtonOutlinedBorderColor:
@@ -406,16 +392,12 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       messagePanelEdgeInsets:
           messagePanelEdgeInsets ?? this.messagePanelEdgeInsets,
       bottomSheetPaddingAlternative:
-          biometricsBottomSheetPadding ?? this.bottomSheetPaddingAlternative,
-      spacingXS1: spacingXS1 ?? this.spacingXS1,
+          bottomSheetPaddingAlternative ?? this.bottomSheetPaddingAlternative,
       spacingXS: spacingXS ?? this.spacingXS,
-      spacingXSS: spacingXSS ?? this.spacingXSS,
       spacingS: spacingS ?? this.spacingS,
       spacingM: spacingM ?? this.spacingM,
-      spacingL: spacingL ?? this.spacingL,
       spacingXL: spacingXL ?? this.spacingXL,
       spacingXXL: spacingXXL ?? this.spacingXXL,
-      spacingXXXXL1: spacingXXXXL1 ?? this.spacingXXXXL1,
       textButtonIconRightPadding:
           textButtonIconRightPadding ?? this.textButtonIconRightPadding,
       textButtonPadding: textButtonPadding ?? this.textButtonPadding,
@@ -557,8 +539,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
       elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
           other.elevatedButtonBackgroundColor, t)!,
-      textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
-      bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
       smallButtonFilledBackgroundColor: Color.lerp(
           smallButtonFilledBackgroundColor,
           other.smallButtonFilledBackgroundColor,
@@ -648,15 +628,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       bottomSheetPaddingAlternative: t < 0.5
           ? bottomSheetPaddingAlternative
           : other.bottomSheetPaddingAlternative,
-      spacingXS1: t < 0.5 ? spacingXS1 : other.spacingXS1,
       spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
-      spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
       spacingS: t < 0.5 ? spacingS : other.spacingS,
       spacingM: t < 0.5 ? spacingM : other.spacingM,
-      spacingL: t < 0.5 ? spacingL : other.spacingL,
       spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
       spacingXXL: t < 0.5 ? spacingXXL : other.spacingXXL,
-      spacingXXXXL1: t < 0.5 ? spacingXXXXL1 : other.spacingXXXXL1,
       textButtonIconRightPadding: t < 0.5
           ? textButtonIconRightPadding
           : other.textButtonIconRightPadding,
@@ -755,8 +731,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(messagePanelColorNeutral, other.messagePanelColorNeutral) &&
             const DeepCollectionEquality().equals(buttonBlueGradientEnd, other.buttonBlueGradientEnd) &&
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
-            const DeepCollectionEquality().equals(textColorWhite, other.textColorWhite) &&
-            const DeepCollectionEquality().equals(bodyTextColor2, other.bodyTextColor2) &&
             const DeepCollectionEquality().equals(smallButtonFilledBackgroundColor, other.smallButtonFilledBackgroundColor) &&
             const DeepCollectionEquality().equals(smallButtonOutlinedBorderColor, other.smallButtonOutlinedBorderColor) &&
             const DeepCollectionEquality().equals(activeButtonLanguageTextColor, other.activeButtonLanguageTextColor) &&
@@ -794,15 +768,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(gradientFillButtonDefaultPadding, other.gradientFillButtonDefaultPadding) &&
             const DeepCollectionEquality().equals(messagePanelEdgeInsets, other.messagePanelEdgeInsets) &&
             const DeepCollectionEquality().equals(bottomSheetPaddingAlternative, other.bottomSheetPaddingAlternative) &&
-            const DeepCollectionEquality().equals(spacingXS1, other.spacingXS1) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
-            const DeepCollectionEquality().equals(spacingXSS, other.spacingXSS) &&
             const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
             const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
-            const DeepCollectionEquality().equals(spacingL, other.spacingL) &&
             const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
             const DeepCollectionEquality().equals(spacingXXL, other.spacingXXL) &&
-            const DeepCollectionEquality().equals(spacingXXXXL1, other.spacingXXXXL1) &&
             const DeepCollectionEquality().equals(textButtonIconRightPadding, other.textButtonIconRightPadding) &&
             const DeepCollectionEquality().equals(textButtonPadding, other.textButtonPadding) &&
             const DeepCollectionEquality().equals(appBarTextButtonPadding, other.appBarTextButtonPadding) &&
@@ -875,8 +845,6 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(messagePanelColorNeutral),
       const DeepCollectionEquality().hash(buttonBlueGradientEnd),
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
-      const DeepCollectionEquality().hash(textColorWhite),
-      const DeepCollectionEquality().hash(bodyTextColor2),
       const DeepCollectionEquality().hash(smallButtonFilledBackgroundColor),
       const DeepCollectionEquality().hash(smallButtonOutlinedBorderColor),
       const DeepCollectionEquality().hash(activeButtonLanguageTextColor),
@@ -915,15 +883,11 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(gradientFillButtonDefaultPadding),
       const DeepCollectionEquality().hash(messagePanelEdgeInsets),
       const DeepCollectionEquality().hash(bottomSheetPaddingAlternative),
-      const DeepCollectionEquality().hash(spacingXS1),
       const DeepCollectionEquality().hash(spacingXS),
-      const DeepCollectionEquality().hash(spacingXSS),
       const DeepCollectionEquality().hash(spacingS),
       const DeepCollectionEquality().hash(spacingM),
-      const DeepCollectionEquality().hash(spacingL),
       const DeepCollectionEquality().hash(spacingXL),
       const DeepCollectionEquality().hash(spacingXXL),
-      const DeepCollectionEquality().hash(spacingXXXXL1),
       const DeepCollectionEquality().hash(textButtonIconRightPadding),
       const DeepCollectionEquality().hash(textButtonPadding),
       const DeepCollectionEquality().hash(appBarTextButtonPadding),

@@ -31,7 +31,7 @@ class _PermanentAddressBottomSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: context.editAddressTheme.permanentAddressPadding1,
+        padding: context.editAddressTheme.permanentAddressBottomSheetPadding,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -40,7 +40,8 @@ class _PermanentAddressBottomSheetWidget extends StatelessWidget {
                 style: context.editAddressTheme.titleBold,
               ),
               Padding(
-                padding: context.editAddressTheme.permanentAddressPadding2,
+                padding: context.editAddressTheme
+                    .permanentAddressBottomSheetDecorationPadding,
                 child: Container(
                   decoration: BoxDecoration(
                     color:
@@ -51,15 +52,16 @@ class _PermanentAddressBottomSheetWidget extends StatelessWidget {
                   ),
                   width: double.infinity,
                   child: Padding(
-                    padding: context.editAddressTheme.permanentAddressPadding3,
+                    padding: context.editAddressTheme
+                        .permanentAddressBottomSheetContentPadding,
                     child: Column(
                       children: [
                         Padding(
-                          padding:
-                              context.editAddressTheme.permanentAddressPadding4,
+                          padding: context
+                              .editAddressTheme.permanentAddressIconPadding,
                           child:
                               context.editAddressTheme.infoCircleIcon.copyWith(
-                            color: context.editAddressTheme.blue,
+                            color: context.editAddressTheme.iconColorPrimary,
                             width: context.editAddressTheme.spacingXXXL,
                             height: context.editAddressTheme.spacingXXXL,
                           ),
@@ -67,7 +69,7 @@ class _PermanentAddressBottomSheetWidget extends StatelessWidget {
                         Text(
                           permanentAddressContentMessage,
                           style: context.editAddressTheme.captionBold.copyWith(
-                            color: context.editAddressTheme.blue,
+                            color: context.editAddressTheme.iconColorPrimary,
                             height: 2.2,
                             letterSpacing: 1.1,
                           ),

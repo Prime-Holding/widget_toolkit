@@ -16,7 +16,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
     required this.spacingS,
     required this.changeLanguageSizedBox,
     required this.spacingM,
-    required this.spacingXXXXL1,
+    required this.spacingXXXXL,
     required this.activeButtonLanguageTextColor,
     required this.disabledFilledButtonBackgroundColor,
     required this.activeGradientEnd,
@@ -27,8 +27,8 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
     required this.filledButtonTextColorDisabled,
     required this.textColorWhite,
     required this.boxShadowColor,
-    required this.bodyTextColor2,
-    required this.buttonBlueGradientEnd,
+    required this.bodyTextColor,
+    required this.elevatedButtonForegroundColor,
     required this.elevatedButtonBackgroundColor,
     required this.outlineButtonBackgroundColor,
     required this.checkIcon,
@@ -62,7 +62,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
   @override
   final double spacingM;
   @override
-  final double spacingXXXXL1;
+  final double spacingXXXXL;
   @override
   final EdgeInsets messagePanelErrorEdgeInsets;
 
@@ -87,9 +87,9 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
   @override
   final Color boxShadowColor;
   @override
-  final Color bodyTextColor2;
+  final Color bodyTextColor;
   @override
-  final Color buttonBlueGradientEnd;
+  final Color elevatedButtonForegroundColor;
   @override
   final Color elevatedButtonBackgroundColor;
   @override
@@ -116,7 +116,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
         spacingS = WidgetToolkitDesignSystem.light().spacings.s,
         changeLanguageSizedBox = WidgetToolkitDesignSystem.light().spacings.s,
         spacingM = WidgetToolkitDesignSystem.light().spacings.m,
-        spacingXXXXL1 = WidgetToolkitDesignSystem.light().spacings.xxxxl1,
+        spacingXXXXL = WidgetToolkitDesignSystem.light().spacings.xxxxl1,
         activeButtonLanguageTextColor = WidgetToolkitDesignSystem.light()
             .colors
             .activeButtonLanguageTextColor,
@@ -135,8 +135,8 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
         textColorWhite =
             WidgetToolkitDesignSystem.light().colors.textColorWhite,
         boxShadowColor = WidgetToolkitDesignSystem.light().colors.red,
-        bodyTextColor2 = WidgetToolkitDesignSystem.light().colors.black,
-        buttonBlueGradientEnd =
+        bodyTextColor = WidgetToolkitDesignSystem.light().colors.black,
+        elevatedButtonForegroundColor =
             WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.lightGray,
@@ -160,7 +160,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
         spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
         changeLanguageSizedBox = WidgetToolkitDesignSystem.dark().spacings.s,
         spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
-        spacingXXXXL1 = WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
+        spacingXXXXL = WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
         activeButtonLanguageTextColor = WidgetToolkitDesignSystem.dark()
             .colors
             .activeButtonLanguageTextColor,
@@ -177,8 +177,8 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
             WidgetToolkitDesignSystem.dark().colors.gray,
         textColorWhite = WidgetToolkitDesignSystem.dark().colors.textColorWhite,
         boxShadowColor = WidgetToolkitDesignSystem.dark().colors.red,
-        bodyTextColor2 = WidgetToolkitDesignSystem.dark().colors.black,
-        buttonBlueGradientEnd =
+        bodyTextColor = WidgetToolkitDesignSystem.dark().colors.black,
+        elevatedButtonForegroundColor =
             WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.lightGray,

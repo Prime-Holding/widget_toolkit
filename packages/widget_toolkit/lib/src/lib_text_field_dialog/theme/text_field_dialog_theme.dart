@@ -12,10 +12,16 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   TextFieldDialogTheme({
     required this.editFieldSuccessBackground,
     required this.editFieldRegularBackground,
-    required this.inputTextFieldSuccessBackground,
+    required this.inputFieldBackgroundSuccessColor,
     required this.inputTextFieldRegularBackground,
-    required this.labelBoxOptionalBackground,
+    required this.labelBoxFilledPrimary,
+    required this.labelBoxFilledSecondary,
     required this.labelBoxFilledBackground,
+    required this.labelBoxFilledBorder,
+    required this.labelBoxOptionalPrimary,
+    required this.labelBoxOptionalSecondary,
+    required this.labelBoxOptionalBackground,
+    required this.labelBoxOptionalBorder,
     required this.editFieldBorderRadius,
     required this.spacingXS,
     required this.spacingXSS,
@@ -29,21 +35,44 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
     required this.descriptionBold,
     required this.captionBold,
     required this.smallThin,
-    required this.black,
-    required this.defaultWhite,
-    required this.white,
-    required this.blue,
     required this.disabledFilledButtonBackgroundColor,
-    required this.mediumWhite,
-    required this.gray,
-    required this.green,
-    required this.redLight,
-    required this.orangeLight,
-    required this.orange,
-    required this.transparent,
-    required this.greenLight,
-    required this.red,
-    required this.mediumBlack,
+    required this.inputFieldBorderErrorColor,
+    required this.inputFieldBorderTypeColor,
+    required this.inputFieldBorderDisabledColor,
+    required this.inputFieldBorderLoadingColor,
+    required this.inputFieldBorderWarningColor,
+    required this.inputFieldValueColor,
+    required this.inputFieldValueDisabledColor,
+    required this.textFieldDialogIconColor,
+    required this.editFieldLabelEditedColor,
+    required this.editFieldLabelNotEditedColor,
+    required this.editFieldLabelLoadingColor,
+    required this.editFieldLabelSuccessColor,
+    required this.editFieldValueEditedColor,
+    required this.editFieldValueNotEditedColor,
+    required this.editFieldValueLoadingColor,
+    required this.editFieldValueSuccessColor,
+    required this.editFieldTextEditedTextStyle,
+    required this.editFieldTextNotEditedTextStyle,
+    required this.editFieldTextLoadingTextStyle,
+    required this.editFieldTextSuccessTextStyle,
+    required this.inputFieldTextDefaultFieldColor,
+    required this.inputFieldTextDefaultDisabledColor,
+    required this.inputFieldTextDisabledColor,
+    required this.inputFieldTextErrorColor,
+    required this.inputFieldTextFilledColor,
+    required this.inputFieldTextLoadingColor,
+    required this.inputFieldTextSuccessColor,
+    required this.inputFieldTextTypeColor,
+    required this.inputFieldTextWarningColor,
+    required this.inputFieldTextPlainColor,
+    required this.inputFieldBackgroundFilledColor,
+    required this.inputFieldBackgroundPlainColor,
+    required this.inputFieldBackgroundDefaultFieldColor,
+    required this.inputFieldBackgroundDefaultDisabledColor,
+    required this.inputFieldBackgroundDefaultColor,
+    required this.inputFieldHintColor,
+    required this.inputFieldErrorTextColor,
     required this.closeIcon,
     required this.dangerIcon,
     required this.addIcon,
@@ -75,14 +104,25 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.light().colors.greenLight,
         editFieldRegularBackground =
             WidgetToolkitDesignSystem.light().colors.mediumWhite,
-        inputTextFieldSuccessBackground =
+        inputFieldBackgroundSuccessColor =
             WidgetToolkitDesignSystem.light().colors.greenLight,
         inputTextFieldRegularBackground =
             WidgetToolkitDesignSystem.light().colors.mediumWhite,
-        labelBoxOptionalBackground =
-            WidgetToolkitDesignSystem.light().colors.white,
+        labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
+        labelBoxFilledSecondary =
+            WidgetToolkitDesignSystem.light().colors.black,
         labelBoxFilledBackground =
             WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        labelBoxFilledBorder =
+            WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
+        labelBoxOptionalPrimary =
+            WidgetToolkitDesignSystem.light().colors.black,
+        labelBoxOptionalSecondary =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        labelBoxOptionalBackground =
+            WidgetToolkitDesignSystem.light().colors.white,
+        labelBoxOptionalBorder =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
         editFieldBorderRadius = WidgetToolkitDesignSystem.light().spacings.xss,
         spacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
         spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
@@ -98,23 +138,78 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.light().typography.descriptionBold,
         captionBold = WidgetToolkitDesignSystem.light().typography.captionBold,
         smallThin = WidgetToolkitDesignSystem.light().typography.smallThin,
-        black = WidgetToolkitDesignSystem.light().colors.textFieldDialogBlack,
-        defaultWhite = WidgetToolkitDesignSystem.light().colors.white,
-        white = WidgetToolkitDesignSystem.light().colors.textFieldDialogWhite,
-        blue = WidgetToolkitDesignSystem.light().colors.darkBlue,
+        textFieldDialogIconColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
         disabledFilledButtonBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.gray,
-        mediumWhite = WidgetToolkitDesignSystem.light().colors.lightGray,
-        gray = WidgetToolkitDesignSystem.light().colors.gray,
-        green = WidgetToolkitDesignSystem.light().colors.darkGreen,
-        redLight = WidgetToolkitDesignSystem.light().colors.lightRed,
-        orangeLight = WidgetToolkitDesignSystem.light().colors.orangeLight,
-        orange = WidgetToolkitDesignSystem.light().colors.orange,
-        transparent =
-            WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
-        greenLight = WidgetToolkitDesignSystem.light().colors.greenLight,
-        red = WidgetToolkitDesignSystem.light().colors.red,
-        mediumBlack = WidgetToolkitDesignSystem.light().colors.mediumBlack,
+        inputFieldBorderErrorColor =
+            WidgetToolkitDesignSystem.light().colors.lightRed,
+        inputFieldBorderTypeColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldBorderDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
+        inputFieldBorderLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldBorderWarningColor =
+            WidgetToolkitDesignSystem.light().colors.orangeLight,
+        inputFieldValueColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        inputFieldValueDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelEditedColor = null,
+        editFieldLabelLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelNotEditedColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.green,
+        editFieldValueEditedColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        editFieldValueNotEditedColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldValueLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldValueSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldTextEditedTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        editFieldTextNotEditedTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionThin,
+        editFieldTextLoadingTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        editFieldTextSuccessTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        inputFieldTextDefaultFieldColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextDefaultDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldTextDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumBlack,
+        inputFieldTextErrorColor = WidgetToolkitDesignSystem.light().colors.red,
+        inputFieldTextFilledColor =
+            WidgetToolkitDesignSystem.light().colors.darkGreen,
+        inputFieldTextLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.darkGreen,
+        inputFieldTextTypeColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextWarningColor =
+            WidgetToolkitDesignSystem.light().colors.orange,
+        inputFieldTextPlainColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldBackgroundFilledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundPlainColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultFieldColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldHintColor = WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldErrorTextColor = WidgetToolkitDesignSystem.light().colors.red,
         closeIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
         dangerIcon = WidgetToolkitDesignSystem.dark().icons.dangerIcon,
         addIcon = WidgetToolkitDesignSystem.dark().icons.addIcon,
@@ -166,14 +261,25 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().colors.green,
         editFieldRegularBackground =
             WidgetToolkitDesignSystem.dark().colors.black45,
-        inputTextFieldSuccessBackground =
+        inputFieldBackgroundSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.green,
         inputTextFieldRegularBackground =
             WidgetToolkitDesignSystem.dark().colors.darkGray,
-        labelBoxOptionalBackground =
-            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
+        labelBoxFilledSecondary =
+            WidgetToolkitDesignSystem.light().colors.black,
         labelBoxFilledBackground =
-            WidgetToolkitDesignSystem.dark().colors.darkGray,
+            WidgetToolkitDesignSystem.light().colors.darkGray,
+        labelBoxFilledBorder =
+            WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
+        labelBoxOptionalPrimary =
+            WidgetToolkitDesignSystem.light().colors.black,
+        labelBoxOptionalSecondary =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        labelBoxOptionalBackground =
+            WidgetToolkitDesignSystem.light().colors.darkGray,
+        labelBoxOptionalBorder =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
         editFieldBorderRadius = WidgetToolkitDesignSystem.dark().spacings.xss,
         spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
         spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
@@ -189,23 +295,77 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().typography.descriptionBold,
         captionBold = WidgetToolkitDesignSystem.dark().typography.captionBold,
         smallThin = WidgetToolkitDesignSystem.dark().typography.smallThin,
-        black = WidgetToolkitDesignSystem.dark().colors.textFieldDialogBlack,
-        defaultWhite = WidgetToolkitDesignSystem.dark().colors.white,
-        white = WidgetToolkitDesignSystem.dark().colors.textFieldDialogWhite,
-        blue = WidgetToolkitDesignSystem.dark().colors.blue,
+        textFieldDialogIconColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
         disabledFilledButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.gray,
-        mediumWhite = WidgetToolkitDesignSystem.dark().colors.lightGray,
-        gray = WidgetToolkitDesignSystem.dark().colors.gray,
-        green = WidgetToolkitDesignSystem.dark().colors.darkGreen,
-        redLight = WidgetToolkitDesignSystem.dark().colors.lightRed,
-        orangeLight = WidgetToolkitDesignSystem.dark().colors.orangeLight,
-        orange = WidgetToolkitDesignSystem.dark().colors.orange,
-        transparent =
-            WidgetToolkitDesignSystem.dark().colors.textFieldDialogTransparent,
-        greenLight = WidgetToolkitDesignSystem.dark().colors.greenLight,
-        red = WidgetToolkitDesignSystem.dark().colors.red,
-        mediumBlack = WidgetToolkitDesignSystem.dark().colors.mediumBlack,
+        inputFieldBorderErrorColor =
+            WidgetToolkitDesignSystem.dark().colors.lightRed,
+        inputFieldBorderTypeColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldBorderDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.lightGray,
+        inputFieldBorderLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldBorderWarningColor =
+            WidgetToolkitDesignSystem.dark().colors.orangeLight,
+        inputFieldValueColor =
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
+        inputFieldValueDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelEditedColor = null,
+        editFieldLabelNotEditedColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.green,
+        editFieldValueEditedColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        editFieldValueNotEditedColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldValueLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldValueSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldTextEditedTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        editFieldTextNotEditedTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionThin,
+        editFieldTextLoadingTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        editFieldTextSuccessTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        inputFieldTextDefaultFieldColor =
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        inputFieldTextDefaultDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldTextDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumBlack,
+        inputFieldTextErrorColor = WidgetToolkitDesignSystem.dark().colors.red,
+        inputFieldTextFilledColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGreen,
+        inputFieldTextLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        inputFieldTextSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGreen,
+        inputFieldTextTypeColor =
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        inputFieldTextWarningColor =
+            WidgetToolkitDesignSystem.dark().colors.orange,
+        inputFieldTextPlainColor = WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldBackgroundFilledColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+        inputFieldBackgroundPlainColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+        inputFieldBackgroundDefaultFieldColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+        inputFieldBackgroundDefaultDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+        inputFieldBackgroundDefaultColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+        inputFieldHintColor = WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldErrorTextColor = WidgetToolkitDesignSystem.dark().colors.red,
         closeIcon = WidgetToolkitDesignSystem.light().icons.closeIcon,
         dangerIcon = WidgetToolkitDesignSystem.light().icons.dangerIcon,
         addIcon = WidgetToolkitDesignSystem.light().icons.addIcon,
@@ -259,7 +419,7 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   @override
   final Color editFieldRegularBackground;
   @override
-  final Color inputTextFieldSuccessBackground;
+  final Color inputFieldBackgroundSuccessColor;
   @override
   final Color inputTextFieldRegularBackground;
   @override
@@ -296,35 +456,99 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   final TextStyle smallThin;
 
   @override
-  final Color black;
-  @override
-  final Color defaultWhite;
-  @override
-  final Color white;
-  @override
-  final Color blue;
-  @override
   final Color disabledFilledButtonBackgroundColor;
   @override
-  final Color mediumWhite;
+  final Color textFieldDialogIconColor;
   @override
-  final Color gray;
+  final Color inputFieldBorderErrorColor;
   @override
-  final Color green;
+  final Color inputFieldBorderTypeColor;
   @override
-  final Color redLight;
+  final Color inputFieldBorderDisabledColor;
   @override
-  final Color orangeLight;
+  final Color inputFieldBorderLoadingColor;
   @override
-  final Color orange;
+  final Color inputFieldBorderWarningColor;
   @override
-  final Color transparent;
+  final Color inputFieldValueColor;
   @override
-  final Color greenLight;
+  final Color inputFieldValueDisabledColor;
+
   @override
-  final Color red;
+  final Color labelBoxOptionalPrimary;
   @override
-  final Color mediumBlack;
+  final Color labelBoxFilledPrimary;
+  @override
+  final Color labelBoxOptionalSecondary;
+  @override
+  final Color labelBoxFilledSecondary;
+  @override
+  final Color labelBoxOptionalBorder;
+  @override
+  final Color labelBoxFilledBorder;
+
+  @override
+  final Color? editFieldLabelEditedColor;
+  @override
+  final Color editFieldLabelNotEditedColor;
+  @override
+  final Color editFieldLabelLoadingColor;
+  @override
+  final Color editFieldLabelSuccessColor;
+  @override
+  final Color editFieldValueEditedColor;
+  @override
+  final Color editFieldValueNotEditedColor;
+  @override
+  final Color editFieldValueLoadingColor;
+  @override
+  final Color editFieldValueSuccessColor;
+
+  @override
+  final TextStyle editFieldTextEditedTextStyle;
+  @override
+  final TextStyle editFieldTextNotEditedTextStyle;
+  @override
+  final TextStyle editFieldTextLoadingTextStyle;
+  @override
+  final TextStyle editFieldTextSuccessTextStyle;
+
+  @override
+  final Color inputFieldTextDefaultFieldColor;
+  @override
+  final Color inputFieldTextDefaultDisabledColor;
+  @override
+  final Color inputFieldTextDisabledColor;
+  @override
+  final Color inputFieldTextErrorColor;
+  @override
+  final Color inputFieldTextFilledColor;
+  @override
+  final Color inputFieldTextLoadingColor;
+  @override
+  final Color inputFieldTextSuccessColor;
+  @override
+  final Color inputFieldTextTypeColor;
+  @override
+  final Color inputFieldTextWarningColor;
+  @override
+  final Color inputFieldTextPlainColor;
+
+  @override
+  final Color inputFieldBackgroundFilledColor;
+  @override
+  final Color inputFieldBackgroundPlainColor;
+  @override
+  final Color inputFieldBackgroundDefaultFieldColor;
+  @override
+  final Color inputFieldBackgroundDefaultDisabledColor;
+  @override
+  final Color inputFieldBackgroundDefaultColor;
+
+  @override
+  final Color inputFieldHintColor;
+  @override
+  final Color inputFieldErrorTextColor;
 
   @override
   final SvgFile closeIcon;

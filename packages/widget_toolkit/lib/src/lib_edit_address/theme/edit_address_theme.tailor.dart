@@ -22,12 +22,11 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
   TextStyle get captionBold;
   TextStyle get descriptionThin;
   TextStyle get titleBold;
-  Color get white;
-  Color get black;
+  Color get shimmerTextBaseColor;
   Color get editAddressWidgetColor;
-  Color get mediumWhite;
-  Color get green;
-  Color get blue;
+  Color get shimmerTextHighlightColor;
+  Color get iconColorSecondary;
+  Color get iconColorPrimary;
   Color get editAddressPageBackgroundColor;
   Color get permanentAddressBlueLightColor;
   Color get disabledFilledButtonBackgroundColor;
@@ -36,14 +35,14 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
   EdgeInsets get editAddressPageOuterMostPadding;
   EdgeInsets get editAddressPageOnAddressSavedPadding;
   EdgeInsets get editAddressPageErrorPanelPadding;
-  EdgeInsets get permanentAddressPadding1;
-  EdgeInsets get permanentAddressPadding2;
-  EdgeInsets get permanentAddressPadding3;
-  EdgeInsets get permanentAddressPadding4;
-  EdgeInsets get editAddressWidgetPadding1;
-  EdgeInsets get editAddressWidgetPadding2;
-  EdgeInsets get editAddressWidgetPadding3;
-  EdgeInsets get editAddressWidgetPadding4;
+  EdgeInsets get permanentAddressBottomSheetPadding;
+  EdgeInsets get permanentAddressBottomSheetDecorationPadding;
+  EdgeInsets get permanentAddressBottomSheetContentPadding;
+  EdgeInsets get permanentAddressIconPadding;
+  EdgeInsets get editAddressWidgetDecorationPadding;
+  EdgeInsets get editAddressWidgetContentPadding;
+  EdgeInsets get editAddressWidgetShimmerPadding;
+  EdgeInsets get editAddressWidgetIconPadding;
   SvgFile get editPenIcon;
   SvgFile get infoCircleIcon;
 
@@ -62,12 +61,11 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
     TextStyle? captionBold,
     TextStyle? descriptionThin,
     TextStyle? titleBold,
-    Color? white,
-    Color? black,
+    Color? shimmerTextBaseColor,
     Color? editAddressWidgetColor,
-    Color? mediumWhite,
-    Color? green,
-    Color? blue,
+    Color? shimmerTextHighlightColor,
+    Color? iconColorSecondary,
+    Color? iconColorPrimary,
     Color? editAddressPageBackgroundColor,
     Color? permanentAddressBlueLightColor,
     Color? disabledFilledButtonBackgroundColor,
@@ -76,14 +74,14 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
     EdgeInsets? editAddressPageOuterMostPadding,
     EdgeInsets? editAddressPageOnAddressSavedPadding,
     EdgeInsets? editAddressPageErrorPanelPadding,
-    EdgeInsets? permanentAddressPadding1,
-    EdgeInsets? permanentAddressPadding2,
-    EdgeInsets? permanentAddressPadding3,
-    EdgeInsets? permanentAddressPadding4,
-    EdgeInsets? editAddressWidgetPadding1,
-    EdgeInsets? editAddressWidgetPadding2,
-    EdgeInsets? editAddressWidgetPadding3,
-    EdgeInsets? editAddressWidgetPadding4,
+    EdgeInsets? permanentAddressBottomSheetPadding,
+    EdgeInsets? permanentAddressBottomSheetDecorationPadding,
+    EdgeInsets? permanentAddressBottomSheetContentPadding,
+    EdgeInsets? permanentAddressIconPadding,
+    EdgeInsets? editAddressWidgetDecorationPadding,
+    EdgeInsets? editAddressWidgetContentPadding,
+    EdgeInsets? editAddressWidgetShimmerPadding,
+    EdgeInsets? editAddressWidgetIconPadding,
     SvgFile? editPenIcon,
     SvgFile? infoCircleIcon,
   }) {
@@ -103,13 +101,13 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
       captionBold: captionBold ?? this.captionBold,
       descriptionThin: descriptionThin ?? this.descriptionThin,
       titleBold: titleBold ?? this.titleBold,
-      white: white ?? this.white,
-      black: black ?? this.black,
+      shimmerTextBaseColor: shimmerTextBaseColor ?? this.shimmerTextBaseColor,
       editAddressWidgetColor:
           editAddressWidgetColor ?? this.editAddressWidgetColor,
-      mediumWhite: mediumWhite ?? this.mediumWhite,
-      green: green ?? this.green,
-      blue: blue ?? this.blue,
+      shimmerTextHighlightColor:
+          shimmerTextHighlightColor ?? this.shimmerTextHighlightColor,
+      iconColorSecondary: iconColorSecondary ?? this.iconColorSecondary,
+      iconColorPrimary: iconColorPrimary ?? this.iconColorPrimary,
       editAddressPageBackgroundColor:
           editAddressPageBackgroundColor ?? this.editAddressPageBackgroundColor,
       permanentAddressBlueLightColor:
@@ -129,22 +127,24 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
               this.editAddressPageOnAddressSavedPadding,
       editAddressPageErrorPanelPadding: editAddressPageErrorPanelPadding ??
           this.editAddressPageErrorPanelPadding,
-      permanentAddressPadding1:
-          permanentAddressPadding1 ?? this.permanentAddressPadding1,
-      permanentAddressPadding2:
-          permanentAddressPadding2 ?? this.permanentAddressPadding2,
-      permanentAddressPadding3:
-          permanentAddressPadding3 ?? this.permanentAddressPadding3,
-      permanentAddressPadding4:
-          permanentAddressPadding4 ?? this.permanentAddressPadding4,
-      editAddressWidgetPadding1:
-          editAddressWidgetPadding1 ?? this.editAddressWidgetPadding1,
-      editAddressWidgetPadding2:
-          editAddressWidgetPadding2 ?? this.editAddressWidgetPadding2,
-      editAddressWidgetPadding3:
-          editAddressWidgetPadding3 ?? this.editAddressWidgetPadding3,
-      editAddressWidgetPadding4:
-          editAddressWidgetPadding4 ?? this.editAddressWidgetPadding4,
+      permanentAddressBottomSheetPadding: permanentAddressBottomSheetPadding ??
+          this.permanentAddressBottomSheetPadding,
+      permanentAddressBottomSheetDecorationPadding:
+          permanentAddressBottomSheetDecorationPadding ??
+              this.permanentAddressBottomSheetDecorationPadding,
+      permanentAddressBottomSheetContentPadding:
+          permanentAddressBottomSheetContentPadding ??
+              this.permanentAddressBottomSheetContentPadding,
+      permanentAddressIconPadding:
+          permanentAddressIconPadding ?? this.permanentAddressIconPadding,
+      editAddressWidgetDecorationPadding: editAddressWidgetDecorationPadding ??
+          this.editAddressWidgetDecorationPadding,
+      editAddressWidgetContentPadding: editAddressWidgetContentPadding ??
+          this.editAddressWidgetContentPadding,
+      editAddressWidgetShimmerPadding: editAddressWidgetShimmerPadding ??
+          this.editAddressWidgetShimmerPadding,
+      editAddressWidgetIconPadding:
+          editAddressWidgetIconPadding ?? this.editAddressWidgetIconPadding,
       editPenIcon: editPenIcon ?? this.editPenIcon,
       infoCircleIcon: infoCircleIcon ?? this.infoCircleIcon,
     );
@@ -172,13 +172,16 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
       descriptionThin:
           TextStyle.lerp(descriptionThin, other.descriptionThin, t)!,
       titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
-      white: Color.lerp(white, other.white, t)!,
-      black: Color.lerp(black, other.black, t)!,
+      shimmerTextBaseColor:
+          Color.lerp(shimmerTextBaseColor, other.shimmerTextBaseColor, t)!,
       editAddressWidgetColor:
           Color.lerp(editAddressWidgetColor, other.editAddressWidgetColor, t)!,
-      mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
-      green: Color.lerp(green, other.green, t)!,
-      blue: Color.lerp(blue, other.blue, t)!,
+      shimmerTextHighlightColor: Color.lerp(
+          shimmerTextHighlightColor, other.shimmerTextHighlightColor, t)!,
+      iconColorSecondary:
+          Color.lerp(iconColorSecondary, other.iconColorSecondary, t)!,
+      iconColorPrimary:
+          Color.lerp(iconColorPrimary, other.iconColorPrimary, t)!,
       editAddressPageBackgroundColor: Color.lerp(editAddressPageBackgroundColor,
           other.editAddressPageBackgroundColor, t)!,
       permanentAddressBlueLightColor: Color.lerp(permanentAddressBlueLightColor,
@@ -204,22 +207,30 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
       editAddressPageErrorPanelPadding: t < 0.5
           ? editAddressPageErrorPanelPadding
           : other.editAddressPageErrorPanelPadding,
-      permanentAddressPadding1:
-          t < 0.5 ? permanentAddressPadding1 : other.permanentAddressPadding1,
-      permanentAddressPadding2:
-          t < 0.5 ? permanentAddressPadding2 : other.permanentAddressPadding2,
-      permanentAddressPadding3:
-          t < 0.5 ? permanentAddressPadding3 : other.permanentAddressPadding3,
-      permanentAddressPadding4:
-          t < 0.5 ? permanentAddressPadding4 : other.permanentAddressPadding4,
-      editAddressWidgetPadding1:
-          t < 0.5 ? editAddressWidgetPadding1 : other.editAddressWidgetPadding1,
-      editAddressWidgetPadding2:
-          t < 0.5 ? editAddressWidgetPadding2 : other.editAddressWidgetPadding2,
-      editAddressWidgetPadding3:
-          t < 0.5 ? editAddressWidgetPadding3 : other.editAddressWidgetPadding3,
-      editAddressWidgetPadding4:
-          t < 0.5 ? editAddressWidgetPadding4 : other.editAddressWidgetPadding4,
+      permanentAddressBottomSheetPadding: t < 0.5
+          ? permanentAddressBottomSheetPadding
+          : other.permanentAddressBottomSheetPadding,
+      permanentAddressBottomSheetDecorationPadding: t < 0.5
+          ? permanentAddressBottomSheetDecorationPadding
+          : other.permanentAddressBottomSheetDecorationPadding,
+      permanentAddressBottomSheetContentPadding: t < 0.5
+          ? permanentAddressBottomSheetContentPadding
+          : other.permanentAddressBottomSheetContentPadding,
+      permanentAddressIconPadding: t < 0.5
+          ? permanentAddressIconPadding
+          : other.permanentAddressIconPadding,
+      editAddressWidgetDecorationPadding: t < 0.5
+          ? editAddressWidgetDecorationPadding
+          : other.editAddressWidgetDecorationPadding,
+      editAddressWidgetContentPadding: t < 0.5
+          ? editAddressWidgetContentPadding
+          : other.editAddressWidgetContentPadding,
+      editAddressWidgetShimmerPadding: t < 0.5
+          ? editAddressWidgetShimmerPadding
+          : other.editAddressWidgetShimmerPadding,
+      editAddressWidgetIconPadding: t < 0.5
+          ? editAddressWidgetIconPadding
+          : other.editAddressWidgetIconPadding,
       editPenIcon: t < 0.5 ? editPenIcon : other.editPenIcon,
       infoCircleIcon: t < 0.5 ? infoCircleIcon : other.infoCircleIcon,
     );
@@ -250,14 +261,16 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
             const DeepCollectionEquality()
                 .equals(descriptionThin, other.descriptionThin) &&
             const DeepCollectionEquality().equals(titleBold, other.titleBold) &&
-            const DeepCollectionEquality().equals(white, other.white) &&
-            const DeepCollectionEquality().equals(black, other.black) &&
+            const DeepCollectionEquality()
+                .equals(shimmerTextBaseColor, other.shimmerTextBaseColor) &&
             const DeepCollectionEquality()
                 .equals(editAddressWidgetColor, other.editAddressWidgetColor) &&
+            const DeepCollectionEquality().equals(
+                shimmerTextHighlightColor, other.shimmerTextHighlightColor) &&
             const DeepCollectionEquality()
-                .equals(mediumWhite, other.mediumWhite) &&
-            const DeepCollectionEquality().equals(green, other.green) &&
-            const DeepCollectionEquality().equals(blue, other.blue) &&
+                .equals(iconColorSecondary, other.iconColorSecondary) &&
+            const DeepCollectionEquality()
+                .equals(iconColorPrimary, other.iconColorPrimary) &&
             const DeepCollectionEquality().equals(
                 editAddressPageBackgroundColor,
                 other.editAddressPageBackgroundColor) &&
@@ -281,14 +294,14 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
                 other.editAddressPageOnAddressSavedPadding) &&
             const DeepCollectionEquality().equals(
                 editAddressPageErrorPanelPadding, other.editAddressPageErrorPanelPadding) &&
-            const DeepCollectionEquality().equals(permanentAddressPadding1, other.permanentAddressPadding1) &&
-            const DeepCollectionEquality().equals(permanentAddressPadding2, other.permanentAddressPadding2) &&
-            const DeepCollectionEquality().equals(permanentAddressPadding3, other.permanentAddressPadding3) &&
-            const DeepCollectionEquality().equals(permanentAddressPadding4, other.permanentAddressPadding4) &&
-            const DeepCollectionEquality().equals(editAddressWidgetPadding1, other.editAddressWidgetPadding1) &&
-            const DeepCollectionEquality().equals(editAddressWidgetPadding2, other.editAddressWidgetPadding2) &&
-            const DeepCollectionEquality().equals(editAddressWidgetPadding3, other.editAddressWidgetPadding3) &&
-            const DeepCollectionEquality().equals(editAddressWidgetPadding4, other.editAddressWidgetPadding4) &&
+            const DeepCollectionEquality().equals(permanentAddressBottomSheetPadding, other.permanentAddressBottomSheetPadding) &&
+            const DeepCollectionEquality().equals(permanentAddressBottomSheetDecorationPadding, other.permanentAddressBottomSheetDecorationPadding) &&
+            const DeepCollectionEquality().equals(permanentAddressBottomSheetContentPadding, other.permanentAddressBottomSheetContentPadding) &&
+            const DeepCollectionEquality().equals(permanentAddressIconPadding, other.permanentAddressIconPadding) &&
+            const DeepCollectionEquality().equals(editAddressWidgetDecorationPadding, other.editAddressWidgetDecorationPadding) &&
+            const DeepCollectionEquality().equals(editAddressWidgetContentPadding, other.editAddressWidgetContentPadding) &&
+            const DeepCollectionEquality().equals(editAddressWidgetShimmerPadding, other.editAddressWidgetShimmerPadding) &&
+            const DeepCollectionEquality().equals(editAddressWidgetIconPadding, other.editAddressWidgetIconPadding) &&
             const DeepCollectionEquality().equals(editPenIcon, other.editPenIcon) &&
             const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon));
   }
@@ -310,12 +323,11 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
       const DeepCollectionEquality().hash(captionBold),
       const DeepCollectionEquality().hash(descriptionThin),
       const DeepCollectionEquality().hash(titleBold),
-      const DeepCollectionEquality().hash(white),
-      const DeepCollectionEquality().hash(black),
+      const DeepCollectionEquality().hash(shimmerTextBaseColor),
       const DeepCollectionEquality().hash(editAddressWidgetColor),
-      const DeepCollectionEquality().hash(mediumWhite),
-      const DeepCollectionEquality().hash(green),
-      const DeepCollectionEquality().hash(blue),
+      const DeepCollectionEquality().hash(shimmerTextHighlightColor),
+      const DeepCollectionEquality().hash(iconColorSecondary),
+      const DeepCollectionEquality().hash(iconColorPrimary),
       const DeepCollectionEquality().hash(editAddressPageBackgroundColor),
       const DeepCollectionEquality().hash(permanentAddressBlueLightColor),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
@@ -325,14 +337,16 @@ mixin _$EditAddressThemeTailorMixin on ThemeExtension<EditAddressTheme> {
       const DeepCollectionEquality().hash(editAddressPageOuterMostPadding),
       const DeepCollectionEquality().hash(editAddressPageOnAddressSavedPadding),
       const DeepCollectionEquality().hash(editAddressPageErrorPanelPadding),
-      const DeepCollectionEquality().hash(permanentAddressPadding1),
-      const DeepCollectionEquality().hash(permanentAddressPadding2),
-      const DeepCollectionEquality().hash(permanentAddressPadding3),
-      const DeepCollectionEquality().hash(permanentAddressPadding4),
-      const DeepCollectionEquality().hash(editAddressWidgetPadding1),
-      const DeepCollectionEquality().hash(editAddressWidgetPadding2),
-      const DeepCollectionEquality().hash(editAddressWidgetPadding3),
-      const DeepCollectionEquality().hash(editAddressWidgetPadding4),
+      const DeepCollectionEquality().hash(permanentAddressBottomSheetPadding),
+      const DeepCollectionEquality()
+          .hash(permanentAddressBottomSheetDecorationPadding),
+      const DeepCollectionEquality()
+          .hash(permanentAddressBottomSheetContentPadding),
+      const DeepCollectionEquality().hash(permanentAddressIconPadding),
+      const DeepCollectionEquality().hash(editAddressWidgetDecorationPadding),
+      const DeepCollectionEquality().hash(editAddressWidgetContentPadding),
+      const DeepCollectionEquality().hash(editAddressWidgetShimmerPadding),
+      const DeepCollectionEquality().hash(editAddressWidgetIconPadding),
       const DeepCollectionEquality().hash(editPenIcon),
       const DeepCollectionEquality().hash(infoCircleIcon),
     ]);

@@ -151,7 +151,7 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
         label: widget.emptyLabel,
         onTap: () => _showModalText(context),
         leadingIcon: context.textFieldDialogTheme.addIcon.copyWith(
-          color: context.textFieldDialogTheme.blue,
+          color: context.textFieldDialogTheme.textFieldDialogIconColor,
         ),
         // optionalString won't be used since the type is not going to be changed to LabeledBoxType.optional
         optionalString: '',

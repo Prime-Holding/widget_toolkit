@@ -63,8 +63,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.messagePanelColorNeutral,
     required this.buttonBlueGradientEnd,
     required this.elevatedButtonBackgroundColor,
-    required this.textColorWhite,
-    required this.bodyTextColor2,
     required this.smallButtonFilledBackgroundColor,
     required this.smallButtonOutlinedBorderColor,
     required this.activeButtonLanguageTextColor,
@@ -102,15 +100,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.gradientFillButtonDefaultPadding,
     required this.messagePanelEdgeInsets,
     required this.bottomSheetPaddingAlternative,
-    required this.spacingXS1,
     required this.spacingXS,
-    required this.spacingXSS,
     required this.spacingS,
     required this.spacingM,
-    required this.spacingL,
     required this.spacingXL,
     required this.spacingXXL,
-    required this.spacingXXXXL1,
     required this.textButtonIconRightPadding,
     required this.textButtonPadding,
     required this.appBarTextButtonPadding,
@@ -232,9 +226,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.lightGray,
-        textColorWhite =
-            WidgetToolkitDesignSystem.light().colors.textColorWhite,
-        bodyTextColor2 = WidgetToolkitDesignSystem.light().colors.black,
         smallButtonFilledBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.white,
         smallButtonOutlinedBorderColor =
@@ -297,15 +288,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
         bottomSheetPaddingAlternative = const EdgeInsets.all(16),
-        spacingXS1 = WidgetToolkitDesignSystem.light().spacings.xs1,
-        spacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
-        spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.light().spacings.xs1,
         spacingS = WidgetToolkitDesignSystem.light().spacings.s,
         spacingM = WidgetToolkitDesignSystem.light().spacings.m,
-        spacingL = WidgetToolkitDesignSystem.light().spacings.l,
         spacingXL = WidgetToolkitDesignSystem.light().spacings.xl,
         spacingXXL = WidgetToolkitDesignSystem.light().spacings.xxl,
-        spacingXXXXL1 = WidgetToolkitDesignSystem.light().spacings.xxxxl1,
         textButtonIconRightPadding =
             WidgetToolkitDesignSystem.light().spacings.s,
         textButtonPadding = WidgetToolkitDesignSystem.light().spacings.xs,
@@ -428,9 +415,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
             WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
         elevatedButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.lightGray,
-        textColorWhite = WidgetToolkitDesignSystem.dark().colors.textColorWhite,
-        bodyTextColor2 =
-            WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
         smallButtonFilledBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.mediumWhite,
         smallButtonOutlinedBorderColor =
@@ -490,15 +474,11 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
         bottomSheetPaddingAlternative = const EdgeInsets.all(16),
-        spacingXS1 = WidgetToolkitDesignSystem.dark().spacings.xs1,
-        spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
-        spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs1,
         spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
         spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
-        spacingL = WidgetToolkitDesignSystem.dark().spacings.l,
         spacingXL = WidgetToolkitDesignSystem.dark().spacings.xl,
         spacingXXL = WidgetToolkitDesignSystem.dark().spacings.xxl,
-        spacingXXXXL1 = WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
         textButtonIconRightPadding =
             WidgetToolkitDesignSystem.dark().spacings.s,
         textButtonPadding = WidgetToolkitDesignSystem.dark().spacings.xs,
@@ -623,10 +603,6 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final Color elevatedButtonBackgroundColor;
   @override
-  final Color textColorWhite;
-  @override
-  final Color bodyTextColor2;
-  @override
   final Color smallButtonFilledBackgroundColor;
   @override
   final Color smallButtonOutlinedBorderColor;
@@ -701,23 +677,15 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   @override
   final EdgeInsets bottomSheetPaddingAlternative;
   @override
-  final double spacingXS1;
-  @override
   final double spacingXS;
-  @override
-  final double spacingXSS;
   @override
   final double spacingS;
   @override
   final double spacingM;
   @override
-  final double spacingL;
-  @override
   final double spacingXL;
   @override
   final double spacingXXL;
-  @override
-  final double spacingXXXXL1;
   @override
   final double textButtonIconRightPadding;
   @override

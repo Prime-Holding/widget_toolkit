@@ -12,7 +12,7 @@ mixin _$TextFieldDialogThemeTailorMixin
     on ThemeExtension<TextFieldDialogTheme> {
   Color get editFieldSuccessBackground;
   Color get editFieldRegularBackground;
-  Color get inputTextFieldSuccessBackground;
+  Color get inputFieldBackgroundSuccessColor;
   Color get inputTextFieldRegularBackground;
   Color get labelBoxOptionalBackground;
   Color get labelBoxFilledBackground;
@@ -29,21 +29,50 @@ mixin _$TextFieldDialogThemeTailorMixin
   TextStyle get descriptionBold;
   TextStyle get captionBold;
   TextStyle get smallThin;
-  Color get black;
-  Color get defaultWhite;
-  Color get white;
-  Color get blue;
   Color get disabledFilledButtonBackgroundColor;
-  Color get mediumWhite;
-  Color get gray;
-  Color get green;
-  Color get redLight;
-  Color get orangeLight;
-  Color get orange;
-  Color get transparent;
-  Color get greenLight;
-  Color get red;
-  Color get mediumBlack;
+  Color get textFieldDialogIconColor;
+  Color get inputFieldBorderErrorColor;
+  Color get inputFieldBorderTypeColor;
+  Color get inputFieldBorderDisabledColor;
+  Color get inputFieldBorderLoadingColor;
+  Color get inputFieldBorderWarningColor;
+  Color get inputFieldValueColor;
+  Color get inputFieldValueDisabledColor;
+  Color get labelBoxOptionalPrimary;
+  Color get labelBoxFilledPrimary;
+  Color get labelBoxOptionalSecondary;
+  Color get labelBoxFilledSecondary;
+  Color get labelBoxOptionalBorder;
+  Color get labelBoxFilledBorder;
+  Color? get editFieldLabelEditedColor;
+  Color get editFieldLabelNotEditedColor;
+  Color get editFieldLabelLoadingColor;
+  Color get editFieldLabelSuccessColor;
+  Color get editFieldValueEditedColor;
+  Color get editFieldValueNotEditedColor;
+  Color get editFieldValueLoadingColor;
+  Color get editFieldValueSuccessColor;
+  TextStyle get editFieldTextEditedTextStyle;
+  TextStyle get editFieldTextNotEditedTextStyle;
+  TextStyle get editFieldTextLoadingTextStyle;
+  TextStyle get editFieldTextSuccessTextStyle;
+  Color get inputFieldTextDefaultFieldColor;
+  Color get inputFieldTextDefaultDisabledColor;
+  Color get inputFieldTextDisabledColor;
+  Color get inputFieldTextErrorColor;
+  Color get inputFieldTextFilledColor;
+  Color get inputFieldTextLoadingColor;
+  Color get inputFieldTextSuccessColor;
+  Color get inputFieldTextTypeColor;
+  Color get inputFieldTextWarningColor;
+  Color get inputFieldTextPlainColor;
+  Color get inputFieldBackgroundFilledColor;
+  Color get inputFieldBackgroundPlainColor;
+  Color get inputFieldBackgroundDefaultFieldColor;
+  Color get inputFieldBackgroundDefaultDisabledColor;
+  Color get inputFieldBackgroundDefaultColor;
+  Color get inputFieldHintColor;
+  Color get inputFieldErrorTextColor;
   SvgFile get closeIcon;
   SvgFile get dangerIcon;
   SvgFile get addIcon;
@@ -71,7 +100,7 @@ mixin _$TextFieldDialogThemeTailorMixin
   TextFieldDialogTheme copyWith({
     Color? editFieldSuccessBackground,
     Color? editFieldRegularBackground,
-    Color? inputTextFieldSuccessBackground,
+    Color? inputFieldBackgroundSuccessColor,
     Color? inputTextFieldRegularBackground,
     Color? labelBoxOptionalBackground,
     Color? labelBoxFilledBackground,
@@ -88,21 +117,50 @@ mixin _$TextFieldDialogThemeTailorMixin
     TextStyle? descriptionBold,
     TextStyle? captionBold,
     TextStyle? smallThin,
-    Color? black,
-    Color? defaultWhite,
-    Color? white,
-    Color? blue,
     Color? disabledFilledButtonBackgroundColor,
-    Color? mediumWhite,
-    Color? gray,
-    Color? green,
-    Color? redLight,
-    Color? orangeLight,
-    Color? orange,
-    Color? transparent,
-    Color? greenLight,
-    Color? red,
-    Color? mediumBlack,
+    Color? textFieldDialogIconColor,
+    Color? inputFieldBorderErrorColor,
+    Color? inputFieldBorderTypeColor,
+    Color? inputFieldBorderDisabledColor,
+    Color? inputFieldBorderLoadingColor,
+    Color? inputFieldBorderWarningColor,
+    Color? inputFieldValueColor,
+    Color? inputFieldValueDisabledColor,
+    Color? labelBoxOptionalPrimary,
+    Color? labelBoxFilledPrimary,
+    Color? labelBoxOptionalSecondary,
+    Color? labelBoxFilledSecondary,
+    Color? labelBoxOptionalBorder,
+    Color? labelBoxFilledBorder,
+    Color? editFieldLabelEditedColor,
+    Color? editFieldLabelNotEditedColor,
+    Color? editFieldLabelLoadingColor,
+    Color? editFieldLabelSuccessColor,
+    Color? editFieldValueEditedColor,
+    Color? editFieldValueNotEditedColor,
+    Color? editFieldValueLoadingColor,
+    Color? editFieldValueSuccessColor,
+    TextStyle? editFieldTextEditedTextStyle,
+    TextStyle? editFieldTextNotEditedTextStyle,
+    TextStyle? editFieldTextLoadingTextStyle,
+    TextStyle? editFieldTextSuccessTextStyle,
+    Color? inputFieldTextDefaultFieldColor,
+    Color? inputFieldTextDefaultDisabledColor,
+    Color? inputFieldTextDisabledColor,
+    Color? inputFieldTextErrorColor,
+    Color? inputFieldTextFilledColor,
+    Color? inputFieldTextLoadingColor,
+    Color? inputFieldTextSuccessColor,
+    Color? inputFieldTextTypeColor,
+    Color? inputFieldTextWarningColor,
+    Color? inputFieldTextPlainColor,
+    Color? inputFieldBackgroundFilledColor,
+    Color? inputFieldBackgroundPlainColor,
+    Color? inputFieldBackgroundDefaultFieldColor,
+    Color? inputFieldBackgroundDefaultDisabledColor,
+    Color? inputFieldBackgroundDefaultColor,
+    Color? inputFieldHintColor,
+    Color? inputFieldErrorTextColor,
     SvgFile? closeIcon,
     SvgFile? dangerIcon,
     SvgFile? addIcon,
@@ -131,8 +189,8 @@ mixin _$TextFieldDialogThemeTailorMixin
           editFieldSuccessBackground ?? this.editFieldSuccessBackground,
       editFieldRegularBackground:
           editFieldRegularBackground ?? this.editFieldRegularBackground,
-      inputTextFieldSuccessBackground: inputTextFieldSuccessBackground ??
-          this.inputTextFieldSuccessBackground,
+      inputFieldBackgroundSuccessColor: inputFieldBackgroundSuccessColor ??
+          this.inputFieldBackgroundSuccessColor,
       inputTextFieldRegularBackground: inputTextFieldRegularBackground ??
           this.inputTextFieldRegularBackground,
       labelBoxOptionalBackground:
@@ -153,23 +211,94 @@ mixin _$TextFieldDialogThemeTailorMixin
       descriptionBold: descriptionBold ?? this.descriptionBold,
       captionBold: captionBold ?? this.captionBold,
       smallThin: smallThin ?? this.smallThin,
-      black: black ?? this.black,
-      defaultWhite: defaultWhite ?? this.defaultWhite,
-      white: white ?? this.white,
-      blue: blue ?? this.blue,
       disabledFilledButtonBackgroundColor:
           disabledFilledButtonBackgroundColor ??
               this.disabledFilledButtonBackgroundColor,
-      mediumWhite: mediumWhite ?? this.mediumWhite,
-      gray: gray ?? this.gray,
-      green: green ?? this.green,
-      redLight: redLight ?? this.redLight,
-      orangeLight: orangeLight ?? this.orangeLight,
-      orange: orange ?? this.orange,
-      transparent: transparent ?? this.transparent,
-      greenLight: greenLight ?? this.greenLight,
-      red: red ?? this.red,
-      mediumBlack: mediumBlack ?? this.mediumBlack,
+      textFieldDialogIconColor:
+          textFieldDialogIconColor ?? this.textFieldDialogIconColor,
+      inputFieldBorderErrorColor:
+          inputFieldBorderErrorColor ?? this.inputFieldBorderErrorColor,
+      inputFieldBorderTypeColor:
+          inputFieldBorderTypeColor ?? this.inputFieldBorderTypeColor,
+      inputFieldBorderDisabledColor:
+          inputFieldBorderDisabledColor ?? this.inputFieldBorderDisabledColor,
+      inputFieldBorderLoadingColor:
+          inputFieldBorderLoadingColor ?? this.inputFieldBorderLoadingColor,
+      inputFieldBorderWarningColor:
+          inputFieldBorderWarningColor ?? this.inputFieldBorderWarningColor,
+      inputFieldValueColor: inputFieldValueColor ?? this.inputFieldValueColor,
+      inputFieldValueDisabledColor:
+          inputFieldValueDisabledColor ?? this.inputFieldValueDisabledColor,
+      labelBoxOptionalPrimary:
+          labelBoxOptionalPrimary ?? this.labelBoxOptionalPrimary,
+      labelBoxFilledPrimary:
+          labelBoxFilledPrimary ?? this.labelBoxFilledPrimary,
+      labelBoxOptionalSecondary:
+          labelBoxOptionalSecondary ?? this.labelBoxOptionalSecondary,
+      labelBoxFilledSecondary:
+          labelBoxFilledSecondary ?? this.labelBoxFilledSecondary,
+      labelBoxOptionalBorder:
+          labelBoxOptionalBorder ?? this.labelBoxOptionalBorder,
+      labelBoxFilledBorder: labelBoxFilledBorder ?? this.labelBoxFilledBorder,
+      editFieldLabelEditedColor:
+          editFieldLabelEditedColor ?? this.editFieldLabelEditedColor,
+      editFieldLabelNotEditedColor:
+          editFieldLabelNotEditedColor ?? this.editFieldLabelNotEditedColor,
+      editFieldLabelLoadingColor:
+          editFieldLabelLoadingColor ?? this.editFieldLabelLoadingColor,
+      editFieldLabelSuccessColor:
+          editFieldLabelSuccessColor ?? this.editFieldLabelSuccessColor,
+      editFieldValueEditedColor:
+          editFieldValueEditedColor ?? this.editFieldValueEditedColor,
+      editFieldValueNotEditedColor:
+          editFieldValueNotEditedColor ?? this.editFieldValueNotEditedColor,
+      editFieldValueLoadingColor:
+          editFieldValueLoadingColor ?? this.editFieldValueLoadingColor,
+      editFieldValueSuccessColor:
+          editFieldValueSuccessColor ?? this.editFieldValueSuccessColor,
+      editFieldTextEditedTextStyle:
+          editFieldTextEditedTextStyle ?? this.editFieldTextEditedTextStyle,
+      editFieldTextNotEditedTextStyle: editFieldTextNotEditedTextStyle ??
+          this.editFieldTextNotEditedTextStyle,
+      editFieldTextLoadingTextStyle:
+          editFieldTextLoadingTextStyle ?? this.editFieldTextLoadingTextStyle,
+      editFieldTextSuccessTextStyle:
+          editFieldTextSuccessTextStyle ?? this.editFieldTextSuccessTextStyle,
+      inputFieldTextDefaultFieldColor: inputFieldTextDefaultFieldColor ??
+          this.inputFieldTextDefaultFieldColor,
+      inputFieldTextDefaultDisabledColor: inputFieldTextDefaultDisabledColor ??
+          this.inputFieldTextDefaultDisabledColor,
+      inputFieldTextDisabledColor:
+          inputFieldTextDisabledColor ?? this.inputFieldTextDisabledColor,
+      inputFieldTextErrorColor:
+          inputFieldTextErrorColor ?? this.inputFieldTextErrorColor,
+      inputFieldTextFilledColor:
+          inputFieldTextFilledColor ?? this.inputFieldTextFilledColor,
+      inputFieldTextLoadingColor:
+          inputFieldTextLoadingColor ?? this.inputFieldTextLoadingColor,
+      inputFieldTextSuccessColor:
+          inputFieldTextSuccessColor ?? this.inputFieldTextSuccessColor,
+      inputFieldTextTypeColor:
+          inputFieldTextTypeColor ?? this.inputFieldTextTypeColor,
+      inputFieldTextWarningColor:
+          inputFieldTextWarningColor ?? this.inputFieldTextWarningColor,
+      inputFieldTextPlainColor:
+          inputFieldTextPlainColor ?? this.inputFieldTextPlainColor,
+      inputFieldBackgroundFilledColor: inputFieldBackgroundFilledColor ??
+          this.inputFieldBackgroundFilledColor,
+      inputFieldBackgroundPlainColor:
+          inputFieldBackgroundPlainColor ?? this.inputFieldBackgroundPlainColor,
+      inputFieldBackgroundDefaultFieldColor:
+          inputFieldBackgroundDefaultFieldColor ??
+              this.inputFieldBackgroundDefaultFieldColor,
+      inputFieldBackgroundDefaultDisabledColor:
+          inputFieldBackgroundDefaultDisabledColor ??
+              this.inputFieldBackgroundDefaultDisabledColor,
+      inputFieldBackgroundDefaultColor: inputFieldBackgroundDefaultColor ??
+          this.inputFieldBackgroundDefaultColor,
+      inputFieldHintColor: inputFieldHintColor ?? this.inputFieldHintColor,
+      inputFieldErrorTextColor:
+          inputFieldErrorTextColor ?? this.inputFieldErrorTextColor,
       closeIcon: closeIcon ?? this.closeIcon,
       dangerIcon: dangerIcon ?? this.dangerIcon,
       addIcon: addIcon ?? this.addIcon,
@@ -215,9 +344,9 @@ mixin _$TextFieldDialogThemeTailorMixin
           editFieldSuccessBackground, other.editFieldSuccessBackground, t)!,
       editFieldRegularBackground: Color.lerp(
           editFieldRegularBackground, other.editFieldRegularBackground, t)!,
-      inputTextFieldSuccessBackground: Color.lerp(
-          inputTextFieldSuccessBackground,
-          other.inputTextFieldSuccessBackground,
+      inputFieldBackgroundSuccessColor: Color.lerp(
+          inputFieldBackgroundSuccessColor,
+          other.inputFieldBackgroundSuccessColor,
           t)!,
       inputTextFieldRegularBackground: Color.lerp(
           inputTextFieldRegularBackground,
@@ -243,24 +372,114 @@ mixin _$TextFieldDialogThemeTailorMixin
           TextStyle.lerp(descriptionBold, other.descriptionBold, t)!,
       captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
       smallThin: TextStyle.lerp(smallThin, other.smallThin, t)!,
-      black: Color.lerp(black, other.black, t)!,
-      defaultWhite: Color.lerp(defaultWhite, other.defaultWhite, t)!,
-      white: Color.lerp(white, other.white, t)!,
-      blue: Color.lerp(blue, other.blue, t)!,
       disabledFilledButtonBackgroundColor: Color.lerp(
           disabledFilledButtonBackgroundColor,
           other.disabledFilledButtonBackgroundColor,
           t)!,
-      mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
-      gray: Color.lerp(gray, other.gray, t)!,
-      green: Color.lerp(green, other.green, t)!,
-      redLight: Color.lerp(redLight, other.redLight, t)!,
-      orangeLight: Color.lerp(orangeLight, other.orangeLight, t)!,
-      orange: Color.lerp(orange, other.orange, t)!,
-      transparent: Color.lerp(transparent, other.transparent, t)!,
-      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
-      red: Color.lerp(red, other.red, t)!,
-      mediumBlack: Color.lerp(mediumBlack, other.mediumBlack, t)!,
+      textFieldDialogIconColor: Color.lerp(
+          textFieldDialogIconColor, other.textFieldDialogIconColor, t)!,
+      inputFieldBorderErrorColor: Color.lerp(
+          inputFieldBorderErrorColor, other.inputFieldBorderErrorColor, t)!,
+      inputFieldBorderTypeColor: Color.lerp(
+          inputFieldBorderTypeColor, other.inputFieldBorderTypeColor, t)!,
+      inputFieldBorderDisabledColor: Color.lerp(inputFieldBorderDisabledColor,
+          other.inputFieldBorderDisabledColor, t)!,
+      inputFieldBorderLoadingColor: Color.lerp(
+          inputFieldBorderLoadingColor, other.inputFieldBorderLoadingColor, t)!,
+      inputFieldBorderWarningColor: Color.lerp(
+          inputFieldBorderWarningColor, other.inputFieldBorderWarningColor, t)!,
+      inputFieldValueColor:
+          Color.lerp(inputFieldValueColor, other.inputFieldValueColor, t)!,
+      inputFieldValueDisabledColor: Color.lerp(
+          inputFieldValueDisabledColor, other.inputFieldValueDisabledColor, t)!,
+      labelBoxOptionalPrimary: Color.lerp(
+          labelBoxOptionalPrimary, other.labelBoxOptionalPrimary, t)!,
+      labelBoxFilledPrimary:
+          Color.lerp(labelBoxFilledPrimary, other.labelBoxFilledPrimary, t)!,
+      labelBoxOptionalSecondary: Color.lerp(
+          labelBoxOptionalSecondary, other.labelBoxOptionalSecondary, t)!,
+      labelBoxFilledSecondary: Color.lerp(
+          labelBoxFilledSecondary, other.labelBoxFilledSecondary, t)!,
+      labelBoxOptionalBorder:
+          Color.lerp(labelBoxOptionalBorder, other.labelBoxOptionalBorder, t)!,
+      labelBoxFilledBorder:
+          Color.lerp(labelBoxFilledBorder, other.labelBoxFilledBorder, t)!,
+      editFieldLabelEditedColor: Color.lerp(
+          editFieldLabelEditedColor, other.editFieldLabelEditedColor, t),
+      editFieldLabelNotEditedColor: Color.lerp(
+          editFieldLabelNotEditedColor, other.editFieldLabelNotEditedColor, t)!,
+      editFieldLabelLoadingColor: Color.lerp(
+          editFieldLabelLoadingColor, other.editFieldLabelLoadingColor, t)!,
+      editFieldLabelSuccessColor: Color.lerp(
+          editFieldLabelSuccessColor, other.editFieldLabelSuccessColor, t)!,
+      editFieldValueEditedColor: Color.lerp(
+          editFieldValueEditedColor, other.editFieldValueEditedColor, t)!,
+      editFieldValueNotEditedColor: Color.lerp(
+          editFieldValueNotEditedColor, other.editFieldValueNotEditedColor, t)!,
+      editFieldValueLoadingColor: Color.lerp(
+          editFieldValueLoadingColor, other.editFieldValueLoadingColor, t)!,
+      editFieldValueSuccessColor: Color.lerp(
+          editFieldValueSuccessColor, other.editFieldValueSuccessColor, t)!,
+      editFieldTextEditedTextStyle: TextStyle.lerp(
+          editFieldTextEditedTextStyle, other.editFieldTextEditedTextStyle, t)!,
+      editFieldTextNotEditedTextStyle: TextStyle.lerp(
+          editFieldTextNotEditedTextStyle,
+          other.editFieldTextNotEditedTextStyle,
+          t)!,
+      editFieldTextLoadingTextStyle: TextStyle.lerp(
+          editFieldTextLoadingTextStyle,
+          other.editFieldTextLoadingTextStyle,
+          t)!,
+      editFieldTextSuccessTextStyle: TextStyle.lerp(
+          editFieldTextSuccessTextStyle,
+          other.editFieldTextSuccessTextStyle,
+          t)!,
+      inputFieldTextDefaultFieldColor: Color.lerp(
+          inputFieldTextDefaultFieldColor,
+          other.inputFieldTextDefaultFieldColor,
+          t)!,
+      inputFieldTextDefaultDisabledColor: Color.lerp(
+          inputFieldTextDefaultDisabledColor,
+          other.inputFieldTextDefaultDisabledColor,
+          t)!,
+      inputFieldTextDisabledColor: Color.lerp(
+          inputFieldTextDisabledColor, other.inputFieldTextDisabledColor, t)!,
+      inputFieldTextErrorColor: Color.lerp(
+          inputFieldTextErrorColor, other.inputFieldTextErrorColor, t)!,
+      inputFieldTextFilledColor: Color.lerp(
+          inputFieldTextFilledColor, other.inputFieldTextFilledColor, t)!,
+      inputFieldTextLoadingColor: Color.lerp(
+          inputFieldTextLoadingColor, other.inputFieldTextLoadingColor, t)!,
+      inputFieldTextSuccessColor: Color.lerp(
+          inputFieldTextSuccessColor, other.inputFieldTextSuccessColor, t)!,
+      inputFieldTextTypeColor: Color.lerp(
+          inputFieldTextTypeColor, other.inputFieldTextTypeColor, t)!,
+      inputFieldTextWarningColor: Color.lerp(
+          inputFieldTextWarningColor, other.inputFieldTextWarningColor, t)!,
+      inputFieldTextPlainColor: Color.lerp(
+          inputFieldTextPlainColor, other.inputFieldTextPlainColor, t)!,
+      inputFieldBackgroundFilledColor: Color.lerp(
+          inputFieldBackgroundFilledColor,
+          other.inputFieldBackgroundFilledColor,
+          t)!,
+      inputFieldBackgroundPlainColor: Color.lerp(inputFieldBackgroundPlainColor,
+          other.inputFieldBackgroundPlainColor, t)!,
+      inputFieldBackgroundDefaultFieldColor: Color.lerp(
+          inputFieldBackgroundDefaultFieldColor,
+          other.inputFieldBackgroundDefaultFieldColor,
+          t)!,
+      inputFieldBackgroundDefaultDisabledColor: Color.lerp(
+          inputFieldBackgroundDefaultDisabledColor,
+          other.inputFieldBackgroundDefaultDisabledColor,
+          t)!,
+      inputFieldBackgroundDefaultColor: Color.lerp(
+          inputFieldBackgroundDefaultColor,
+          other.inputFieldBackgroundDefaultColor,
+          t)!,
+      inputFieldHintColor:
+          Color.lerp(inputFieldHintColor, other.inputFieldHintColor, t)!,
+      inputFieldErrorTextColor: Color.lerp(
+          inputFieldErrorTextColor, other.inputFieldErrorTextColor, t)!,
       closeIcon: t < 0.5 ? closeIcon : other.closeIcon,
       dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
       addIcon: t < 0.5 ? addIcon : other.addIcon,
@@ -312,8 +531,8 @@ mixin _$TextFieldDialogThemeTailorMixin
             const DeepCollectionEquality().equals(
                 editFieldRegularBackground, other.editFieldRegularBackground) &&
             const DeepCollectionEquality().equals(
-                inputTextFieldSuccessBackground,
-                other.inputTextFieldSuccessBackground) &&
+                inputFieldBackgroundSuccessColor,
+                other.inputFieldBackgroundSuccessColor) &&
             const DeepCollectionEquality().equals(
                 inputTextFieldRegularBackground,
                 other.inputTextFieldRegularBackground) &&
@@ -340,39 +559,63 @@ mixin _$TextFieldDialogThemeTailorMixin
             const DeepCollectionEquality()
                 .equals(captionBold, other.captionBold) &&
             const DeepCollectionEquality().equals(smallThin, other.smallThin) &&
-            const DeepCollectionEquality().equals(black, other.black) &&
-            const DeepCollectionEquality()
-                .equals(defaultWhite, other.defaultWhite) &&
-            const DeepCollectionEquality().equals(white, other.white) &&
-            const DeepCollectionEquality().equals(blue, other.blue) &&
             const DeepCollectionEquality().equals(
                 disabledFilledButtonBackgroundColor,
                 other.disabledFilledButtonBackgroundColor) &&
+            const DeepCollectionEquality().equals(
+                textFieldDialogIconColor, other.textFieldDialogIconColor) &&
+            const DeepCollectionEquality().equals(
+                inputFieldBorderErrorColor, other.inputFieldBorderErrorColor) &&
+            const DeepCollectionEquality().equals(
+                inputFieldBorderTypeColor, other.inputFieldBorderTypeColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderDisabledColor,
+                other.inputFieldBorderDisabledColor) &&
             const DeepCollectionEquality()
-                .equals(mediumWhite, other.mediumWhite) &&
-            const DeepCollectionEquality().equals(gray, other.gray) &&
-            const DeepCollectionEquality().equals(green, other.green) &&
-            const DeepCollectionEquality().equals(redLight, other.redLight) &&
-            const DeepCollectionEquality()
-                .equals(orangeLight, other.orangeLight) &&
-            const DeepCollectionEquality().equals(orange, other.orange) &&
-            const DeepCollectionEquality()
-                .equals(transparent, other.transparent) &&
-            const DeepCollectionEquality()
-                .equals(greenLight, other.greenLight) &&
-            const DeepCollectionEquality().equals(red, other.red) &&
-            const DeepCollectionEquality()
-                .equals(mediumBlack, other.mediumBlack) &&
+                .equals(inputFieldBorderLoadingColor, other.inputFieldBorderLoadingColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderWarningColor, other.inputFieldBorderWarningColor) &&
+            const DeepCollectionEquality().equals(inputFieldValueColor, other.inputFieldValueColor) &&
+            const DeepCollectionEquality().equals(inputFieldValueDisabledColor, other.inputFieldValueDisabledColor) &&
+            const DeepCollectionEquality().equals(labelBoxOptionalPrimary, other.labelBoxOptionalPrimary) &&
+            const DeepCollectionEquality().equals(labelBoxFilledPrimary, other.labelBoxFilledPrimary) &&
+            const DeepCollectionEquality().equals(labelBoxOptionalSecondary, other.labelBoxOptionalSecondary) &&
+            const DeepCollectionEquality().equals(labelBoxFilledSecondary, other.labelBoxFilledSecondary) &&
+            const DeepCollectionEquality().equals(labelBoxOptionalBorder, other.labelBoxOptionalBorder) &&
+            const DeepCollectionEquality().equals(labelBoxFilledBorder, other.labelBoxFilledBorder) &&
+            const DeepCollectionEquality().equals(editFieldLabelEditedColor, other.editFieldLabelEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelNotEditedColor, other.editFieldLabelNotEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelLoadingColor, other.editFieldLabelLoadingColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelSuccessColor, other.editFieldLabelSuccessColor) &&
+            const DeepCollectionEquality().equals(editFieldValueEditedColor, other.editFieldValueEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldValueNotEditedColor, other.editFieldValueNotEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldValueLoadingColor, other.editFieldValueLoadingColor) &&
+            const DeepCollectionEquality().equals(editFieldValueSuccessColor, other.editFieldValueSuccessColor) &&
+            const DeepCollectionEquality().equals(editFieldTextEditedTextStyle, other.editFieldTextEditedTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextNotEditedTextStyle, other.editFieldTextNotEditedTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextLoadingTextStyle, other.editFieldTextLoadingTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextSuccessTextStyle, other.editFieldTextSuccessTextStyle) &&
+            const DeepCollectionEquality().equals(inputFieldTextDefaultFieldColor, other.inputFieldTextDefaultFieldColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextDefaultDisabledColor, other.inputFieldTextDefaultDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextDisabledColor, other.inputFieldTextDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextErrorColor, other.inputFieldTextErrorColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextFilledColor, other.inputFieldTextFilledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextLoadingColor, other.inputFieldTextLoadingColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextSuccessColor, other.inputFieldTextSuccessColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextTypeColor, other.inputFieldTextTypeColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextWarningColor, other.inputFieldTextWarningColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextPlainColor, other.inputFieldTextPlainColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundFilledColor, other.inputFieldBackgroundFilledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundPlainColor, other.inputFieldBackgroundPlainColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultFieldColor, other.inputFieldBackgroundDefaultFieldColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultDisabledColor, other.inputFieldBackgroundDefaultDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultColor, other.inputFieldBackgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(inputFieldHintColor, other.inputFieldHintColor) &&
+            const DeepCollectionEquality().equals(inputFieldErrorTextColor, other.inputFieldErrorTextColor) &&
             const DeepCollectionEquality().equals(closeIcon, other.closeIcon) &&
-            const DeepCollectionEquality()
-                .equals(dangerIcon, other.dangerIcon) &&
+            const DeepCollectionEquality().equals(dangerIcon, other.dangerIcon) &&
             const DeepCollectionEquality().equals(addIcon, other.addIcon) &&
-            const DeepCollectionEquality()
-                .equals(addDisabledIcon, other.addDisabledIcon) &&
-            const DeepCollectionEquality()
-                .equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
-            const DeepCollectionEquality()
-                .equals(editPenIcon, other.editPenIcon) &&
+            const DeepCollectionEquality().equals(addDisabledIcon, other.addDisabledIcon) &&
+            const DeepCollectionEquality().equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
+            const DeepCollectionEquality().equals(editPenIcon, other.editPenIcon) &&
             const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
             const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
             const DeepCollectionEquality().equals(tickCircleSuccessIcon, other.tickCircleSuccessIcon) &&
@@ -397,7 +640,7 @@ mixin _$TextFieldDialogThemeTailorMixin
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(editFieldSuccessBackground),
       const DeepCollectionEquality().hash(editFieldRegularBackground),
-      const DeepCollectionEquality().hash(inputTextFieldSuccessBackground),
+      const DeepCollectionEquality().hash(inputFieldBackgroundSuccessColor),
       const DeepCollectionEquality().hash(inputTextFieldRegularBackground),
       const DeepCollectionEquality().hash(labelBoxOptionalBackground),
       const DeepCollectionEquality().hash(labelBoxFilledBackground),
@@ -414,21 +657,52 @@ mixin _$TextFieldDialogThemeTailorMixin
       const DeepCollectionEquality().hash(descriptionBold),
       const DeepCollectionEquality().hash(captionBold),
       const DeepCollectionEquality().hash(smallThin),
-      const DeepCollectionEquality().hash(black),
-      const DeepCollectionEquality().hash(defaultWhite),
-      const DeepCollectionEquality().hash(white),
-      const DeepCollectionEquality().hash(blue),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
-      const DeepCollectionEquality().hash(mediumWhite),
-      const DeepCollectionEquality().hash(gray),
-      const DeepCollectionEquality().hash(green),
-      const DeepCollectionEquality().hash(redLight),
-      const DeepCollectionEquality().hash(orangeLight),
-      const DeepCollectionEquality().hash(orange),
-      const DeepCollectionEquality().hash(transparent),
-      const DeepCollectionEquality().hash(greenLight),
-      const DeepCollectionEquality().hash(red),
-      const DeepCollectionEquality().hash(mediumBlack),
+      const DeepCollectionEquality().hash(textFieldDialogIconColor),
+      const DeepCollectionEquality().hash(inputFieldBorderErrorColor),
+      const DeepCollectionEquality().hash(inputFieldBorderTypeColor),
+      const DeepCollectionEquality().hash(inputFieldBorderDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldBorderLoadingColor),
+      const DeepCollectionEquality().hash(inputFieldBorderWarningColor),
+      const DeepCollectionEquality().hash(inputFieldValueColor),
+      const DeepCollectionEquality().hash(inputFieldValueDisabledColor),
+      const DeepCollectionEquality().hash(labelBoxOptionalPrimary),
+      const DeepCollectionEquality().hash(labelBoxFilledPrimary),
+      const DeepCollectionEquality().hash(labelBoxOptionalSecondary),
+      const DeepCollectionEquality().hash(labelBoxFilledSecondary),
+      const DeepCollectionEquality().hash(labelBoxOptionalBorder),
+      const DeepCollectionEquality().hash(labelBoxFilledBorder),
+      const DeepCollectionEquality().hash(editFieldLabelEditedColor),
+      const DeepCollectionEquality().hash(editFieldLabelNotEditedColor),
+      const DeepCollectionEquality().hash(editFieldLabelLoadingColor),
+      const DeepCollectionEquality().hash(editFieldLabelSuccessColor),
+      const DeepCollectionEquality().hash(editFieldValueEditedColor),
+      const DeepCollectionEquality().hash(editFieldValueNotEditedColor),
+      const DeepCollectionEquality().hash(editFieldValueLoadingColor),
+      const DeepCollectionEquality().hash(editFieldValueSuccessColor),
+      const DeepCollectionEquality().hash(editFieldTextEditedTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextNotEditedTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextLoadingTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextSuccessTextStyle),
+      const DeepCollectionEquality().hash(inputFieldTextDefaultFieldColor),
+      const DeepCollectionEquality().hash(inputFieldTextDefaultDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldTextDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldTextErrorColor),
+      const DeepCollectionEquality().hash(inputFieldTextFilledColor),
+      const DeepCollectionEquality().hash(inputFieldTextLoadingColor),
+      const DeepCollectionEquality().hash(inputFieldTextSuccessColor),
+      const DeepCollectionEquality().hash(inputFieldTextTypeColor),
+      const DeepCollectionEquality().hash(inputFieldTextWarningColor),
+      const DeepCollectionEquality().hash(inputFieldTextPlainColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundFilledColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundPlainColor),
+      const DeepCollectionEquality()
+          .hash(inputFieldBackgroundDefaultFieldColor),
+      const DeepCollectionEquality()
+          .hash(inputFieldBackgroundDefaultDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundDefaultColor),
+      const DeepCollectionEquality().hash(inputFieldHintColor),
+      const DeepCollectionEquality().hash(inputFieldErrorTextColor),
       const DeepCollectionEquality().hash(closeIcon),
       const DeepCollectionEquality().hash(dangerIcon),
       const DeepCollectionEquality().hash(addIcon),

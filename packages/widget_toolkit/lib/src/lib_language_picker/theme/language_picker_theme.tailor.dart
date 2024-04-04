@@ -19,7 +19,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
   double get spacingS;
   double get changeLanguageSizedBox;
   double get spacingM;
-  double get spacingXXXXL1;
+  double get spacingXXXXL;
   EdgeInsets get messagePanelErrorEdgeInsets;
   Color get activeButtonLanguageTextColor;
   Color get disabledFilledButtonBackgroundColor;
@@ -31,8 +31,8 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
   Color get filledButtonTextColorDisabled;
   Color get textColorWhite;
   Color get boxShadowColor;
-  Color get bodyTextColor2;
-  Color get buttonBlueGradientEnd;
+  Color get bodyTextColor;
+  Color get elevatedButtonForegroundColor;
   Color get elevatedButtonBackgroundColor;
   Color get outlineButtonBackgroundColor;
   SvgFile get checkIcon;
@@ -49,7 +49,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
     double? spacingS,
     double? changeLanguageSizedBox,
     double? spacingM,
-    double? spacingXXXXL1,
+    double? spacingXXXXL,
     EdgeInsets? messagePanelErrorEdgeInsets,
     Color? activeButtonLanguageTextColor,
     Color? disabledFilledButtonBackgroundColor,
@@ -61,8 +61,8 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
     Color? filledButtonTextColorDisabled,
     Color? textColorWhite,
     Color? boxShadowColor,
-    Color? bodyTextColor2,
-    Color? buttonBlueGradientEnd,
+    Color? bodyTextColor,
+    Color? elevatedButtonForegroundColor,
     Color? elevatedButtonBackgroundColor,
     Color? outlineButtonBackgroundColor,
     SvgFile? checkIcon,
@@ -85,7 +85,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
       changeLanguageSizedBox:
           changeLanguageSizedBox ?? this.changeLanguageSizedBox,
       spacingM: spacingM ?? this.spacingM,
-      spacingXXXXL1: spacingXXXXL1 ?? this.spacingXXXXL1,
+      spacingXXXXL: spacingXXXXL ?? this.spacingXXXXL,
       messagePanelErrorEdgeInsets:
           messagePanelErrorEdgeInsets ?? this.messagePanelErrorEdgeInsets,
       activeButtonLanguageTextColor:
@@ -105,9 +105,9 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
           filledButtonTextColorDisabled ?? this.filledButtonTextColorDisabled,
       textColorWhite: textColorWhite ?? this.textColorWhite,
       boxShadowColor: boxShadowColor ?? this.boxShadowColor,
-      bodyTextColor2: bodyTextColor2 ?? this.bodyTextColor2,
-      buttonBlueGradientEnd:
-          buttonBlueGradientEnd ?? this.buttonBlueGradientEnd,
+      bodyTextColor: bodyTextColor ?? this.bodyTextColor,
+      elevatedButtonForegroundColor:
+          elevatedButtonForegroundColor ?? this.elevatedButtonForegroundColor,
       elevatedButtonBackgroundColor:
           elevatedButtonBackgroundColor ?? this.elevatedButtonBackgroundColor,
       outlineButtonBackgroundColor:
@@ -142,7 +142,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
       changeLanguageSizedBox:
           t < 0.5 ? changeLanguageSizedBox : other.changeLanguageSizedBox,
       spacingM: t < 0.5 ? spacingM : other.spacingM,
-      spacingXXXXL1: t < 0.5 ? spacingXXXXL1 : other.spacingXXXXL1,
+      spacingXXXXL: t < 0.5 ? spacingXXXXL : other.spacingXXXXL,
       messagePanelErrorEdgeInsets: t < 0.5
           ? messagePanelErrorEdgeInsets
           : other.messagePanelErrorEdgeInsets,
@@ -167,9 +167,9 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
           other.filledButtonTextColorDisabled, t)!,
       textColorWhite: Color.lerp(textColorWhite, other.textColorWhite, t)!,
       boxShadowColor: Color.lerp(boxShadowColor, other.boxShadowColor, t)!,
-      bodyTextColor2: Color.lerp(bodyTextColor2, other.bodyTextColor2, t)!,
-      buttonBlueGradientEnd:
-          Color.lerp(buttonBlueGradientEnd, other.buttonBlueGradientEnd, t)!,
+      bodyTextColor: Color.lerp(bodyTextColor, other.bodyTextColor, t)!,
+      elevatedButtonForegroundColor: Color.lerp(elevatedButtonForegroundColor,
+          other.elevatedButtonForegroundColor, t)!,
       elevatedButtonBackgroundColor: Color.lerp(elevatedButtonBackgroundColor,
           other.elevatedButtonBackgroundColor, t)!,
       outlineButtonBackgroundColor: Color.lerp(
@@ -204,7 +204,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
                 .equals(changeLanguageSizedBox, other.changeLanguageSizedBox) &&
             const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
             const DeepCollectionEquality()
-                .equals(spacingXXXXL1, other.spacingXXXXL1) &&
+                .equals(spacingXXXXL, other.spacingXXXXL) &&
             const DeepCollectionEquality().equals(messagePanelErrorEdgeInsets,
                 other.messagePanelErrorEdgeInsets) &&
             const DeepCollectionEquality().equals(activeButtonLanguageTextColor,
@@ -224,8 +224,8 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
             const DeepCollectionEquality().equals(filledButtonTextColorDisabled, other.filledButtonTextColorDisabled) &&
             const DeepCollectionEquality().equals(textColorWhite, other.textColorWhite) &&
             const DeepCollectionEquality().equals(boxShadowColor, other.boxShadowColor) &&
-            const DeepCollectionEquality().equals(bodyTextColor2, other.bodyTextColor2) &&
-            const DeepCollectionEquality().equals(buttonBlueGradientEnd, other.buttonBlueGradientEnd) &&
+            const DeepCollectionEquality().equals(bodyTextColor, other.bodyTextColor) &&
+            const DeepCollectionEquality().equals(elevatedButtonForegroundColor, other.elevatedButtonForegroundColor) &&
             const DeepCollectionEquality().equals(elevatedButtonBackgroundColor, other.elevatedButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(outlineButtonBackgroundColor, other.outlineButtonBackgroundColor) &&
             const DeepCollectionEquality().equals(checkIcon, other.checkIcon));
@@ -246,7 +246,7 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
       const DeepCollectionEquality().hash(spacingS),
       const DeepCollectionEquality().hash(changeLanguageSizedBox),
       const DeepCollectionEquality().hash(spacingM),
-      const DeepCollectionEquality().hash(spacingXXXXL1),
+      const DeepCollectionEquality().hash(spacingXXXXL),
       const DeepCollectionEquality().hash(messagePanelErrorEdgeInsets),
       const DeepCollectionEquality().hash(activeButtonLanguageTextColor),
       const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
@@ -258,8 +258,8 @@ mixin _$LanguagePickerThemeTailorMixin on ThemeExtension<LanguagePickerTheme> {
       const DeepCollectionEquality().hash(filledButtonTextColorDisabled),
       const DeepCollectionEquality().hash(textColorWhite),
       const DeepCollectionEquality().hash(boxShadowColor),
-      const DeepCollectionEquality().hash(bodyTextColor2),
-      const DeepCollectionEquality().hash(buttonBlueGradientEnd),
+      const DeepCollectionEquality().hash(bodyTextColor),
+      const DeepCollectionEquality().hash(elevatedButtonForegroundColor),
       const DeepCollectionEquality().hash(elevatedButtonBackgroundColor),
       const DeepCollectionEquality().hash(outlineButtonBackgroundColor),
       const DeepCollectionEquality().hash(checkIcon),

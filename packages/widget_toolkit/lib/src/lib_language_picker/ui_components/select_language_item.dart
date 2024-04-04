@@ -122,7 +122,7 @@ class SelectLanguageItem extends StatelessWidget {
             child: _buildContent(context),
           ))
       : Container(
-          height: context.languagePickerTheme.spacingXXXXL1,
+          height: context.languagePickerTheme.spacingXXXXL,
           padding: context.languagePickerTheme.chooseLanguageInactiveEdgeInsets,
           child: _buildContent(context),
         );
@@ -182,7 +182,7 @@ class SelectLanguageItem extends StatelessWidget {
           : colorStyle?.activeButtonTextColor ??
               (isSelected
                   ? context.languagePickerTheme.buttonTextColor
-                  : context.languagePickerTheme.bodyTextColor2);
+                  : context.languagePickerTheme.bodyTextColor);
 
   Color getPressedInnerBackgroundColor(BuildContext context) =>
       (colorStyle?.pressedColor ??
@@ -193,7 +193,7 @@ class SelectLanguageItem extends StatelessWidget {
       (state != ButtonStateModel.disabled)
           ? (state == ButtonStateModel.pressed)
               ? colorStyle?.pressedColor ??
-                  context.languagePickerTheme.buttonBlueGradientEnd
+                  context.languagePickerTheme.elevatedButtonForegroundColor
               : context.languagePickerTheme.outlineButtonBackgroundColor
           : colorStyle?.activeGradientColorEnd ??
               context.languagePickerTheme.outlineButtonBackgroundColor;
@@ -202,7 +202,7 @@ class SelectLanguageItem extends StatelessWidget {
       ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor: colorStyle?.pressedColor ??
-              context.languagePickerTheme.buttonBlueGradientEnd,
+              context.languagePickerTheme.elevatedButtonForegroundColor,
           backgroundColor:
               context.languagePickerTheme.elevatedButtonBackgroundColor,
           padding: const EdgeInsets.all(0),

@@ -88,7 +88,7 @@ class MessagePanelWidget extends StatelessWidget {
                   ),
                   if (isLoading) ...[
                     SizedBox(
-                      height: context.widgetToolkitTheme.spacingXS1,
+                      height: context.widgetToolkitTheme.spacingXS,
                     ),
                     if (body == null)
                       ShimmerText(

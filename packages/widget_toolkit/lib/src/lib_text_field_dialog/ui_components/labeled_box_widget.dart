@@ -107,18 +107,18 @@ extension LabeledBoxTypeX on LabeledBoxType {
   Color getColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.black;
+        return context.textFieldDialogTheme.labelBoxOptionalPrimary;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.labelBoxFilledPrimary;
     }
   }
 
   Color getSecondaryColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.labelBoxOptionalSecondary;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.black;
+        return context.textFieldDialogTheme.labelBoxFilledSecondary;
     }
   }
 
@@ -134,9 +134,9 @@ extension LabeledBoxTypeX on LabeledBoxType {
   Color getBorderColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.mediumWhite;
+        return context.textFieldDialogTheme.labelBoxOptionalBorder;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.transparent;
+        return context.textFieldDialogTheme.labelBoxFilledBorder;
     }
   }
 }
