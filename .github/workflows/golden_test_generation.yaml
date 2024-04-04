@@ -1,0 +1,44 @@
+name: "Golden test generation"
+
+on:
+  push:
+    tags:
+      - 'generate-goldens*' # Example: generate-goldens
+
+jobs:
+  packages:
+    strategy:
+      matrix:
+        package:
+          [
+            "widget_toolkit", 
+            "widget_toolkit_biometrics", 
+            "widget_toolkit_otp", 
+            "widget_toolkit_pin", 
+            "widget_toolkit_qr"
+          ]
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+      - run: dart --version
+      - run: flutter --version 
+      - name: Install Dependencies
+        working-directory: ${{ matrix.package }}
+        run: dart pub get
+      - name: Analyze
+        working-directory: ${{ matrix.package }}
+        run: flutter analyze lib
+      - name: Generate golden files
+        working-directory: ${{ matrix.package }}
+        run: flutter test --update-goldens
+      - name: Upload test directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: "${{ matrix.package }}_tests"
+          path: "packages/${{ matrix.package }}/test/"
