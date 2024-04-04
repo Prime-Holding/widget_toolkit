@@ -148,7 +148,7 @@ class BiometricsSwitch extends StatelessWidget {
           showCloseButton: false,
         ),
         builder: (context) => Padding(
-          padding: context.widgetToolkitTheme.mediumEdgeInsets,
+          padding: context.widgetToolkitTheme.bottomSheetPaddingAlternative,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -110,4 +110,3 @@ coverage/
 !/dev/ci/**/Gemfile.lock
 !**/example/ios/Podfile.lock
 !**/example/pubspec.lock
-!pubspec.lock

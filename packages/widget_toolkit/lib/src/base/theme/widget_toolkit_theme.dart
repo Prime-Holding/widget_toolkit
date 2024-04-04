@@ -101,6 +101,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     required this.smallButtonPadding,
     required this.gradientFillButtonDefaultPadding,
     required this.messagePanelEdgeInsets,
+    required this.bottomSheetPaddingAlternative,
     required this.spacingXS1,
     required this.spacingXS,
     required this.spacingXSS,
@@ -295,6 +296,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         gradientFillButtonDefaultPadding = const EdgeInsets.all(16),
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
+        bottomSheetPaddingAlternative = const EdgeInsets.all(16),
         spacingXS1 = WidgetToolkitDesignSystem.light().spacings.xs1,
         spacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
         spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
@@ -487,6 +489,7 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
         gradientFillButtonDefaultPadding = const EdgeInsets.all(16),
         messagePanelEdgeInsets =
             const EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 16),
+        bottomSheetPaddingAlternative = const EdgeInsets.all(16),
         spacingXS1 = WidgetToolkitDesignSystem.dark().spacings.xs1,
         spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
         spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
@@ -695,6 +698,8 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
   final EdgeInsets gradientFillButtonDefaultPadding;
   @override
   final EdgeInsets messagePanelEdgeInsets;
+  @override
+  final EdgeInsets bottomSheetPaddingAlternative;
   @override
   final double spacingXS1;
   @override

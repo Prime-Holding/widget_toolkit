@@ -100,6 +100,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
   EdgeInsets get smallButtonPadding;
   EdgeInsets get gradientFillButtonDefaultPadding;
   EdgeInsets get messagePanelEdgeInsets;
+  EdgeInsets get bottomSheetPaddingAlternative;
   double get spacingXS1;
   double get spacingXS;
   double get spacingXSS;
@@ -215,6 +216,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
     EdgeInsets? smallButtonPadding,
     EdgeInsets? gradientFillButtonDefaultPadding,
     EdgeInsets? messagePanelEdgeInsets,
+    EdgeInsets? biometricsBottomSheetPadding,
     double? spacingXS1,
     double? spacingXS,
     double? spacingXSS,
@@ -403,6 +405,8 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           this.gradientFillButtonDefaultPadding,
       messagePanelEdgeInsets:
           messagePanelEdgeInsets ?? this.messagePanelEdgeInsets,
+      bottomSheetPaddingAlternative:
+          biometricsBottomSheetPadding ?? this.bottomSheetPaddingAlternative,
       spacingXS1: spacingXS1 ?? this.spacingXS1,
       spacingXS: spacingXS ?? this.spacingXS,
       spacingXSS: spacingXSS ?? this.spacingXSS,
@@ -641,6 +645,9 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
           : other.gradientFillButtonDefaultPadding,
       messagePanelEdgeInsets:
           t < 0.5 ? messagePanelEdgeInsets : other.messagePanelEdgeInsets,
+      bottomSheetPaddingAlternative: t < 0.5
+          ? bottomSheetPaddingAlternative
+          : other.bottomSheetPaddingAlternative,
       spacingXS1: t < 0.5 ? spacingXS1 : other.spacingXS1,
       spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
       spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
@@ -786,6 +793,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
             const DeepCollectionEquality().equals(smallButtonPadding, other.smallButtonPadding) &&
             const DeepCollectionEquality().equals(gradientFillButtonDefaultPadding, other.gradientFillButtonDefaultPadding) &&
             const DeepCollectionEquality().equals(messagePanelEdgeInsets, other.messagePanelEdgeInsets) &&
+            const DeepCollectionEquality().equals(bottomSheetPaddingAlternative, other.bottomSheetPaddingAlternative) &&
             const DeepCollectionEquality().equals(spacingXS1, other.spacingXS1) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
             const DeepCollectionEquality().equals(spacingXSS, other.spacingXSS) &&
@@ -906,6 +914,7 @@ mixin _$WidgetToolkitThemeTailorMixin on ThemeExtension<WidgetToolkitTheme> {
       const DeepCollectionEquality().hash(smallButtonPadding),
       const DeepCollectionEquality().hash(gradientFillButtonDefaultPadding),
       const DeepCollectionEquality().hash(messagePanelEdgeInsets),
+      const DeepCollectionEquality().hash(bottomSheetPaddingAlternative),
       const DeepCollectionEquality().hash(spacingXS1),
       const DeepCollectionEquality().hash(spacingXS),
       const DeepCollectionEquality().hash(spacingXSS),
