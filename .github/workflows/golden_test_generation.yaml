@@ -27,12 +27,12 @@ jobs:
       - run: dart --version
       - run: flutter --version 
       - name: Install Dependencies
-        working-directory: "packages/{{ inputs.package }}"
+        working-directory: "packages/${{ inputs.package }}"
         run: dart pub get
       - name: Analyze
         run: flutter analyze lib
       - name: Generate golden files
-        working-directory: "packages/{{ inputs.package }}"
+        working-directory: "packages/${{ inputs.package }}"
         run: flutter test --update-goldens
       - name: Upload test directory
         uses: actions/upload-artifact@v3
