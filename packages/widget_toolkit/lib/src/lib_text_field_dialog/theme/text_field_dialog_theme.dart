@@ -13,7 +13,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
     required this.editFieldSuccessBackground,
     required this.editFieldRegularBackground,
     required this.inputFieldBackgroundSuccessColor,
-    required this.inputTextFieldRegularBackground,
     required this.labelBoxFilledPrimary,
     required this.labelBoxFilledSecondary,
     required this.labelBoxFilledBackground,
@@ -105,8 +104,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.light().colors.mediumWhite,
         inputFieldBackgroundSuccessColor =
             WidgetToolkitDesignSystem.light().colors.greenLight,
-        inputTextFieldRegularBackground =
-            WidgetToolkitDesignSystem.light().colors.mediumWhite,
         labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
         labelBoxFilledSecondary =
             WidgetToolkitDesignSystem.light().colors.black,
@@ -261,8 +258,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().colors.black45,
         inputFieldBackgroundSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.green,
-        inputTextFieldRegularBackground =
-            WidgetToolkitDesignSystem.dark().colors.darkGray,
         labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
         labelBoxFilledSecondary =
             WidgetToolkitDesignSystem.light().colors.black,
@@ -417,8 +412,6 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   final Color editFieldRegularBackground;
   @override
   final Color inputFieldBackgroundSuccessColor;
-  @override
-  final Color inputTextFieldRegularBackground;
   @override
   final Color labelBoxOptionalBackground;
   @override

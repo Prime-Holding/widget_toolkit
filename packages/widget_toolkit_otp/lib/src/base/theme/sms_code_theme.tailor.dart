@@ -36,7 +36,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
   Color get resendButtonSuccessTextColor;
   Color get resendButtonErrorTextColor;
   Color get resendButtonPressedColor;
-  Color get gray;
   TextStyle get captionBold;
   TextStyle get resendButtonDefaultTextStyle;
 
@@ -69,7 +68,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
     Color? resendButtonSuccessTextColor,
     Color? resendButtonErrorTextColor,
     Color? resendButtonPressedColor,
-    Color? gray,
     TextStyle? captionBold,
     TextStyle? resendButtonDefaultTextStyle,
   }) {
@@ -114,7 +112,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
           resendButtonErrorTextColor ?? this.resendButtonErrorTextColor,
       resendButtonPressedColor:
           resendButtonPressedColor ?? this.resendButtonPressedColor,
-      gray: gray ?? this.gray,
       captionBold: captionBold ?? this.captionBold,
       resendButtonDefaultTextStyle:
           resendButtonDefaultTextStyle ?? this.resendButtonDefaultTextStyle,
@@ -176,7 +173,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
           resendButtonErrorTextColor, other.resendButtonErrorTextColor, t)!,
       resendButtonPressedColor: Color.lerp(
           resendButtonPressedColor, other.resendButtonPressedColor, t)!,
-      gray: Color.lerp(gray, other.gray, t)!,
       captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
       resendButtonDefaultTextStyle: TextStyle.lerp(
           resendButtonDefaultTextStyle, other.resendButtonDefaultTextStyle, t)!,
@@ -243,7 +239,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
                 resendButtonErrorTextColor, other.resendButtonErrorTextColor) &&
             const DeepCollectionEquality().equals(
                 resendButtonPressedColor, other.resendButtonPressedColor) &&
-            const DeepCollectionEquality().equals(gray, other.gray) &&
             const DeepCollectionEquality()
                 .equals(captionBold, other.captionBold) &&
             const DeepCollectionEquality().equals(resendButtonDefaultTextStyle,
@@ -281,7 +276,6 @@ mixin _$SmsCodeThemeTailorMixin on ThemeExtension<SmsCodeTheme> {
       const DeepCollectionEquality().hash(resendButtonSuccessTextColor),
       const DeepCollectionEquality().hash(resendButtonErrorTextColor),
       const DeepCollectionEquality().hash(resendButtonPressedColor),
-      const DeepCollectionEquality().hash(gray),
       const DeepCollectionEquality().hash(captionBold),
       const DeepCollectionEquality().hash(resendButtonDefaultTextStyle),
     ]);

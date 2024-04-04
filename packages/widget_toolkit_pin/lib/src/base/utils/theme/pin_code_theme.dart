@@ -18,17 +18,14 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
     required this.transparentColor,
     required this.pinCodeKeyTextColorPressed,
     required this.pinCodeKeyTextColorDefault,
-    required this.lightRed,
-    required this.blueLight,
-    required this.greenLight,
+    required this.pinCodeErrorTextColor,
     required this.pinKeyboardErrorPinColor,
     required this.pinKeyboardBottomButtonTextColor,
     required this.appBarButtonIconColor,
     required this.shimmerBaseColor,
     required this.shimmerHighlightColor,
     required this.titleButtonIconBorderColor,
-    required this.white,
-    required this.black,
+    required this.pinCodeKeyBackgroundColor,
     required this.pinKeyboardMaskedKeyBorderColor,
     required this.pinKeyboardMaskedKeyColor,
     required this.descriptionBoldTextStyle,
@@ -81,9 +78,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
         transparentColor = PrimeDesignSystem.light().colors.lightBlue,
         pinCodeKeyTextColorPressed = PrimeDesignSystem.light().colors.black,
         pinCodeKeyTextColorDefault = PrimeDesignSystem.light().colors.white,
-        lightRed = PrimeDesignSystem.light().colors.lightRed,
-        blueLight = PrimeDesignSystem.light().colors.blueLight,
-        greenLight = PrimeDesignSystem.light().colors.greenLight,
+        pinCodeErrorTextColor = PrimeDesignSystem.light().colors.lightRed,
         pinKeyboardErrorPinColor = PrimeDesignSystem.light().colors.lightRed,
         pinKeyboardBottomButtonTextColor =
             PrimeDesignSystem.light().colors.textColorWhite,
@@ -93,8 +88,8 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
             PrimeDesignSystem.light().colors.white.withOpacity(0.4),
         titleButtonIconBorderColor =
             PrimeDesignSystem.light().colors.white.withOpacity(0.4),
-        white = PrimeDesignSystem.light().colors.textColorWhite,
-        black = PrimeDesignSystem.light().colors.black,
+        pinCodeKeyBackgroundColor =
+            PrimeDesignSystem.light().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
             PrimeDesignSystem.light().colors.lightBlue,
         pinKeyboardMaskedKeyColor =
@@ -157,9 +152,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
         transparentColor = PrimeDesignSystem.dark().colors.blue,
         pinCodeKeyTextColorPressed = PrimeDesignSystem.dark().colors.black,
         pinCodeKeyTextColorDefault = PrimeDesignSystem.dark().colors.white,
-        lightRed = PrimeDesignSystem.dark().colors.lightRed,
-        blueLight = PrimeDesignSystem.dark().colors.blueLight,
-        greenLight = PrimeDesignSystem.dark().colors.greenLight,
+        pinCodeErrorTextColor = PrimeDesignSystem.dark().colors.lightRed,
         pinKeyboardErrorPinColor = PrimeDesignSystem.dark().colors.lightRed,
         pinKeyboardBottomButtonTextColor =
             PrimeDesignSystem.dark().colors.textColorWhite,
@@ -169,8 +162,8 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
             PrimeDesignSystem.dark().colors.white.withOpacity(0.4),
         titleButtonIconBorderColor =
             PrimeDesignSystem.dark().colors.white.withOpacity(0.4),
-        white = PrimeDesignSystem.dark().colors.textColorWhite,
-        black = PrimeDesignSystem.dark().colors.white,
+        pinCodeKeyBackgroundColor =
+            PrimeDesignSystem.dark().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
             PrimeDesignSystem.dark().colors.lightBlue,
         pinKeyboardMaskedKeyColor =
@@ -243,12 +236,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   @override
   final Color pinCodeKeyTextColorDefault;
   @override
-  final Color lightRed;
-  @override
-  final Color blueLight;
-  @override
-  final Color greenLight;
-  @override
   final Color pinKeyboardErrorPinColor;
   @override
   final Color pinKeyboardBottomButtonTextColor;
@@ -260,10 +247,6 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   final Color shimmerHighlightColor;
   @override
   final Color titleButtonIconBorderColor;
-  @override
-  final Color white;
-  @override
-  final Color black;
   @override
   final Color pinKeyboardMaskedKeyBorderColor;
   @override
@@ -308,6 +291,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   final double spacingXXXL;
   @override
   final double spacingXXXXL1;
+
   @override
   final double spacing1;
   @override
@@ -320,6 +304,7 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   final double spacing5;
   @override
   final double spacing6;
+
   @override
   final Widget pinDeleteActionIcon;
   @override
@@ -338,6 +323,10 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   final Widget fingerScanPressedIcon;
   @override
   final double appBarTitleLeadingWidth;
+  @override
+  final Color pinCodeErrorTextColor;
+  @override
+  final Color pinCodeKeyBackgroundColor;
 }
 
 extension ThemePinExtension on BuildContext {

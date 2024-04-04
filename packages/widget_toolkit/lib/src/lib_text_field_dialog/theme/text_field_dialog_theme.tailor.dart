@@ -13,7 +13,6 @@ mixin _$TextFieldDialogThemeTailorMixin
   Color get editFieldSuccessBackground;
   Color get editFieldRegularBackground;
   Color get inputFieldBackgroundSuccessColor;
-  Color get inputTextFieldRegularBackground;
   Color get labelBoxOptionalBackground;
   Color get labelBoxFilledBackground;
   double get editFieldBorderRadius;
@@ -100,7 +99,6 @@ mixin _$TextFieldDialogThemeTailorMixin
     Color? editFieldSuccessBackground,
     Color? editFieldRegularBackground,
     Color? inputFieldBackgroundSuccessColor,
-    Color? inputTextFieldRegularBackground,
     Color? labelBoxOptionalBackground,
     Color? labelBoxFilledBackground,
     double? editFieldBorderRadius,
@@ -189,8 +187,6 @@ mixin _$TextFieldDialogThemeTailorMixin
           editFieldRegularBackground ?? this.editFieldRegularBackground,
       inputFieldBackgroundSuccessColor: inputFieldBackgroundSuccessColor ??
           this.inputFieldBackgroundSuccessColor,
-      inputTextFieldRegularBackground: inputTextFieldRegularBackground ??
-          this.inputTextFieldRegularBackground,
       labelBoxOptionalBackground:
           labelBoxOptionalBackground ?? this.labelBoxOptionalBackground,
       labelBoxFilledBackground:
@@ -344,10 +340,6 @@ mixin _$TextFieldDialogThemeTailorMixin
       inputFieldBackgroundSuccessColor: Color.lerp(
           inputFieldBackgroundSuccessColor,
           other.inputFieldBackgroundSuccessColor,
-          t)!,
-      inputTextFieldRegularBackground: Color.lerp(
-          inputTextFieldRegularBackground,
-          other.inputTextFieldRegularBackground,
           t)!,
       labelBoxOptionalBackground: Color.lerp(
           labelBoxOptionalBackground, other.labelBoxOptionalBackground, t)!,
@@ -530,9 +522,6 @@ mixin _$TextFieldDialogThemeTailorMixin
                 inputFieldBackgroundSuccessColor,
                 other.inputFieldBackgroundSuccessColor) &&
             const DeepCollectionEquality().equals(
-                inputTextFieldRegularBackground,
-                other.inputTextFieldRegularBackground) &&
-            const DeepCollectionEquality().equals(
                 labelBoxOptionalBackground, other.labelBoxOptionalBackground) &&
             const DeepCollectionEquality().equals(
                 labelBoxFilledBackground, other.labelBoxFilledBackground) &&
@@ -565,12 +554,16 @@ mixin _$TextFieldDialogThemeTailorMixin
                 inputFieldBorderTypeColor, other.inputFieldBorderTypeColor) &&
             const DeepCollectionEquality().equals(inputFieldBorderDisabledColor,
                 other.inputFieldBorderDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderLoadingColor,
+                other.inputFieldBorderLoadingColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderWarningColor,
+                other.inputFieldBorderWarningColor) &&
             const DeepCollectionEquality()
-                .equals(inputFieldBorderLoadingColor, other.inputFieldBorderLoadingColor) &&
-            const DeepCollectionEquality().equals(inputFieldBorderWarningColor, other.inputFieldBorderWarningColor) &&
-            const DeepCollectionEquality().equals(inputFieldValueColor, other.inputFieldValueColor) &&
-            const DeepCollectionEquality().equals(inputFieldValueDisabledColor, other.inputFieldValueDisabledColor) &&
-            const DeepCollectionEquality().equals(labelBoxOptionalPrimary, other.labelBoxOptionalPrimary) &&
+                .equals(inputFieldValueColor, other.inputFieldValueColor) &&
+            const DeepCollectionEquality().equals(inputFieldValueDisabledColor,
+                other.inputFieldValueDisabledColor) &&
+            const DeepCollectionEquality()
+                .equals(labelBoxOptionalPrimary, other.labelBoxOptionalPrimary) &&
             const DeepCollectionEquality().equals(labelBoxFilledPrimary, other.labelBoxFilledPrimary) &&
             const DeepCollectionEquality().equals(labelBoxOptionalSecondary, other.labelBoxOptionalSecondary) &&
             const DeepCollectionEquality().equals(labelBoxFilledSecondary, other.labelBoxFilledSecondary) &&
@@ -636,7 +629,6 @@ mixin _$TextFieldDialogThemeTailorMixin
       const DeepCollectionEquality().hash(editFieldSuccessBackground),
       const DeepCollectionEquality().hash(editFieldRegularBackground),
       const DeepCollectionEquality().hash(inputFieldBackgroundSuccessColor),
-      const DeepCollectionEquality().hash(inputTextFieldRegularBackground),
       const DeepCollectionEquality().hash(labelBoxOptionalBackground),
       const DeepCollectionEquality().hash(labelBoxFilledBackground),
       const DeepCollectionEquality().hash(editFieldBorderRadius),

@@ -18,17 +18,12 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
   Color get transparentColor;
   Color get pinCodeKeyTextColorPressed;
   Color get pinCodeKeyTextColorDefault;
-  Color get lightRed;
-  Color get blueLight;
-  Color get greenLight;
   Color get pinKeyboardErrorPinColor;
   Color get pinKeyboardBottomButtonTextColor;
   Color get appBarButtonIconColor;
   Color get shimmerBaseColor;
   Color get shimmerHighlightColor;
   Color get titleButtonIconBorderColor;
-  Color get white;
-  Color get black;
   Color get pinKeyboardMaskedKeyBorderColor;
   Color get pinKeyboardMaskedKeyColor;
   TextStyle get descriptionBoldTextStyle;
@@ -66,6 +61,8 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
   Widget get fingerScanInvertedIcon;
   Widget get fingerScanPressedIcon;
   double get appBarTitleLeadingWidth;
+  Color get pinCodeErrorTextColor;
+  Color get pinCodeKeyBackgroundColor;
 
   @override
   PinCodeTheme copyWith({
@@ -78,17 +75,12 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
     Color? transparentColor,
     Color? pinCodeKeyTextColorPressed,
     Color? pinCodeKeyTextColorDefault,
-    Color? lightRed,
-    Color? blueLight,
-    Color? greenLight,
     Color? pinKeyboardErrorPinColor,
     Color? pinKeyboardBottomButtonTextColor,
     Color? appBarButtonIconColor,
     Color? shimmerBaseColor,
     Color? shimmerHighlightColor,
     Color? titleButtonIconBorderColor,
-    Color? white,
-    Color? black,
     Color? pinKeyboardMaskedKeyBorderColor,
     Color? pinKeyboardMaskedKeyColor,
     TextStyle? descriptionBoldTextStyle,
@@ -126,6 +118,8 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
     Widget? fingerScanInvertedIcon,
     Widget? fingerScanPressedIcon,
     double? appBarTitleLeadingWidth,
+    Color? pinCodeErrorTextColor,
+    Color? pinCodeKeyBackgroundColor,
   }) {
     return PinCodeTheme(
       primaryColor: primaryColor ?? this.primaryColor,
@@ -140,9 +134,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           pinCodeKeyTextColorPressed ?? this.pinCodeKeyTextColorPressed,
       pinCodeKeyTextColorDefault:
           pinCodeKeyTextColorDefault ?? this.pinCodeKeyTextColorDefault,
-      lightRed: lightRed ?? this.lightRed,
-      blueLight: blueLight ?? this.blueLight,
-      greenLight: greenLight ?? this.greenLight,
       pinKeyboardErrorPinColor:
           pinKeyboardErrorPinColor ?? this.pinKeyboardErrorPinColor,
       pinKeyboardBottomButtonTextColor: pinKeyboardBottomButtonTextColor ??
@@ -154,8 +145,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           shimmerHighlightColor ?? this.shimmerHighlightColor,
       titleButtonIconBorderColor:
           titleButtonIconBorderColor ?? this.titleButtonIconBorderColor,
-      white: white ?? this.white,
-      black: black ?? this.black,
       pinKeyboardMaskedKeyBorderColor: pinKeyboardMaskedKeyBorderColor ??
           this.pinKeyboardMaskedKeyBorderColor,
       pinKeyboardMaskedKeyColor:
@@ -203,6 +192,10 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           fingerScanPressedIcon ?? this.fingerScanPressedIcon,
       appBarTitleLeadingWidth:
           appBarTitleLeadingWidth ?? this.appBarTitleLeadingWidth,
+      pinCodeErrorTextColor:
+          pinCodeErrorTextColor ?? this.pinCodeErrorTextColor,
+      pinCodeKeyBackgroundColor:
+          pinCodeKeyBackgroundColor ?? this.pinCodeKeyBackgroundColor,
     );
   }
 
@@ -225,9 +218,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           pinCodeKeyTextColorPressed, other.pinCodeKeyTextColorPressed, t)!,
       pinCodeKeyTextColorDefault: Color.lerp(
           pinCodeKeyTextColorDefault, other.pinCodeKeyTextColorDefault, t)!,
-      lightRed: Color.lerp(lightRed, other.lightRed, t)!,
-      blueLight: Color.lerp(blueLight, other.blueLight, t)!,
-      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
       pinKeyboardErrorPinColor: Color.lerp(
           pinKeyboardErrorPinColor, other.pinKeyboardErrorPinColor, t)!,
       pinKeyboardBottomButtonTextColor: Color.lerp(
@@ -242,8 +232,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           Color.lerp(shimmerHighlightColor, other.shimmerHighlightColor, t)!,
       titleButtonIconBorderColor: Color.lerp(
           titleButtonIconBorderColor, other.titleButtonIconBorderColor, t)!,
-      white: Color.lerp(white, other.white, t)!,
-      black: Color.lerp(black, other.black, t)!,
       pinKeyboardMaskedKeyBorderColor: Color.lerp(
           pinKeyboardMaskedKeyBorderColor,
           other.pinKeyboardMaskedKeyBorderColor,
@@ -304,6 +292,10 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
           t < 0.5 ? fingerScanPressedIcon : other.fingerScanPressedIcon,
       appBarTitleLeadingWidth:
           t < 0.5 ? appBarTitleLeadingWidth : other.appBarTitleLeadingWidth,
+      pinCodeErrorTextColor:
+          Color.lerp(pinCodeErrorTextColor, other.pinCodeErrorTextColor, t)!,
+      pinCodeKeyBackgroundColor: Color.lerp(
+          pinCodeKeyBackgroundColor, other.pinCodeKeyBackgroundColor, t)!,
     );
   }
 
@@ -330,10 +322,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
                 pinCodeKeyTextColorPressed, other.pinCodeKeyTextColorPressed) &&
             const DeepCollectionEquality().equals(
                 pinCodeKeyTextColorDefault, other.pinCodeKeyTextColorDefault) &&
-            const DeepCollectionEquality().equals(lightRed, other.lightRed) &&
-            const DeepCollectionEquality().equals(blueLight, other.blueLight) &&
-            const DeepCollectionEquality()
-                .equals(greenLight, other.greenLight) &&
             const DeepCollectionEquality().equals(
                 pinKeyboardErrorPinColor, other.pinKeyboardErrorPinColor) &&
             const DeepCollectionEquality().equals(
@@ -347,8 +335,6 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
                 .equals(shimmerHighlightColor, other.shimmerHighlightColor) &&
             const DeepCollectionEquality().equals(
                 titleButtonIconBorderColor, other.titleButtonIconBorderColor) &&
-            const DeepCollectionEquality().equals(white, other.white) &&
-            const DeepCollectionEquality().equals(black, other.black) &&
             const DeepCollectionEquality().equals(
                 pinKeyboardMaskedKeyBorderColor,
                 other.pinKeyboardMaskedKeyBorderColor) &&
@@ -372,8 +358,8 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
                 .equals(descriptionThin, other.descriptionThin) &&
             const DeepCollectionEquality()
                 .equals(errorTitle, other.errorTitle) &&
-            const DeepCollectionEquality()
-                .equals(pinKeyboardBottomButtonTextStyle, other.pinKeyboardBottomButtonTextStyle) &&
+            const DeepCollectionEquality().equals(
+                pinKeyboardBottomButtonTextStyle, other.pinKeyboardBottomButtonTextStyle) &&
             const DeepCollectionEquality().equals(spacingXSS1, other.spacingXSS1) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
             const DeepCollectionEquality().equals(spacingXS1, other.spacingXS1) &&
@@ -398,7 +384,9 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
             const DeepCollectionEquality().equals(fingerScanDefaultIcon, other.fingerScanDefaultIcon) &&
             const DeepCollectionEquality().equals(fingerScanInvertedIcon, other.fingerScanInvertedIcon) &&
             const DeepCollectionEquality().equals(fingerScanPressedIcon, other.fingerScanPressedIcon) &&
-            const DeepCollectionEquality().equals(appBarTitleLeadingWidth, other.appBarTitleLeadingWidth));
+            const DeepCollectionEquality().equals(appBarTitleLeadingWidth, other.appBarTitleLeadingWidth) &&
+            const DeepCollectionEquality().equals(pinCodeErrorTextColor, other.pinCodeErrorTextColor) &&
+            const DeepCollectionEquality().equals(pinCodeKeyBackgroundColor, other.pinCodeKeyBackgroundColor));
   }
 
   @override
@@ -414,17 +402,12 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(transparentColor),
       const DeepCollectionEquality().hash(pinCodeKeyTextColorPressed),
       const DeepCollectionEquality().hash(pinCodeKeyTextColorDefault),
-      const DeepCollectionEquality().hash(lightRed),
-      const DeepCollectionEquality().hash(blueLight),
-      const DeepCollectionEquality().hash(greenLight),
       const DeepCollectionEquality().hash(pinKeyboardErrorPinColor),
       const DeepCollectionEquality().hash(pinKeyboardBottomButtonTextColor),
       const DeepCollectionEquality().hash(appBarButtonIconColor),
       const DeepCollectionEquality().hash(shimmerBaseColor),
       const DeepCollectionEquality().hash(shimmerHighlightColor),
       const DeepCollectionEquality().hash(titleButtonIconBorderColor),
-      const DeepCollectionEquality().hash(white),
-      const DeepCollectionEquality().hash(black),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyBorderColor),
       const DeepCollectionEquality().hash(pinKeyboardMaskedKeyColor),
       const DeepCollectionEquality().hash(descriptionBoldTextStyle),
@@ -462,6 +445,8 @@ mixin _$PinCodeThemeTailorMixin on ThemeExtension<PinCodeTheme> {
       const DeepCollectionEquality().hash(fingerScanInvertedIcon),
       const DeepCollectionEquality().hash(fingerScanPressedIcon),
       const DeepCollectionEquality().hash(appBarTitleLeadingWidth),
+      const DeepCollectionEquality().hash(pinCodeErrorTextColor),
+      const DeepCollectionEquality().hash(pinCodeKeyBackgroundColor),
     ]);
   }
 }

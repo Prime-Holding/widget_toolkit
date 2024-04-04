@@ -34,7 +34,6 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
     required this.resendButtonSuccessTextColor,
     required this.resendButtonErrorTextColor,
     required this.resendButtonPressedColor,
-    required this.gray,
     required this.captionBold,
     required this.resendButtonDefaultTextStyle,
   });
@@ -83,7 +82,6 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
         resendButtonSuccessTextColor = Colors.green,
         resendButtonErrorTextColor = Colors.red,
         resendButtonPressedColor = Colors.transparent,
-        gray = const Color(0xff9da2a6),
         captionBold = const TextStyle(
             fontWeight: FontWeight.w600,
             fontStyle: FontStyle.normal,
@@ -137,7 +135,6 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
         resendButtonSuccessTextColor = Colors.green,
         resendButtonErrorTextColor = Colors.red,
         resendButtonPressedColor = Colors.transparent,
-        gray = const Color(0xff9da2a6),
         captionBold = const TextStyle(
             fontWeight: FontWeight.w600,
             fontStyle: FontStyle.normal,
@@ -205,8 +202,6 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
   final Color resendButtonErrorTextColor;
   @override
   final Color resendButtonPressedColor;
-  @override
-  final Color gray;
   @override
   final TextStyle captionBold;
   @override
