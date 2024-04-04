@@ -23,11 +23,11 @@ class PrimeLinearProgressIndicator extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 0.0)),
         child: LinearProgressIndicator(
           backgroundColor: backgroundColor ??
-              context.qrScannerTheme.linearProgressIndicatorBlueLightColor,
-          color: color ?? context.qrScannerTheme.linearProgressIndicatorBlue,
+              context.qrScannerTheme.linearProgressIndicatorBackgroundColor,
+          color: color ?? context.qrScannerTheme.linearProgressIndicatorColor,
           valueColor: valueColor,
-          minHeight:
-              minHeight ?? context.qrScannerTheme.linearProgressIndicatorXS,
+          minHeight: minHeight ??
+              context.qrScannerTheme.linearProgressIndicatorDefaultMinHeight,
         ),
       );
 }

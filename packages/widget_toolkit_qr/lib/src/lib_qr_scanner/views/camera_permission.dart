@@ -80,8 +80,8 @@ class _CameraPermissionWidget extends StatelessWidget {
                       context.widgetToolkitTheme.spacingXS,
                     ),
                     border: Border.all(
-                      color: context.qrScannerTheme
-                          .qrScannerCameraPermissionBlueLightColor,
+                      color: context
+                          .qrScannerTheme.qrScannerCameraPermissionBorderColor,
                     ),
                   ),
                   child: Padding(
@@ -106,7 +106,8 @@ class _CameraPermissionWidget extends StatelessWidget {
                                       defaultCameraAccessTitleText,
                                   style: context.qrScannerTheme.captionBold
                                       .copyWith(
-                                    color: context.qrScannerTheme.qrScannerBlue,
+                                    color: context
+                                        .qrScannerTheme.qrScannerTextColor,
                                   ),
                                 ),
                               ),

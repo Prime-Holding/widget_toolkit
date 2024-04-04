@@ -25,7 +25,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
     required this.backButtonContainerPaddingEdgeInsets,
     required this.mockQrViewSpacing,
     required this.qrScannerPageXS,
-    required this.linearProgressIndicatorXS,
+    required this.linearProgressIndicatorDefaultMinHeight,
     required this.qrScannerPageM,
     required this.backButtonSpacingL,
     required this.appBarSpacingM,
@@ -35,8 +35,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
     required this.backButtonWidthSpacingXXXL,
     required this.backButtonHeightSpacingXXXL,
     required this.qrScannerMediumWhiteScaffold,
-    required this.qrScannerDisabledButtonGray,
-    required this.qrScannerGray,
     required this.qrScannerPageBackgroundColor,
     required this.qrScannerPageScaffoldBackgroundColor,
     required this.qrScannerPageAppBarBackgroundColor,
@@ -55,11 +53,10 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
     required this.qrScanAreaIcon,
     required this.backButtonCloseIcon,
     required this.backButtonArrowLeft,
-    required this.qrScannerGradientBlueStart,
-    required this.qrScannerCameraPermissionBlueLightColor,
-    required this.linearProgressIndicatorBlueLightColor,
-    required this.qrScannerBlue,
-    required this.linearProgressIndicatorBlue,
+    required this.qrScannerCameraPermissionBorderColor,
+    required this.linearProgressIndicatorBackgroundColor,
+    required this.qrScannerTextColor,
+    required this.linearProgressIndicatorColor,
   });
 
   /// region Themes
@@ -117,7 +114,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             EdgeInsets.all(WidgetToolkitDesignSystem.light().spacings.xss1),
         mockQrViewSpacing = WidgetToolkitDesignSystem.light().spacings.m,
         qrScannerPageXS = WidgetToolkitDesignSystem.light().spacings.xs,
-        linearProgressIndicatorXS =
+        linearProgressIndicatorDefaultMinHeight =
             WidgetToolkitDesignSystem.light().spacings.xs,
         qrScannerPageM = WidgetToolkitDesignSystem.light().spacings.m,
         backButtonSpacingL = WidgetToolkitDesignSystem.light().spacings.l,
@@ -131,10 +128,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             WidgetToolkitDesignSystem.light().spacings.xxxl,
         qrScannerMediumWhiteScaffold =
             WidgetToolkitDesignSystem.light().colors.qrScannerMediumWhite,
-        qrScannerDisabledButtonGray = WidgetToolkitDesignSystem.light()
-            .colors
-            .qrScannerDisabledFilledButtonGrey,
-        qrScannerGray = WidgetToolkitDesignSystem.light().colors.gray,
         qrScannerPageBackgroundColor = WidgetToolkitDesignSystem.light()
             .colors
             .qrScannerPageBackgroundColorWhite,
@@ -167,13 +160,12 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             const SvgFile('packages/widget_toolkit_qr/icons/qr-scan-area.svg'),
         backButtonCloseIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
         backButtonArrowLeft = WidgetToolkitDesignSystem.dark().icons.arrowLeft,
-        qrScannerGradientBlueStart = _HexColor(_qrFrameBlueColorHex),
-        qrScannerCameraPermissionBlueLightColor =
+        qrScannerCameraPermissionBorderColor =
             _HexColor(_qrFrameBlueLightColorHex),
-        linearProgressIndicatorBlueLightColor =
+        linearProgressIndicatorBackgroundColor =
             _HexColor(_qrFrameBlueLightColorHex),
-        qrScannerBlue = _HexColor(_qrFrameBlueColorHex),
-        linearProgressIndicatorBlue = _HexColor(_qrFrameBlueColorHex);
+        qrScannerTextColor = _HexColor(_qrFrameBlueColorHex),
+        linearProgressIndicatorColor = _HexColor(_qrFrameBlueColorHex);
 
   QrScannerTheme.dark()
       : cameraPermission1 = EdgeInsets.symmetric(
@@ -228,7 +220,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             EdgeInsets.all(WidgetToolkitDesignSystem.dark().spacings.xss1),
         mockQrViewSpacing = WidgetToolkitDesignSystem.dark().spacings.m,
         qrScannerPageXS = WidgetToolkitDesignSystem.dark().spacings.xs,
-        linearProgressIndicatorXS =
+        linearProgressIndicatorDefaultMinHeight =
             WidgetToolkitDesignSystem.dark().spacings.xs,
         qrScannerPageM = WidgetToolkitDesignSystem.dark().spacings.m,
         backButtonSpacingL = WidgetToolkitDesignSystem.dark().spacings.l,
@@ -242,10 +234,6 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             WidgetToolkitDesignSystem.dark().spacings.xxxl,
         qrScannerMediumWhiteScaffold =
             WidgetToolkitDesignSystem.dark().colors.qrScannerMediumWhite,
-        qrScannerDisabledButtonGray = WidgetToolkitDesignSystem.dark()
-            .colors
-            .qrScannerDisabledFilledButtonGrey,
-        qrScannerGray = WidgetToolkitDesignSystem.dark().colors.gray,
         qrScannerPageBackgroundColor = WidgetToolkitDesignSystem.dark()
             .colors
             .qrScannerPageBackgroundColor,
@@ -278,42 +266,18 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
             const SvgFile('packages/widget_toolkit_qr/icons/qr-scan-area.svg'),
         backButtonCloseIcon = WidgetToolkitDesignSystem.light().icons.closeIcon,
         backButtonArrowLeft = WidgetToolkitDesignSystem.light().icons.arrowLeft,
-        qrScannerGradientBlueStart =
-            WidgetToolkitDesignSystem.dark().colors.qrScannerSubtitleWhite,
-        qrScannerCameraPermissionBlueLightColor =
+        qrScannerCameraPermissionBorderColor =
             _HexColor(_qrFrameBlueLightColorHex),
-        linearProgressIndicatorBlueLightColor =
+        linearProgressIndicatorBackgroundColor =
             _HexColor(_qrFrameBlueLightColorHex),
-        qrScannerBlue = _HexColor(_qrFrameBlueColorHex),
-        linearProgressIndicatorBlue = _HexColor(_qrFrameBlueColorHex);
+        qrScannerTextColor = _HexColor(_qrFrameBlueColorHex),
+        linearProgressIndicatorColor = _HexColor(_qrFrameBlueColorHex);
 
   /// endregion
 
   static const _qrFrameBlueColorHex = '004F95';
   static const _qrFrameBlueLightColorHex = 'e6e7ff';
 
-  @override
-  final EdgeInsets cameraPermission1;
-  @override
-  final EdgeInsets cameraPermission2;
-  @override
-  final EdgeInsets cameraPermission3;
-  @override
-  final EdgeInsets cameraPermission4;
-  @override
-  final EdgeInsets cameraPermission5;
-  @override
-  final EdgeInsets cameraPermission6;
-  @override
-  final EdgeInsets qrScannerPage1;
-  @override
-  final EdgeInsets qrScannerPage2;
-  @override
-  final EdgeInsets qrScannerPage3;
-  @override
-  final EdgeInsets qrScannerPage4;
-  @override
-  final EdgeInsets qrScannerPage5;
   @override
   final EdgeInsets qrScannerSubtitlePadding;
   @override
@@ -322,12 +286,13 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final EdgeInsets backButtonPaddingEdgeInsets;
   @override
   final EdgeInsets backButtonContainerPaddingEdgeInsets;
+
   @override
   final double mockQrViewSpacing;
   @override
   final double qrScannerPageXS;
   @override
-  final double linearProgressIndicatorXS;
+  final double linearProgressIndicatorDefaultMinHeight;
   @override
   final double qrScannerPageM;
   @override
@@ -344,12 +309,9 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final double backButtonWidthSpacingXXXL;
   @override
   final double backButtonHeightSpacingXXXL;
+
   @override
   final Color qrScannerMediumWhiteScaffold;
-  @override
-  final Color qrScannerDisabledButtonGray;
-  @override
-  final Color qrScannerGray;
   @override
   final Color qrScannerPageBackgroundColor;
   @override
@@ -368,6 +330,16 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final Color backButtonIconColor;
   @override
   final Color backButtonIconBorderColor;
+
+  @override
+  final Color qrScannerTextColor;
+  @override
+  final Color linearProgressIndicatorColor;
+  @override
+  final Color qrScannerCameraPermissionBorderColor;
+  @override
+  final Color linearProgressIndicatorBackgroundColor;
+
   @override
   final TextStyle captionBold;
   @override
@@ -376,6 +348,7 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final TextStyle titleBold;
   @override
   final TextStyle appBarTextStyle;
+
   @override
   final SvgFile cameraIcon;
   @override
@@ -386,16 +359,30 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final SvgFile qrScanAreaIcon;
   @override
   final SvgFile backButtonArrowLeft;
+
   @override
-  final Color qrScannerGradientBlueStart;
+  final EdgeInsets cameraPermission1;
   @override
-  final Color qrScannerCameraPermissionBlueLightColor;
+  final EdgeInsets cameraPermission2;
   @override
-  final Color linearProgressIndicatorBlueLightColor;
+  final EdgeInsets cameraPermission3;
   @override
-  final Color qrScannerBlue;
+  final EdgeInsets cameraPermission4;
   @override
-  final Color linearProgressIndicatorBlue;
+  final EdgeInsets cameraPermission5;
+  @override
+  final EdgeInsets cameraPermission6;
+
+  @override
+  final EdgeInsets qrScannerPage1;
+  @override
+  final EdgeInsets qrScannerPage2;
+  @override
+  final EdgeInsets qrScannerPage3;
+  @override
+  final EdgeInsets qrScannerPage4;
+  @override
+  final EdgeInsets qrScannerPage5;
 }
 
 extension ThemeContextExtension on BuildContext {
