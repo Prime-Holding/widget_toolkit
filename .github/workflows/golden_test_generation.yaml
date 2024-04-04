@@ -30,6 +30,7 @@ jobs:
         working-directory: "packages/${{ inputs.package }}"
         run: dart pub get
       - name: Analyze
+        working-directory: "packages/${{ inputs.package }}"
         run: flutter analyze lib
       - name: Generate golden files
         working-directory: "packages/${{ inputs.package }}"
