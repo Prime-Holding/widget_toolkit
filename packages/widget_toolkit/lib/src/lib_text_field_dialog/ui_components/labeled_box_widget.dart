@@ -58,13 +58,14 @@ class LabeledBoxWidget extends StatelessWidget {
           ),
           onTap: onTap,
           child: Ink(
-            padding: context.textFieldDialogTheme.labeledBoxWidgetPadding1,
+            padding:
+                context.textFieldDialogTheme.labeledBoxWidgetContentPadding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding:
-                      context.textFieldDialogTheme.labeledBoxWidgetPadding2,
+                      context.textFieldDialogTheme.labeledBoxWidgetIconPadding,
                   child: leadingIcon != null && leadingIcon is IconData
                       ? Icon(
                           leadingIcon,
@@ -86,8 +87,8 @@ class LabeledBoxWidget extends StatelessWidget {
                 ),
                 if (type == LabeledBoxType.optional)
                   Padding(
-                    padding:
-                        context.textFieldDialogTheme.labeledBoxWidgetPadding3,
+                    padding: context.textFieldDialogTheme
+                        .labeledBoxWidgetOptionalTextPadding,
                     child: Text(
                       optionalString,
                       style: context.textFieldDialogTheme.captionBold.copyWith(

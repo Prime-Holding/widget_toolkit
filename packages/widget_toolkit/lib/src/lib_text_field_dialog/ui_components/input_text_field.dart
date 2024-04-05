@@ -159,7 +159,8 @@ class InputTextFieldState extends State<InputTextField> {
               if (currentState == InputTextFieldStateModel.error &&
                   widget.errorMessage != null)
                 Padding(
-                  padding: context.textFieldDialogTheme.inputTextFieldPadding1,
+                  padding:
+                      context.textFieldDialogTheme.inputTextFieldErrorPadding,
                   child: Text(
                     widget.errorMessage ?? '',
                     textAlign: TextAlign.start,
@@ -371,12 +372,13 @@ class _PrefixIconWidget extends StatelessWidget {
     switch (state) {
       case InputTextFieldStateModel.defaultField:
         return Padding(
-          padding: context.textFieldDialogTheme.inputTextFieldPadding2,
+          padding: context.textFieldDialogTheme.inputTextFieldIconPadding,
           child: context.textFieldDialogTheme.addIcon,
         );
       case InputTextFieldStateModel.defaultDisabled:
         return Padding(
-          padding: context.textFieldDialogTheme.inputTextFieldPadding3,
+          padding:
+              context.textFieldDialogTheme.inputTextFieldIconDisabledPadding,
           child: context.textFieldDialogTheme.addDisabledIcon,
         );
       default:

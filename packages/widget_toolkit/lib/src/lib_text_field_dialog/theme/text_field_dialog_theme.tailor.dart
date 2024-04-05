@@ -80,15 +80,15 @@ mixin _$TextFieldDialogThemeTailorMixin
   SvgFile get infoCircleIcon;
   SvgFile get loadingIcon;
   SvgFile get tickCircleSuccessIcon;
-  EdgeInsets get textFieldDialog2;
-  EdgeInsets get textFieldDialog4;
-  EdgeInsets get textFieldDialog3;
-  EdgeInsets get labeledBoxWidgetPadding1;
-  EdgeInsets get labeledBoxWidgetPadding2;
-  EdgeInsets get labeledBoxWidgetPadding3;
-  EdgeInsets get inputTextFieldPadding1;
-  EdgeInsets get inputTextFieldPadding2;
-  EdgeInsets get inputTextFieldPadding3;
+  EdgeInsets get textFieldDialogPadding;
+  EdgeInsets get textFieldDialogButtonPadding;
+  EdgeInsets get textFieldDialogHeaderPadding;
+  EdgeInsets get labeledBoxWidgetContentPadding;
+  EdgeInsets get labeledBoxWidgetIconPadding;
+  EdgeInsets get labeledBoxWidgetOptionalTextPadding;
+  EdgeInsets get inputTextFieldErrorPadding;
+  EdgeInsets get inputTextFieldIconPadding;
+  EdgeInsets get inputTextFieldIconDisabledPadding;
   EdgeInsets get inputTextFieldPaddingLoading;
   EdgeInsets get inputTextFieldPaddingSuccess;
   EdgeInsets get inputTextFieldPaddingWarning;
@@ -166,15 +166,15 @@ mixin _$TextFieldDialogThemeTailorMixin
     SvgFile? infoCircleIcon,
     SvgFile? loadingIcon,
     SvgFile? tickCircleSuccessIcon,
-    EdgeInsets? textFieldDialog2,
-    EdgeInsets? textFieldDialog4,
-    EdgeInsets? textFieldDialog3,
-    EdgeInsets? labeledBoxWidgetPadding1,
-    EdgeInsets? labeledBoxWidgetPadding2,
-    EdgeInsets? labeledBoxWidgetPadding3,
-    EdgeInsets? inputTextFieldPadding1,
-    EdgeInsets? inputTextFieldPadding2,
-    EdgeInsets? inputTextFieldPadding3,
+    EdgeInsets? textFieldDialogPadding,
+    EdgeInsets? textFieldDialogButtonPadding,
+    EdgeInsets? textFieldDialogHeaderPadding,
+    EdgeInsets? labeledBoxWidgetContentPadding,
+    EdgeInsets? labeledBoxWidgetIconPadding,
+    EdgeInsets? labeledBoxWidgetOptionalTextPadding,
+    EdgeInsets? inputTextFieldErrorPadding,
+    EdgeInsets? inputTextFieldIconPadding,
+    EdgeInsets? inputTextFieldIconDisabledPadding,
     EdgeInsets? inputTextFieldPaddingLoading,
     EdgeInsets? inputTextFieldPaddingSuccess,
     EdgeInsets? inputTextFieldPaddingWarning,
@@ -302,21 +302,25 @@ mixin _$TextFieldDialogThemeTailorMixin
       loadingIcon: loadingIcon ?? this.loadingIcon,
       tickCircleSuccessIcon:
           tickCircleSuccessIcon ?? this.tickCircleSuccessIcon,
-      textFieldDialog2: textFieldDialog2 ?? this.textFieldDialog2,
-      textFieldDialog4: textFieldDialog4 ?? this.textFieldDialog4,
-      textFieldDialog3: textFieldDialog3 ?? this.textFieldDialog3,
-      labeledBoxWidgetPadding1:
-          labeledBoxWidgetPadding1 ?? this.labeledBoxWidgetPadding1,
-      labeledBoxWidgetPadding2:
-          labeledBoxWidgetPadding2 ?? this.labeledBoxWidgetPadding2,
-      labeledBoxWidgetPadding3:
-          labeledBoxWidgetPadding3 ?? this.labeledBoxWidgetPadding3,
-      inputTextFieldPadding1:
-          inputTextFieldPadding1 ?? this.inputTextFieldPadding1,
-      inputTextFieldPadding2:
-          inputTextFieldPadding2 ?? this.inputTextFieldPadding2,
-      inputTextFieldPadding3:
-          inputTextFieldPadding3 ?? this.inputTextFieldPadding3,
+      textFieldDialogPadding:
+          textFieldDialogPadding ?? this.textFieldDialogPadding,
+      textFieldDialogButtonPadding:
+          textFieldDialogButtonPadding ?? this.textFieldDialogButtonPadding,
+      textFieldDialogHeaderPadding:
+          textFieldDialogHeaderPadding ?? this.textFieldDialogHeaderPadding,
+      labeledBoxWidgetContentPadding:
+          labeledBoxWidgetContentPadding ?? this.labeledBoxWidgetContentPadding,
+      labeledBoxWidgetIconPadding:
+          labeledBoxWidgetIconPadding ?? this.labeledBoxWidgetIconPadding,
+      labeledBoxWidgetOptionalTextPadding:
+          labeledBoxWidgetOptionalTextPadding ??
+              this.labeledBoxWidgetOptionalTextPadding,
+      inputTextFieldErrorPadding:
+          inputTextFieldErrorPadding ?? this.inputTextFieldErrorPadding,
+      inputTextFieldIconPadding:
+          inputTextFieldIconPadding ?? this.inputTextFieldIconPadding,
+      inputTextFieldIconDisabledPadding: inputTextFieldIconDisabledPadding ??
+          this.inputTextFieldIconDisabledPadding,
       inputTextFieldPaddingLoading:
           inputTextFieldPaddingLoading ?? this.inputTextFieldPaddingLoading,
       inputTextFieldPaddingSuccess:
@@ -479,21 +483,31 @@ mixin _$TextFieldDialogThemeTailorMixin
       loadingIcon: t < 0.5 ? loadingIcon : other.loadingIcon,
       tickCircleSuccessIcon:
           t < 0.5 ? tickCircleSuccessIcon : other.tickCircleSuccessIcon,
-      textFieldDialog2: t < 0.5 ? textFieldDialog2 : other.textFieldDialog2,
-      textFieldDialog4: t < 0.5 ? textFieldDialog4 : other.textFieldDialog4,
-      textFieldDialog3: t < 0.5 ? textFieldDialog3 : other.textFieldDialog3,
-      labeledBoxWidgetPadding1:
-          t < 0.5 ? labeledBoxWidgetPadding1 : other.labeledBoxWidgetPadding1,
-      labeledBoxWidgetPadding2:
-          t < 0.5 ? labeledBoxWidgetPadding2 : other.labeledBoxWidgetPadding2,
-      labeledBoxWidgetPadding3:
-          t < 0.5 ? labeledBoxWidgetPadding3 : other.labeledBoxWidgetPadding3,
-      inputTextFieldPadding1:
-          t < 0.5 ? inputTextFieldPadding1 : other.inputTextFieldPadding1,
-      inputTextFieldPadding2:
-          t < 0.5 ? inputTextFieldPadding2 : other.inputTextFieldPadding2,
-      inputTextFieldPadding3:
-          t < 0.5 ? inputTextFieldPadding3 : other.inputTextFieldPadding3,
+      textFieldDialogPadding:
+          t < 0.5 ? textFieldDialogPadding : other.textFieldDialogPadding,
+      textFieldDialogButtonPadding: t < 0.5
+          ? textFieldDialogButtonPadding
+          : other.textFieldDialogButtonPadding,
+      textFieldDialogHeaderPadding: t < 0.5
+          ? textFieldDialogHeaderPadding
+          : other.textFieldDialogHeaderPadding,
+      labeledBoxWidgetContentPadding: t < 0.5
+          ? labeledBoxWidgetContentPadding
+          : other.labeledBoxWidgetContentPadding,
+      labeledBoxWidgetIconPadding: t < 0.5
+          ? labeledBoxWidgetIconPadding
+          : other.labeledBoxWidgetIconPadding,
+      labeledBoxWidgetOptionalTextPadding: t < 0.5
+          ? labeledBoxWidgetOptionalTextPadding
+          : other.labeledBoxWidgetOptionalTextPadding,
+      inputTextFieldErrorPadding: t < 0.5
+          ? inputTextFieldErrorPadding
+          : other.inputTextFieldErrorPadding,
+      inputTextFieldIconPadding:
+          t < 0.5 ? inputTextFieldIconPadding : other.inputTextFieldIconPadding,
+      inputTextFieldIconDisabledPadding: t < 0.5
+          ? inputTextFieldIconDisabledPadding
+          : other.inputTextFieldIconDisabledPadding,
       inputTextFieldPaddingLoading: t < 0.5
           ? inputTextFieldPaddingLoading
           : other.inputTextFieldPaddingLoading,
@@ -607,15 +621,15 @@ mixin _$TextFieldDialogThemeTailorMixin
             const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
             const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
             const DeepCollectionEquality().equals(tickCircleSuccessIcon, other.tickCircleSuccessIcon) &&
-            const DeepCollectionEquality().equals(textFieldDialog2, other.textFieldDialog2) &&
-            const DeepCollectionEquality().equals(textFieldDialog4, other.textFieldDialog4) &&
-            const DeepCollectionEquality().equals(textFieldDialog3, other.textFieldDialog3) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding1, other.labeledBoxWidgetPadding1) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding2, other.labeledBoxWidgetPadding2) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding3, other.labeledBoxWidgetPadding3) &&
-            const DeepCollectionEquality().equals(inputTextFieldPadding1, other.inputTextFieldPadding1) &&
-            const DeepCollectionEquality().equals(inputTextFieldPadding2, other.inputTextFieldPadding2) &&
-            const DeepCollectionEquality().equals(inputTextFieldPadding3, other.inputTextFieldPadding3) &&
+            const DeepCollectionEquality().equals(textFieldDialogPadding, other.textFieldDialogPadding) &&
+            const DeepCollectionEquality().equals(textFieldDialogButtonPadding, other.textFieldDialogButtonPadding) &&
+            const DeepCollectionEquality().equals(textFieldDialogHeaderPadding, other.textFieldDialogHeaderPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetContentPadding, other.labeledBoxWidgetContentPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetIconPadding, other.labeledBoxWidgetIconPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetOptionalTextPadding, other.labeledBoxWidgetOptionalTextPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldErrorPadding, other.inputTextFieldErrorPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldIconPadding, other.inputTextFieldIconPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldIconDisabledPadding, other.inputTextFieldIconDisabledPadding) &&
             const DeepCollectionEquality().equals(inputTextFieldPaddingLoading, other.inputTextFieldPaddingLoading) &&
             const DeepCollectionEquality().equals(inputTextFieldPaddingSuccess, other.inputTextFieldPaddingSuccess) &&
             const DeepCollectionEquality().equals(inputTextFieldPaddingWarning, other.inputTextFieldPaddingWarning) &&
@@ -698,15 +712,15 @@ mixin _$TextFieldDialogThemeTailorMixin
       const DeepCollectionEquality().hash(infoCircleIcon),
       const DeepCollectionEquality().hash(loadingIcon),
       const DeepCollectionEquality().hash(tickCircleSuccessIcon),
-      const DeepCollectionEquality().hash(textFieldDialog2),
-      const DeepCollectionEquality().hash(textFieldDialog4),
-      const DeepCollectionEquality().hash(textFieldDialog3),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding1),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding2),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding3),
-      const DeepCollectionEquality().hash(inputTextFieldPadding1),
-      const DeepCollectionEquality().hash(inputTextFieldPadding2),
-      const DeepCollectionEquality().hash(inputTextFieldPadding3),
+      const DeepCollectionEquality().hash(textFieldDialogPadding),
+      const DeepCollectionEquality().hash(textFieldDialogButtonPadding),
+      const DeepCollectionEquality().hash(textFieldDialogHeaderPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetContentPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetIconPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetOptionalTextPadding),
+      const DeepCollectionEquality().hash(inputTextFieldErrorPadding),
+      const DeepCollectionEquality().hash(inputTextFieldIconPadding),
+      const DeepCollectionEquality().hash(inputTextFieldIconDisabledPadding),
       const DeepCollectionEquality().hash(inputTextFieldPaddingLoading),
       const DeepCollectionEquality().hash(inputTextFieldPaddingSuccess),
       const DeepCollectionEquality().hash(inputTextFieldPaddingWarning),

@@ -80,15 +80,15 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
     required this.infoCircleIcon,
     required this.loadingIcon,
     required this.tickCircleSuccessIcon,
-    required this.textFieldDialog2,
-    required this.textFieldDialog4,
-    required this.textFieldDialog3,
-    required this.labeledBoxWidgetPadding1,
-    required this.labeledBoxWidgetPadding2,
-    required this.labeledBoxWidgetPadding3,
-    required this.inputTextFieldPadding1,
-    required this.inputTextFieldPadding2,
-    required this.inputTextFieldPadding3,
+    required this.textFieldDialogPadding,
+    required this.textFieldDialogButtonPadding,
+    required this.textFieldDialogHeaderPadding,
+    required this.labeledBoxWidgetContentPadding,
+    required this.labeledBoxWidgetIconPadding,
+    required this.labeledBoxWidgetOptionalTextPadding,
+    required this.inputTextFieldErrorPadding,
+    required this.inputTextFieldIconPadding,
+    required this.inputTextFieldIconDisabledPadding,
     required this.inputTextFieldPaddingLoading,
     required this.inputTextFieldPaddingSuccess,
     required this.inputTextFieldPaddingWarning,
@@ -217,30 +217,30 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         loadingIcon = WidgetToolkitDesignSystem.dark().icons.loadingIcon,
         tickCircleSuccessIcon =
             WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
-        textFieldDialog2 = EdgeInsets.zero,
-        textFieldDialog4 = EdgeInsets.only(
+        textFieldDialogPadding = EdgeInsets.zero,
+        textFieldDialogButtonPadding = EdgeInsets.only(
           top: WidgetToolkitDesignSystem.light().spacings.xl,
           bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
         ),
-        textFieldDialog3 = EdgeInsets.only(
+        textFieldDialogHeaderPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.light().spacings.xs,
           bottom: WidgetToolkitDesignSystem.light().spacings.m,
         ),
-        labeledBoxWidgetPadding1 = EdgeInsets.symmetric(
+        labeledBoxWidgetContentPadding = EdgeInsets.symmetric(
           vertical: WidgetToolkitDesignSystem.light().spacings.m,
           horizontal: WidgetToolkitDesignSystem.light().spacings.s,
         ),
-        labeledBoxWidgetPadding2 = EdgeInsets.only(
+        labeledBoxWidgetIconPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.dark().spacings.xs),
-        labeledBoxWidgetPadding3 = EdgeInsets.only(
+        labeledBoxWidgetOptionalTextPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.light().spacings.m),
-        inputTextFieldPadding1 = EdgeInsets.only(
+        inputTextFieldErrorPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.light().spacings.m,
           top: WidgetToolkitDesignSystem.light().spacings.xxxs,
         ),
-        inputTextFieldPadding2 = EdgeInsets.only(
+        inputTextFieldIconPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.light().spacings.xs),
-        inputTextFieldPadding3 = EdgeInsets.only(
+        inputTextFieldIconDisabledPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.light().spacings.xs),
         inputTextFieldPaddingLoading = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.light().spacings.s),
@@ -370,30 +370,30 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         loadingIcon = WidgetToolkitDesignSystem.light().icons.loadingIcon,
         tickCircleSuccessIcon =
             WidgetToolkitDesignSystem.light().icons.tickCircleSuccessIcon,
-        textFieldDialog2 = EdgeInsets.zero,
-        textFieldDialog4 = EdgeInsets.only(
+        textFieldDialogPadding = EdgeInsets.zero,
+        textFieldDialogButtonPadding = EdgeInsets.only(
           top: WidgetToolkitDesignSystem.light().spacings.xl,
           bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
         ),
-        textFieldDialog3 = EdgeInsets.only(
+        textFieldDialogHeaderPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.dark().spacings.xs,
           bottom: WidgetToolkitDesignSystem.dark().spacings.m,
         ),
-        labeledBoxWidgetPadding1 = EdgeInsets.symmetric(
+        labeledBoxWidgetContentPadding = EdgeInsets.symmetric(
           vertical: WidgetToolkitDesignSystem.dark().spacings.m,
           horizontal: WidgetToolkitDesignSystem.dark().spacings.s,
         ),
-        labeledBoxWidgetPadding2 = EdgeInsets.only(
+        labeledBoxWidgetIconPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.dark().spacings.xs),
-        labeledBoxWidgetPadding3 =
+        labeledBoxWidgetOptionalTextPadding =
             EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.m),
-        inputTextFieldPadding1 = EdgeInsets.only(
+        inputTextFieldErrorPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.dark().spacings.m,
           top: WidgetToolkitDesignSystem.dark().spacings.xxxs,
         ),
-        inputTextFieldPadding2 = EdgeInsets.only(
+        inputTextFieldIconPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.dark().spacings.xs),
-        inputTextFieldPadding3 = EdgeInsets.only(
+        inputTextFieldIconDisabledPadding = EdgeInsets.only(
             right: WidgetToolkitDesignSystem.dark().spacings.xs),
         inputTextFieldPaddingLoading =
             EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s),
@@ -558,23 +558,23 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
   final SvgFile tickCircleSuccessIcon;
 
   @override
-  final EdgeInsets textFieldDialog2;
+  final EdgeInsets textFieldDialogPadding;
   @override
-  final EdgeInsets textFieldDialog4;
+  final EdgeInsets textFieldDialogButtonPadding;
   @override
-  final EdgeInsets textFieldDialog3;
+  final EdgeInsets textFieldDialogHeaderPadding;
   @override
-  final EdgeInsets labeledBoxWidgetPadding1;
+  final EdgeInsets labeledBoxWidgetContentPadding;
   @override
-  final EdgeInsets labeledBoxWidgetPadding2;
+  final EdgeInsets labeledBoxWidgetIconPadding;
   @override
-  final EdgeInsets labeledBoxWidgetPadding3;
+  final EdgeInsets labeledBoxWidgetOptionalTextPadding;
   @override
-  final EdgeInsets inputTextFieldPadding1;
+  final EdgeInsets inputTextFieldErrorPadding;
   @override
-  final EdgeInsets inputTextFieldPadding2;
+  final EdgeInsets inputTextFieldIconPadding;
   @override
-  final EdgeInsets inputTextFieldPadding3;
+  final EdgeInsets inputTextFieldIconDisabledPadding;
   @override
   final EdgeInsets inputTextFieldPaddingLoading;
   @override
