@@ -47,17 +47,14 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
   SvgFile get backButtonCloseIcon;
   SvgFile get qrScanAreaIcon;
   SvgFile get backButtonArrowLeft;
-  EdgeInsets get cameraPermission1;
-  EdgeInsets get cameraPermission2;
-  EdgeInsets get cameraPermission3;
-  EdgeInsets get cameraPermission4;
-  EdgeInsets get cameraPermission5;
-  EdgeInsets get cameraPermission6;
-  EdgeInsets get qrScannerPage1;
-  EdgeInsets get qrScannerPage2;
-  EdgeInsets get qrScannerPage3;
-  EdgeInsets get qrScannerPage4;
-  EdgeInsets get qrScannerPage5;
+  EdgeInsets get cameraPermissionPadding;
+  EdgeInsets get cameraPermissionBorderPadding;
+  EdgeInsets get cameraPermissionContentPadding;
+  EdgeInsets get cameraPermissionIconPadding;
+  EdgeInsets get cameraPermissionTitlePadding;
+  EdgeInsets get qrScannerComponentPadding;
+  EdgeInsets get qrScannerCameraPadding;
+  EdgeInsets get qrScannerProgressIndicatorPadding;
 
   @override
   QrScannerTheme copyWith({
@@ -99,17 +96,14 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
     SvgFile? backButtonCloseIcon,
     SvgFile? qrScanAreaIcon,
     SvgFile? backButtonArrowLeft,
-    EdgeInsets? cameraPermission1,
-    EdgeInsets? cameraPermission2,
-    EdgeInsets? cameraPermission3,
-    EdgeInsets? cameraPermission4,
-    EdgeInsets? cameraPermission5,
-    EdgeInsets? cameraPermission6,
-    EdgeInsets? qrScannerPage1,
-    EdgeInsets? qrScannerPage2,
-    EdgeInsets? qrScannerPage3,
-    EdgeInsets? qrScannerPage4,
-    EdgeInsets? qrScannerPage5,
+    EdgeInsets? cameraPermissionPadding,
+    EdgeInsets? cameraPermissionBorderPadding,
+    EdgeInsets? cameraPermissionContentPadding,
+    EdgeInsets? cameraPermissionIconPadding,
+    EdgeInsets? cameraPermissionTitlePadding,
+    EdgeInsets? qrScannerComponentPadding,
+    EdgeInsets? qrScannerCameraPadding,
+    EdgeInsets? qrScannerProgressIndicatorPadding,
   }) {
     return QrScannerTheme(
       qrScannerSubtitlePadding:
@@ -175,17 +169,22 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
       backButtonCloseIcon: backButtonCloseIcon ?? this.backButtonCloseIcon,
       qrScanAreaIcon: qrScanAreaIcon ?? this.qrScanAreaIcon,
       backButtonArrowLeft: backButtonArrowLeft ?? this.backButtonArrowLeft,
-      cameraPermission1: cameraPermission1 ?? this.cameraPermission1,
-      cameraPermission2: cameraPermission2 ?? this.cameraPermission2,
-      cameraPermission3: cameraPermission3 ?? this.cameraPermission3,
-      cameraPermission4: cameraPermission4 ?? this.cameraPermission4,
-      cameraPermission5: cameraPermission5 ?? this.cameraPermission5,
-      cameraPermission6: cameraPermission6 ?? this.cameraPermission6,
-      qrScannerPage1: qrScannerPage1 ?? this.qrScannerPage1,
-      qrScannerPage2: qrScannerPage2 ?? this.qrScannerPage2,
-      qrScannerPage3: qrScannerPage3 ?? this.qrScannerPage3,
-      qrScannerPage4: qrScannerPage4 ?? this.qrScannerPage4,
-      qrScannerPage5: qrScannerPage5 ?? this.qrScannerPage5,
+      cameraPermissionPadding:
+          cameraPermissionPadding ?? this.cameraPermissionPadding,
+      cameraPermissionBorderPadding:
+          cameraPermissionBorderPadding ?? this.cameraPermissionBorderPadding,
+      cameraPermissionContentPadding:
+          cameraPermissionContentPadding ?? this.cameraPermissionContentPadding,
+      cameraPermissionIconPadding:
+          cameraPermissionIconPadding ?? this.cameraPermissionIconPadding,
+      cameraPermissionTitlePadding:
+          cameraPermissionTitlePadding ?? this.cameraPermissionTitlePadding,
+      qrScannerComponentPadding:
+          qrScannerComponentPadding ?? this.qrScannerComponentPadding,
+      qrScannerCameraPadding:
+          qrScannerCameraPadding ?? this.qrScannerCameraPadding,
+      qrScannerProgressIndicatorPadding: qrScannerProgressIndicatorPadding ??
+          this.qrScannerProgressIndicatorPadding,
     );
   }
 
@@ -274,17 +273,27 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
       qrScanAreaIcon: t < 0.5 ? qrScanAreaIcon : other.qrScanAreaIcon,
       backButtonArrowLeft:
           t < 0.5 ? backButtonArrowLeft : other.backButtonArrowLeft,
-      cameraPermission1: t < 0.5 ? cameraPermission1 : other.cameraPermission1,
-      cameraPermission2: t < 0.5 ? cameraPermission2 : other.cameraPermission2,
-      cameraPermission3: t < 0.5 ? cameraPermission3 : other.cameraPermission3,
-      cameraPermission4: t < 0.5 ? cameraPermission4 : other.cameraPermission4,
-      cameraPermission5: t < 0.5 ? cameraPermission5 : other.cameraPermission5,
-      cameraPermission6: t < 0.5 ? cameraPermission6 : other.cameraPermission6,
-      qrScannerPage1: t < 0.5 ? qrScannerPage1 : other.qrScannerPage1,
-      qrScannerPage2: t < 0.5 ? qrScannerPage2 : other.qrScannerPage2,
-      qrScannerPage3: t < 0.5 ? qrScannerPage3 : other.qrScannerPage3,
-      qrScannerPage4: t < 0.5 ? qrScannerPage4 : other.qrScannerPage4,
-      qrScannerPage5: t < 0.5 ? qrScannerPage5 : other.qrScannerPage5,
+      cameraPermissionPadding:
+          t < 0.5 ? cameraPermissionPadding : other.cameraPermissionPadding,
+      cameraPermissionBorderPadding: t < 0.5
+          ? cameraPermissionBorderPadding
+          : other.cameraPermissionBorderPadding,
+      cameraPermissionContentPadding: t < 0.5
+          ? cameraPermissionContentPadding
+          : other.cameraPermissionContentPadding,
+      cameraPermissionIconPadding: t < 0.5
+          ? cameraPermissionIconPadding
+          : other.cameraPermissionIconPadding,
+      cameraPermissionTitlePadding: t < 0.5
+          ? cameraPermissionTitlePadding
+          : other.cameraPermissionTitlePadding,
+      qrScannerComponentPadding:
+          t < 0.5 ? qrScannerComponentPadding : other.qrScannerComponentPadding,
+      qrScannerCameraPadding:
+          t < 0.5 ? qrScannerCameraPadding : other.qrScannerCameraPadding,
+      qrScannerProgressIndicatorPadding: t < 0.5
+          ? qrScannerProgressIndicatorPadding
+          : other.qrScannerProgressIndicatorPadding,
     );
   }
 
@@ -353,17 +362,14 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
             const DeepCollectionEquality().equals(backButtonCloseIcon, other.backButtonCloseIcon) &&
             const DeepCollectionEquality().equals(qrScanAreaIcon, other.qrScanAreaIcon) &&
             const DeepCollectionEquality().equals(backButtonArrowLeft, other.backButtonArrowLeft) &&
-            const DeepCollectionEquality().equals(cameraPermission1, other.cameraPermission1) &&
-            const DeepCollectionEquality().equals(cameraPermission2, other.cameraPermission2) &&
-            const DeepCollectionEquality().equals(cameraPermission3, other.cameraPermission3) &&
-            const DeepCollectionEquality().equals(cameraPermission4, other.cameraPermission4) &&
-            const DeepCollectionEquality().equals(cameraPermission5, other.cameraPermission5) &&
-            const DeepCollectionEquality().equals(cameraPermission6, other.cameraPermission6) &&
-            const DeepCollectionEquality().equals(qrScannerPage1, other.qrScannerPage1) &&
-            const DeepCollectionEquality().equals(qrScannerPage2, other.qrScannerPage2) &&
-            const DeepCollectionEquality().equals(qrScannerPage3, other.qrScannerPage3) &&
-            const DeepCollectionEquality().equals(qrScannerPage4, other.qrScannerPage4) &&
-            const DeepCollectionEquality().equals(qrScannerPage5, other.qrScannerPage5));
+            const DeepCollectionEquality().equals(cameraPermissionPadding, other.cameraPermissionPadding) &&
+            const DeepCollectionEquality().equals(cameraPermissionBorderPadding, other.cameraPermissionBorderPadding) &&
+            const DeepCollectionEquality().equals(cameraPermissionContentPadding, other.cameraPermissionContentPadding) &&
+            const DeepCollectionEquality().equals(cameraPermissionIconPadding, other.cameraPermissionIconPadding) &&
+            const DeepCollectionEquality().equals(cameraPermissionTitlePadding, other.cameraPermissionTitlePadding) &&
+            const DeepCollectionEquality().equals(qrScannerComponentPadding, other.qrScannerComponentPadding) &&
+            const DeepCollectionEquality().equals(qrScannerCameraPadding, other.qrScannerCameraPadding) &&
+            const DeepCollectionEquality().equals(qrScannerProgressIndicatorPadding, other.qrScannerProgressIndicatorPadding));
   }
 
   @override
@@ -410,17 +416,14 @@ mixin _$QrScannerThemeTailorMixin on ThemeExtension<QrScannerTheme> {
       const DeepCollectionEquality().hash(backButtonCloseIcon),
       const DeepCollectionEquality().hash(qrScanAreaIcon),
       const DeepCollectionEquality().hash(backButtonArrowLeft),
-      const DeepCollectionEquality().hash(cameraPermission1),
-      const DeepCollectionEquality().hash(cameraPermission2),
-      const DeepCollectionEquality().hash(cameraPermission3),
-      const DeepCollectionEquality().hash(cameraPermission4),
-      const DeepCollectionEquality().hash(cameraPermission5),
-      const DeepCollectionEquality().hash(cameraPermission6),
-      const DeepCollectionEquality().hash(qrScannerPage1),
-      const DeepCollectionEquality().hash(qrScannerPage2),
-      const DeepCollectionEquality().hash(qrScannerPage3),
-      const DeepCollectionEquality().hash(qrScannerPage4),
-      const DeepCollectionEquality().hash(qrScannerPage5),
+      const DeepCollectionEquality().hash(cameraPermissionPadding),
+      const DeepCollectionEquality().hash(cameraPermissionBorderPadding),
+      const DeepCollectionEquality().hash(cameraPermissionContentPadding),
+      const DeepCollectionEquality().hash(cameraPermissionIconPadding),
+      const DeepCollectionEquality().hash(cameraPermissionTitlePadding),
+      const DeepCollectionEquality().hash(qrScannerComponentPadding),
+      const DeepCollectionEquality().hash(qrScannerCameraPadding),
+      const DeepCollectionEquality().hash(qrScannerProgressIndicatorPadding),
     ]);
   }
 }

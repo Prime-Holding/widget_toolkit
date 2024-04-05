@@ -8,17 +8,14 @@ part 'qr_scanner_theme.tailor.dart';
 class QrScannerTheme extends ThemeExtension<QrScannerTheme>
     with _$QrScannerThemeTailorMixin {
   const QrScannerTheme({
-    required this.cameraPermission1,
-    required this.cameraPermission2,
-    required this.cameraPermission3,
-    required this.cameraPermission4,
-    required this.cameraPermission5,
-    required this.cameraPermission6,
-    required this.qrScannerPage1,
-    required this.qrScannerPage2,
-    required this.qrScannerPage3,
-    required this.qrScannerPage4,
-    required this.qrScannerPage5,
+    required this.cameraPermissionPadding,
+    required this.cameraPermissionBorderPadding,
+    required this.cameraPermissionContentPadding,
+    required this.cameraPermissionIconPadding,
+    required this.cameraPermissionTitlePadding,
+    required this.qrScannerComponentPadding,
+    required this.qrScannerCameraPadding,
+    required this.qrScannerProgressIndicatorPadding,
     required this.qrScannerSubtitlePadding,
     required this.backButtonMarginEdgeInsets,
     required this.backButtonPaddingEdgeInsets,
@@ -62,45 +59,32 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   /// region Themes
 
   QrScannerTheme.light()
-      : cameraPermission1 = EdgeInsets.symmetric(
+      : cameraPermissionPadding = EdgeInsets.symmetric(
           horizontal: WidgetToolkitDesignSystem.light().spacings.m,
         ),
-        cameraPermission2 = EdgeInsets.only(
+        cameraPermissionBorderPadding = EdgeInsets.only(
           top: WidgetToolkitDesignSystem.light().spacings.xs,
           bottom: WidgetToolkitDesignSystem.light().spacings.m,
         ),
-        cameraPermission3 = EdgeInsets.all(
+        cameraPermissionContentPadding = EdgeInsets.all(
           WidgetToolkitDesignSystem.light().spacings.m,
         ),
-        cameraPermission4 = EdgeInsets.only(
+        cameraPermissionIconPadding = EdgeInsets.only(
           right: WidgetToolkitDesignSystem.light().spacings.m,
         ),
-        cameraPermission5 = EdgeInsets.only(
+        cameraPermissionTitlePadding = EdgeInsets.only(
           bottom: WidgetToolkitDesignSystem.light().spacings.xs,
         ),
-        cameraPermission6 = EdgeInsets.symmetric(
-          vertical: WidgetToolkitDesignSystem.light().spacings.m,
-        ),
-        qrScannerPage1 = EdgeInsets.only(
-          left: WidgetToolkitDesignSystem.light().spacings.m,
-          right: WidgetToolkitDesignSystem.light().spacings.m,
-          bottom: WidgetToolkitDesignSystem.light().spacings.m,
-        ),
-        qrScannerPage2 = EdgeInsets.only(
+        qrScannerComponentPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.light().spacings.xxxl,
           right: WidgetToolkitDesignSystem.light().spacings.xxxl,
         ),
-        qrScannerPage3 =
+        qrScannerCameraPadding =
             EdgeInsets.all(WidgetToolkitDesignSystem.light().spacings.xss),
-        qrScannerPage4 = EdgeInsets.only(
+        qrScannerProgressIndicatorPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.light().spacings.m,
           right: WidgetToolkitDesignSystem.light().spacings.m,
           bottom: WidgetToolkitDesignSystem.light().spacings.xxxl,
-        ),
-        qrScannerPage5 = EdgeInsets.only(
-          left: WidgetToolkitDesignSystem.light().spacings.m,
-          right: WidgetToolkitDesignSystem.light().spacings.m,
-          bottom: WidgetToolkitDesignSystem.light().spacings.xxl,
         ),
         qrScannerSubtitlePadding = EdgeInsets.only(
             top: WidgetToolkitDesignSystem.light().spacings.xs1),
@@ -168,45 +152,32 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
         linearProgressIndicatorColor = _HexColor(_qrFrameBlueColorHex);
 
   QrScannerTheme.dark()
-      : cameraPermission1 = EdgeInsets.symmetric(
+      : cameraPermissionPadding = EdgeInsets.symmetric(
           horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
         ),
-        cameraPermission2 = EdgeInsets.only(
+        cameraPermissionBorderPadding = EdgeInsets.only(
           top: WidgetToolkitDesignSystem.dark().spacings.xs,
           bottom: WidgetToolkitDesignSystem.dark().spacings.m,
         ),
-        cameraPermission3 = EdgeInsets.all(
+        cameraPermissionContentPadding = EdgeInsets.all(
           WidgetToolkitDesignSystem.dark().spacings.m,
         ),
-        cameraPermission4 = EdgeInsets.only(
+        cameraPermissionIconPadding = EdgeInsets.only(
           right: WidgetToolkitDesignSystem.dark().spacings.m,
         ),
-        cameraPermission5 = EdgeInsets.only(
+        cameraPermissionTitlePadding = EdgeInsets.only(
           bottom: WidgetToolkitDesignSystem.dark().spacings.xs,
         ),
-        cameraPermission6 = EdgeInsets.symmetric(
-          vertical: WidgetToolkitDesignSystem.dark().spacings.m,
-        ),
-        qrScannerPage1 = EdgeInsets.only(
-          left: WidgetToolkitDesignSystem.dark().spacings.m,
-          right: WidgetToolkitDesignSystem.dark().spacings.m,
-          bottom: WidgetToolkitDesignSystem.dark().spacings.m,
-        ),
-        qrScannerPage2 = EdgeInsets.only(
+        qrScannerComponentPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.dark().spacings.xxxl,
           right: WidgetToolkitDesignSystem.dark().spacings.xxxl,
         ),
-        qrScannerPage3 =
+        qrScannerCameraPadding =
             EdgeInsets.all(WidgetToolkitDesignSystem.dark().spacings.xss),
-        qrScannerPage4 = EdgeInsets.only(
+        qrScannerProgressIndicatorPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.dark().spacings.m,
           right: WidgetToolkitDesignSystem.dark().spacings.m,
           bottom: WidgetToolkitDesignSystem.dark().spacings.xxxl,
-        ),
-        qrScannerPage5 = EdgeInsets.only(
-          left: WidgetToolkitDesignSystem.dark().spacings.m,
-          right: WidgetToolkitDesignSystem.dark().spacings.m,
-          bottom: WidgetToolkitDesignSystem.dark().spacings.xxl,
         ),
         qrScannerSubtitlePadding = EdgeInsets.only(
             top: WidgetToolkitDesignSystem.light().spacings.xs1),
@@ -361,28 +332,22 @@ class QrScannerTheme extends ThemeExtension<QrScannerTheme>
   final SvgFile backButtonArrowLeft;
 
   @override
-  final EdgeInsets cameraPermission1;
+  final EdgeInsets cameraPermissionPadding;
   @override
-  final EdgeInsets cameraPermission2;
+  final EdgeInsets cameraPermissionBorderPadding;
   @override
-  final EdgeInsets cameraPermission3;
+  final EdgeInsets cameraPermissionContentPadding;
   @override
-  final EdgeInsets cameraPermission4;
+  final EdgeInsets cameraPermissionIconPadding;
   @override
-  final EdgeInsets cameraPermission5;
-  @override
-  final EdgeInsets cameraPermission6;
+  final EdgeInsets cameraPermissionTitlePadding;
 
   @override
-  final EdgeInsets qrScannerPage1;
+  final EdgeInsets qrScannerComponentPadding;
   @override
-  final EdgeInsets qrScannerPage2;
+  final EdgeInsets qrScannerCameraPadding;
   @override
-  final EdgeInsets qrScannerPage3;
-  @override
-  final EdgeInsets qrScannerPage4;
-  @override
-  final EdgeInsets qrScannerPage5;
+  final EdgeInsets qrScannerProgressIndicatorPadding;
 }
 
 extension ThemeContextExtension on BuildContext {
