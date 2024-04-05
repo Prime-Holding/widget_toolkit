@@ -118,7 +118,7 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          EditAddressTheme.light().copyWith(
+          EditAddressTheme.lightMode.copyWith(
             titleBold: const TextStyle(
               inherit: true,
             ),
@@ -154,7 +154,7 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          EditAddressTheme.dark().copyWith(
+          EditAddressTheme.darkMode.copyWith(
             titleBold: const TextStyle(
               inherit: true,
             ),

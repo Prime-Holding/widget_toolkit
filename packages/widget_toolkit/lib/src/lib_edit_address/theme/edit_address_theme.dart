@@ -199,6 +199,9 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme>
         editPenIcon = WidgetToolkitDesignSystem.light().icons.editPenIcon,
         infoCircleIcon = WidgetToolkitDesignSystem.light().icons.infoCircleIcon;
 
+  static final lightMode = EditAddressTheme.light();
+  static final darkMode = EditAddressTheme.dark();
+
   /// endregion
 
   @override
