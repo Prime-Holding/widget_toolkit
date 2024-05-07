@@ -152,7 +152,7 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme>
         iconColorPrimary =
             WidgetToolkitDesignSystem.dark().colors.editAddressBlue,
         editAddressPageBackgroundColor =
-            WidgetToolkitDesignSystem.dark().colors.white,
+            WidgetToolkitDesignSystem.dark().colors.editAddressBackground,
         permanentAddressBlueLightColor =
             WidgetToolkitDesignSystem.dark().colors.permanentAddressBlueLight,
         disabledFilledButtonBackgroundColor = WidgetToolkitDesignSystem.dark()
