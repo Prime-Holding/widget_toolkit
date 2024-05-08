@@ -174,7 +174,7 @@ ThemeData getThemeData(bool inLightMode) {
 ///
 /// [tester] - [WidgetTester] DI
 ///
-/// [builder] - [DeviceBuilder] to be pupmped
+/// [builder] - [DeviceBuilder] to be pumped
 ///
 /// [platform] will override Theme's platform.
 ///

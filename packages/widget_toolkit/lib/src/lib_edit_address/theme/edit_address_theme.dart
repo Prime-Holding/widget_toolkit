@@ -144,7 +144,7 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme>
         shimmerTextBaseColor =
             WidgetToolkitDesignSystem.dark().colors.editAddressWhite,
         editAddressWidgetColor =
-            WidgetToolkitDesignSystem.dark().colors.editAddressMediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.editAddressWidget,
         shimmerTextHighlightColor =
             WidgetToolkitDesignSystem.dark().colors.editAddressMediumWhite,
         iconColorSecondary =

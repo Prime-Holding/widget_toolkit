@@ -134,7 +134,7 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         captionBold = WidgetToolkitDesignSystem.light().typography.captionBold,
         smallThin = WidgetToolkitDesignSystem.light().typography.smallThin,
         textFieldDialogIconColor =
-            WidgetToolkitDesignSystem.light().colors.darkBlue,
+            WidgetToolkitDesignSystem.light().colors.blue,
         disabledFilledButtonBackgroundColor =
             WidgetToolkitDesignSystem.light().colors.gray,
         inputFieldBorderErrorColor =
@@ -285,8 +285,7 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().typography.descriptionBold,
         captionBold = WidgetToolkitDesignSystem.dark().typography.captionBold,
         smallThin = WidgetToolkitDesignSystem.dark().typography.smallThin,
-        textFieldDialogIconColor =
-            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        textFieldDialogIconColor = WidgetToolkitDesignSystem.dark().colors.blue,
         disabledFilledButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.gray,
         inputFieldBorderErrorColor =
