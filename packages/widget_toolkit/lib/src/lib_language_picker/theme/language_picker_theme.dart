@@ -184,7 +184,7 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
             WidgetToolkitDesignSystem.dark().colors.lightGray,
         outlineButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.white,
-        checkIcon = WidgetToolkitDesignSystem.light().icons.checkIcon;
+        checkIcon = WidgetToolkitDesignSystem.dark().icons.checkIcon;
 
   /// endregion
 }

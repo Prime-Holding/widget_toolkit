@@ -258,21 +258,19 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().colors.black45,
         inputFieldBackgroundSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.green,
-        labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
-        labelBoxFilledSecondary =
-            WidgetToolkitDesignSystem.light().colors.black,
+        labelBoxFilledPrimary = WidgetToolkitDesignSystem.dark().colors.blue,
+        labelBoxFilledSecondary = WidgetToolkitDesignSystem.dark().colors.black,
         labelBoxFilledBackground =
-            WidgetToolkitDesignSystem.light().colors.darkGray,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         labelBoxFilledBorder =
-            WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
-        labelBoxOptionalPrimary =
-            WidgetToolkitDesignSystem.light().colors.black,
+            WidgetToolkitDesignSystem.dark().colors.textFieldDialogTransparent,
+        labelBoxOptionalPrimary = WidgetToolkitDesignSystem.dark().colors.black,
         labelBoxOptionalSecondary =
-            WidgetToolkitDesignSystem.light().colors.gray,
+            WidgetToolkitDesignSystem.dark().colors.gray,
         labelBoxOptionalBackground =
-            WidgetToolkitDesignSystem.light().colors.darkGray,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         labelBoxOptionalBorder =
-            WidgetToolkitDesignSystem.light().colors.lightGray,
+            WidgetToolkitDesignSystem.dark().colors.lightGray,
         editFieldBorderRadius = WidgetToolkitDesignSystem.dark().spacings.xss,
         spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
         spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
@@ -288,7 +286,7 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         captionBold = WidgetToolkitDesignSystem.dark().typography.captionBold,
         smallThin = WidgetToolkitDesignSystem.dark().typography.smallThin,
         textFieldDialogIconColor =
-            WidgetToolkitDesignSystem.light().colors.darkBlue,
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
         disabledFilledButtonBackgroundColor =
             WidgetToolkitDesignSystem.dark().colors.gray,
         inputFieldBorderErrorColor =
@@ -313,13 +311,13 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         editFieldLabelSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.green,
         editFieldValueEditedColor =
-            WidgetToolkitDesignSystem.light().colors.darkBlue,
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
         editFieldValueNotEditedColor =
-            WidgetToolkitDesignSystem.light().colors.highlightColor,
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
         editFieldValueLoadingColor =
-            WidgetToolkitDesignSystem.light().colors.gray,
+            WidgetToolkitDesignSystem.dark().colors.gray,
         editFieldValueSuccessColor =
-            WidgetToolkitDesignSystem.light().colors.highlightColor,
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
         editFieldTextEditedTextStyle =
             WidgetToolkitDesignSystem.dark().typography.descriptionBold,
         editFieldTextNotEditedTextStyle =
@@ -358,22 +356,22 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().colors.mediumWhite,
         inputFieldHintColor = WidgetToolkitDesignSystem.dark().colors.gray,
         inputFieldErrorTextColor = WidgetToolkitDesignSystem.dark().colors.red,
-        closeIcon = WidgetToolkitDesignSystem.light().icons.closeIcon,
-        dangerIcon = WidgetToolkitDesignSystem.light().icons.dangerIcon,
-        addIcon = WidgetToolkitDesignSystem.light().icons.addIcon,
+        closeIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
+        dangerIcon = WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+        addIcon = WidgetToolkitDesignSystem.dark().icons.addIcon,
         addDisabledIcon =
-            WidgetToolkitDesignSystem.light().icons.addDisabledIcon,
+            WidgetToolkitDesignSystem.dark().icons.addDisabledIcon,
         arrowRightSquareIcon =
-            WidgetToolkitDesignSystem.light().icons.arrowRightSquareIcon,
-        editPenIcon = WidgetToolkitDesignSystem.light().icons.editPenIcon,
-        infoCircleIcon = WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
-        loadingIcon = WidgetToolkitDesignSystem.light().icons.loadingIcon,
+            WidgetToolkitDesignSystem.dark().icons.arrowRightSquareIcon,
+        editPenIcon = WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+        infoCircleIcon = WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+        loadingIcon = WidgetToolkitDesignSystem.dark().icons.loadingIcon,
         tickCircleSuccessIcon =
-            WidgetToolkitDesignSystem.light().icons.tickCircleSuccessIcon,
+            WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
         textFieldDialogPadding = EdgeInsets.zero,
         textFieldDialogButtonPadding = EdgeInsets.only(
-          top: WidgetToolkitDesignSystem.light().spacings.xl,
-          bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
+          top: WidgetToolkitDesignSystem.dark().spacings.xl,
+          bottom: WidgetToolkitDesignSystem.dark().spacings.xxxxs,
         ),
         textFieldDialogHeaderPadding = EdgeInsets.only(
           left: WidgetToolkitDesignSystem.dark().spacings.xs,

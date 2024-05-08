@@ -29,8 +29,8 @@ class SearchPickerTheme extends ThemeExtension<SearchPickerTheme>
 
   SearchPickerTheme.dark()
       : titlePadding = EdgeInsets.only(
-            bottom: WidgetToolkitDesignSystem.light().spacings.xs,
-            left: WidgetToolkitDesignSystem.light().spacings.xs),
+            bottom: WidgetToolkitDesignSystem.dark().spacings.xs,
+            left: WidgetToolkitDesignSystem.dark().spacings.xs),
         titleStyle = WidgetToolkitDesignSystem.dark().typography.titleStyle,
         searchFieldOuterEdgeInsets =
             WidgetToolkitDesignSystem.dark().spacings.mediumEdgeInsets,
