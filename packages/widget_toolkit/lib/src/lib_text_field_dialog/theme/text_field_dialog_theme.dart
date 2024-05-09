@@ -344,15 +344,15 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
             WidgetToolkitDesignSystem.dark().colors.orange,
         inputFieldTextPlainColor = WidgetToolkitDesignSystem.dark().colors.gray,
         inputFieldBackgroundFilledColor =
-            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         inputFieldBackgroundPlainColor =
-            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         inputFieldBackgroundDefaultFieldColor =
-            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         inputFieldBackgroundDefaultDisabledColor =
-            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         inputFieldBackgroundDefaultColor =
-            WidgetToolkitDesignSystem.dark().colors.mediumWhite,
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
         inputFieldHintColor = WidgetToolkitDesignSystem.dark().colors.gray,
         inputFieldErrorTextColor = WidgetToolkitDesignSystem.dark().colors.red,
         closeIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
