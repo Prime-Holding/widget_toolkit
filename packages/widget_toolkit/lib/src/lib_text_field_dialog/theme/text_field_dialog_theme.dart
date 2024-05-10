@@ -310,7 +310,7 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         editFieldLabelSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.green,
         editFieldValueEditedColor =
-            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+            WidgetToolkitDesignSystem.dark().colors.blue,
         editFieldValueNotEditedColor =
             WidgetToolkitDesignSystem.dark().colors.highlightColor,
         editFieldValueLoadingColor =
@@ -335,11 +335,10 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
         inputFieldTextFilledColor =
             WidgetToolkitDesignSystem.dark().colors.darkGreen,
         inputFieldTextLoadingColor =
-            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+            WidgetToolkitDesignSystem.dark().colors.blue,
         inputFieldTextSuccessColor =
             WidgetToolkitDesignSystem.dark().colors.darkGreen,
-        inputFieldTextTypeColor =
-            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        inputFieldTextTypeColor = WidgetToolkitDesignSystem.dark().colors.blue,
         inputFieldTextWarningColor =
             WidgetToolkitDesignSystem.dark().colors.orange,
         inputFieldTextPlainColor = WidgetToolkitDesignSystem.dark().colors.gray,
