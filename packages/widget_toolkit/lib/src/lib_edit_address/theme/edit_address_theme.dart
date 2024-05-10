@@ -6,233 +6,277 @@ import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'edit_address_theme.tailor.dart';
 
-@Tailor(themeGetter: ThemeGetter.none)
-class _$EditAddressTheme {
-  /// region spacings
-  static List<double> spacingM = [
-    WidgetToolkitDesignSystem.light().spacings.m,
-    WidgetToolkitDesignSystem.dark().spacings.m,
-  ];
-  static List<double> spacingXSS = [
-    WidgetToolkitDesignSystem.light().spacings.xss,
-    WidgetToolkitDesignSystem.dark().spacings.xss,
-  ];
+@TailorMixinComponent()
+class EditAddressTheme extends ThemeExtension<EditAddressTheme>
+    with _$EditAddressThemeTailorMixin {
+  const EditAddressTheme({
+    required this.spacingM,
+    required this.spacingXSS,
+    required this.spacingXS,
+    required this.spacingS,
+    required this.spacingL,
+    required this.spacingXL,
+    required this.spacingXXL,
+    required this.spacingXXXL,
+    required this.editAddressWidgetSpacingXS,
+    required this.addressWidgetSpacingXS,
+    required this.captionBold,
+    required this.descriptionThin,
+    required this.titleBold,
+    required this.shimmerTextBaseColor,
+    required this.editAddressWidgetColor,
+    required this.shimmerTextHighlightColor,
+    required this.iconColorSecondary,
+    required this.iconColorPrimary,
+    required this.editAddressPageBackgroundColor,
+    required this.permanentAddressBlueLightColor,
+    required this.disabledFilledButtonBackgroundColor,
+    required this.editAddressWidgetHighlightTransparent,
+    required this.editAddressWidgetSplashTransparent,
+    required this.editAddressPageOuterMostPadding,
+    required this.editAddressPageOnAddressSavedPadding,
+    required this.editAddressPageErrorPanelPadding,
+    required this.permanentAddressBottomSheetPadding,
+    required this.permanentAddressBottomSheetDecorationPadding,
+    required this.permanentAddressBottomSheetContentPadding,
+    required this.permanentAddressIconPadding,
+    required this.editAddressWidgetDecorationPadding,
+    required this.editAddressWidgetContentPadding,
+    required this.editAddressWidgetShimmerPadding,
+    required this.editAddressWidgetIconPadding,
+    required this.editPenIcon,
+    required this.infoCircleIcon,
+  });
 
-  static List<double> spacingXS = [
-    WidgetToolkitDesignSystem.light().spacings.xs,
-    WidgetToolkitDesignSystem.dark().spacings.xs,
-  ];
+  /// region Themes
 
-  static List<double> editAddressWidgetSpacingXS = spacingXS;
+  EditAddressTheme.light()
+      : spacingM = WidgetToolkitDesignSystem.light().spacings.m,
+        spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
+        editAddressWidgetSpacingXS =
+            WidgetToolkitDesignSystem.light().spacings.xs,
+        addressWidgetSpacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
+        spacingS = WidgetToolkitDesignSystem.light().spacings.s,
+        spacingL = WidgetToolkitDesignSystem.light().spacings.l,
+        spacingXL = WidgetToolkitDesignSystem.light().spacings.xl,
+        spacingXXL = WidgetToolkitDesignSystem.light().spacings.xxl,
+        spacingXXXL = WidgetToolkitDesignSystem.light().spacings.xxxl,
+        captionBold = WidgetToolkitDesignSystem.light().typography.captionBold,
+        descriptionThin =
+            WidgetToolkitDesignSystem.light().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.light().typography.titleBold,
+        shimmerTextBaseColor =
+            WidgetToolkitDesignSystem.light().colors.editAddressWhite,
+        editAddressWidgetColor =
+            WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
+        shimmerTextHighlightColor =
+            WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
+        iconColorSecondary =
+            WidgetToolkitDesignSystem.light().colors.editAddressGreen,
+        iconColorPrimary =
+            WidgetToolkitDesignSystem.light().colors.editAddressBlue,
+        editAddressPageBackgroundColor =
+            WidgetToolkitDesignSystem.light().colors.white,
+        permanentAddressBlueLightColor =
+            WidgetToolkitDesignSystem.light().colors.permanentAddressBlueLight,
+        disabledFilledButtonBackgroundColor = WidgetToolkitDesignSystem.light()
+            .colors
+            .permanentAddressDisabledFilledButtonBackgroundColor,
+        editAddressWidgetHighlightTransparent =
+            WidgetToolkitDesignSystem.light()
+                .colors
+                .editAddressWidgetHighlightColor,
+        editAddressWidgetSplashTransparent = WidgetToolkitDesignSystem.light()
+            .colors
+            .editAddressWidgetSplashColor,
+        editAddressPageOuterMostPadding = EdgeInsets.zero,
+        editAddressPageOnAddressSavedPadding = EdgeInsets.only(
+            left: WidgetToolkitDesignSystem.light().spacings.xs,
+            bottom: WidgetToolkitDesignSystem.light().spacings.xxl),
+        editAddressPageErrorPanelPadding = EdgeInsets.only(
+          bottom: WidgetToolkitDesignSystem.light().spacings.m,
+        ),
+        permanentAddressBottomSheetPadding = EdgeInsets.zero,
+        permanentAddressBottomSheetDecorationPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.light().spacings.xl1,
+        ),
+        permanentAddressBottomSheetContentPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.light().spacings.m,
+          right: WidgetToolkitDesignSystem.light().spacings.m,
+          top: WidgetToolkitDesignSystem.light().spacings.l,
+          bottom: WidgetToolkitDesignSystem.light().spacings.l,
+        ),
+        permanentAddressIconPadding = EdgeInsets.only(
+          bottom: WidgetToolkitDesignSystem.light().spacings.m,
+        ),
+        editAddressWidgetDecorationPadding = EdgeInsets.only(
+            bottom: WidgetToolkitDesignSystem.light().spacings.s),
+        editAddressWidgetContentPadding = EdgeInsets.symmetric(
+          vertical: WidgetToolkitDesignSystem.light().spacings.s,
+          horizontal: WidgetToolkitDesignSystem.light().spacings.m,
+        ),
+        editAddressWidgetShimmerPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.light().spacings.xss,
+          bottom: WidgetToolkitDesignSystem.light().spacings.xss,
+        ),
+        editAddressWidgetIconPadding =
+            EdgeInsets.only(left: WidgetToolkitDesignSystem.light().spacings.s),
+        editPenIcon = WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+        infoCircleIcon = WidgetToolkitDesignSystem.dark().icons.infoCircleIcon;
 
-  static List<double> addressWidgetSpacingXS = spacingXS;
-
-  static List<double> spacingS = [
-    WidgetToolkitDesignSystem.light().spacings.s,
-    WidgetToolkitDesignSystem.dark().spacings.s,
-  ];
-  static List<double> spacingL = [
-    WidgetToolkitDesignSystem.light().spacings.l,
-    WidgetToolkitDesignSystem.dark().spacings.l,
-  ];
-
-  static List<double> spacingXL = [
-    WidgetToolkitDesignSystem.light().spacings.xl,
-    WidgetToolkitDesignSystem.dark().spacings.xl,
-  ];
-
-  static List<double> spacingXXL = [
-    WidgetToolkitDesignSystem.light().spacings.xxl,
-    WidgetToolkitDesignSystem.dark().spacings.xxl,
-  ];
-
-  static List<double> spacingXXXL = [
-    WidgetToolkitDesignSystem.light().spacings.xxxl,
-    WidgetToolkitDesignSystem.dark().spacings.xxxl,
-  ];
-
-  ///endregion
-  /// region TextStyle
-  static List<TextStyle> captionBold = [
-    WidgetToolkitDesignSystem.light().typography.captionBold,
-    WidgetToolkitDesignSystem.dark().typography.captionBold,
-  ];
-  static List<TextStyle> descriptionThin = [
-    WidgetToolkitDesignSystem.light().typography.descriptionThin,
-    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
-  ];
-  static List<TextStyle> titleBold = [
-    WidgetToolkitDesignSystem.light().typography.titleBold,
-    WidgetToolkitDesignSystem.dark().typography.titleBold,
-  ];
-
-  /// endregion
-  ///region Color
-  static List<Color> white = [
-    WidgetToolkitDesignSystem.light().colors.editAddressWhite,
-    WidgetToolkitDesignSystem.dark().colors.editAddressWhite,
-  ];
-  static List<Color> black = [
-    WidgetToolkitDesignSystem.light().colors.editAddressBlack,
-    WidgetToolkitDesignSystem.dark().colors.editAddressBlack,
-  ];
-
-  static List<Color> editAddressWidgetColor = [
-    WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
-    WidgetToolkitDesignSystem.dark().colors.editAddressWidget,
-  ];
-
-  static List<Color> mediumWhite = [
-    WidgetToolkitDesignSystem.light().colors.editAddressMediumWhite,
-    WidgetToolkitDesignSystem.dark().colors.editAddressMediumWhite,
-  ];
-  static List<Color> green = [
-    WidgetToolkitDesignSystem.light().colors.editAddressGreen,
-    WidgetToolkitDesignSystem.dark().colors.editAddressGreen,
-  ];
-
-  static List<Color> blue = [
-    WidgetToolkitDesignSystem.light().colors.editAddressBlue,
-    WidgetToolkitDesignSystem.dark().colors.editAddressBlue,
-  ];
-
-  static List<Color> editAddressPageBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.white,
-    WidgetToolkitDesignSystem.dark().colors.editAddressBackground,
-  ];
-
-  static List<Color> permanentAddressBlueLightColor = [
-    WidgetToolkitDesignSystem.light().colors.permanentAddressBlueLight,
-    WidgetToolkitDesignSystem.dark().colors.permanentAddressBlueLight,
-  ];
-
-  static List<Color> disabledFilledButtonBackgroundColor = [
-    WidgetToolkitDesignSystem.light()
-        .colors
-        .permanentAddressDisabledFilledButtonBackgroundColor,
-    WidgetToolkitDesignSystem.dark()
-        .colors
-        .permanentAddressDisabledFilledButtonBackgroundColor,
-  ];
-
-  static List<Color> editAddressWidgetHighlightTransparent = [
-    WidgetToolkitDesignSystem.light().colors.editAddressWidgetHighlightColor,
-    WidgetToolkitDesignSystem.dark().colors.editAddressWidgetHighlightColor,
-  ];
-
-  static List<Color> editAddressWidgetSplashTransparent = [
-    WidgetToolkitDesignSystem.light().colors.editAddressWidgetSplashColor,
-    WidgetToolkitDesignSystem.dark().colors.editAddressWidgetSplashColor,
-  ];
-
-  /// endregion
-  ///region EdgeInsets
-  static List<EdgeInsets> editAddressPageOuterMostPadding = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
-
-  static List<EdgeInsets> editAddressPageOnAddressSavedPadding = [
-    EdgeInsets.only(
-        left: WidgetToolkitDesignSystem.light().spacings.xs,
-        bottom: WidgetToolkitDesignSystem.light().spacings.xxl),
-    EdgeInsets.only(
-        left: WidgetToolkitDesignSystem.dark().spacings.xs,
-        bottom: WidgetToolkitDesignSystem.dark().spacings.xxl),
-  ];
-
-  static List<EdgeInsets> editAddressPageErrorPanelPadding = [
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
-    ),
-  ];
-
-  static List<EdgeInsets> permanentAddressPadding1 = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
-
-  static List<EdgeInsets> permanentAddressPadding2 = [
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.light().spacings.xl1,
-    ),
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.dark().spacings.xl1,
-    )
-  ];
-
-  static List<EdgeInsets> permanentAddressPadding3 = [
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.light().spacings.m,
-      right: WidgetToolkitDesignSystem.light().spacings.m,
-      top: WidgetToolkitDesignSystem.light().spacings.l,
-      bottom: WidgetToolkitDesignSystem.light().spacings.l,
-    ),
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.dark().spacings.m,
-      right: WidgetToolkitDesignSystem.dark().spacings.m,
-      top: WidgetToolkitDesignSystem.dark().spacings.l,
-      bottom: WidgetToolkitDesignSystem.dark().spacings.l,
-    ),
-  ];
-
-  static List<EdgeInsets> permanentAddressPadding4 = [
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.only(
-      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
-    ),
-  ];
-
-  static List<EdgeInsets> editAddressWidgetPadding1 = [
-    EdgeInsets.only(bottom: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(bottom: WidgetToolkitDesignSystem.dark().spacings.s),
-  ];
-
-  static List<EdgeInsets> editAddressWidgetPadding2 = [
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.light().spacings.s,
-      horizontal: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.dark().spacings.s,
-      horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
-    ),
-  ];
-
-  static List<EdgeInsets> editAddressWidgetPadding3 = [
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.light().spacings.xss,
-      bottom: WidgetToolkitDesignSystem.light().spacings.xss,
-    ),
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.dark().spacings.xss,
-      bottom: WidgetToolkitDesignSystem.dark().spacings.xss,
-    ),
-  ];
-
-  static List<EdgeInsets> editAddressWidgetPadding4 = [
-    EdgeInsets.only(left: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(left: WidgetToolkitDesignSystem.dark().spacings.s),
-  ];
+  EditAddressTheme.dark()
+      : spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
+        spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
+        editAddressWidgetSpacingXS =
+            WidgetToolkitDesignSystem.dark().spacings.xs,
+        addressWidgetSpacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
+        spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
+        spacingL = WidgetToolkitDesignSystem.dark().spacings.l,
+        spacingXL = WidgetToolkitDesignSystem.dark().spacings.xl,
+        spacingXXL = WidgetToolkitDesignSystem.dark().spacings.xxl,
+        spacingXXXL = WidgetToolkitDesignSystem.dark().spacings.xxxl,
+        captionBold = WidgetToolkitDesignSystem.dark().typography.captionBold,
+        descriptionThin =
+            WidgetToolkitDesignSystem.dark().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.dark().typography.titleBold,
+        shimmerTextBaseColor =
+            WidgetToolkitDesignSystem.dark().colors.editAddressWhite,
+        editAddressWidgetColor =
+            WidgetToolkitDesignSystem.dark().colors.editAddressWidget,
+        shimmerTextHighlightColor =
+            WidgetToolkitDesignSystem.dark().colors.editAddressMediumWhite,
+        iconColorSecondary =
+            WidgetToolkitDesignSystem.dark().colors.editAddressGreen,
+        iconColorPrimary =
+            WidgetToolkitDesignSystem.dark().colors.editAddressBlue,
+        editAddressPageBackgroundColor =
+            WidgetToolkitDesignSystem.dark().colors.editAddressBackground,
+        permanentAddressBlueLightColor =
+            WidgetToolkitDesignSystem.dark().colors.permanentAddressBlueLight,
+        disabledFilledButtonBackgroundColor = WidgetToolkitDesignSystem.dark()
+            .colors
+            .permanentAddressDisabledFilledButtonBackgroundColor,
+        editAddressWidgetHighlightTransparent = WidgetToolkitDesignSystem.dark()
+            .colors
+            .editAddressWidgetHighlightColor,
+        editAddressWidgetSplashTransparent = WidgetToolkitDesignSystem.dark()
+            .colors
+            .editAddressWidgetSplashColor,
+        editAddressPageOuterMostPadding = EdgeInsets.zero,
+        editAddressPageOnAddressSavedPadding = EdgeInsets.only(
+            left: WidgetToolkitDesignSystem.dark().spacings.xs,
+            bottom: WidgetToolkitDesignSystem.dark().spacings.xxl),
+        editAddressPageErrorPanelPadding = EdgeInsets.only(
+          bottom: WidgetToolkitDesignSystem.dark().spacings.m,
+        ),
+        permanentAddressBottomSheetPadding = EdgeInsets.zero,
+        permanentAddressBottomSheetDecorationPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.dark().spacings.xl1,
+        ),
+        permanentAddressBottomSheetContentPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.dark().spacings.m,
+          right: WidgetToolkitDesignSystem.dark().spacings.m,
+          top: WidgetToolkitDesignSystem.dark().spacings.l,
+          bottom: WidgetToolkitDesignSystem.dark().spacings.l,
+        ),
+        permanentAddressIconPadding = EdgeInsets.only(
+          bottom: WidgetToolkitDesignSystem.dark().spacings.m,
+        ),
+        editAddressWidgetDecorationPadding = EdgeInsets.only(
+            bottom: WidgetToolkitDesignSystem.dark().spacings.s),
+        editAddressWidgetContentPadding = EdgeInsets.symmetric(
+          vertical: WidgetToolkitDesignSystem.dark().spacings.s,
+          horizontal: WidgetToolkitDesignSystem.dark().spacings.m,
+        ),
+        editAddressWidgetShimmerPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.dark().spacings.xss,
+          bottom: WidgetToolkitDesignSystem.dark().spacings.xss,
+        ),
+        editAddressWidgetIconPadding =
+            EdgeInsets.only(left: WidgetToolkitDesignSystem.dark().spacings.s),
+        editPenIcon = WidgetToolkitDesignSystem.light().icons.editPenIcon,
+        infoCircleIcon = WidgetToolkitDesignSystem.light().icons.infoCircleIcon;
 
   /// endregion
-  /// region Icons
-  static List<SvgFile> editPenIcon = [
-    WidgetToolkitDesignSystem.dark().icons.editPenIcon,
-    WidgetToolkitDesignSystem.light().icons.editPenIcon,
-  ];
 
-  static List<SvgFile> infoCircleIcon = [
-    WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
-    WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
-  ];
+  @override
+  final double spacingM;
+  @override
+  final double spacingXSS;
+  @override
+  final double spacingXS;
+  @override
+  final double editAddressWidgetSpacingXS;
+  @override
+  final double addressWidgetSpacingXS;
+  @override
+  final double spacingS;
+  @override
+  final double spacingL;
+  @override
+  final double spacingXL;
+  @override
+  final double spacingXXL;
+  @override
+  final double spacingXXXL;
 
-  /// endregion
+  @override
+  final TextStyle captionBold;
+  @override
+  final TextStyle descriptionThin;
+  @override
+  final TextStyle titleBold;
+
+  @override
+  final Color shimmerTextBaseColor;
+  @override
+  final Color editAddressWidgetColor;
+  @override
+  final Color shimmerTextHighlightColor;
+  @override
+  final Color iconColorSecondary;
+  @override
+  final Color iconColorPrimary;
+  @override
+  final Color editAddressPageBackgroundColor;
+  @override
+  final Color permanentAddressBlueLightColor;
+  @override
+  final Color disabledFilledButtonBackgroundColor;
+  @override
+  final Color editAddressWidgetHighlightTransparent;
+  @override
+  final Color editAddressWidgetSplashTransparent;
+
+  @override
+  final EdgeInsets editAddressPageOuterMostPadding;
+  @override
+  final EdgeInsets editAddressPageOnAddressSavedPadding;
+  @override
+  final EdgeInsets editAddressPageErrorPanelPadding;
+  @override
+  final EdgeInsets permanentAddressBottomSheetPadding;
+  @override
+  final EdgeInsets permanentAddressBottomSheetDecorationPadding;
+  @override
+  final EdgeInsets permanentAddressBottomSheetContentPadding;
+  @override
+  final EdgeInsets permanentAddressIconPadding;
+  @override
+  final EdgeInsets editAddressWidgetDecorationPadding;
+  @override
+  final EdgeInsets editAddressWidgetContentPadding;
+  @override
+  final EdgeInsets editAddressWidgetShimmerPadding;
+  @override
+  final EdgeInsets editAddressWidgetIconPadding;
+
+  @override
+  final SvgFile editPenIcon;
+  @override
+  final SvgFile infoCircleIcon;
 }
 
 extension EditAddressThemeContextExtension on BuildContext {

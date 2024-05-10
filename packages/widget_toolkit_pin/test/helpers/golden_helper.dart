@@ -89,20 +89,20 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
 ThemeData getThemeData(bool inLightMode) {
   final theme = inLightMode
       ? ThemeData.light().copyWith(extensions: [
-          WidgetToolkitTheme.light.copyWith(
+          WidgetToolkitTheme.light().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
           ),
-          PinCodeTheme.light,
+          PinCodeTheme.light(),
         ])
       : ThemeData.dark().copyWith(extensions: [
-          WidgetToolkitTheme.light.copyWith(
+          WidgetToolkitTheme.light().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
           ),
-          PinCodeTheme.dark,
+          PinCodeTheme.dark(),
         ]);
   return theme;
 }

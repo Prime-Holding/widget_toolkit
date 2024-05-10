@@ -23,13 +23,13 @@ class MyApp extends StatelessWidget {
       title: 'Widget Toolkit QR Demo',
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.light,
-        QrScannerTheme.light,
+        WidgetToolkitTheme.light(),
+        QrScannerTheme.light(),
       ]),
       darkTheme: ThemeData.dark()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.dark,
-        QrScannerTheme.dark,
+        WidgetToolkitTheme.dark(),
+        QrScannerTheme.dark(),
       ]),
       home: const HomePage(),
     );
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: context.widgetToolkitTheme.spacingXXXXL1,
+            horizontal: context.widgetToolkitTheme.spacingXXXXL,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

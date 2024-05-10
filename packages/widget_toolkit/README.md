@@ -72,12 +72,12 @@ Step 2: Pass the Theme extensions you needed to the ThemeData of your app
 MaterialApp(
   theme: ThemeData.light().copyWith(
     extensions: <ThemeExtension<dynamic>>[
-      ItemPickerTheme.light,
+      ItemPickerTheme.light(),
     ],
   ),
   darkTheme: ThemeData.dark().copyWith(
     extensions: <ThemeExtension<dynamic>>[
-      ItemPickerTheme.dark,
+      ItemPickerTheme.dark(),
     ],
   ),
   // other parameters...
@@ -91,7 +91,7 @@ Change the theme properties in order to change the visual outcome
 ```
 ...
 extensions: [
-      ItemPickerTheme.light.copyWith(
+      ItemPickerTheme.light().copyWith(
           backgroundColor: Colors.orange,
           iconColor: Colors.red,
           icon: Icons.ac_unit_outlined,

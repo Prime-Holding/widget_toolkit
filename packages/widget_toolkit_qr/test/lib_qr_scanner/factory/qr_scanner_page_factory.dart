@@ -45,7 +45,8 @@ Widget qrScannerPageFactory({
                         children: [
                           Center(
                             child: Padding(
-                              padding: context.qrScannerTheme.qrScannerPage2,
+                              padding: context
+                                  .qrScannerTheme.qrScannerComponentPadding,
                               child: const QrScannerComponent<String>(),
                             ),
                           ),

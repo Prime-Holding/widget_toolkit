@@ -24,13 +24,13 @@ Step 3: Pass the `WidgetToolkitTheme` extensions to the `ThemeData` of your app:
 MaterialApp(  
   theme: ThemeData.light().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),  
-      WidgetToolkitTheme.light,  
+      WidgetToolkitTheme.light(),  
     ],  
   ),  
   darkTheme: ThemeData.dark().copyWith(  
     colorScheme: ColorScheme.fromSwatch(),  
     extensions: [
-	    WidgetToolkitTheme.dark,
+	    WidgetToolkitTheme.dark(),
     ],
   ),  
 ); 

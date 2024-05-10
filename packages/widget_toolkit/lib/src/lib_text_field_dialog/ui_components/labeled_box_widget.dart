@@ -58,13 +58,14 @@ class LabeledBoxWidget extends StatelessWidget {
           ),
           onTap: onTap,
           child: Ink(
-            padding: context.textFieldDialogTheme.labeledBoxWidgetPadding1,
+            padding:
+                context.textFieldDialogTheme.labeledBoxWidgetContentPadding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding:
-                      context.textFieldDialogTheme.labeledBoxWidgetPadding2,
+                      context.textFieldDialogTheme.labeledBoxWidgetIconPadding,
                   child: leadingIcon != null && leadingIcon is IconData
                       ? Icon(
                           leadingIcon,
@@ -86,8 +87,8 @@ class LabeledBoxWidget extends StatelessWidget {
                 ),
                 if (type == LabeledBoxType.optional)
                   Padding(
-                    padding:
-                        context.textFieldDialogTheme.labeledBoxWidgetPadding3,
+                    padding: context.textFieldDialogTheme
+                        .labeledBoxWidgetOptionalTextPadding,
                     child: Text(
                       optionalString,
                       style: context.textFieldDialogTheme.captionBold.copyWith(
@@ -107,18 +108,18 @@ extension LabeledBoxTypeX on LabeledBoxType {
   Color getColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.black;
+        return context.textFieldDialogTheme.labelBoxOptionalPrimary;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.labelBoxFilledPrimary;
     }
   }
 
   Color getSecondaryColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.labelBoxOptionalSecondary;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.black;
+        return context.textFieldDialogTheme.labelBoxFilledSecondary;
     }
   }
 
@@ -134,9 +135,9 @@ extension LabeledBoxTypeX on LabeledBoxType {
   Color getBorderColor(BuildContext context) {
     switch (this) {
       case LabeledBoxType.optional:
-        return context.textFieldDialogTheme.mediumWhite;
+        return context.textFieldDialogTheme.labelBoxOptionalBorder;
       case LabeledBoxType.filled:
-        return context.textFieldDialogTheme.transparent;
+        return context.textFieldDialogTheme.labelBoxFilledBorder;
     }
   }
 }

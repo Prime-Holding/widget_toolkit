@@ -6,152 +6,185 @@ import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'language_picker_theme.tailor.dart';
 
-@Tailor(themeGetter: ThemeGetter.none)
-class _$LanguagePickerTheme {
-  /// region EdgeInsets
-  static List<EdgeInsets> changeLanguagePadding = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
+@TailorMixinComponent()
+class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
+    with _$LanguagePickerThemeTailorMixin {
+  const LanguagePickerTheme({
+    required this.descriptionThin,
+    required this.titleBold,
+    required this.languageCodeInLanguagePickerTitleBold,
+    required this.spacingS,
+    required this.changeLanguageSizedBox,
+    required this.spacingM,
+    required this.spacingXXXXL,
+    required this.activeButtonLanguageTextColor,
+    required this.disabledFilledButtonBackgroundColor,
+    required this.activeGradientEnd,
+    required this.languageGradientStart,
+    required this.languageGradientEnd,
+    required this.filledButtonBackgroundColorDisabled,
+    required this.buttonTextColor,
+    required this.filledButtonTextColorDisabled,
+    required this.textColorWhite,
+    required this.boxShadowColor,
+    required this.bodyTextColor,
+    required this.elevatedButtonForegroundColor,
+    required this.elevatedButtonBackgroundColor,
+    required this.outlineButtonBackgroundColor,
+    required this.checkIcon,
+    required this.changeLanguagePadding,
+    required this.chooseLanguagePadding,
+    required this.chooseLanguageActiveEdgeInsets,
+    required this.chooseLanguageInactiveEdgeInsets,
+    required this.messagePanelErrorEdgeInsets,
+  });
 
-  static List<EdgeInsets> chooseLanguagePadding = [
-    const EdgeInsets.only(bottom: 8),
-    const EdgeInsets.only(bottom: 8)
-  ];
+  @override
+  final EdgeInsets changeLanguagePadding;
+  @override
+  final EdgeInsets chooseLanguagePadding;
+  @override
+  final EdgeInsets chooseLanguageActiveEdgeInsets;
+  @override
+  final EdgeInsets chooseLanguageInactiveEdgeInsets;
 
-  static List<EdgeInsets> chooseLanguageActiveEdgeInsets = [
-    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-  ];
+  @override
+  final TextStyle descriptionThin;
+  @override
+  final TextStyle titleBold;
+  @override
+  final TextStyle languageCodeInLanguagePickerTitleBold;
 
-  static List<EdgeInsets> chooseLanguageInactiveEdgeInsets = [
-    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-  ];
+  @override
+  final double spacingS;
+  @override
+  final double changeLanguageSizedBox;
+  @override
+  final double spacingM;
+  @override
+  final double spacingXXXXL;
+  @override
+  final EdgeInsets messagePanelErrorEdgeInsets;
 
-  /// endregion
+  @override
+  final Color activeButtonLanguageTextColor;
+  @override
+  final Color disabledFilledButtonBackgroundColor;
+  @override
+  final Color activeGradientEnd;
+  @override
+  final Color languageGradientStart;
+  @override
+  final Color languageGradientEnd;
+  @override
+  final Color filledButtonBackgroundColorDisabled;
+  @override
+  final Color buttonTextColor;
+  @override
+  final Color filledButtonTextColorDisabled;
+  @override
+  final Color textColorWhite;
+  @override
+  final Color boxShadowColor;
+  @override
+  final Color bodyTextColor;
+  @override
+  final Color elevatedButtonForegroundColor;
+  @override
+  final Color elevatedButtonBackgroundColor;
+  @override
+  final Color outlineButtonBackgroundColor;
 
-  /// region TextStyle
-  static List<TextStyle> descriptionThin = [
-    WidgetToolkitDesignSystem.light().typography.descriptionThin,
-    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
-  ];
+  @override
+  final SvgFile checkIcon;
 
-  static List<TextStyle> titleBold = [
-    WidgetToolkitDesignSystem.light().typography.titleBold,
-    WidgetToolkitDesignSystem.dark().typography.titleBold,
-  ];
+  /// region Themes
 
-  static List<TextStyle> languageCodeInLanguagePickerTitleBold = [
-    WidgetToolkitDesignSystem.light().typography.titleBold,
-    WidgetToolkitDesignSystem.dark().typography.titleBold,
-  ];
+  LanguagePickerTheme.light()
+      : changeLanguagePadding = EdgeInsets.zero,
+        chooseLanguagePadding = const EdgeInsets.only(bottom: 8),
+        chooseLanguageActiveEdgeInsets =
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        chooseLanguageInactiveEdgeInsets =
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        messagePanelErrorEdgeInsets = const EdgeInsets.only(bottom: 20),
+        descriptionThin =
+            WidgetToolkitDesignSystem.light().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.light().typography.titleBold,
+        languageCodeInLanguagePickerTitleBold =
+            WidgetToolkitDesignSystem.light().typography.titleBold,
+        spacingS = WidgetToolkitDesignSystem.light().spacings.s,
+        changeLanguageSizedBox = WidgetToolkitDesignSystem.light().spacings.s,
+        spacingM = WidgetToolkitDesignSystem.light().spacings.m,
+        spacingXXXXL = WidgetToolkitDesignSystem.light().spacings.xxxxl1,
+        activeButtonLanguageTextColor = WidgetToolkitDesignSystem.light()
+            .colors
+            .activeButtonLanguageTextColor,
+        disabledFilledButtonBackgroundColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        activeGradientEnd = WidgetToolkitDesignSystem.light().colors.blue,
+        languageGradientStart = WidgetToolkitDesignSystem.light().colors.blue,
+        languageGradientEnd =
+            WidgetToolkitDesignSystem.light().colors.lightBlue,
+        filledButtonBackgroundColorDisabled =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        buttonTextColor =
+            WidgetToolkitDesignSystem.light().colors.textColorWhite,
+        filledButtonTextColorDisabled =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        textColorWhite =
+            WidgetToolkitDesignSystem.light().colors.textColorWhite,
+        boxShadowColor = WidgetToolkitDesignSystem.light().colors.red,
+        bodyTextColor = WidgetToolkitDesignSystem.light().colors.black,
+        elevatedButtonForegroundColor =
+            WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
+        elevatedButtonBackgroundColor =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
+        outlineButtonBackgroundColor =
+            WidgetToolkitDesignSystem.light().colors.white,
+        checkIcon = WidgetToolkitDesignSystem.dark().icons.checkIcon;
 
-  /// endregion
-  /// region spacings
-  static List<double> spacingS = [
-    WidgetToolkitDesignSystem.light().spacings.s,
-    WidgetToolkitDesignSystem.dark().spacings.s,
-  ];
-
-  static List<double> changeLanguageSizedBox = [
-    WidgetToolkitDesignSystem.light().spacings.s,
-    WidgetToolkitDesignSystem.dark().spacings.s,
-  ];
-
-  static List<double> spacingM = [
-    WidgetToolkitDesignSystem.light().spacings.m,
-    WidgetToolkitDesignSystem.dark().spacings.m,
-  ];
-
-  static List<double> spacingXXXXL1 = [
-    WidgetToolkitDesignSystem.light().spacings.xxxxl1,
-    WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
-  ];
-
-  static List<EdgeInsets> messagePanelErrorEdgeInsets = [
-    const EdgeInsets.only(bottom: 20),
-    const EdgeInsets.only(bottom: 20),
-  ];
-
-  /// endregion
-
-  /// region Color
-
-  static List<Color> activeButtonLanguageTextColor = [
-    WidgetToolkitDesignSystem.light().colors.activeButtonLanguageTextColor,
-    WidgetToolkitDesignSystem.dark().colors.activeButtonLanguageTextColor,
-  ];
-
-  static List<Color> disabledFilledButtonBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.gray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> activeGradientEnd = [
-    WidgetToolkitDesignSystem.light().colors.blue,
-    WidgetToolkitDesignSystem.dark().colors.blue,
-  ];
-
-  static List<Color> languageGradientStart = [
-    WidgetToolkitDesignSystem.light().colors.blue,
-    WidgetToolkitDesignSystem.dark().colors.darkBlue,
-  ];
-
-  static List<Color> languageGradientEnd = [
-    WidgetToolkitDesignSystem.light().colors.lightBlue,
-    WidgetToolkitDesignSystem.dark().colors.blue,
-  ];
-
-  static List<Color> filledButtonBackgroundColorDisabled = [
-    WidgetToolkitDesignSystem.light().colors.gray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> buttonTextColor = [
-    WidgetToolkitDesignSystem.light().colors.textColorWhite,
-    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
-  ];
-
-  static List<Color> filledButtonTextColorDisabled = [
-    WidgetToolkitDesignSystem.light().colors.gray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> textColorWhite = [
-    WidgetToolkitDesignSystem.light().colors.textColorWhite,
-    WidgetToolkitDesignSystem.dark().colors.textColorWhite,
-  ];
-
-  static List<Color> boxShadowColor = [
-    WidgetToolkitDesignSystem.light().colors.red,
-    WidgetToolkitDesignSystem.dark().colors.red,
-  ];
-
-  static List<Color> bodyTextColor2 = [
-    WidgetToolkitDesignSystem.light().colors.black,
-    WidgetToolkitDesignSystem.dark().colors.activeButtonTextColor,
-  ];
-
-  static List<Color> buttonBlueGradientEnd = [
-    WidgetToolkitDesignSystem.light().colors.buttonBlueGradientEnd,
-    WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
-  ];
-
-  static List<Color> elevatedButtonBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.lightGray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> outlineButtonBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.white,
-    WidgetToolkitDesignSystem.dark().colors.white,
-  ];
-
-  static List<SvgFile> checkIcon = [
-    WidgetToolkitDesignSystem.dark().icons.checkIcon,
-    WidgetToolkitDesignSystem.light().icons.checkIcon,
-  ];
+  LanguagePickerTheme.dark()
+      : changeLanguagePadding = EdgeInsets.zero,
+        chooseLanguagePadding = const EdgeInsets.only(bottom: 8),
+        chooseLanguageActiveEdgeInsets =
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        chooseLanguageInactiveEdgeInsets =
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        messagePanelErrorEdgeInsets = const EdgeInsets.only(bottom: 20),
+        descriptionThin =
+            WidgetToolkitDesignSystem.dark().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.dark().typography.titleBold,
+        languageCodeInLanguagePickerTitleBold =
+            WidgetToolkitDesignSystem.dark().typography.titleBold,
+        spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
+        changeLanguageSizedBox = WidgetToolkitDesignSystem.dark().spacings.s,
+        spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
+        spacingXXXXL = WidgetToolkitDesignSystem.dark().spacings.xxxxl1,
+        activeButtonLanguageTextColor = WidgetToolkitDesignSystem.dark()
+            .colors
+            .activeButtonLanguageTextColor,
+        disabledFilledButtonBackgroundColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        activeGradientEnd = WidgetToolkitDesignSystem.dark().colors.blue,
+        languageGradientStart = WidgetToolkitDesignSystem.dark().colors.blue,
+        languageGradientEnd = WidgetToolkitDesignSystem.dark().colors.lightBlue,
+        filledButtonBackgroundColorDisabled =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        buttonTextColor =
+            WidgetToolkitDesignSystem.dark().colors.textColorWhite,
+        filledButtonTextColorDisabled =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        textColorWhite = WidgetToolkitDesignSystem.dark().colors.textColorWhite,
+        boxShadowColor = WidgetToolkitDesignSystem.dark().colors.red,
+        bodyTextColor = WidgetToolkitDesignSystem.dark().colors.black,
+        elevatedButtonForegroundColor =
+            WidgetToolkitDesignSystem.dark().colors.buttonBlueGradientEnd,
+        elevatedButtonBackgroundColor =
+            WidgetToolkitDesignSystem.dark().colors.lightGray,
+        outlineButtonBackgroundColor =
+            WidgetToolkitDesignSystem.dark().colors.white,
+        checkIcon = WidgetToolkitDesignSystem.dark().icons.checkIcon;
 
   /// endregion
 }

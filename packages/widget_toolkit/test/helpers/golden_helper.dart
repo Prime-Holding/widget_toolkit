@@ -94,13 +94,13 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
 ThemeData getThemeData(bool inLightMode) {
   final theme = inLightMode
       ? ThemeData.light().copyWith(extensions: [
-          WidgetToolkitTheme.light.copyWith(
+          WidgetToolkitTheme.light().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
           ),
-          ItemPickerTheme.light,
-          LanguagePickerTheme.light.copyWith(
+          ItemPickerTheme.light(),
+          LanguagePickerTheme.light().copyWith(
             descriptionThin: const TextStyle(
               inherit: true,
             ),
@@ -108,9 +108,9 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          SearchPickerTheme.light,
-          TextFieldDialogTheme.light,
-          TextFieldDialogTheme.light.copyWith(
+          SearchPickerTheme.light(),
+          TextFieldDialogTheme.light(),
+          TextFieldDialogTheme.light().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
@@ -118,7 +118,7 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          EditAddressTheme.light.copyWith(
+          EditAddressTheme.light().copyWith(
             titleBold: const TextStyle(
               inherit: true,
             ),
@@ -131,13 +131,13 @@ ThemeData getThemeData(bool inLightMode) {
           ),
         ])
       : ThemeData.dark().copyWith(extensions: [
-          WidgetToolkitTheme.dark.copyWith(
+          WidgetToolkitTheme.dark().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
           ),
-          ItemPickerTheme.dark,
-          LanguagePickerTheme.dark.copyWith(
+          ItemPickerTheme.dark(),
+          LanguagePickerTheme.dark().copyWith(
             descriptionThin: const TextStyle(
               inherit: true,
             ),
@@ -145,8 +145,8 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          SearchPickerTheme.dark,
-          TextFieldDialogTheme.dark.copyWith(
+          SearchPickerTheme.dark(),
+          TextFieldDialogTheme.dark().copyWith(
             captionBold: const TextStyle(
               inherit: true,
             ),
@@ -154,7 +154,7 @@ ThemeData getThemeData(bool inLightMode) {
               inherit: true,
             ),
           ),
-          EditAddressTheme.dark.copyWith(
+          EditAddressTheme.dark().copyWith(
             titleBold: const TextStyle(
               inherit: true,
             ),
@@ -174,7 +174,7 @@ ThemeData getThemeData(bool inLightMode) {
 ///
 /// [tester] - [WidgetTester] DI
 ///
-/// [builder] - [DeviceBuilder] to be pupmped
+/// [builder] - [DeviceBuilder] to be pumped
 ///
 /// [platform] will override Theme's platform.
 ///

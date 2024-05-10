@@ -272,7 +272,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   Widget _buildErrorText(BuildContext context) => Text(
         widget.translateError((widget.error as ErrorWrongPin)),
         style: context.pinCodeTheme.captionBold
-            .copyWith(color: context.pinCodeTheme.lightRed),
+            .copyWith(color: context.pinCodeTheme.pinCodeErrorTextColor),
       );
 
   Future<void> _startErrorAnimation() async {
@@ -535,7 +535,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           showCloseButton: false,
         ),
         builder: (context) => Padding(
-          padding: context.widgetToolkitTheme.mediumEdgeInsets,
+          padding: context.widgetToolkitTheme.bottomSheetPaddingAlternative,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

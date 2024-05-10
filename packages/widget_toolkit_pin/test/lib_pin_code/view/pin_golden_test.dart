@@ -79,6 +79,9 @@ Widget pinCodeComponentPageFactory({
       backgroundColor: Colors.blue,
       body: MultiProvider(
         providers: [
+          Provider<BiometricsLocalDataSource>(
+            create: (context) => BiometricsLocalDataSourceMock(),
+          ),
           RxBlocProvider<PinCodeBlocType>.value(
             value: pinCodeMockFactory(
               isLoading: isLoading,

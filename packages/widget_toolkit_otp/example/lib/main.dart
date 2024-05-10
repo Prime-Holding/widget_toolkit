@@ -15,15 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.light,
-        SmsCodeTheme.light,
-        TextFieldDialogTheme.light,
+        WidgetToolkitTheme.light(),
+        SmsCodeTheme.light(),
+        TextFieldDialogTheme.light(),
       ]),
       darkTheme: ThemeData.dark()
           .copyWith(colorScheme: ColorScheme.fromSwatch(), extensions: [
-        WidgetToolkitTheme.dark,
-        SmsCodeTheme.dark,
-        TextFieldDialogTheme.dark,
+        WidgetToolkitTheme.dark(),
+        SmsCodeTheme.dark(),
+        TextFieldDialogTheme.dark(),
       ]),
       home: const MyHomePage(),
     );

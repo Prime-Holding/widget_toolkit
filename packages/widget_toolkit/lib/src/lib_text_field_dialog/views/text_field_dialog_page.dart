@@ -60,7 +60,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: context.textFieldDialogTheme.textFieldDialog2,
+      padding: context.textFieldDialogTheme.textFieldDialogPadding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(context.textFieldDialogTheme.spacingM),
@@ -73,7 +73,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
         children: [
           if (header != null && header!.isNotEmpty)
             Padding(
-              padding: context.textFieldDialogTheme.textFieldDialog3,
+              padding:
+                  context.textFieldDialogTheme.textFieldDialogHeaderPadding,
               child: Text(
                 header!,
                 style: context.textFieldDialogTheme.titleBold,
@@ -105,14 +106,15 @@ class TextFieldDialogPage<T> extends StatelessWidget {
               suffixIcon: _isFieldErrorVisible(fieldState)
                   ? null
                   : context.textFieldDialogTheme.editPenIcon.copyWith(
-                      color: context.textFieldDialogTheme.blue,
+                      color:
+                          context.textFieldDialogTheme.textFieldDialogIconColor,
                     ),
               state: _getFieldState(fieldState),
               errorMessage: fieldState.error ?? '',
             ),
           ),
           Padding(
-            padding: context.textFieldDialogTheme.textFieldDialog4,
+            padding: context.textFieldDialogTheme.textFieldDialogButtonPadding,
             child: RxBlocBuilder<TextFieldDialogBlocType, Result<T>>(
               state: (bloc) => bloc.states.submittedValue as Stream<Result<T>>,
               builder: (context, snapshot, bloc) => GradientFillButton(

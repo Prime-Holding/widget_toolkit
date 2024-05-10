@@ -68,30 +68,32 @@ class _CameraPermissionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: context.qrScannerTheme.cameraPermission1,
+        padding: context.qrScannerTheme.cameraPermissionPadding,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: context.qrScannerTheme.cameraPermission2,
+                padding: context.qrScannerTheme.cameraPermissionBorderPadding,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      context.widgetToolkitTheme.spacingXS1,
+                      context.widgetToolkitTheme.spacingXS,
                     ),
                     border: Border.all(
-                      color: context.qrScannerTheme
-                          .qrScannerCameraPermissionBlueLightColor,
+                      color: context
+                          .qrScannerTheme.qrScannerCameraPermissionBorderColor,
                     ),
                   ),
                   child: Padding(
-                    padding: context.qrScannerTheme.cameraPermission3,
+                    padding:
+                        context.qrScannerTheme.cameraPermissionContentPadding,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: context.qrScannerTheme.cameraPermission4,
+                          padding: context
+                              .qrScannerTheme.cameraPermissionIconPadding,
                           child: context.qrScannerTheme.cameraIcon,
                         ),
                         Expanded(
@@ -99,14 +101,15 @@ class _CameraPermissionWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding:
-                                    context.qrScannerTheme.cameraPermission5,
+                                padding: context.qrScannerTheme
+                                    .cameraPermissionTitlePadding,
                                 child: Text(
                                   cameraAccessTitleText ??
                                       defaultCameraAccessTitleText,
                                   style: context.qrScannerTheme.captionBold
                                       .copyWith(
-                                    color: context.qrScannerTheme.qrScannerBlue,
+                                    color: context
+                                        .qrScannerTheme.qrScannerTextColor,
                                   ),
                                 ),
                               ),
