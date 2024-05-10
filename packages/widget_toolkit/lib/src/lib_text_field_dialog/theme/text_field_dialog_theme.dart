@@ -6,333 +6,579 @@ import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'text_field_dialog_theme.tailor.dart';
 
-@Tailor(themeGetter: ThemeGetter.none)
-class _$TextFieldDialogTheme {
-  //TODO: The properties of the theme extension should be almost always specific just like in the example below.
-  // The colors, sizes etc from design system should be used to fill in the values (take for reference WidgetToolkitTheme, ItemPickerTheme, SearchPickerTheme).
+@TailorMixinComponent()
+class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
+    with _$TextFieldDialogThemeTailorMixin {
+  TextFieldDialogTheme({
+    required this.editFieldSuccessBackground,
+    required this.editFieldRegularBackground,
+    required this.inputFieldBackgroundSuccessColor,
+    required this.labelBoxFilledPrimary,
+    required this.labelBoxFilledSecondary,
+    required this.labelBoxFilledBackground,
+    required this.labelBoxFilledBorder,
+    required this.labelBoxOptionalPrimary,
+    required this.labelBoxOptionalSecondary,
+    required this.labelBoxOptionalBackground,
+    required this.labelBoxOptionalBorder,
+    required this.editFieldBorderRadius,
+    required this.spacingXXXS,
+    required this.spacingXSS,
+    required this.spacingXS,
+    required this.spacingS,
+    required this.spacingM,
+    required this.spacingXL,
+    required this.descriptionThin,
+    required this.titleBold,
+    required this.descriptionBold,
+    required this.captionBold,
+    required this.smallThin,
+    required this.disabledFilledButtonBackgroundColor,
+    required this.inputFieldBorderErrorColor,
+    required this.inputFieldBorderTypeColor,
+    required this.inputFieldBorderDisabledColor,
+    required this.inputFieldBorderLoadingColor,
+    required this.inputFieldBorderWarningColor,
+    required this.inputFieldValueColor,
+    required this.inputFieldValueDisabledColor,
+    required this.textFieldDialogIconColor,
+    required this.editFieldLabelEditedColor,
+    required this.editFieldLabelNotEditedColor,
+    required this.editFieldLabelLoadingColor,
+    required this.editFieldLabelSuccessColor,
+    required this.editFieldValueEditedColor,
+    required this.editFieldValueNotEditedColor,
+    required this.editFieldValueLoadingColor,
+    required this.editFieldValueSuccessColor,
+    required this.editFieldTextEditedTextStyle,
+    required this.editFieldTextNotEditedTextStyle,
+    required this.editFieldTextLoadingTextStyle,
+    required this.editFieldTextSuccessTextStyle,
+    required this.inputFieldTextDefaultFieldColor,
+    required this.inputFieldTextDefaultDisabledColor,
+    required this.inputFieldTextDisabledColor,
+    required this.inputFieldTextErrorColor,
+    required this.inputFieldTextFilledColor,
+    required this.inputFieldTextLoadingColor,
+    required this.inputFieldTextSuccessColor,
+    required this.inputFieldTextTypeColor,
+    required this.inputFieldTextWarningColor,
+    required this.inputFieldTextPlainColor,
+    required this.inputFieldBackgroundFilledColor,
+    required this.inputFieldBackgroundPlainColor,
+    required this.inputFieldBackgroundDefaultFieldColor,
+    required this.inputFieldBackgroundDefaultDisabledColor,
+    required this.inputFieldBackgroundDefaultColor,
+    required this.inputFieldHintColor,
+    required this.inputFieldErrorTextColor,
+    required this.closeIcon,
+    required this.dangerIcon,
+    required this.addIcon,
+    required this.addDisabledIcon,
+    required this.arrowRightSquareIcon,
+    required this.editPenIcon,
+    required this.infoCircleIcon,
+    required this.loadingIcon,
+    required this.tickCircleSuccessIcon,
+    required this.textFieldDialogPadding,
+    required this.textFieldDialogButtonPadding,
+    required this.textFieldDialogHeaderPadding,
+    required this.labeledBoxWidgetContentPadding,
+    required this.labeledBoxWidgetIconPadding,
+    required this.labeledBoxWidgetOptionalTextPadding,
+    required this.inputTextFieldErrorPadding,
+    required this.inputTextFieldIconPadding,
+    required this.inputTextFieldIconDisabledPadding,
+    required this.inputTextFieldPaddingLoading,
+    required this.inputTextFieldPaddingSuccess,
+    required this.inputTextFieldPaddingWarning,
+    required this.inputTextFieldPaddingError,
+  });
 
-  /// region EditFieldWidget
-  static List<Color> editFieldSuccessBackground = [
-    WidgetToolkitDesignSystem.light().colors.greenLight,
-    WidgetToolkitDesignSystem.dark().colors.green,
-  ];
+  /// region Theme
 
-  static List<Color> editFieldRegularBackground = [
-    WidgetToolkitDesignSystem.light().colors.mediumWhite,
-    WidgetToolkitDesignSystem.dark().colors.black45,
-  ];
+  TextFieldDialogTheme.light()
+      : editFieldSuccessBackground =
+            WidgetToolkitDesignSystem.light().colors.greenLight,
+        editFieldRegularBackground =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.greenLight,
+        labelBoxFilledPrimary = WidgetToolkitDesignSystem.light().colors.blue,
+        labelBoxFilledSecondary =
+            WidgetToolkitDesignSystem.light().colors.black,
+        labelBoxFilledBackground =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        labelBoxFilledBorder =
+            WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
+        labelBoxOptionalPrimary =
+            WidgetToolkitDesignSystem.light().colors.black,
+        labelBoxOptionalSecondary =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        labelBoxOptionalBackground =
+            WidgetToolkitDesignSystem.light().colors.white,
+        labelBoxOptionalBorder =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
+        editFieldBorderRadius = WidgetToolkitDesignSystem.light().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.light().spacings.xs,
+        spacingXSS = WidgetToolkitDesignSystem.light().spacings.xss,
+        spacingS = WidgetToolkitDesignSystem.light().spacings.s,
+        spacingM = WidgetToolkitDesignSystem.light().spacings.m,
+        spacingXL = WidgetToolkitDesignSystem.light().spacings.xl,
+        spacingXXXS = WidgetToolkitDesignSystem.light().spacings.xxxs,
+        descriptionThin =
+            WidgetToolkitDesignSystem.light().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.light().typography.titleBold,
+        descriptionBold =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        captionBold = WidgetToolkitDesignSystem.light().typography.captionBold,
+        smallThin = WidgetToolkitDesignSystem.light().typography.smallThin,
+        textFieldDialogIconColor =
+            WidgetToolkitDesignSystem.light().colors.blue,
+        disabledFilledButtonBackgroundColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldBorderErrorColor =
+            WidgetToolkitDesignSystem.light().colors.lightRed,
+        inputFieldBorderTypeColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldBorderDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.lightGray,
+        inputFieldBorderLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldBorderWarningColor =
+            WidgetToolkitDesignSystem.light().colors.orangeLight,
+        inputFieldValueColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        inputFieldValueDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelEditedColor = null,
+        editFieldLabelLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelNotEditedColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldLabelSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.green,
+        editFieldValueEditedColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        editFieldValueNotEditedColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldValueLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        editFieldValueSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.highlightColor,
+        editFieldTextEditedTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        editFieldTextNotEditedTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionThin,
+        editFieldTextLoadingTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        editFieldTextSuccessTextStyle =
+            WidgetToolkitDesignSystem.light().typography.descriptionBold,
+        inputFieldTextDefaultFieldColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextDefaultDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldTextDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumBlack,
+        inputFieldTextErrorColor = WidgetToolkitDesignSystem.light().colors.red,
+        inputFieldTextFilledColor =
+            WidgetToolkitDesignSystem.light().colors.darkGreen,
+        inputFieldTextLoadingColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextSuccessColor =
+            WidgetToolkitDesignSystem.light().colors.darkGreen,
+        inputFieldTextTypeColor =
+            WidgetToolkitDesignSystem.light().colors.darkBlue,
+        inputFieldTextWarningColor =
+            WidgetToolkitDesignSystem.light().colors.orange,
+        inputFieldTextPlainColor =
+            WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldBackgroundFilledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundPlainColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultFieldColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultDisabledColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldBackgroundDefaultColor =
+            WidgetToolkitDesignSystem.light().colors.mediumWhite,
+        inputFieldHintColor = WidgetToolkitDesignSystem.light().colors.gray,
+        inputFieldErrorTextColor = WidgetToolkitDesignSystem.light().colors.red,
+        closeIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
+        dangerIcon = WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+        addIcon = WidgetToolkitDesignSystem.dark().icons.addIcon,
+        addDisabledIcon =
+            WidgetToolkitDesignSystem.dark().icons.addDisabledIcon,
+        arrowRightSquareIcon =
+            WidgetToolkitDesignSystem.dark().icons.arrowRightSquareIcon,
+        editPenIcon = WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+        infoCircleIcon = WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+        loadingIcon = WidgetToolkitDesignSystem.dark().icons.loadingIcon,
+        tickCircleSuccessIcon =
+            WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
+        textFieldDialogPadding = EdgeInsets.zero,
+        textFieldDialogButtonPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.light().spacings.xl,
+          bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
+        ),
+        textFieldDialogHeaderPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.light().spacings.xs,
+          bottom: WidgetToolkitDesignSystem.light().spacings.m,
+        ),
+        labeledBoxWidgetContentPadding = EdgeInsets.symmetric(
+          vertical: WidgetToolkitDesignSystem.light().spacings.m,
+          horizontal: WidgetToolkitDesignSystem.light().spacings.s,
+        ),
+        labeledBoxWidgetIconPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.dark().spacings.xs),
+        labeledBoxWidgetOptionalTextPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.m),
+        inputTextFieldErrorPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.light().spacings.m,
+          top: WidgetToolkitDesignSystem.light().spacings.xxxs,
+        ),
+        inputTextFieldIconPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.xs),
+        inputTextFieldIconDisabledPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.xs),
+        inputTextFieldPaddingLoading = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.s),
+        inputTextFieldPaddingSuccess = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.s),
+        inputTextFieldPaddingWarning = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.s),
+        inputTextFieldPaddingError = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.light().spacings.s);
 
-  static List<double> editFieldBorderRadius = [
-    WidgetToolkitDesignSystem.light().spacings.xss,
-    WidgetToolkitDesignSystem.light().spacings.xss,
-  ];
+  TextFieldDialogTheme.dark()
+      : editFieldSuccessBackground =
+            WidgetToolkitDesignSystem.dark().colors.green,
+        editFieldRegularBackground =
+            WidgetToolkitDesignSystem.dark().colors.black45,
+        inputFieldBackgroundSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.green,
+        labelBoxFilledPrimary = WidgetToolkitDesignSystem.dark().colors.blue,
+        labelBoxFilledSecondary = WidgetToolkitDesignSystem.dark().colors.black,
+        labelBoxFilledBackground =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        labelBoxFilledBorder =
+            WidgetToolkitDesignSystem.dark().colors.textFieldDialogTransparent,
+        labelBoxOptionalPrimary = WidgetToolkitDesignSystem.dark().colors.black,
+        labelBoxOptionalSecondary =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        labelBoxOptionalBackground =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        labelBoxOptionalBorder =
+            WidgetToolkitDesignSystem.dark().colors.lightGray,
+        editFieldBorderRadius = WidgetToolkitDesignSystem.dark().spacings.xss,
+        spacingXS = WidgetToolkitDesignSystem.dark().spacings.xs,
+        spacingXSS = WidgetToolkitDesignSystem.dark().spacings.xss,
+        spacingS = WidgetToolkitDesignSystem.dark().spacings.s,
+        spacingM = WidgetToolkitDesignSystem.dark().spacings.m,
+        spacingXL = WidgetToolkitDesignSystem.dark().spacings.xl,
+        spacingXXXS = WidgetToolkitDesignSystem.dark().spacings.xxxs,
+        descriptionThin =
+            WidgetToolkitDesignSystem.dark().typography.descriptionThin,
+        titleBold = WidgetToolkitDesignSystem.dark().typography.titleBold,
+        descriptionBold =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        captionBold = WidgetToolkitDesignSystem.dark().typography.captionBold,
+        smallThin = WidgetToolkitDesignSystem.dark().typography.smallThin,
+        textFieldDialogIconColor = WidgetToolkitDesignSystem.dark().colors.blue,
+        disabledFilledButtonBackgroundColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldBorderErrorColor =
+            WidgetToolkitDesignSystem.dark().colors.lightRed,
+        inputFieldBorderTypeColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldBorderDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.lightGray,
+        inputFieldBorderLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldBorderWarningColor =
+            WidgetToolkitDesignSystem.dark().colors.orangeLight,
+        inputFieldValueColor =
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
+        inputFieldValueDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelEditedColor = null,
+        editFieldLabelNotEditedColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldLabelSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.green,
+        editFieldValueEditedColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        editFieldValueNotEditedColor =
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
+        editFieldValueLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        editFieldValueSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.highlightColor,
+        editFieldTextEditedTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        editFieldTextNotEditedTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionThin,
+        editFieldTextLoadingTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        editFieldTextSuccessTextStyle =
+            WidgetToolkitDesignSystem.dark().typography.descriptionBold,
+        inputFieldTextDefaultFieldColor =
+            WidgetToolkitDesignSystem.dark().colors.darkBlue,
+        inputFieldTextDefaultDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldTextDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.mediumBlack,
+        inputFieldTextErrorColor = WidgetToolkitDesignSystem.dark().colors.red,
+        inputFieldTextFilledColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGreen,
+        inputFieldTextLoadingColor =
+            WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldTextSuccessColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGreen,
+        inputFieldTextTypeColor = WidgetToolkitDesignSystem.dark().colors.blue,
+        inputFieldTextWarningColor =
+            WidgetToolkitDesignSystem.dark().colors.orange,
+        inputFieldTextPlainColor = WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldBackgroundFilledColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        inputFieldBackgroundPlainColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        inputFieldBackgroundDefaultFieldColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        inputFieldBackgroundDefaultDisabledColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        inputFieldBackgroundDefaultColor =
+            WidgetToolkitDesignSystem.dark().colors.darkGray,
+        inputFieldHintColor = WidgetToolkitDesignSystem.dark().colors.gray,
+        inputFieldErrorTextColor = WidgetToolkitDesignSystem.dark().colors.red,
+        closeIcon = WidgetToolkitDesignSystem.dark().icons.closeIcon,
+        dangerIcon = WidgetToolkitDesignSystem.dark().icons.dangerIcon,
+        addIcon = WidgetToolkitDesignSystem.dark().icons.addIcon,
+        addDisabledIcon =
+            WidgetToolkitDesignSystem.dark().icons.addDisabledIcon,
+        arrowRightSquareIcon =
+            WidgetToolkitDesignSystem.dark().icons.arrowRightSquareIcon,
+        editPenIcon = WidgetToolkitDesignSystem.dark().icons.editPenIcon,
+        infoCircleIcon = WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
+        loadingIcon = WidgetToolkitDesignSystem.dark().icons.loadingIcon,
+        tickCircleSuccessIcon =
+            WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
+        textFieldDialogPadding = EdgeInsets.zero,
+        textFieldDialogButtonPadding = EdgeInsets.only(
+          top: WidgetToolkitDesignSystem.dark().spacings.xl,
+          bottom: WidgetToolkitDesignSystem.dark().spacings.xxxxs,
+        ),
+        textFieldDialogHeaderPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.dark().spacings.xs,
+          bottom: WidgetToolkitDesignSystem.dark().spacings.m,
+        ),
+        labeledBoxWidgetContentPadding = EdgeInsets.symmetric(
+          vertical: WidgetToolkitDesignSystem.dark().spacings.m,
+          horizontal: WidgetToolkitDesignSystem.dark().spacings.s,
+        ),
+        labeledBoxWidgetIconPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.dark().spacings.xs),
+        labeledBoxWidgetOptionalTextPadding =
+            EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.m),
+        inputTextFieldErrorPadding = EdgeInsets.only(
+          left: WidgetToolkitDesignSystem.dark().spacings.m,
+          top: WidgetToolkitDesignSystem.dark().spacings.xxxs,
+        ),
+        inputTextFieldIconPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.dark().spacings.xs),
+        inputTextFieldIconDisabledPadding = EdgeInsets.only(
+            right: WidgetToolkitDesignSystem.dark().spacings.xs),
+        inputTextFieldPaddingLoading =
+            EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s),
+        inputTextFieldPaddingSuccess =
+            EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s),
+        inputTextFieldPaddingWarning =
+            EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s),
+        inputTextFieldPaddingError =
+            EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s);
 
   /// endregion
 
-  ///  region InputTextField
-  static List<Color> inputTextFieldSuccessBackground = [
-    WidgetToolkitDesignSystem.light().colors.greenLight,
-    WidgetToolkitDesignSystem.dark().colors.green,
-  ];
+  @override
+  final Color editFieldSuccessBackground;
+  @override
+  final Color editFieldRegularBackground;
+  @override
+  final Color inputFieldBackgroundSuccessColor;
+  @override
+  final Color labelBoxOptionalBackground;
+  @override
+  final Color labelBoxFilledBackground;
 
-  static List<Color> inputTextFieldRegularBackground = [
-    WidgetToolkitDesignSystem.light().colors.mediumWhite,
-    WidgetToolkitDesignSystem.dark().colors.darkGray,
-  ];
+  @override
+  final double editFieldBorderRadius;
+  @override
+  final double spacingXS;
+  @override
+  final double spacingXSS;
+  @override
+  final double spacingS;
+  @override
+  final double spacingM;
+  @override
+  final double spacingXL;
+  @override
+  final double spacingXXXS;
 
-  ///  endregion
+  @override
+  final TextStyle descriptionThin;
+  @override
+  final TextStyle titleBold;
+  @override
+  final TextStyle descriptionBold;
+  @override
+  final TextStyle captionBold;
+  @override
+  final TextStyle smallThin;
 
-  /// region LabelBoxWidget
-  static List<Color> labelBoxOptionalBackground = [
-    WidgetToolkitDesignSystem.light().colors.white,
-    WidgetToolkitDesignSystem.dark().colors.darkGray,
-  ];
+  @override
+  final Color disabledFilledButtonBackgroundColor;
+  @override
+  final Color textFieldDialogIconColor;
+  @override
+  final Color inputFieldBorderErrorColor;
+  @override
+  final Color inputFieldBorderTypeColor;
+  @override
+  final Color inputFieldBorderDisabledColor;
+  @override
+  final Color inputFieldBorderLoadingColor;
+  @override
+  final Color inputFieldBorderWarningColor;
+  @override
+  final Color inputFieldValueColor;
+  @override
+  final Color inputFieldValueDisabledColor;
 
-  static List<Color> labelBoxFilledBackground = [
-    WidgetToolkitDesignSystem.light().colors.mediumWhite,
-    WidgetToolkitDesignSystem.dark().colors.darkGray,
-  ];
+  @override
+  final Color labelBoxOptionalPrimary;
+  @override
+  final Color labelBoxFilledPrimary;
+  @override
+  final Color labelBoxOptionalSecondary;
+  @override
+  final Color labelBoxFilledSecondary;
+  @override
+  final Color labelBoxOptionalBorder;
+  @override
+  final Color labelBoxFilledBorder;
 
-  /// endregion
+  @override
+  final Color? editFieldLabelEditedColor;
+  @override
+  final Color editFieldLabelNotEditedColor;
+  @override
+  final Color editFieldLabelLoadingColor;
+  @override
+  final Color editFieldLabelSuccessColor;
+  @override
+  final Color editFieldValueEditedColor;
+  @override
+  final Color editFieldValueNotEditedColor;
+  @override
+  final Color editFieldValueLoadingColor;
+  @override
+  final Color editFieldValueSuccessColor;
 
-  /// region spacings
-  static List<double> spacingXS = [
-    WidgetToolkitDesignSystem.light().spacings.xs,
-    WidgetToolkitDesignSystem.dark().spacings.xs,
-  ];
+  @override
+  final TextStyle editFieldTextEditedTextStyle;
+  @override
+  final TextStyle editFieldTextNotEditedTextStyle;
+  @override
+  final TextStyle editFieldTextLoadingTextStyle;
+  @override
+  final TextStyle editFieldTextSuccessTextStyle;
 
-  static List<double> spacingXSS = [
-    WidgetToolkitDesignSystem.light().spacings.xss,
-    WidgetToolkitDesignSystem.dark().spacings.xss,
-  ];
-  static List<double> spacingS = [
-    WidgetToolkitDesignSystem.light().spacings.s,
-    WidgetToolkitDesignSystem.dark().spacings.s,
-  ];
+  @override
+  final Color inputFieldTextDefaultFieldColor;
+  @override
+  final Color inputFieldTextDefaultDisabledColor;
+  @override
+  final Color inputFieldTextDisabledColor;
+  @override
+  final Color inputFieldTextErrorColor;
+  @override
+  final Color inputFieldTextFilledColor;
+  @override
+  final Color inputFieldTextLoadingColor;
+  @override
+  final Color inputFieldTextSuccessColor;
+  @override
+  final Color inputFieldTextTypeColor;
+  @override
+  final Color inputFieldTextWarningColor;
+  @override
+  final Color inputFieldTextPlainColor;
 
-  static List<double> spacingM = [
-    WidgetToolkitDesignSystem.light().spacings.m,
-    WidgetToolkitDesignSystem.dark().spacings.m,
-  ];
-  static List<double> spacingL = [
-    WidgetToolkitDesignSystem.light().spacings.l,
-    WidgetToolkitDesignSystem.dark().spacings.l,
-  ];
+  @override
+  final Color inputFieldBackgroundFilledColor;
+  @override
+  final Color inputFieldBackgroundPlainColor;
+  @override
+  final Color inputFieldBackgroundDefaultFieldColor;
+  @override
+  final Color inputFieldBackgroundDefaultDisabledColor;
+  @override
+  final Color inputFieldBackgroundDefaultColor;
 
-  static List<double> spacingXL = [
-    WidgetToolkitDesignSystem.light().spacings.xl,
-    WidgetToolkitDesignSystem.dark().spacings.xl,
-  ];
-  static List<double> spacingXXXS = [
-    WidgetToolkitDesignSystem.light().spacings.xxxs,
-    WidgetToolkitDesignSystem.dark().spacings.xxxs,
-  ];
+  @override
+  final Color inputFieldHintColor;
+  @override
+  final Color inputFieldErrorTextColor;
 
-  ///endregion
-  /// region TextStyle
-  static List<TextStyle> descriptionThin = [
-    WidgetToolkitDesignSystem.light().typography.descriptionThin,
-    WidgetToolkitDesignSystem.dark().typography.descriptionThin,
-  ];
+  @override
+  final SvgFile closeIcon;
+  @override
+  final SvgFile dangerIcon;
+  @override
+  final SvgFile addIcon;
+  @override
+  final SvgFile addDisabledIcon;
+  @override
+  final SvgFile arrowRightSquareIcon;
+  @override
+  final SvgFile editPenIcon;
+  @override
+  final SvgFile infoCircleIcon;
+  @override
+  final SvgFile loadingIcon;
+  @override
+  final SvgFile tickCircleSuccessIcon;
 
-  static List<TextStyle> titleBold = [
-    WidgetToolkitDesignSystem.light().typography.titleBold,
-    WidgetToolkitDesignSystem.dark().typography.titleBold,
-  ];
-
-  static List<TextStyle> descriptionBold = [
-    WidgetToolkitDesignSystem.light().typography.descriptionBold,
-    WidgetToolkitDesignSystem.dark().typography.descriptionBold,
-  ];
-
-  static List<TextStyle> captionBold = [
-    WidgetToolkitDesignSystem.light().typography.captionBold,
-    WidgetToolkitDesignSystem.dark().typography.captionBold,
-  ];
-
-  static List<TextStyle> smallThin = [
-    WidgetToolkitDesignSystem.light().typography.smallThin,
-    WidgetToolkitDesignSystem.dark().typography.smallThin,
-  ];
-
-  ///endregion
-
-  ///region Color
-  static List<Color> black = [
-    WidgetToolkitDesignSystem.light().colors.textFieldDialogBlack,
-    WidgetToolkitDesignSystem.dark().colors.textFieldDialogBlack,
-  ];
-
-  static List<Color> defaultWhite = [
-    WidgetToolkitDesignSystem.light().colors.white,
-    WidgetToolkitDesignSystem.dark().colors.white,
-  ];
-
-  static List<Color> white = [
-    WidgetToolkitDesignSystem.light().colors.textFieldDialogWhite,
-    WidgetToolkitDesignSystem.dark().colors.textFieldDialogWhite,
-  ];
-
-  static List<Color> blue = [
-    WidgetToolkitDesignSystem.light().colors.darkBlue,
-    WidgetToolkitDesignSystem.dark().colors.blue,
-  ];
-
-  static List<Color> disabledFilledButtonBackgroundColor = [
-    WidgetToolkitDesignSystem.light().colors.gray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> mediumWhite = [
-    WidgetToolkitDesignSystem.light().colors.lightGray,
-    WidgetToolkitDesignSystem.dark().colors.lightGray,
-  ];
-
-  static List<Color> gray = [
-    WidgetToolkitDesignSystem.light().colors.gray,
-    WidgetToolkitDesignSystem.dark().colors.gray,
-  ];
-
-  static List<Color> green = [
-    WidgetToolkitDesignSystem.light().colors.darkGreen,
-    WidgetToolkitDesignSystem.dark().colors.darkGreen,
-  ];
-
-  static List<Color> redLight = [
-    WidgetToolkitDesignSystem.light().colors.lightRed,
-    WidgetToolkitDesignSystem.dark().colors.lightRed,
-  ];
-
-  static List<Color> orangeLight = [
-    WidgetToolkitDesignSystem.light().colors.orangeLight,
-    WidgetToolkitDesignSystem.dark().colors.orangeLight,
-  ];
-
-  static List<Color> orange = [
-    WidgetToolkitDesignSystem.light().colors.orange,
-    WidgetToolkitDesignSystem.dark().colors.orange,
-  ];
-
-  static List<Color> transparent = [
-    WidgetToolkitDesignSystem.light().colors.textFieldDialogTransparent,
-    WidgetToolkitDesignSystem.dark().colors.textFieldDialogTransparent,
-  ];
-
-  static List<Color> greenLight = [
-    WidgetToolkitDesignSystem.light().colors.greenLight,
-    WidgetToolkitDesignSystem.dark().colors.greenLight,
-  ];
-
-  static List<Color> red = [
-    WidgetToolkitDesignSystem.light().colors.red,
-    WidgetToolkitDesignSystem.dark().colors.red,
-  ];
-
-  static List<Color> mediumBlack = [
-    WidgetToolkitDesignSystem.light().colors.mediumBlack,
-    WidgetToolkitDesignSystem.dark().colors.mediumBlack,
-  ];
-
-  ///endregion
-
-  ///region SvgFile
-  static List<SvgFile> closeIcon = [
-    WidgetToolkitDesignSystem.dark().icons.closeIcon,
-    WidgetToolkitDesignSystem.light().icons.closeIcon,
-  ];
-
-  static List<SvgFile> dangerIcon = [
-    WidgetToolkitDesignSystem.dark().icons.dangerIcon,
-    WidgetToolkitDesignSystem.light().icons.dangerIcon,
-  ];
-
-  static List<SvgFile> addIcon = [
-    WidgetToolkitDesignSystem.dark().icons.addIcon,
-    WidgetToolkitDesignSystem.light().icons.addIcon,
-  ];
-
-  static List<SvgFile> addDisabledIcon = [
-    WidgetToolkitDesignSystem.dark().icons.addDisabledIcon,
-    WidgetToolkitDesignSystem.light().icons.addDisabledIcon,
-  ];
-
-  static List<SvgFile> arrowRightSquareIcon = [
-    WidgetToolkitDesignSystem.dark().icons.arrowRightSquareIcon,
-    WidgetToolkitDesignSystem.light().icons.arrowRightSquareIcon,
-  ];
-
-  static List<SvgFile> editPenIcon = [
-    WidgetToolkitDesignSystem.dark().icons.editPenIcon,
-    WidgetToolkitDesignSystem.light().icons.editPenIcon,
-  ];
-
-  static List<SvgFile> infoCircleIcon = [
-    WidgetToolkitDesignSystem.dark().icons.infoCircleIcon,
-    WidgetToolkitDesignSystem.light().icons.infoCircleIcon,
-  ];
-
-  static List<SvgFile> loadingIcon = [
-    WidgetToolkitDesignSystem.dark().icons.loadingIcon,
-    WidgetToolkitDesignSystem.light().icons.loadingIcon,
-  ];
-
-  static List<SvgFile> tickCircleSuccessIcon = [
-    WidgetToolkitDesignSystem.dark().icons.tickCircleSuccessIcon,
-    WidgetToolkitDesignSystem.light().icons.tickCircleSuccessIcon,
-  ];
-
-  ///endregion
-  ///region EdgeInsets
-
-  static List<EdgeInsets> textFieldDialog2 = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
-
-  static List<EdgeInsets> textFieldDialog4 = [
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.light().spacings.xl,
-      bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
-    ),
-    EdgeInsets.only(
-      top: WidgetToolkitDesignSystem.light().spacings.xl,
-      bottom: WidgetToolkitDesignSystem.light().spacings.xxxxs,
-    ),
-  ];
-
-  static List<EdgeInsets> textFieldDialog3 = [
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.light().spacings.xs,
-      bottom: WidgetToolkitDesignSystem.light().spacings.m,
-    ),
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.dark().spacings.xs,
-      bottom: WidgetToolkitDesignSystem.dark().spacings.m,
-    )
-  ];
-
-  static List<EdgeInsets> labeledBoxWidgetPadding1 = [
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.light().spacings.m,
-      horizontal: WidgetToolkitDesignSystem.light().spacings.s,
-    ),
-    EdgeInsets.symmetric(
-      vertical: WidgetToolkitDesignSystem.dark().spacings.m,
-      horizontal: WidgetToolkitDesignSystem.dark().spacings.s,
-    )
-  ];
-
-  static List<EdgeInsets> labeledBoxWidgetPadding2 = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
-  ];
-
-  static List<EdgeInsets> labeledBoxWidgetPadding3 = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.m),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.m)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPadding1 = [
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.light().spacings.m,
-      top: WidgetToolkitDesignSystem.light().spacings.xxxs,
-    ),
-    EdgeInsets.only(
-      left: WidgetToolkitDesignSystem.dark().spacings.m,
-      top: WidgetToolkitDesignSystem.dark().spacings.xxxs,
-    )
-  ];
-  static List<EdgeInsets> inputTextFieldPadding2 = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.xs),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPadding3 = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.xs),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.xs)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPaddingLoading = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPaddingSuccess = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPaddingWarning = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
-  ];
-
-  static List<EdgeInsets> inputTextFieldPaddingError = [
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.light().spacings.s),
-    EdgeInsets.only(right: WidgetToolkitDesignSystem.dark().spacings.s)
-  ];
-
-  ///endregion
+  @override
+  final EdgeInsets textFieldDialogPadding;
+  @override
+  final EdgeInsets textFieldDialogButtonPadding;
+  @override
+  final EdgeInsets textFieldDialogHeaderPadding;
+  @override
+  final EdgeInsets labeledBoxWidgetContentPadding;
+  @override
+  final EdgeInsets labeledBoxWidgetIconPadding;
+  @override
+  final EdgeInsets labeledBoxWidgetOptionalTextPadding;
+  @override
+  final EdgeInsets inputTextFieldErrorPadding;
+  @override
+  final EdgeInsets inputTextFieldIconPadding;
+  @override
+  final EdgeInsets inputTextFieldIconDisabledPadding;
+  @override
+  final EdgeInsets inputTextFieldPaddingLoading;
+  @override
+  final EdgeInsets inputTextFieldPaddingSuccess;
+  @override
+  final EdgeInsets inputTextFieldPaddingWarning;
+  @override
+  final EdgeInsets inputTextFieldPaddingError;
 }
 
 extension TextFieldDialogThemeContextExtension on BuildContext {

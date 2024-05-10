@@ -95,10 +95,10 @@ Future<void> pumpDeviceBuilderWithLocalizationsAndTheme(
 
 ThemeData _getThemeData(bool inLightMode) {
   final theme = inLightMode
-      ? ThemeData.light()
-          .copyWith(extensions: [WidgetToolkitTheme.light, SmsCodeTheme.light])
-      : ThemeData.dark()
-          .copyWith(extensions: [WidgetToolkitTheme.dark, SmsCodeTheme.dark]);
+      ? ThemeData.light().copyWith(
+          extensions: [WidgetToolkitTheme.light(), SmsCodeTheme.light()])
+      : ThemeData.dark().copyWith(
+          extensions: [WidgetToolkitTheme.dark(), SmsCodeTheme.dark()]);
   return theme;
 }
 

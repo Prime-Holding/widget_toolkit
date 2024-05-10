@@ -11,8 +11,12 @@ Widget resendButtonFactory({
   Key? key,
 }) =>
     MaterialApp(
-      theme: ThemeData().copyWith(
-          extensions: [...SmsCodeTheme.themes, ...WidgetToolkitTheme.themes]),
+      theme: ThemeData().copyWith(extensions: [
+        SmsCodeTheme.light(),
+        SmsCodeTheme.dark(),
+        WidgetToolkitTheme.light(),
+        WidgetToolkitTheme.dark(),
+      ]),
       home: Scaffold(
         body: Center(
           child: AutomatedResendCodeButton(
@@ -46,8 +50,12 @@ Widget buildCountdown({
     );
 
 Widget _materialWrapper(Widget child) => MaterialApp(
-      theme: ThemeData().copyWith(
-          extensions: [...SmsCodeTheme.themes, ...WidgetToolkitTheme.themes]),
+      theme: ThemeData().copyWith(extensions: [
+        SmsCodeTheme.light(),
+        SmsCodeTheme.dark(),
+        WidgetToolkitTheme.light(),
+        WidgetToolkitTheme.dark(),
+      ]),
       home: Scaffold(
         body: Center(
           child: child,

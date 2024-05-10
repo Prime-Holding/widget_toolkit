@@ -53,7 +53,7 @@ class QrScannerComponent<T> extends StatelessWidget {
             child: Stack(
               children: [
                 Padding(
-                  padding: context.qrScannerTheme.qrScannerPage3,
+                  padding: context.qrScannerTheme.qrScannerCameraPadding,
                   child: RxBlocListener<QrScannerBlocType<T>, bool>(
                     state: (bloc) => bloc.states.hasCameraPermission,
                     listener: (ctx, permission) {
@@ -129,7 +129,8 @@ class QrScannerComponent<T> extends StatelessWidget {
           ? Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: context.qrScannerTheme.qrScannerPage4,
+                padding:
+                    context.qrScannerTheme.qrScannerProgressIndicatorPadding,
                 child: PrimeLinearProgressIndicator(
                   borderRadius: context.qrScannerTheme.qrScannerPageXS,
                 ),

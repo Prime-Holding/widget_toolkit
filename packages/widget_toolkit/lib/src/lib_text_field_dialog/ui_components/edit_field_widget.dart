@@ -99,35 +99,39 @@ class EditFieldWidget extends StatelessWidget {
   Color? _getLabelColor(BuildContext context) {
     switch (state) {
       case EditFieldState.edited:
-        return null;
-      case EditFieldState.loading:
+        return context.textFieldDialogTheme.editFieldLabelEditedColor;
       case EditFieldState.notEditedYet:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.editFieldLabelNotEditedColor;
+      case EditFieldState.loading:
+        return context.textFieldDialogTheme.editFieldLabelLoadingColor;
       case EditFieldState.success:
-        return context.textFieldDialogTheme.green;
+        return context.textFieldDialogTheme.editFieldLabelSuccessColor;
     }
   }
 
   Color? _getValueColor(BuildContext context) {
     switch (state) {
       case EditFieldState.edited:
-        return context.textFieldDialogTheme.blue;
-      case EditFieldState.loading:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.editFieldValueEditedColor;
       case EditFieldState.notEditedYet:
+        return context.textFieldDialogTheme.editFieldValueNotEditedColor;
+      case EditFieldState.loading:
+        return context.textFieldDialogTheme.editFieldValueLoadingColor;
       case EditFieldState.success:
-        return context.widgetToolkitTheme.highlightColor;
+        return context.textFieldDialogTheme.editFieldValueSuccessColor;
     }
   }
 
   TextStyle _textStyle(BuildContext context) {
     switch (state) {
-      case EditFieldState.notEditedYet:
-        return context.textFieldDialogTheme.descriptionThin;
       case EditFieldState.edited:
-      case EditFieldState.success:
+        return context.textFieldDialogTheme.editFieldTextEditedTextStyle;
+      case EditFieldState.notEditedYet:
+        return context.textFieldDialogTheme.editFieldTextNotEditedTextStyle;
       case EditFieldState.loading:
-        return context.textFieldDialogTheme.descriptionBold;
+        return context.textFieldDialogTheme.editFieldTextLoadingTextStyle;
+      case EditFieldState.success:
+        return context.textFieldDialogTheme.editFieldTextSuccessTextStyle;
     }
   }
 }

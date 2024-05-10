@@ -1,3 +1,6 @@
+## [0.0.2]
+- Update dependencies to use `widget_toolkit` version `0.0.2`
+
 ## [0.0.2-dev.3]
 - Fixes and improvements
 
@@ -19,7 +22,7 @@
 - Fixes code formatting issues
 - Fixes wrong repository URL in the pubspec.yaml
 - Fixes issues with CD
-- Updates dependency on widget-toolkit to 0.0.1-dev7
+- Updates dependency on widget_toolkit to 0.0.1-dev7
 
 ## [0.0.1-dev1]
 - Initial release of widget_toolkit_biometrics,

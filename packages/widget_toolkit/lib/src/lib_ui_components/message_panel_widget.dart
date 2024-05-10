@@ -88,7 +88,7 @@ class MessagePanelWidget extends StatelessWidget {
                   ),
                   if (isLoading) ...[
                     SizedBox(
-                      height: context.widgetToolkitTheme.spacingXS1,
+                      height: context.widgetToolkitTheme.spacingXS,
                     ),
                     if (body == null)
                       ShimmerText(
@@ -108,7 +108,7 @@ class MessagePanelWidget extends StatelessWidget {
                     ShimmerText(
                       isLoading ? null : body!.toUpperCase(),
                       style: context.widgetToolkitTheme.captionBold.copyWith(
-                        color: context.widgetToolkitTheme.black,
+                        color: context.widgetToolkitTheme.shimmerTextColor,
                         height: 2.2,
                       ),
                       baseColor: context.widgetToolkitTheme.shimmerBaseColor,
@@ -172,36 +172,38 @@ extension _MessagePanelStateX on MessagePanelState {
   Color getBackgroundColor(BuildContext context) {
     switch (this) {
       case MessagePanelState.important:
-        return context.widgetToolkitTheme.lightRed;
+        return context.widgetToolkitTheme.messagePanelBackgroundColorImportant;
       case MessagePanelState.informative:
-        return context.widgetToolkitTheme.blueLight;
+        return context
+            .widgetToolkitTheme.messagePanelBackgroundColorInformative;
       case MessagePanelState.positive:
       case MessagePanelState.positiveCheck:
-        return context.widgetToolkitTheme.greenLight;
+        return context.widgetToolkitTheme.messagePanelBackgroundColorPositive;
       case MessagePanelState.neutral:
-        return context.widgetToolkitTheme.red;
+        return context.widgetToolkitTheme.messagePanelBackgroundColorNeutral;
       case MessagePanelState.lessImportant:
-        return context.widgetToolkitTheme.orangeLight;
+        return context
+            .widgetToolkitTheme.messagePanelBackgroundColorLessImportant;
       case MessagePanelState.custom:
-        return context.widgetToolkitTheme.lightRed;
+        return context.widgetToolkitTheme.messagePanelBackgroundColorImportant;
     }
   }
 
   Color getColor(BuildContext context) {
     switch (this) {
       case MessagePanelState.important:
-        return context.widgetToolkitTheme.red;
+        return context.widgetToolkitTheme.messagePanelColorImportant;
       case MessagePanelState.informative:
-        return context.widgetToolkitTheme.darkBlue;
+        return context.widgetToolkitTheme.messagePanelColorInformative;
       case MessagePanelState.positive:
       case MessagePanelState.positiveCheck:
-        return context.widgetToolkitTheme.darkGreen;
+        return context.widgetToolkitTheme.messagePanelColorPositive;
       case MessagePanelState.neutral:
-        return context.widgetToolkitTheme.white;
+        return context.widgetToolkitTheme.messagePanelColorNeutral;
       case MessagePanelState.lessImportant:
-        return context.widgetToolkitTheme.orange;
+        return context.widgetToolkitTheme.messagePanelColorLessImportant;
       case MessagePanelState.custom:
-        return context.widgetToolkitTheme.red;
+        return context.widgetToolkitTheme.messagePanelBackgroundColorNeutral;
     }
   }
 }

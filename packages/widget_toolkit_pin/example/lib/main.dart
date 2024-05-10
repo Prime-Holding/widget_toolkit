@@ -21,15 +21,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.light,
-          WidgetToolkitTheme.light,
+          PinCodeTheme.light(),
+          WidgetToolkitTheme.light(),
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.dark,
-          WidgetToolkitTheme.dark,
+          PinCodeTheme.dark(),
+          WidgetToolkitTheme.dark(),
         ],
       ),
       home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),

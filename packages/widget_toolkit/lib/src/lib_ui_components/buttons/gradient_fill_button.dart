@@ -91,7 +91,7 @@ class GradientFillButton extends StatelessWidget {
       child: Container(
         padding: padding != null
             ? EdgeInsets.zero
-            : context.widgetToolkitTheme.mediumEdgeInsets,
+            : context.widgetToolkitTheme.gradientFillButtonDefaultPadding,
         color: state == ButtonStateModel.pressed
             ? getPressedInnerBackgroundColor(context)
             : Colors.transparent,

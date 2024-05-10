@@ -104,24 +104,24 @@ class DesignSystemTypography {
 
   final titleBold = const TextStyle(
       fontWeight: FontWeight.w600,
-      fontFamily: 'Meta',
+      fontFamily: 'Roboto',
       fontStyle: FontStyle.normal,
       height: 1.6,
       fontSize: 20.0);
   final descriptionThin = const TextStyle(
       fontWeight: FontWeight.w400,
-      fontFamily: 'Meta',
+      fontFamily: 'Roboto',
       fontStyle: FontStyle.normal,
       fontSize: 14.0);
   final smallThin = const TextStyle(
       fontWeight: FontWeight.w400,
-      fontFamily: 'Meta',
+      fontFamily: 'Roboto',
       fontStyle: FontStyle.normal,
       fontSize: 12.0,
       height: 1.8);
   final captionBold = const TextStyle(
       fontWeight: FontWeight.w600,
-      fontFamily: 'Meta',
+      fontFamily: 'Roboto',
       fontStyle: FontStyle.normal,
       letterSpacing: 0.8,
       fontSize: 10.0);

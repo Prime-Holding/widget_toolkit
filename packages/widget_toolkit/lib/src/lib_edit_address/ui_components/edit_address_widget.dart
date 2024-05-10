@@ -80,8 +80,8 @@ class EditAddressWidget<T extends PickerItemModel> extends StatefulWidget {
 
   static const _defaultAddressModel = AddressModel(
     addressType: AddressTypeModel.correspondence,
-    city: 'Plovd',
-    streetAddress: 'str1',
+    city: '',
+    streetAddress: '',
     country: CountryModel.withDefaults(),
   );
 
@@ -111,7 +111,8 @@ class _EditAddressWidgetState<T extends PickerItemModel>
             type: widget.type,
           ),
           child: Padding(
-            padding: context.editAddressTheme.editAddressWidgetPadding1,
+            padding:
+                context.editAddressTheme.editAddressWidgetDecorationPadding,
             child: Container(
               decoration: BoxDecoration(
                 color: context.editAddressTheme.editAddressWidgetColor,
@@ -119,7 +120,8 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                     context.editAddressTheme.editAddressWidgetSpacingXS),
               ),
               child: Padding(
-                padding: context.editAddressTheme.editAddressWidgetPadding2,
+                padding:
+                    context.editAddressTheme.editAddressWidgetContentPadding,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -128,8 +130,8 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: context
-                                .editAddressTheme.editAddressWidgetPadding3,
+                            padding: context.editAddressTheme
+                                .editAddressWidgetShimmerPadding,
                             child: ShimmerText(
                               widget.localizedStrings?.cardFieldLabel ??
                                   context.getEditAddressLocalizedStrings
@@ -140,9 +142,10 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                               maxLines: 1,
                               type: ShimmerType.proportional(
                                   trailingFlex: 3, leadingFlex: 4),
-                              baseColor: context.editAddressTheme.white,
-                              highlightColor:
-                                  context.editAddressTheme.mediumWhite,
+                              baseColor:
+                                  context.editAddressTheme.shimmerTextBaseColor,
+                              highlightColor: context
+                                  .editAddressTheme.shimmerTextHighlightColor,
                             ),
                           ),
                           _AddressWidget(
@@ -153,7 +156,7 @@ class _EditAddressWidgetState<T extends PickerItemModel>
                     ),
                     Padding(
                       padding:
-                          context.editAddressTheme.editAddressWidgetPadding4,
+                          context.editAddressTheme.editAddressWidgetIconPadding,
                       child: _IconWidget(
                         type: widget.type,
                       ),
@@ -259,8 +262,9 @@ class _AddressWidget extends StatelessWidget {
               style: context.editAddressTheme.descriptionThin,
               maxLines: 1,
               type: ShimmerType.proportional(trailingFlex: 2, leadingFlex: 2),
-              baseColor: context.editAddressTheme.white,
-              highlightColor: context.editAddressTheme.mediumWhite,
+              baseColor: context.editAddressTheme.shimmerTextBaseColor,
+              highlightColor:
+                  context.editAddressTheme.shimmerTextHighlightColor,
             ),
           ),
           ShimmerText(
@@ -268,8 +272,8 @@ class _AddressWidget extends StatelessWidget {
             style: context.editAddressTheme.descriptionThin,
             maxLines: 1,
             type: ShimmerType.fixed(),
-            baseColor: context.editAddressTheme.white,
-            highlightColor: context.editAddressTheme.mediumWhite,
+            baseColor: context.editAddressTheme.shimmerTextBaseColor,
+            highlightColor: context.editAddressTheme.shimmerTextHighlightColor,
           ),
         ],
       );

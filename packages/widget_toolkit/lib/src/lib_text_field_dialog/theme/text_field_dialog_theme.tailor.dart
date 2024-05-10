@@ -8,433 +8,327 @@ part of 'text_field_dialog_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
-  const TextFieldDialogTheme({
-    required this.addDisabledIcon,
-    required this.addIcon,
-    required this.arrowRightSquareIcon,
-    required this.black,
-    required this.blue,
-    required this.captionBold,
-    required this.closeIcon,
-    required this.dangerIcon,
-    required this.defaultWhite,
-    required this.descriptionBold,
-    required this.descriptionThin,
-    required this.disabledFilledButtonBackgroundColor,
-    required this.editFieldBorderRadius,
-    required this.editFieldRegularBackground,
-    required this.editFieldSuccessBackground,
-    required this.editPenIcon,
-    required this.gray,
-    required this.green,
-    required this.greenLight,
-    required this.infoCircleIcon,
-    required this.inputTextFieldPadding1,
-    required this.inputTextFieldPadding2,
-    required this.inputTextFieldPadding3,
-    required this.inputTextFieldPaddingError,
-    required this.inputTextFieldPaddingLoading,
-    required this.inputTextFieldPaddingSuccess,
-    required this.inputTextFieldPaddingWarning,
-    required this.inputTextFieldRegularBackground,
-    required this.inputTextFieldSuccessBackground,
-    required this.labelBoxFilledBackground,
-    required this.labelBoxOptionalBackground,
-    required this.labeledBoxWidgetPadding1,
-    required this.labeledBoxWidgetPadding2,
-    required this.labeledBoxWidgetPadding3,
-    required this.loadingIcon,
-    required this.mediumBlack,
-    required this.mediumWhite,
-    required this.orange,
-    required this.orangeLight,
-    required this.red,
-    required this.redLight,
-    required this.smallThin,
-    required this.spacingL,
-    required this.spacingM,
-    required this.spacingS,
-    required this.spacingXL,
-    required this.spacingXS,
-    required this.spacingXSS,
-    required this.spacingXXXS,
-    required this.textFieldDialog2,
-    required this.textFieldDialog3,
-    required this.textFieldDialog4,
-    required this.tickCircleSuccessIcon,
-    required this.titleBold,
-    required this.transparent,
-    required this.white,
-  });
-
-  final SvgFile addDisabledIcon;
-  final SvgFile addIcon;
-  final SvgFile arrowRightSquareIcon;
-
-  ///endregion
-  ///region Color
-  final Color black;
-  final Color blue;
-  final TextStyle captionBold;
-
-  ///endregion
-  ///region SvgFile
-  final SvgFile closeIcon;
-  final SvgFile dangerIcon;
-  final Color defaultWhite;
-  final TextStyle descriptionBold;
-
-  ///endregion
-  /// region TextStyle
-  final TextStyle descriptionThin;
-  final Color disabledFilledButtonBackgroundColor;
-  final double editFieldBorderRadius;
-  final Color editFieldRegularBackground;
-
-  /// region EditFieldWidget
-  final Color editFieldSuccessBackground;
-  final SvgFile editPenIcon;
-  final Color gray;
-  final Color green;
-  final Color greenLight;
-  final SvgFile infoCircleIcon;
-  final EdgeInsets inputTextFieldPadding1;
-  final EdgeInsets inputTextFieldPadding2;
-  final EdgeInsets inputTextFieldPadding3;
-  final EdgeInsets inputTextFieldPaddingError;
-  final EdgeInsets inputTextFieldPaddingLoading;
-  final EdgeInsets inputTextFieldPaddingSuccess;
-  final EdgeInsets inputTextFieldPaddingWarning;
-  final Color inputTextFieldRegularBackground;
-
-  /// endregion
-  ///  region InputTextField
-  final Color inputTextFieldSuccessBackground;
-  final Color labelBoxFilledBackground;
-
-  ///  endregion
-  /// region LabelBoxWidget
-  final Color labelBoxOptionalBackground;
-  final EdgeInsets labeledBoxWidgetPadding1;
-  final EdgeInsets labeledBoxWidgetPadding2;
-  final EdgeInsets labeledBoxWidgetPadding3;
-  final SvgFile loadingIcon;
-  final Color mediumBlack;
-  final Color mediumWhite;
-  final Color orange;
-  final Color orangeLight;
-  final Color red;
-  final Color redLight;
-  final TextStyle smallThin;
-  final double spacingL;
-  final double spacingM;
-  final double spacingS;
-  final double spacingXL;
-
-  /// endregion
-  /// region spacings
-  final double spacingXS;
-  final double spacingXSS;
-  final double spacingXXXS;
-
-  ///endregion
-  ///region EdgeInsets
-  final EdgeInsets textFieldDialog2;
-  final EdgeInsets textFieldDialog3;
-  final EdgeInsets textFieldDialog4;
-  final SvgFile tickCircleSuccessIcon;
-  final TextStyle titleBold;
-  final Color transparent;
-  final Color white;
-
-  static final TextFieldDialogTheme light = TextFieldDialogTheme(
-    addDisabledIcon: _$TextFieldDialogTheme.addDisabledIcon[0],
-    addIcon: _$TextFieldDialogTheme.addIcon[0],
-    arrowRightSquareIcon: _$TextFieldDialogTheme.arrowRightSquareIcon[0],
-    black: _$TextFieldDialogTheme.black[0],
-    blue: _$TextFieldDialogTheme.blue[0],
-    captionBold: _$TextFieldDialogTheme.captionBold[0],
-    closeIcon: _$TextFieldDialogTheme.closeIcon[0],
-    dangerIcon: _$TextFieldDialogTheme.dangerIcon[0],
-    defaultWhite: _$TextFieldDialogTheme.defaultWhite[0],
-    descriptionBold: _$TextFieldDialogTheme.descriptionBold[0],
-    descriptionThin: _$TextFieldDialogTheme.descriptionThin[0],
-    disabledFilledButtonBackgroundColor:
-        _$TextFieldDialogTheme.disabledFilledButtonBackgroundColor[0],
-    editFieldBorderRadius: _$TextFieldDialogTheme.editFieldBorderRadius[0],
-    editFieldRegularBackground:
-        _$TextFieldDialogTheme.editFieldRegularBackground[0],
-    editFieldSuccessBackground:
-        _$TextFieldDialogTheme.editFieldSuccessBackground[0],
-    editPenIcon: _$TextFieldDialogTheme.editPenIcon[0],
-    gray: _$TextFieldDialogTheme.gray[0],
-    green: _$TextFieldDialogTheme.green[0],
-    greenLight: _$TextFieldDialogTheme.greenLight[0],
-    infoCircleIcon: _$TextFieldDialogTheme.infoCircleIcon[0],
-    inputTextFieldPadding1: _$TextFieldDialogTheme.inputTextFieldPadding1[0],
-    inputTextFieldPadding2: _$TextFieldDialogTheme.inputTextFieldPadding2[0],
-    inputTextFieldPadding3: _$TextFieldDialogTheme.inputTextFieldPadding3[0],
-    inputTextFieldPaddingError:
-        _$TextFieldDialogTheme.inputTextFieldPaddingError[0],
-    inputTextFieldPaddingLoading:
-        _$TextFieldDialogTheme.inputTextFieldPaddingLoading[0],
-    inputTextFieldPaddingSuccess:
-        _$TextFieldDialogTheme.inputTextFieldPaddingSuccess[0],
-    inputTextFieldPaddingWarning:
-        _$TextFieldDialogTheme.inputTextFieldPaddingWarning[0],
-    inputTextFieldRegularBackground:
-        _$TextFieldDialogTheme.inputTextFieldRegularBackground[0],
-    inputTextFieldSuccessBackground:
-        _$TextFieldDialogTheme.inputTextFieldSuccessBackground[0],
-    labelBoxFilledBackground:
-        _$TextFieldDialogTheme.labelBoxFilledBackground[0],
-    labelBoxOptionalBackground:
-        _$TextFieldDialogTheme.labelBoxOptionalBackground[0],
-    labeledBoxWidgetPadding1:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding1[0],
-    labeledBoxWidgetPadding2:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding2[0],
-    labeledBoxWidgetPadding3:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding3[0],
-    loadingIcon: _$TextFieldDialogTheme.loadingIcon[0],
-    mediumBlack: _$TextFieldDialogTheme.mediumBlack[0],
-    mediumWhite: _$TextFieldDialogTheme.mediumWhite[0],
-    orange: _$TextFieldDialogTheme.orange[0],
-    orangeLight: _$TextFieldDialogTheme.orangeLight[0],
-    red: _$TextFieldDialogTheme.red[0],
-    redLight: _$TextFieldDialogTheme.redLight[0],
-    smallThin: _$TextFieldDialogTheme.smallThin[0],
-    spacingL: _$TextFieldDialogTheme.spacingL[0],
-    spacingM: _$TextFieldDialogTheme.spacingM[0],
-    spacingS: _$TextFieldDialogTheme.spacingS[0],
-    spacingXL: _$TextFieldDialogTheme.spacingXL[0],
-    spacingXS: _$TextFieldDialogTheme.spacingXS[0],
-    spacingXSS: _$TextFieldDialogTheme.spacingXSS[0],
-    spacingXXXS: _$TextFieldDialogTheme.spacingXXXS[0],
-    textFieldDialog2: _$TextFieldDialogTheme.textFieldDialog2[0],
-    textFieldDialog3: _$TextFieldDialogTheme.textFieldDialog3[0],
-    textFieldDialog4: _$TextFieldDialogTheme.textFieldDialog4[0],
-    tickCircleSuccessIcon: _$TextFieldDialogTheme.tickCircleSuccessIcon[0],
-    titleBold: _$TextFieldDialogTheme.titleBold[0],
-    transparent: _$TextFieldDialogTheme.transparent[0],
-    white: _$TextFieldDialogTheme.white[0],
-  );
-
-  static final TextFieldDialogTheme dark = TextFieldDialogTheme(
-    addDisabledIcon: _$TextFieldDialogTheme.addDisabledIcon[1],
-    addIcon: _$TextFieldDialogTheme.addIcon[1],
-    arrowRightSquareIcon: _$TextFieldDialogTheme.arrowRightSquareIcon[1],
-    black: _$TextFieldDialogTheme.black[1],
-    blue: _$TextFieldDialogTheme.blue[1],
-    captionBold: _$TextFieldDialogTheme.captionBold[1],
-    closeIcon: _$TextFieldDialogTheme.closeIcon[1],
-    dangerIcon: _$TextFieldDialogTheme.dangerIcon[1],
-    defaultWhite: _$TextFieldDialogTheme.defaultWhite[1],
-    descriptionBold: _$TextFieldDialogTheme.descriptionBold[1],
-    descriptionThin: _$TextFieldDialogTheme.descriptionThin[1],
-    disabledFilledButtonBackgroundColor:
-        _$TextFieldDialogTheme.disabledFilledButtonBackgroundColor[1],
-    editFieldBorderRadius: _$TextFieldDialogTheme.editFieldBorderRadius[1],
-    editFieldRegularBackground:
-        _$TextFieldDialogTheme.editFieldRegularBackground[1],
-    editFieldSuccessBackground:
-        _$TextFieldDialogTheme.editFieldSuccessBackground[1],
-    editPenIcon: _$TextFieldDialogTheme.editPenIcon[1],
-    gray: _$TextFieldDialogTheme.gray[1],
-    green: _$TextFieldDialogTheme.green[1],
-    greenLight: _$TextFieldDialogTheme.greenLight[1],
-    infoCircleIcon: _$TextFieldDialogTheme.infoCircleIcon[1],
-    inputTextFieldPadding1: _$TextFieldDialogTheme.inputTextFieldPadding1[1],
-    inputTextFieldPadding2: _$TextFieldDialogTheme.inputTextFieldPadding2[1],
-    inputTextFieldPadding3: _$TextFieldDialogTheme.inputTextFieldPadding3[1],
-    inputTextFieldPaddingError:
-        _$TextFieldDialogTheme.inputTextFieldPaddingError[1],
-    inputTextFieldPaddingLoading:
-        _$TextFieldDialogTheme.inputTextFieldPaddingLoading[1],
-    inputTextFieldPaddingSuccess:
-        _$TextFieldDialogTheme.inputTextFieldPaddingSuccess[1],
-    inputTextFieldPaddingWarning:
-        _$TextFieldDialogTheme.inputTextFieldPaddingWarning[1],
-    inputTextFieldRegularBackground:
-        _$TextFieldDialogTheme.inputTextFieldRegularBackground[1],
-    inputTextFieldSuccessBackground:
-        _$TextFieldDialogTheme.inputTextFieldSuccessBackground[1],
-    labelBoxFilledBackground:
-        _$TextFieldDialogTheme.labelBoxFilledBackground[1],
-    labelBoxOptionalBackground:
-        _$TextFieldDialogTheme.labelBoxOptionalBackground[1],
-    labeledBoxWidgetPadding1:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding1[1],
-    labeledBoxWidgetPadding2:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding2[1],
-    labeledBoxWidgetPadding3:
-        _$TextFieldDialogTheme.labeledBoxWidgetPadding3[1],
-    loadingIcon: _$TextFieldDialogTheme.loadingIcon[1],
-    mediumBlack: _$TextFieldDialogTheme.mediumBlack[1],
-    mediumWhite: _$TextFieldDialogTheme.mediumWhite[1],
-    orange: _$TextFieldDialogTheme.orange[1],
-    orangeLight: _$TextFieldDialogTheme.orangeLight[1],
-    red: _$TextFieldDialogTheme.red[1],
-    redLight: _$TextFieldDialogTheme.redLight[1],
-    smallThin: _$TextFieldDialogTheme.smallThin[1],
-    spacingL: _$TextFieldDialogTheme.spacingL[1],
-    spacingM: _$TextFieldDialogTheme.spacingM[1],
-    spacingS: _$TextFieldDialogTheme.spacingS[1],
-    spacingXL: _$TextFieldDialogTheme.spacingXL[1],
-    spacingXS: _$TextFieldDialogTheme.spacingXS[1],
-    spacingXSS: _$TextFieldDialogTheme.spacingXSS[1],
-    spacingXXXS: _$TextFieldDialogTheme.spacingXXXS[1],
-    textFieldDialog2: _$TextFieldDialogTheme.textFieldDialog2[1],
-    textFieldDialog3: _$TextFieldDialogTheme.textFieldDialog3[1],
-    textFieldDialog4: _$TextFieldDialogTheme.textFieldDialog4[1],
-    tickCircleSuccessIcon: _$TextFieldDialogTheme.tickCircleSuccessIcon[1],
-    titleBold: _$TextFieldDialogTheme.titleBold[1],
-    transparent: _$TextFieldDialogTheme.transparent[1],
-    white: _$TextFieldDialogTheme.white[1],
-  );
-
-  static final themes = [
-    light,
-    dark,
-  ];
+mixin _$TextFieldDialogThemeTailorMixin
+    on ThemeExtension<TextFieldDialogTheme> {
+  Color get editFieldSuccessBackground;
+  Color get editFieldRegularBackground;
+  Color get inputFieldBackgroundSuccessColor;
+  Color get labelBoxOptionalBackground;
+  Color get labelBoxFilledBackground;
+  double get editFieldBorderRadius;
+  double get spacingXS;
+  double get spacingXSS;
+  double get spacingS;
+  double get spacingM;
+  double get spacingXL;
+  double get spacingXXXS;
+  TextStyle get descriptionThin;
+  TextStyle get titleBold;
+  TextStyle get descriptionBold;
+  TextStyle get captionBold;
+  TextStyle get smallThin;
+  Color get disabledFilledButtonBackgroundColor;
+  Color get textFieldDialogIconColor;
+  Color get inputFieldBorderErrorColor;
+  Color get inputFieldBorderTypeColor;
+  Color get inputFieldBorderDisabledColor;
+  Color get inputFieldBorderLoadingColor;
+  Color get inputFieldBorderWarningColor;
+  Color get inputFieldValueColor;
+  Color get inputFieldValueDisabledColor;
+  Color get labelBoxOptionalPrimary;
+  Color get labelBoxFilledPrimary;
+  Color get labelBoxOptionalSecondary;
+  Color get labelBoxFilledSecondary;
+  Color get labelBoxOptionalBorder;
+  Color get labelBoxFilledBorder;
+  Color? get editFieldLabelEditedColor;
+  Color get editFieldLabelNotEditedColor;
+  Color get editFieldLabelLoadingColor;
+  Color get editFieldLabelSuccessColor;
+  Color get editFieldValueEditedColor;
+  Color get editFieldValueNotEditedColor;
+  Color get editFieldValueLoadingColor;
+  Color get editFieldValueSuccessColor;
+  TextStyle get editFieldTextEditedTextStyle;
+  TextStyle get editFieldTextNotEditedTextStyle;
+  TextStyle get editFieldTextLoadingTextStyle;
+  TextStyle get editFieldTextSuccessTextStyle;
+  Color get inputFieldTextDefaultFieldColor;
+  Color get inputFieldTextDefaultDisabledColor;
+  Color get inputFieldTextDisabledColor;
+  Color get inputFieldTextErrorColor;
+  Color get inputFieldTextFilledColor;
+  Color get inputFieldTextLoadingColor;
+  Color get inputFieldTextSuccessColor;
+  Color get inputFieldTextTypeColor;
+  Color get inputFieldTextWarningColor;
+  Color get inputFieldTextPlainColor;
+  Color get inputFieldBackgroundFilledColor;
+  Color get inputFieldBackgroundPlainColor;
+  Color get inputFieldBackgroundDefaultFieldColor;
+  Color get inputFieldBackgroundDefaultDisabledColor;
+  Color get inputFieldBackgroundDefaultColor;
+  Color get inputFieldHintColor;
+  Color get inputFieldErrorTextColor;
+  SvgFile get closeIcon;
+  SvgFile get dangerIcon;
+  SvgFile get addIcon;
+  SvgFile get addDisabledIcon;
+  SvgFile get arrowRightSquareIcon;
+  SvgFile get editPenIcon;
+  SvgFile get infoCircleIcon;
+  SvgFile get loadingIcon;
+  SvgFile get tickCircleSuccessIcon;
+  EdgeInsets get textFieldDialogPadding;
+  EdgeInsets get textFieldDialogButtonPadding;
+  EdgeInsets get textFieldDialogHeaderPadding;
+  EdgeInsets get labeledBoxWidgetContentPadding;
+  EdgeInsets get labeledBoxWidgetIconPadding;
+  EdgeInsets get labeledBoxWidgetOptionalTextPadding;
+  EdgeInsets get inputTextFieldErrorPadding;
+  EdgeInsets get inputTextFieldIconPadding;
+  EdgeInsets get inputTextFieldIconDisabledPadding;
+  EdgeInsets get inputTextFieldPaddingLoading;
+  EdgeInsets get inputTextFieldPaddingSuccess;
+  EdgeInsets get inputTextFieldPaddingWarning;
+  EdgeInsets get inputTextFieldPaddingError;
 
   @override
   TextFieldDialogTheme copyWith({
-    SvgFile? addDisabledIcon,
-    SvgFile? addIcon,
-    SvgFile? arrowRightSquareIcon,
-    Color? black,
-    Color? blue,
+    Color? editFieldSuccessBackground,
+    Color? editFieldRegularBackground,
+    Color? inputFieldBackgroundSuccessColor,
+    Color? labelBoxOptionalBackground,
+    Color? labelBoxFilledBackground,
+    double? editFieldBorderRadius,
+    double? spacingXS,
+    double? spacingXSS,
+    double? spacingS,
+    double? spacingM,
+    double? spacingXL,
+    double? spacingXXXS,
+    TextStyle? descriptionThin,
+    TextStyle? titleBold,
+    TextStyle? descriptionBold,
     TextStyle? captionBold,
+    TextStyle? smallThin,
+    Color? disabledFilledButtonBackgroundColor,
+    Color? textFieldDialogIconColor,
+    Color? inputFieldBorderErrorColor,
+    Color? inputFieldBorderTypeColor,
+    Color? inputFieldBorderDisabledColor,
+    Color? inputFieldBorderLoadingColor,
+    Color? inputFieldBorderWarningColor,
+    Color? inputFieldValueColor,
+    Color? inputFieldValueDisabledColor,
+    Color? labelBoxOptionalPrimary,
+    Color? labelBoxFilledPrimary,
+    Color? labelBoxOptionalSecondary,
+    Color? labelBoxFilledSecondary,
+    Color? labelBoxOptionalBorder,
+    Color? labelBoxFilledBorder,
+    Color? editFieldLabelEditedColor,
+    Color? editFieldLabelNotEditedColor,
+    Color? editFieldLabelLoadingColor,
+    Color? editFieldLabelSuccessColor,
+    Color? editFieldValueEditedColor,
+    Color? editFieldValueNotEditedColor,
+    Color? editFieldValueLoadingColor,
+    Color? editFieldValueSuccessColor,
+    TextStyle? editFieldTextEditedTextStyle,
+    TextStyle? editFieldTextNotEditedTextStyle,
+    TextStyle? editFieldTextLoadingTextStyle,
+    TextStyle? editFieldTextSuccessTextStyle,
+    Color? inputFieldTextDefaultFieldColor,
+    Color? inputFieldTextDefaultDisabledColor,
+    Color? inputFieldTextDisabledColor,
+    Color? inputFieldTextErrorColor,
+    Color? inputFieldTextFilledColor,
+    Color? inputFieldTextLoadingColor,
+    Color? inputFieldTextSuccessColor,
+    Color? inputFieldTextTypeColor,
+    Color? inputFieldTextWarningColor,
+    Color? inputFieldTextPlainColor,
+    Color? inputFieldBackgroundFilledColor,
+    Color? inputFieldBackgroundPlainColor,
+    Color? inputFieldBackgroundDefaultFieldColor,
+    Color? inputFieldBackgroundDefaultDisabledColor,
+    Color? inputFieldBackgroundDefaultColor,
+    Color? inputFieldHintColor,
+    Color? inputFieldErrorTextColor,
     SvgFile? closeIcon,
     SvgFile? dangerIcon,
-    Color? defaultWhite,
-    TextStyle? descriptionBold,
-    TextStyle? descriptionThin,
-    Color? disabledFilledButtonBackgroundColor,
-    double? editFieldBorderRadius,
-    Color? editFieldRegularBackground,
-    Color? editFieldSuccessBackground,
+    SvgFile? addIcon,
+    SvgFile? addDisabledIcon,
+    SvgFile? arrowRightSquareIcon,
     SvgFile? editPenIcon,
-    Color? gray,
-    Color? green,
-    Color? greenLight,
     SvgFile? infoCircleIcon,
-    EdgeInsets? inputTextFieldPadding1,
-    EdgeInsets? inputTextFieldPadding2,
-    EdgeInsets? inputTextFieldPadding3,
-    EdgeInsets? inputTextFieldPaddingError,
+    SvgFile? loadingIcon,
+    SvgFile? tickCircleSuccessIcon,
+    EdgeInsets? textFieldDialogPadding,
+    EdgeInsets? textFieldDialogButtonPadding,
+    EdgeInsets? textFieldDialogHeaderPadding,
+    EdgeInsets? labeledBoxWidgetContentPadding,
+    EdgeInsets? labeledBoxWidgetIconPadding,
+    EdgeInsets? labeledBoxWidgetOptionalTextPadding,
+    EdgeInsets? inputTextFieldErrorPadding,
+    EdgeInsets? inputTextFieldIconPadding,
+    EdgeInsets? inputTextFieldIconDisabledPadding,
     EdgeInsets? inputTextFieldPaddingLoading,
     EdgeInsets? inputTextFieldPaddingSuccess,
     EdgeInsets? inputTextFieldPaddingWarning,
-    Color? inputTextFieldRegularBackground,
-    Color? inputTextFieldSuccessBackground,
-    Color? labelBoxFilledBackground,
-    Color? labelBoxOptionalBackground,
-    EdgeInsets? labeledBoxWidgetPadding1,
-    EdgeInsets? labeledBoxWidgetPadding2,
-    EdgeInsets? labeledBoxWidgetPadding3,
-    SvgFile? loadingIcon,
-    Color? mediumBlack,
-    Color? mediumWhite,
-    Color? orange,
-    Color? orangeLight,
-    Color? red,
-    Color? redLight,
-    TextStyle? smallThin,
-    double? spacingL,
-    double? spacingM,
-    double? spacingS,
-    double? spacingXL,
-    double? spacingXS,
-    double? spacingXSS,
-    double? spacingXXXS,
-    EdgeInsets? textFieldDialog2,
-    EdgeInsets? textFieldDialog3,
-    EdgeInsets? textFieldDialog4,
-    SvgFile? tickCircleSuccessIcon,
-    TextStyle? titleBold,
-    Color? transparent,
-    Color? white,
+    EdgeInsets? inputTextFieldPaddingError,
   }) {
     return TextFieldDialogTheme(
-      addDisabledIcon: addDisabledIcon ?? this.addDisabledIcon,
-      addIcon: addIcon ?? this.addIcon,
-      arrowRightSquareIcon: arrowRightSquareIcon ?? this.arrowRightSquareIcon,
-      black: black ?? this.black,
-      blue: blue ?? this.blue,
-      captionBold: captionBold ?? this.captionBold,
-      closeIcon: closeIcon ?? this.closeIcon,
-      dangerIcon: dangerIcon ?? this.dangerIcon,
-      defaultWhite: defaultWhite ?? this.defaultWhite,
-      descriptionBold: descriptionBold ?? this.descriptionBold,
+      editFieldSuccessBackground:
+          editFieldSuccessBackground ?? this.editFieldSuccessBackground,
+      editFieldRegularBackground:
+          editFieldRegularBackground ?? this.editFieldRegularBackground,
+      inputFieldBackgroundSuccessColor: inputFieldBackgroundSuccessColor ??
+          this.inputFieldBackgroundSuccessColor,
+      labelBoxOptionalBackground:
+          labelBoxOptionalBackground ?? this.labelBoxOptionalBackground,
+      labelBoxFilledBackground:
+          labelBoxFilledBackground ?? this.labelBoxFilledBackground,
+      editFieldBorderRadius:
+          editFieldBorderRadius ?? this.editFieldBorderRadius,
+      spacingXS: spacingXS ?? this.spacingXS,
+      spacingXSS: spacingXSS ?? this.spacingXSS,
+      spacingS: spacingS ?? this.spacingS,
+      spacingM: spacingM ?? this.spacingM,
+      spacingXL: spacingXL ?? this.spacingXL,
+      spacingXXXS: spacingXXXS ?? this.spacingXXXS,
       descriptionThin: descriptionThin ?? this.descriptionThin,
+      titleBold: titleBold ?? this.titleBold,
+      descriptionBold: descriptionBold ?? this.descriptionBold,
+      captionBold: captionBold ?? this.captionBold,
+      smallThin: smallThin ?? this.smallThin,
       disabledFilledButtonBackgroundColor:
           disabledFilledButtonBackgroundColor ??
               this.disabledFilledButtonBackgroundColor,
-      editFieldBorderRadius:
-          editFieldBorderRadius ?? this.editFieldBorderRadius,
-      editFieldRegularBackground:
-          editFieldRegularBackground ?? this.editFieldRegularBackground,
-      editFieldSuccessBackground:
-          editFieldSuccessBackground ?? this.editFieldSuccessBackground,
+      textFieldDialogIconColor:
+          textFieldDialogIconColor ?? this.textFieldDialogIconColor,
+      inputFieldBorderErrorColor:
+          inputFieldBorderErrorColor ?? this.inputFieldBorderErrorColor,
+      inputFieldBorderTypeColor:
+          inputFieldBorderTypeColor ?? this.inputFieldBorderTypeColor,
+      inputFieldBorderDisabledColor:
+          inputFieldBorderDisabledColor ?? this.inputFieldBorderDisabledColor,
+      inputFieldBorderLoadingColor:
+          inputFieldBorderLoadingColor ?? this.inputFieldBorderLoadingColor,
+      inputFieldBorderWarningColor:
+          inputFieldBorderWarningColor ?? this.inputFieldBorderWarningColor,
+      inputFieldValueColor: inputFieldValueColor ?? this.inputFieldValueColor,
+      inputFieldValueDisabledColor:
+          inputFieldValueDisabledColor ?? this.inputFieldValueDisabledColor,
+      labelBoxOptionalPrimary:
+          labelBoxOptionalPrimary ?? this.labelBoxOptionalPrimary,
+      labelBoxFilledPrimary:
+          labelBoxFilledPrimary ?? this.labelBoxFilledPrimary,
+      labelBoxOptionalSecondary:
+          labelBoxOptionalSecondary ?? this.labelBoxOptionalSecondary,
+      labelBoxFilledSecondary:
+          labelBoxFilledSecondary ?? this.labelBoxFilledSecondary,
+      labelBoxOptionalBorder:
+          labelBoxOptionalBorder ?? this.labelBoxOptionalBorder,
+      labelBoxFilledBorder: labelBoxFilledBorder ?? this.labelBoxFilledBorder,
+      editFieldLabelEditedColor:
+          editFieldLabelEditedColor ?? this.editFieldLabelEditedColor,
+      editFieldLabelNotEditedColor:
+          editFieldLabelNotEditedColor ?? this.editFieldLabelNotEditedColor,
+      editFieldLabelLoadingColor:
+          editFieldLabelLoadingColor ?? this.editFieldLabelLoadingColor,
+      editFieldLabelSuccessColor:
+          editFieldLabelSuccessColor ?? this.editFieldLabelSuccessColor,
+      editFieldValueEditedColor:
+          editFieldValueEditedColor ?? this.editFieldValueEditedColor,
+      editFieldValueNotEditedColor:
+          editFieldValueNotEditedColor ?? this.editFieldValueNotEditedColor,
+      editFieldValueLoadingColor:
+          editFieldValueLoadingColor ?? this.editFieldValueLoadingColor,
+      editFieldValueSuccessColor:
+          editFieldValueSuccessColor ?? this.editFieldValueSuccessColor,
+      editFieldTextEditedTextStyle:
+          editFieldTextEditedTextStyle ?? this.editFieldTextEditedTextStyle,
+      editFieldTextNotEditedTextStyle: editFieldTextNotEditedTextStyle ??
+          this.editFieldTextNotEditedTextStyle,
+      editFieldTextLoadingTextStyle:
+          editFieldTextLoadingTextStyle ?? this.editFieldTextLoadingTextStyle,
+      editFieldTextSuccessTextStyle:
+          editFieldTextSuccessTextStyle ?? this.editFieldTextSuccessTextStyle,
+      inputFieldTextDefaultFieldColor: inputFieldTextDefaultFieldColor ??
+          this.inputFieldTextDefaultFieldColor,
+      inputFieldTextDefaultDisabledColor: inputFieldTextDefaultDisabledColor ??
+          this.inputFieldTextDefaultDisabledColor,
+      inputFieldTextDisabledColor:
+          inputFieldTextDisabledColor ?? this.inputFieldTextDisabledColor,
+      inputFieldTextErrorColor:
+          inputFieldTextErrorColor ?? this.inputFieldTextErrorColor,
+      inputFieldTextFilledColor:
+          inputFieldTextFilledColor ?? this.inputFieldTextFilledColor,
+      inputFieldTextLoadingColor:
+          inputFieldTextLoadingColor ?? this.inputFieldTextLoadingColor,
+      inputFieldTextSuccessColor:
+          inputFieldTextSuccessColor ?? this.inputFieldTextSuccessColor,
+      inputFieldTextTypeColor:
+          inputFieldTextTypeColor ?? this.inputFieldTextTypeColor,
+      inputFieldTextWarningColor:
+          inputFieldTextWarningColor ?? this.inputFieldTextWarningColor,
+      inputFieldTextPlainColor:
+          inputFieldTextPlainColor ?? this.inputFieldTextPlainColor,
+      inputFieldBackgroundFilledColor: inputFieldBackgroundFilledColor ??
+          this.inputFieldBackgroundFilledColor,
+      inputFieldBackgroundPlainColor:
+          inputFieldBackgroundPlainColor ?? this.inputFieldBackgroundPlainColor,
+      inputFieldBackgroundDefaultFieldColor:
+          inputFieldBackgroundDefaultFieldColor ??
+              this.inputFieldBackgroundDefaultFieldColor,
+      inputFieldBackgroundDefaultDisabledColor:
+          inputFieldBackgroundDefaultDisabledColor ??
+              this.inputFieldBackgroundDefaultDisabledColor,
+      inputFieldBackgroundDefaultColor: inputFieldBackgroundDefaultColor ??
+          this.inputFieldBackgroundDefaultColor,
+      inputFieldHintColor: inputFieldHintColor ?? this.inputFieldHintColor,
+      inputFieldErrorTextColor:
+          inputFieldErrorTextColor ?? this.inputFieldErrorTextColor,
+      closeIcon: closeIcon ?? this.closeIcon,
+      dangerIcon: dangerIcon ?? this.dangerIcon,
+      addIcon: addIcon ?? this.addIcon,
+      addDisabledIcon: addDisabledIcon ?? this.addDisabledIcon,
+      arrowRightSquareIcon: arrowRightSquareIcon ?? this.arrowRightSquareIcon,
       editPenIcon: editPenIcon ?? this.editPenIcon,
-      gray: gray ?? this.gray,
-      green: green ?? this.green,
-      greenLight: greenLight ?? this.greenLight,
       infoCircleIcon: infoCircleIcon ?? this.infoCircleIcon,
-      inputTextFieldPadding1:
-          inputTextFieldPadding1 ?? this.inputTextFieldPadding1,
-      inputTextFieldPadding2:
-          inputTextFieldPadding2 ?? this.inputTextFieldPadding2,
-      inputTextFieldPadding3:
-          inputTextFieldPadding3 ?? this.inputTextFieldPadding3,
-      inputTextFieldPaddingError:
-          inputTextFieldPaddingError ?? this.inputTextFieldPaddingError,
+      loadingIcon: loadingIcon ?? this.loadingIcon,
+      tickCircleSuccessIcon:
+          tickCircleSuccessIcon ?? this.tickCircleSuccessIcon,
+      textFieldDialogPadding:
+          textFieldDialogPadding ?? this.textFieldDialogPadding,
+      textFieldDialogButtonPadding:
+          textFieldDialogButtonPadding ?? this.textFieldDialogButtonPadding,
+      textFieldDialogHeaderPadding:
+          textFieldDialogHeaderPadding ?? this.textFieldDialogHeaderPadding,
+      labeledBoxWidgetContentPadding:
+          labeledBoxWidgetContentPadding ?? this.labeledBoxWidgetContentPadding,
+      labeledBoxWidgetIconPadding:
+          labeledBoxWidgetIconPadding ?? this.labeledBoxWidgetIconPadding,
+      labeledBoxWidgetOptionalTextPadding:
+          labeledBoxWidgetOptionalTextPadding ??
+              this.labeledBoxWidgetOptionalTextPadding,
+      inputTextFieldErrorPadding:
+          inputTextFieldErrorPadding ?? this.inputTextFieldErrorPadding,
+      inputTextFieldIconPadding:
+          inputTextFieldIconPadding ?? this.inputTextFieldIconPadding,
+      inputTextFieldIconDisabledPadding: inputTextFieldIconDisabledPadding ??
+          this.inputTextFieldIconDisabledPadding,
       inputTextFieldPaddingLoading:
           inputTextFieldPaddingLoading ?? this.inputTextFieldPaddingLoading,
       inputTextFieldPaddingSuccess:
           inputTextFieldPaddingSuccess ?? this.inputTextFieldPaddingSuccess,
       inputTextFieldPaddingWarning:
           inputTextFieldPaddingWarning ?? this.inputTextFieldPaddingWarning,
-      inputTextFieldRegularBackground: inputTextFieldRegularBackground ??
-          this.inputTextFieldRegularBackground,
-      inputTextFieldSuccessBackground: inputTextFieldSuccessBackground ??
-          this.inputTextFieldSuccessBackground,
-      labelBoxFilledBackground:
-          labelBoxFilledBackground ?? this.labelBoxFilledBackground,
-      labelBoxOptionalBackground:
-          labelBoxOptionalBackground ?? this.labelBoxOptionalBackground,
-      labeledBoxWidgetPadding1:
-          labeledBoxWidgetPadding1 ?? this.labeledBoxWidgetPadding1,
-      labeledBoxWidgetPadding2:
-          labeledBoxWidgetPadding2 ?? this.labeledBoxWidgetPadding2,
-      labeledBoxWidgetPadding3:
-          labeledBoxWidgetPadding3 ?? this.labeledBoxWidgetPadding3,
-      loadingIcon: loadingIcon ?? this.loadingIcon,
-      mediumBlack: mediumBlack ?? this.mediumBlack,
-      mediumWhite: mediumWhite ?? this.mediumWhite,
-      orange: orange ?? this.orange,
-      orangeLight: orangeLight ?? this.orangeLight,
-      red: red ?? this.red,
-      redLight: redLight ?? this.redLight,
-      smallThin: smallThin ?? this.smallThin,
-      spacingL: spacingL ?? this.spacingL,
-      spacingM: spacingM ?? this.spacingM,
-      spacingS: spacingS ?? this.spacingS,
-      spacingXL: spacingXL ?? this.spacingXL,
-      spacingXS: spacingXS ?? this.spacingXS,
-      spacingXSS: spacingXSS ?? this.spacingXSS,
-      spacingXXXS: spacingXXXS ?? this.spacingXXXS,
-      textFieldDialog2: textFieldDialog2 ?? this.textFieldDialog2,
-      textFieldDialog3: textFieldDialog3 ?? this.textFieldDialog3,
-      textFieldDialog4: textFieldDialog4 ?? this.textFieldDialog4,
-      tickCircleSuccessIcon:
-          tickCircleSuccessIcon ?? this.tickCircleSuccessIcon,
-      titleBold: titleBold ?? this.titleBold,
-      transparent: transparent ?? this.transparent,
-      white: white ?? this.white,
+      inputTextFieldPaddingError:
+          inputTextFieldPaddingError ?? this.inputTextFieldPaddingError,
     );
   }
 
@@ -443,44 +337,177 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       covariant ThemeExtension<TextFieldDialogTheme>? other, double t) {
     if (other is! TextFieldDialogTheme) return this as TextFieldDialogTheme;
     return TextFieldDialogTheme(
-      addDisabledIcon: t < 0.5 ? addDisabledIcon : other.addDisabledIcon,
-      addIcon: t < 0.5 ? addIcon : other.addIcon,
-      arrowRightSquareIcon:
-          t < 0.5 ? arrowRightSquareIcon : other.arrowRightSquareIcon,
-      black: Color.lerp(black, other.black, t)!,
-      blue: Color.lerp(blue, other.blue, t)!,
-      captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
-      closeIcon: t < 0.5 ? closeIcon : other.closeIcon,
-      dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
-      defaultWhite: Color.lerp(defaultWhite, other.defaultWhite, t)!,
-      descriptionBold:
-          TextStyle.lerp(descriptionBold, other.descriptionBold, t)!,
+      editFieldSuccessBackground: Color.lerp(
+          editFieldSuccessBackground, other.editFieldSuccessBackground, t)!,
+      editFieldRegularBackground: Color.lerp(
+          editFieldRegularBackground, other.editFieldRegularBackground, t)!,
+      inputFieldBackgroundSuccessColor: Color.lerp(
+          inputFieldBackgroundSuccessColor,
+          other.inputFieldBackgroundSuccessColor,
+          t)!,
+      labelBoxOptionalBackground: Color.lerp(
+          labelBoxOptionalBackground, other.labelBoxOptionalBackground, t)!,
+      labelBoxFilledBackground: Color.lerp(
+          labelBoxFilledBackground, other.labelBoxFilledBackground, t)!,
+      editFieldBorderRadius:
+          t < 0.5 ? editFieldBorderRadius : other.editFieldBorderRadius,
+      spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
+      spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
+      spacingS: t < 0.5 ? spacingS : other.spacingS,
+      spacingM: t < 0.5 ? spacingM : other.spacingM,
+      spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
+      spacingXXXS: t < 0.5 ? spacingXXXS : other.spacingXXXS,
       descriptionThin:
           TextStyle.lerp(descriptionThin, other.descriptionThin, t)!,
+      titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
+      descriptionBold:
+          TextStyle.lerp(descriptionBold, other.descriptionBold, t)!,
+      captionBold: TextStyle.lerp(captionBold, other.captionBold, t)!,
+      smallThin: TextStyle.lerp(smallThin, other.smallThin, t)!,
       disabledFilledButtonBackgroundColor: Color.lerp(
           disabledFilledButtonBackgroundColor,
           other.disabledFilledButtonBackgroundColor,
           t)!,
-      editFieldBorderRadius:
-          t < 0.5 ? editFieldBorderRadius : other.editFieldBorderRadius,
-      editFieldRegularBackground: Color.lerp(
-          editFieldRegularBackground, other.editFieldRegularBackground, t)!,
-      editFieldSuccessBackground: Color.lerp(
-          editFieldSuccessBackground, other.editFieldSuccessBackground, t)!,
+      textFieldDialogIconColor: Color.lerp(
+          textFieldDialogIconColor, other.textFieldDialogIconColor, t)!,
+      inputFieldBorderErrorColor: Color.lerp(
+          inputFieldBorderErrorColor, other.inputFieldBorderErrorColor, t)!,
+      inputFieldBorderTypeColor: Color.lerp(
+          inputFieldBorderTypeColor, other.inputFieldBorderTypeColor, t)!,
+      inputFieldBorderDisabledColor: Color.lerp(inputFieldBorderDisabledColor,
+          other.inputFieldBorderDisabledColor, t)!,
+      inputFieldBorderLoadingColor: Color.lerp(
+          inputFieldBorderLoadingColor, other.inputFieldBorderLoadingColor, t)!,
+      inputFieldBorderWarningColor: Color.lerp(
+          inputFieldBorderWarningColor, other.inputFieldBorderWarningColor, t)!,
+      inputFieldValueColor:
+          Color.lerp(inputFieldValueColor, other.inputFieldValueColor, t)!,
+      inputFieldValueDisabledColor: Color.lerp(
+          inputFieldValueDisabledColor, other.inputFieldValueDisabledColor, t)!,
+      labelBoxOptionalPrimary: Color.lerp(
+          labelBoxOptionalPrimary, other.labelBoxOptionalPrimary, t)!,
+      labelBoxFilledPrimary:
+          Color.lerp(labelBoxFilledPrimary, other.labelBoxFilledPrimary, t)!,
+      labelBoxOptionalSecondary: Color.lerp(
+          labelBoxOptionalSecondary, other.labelBoxOptionalSecondary, t)!,
+      labelBoxFilledSecondary: Color.lerp(
+          labelBoxFilledSecondary, other.labelBoxFilledSecondary, t)!,
+      labelBoxOptionalBorder:
+          Color.lerp(labelBoxOptionalBorder, other.labelBoxOptionalBorder, t)!,
+      labelBoxFilledBorder:
+          Color.lerp(labelBoxFilledBorder, other.labelBoxFilledBorder, t)!,
+      editFieldLabelEditedColor: Color.lerp(
+          editFieldLabelEditedColor, other.editFieldLabelEditedColor, t),
+      editFieldLabelNotEditedColor: Color.lerp(
+          editFieldLabelNotEditedColor, other.editFieldLabelNotEditedColor, t)!,
+      editFieldLabelLoadingColor: Color.lerp(
+          editFieldLabelLoadingColor, other.editFieldLabelLoadingColor, t)!,
+      editFieldLabelSuccessColor: Color.lerp(
+          editFieldLabelSuccessColor, other.editFieldLabelSuccessColor, t)!,
+      editFieldValueEditedColor: Color.lerp(
+          editFieldValueEditedColor, other.editFieldValueEditedColor, t)!,
+      editFieldValueNotEditedColor: Color.lerp(
+          editFieldValueNotEditedColor, other.editFieldValueNotEditedColor, t)!,
+      editFieldValueLoadingColor: Color.lerp(
+          editFieldValueLoadingColor, other.editFieldValueLoadingColor, t)!,
+      editFieldValueSuccessColor: Color.lerp(
+          editFieldValueSuccessColor, other.editFieldValueSuccessColor, t)!,
+      editFieldTextEditedTextStyle: TextStyle.lerp(
+          editFieldTextEditedTextStyle, other.editFieldTextEditedTextStyle, t)!,
+      editFieldTextNotEditedTextStyle: TextStyle.lerp(
+          editFieldTextNotEditedTextStyle,
+          other.editFieldTextNotEditedTextStyle,
+          t)!,
+      editFieldTextLoadingTextStyle: TextStyle.lerp(
+          editFieldTextLoadingTextStyle,
+          other.editFieldTextLoadingTextStyle,
+          t)!,
+      editFieldTextSuccessTextStyle: TextStyle.lerp(
+          editFieldTextSuccessTextStyle,
+          other.editFieldTextSuccessTextStyle,
+          t)!,
+      inputFieldTextDefaultFieldColor: Color.lerp(
+          inputFieldTextDefaultFieldColor,
+          other.inputFieldTextDefaultFieldColor,
+          t)!,
+      inputFieldTextDefaultDisabledColor: Color.lerp(
+          inputFieldTextDefaultDisabledColor,
+          other.inputFieldTextDefaultDisabledColor,
+          t)!,
+      inputFieldTextDisabledColor: Color.lerp(
+          inputFieldTextDisabledColor, other.inputFieldTextDisabledColor, t)!,
+      inputFieldTextErrorColor: Color.lerp(
+          inputFieldTextErrorColor, other.inputFieldTextErrorColor, t)!,
+      inputFieldTextFilledColor: Color.lerp(
+          inputFieldTextFilledColor, other.inputFieldTextFilledColor, t)!,
+      inputFieldTextLoadingColor: Color.lerp(
+          inputFieldTextLoadingColor, other.inputFieldTextLoadingColor, t)!,
+      inputFieldTextSuccessColor: Color.lerp(
+          inputFieldTextSuccessColor, other.inputFieldTextSuccessColor, t)!,
+      inputFieldTextTypeColor: Color.lerp(
+          inputFieldTextTypeColor, other.inputFieldTextTypeColor, t)!,
+      inputFieldTextWarningColor: Color.lerp(
+          inputFieldTextWarningColor, other.inputFieldTextWarningColor, t)!,
+      inputFieldTextPlainColor: Color.lerp(
+          inputFieldTextPlainColor, other.inputFieldTextPlainColor, t)!,
+      inputFieldBackgroundFilledColor: Color.lerp(
+          inputFieldBackgroundFilledColor,
+          other.inputFieldBackgroundFilledColor,
+          t)!,
+      inputFieldBackgroundPlainColor: Color.lerp(inputFieldBackgroundPlainColor,
+          other.inputFieldBackgroundPlainColor, t)!,
+      inputFieldBackgroundDefaultFieldColor: Color.lerp(
+          inputFieldBackgroundDefaultFieldColor,
+          other.inputFieldBackgroundDefaultFieldColor,
+          t)!,
+      inputFieldBackgroundDefaultDisabledColor: Color.lerp(
+          inputFieldBackgroundDefaultDisabledColor,
+          other.inputFieldBackgroundDefaultDisabledColor,
+          t)!,
+      inputFieldBackgroundDefaultColor: Color.lerp(
+          inputFieldBackgroundDefaultColor,
+          other.inputFieldBackgroundDefaultColor,
+          t)!,
+      inputFieldHintColor:
+          Color.lerp(inputFieldHintColor, other.inputFieldHintColor, t)!,
+      inputFieldErrorTextColor: Color.lerp(
+          inputFieldErrorTextColor, other.inputFieldErrorTextColor, t)!,
+      closeIcon: t < 0.5 ? closeIcon : other.closeIcon,
+      dangerIcon: t < 0.5 ? dangerIcon : other.dangerIcon,
+      addIcon: t < 0.5 ? addIcon : other.addIcon,
+      addDisabledIcon: t < 0.5 ? addDisabledIcon : other.addDisabledIcon,
+      arrowRightSquareIcon:
+          t < 0.5 ? arrowRightSquareIcon : other.arrowRightSquareIcon,
       editPenIcon: t < 0.5 ? editPenIcon : other.editPenIcon,
-      gray: Color.lerp(gray, other.gray, t)!,
-      green: Color.lerp(green, other.green, t)!,
-      greenLight: Color.lerp(greenLight, other.greenLight, t)!,
       infoCircleIcon: t < 0.5 ? infoCircleIcon : other.infoCircleIcon,
-      inputTextFieldPadding1:
-          t < 0.5 ? inputTextFieldPadding1 : other.inputTextFieldPadding1,
-      inputTextFieldPadding2:
-          t < 0.5 ? inputTextFieldPadding2 : other.inputTextFieldPadding2,
-      inputTextFieldPadding3:
-          t < 0.5 ? inputTextFieldPadding3 : other.inputTextFieldPadding3,
-      inputTextFieldPaddingError: t < 0.5
-          ? inputTextFieldPaddingError
-          : other.inputTextFieldPaddingError,
+      loadingIcon: t < 0.5 ? loadingIcon : other.loadingIcon,
+      tickCircleSuccessIcon:
+          t < 0.5 ? tickCircleSuccessIcon : other.tickCircleSuccessIcon,
+      textFieldDialogPadding:
+          t < 0.5 ? textFieldDialogPadding : other.textFieldDialogPadding,
+      textFieldDialogButtonPadding: t < 0.5
+          ? textFieldDialogButtonPadding
+          : other.textFieldDialogButtonPadding,
+      textFieldDialogHeaderPadding: t < 0.5
+          ? textFieldDialogHeaderPadding
+          : other.textFieldDialogHeaderPadding,
+      labeledBoxWidgetContentPadding: t < 0.5
+          ? labeledBoxWidgetContentPadding
+          : other.labeledBoxWidgetContentPadding,
+      labeledBoxWidgetIconPadding: t < 0.5
+          ? labeledBoxWidgetIconPadding
+          : other.labeledBoxWidgetIconPadding,
+      labeledBoxWidgetOptionalTextPadding: t < 0.5
+          ? labeledBoxWidgetOptionalTextPadding
+          : other.labeledBoxWidgetOptionalTextPadding,
+      inputTextFieldErrorPadding: t < 0.5
+          ? inputTextFieldErrorPadding
+          : other.inputTextFieldErrorPadding,
+      inputTextFieldIconPadding:
+          t < 0.5 ? inputTextFieldIconPadding : other.inputTextFieldIconPadding,
+      inputTextFieldIconDisabledPadding: t < 0.5
+          ? inputTextFieldIconDisabledPadding
+          : other.inputTextFieldIconDisabledPadding,
       inputTextFieldPaddingLoading: t < 0.5
           ? inputTextFieldPaddingLoading
           : other.inputTextFieldPaddingLoading,
@@ -490,47 +517,9 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
       inputTextFieldPaddingWarning: t < 0.5
           ? inputTextFieldPaddingWarning
           : other.inputTextFieldPaddingWarning,
-      inputTextFieldRegularBackground: Color.lerp(
-          inputTextFieldRegularBackground,
-          other.inputTextFieldRegularBackground,
-          t)!,
-      inputTextFieldSuccessBackground: Color.lerp(
-          inputTextFieldSuccessBackground,
-          other.inputTextFieldSuccessBackground,
-          t)!,
-      labelBoxFilledBackground: Color.lerp(
-          labelBoxFilledBackground, other.labelBoxFilledBackground, t)!,
-      labelBoxOptionalBackground: Color.lerp(
-          labelBoxOptionalBackground, other.labelBoxOptionalBackground, t)!,
-      labeledBoxWidgetPadding1:
-          t < 0.5 ? labeledBoxWidgetPadding1 : other.labeledBoxWidgetPadding1,
-      labeledBoxWidgetPadding2:
-          t < 0.5 ? labeledBoxWidgetPadding2 : other.labeledBoxWidgetPadding2,
-      labeledBoxWidgetPadding3:
-          t < 0.5 ? labeledBoxWidgetPadding3 : other.labeledBoxWidgetPadding3,
-      loadingIcon: t < 0.5 ? loadingIcon : other.loadingIcon,
-      mediumBlack: Color.lerp(mediumBlack, other.mediumBlack, t)!,
-      mediumWhite: Color.lerp(mediumWhite, other.mediumWhite, t)!,
-      orange: Color.lerp(orange, other.orange, t)!,
-      orangeLight: Color.lerp(orangeLight, other.orangeLight, t)!,
-      red: Color.lerp(red, other.red, t)!,
-      redLight: Color.lerp(redLight, other.redLight, t)!,
-      smallThin: TextStyle.lerp(smallThin, other.smallThin, t)!,
-      spacingL: t < 0.5 ? spacingL : other.spacingL,
-      spacingM: t < 0.5 ? spacingM : other.spacingM,
-      spacingS: t < 0.5 ? spacingS : other.spacingS,
-      spacingXL: t < 0.5 ? spacingXL : other.spacingXL,
-      spacingXS: t < 0.5 ? spacingXS : other.spacingXS,
-      spacingXSS: t < 0.5 ? spacingXSS : other.spacingXSS,
-      spacingXXXS: t < 0.5 ? spacingXXXS : other.spacingXXXS,
-      textFieldDialog2: t < 0.5 ? textFieldDialog2 : other.textFieldDialog2,
-      textFieldDialog3: t < 0.5 ? textFieldDialog3 : other.textFieldDialog3,
-      textFieldDialog4: t < 0.5 ? textFieldDialog4 : other.textFieldDialog4,
-      tickCircleSuccessIcon:
-          t < 0.5 ? tickCircleSuccessIcon : other.tickCircleSuccessIcon,
-      titleBold: TextStyle.lerp(titleBold, other.titleBold, t)!,
-      transparent: Color.lerp(transparent, other.transparent, t)!,
-      white: Color.lerp(white, other.white, t)!,
+      inputTextFieldPaddingError: t < 0.5
+          ? inputTextFieldPaddingError
+          : other.inputTextFieldPaddingError,
     );
   }
 
@@ -539,152 +528,203 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TextFieldDialogTheme &&
-            const DeepCollectionEquality()
-                .equals(addDisabledIcon, other.addDisabledIcon) &&
-            const DeepCollectionEquality().equals(addIcon, other.addIcon) &&
-            const DeepCollectionEquality()
-                .equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
-            const DeepCollectionEquality().equals(black, other.black) &&
-            const DeepCollectionEquality().equals(blue, other.blue) &&
-            const DeepCollectionEquality()
-                .equals(captionBold, other.captionBold) &&
-            const DeepCollectionEquality().equals(closeIcon, other.closeIcon) &&
-            const DeepCollectionEquality()
-                .equals(dangerIcon, other.dangerIcon) &&
-            const DeepCollectionEquality()
-                .equals(defaultWhite, other.defaultWhite) &&
-            const DeepCollectionEquality()
-                .equals(descriptionBold, other.descriptionBold) &&
-            const DeepCollectionEquality()
-                .equals(descriptionThin, other.descriptionThin) &&
             const DeepCollectionEquality().equals(
-                disabledFilledButtonBackgroundColor,
-                other.disabledFilledButtonBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(editFieldBorderRadius, other.editFieldBorderRadius) &&
+                editFieldSuccessBackground, other.editFieldSuccessBackground) &&
             const DeepCollectionEquality().equals(
                 editFieldRegularBackground, other.editFieldRegularBackground) &&
             const DeepCollectionEquality().equals(
-                editFieldSuccessBackground, other.editFieldSuccessBackground) &&
-            const DeepCollectionEquality()
-                .equals(editPenIcon, other.editPenIcon) &&
-            const DeepCollectionEquality().equals(gray, other.gray) &&
-            const DeepCollectionEquality().equals(green, other.green) &&
-            const DeepCollectionEquality()
-                .equals(greenLight, other.greenLight) &&
-            const DeepCollectionEquality()
-                .equals(infoCircleIcon, other.infoCircleIcon) &&
-            const DeepCollectionEquality()
-                .equals(inputTextFieldPadding1, other.inputTextFieldPadding1) &&
-            const DeepCollectionEquality()
-                .equals(inputTextFieldPadding2, other.inputTextFieldPadding2) &&
-            const DeepCollectionEquality()
-                .equals(inputTextFieldPadding3, other.inputTextFieldPadding3) &&
-            const DeepCollectionEquality().equals(
-                inputTextFieldPaddingError, other.inputTextFieldPaddingError) &&
-            const DeepCollectionEquality().equals(inputTextFieldPaddingLoading,
-                other.inputTextFieldPaddingLoading) &&
-            const DeepCollectionEquality().equals(inputTextFieldPaddingSuccess,
-                other.inputTextFieldPaddingSuccess) &&
-            const DeepCollectionEquality().equals(inputTextFieldPaddingWarning,
-                other.inputTextFieldPaddingWarning) &&
-            const DeepCollectionEquality().equals(
-                inputTextFieldRegularBackground,
-                other.inputTextFieldRegularBackground) &&
-            const DeepCollectionEquality().equals(
-                inputTextFieldSuccessBackground,
-                other.inputTextFieldSuccessBackground) &&
-            const DeepCollectionEquality().equals(
-                labelBoxFilledBackground, other.labelBoxFilledBackground) &&
+                inputFieldBackgroundSuccessColor,
+                other.inputFieldBackgroundSuccessColor) &&
             const DeepCollectionEquality().equals(
                 labelBoxOptionalBackground, other.labelBoxOptionalBackground) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding1, other.labeledBoxWidgetPadding1) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding2, other.labeledBoxWidgetPadding2) &&
-            const DeepCollectionEquality().equals(labeledBoxWidgetPadding3, other.labeledBoxWidgetPadding3) &&
-            const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
-            const DeepCollectionEquality().equals(mediumBlack, other.mediumBlack) &&
-            const DeepCollectionEquality().equals(mediumWhite, other.mediumWhite) &&
-            const DeepCollectionEquality().equals(orange, other.orange) &&
-            const DeepCollectionEquality().equals(orangeLight, other.orangeLight) &&
-            const DeepCollectionEquality().equals(red, other.red) &&
-            const DeepCollectionEquality().equals(redLight, other.redLight) &&
-            const DeepCollectionEquality().equals(smallThin, other.smallThin) &&
-            const DeepCollectionEquality().equals(spacingL, other.spacingL) &&
-            const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
-            const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
-            const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
+            const DeepCollectionEquality().equals(
+                labelBoxFilledBackground, other.labelBoxFilledBackground) &&
+            const DeepCollectionEquality()
+                .equals(editFieldBorderRadius, other.editFieldBorderRadius) &&
             const DeepCollectionEquality().equals(spacingXS, other.spacingXS) &&
-            const DeepCollectionEquality().equals(spacingXSS, other.spacingXSS) &&
-            const DeepCollectionEquality().equals(spacingXXXS, other.spacingXXXS) &&
-            const DeepCollectionEquality().equals(textFieldDialog2, other.textFieldDialog2) &&
-            const DeepCollectionEquality().equals(textFieldDialog3, other.textFieldDialog3) &&
-            const DeepCollectionEquality().equals(textFieldDialog4, other.textFieldDialog4) &&
-            const DeepCollectionEquality().equals(tickCircleSuccessIcon, other.tickCircleSuccessIcon) &&
+            const DeepCollectionEquality()
+                .equals(spacingXSS, other.spacingXSS) &&
+            const DeepCollectionEquality().equals(spacingS, other.spacingS) &&
+            const DeepCollectionEquality().equals(spacingM, other.spacingM) &&
+            const DeepCollectionEquality().equals(spacingXL, other.spacingXL) &&
+            const DeepCollectionEquality()
+                .equals(spacingXXXS, other.spacingXXXS) &&
+            const DeepCollectionEquality()
+                .equals(descriptionThin, other.descriptionThin) &&
             const DeepCollectionEquality().equals(titleBold, other.titleBold) &&
-            const DeepCollectionEquality().equals(transparent, other.transparent) &&
-            const DeepCollectionEquality().equals(white, other.white));
+            const DeepCollectionEquality()
+                .equals(descriptionBold, other.descriptionBold) &&
+            const DeepCollectionEquality()
+                .equals(captionBold, other.captionBold) &&
+            const DeepCollectionEquality().equals(smallThin, other.smallThin) &&
+            const DeepCollectionEquality().equals(
+                disabledFilledButtonBackgroundColor,
+                other.disabledFilledButtonBackgroundColor) &&
+            const DeepCollectionEquality().equals(
+                textFieldDialogIconColor, other.textFieldDialogIconColor) &&
+            const DeepCollectionEquality().equals(
+                inputFieldBorderErrorColor, other.inputFieldBorderErrorColor) &&
+            const DeepCollectionEquality().equals(
+                inputFieldBorderTypeColor, other.inputFieldBorderTypeColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderDisabledColor,
+                other.inputFieldBorderDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderLoadingColor,
+                other.inputFieldBorderLoadingColor) &&
+            const DeepCollectionEquality().equals(inputFieldBorderWarningColor,
+                other.inputFieldBorderWarningColor) &&
+            const DeepCollectionEquality()
+                .equals(inputFieldValueColor, other.inputFieldValueColor) &&
+            const DeepCollectionEquality().equals(inputFieldValueDisabledColor,
+                other.inputFieldValueDisabledColor) &&
+            const DeepCollectionEquality()
+                .equals(labelBoxOptionalPrimary, other.labelBoxOptionalPrimary) &&
+            const DeepCollectionEquality().equals(labelBoxFilledPrimary, other.labelBoxFilledPrimary) &&
+            const DeepCollectionEquality().equals(labelBoxOptionalSecondary, other.labelBoxOptionalSecondary) &&
+            const DeepCollectionEquality().equals(labelBoxFilledSecondary, other.labelBoxFilledSecondary) &&
+            const DeepCollectionEquality().equals(labelBoxOptionalBorder, other.labelBoxOptionalBorder) &&
+            const DeepCollectionEquality().equals(labelBoxFilledBorder, other.labelBoxFilledBorder) &&
+            const DeepCollectionEquality().equals(editFieldLabelEditedColor, other.editFieldLabelEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelNotEditedColor, other.editFieldLabelNotEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelLoadingColor, other.editFieldLabelLoadingColor) &&
+            const DeepCollectionEquality().equals(editFieldLabelSuccessColor, other.editFieldLabelSuccessColor) &&
+            const DeepCollectionEquality().equals(editFieldValueEditedColor, other.editFieldValueEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldValueNotEditedColor, other.editFieldValueNotEditedColor) &&
+            const DeepCollectionEquality().equals(editFieldValueLoadingColor, other.editFieldValueLoadingColor) &&
+            const DeepCollectionEquality().equals(editFieldValueSuccessColor, other.editFieldValueSuccessColor) &&
+            const DeepCollectionEquality().equals(editFieldTextEditedTextStyle, other.editFieldTextEditedTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextNotEditedTextStyle, other.editFieldTextNotEditedTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextLoadingTextStyle, other.editFieldTextLoadingTextStyle) &&
+            const DeepCollectionEquality().equals(editFieldTextSuccessTextStyle, other.editFieldTextSuccessTextStyle) &&
+            const DeepCollectionEquality().equals(inputFieldTextDefaultFieldColor, other.inputFieldTextDefaultFieldColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextDefaultDisabledColor, other.inputFieldTextDefaultDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextDisabledColor, other.inputFieldTextDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextErrorColor, other.inputFieldTextErrorColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextFilledColor, other.inputFieldTextFilledColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextLoadingColor, other.inputFieldTextLoadingColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextSuccessColor, other.inputFieldTextSuccessColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextTypeColor, other.inputFieldTextTypeColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextWarningColor, other.inputFieldTextWarningColor) &&
+            const DeepCollectionEquality().equals(inputFieldTextPlainColor, other.inputFieldTextPlainColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundFilledColor, other.inputFieldBackgroundFilledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundPlainColor, other.inputFieldBackgroundPlainColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultFieldColor, other.inputFieldBackgroundDefaultFieldColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultDisabledColor, other.inputFieldBackgroundDefaultDisabledColor) &&
+            const DeepCollectionEquality().equals(inputFieldBackgroundDefaultColor, other.inputFieldBackgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(inputFieldHintColor, other.inputFieldHintColor) &&
+            const DeepCollectionEquality().equals(inputFieldErrorTextColor, other.inputFieldErrorTextColor) &&
+            const DeepCollectionEquality().equals(closeIcon, other.closeIcon) &&
+            const DeepCollectionEquality().equals(dangerIcon, other.dangerIcon) &&
+            const DeepCollectionEquality().equals(addIcon, other.addIcon) &&
+            const DeepCollectionEquality().equals(addDisabledIcon, other.addDisabledIcon) &&
+            const DeepCollectionEquality().equals(arrowRightSquareIcon, other.arrowRightSquareIcon) &&
+            const DeepCollectionEquality().equals(editPenIcon, other.editPenIcon) &&
+            const DeepCollectionEquality().equals(infoCircleIcon, other.infoCircleIcon) &&
+            const DeepCollectionEquality().equals(loadingIcon, other.loadingIcon) &&
+            const DeepCollectionEquality().equals(tickCircleSuccessIcon, other.tickCircleSuccessIcon) &&
+            const DeepCollectionEquality().equals(textFieldDialogPadding, other.textFieldDialogPadding) &&
+            const DeepCollectionEquality().equals(textFieldDialogButtonPadding, other.textFieldDialogButtonPadding) &&
+            const DeepCollectionEquality().equals(textFieldDialogHeaderPadding, other.textFieldDialogHeaderPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetContentPadding, other.labeledBoxWidgetContentPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetIconPadding, other.labeledBoxWidgetIconPadding) &&
+            const DeepCollectionEquality().equals(labeledBoxWidgetOptionalTextPadding, other.labeledBoxWidgetOptionalTextPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldErrorPadding, other.inputTextFieldErrorPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldIconPadding, other.inputTextFieldIconPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldIconDisabledPadding, other.inputTextFieldIconDisabledPadding) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingLoading, other.inputTextFieldPaddingLoading) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingSuccess, other.inputTextFieldPaddingSuccess) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingWarning, other.inputTextFieldPaddingWarning) &&
+            const DeepCollectionEquality().equals(inputTextFieldPaddingError, other.inputTextFieldPaddingError));
   }
 
   @override
   int get hashCode {
     return Object.hashAll([
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(addDisabledIcon),
-      const DeepCollectionEquality().hash(addIcon),
-      const DeepCollectionEquality().hash(arrowRightSquareIcon),
-      const DeepCollectionEquality().hash(black),
-      const DeepCollectionEquality().hash(blue),
+      const DeepCollectionEquality().hash(editFieldSuccessBackground),
+      const DeepCollectionEquality().hash(editFieldRegularBackground),
+      const DeepCollectionEquality().hash(inputFieldBackgroundSuccessColor),
+      const DeepCollectionEquality().hash(labelBoxOptionalBackground),
+      const DeepCollectionEquality().hash(labelBoxFilledBackground),
+      const DeepCollectionEquality().hash(editFieldBorderRadius),
+      const DeepCollectionEquality().hash(spacingXS),
+      const DeepCollectionEquality().hash(spacingXSS),
+      const DeepCollectionEquality().hash(spacingS),
+      const DeepCollectionEquality().hash(spacingM),
+      const DeepCollectionEquality().hash(spacingXL),
+      const DeepCollectionEquality().hash(spacingXXXS),
+      const DeepCollectionEquality().hash(descriptionThin),
+      const DeepCollectionEquality().hash(titleBold),
+      const DeepCollectionEquality().hash(descriptionBold),
       const DeepCollectionEquality().hash(captionBold),
+      const DeepCollectionEquality().hash(smallThin),
+      const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
+      const DeepCollectionEquality().hash(textFieldDialogIconColor),
+      const DeepCollectionEquality().hash(inputFieldBorderErrorColor),
+      const DeepCollectionEquality().hash(inputFieldBorderTypeColor),
+      const DeepCollectionEquality().hash(inputFieldBorderDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldBorderLoadingColor),
+      const DeepCollectionEquality().hash(inputFieldBorderWarningColor),
+      const DeepCollectionEquality().hash(inputFieldValueColor),
+      const DeepCollectionEquality().hash(inputFieldValueDisabledColor),
+      const DeepCollectionEquality().hash(labelBoxOptionalPrimary),
+      const DeepCollectionEquality().hash(labelBoxFilledPrimary),
+      const DeepCollectionEquality().hash(labelBoxOptionalSecondary),
+      const DeepCollectionEquality().hash(labelBoxFilledSecondary),
+      const DeepCollectionEquality().hash(labelBoxOptionalBorder),
+      const DeepCollectionEquality().hash(labelBoxFilledBorder),
+      const DeepCollectionEquality().hash(editFieldLabelEditedColor),
+      const DeepCollectionEquality().hash(editFieldLabelNotEditedColor),
+      const DeepCollectionEquality().hash(editFieldLabelLoadingColor),
+      const DeepCollectionEquality().hash(editFieldLabelSuccessColor),
+      const DeepCollectionEquality().hash(editFieldValueEditedColor),
+      const DeepCollectionEquality().hash(editFieldValueNotEditedColor),
+      const DeepCollectionEquality().hash(editFieldValueLoadingColor),
+      const DeepCollectionEquality().hash(editFieldValueSuccessColor),
+      const DeepCollectionEquality().hash(editFieldTextEditedTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextNotEditedTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextLoadingTextStyle),
+      const DeepCollectionEquality().hash(editFieldTextSuccessTextStyle),
+      const DeepCollectionEquality().hash(inputFieldTextDefaultFieldColor),
+      const DeepCollectionEquality().hash(inputFieldTextDefaultDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldTextDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldTextErrorColor),
+      const DeepCollectionEquality().hash(inputFieldTextFilledColor),
+      const DeepCollectionEquality().hash(inputFieldTextLoadingColor),
+      const DeepCollectionEquality().hash(inputFieldTextSuccessColor),
+      const DeepCollectionEquality().hash(inputFieldTextTypeColor),
+      const DeepCollectionEquality().hash(inputFieldTextWarningColor),
+      const DeepCollectionEquality().hash(inputFieldTextPlainColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundFilledColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundPlainColor),
+      const DeepCollectionEquality()
+          .hash(inputFieldBackgroundDefaultFieldColor),
+      const DeepCollectionEquality()
+          .hash(inputFieldBackgroundDefaultDisabledColor),
+      const DeepCollectionEquality().hash(inputFieldBackgroundDefaultColor),
+      const DeepCollectionEquality().hash(inputFieldHintColor),
+      const DeepCollectionEquality().hash(inputFieldErrorTextColor),
       const DeepCollectionEquality().hash(closeIcon),
       const DeepCollectionEquality().hash(dangerIcon),
-      const DeepCollectionEquality().hash(defaultWhite),
-      const DeepCollectionEquality().hash(descriptionBold),
-      const DeepCollectionEquality().hash(descriptionThin),
-      const DeepCollectionEquality().hash(disabledFilledButtonBackgroundColor),
-      const DeepCollectionEquality().hash(editFieldBorderRadius),
-      const DeepCollectionEquality().hash(editFieldRegularBackground),
-      const DeepCollectionEquality().hash(editFieldSuccessBackground),
+      const DeepCollectionEquality().hash(addIcon),
+      const DeepCollectionEquality().hash(addDisabledIcon),
+      const DeepCollectionEquality().hash(arrowRightSquareIcon),
       const DeepCollectionEquality().hash(editPenIcon),
-      const DeepCollectionEquality().hash(gray),
-      const DeepCollectionEquality().hash(green),
-      const DeepCollectionEquality().hash(greenLight),
       const DeepCollectionEquality().hash(infoCircleIcon),
-      const DeepCollectionEquality().hash(inputTextFieldPadding1),
-      const DeepCollectionEquality().hash(inputTextFieldPadding2),
-      const DeepCollectionEquality().hash(inputTextFieldPadding3),
-      const DeepCollectionEquality().hash(inputTextFieldPaddingError),
+      const DeepCollectionEquality().hash(loadingIcon),
+      const DeepCollectionEquality().hash(tickCircleSuccessIcon),
+      const DeepCollectionEquality().hash(textFieldDialogPadding),
+      const DeepCollectionEquality().hash(textFieldDialogButtonPadding),
+      const DeepCollectionEquality().hash(textFieldDialogHeaderPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetContentPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetIconPadding),
+      const DeepCollectionEquality().hash(labeledBoxWidgetOptionalTextPadding),
+      const DeepCollectionEquality().hash(inputTextFieldErrorPadding),
+      const DeepCollectionEquality().hash(inputTextFieldIconPadding),
+      const DeepCollectionEquality().hash(inputTextFieldIconDisabledPadding),
       const DeepCollectionEquality().hash(inputTextFieldPaddingLoading),
       const DeepCollectionEquality().hash(inputTextFieldPaddingSuccess),
       const DeepCollectionEquality().hash(inputTextFieldPaddingWarning),
-      const DeepCollectionEquality().hash(inputTextFieldRegularBackground),
-      const DeepCollectionEquality().hash(inputTextFieldSuccessBackground),
-      const DeepCollectionEquality().hash(labelBoxFilledBackground),
-      const DeepCollectionEquality().hash(labelBoxOptionalBackground),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding1),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding2),
-      const DeepCollectionEquality().hash(labeledBoxWidgetPadding3),
-      const DeepCollectionEquality().hash(loadingIcon),
-      const DeepCollectionEquality().hash(mediumBlack),
-      const DeepCollectionEquality().hash(mediumWhite),
-      const DeepCollectionEquality().hash(orange),
-      const DeepCollectionEquality().hash(orangeLight),
-      const DeepCollectionEquality().hash(red),
-      const DeepCollectionEquality().hash(redLight),
-      const DeepCollectionEquality().hash(smallThin),
-      const DeepCollectionEquality().hash(spacingL),
-      const DeepCollectionEquality().hash(spacingM),
-      const DeepCollectionEquality().hash(spacingS),
-      const DeepCollectionEquality().hash(spacingXL),
-      const DeepCollectionEquality().hash(spacingXS),
-      const DeepCollectionEquality().hash(spacingXSS),
-      const DeepCollectionEquality().hash(spacingXXXS),
-      const DeepCollectionEquality().hash(textFieldDialog2),
-      const DeepCollectionEquality().hash(textFieldDialog3),
-      const DeepCollectionEquality().hash(textFieldDialog4),
-      const DeepCollectionEquality().hash(tickCircleSuccessIcon),
-      const DeepCollectionEquality().hash(titleBold),
-      const DeepCollectionEquality().hash(transparent),
-      const DeepCollectionEquality().hash(white),
+      const DeepCollectionEquality().hash(inputTextFieldPaddingError),
     ]);
   }
 }

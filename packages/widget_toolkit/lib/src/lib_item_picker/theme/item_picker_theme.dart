@@ -5,40 +5,51 @@ import '../../base/theme/design_system/widget_toolkit_design_system.dart';
 
 part 'item_picker_theme.tailor.dart';
 
-@Tailor(themeGetter: ThemeGetter.none)
-class _$ItemPickerTheme {
-  /// region ItemPickerPage
+@TailorMixinComponent()
+class ItemPickerTheme extends ThemeExtension<ItemPickerTheme>
+    with _$ItemPickerThemeTailorMixin {
+  const ItemPickerTheme({
+    required this.titlePadding,
+    required this.titleStyle,
+    required this.errorPadding,
+    required this.contentListPadding,
+    required this.footerPadding,
+  });
 
-  static List<EdgeInsets> titlePadding = [
-    EdgeInsets.only(
-        bottom: WidgetToolkitDesignSystem.light().spacings.m,
-        left: WidgetToolkitDesignSystem.light().spacings.xs),
-    EdgeInsets.only(
-        bottom: WidgetToolkitDesignSystem.light().spacings.m,
-        left: WidgetToolkitDesignSystem.light().spacings.xs),
-  ];
+  /// region Themes
 
-  static List<TextStyle> titleStyle = [
-    WidgetToolkitDesignSystem.light().typography.titleStyle,
-    WidgetToolkitDesignSystem.dark().typography.titleStyle,
-  ];
+  ItemPickerTheme.light()
+      : contentListPadding = EdgeInsets.zero,
+        titlePadding = EdgeInsets.only(
+            bottom: WidgetToolkitDesignSystem.light().spacings.m,
+            left: WidgetToolkitDesignSystem.light().spacings.xs),
+        titleStyle = WidgetToolkitDesignSystem.light().typography.titleStyle,
+        errorPadding = EdgeInsets.zero,
+        footerPadding =
+            EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m);
 
-  static List<EdgeInsets> errorPadding = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
-
-  static List<EdgeInsets> contentListPadding = [
-    EdgeInsets.zero,
-    EdgeInsets.zero,
-  ];
-
-  static List<EdgeInsets> footerPadding = [
-    EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m),
-    EdgeInsets.only(top: WidgetToolkitDesignSystem.light().spacings.m),
-  ];
+  ItemPickerTheme.dark()
+      : titlePadding = EdgeInsets.only(
+            bottom: WidgetToolkitDesignSystem.dark().spacings.m,
+            left: WidgetToolkitDesignSystem.dark().spacings.xs),
+        titleStyle = WidgetToolkitDesignSystem.dark().typography.titleStyle,
+        errorPadding = EdgeInsets.zero,
+        contentListPadding = EdgeInsets.zero,
+        footerPadding =
+            EdgeInsets.only(top: WidgetToolkitDesignSystem.dark().spacings.m);
 
   /// endregion
+
+  @override
+  final EdgeInsets titlePadding;
+  @override
+  final TextStyle titleStyle;
+  @override
+  final EdgeInsets errorPadding;
+  @override
+  final EdgeInsets contentListPadding;
+  @override
+  final EdgeInsets footerPadding;
 }
 
 extension ItemPickerThemeContextExtension on BuildContext {

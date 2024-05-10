@@ -159,12 +159,14 @@ class InputTextFieldState extends State<InputTextField> {
               if (currentState == InputTextFieldStateModel.error &&
                   widget.errorMessage != null)
                 Padding(
-                  padding: context.textFieldDialogTheme.inputTextFieldPadding1,
+                  padding:
+                      context.textFieldDialogTheme.inputTextFieldErrorPadding,
                   child: Text(
                     widget.errorMessage ?? '',
                     textAlign: TextAlign.start,
                     style: context.textFieldDialogTheme.smallThin.copyWith(
-                      color: context.textFieldDialogTheme.red,
+                      color:
+                          context.textFieldDialogTheme.inputFieldErrorTextColor,
                     ),
                   ),
                 ),
@@ -223,7 +225,7 @@ class InputTextFieldState extends State<InputTextField> {
                       hintText: widget.hintText,
                       hintStyle:
                           context.textFieldDialogTheme.descriptionThin.copyWith(
-                        color: context.textFieldDialogTheme.gray,
+                        color: context.textFieldDialogTheme.inputFieldHintColor,
                       ),
                     ),
               ),
@@ -292,57 +294,59 @@ extension _InputTextFieldStateModelX on InputTextFieldStateModel {
   Color getColor(BuildContext context) {
     switch (this) {
       case InputTextFieldStateModel.defaultField:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.inputFieldTextDefaultFieldColor;
       case InputTextFieldStateModel.defaultDisabled:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.inputFieldTextDefaultDisabledColor;
       case InputTextFieldStateModel.disabled:
-        return context.textFieldDialogTheme.mediumBlack;
+        return context.textFieldDialogTheme.inputFieldTextDisabledColor;
       case InputTextFieldStateModel.error:
-        return context.textFieldDialogTheme.red;
+        return context.textFieldDialogTheme.inputFieldTextErrorColor;
       case InputTextFieldStateModel.filled:
-        return context.textFieldDialogTheme.green;
+        return context.textFieldDialogTheme.inputFieldTextFilledColor;
       case InputTextFieldStateModel.loading:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.inputFieldTextLoadingColor;
       case InputTextFieldStateModel.success:
-        return context.textFieldDialogTheme.green;
+        return context.textFieldDialogTheme.inputFieldTextSuccessColor;
       case InputTextFieldStateModel.type:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.inputFieldTextTypeColor;
       case InputTextFieldStateModel.warning:
-        return context.textFieldDialogTheme.orange;
+        return context.textFieldDialogTheme.inputFieldTextWarningColor;
       case InputTextFieldStateModel.plain:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.inputFieldTextPlainColor;
     }
   }
 
   Color _getBackgroundColor(BuildContext context) {
     switch (this) {
       case InputTextFieldStateModel.filled:
-        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputFieldBackgroundFilledColor;
       case InputTextFieldStateModel.success:
-        return context.textFieldDialogTheme.inputTextFieldSuccessBackground;
+        return context.textFieldDialogTheme.inputFieldBackgroundSuccessColor;
       case InputTextFieldStateModel.defaultField:
-        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
+        return context
+            .textFieldDialogTheme.inputFieldBackgroundDefaultFieldColor;
       case InputTextFieldStateModel.defaultDisabled:
-        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
+        return context
+            .textFieldDialogTheme.inputFieldBackgroundDefaultDisabledColor;
       case InputTextFieldStateModel.plain:
-        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputFieldBackgroundPlainColor;
       default:
-        return context.textFieldDialogTheme.inputTextFieldRegularBackground;
+        return context.textFieldDialogTheme.inputFieldBackgroundDefaultColor;
     }
   }
 
   Color _getBorderColor(BuildContext context) {
     switch (this) {
       case InputTextFieldStateModel.error:
-        return context.textFieldDialogTheme.redLight;
+        return context.textFieldDialogTheme.inputFieldBorderErrorColor;
       case InputTextFieldStateModel.type:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.inputFieldBorderTypeColor;
       case InputTextFieldStateModel.disabled:
-        return context.textFieldDialogTheme.mediumWhite;
+        return context.textFieldDialogTheme.inputFieldBorderDisabledColor;
       case InputTextFieldStateModel.loading:
-        return context.textFieldDialogTheme.blue;
+        return context.textFieldDialogTheme.inputFieldBorderLoadingColor;
       case InputTextFieldStateModel.warning:
-        return context.textFieldDialogTheme.orangeLight;
+        return context.textFieldDialogTheme.inputFieldBorderWarningColor;
       default:
         return Colors.transparent;
     }
@@ -351,9 +355,9 @@ extension _InputTextFieldStateModelX on InputTextFieldStateModel {
   Color _getValueColor(BuildContext context) {
     switch (this) {
       case InputTextFieldStateModel.disabled:
-        return context.textFieldDialogTheme.gray;
+        return context.textFieldDialogTheme.inputFieldValueDisabledColor;
       default:
-        return context.widgetToolkitTheme.highlightColor;
+        return context.textFieldDialogTheme.inputFieldValueColor;
     }
   }
 }
@@ -368,12 +372,13 @@ class _PrefixIconWidget extends StatelessWidget {
     switch (state) {
       case InputTextFieldStateModel.defaultField:
         return Padding(
-          padding: context.textFieldDialogTheme.inputTextFieldPadding2,
+          padding: context.textFieldDialogTheme.inputTextFieldIconPadding,
           child: context.textFieldDialogTheme.addIcon,
         );
       case InputTextFieldStateModel.defaultDisabled:
         return Padding(
-          padding: context.textFieldDialogTheme.inputTextFieldPadding3,
+          padding:
+              context.textFieldDialogTheme.inputTextFieldIconDisabledPadding,
           child: context.textFieldDialogTheme.addDisabledIcon,
         );
       default:

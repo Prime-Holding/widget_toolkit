@@ -105,15 +105,16 @@ sheet, that displays the error returned from the `onError` method of `QrScannerW
 
 **Step 3:** Pass the `WidgetToolkitTheme` and `QrScannerTheme` extensions to the `ThemeData` of your app:
 ```dart
-    MaterialApp(    
-      theme: ThemeData.light().copyWith(    
-        colorScheme: ColorScheme.fromSwatch(),    
-          WidgetToolkitTheme.light,  
-     QrScannerTheme.light, ],  ),    
-      darkTheme: ThemeData.dark().copyWith(    
-        colorScheme: ColorScheme.fromSwatch(),    
-        extensions: [  
-     WidgetToolkitTheme.dark, QrScannerTheme.dark, ], ),);   
+MaterialApp(    
+  theme: ThemeData.light().copyWith(    
+    colorScheme: ColorScheme.fromSwatch(),
+    extensions: [ WidgetToolkitTheme.light(), QrScannerTheme.light(), ],
+  ),    
+  darkTheme: ThemeData.dark().copyWith(    
+    colorScheme: ColorScheme.fromSwatch(),    
+    extensions: [ WidgetToolkitTheme.dark(), QrScannerTheme.dark(), ],
+  ),
+);
 ```
 **Note:** The `WidgetToolkitTheme` comes from the **Widget Toolkit** package which already presence in the **Widget Toolkit QR** package.  
 It can be imported with the following line:
