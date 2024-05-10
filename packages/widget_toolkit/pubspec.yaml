@@ -67,7 +67,7 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
-        
+
 screenshots:
   - description: "Item picker (multi-select)"
     path: doc/assets/multi-item-picker.webp
