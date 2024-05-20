@@ -30,6 +30,7 @@ class InputTextField extends StatefulWidget {
     this.suffixIcon,
     this.obBlurCallback,
     this.keyBoardType = TextInputType.text,
+    this.textFormFieldKey,
     super.key,
   });
 
@@ -54,6 +55,7 @@ class InputTextField extends StatefulWidget {
   final Color? defaultValueColor;
   final Widget? suffixIcon;
   final VoidCallback? obBlurCallback;
+  final Key? textFormFieldKey;
 
   @override
   InputTextFieldState createState() => InputTextFieldState();
@@ -205,6 +207,7 @@ class InputTextFieldState extends State<InputTextField> {
                 height: context.textFieldDialogTheme.spacingXSS,
               ),
               TextFormField(
+                key: widget.textFormFieldKey,
                 focusNode: _focusNode,
                 keyboardType: widget.keyBoardType,
                 onEditingComplete: () => widget.obBlurCallback?.call(),
