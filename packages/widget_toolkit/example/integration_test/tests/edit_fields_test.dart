@@ -6,7 +6,7 @@ void main() {
   final patrolBaseConfig = PatrolBaseConfig();
 
   patrolBaseConfig.patrol('TextFieldDialog debug test', ($) async {
-    const testInput = 'Test Input';
+    const testInput = 'Test';
 
     final editFieldsPage = EditFieldsPage($);
 
@@ -17,6 +17,7 @@ void main() {
     await editFieldsPage.tapFirstNameDialog();
     await editFieldsPage.setFirstName(testInput);
     await editFieldsPage.tapSaveButton();
+    //Check that the keyboard is displayed
     await Future.delayed(const Duration(seconds: 30));
   });
 }
