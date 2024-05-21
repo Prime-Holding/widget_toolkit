@@ -43,6 +43,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
     this.isMultiLinedInputField = false,
     this.dialogHasBottomPadding = false,
     this.maxLines,
+    this.textFormFieldKey,
+    this.saveButtonKey,
     super.key,
   });
 
@@ -56,6 +58,8 @@ class TextFieldDialogPage<T> extends StatelessWidget {
   final bool dialogHasBottomPadding;
   final int? maxLines;
   final Function(Object error) translateError;
+  final Key? textFormFieldKey;
+  final Key? saveButtonKey;
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +100,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
             onChanged: (bloc, value) => bloc.events.setText(value),
             cursorBehaviour: RxTextFormFieldCursorBehaviour.end,
             builder: (fieldState) => InputTextField(
+              textFormFieldKey: textFormFieldKey,
               isFocused: true,
               keyBoardType: keyBoardType,
               label: label,
@@ -118,6 +123,7 @@ class TextFieldDialogPage<T> extends StatelessWidget {
             child: RxBlocBuilder<TextFieldDialogBlocType, Result<T>>(
               state: (bloc) => bloc.states.submittedValue as Stream<Result<T>>,
               builder: (context, snapshot, bloc) => GradientFillButton(
+                buttonKey: saveButtonKey,
                 elevation: 0,
                 text: fillButtonText,
                 state: snapshot.data is ResultLoading<T>

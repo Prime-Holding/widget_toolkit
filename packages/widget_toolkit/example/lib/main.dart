@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
+import 'keys_testing/base_page_keys.dart' as base_page_keys;
+import 'keys_testing/edit_field_page_keys.dart' as edit_field_page_keys;
+
 void main() {
   runApp(const MyApp());
 }
@@ -82,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(title: Text(title), actions: [
           IconButton(
+              key: base_page_keys.nextButton,
               onPressed: () {
                 pageController.animateToPage(nextPageIndex,
                     duration: const Duration(milliseconds: 800),
@@ -343,6 +347,9 @@ class EditFieldsPage extends StatelessWidget {
             WidgetSection(
               description: 'TextFieldDialog',
               child: TextFieldDialog<String>(
+                textFormFieldKey: edit_field_page_keys.firstNameTextField,
+                saveButtonKey: edit_field_page_keys.saveButton,
+                key: edit_field_page_keys.firstNameDialog,
                 translateError: (error) =>
                     TranslateErrorUtil.translateError<String>(error, context),
                 label: 'First Name',
