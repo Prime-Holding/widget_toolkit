@@ -8,8 +8,7 @@ import '../../../search_picker.dart';
 import '../../../text_field_dialog.dart';
 import '../../../ui_components.dart';
 import '../blocs/edit_address_bloc.dart';
-import '../di/edit_address_dependencies.dart';
-import '../ui_components/edit_address_form.dart';
+import '../ui_components/edit_address_form_with_dependencies.dart';
 
 typedef OnAddressSaved = Function(AddressModel addressModel);
 
@@ -45,46 +44,6 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
   final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders;
   final TextFieldModalConfiguration textFieldsModalConfiguration;
   final SearchPickerModalConfiguration countryPickerModalConfiguration;
-
-  static Widget withDependencies<T extends PickerItemModel>(
-    BuildContext context, {
-    required OnAddressSaved onAddressSaved,
-    required String buttonText,
-    required String headerText,
-    required AddressModel addressModel,
-    required Function(Object error) translateError,
-    required EditAddressService<T> editAddressService,
-    final Function(AddressModel? addressModel)? onChanged,
-    final EditAddressLocalizedStrings? editAddressLocalizedStrings,
-    final Function(AddressModel)? saveAddress,
-    final Widget Function(ErrorModel?)? editContactAddressErrorBuilder,
-    final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final TextFieldModalConfiguration textFieldsModalConfiguration =
-        const TextFieldModalConfiguration(),
-    final SearchPickerModalConfiguration countryPickerModalConfiguration =
-        const SearchPickerModalConfiguration(),
-  }) =>
-      MultiProvider(
-        providers: EditAddressDependencies.from(
-          context,
-          addressModel,
-          editAddressService,
-        ).providers,
-        child: EditAddressPage<T>(
-            onAddressSaved: onAddressSaved,
-            buttonText: buttonText,
-            headerText: headerText,
-            addressModel: addressModel,
-            onChanged: onChanged,
-            saveAddress: saveAddress,
-            translateError: translateError,
-            editAddressLocalizedStrings: editAddressLocalizedStrings,
-            editAddressService: editAddressService,
-            searchCountryCustomBuilders: searchCountryCustomBuilders,
-            editContactAddressErrorBuilder: editContactAddressErrorBuilder,
-            textFieldsModalConfiguration: textFieldsModalConfiguration,
-            countryPickerModalConfiguration: countryPickerModalConfiguration),
-      );
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -123,10 +82,9 @@ class EditAddressPage<T extends PickerItemModel> extends StatelessWidget {
                             .editAddressTheme.editAddressPageErrorPanelPadding,
                       ),
                       if (!snapshot.hasData)
-                        EditAddressForm.withDependencies<T>(
-                            context,
-                            addressModel,
-                            (addressModel) => context
+                        EditAddressFormWithDependencies<T>(
+                            addressModel: addressModel,
+                            onAddressChange: (addressModel) => context
                                 .read<EditAddressBlocType>()
                                 .events
                                 .setAddress(addressModel),

@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.0.0/flutter
-FLUTTER_APPLICATION_PATH=/Users/stanislav.petkov/StudioProjects/widget_toolkit/packages/widget_toolkit/example
+FLUTTER_ROOT=/Users/pwndp/fvm/versions/3.22.2
+FLUTTER_APPLICATION_PATH=/Users/pwndp/repos/widget_toolkit/packages/widget_toolkit/example
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
