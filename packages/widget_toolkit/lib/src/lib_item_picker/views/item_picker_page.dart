@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
@@ -9,8 +8,6 @@ import '../../lib_ui_components/buttons/button_state.dart';
 import '../../lib_ui_components/buttons/gradient_fill_button.dart';
 import '../../lib_ui_components/error_card_widget.dart';
 import '../blocs/item_picker_bloc.dart';
-import '../di/item_picker_dependencies.dart';
-import '../service/item_picker_service.dart';
 import '../theme/item_picker_theme.dart';
 import '../ui_components/picker_list_item.dart';
 
@@ -54,46 +51,6 @@ class ItemPickerPage<T extends PickerItemModel> extends StatefulWidget {
   final Widget Function(BuildContext context, int index)? separatorBuilder;
   final int loadingItemsCount;
   final double loadingItemHeight;
-
-  static Widget withDependencies<T extends PickerItemModel>(
-    BuildContext context, {
-    List<T>? selectedItems,
-    required Function(List<T?>) onTap,
-    required ItemPickerService<T> service,
-    bool? isMultiSelect,
-    bool? isStatic,
-    bool? isItemSelectionRequired,
-    int? loadingItemsCount,
-    double? loadingItemHeight,
-    Key? key,
-    String? title,
-    String? saveButtonText,
-    WidgetBuilder? footerBuilder,
-    ItemPickerItemBuilder<T>? itemBuilder,
-    Widget Function(Exception)? errorBuilder,
-    Widget Function()? emptyBuilder,
-    Widget Function(BuildContext context, int index)? separatorBuilder,
-  }) =>
-      MultiProvider(
-        providers: ItemPickerDependencies<T>.from(context, service).providers,
-        child: ItemPickerPage<T>(
-          isMultiSelect: isMultiSelect,
-          isStatic: isStatic,
-          isItemSelectionRequired: isItemSelectionRequired,
-          onTap: onTap,
-          selectedItems: selectedItems,
-          key: key,
-          title: title,
-          saveButtonText: saveButtonText,
-          itemBuilder: itemBuilder,
-          errorBuilder: errorBuilder,
-          emptyBuilder: emptyBuilder,
-          separatorBuilder: separatorBuilder,
-          footerBuilder: footerBuilder,
-          loadingItemsCount: loadingItemsCount,
-          loadingItemHeight: loadingItemHeight,
-        ),
-      );
 
   @override
   State<ItemPickerPage<T>> createState() => _ItemPickerPageState<T>();

@@ -4,7 +4,7 @@ import '../../../ui_components.dart';
 import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
 import '../service/item_picker_service.dart';
-import '../views/item_picker_page.dart';
+import '../views/item_picker_page_with_dependencies.dart';
 
 /// Display an bottom sheet with list content where the user can pick single or multiple items
 ///
@@ -37,8 +37,7 @@ void showItemPickerBottomSheet<T extends PickerItemModel>({
     context: context,
     configuration: modalConfiguration,
     onCancelPressed: () => Navigator.of(context).pop(),
-    builder: (context) => ItemPickerPage.withDependencies<T>(
-      context,
+    builder: (context) => ItemPickerPageWithDependencies<T>(
       title: title,
       saveButtonText: saveButtonText,
       itemBuilder: itemBuilder,

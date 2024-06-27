@@ -123,12 +123,12 @@ class CommonComponentsPage extends StatelessWidget {
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: [
-            WidgetSection(
+            const WidgetSection(
               description: 'OpenUrlWidget - launch URL link',
-              child: OpenUrlWidget.withDependencies(
+              child: OpenUrlWidgetWithDependencies(
                 url: 'https://www.primeholding.com/',
                 translateError: translateError,
-                child: const Text(
+                child: Text(
                   'https://www.primeholding.com/',
                   style: TextStyle(
                     color: Colors.blue,
@@ -138,13 +138,13 @@ class CommonComponentsPage extends StatelessWidget {
                 ),
               ),
             ),
-            WidgetSection(
+            const WidgetSection(
               description: 'OpenUrlWidget - call a phone number',
-              child: OpenUrlWidget.withDependencies(
+              child: OpenUrlWidgetWithDependencies(
                 url: '+123456789012',
                 uriType: UriType.telephone,
                 translateError: translateError,
-                child: const Text(
+                child: Text(
                   '+123456789012',
                   style: TextStyle(
                     color: Colors.blue,

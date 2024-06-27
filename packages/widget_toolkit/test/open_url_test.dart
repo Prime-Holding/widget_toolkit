@@ -24,7 +24,7 @@ void main() {
       void callback() => callbacksCalled++;
 
       await tester.pumpWidget(
-        OpenUrlWidget.withDependencies(
+        OpenUrlWidgetWithDependencies(
           key: openUrlKey,
           url: url,
           onTap: callback,

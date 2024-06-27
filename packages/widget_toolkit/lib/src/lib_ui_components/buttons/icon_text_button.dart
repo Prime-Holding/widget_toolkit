@@ -52,8 +52,8 @@ class IconTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonStyle = ButtonStyle(
       splashFactory: !splashEffectEnabled ? NoSplash.splashFactory : null,
-      backgroundColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.pressed) ||
+      backgroundColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.pressed) ||
             state == ButtonStateModel.pressed) {
           return colorStyle?.pressedColor ??
               context.widgetToolkitTheme.primaryGradientEnd;

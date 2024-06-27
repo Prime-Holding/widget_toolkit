@@ -4,7 +4,7 @@ import '../../base/models/item_builder.dart';
 import '../../base/models/picker_item_model.dart';
 import '../../lib_ui_components/show_blurred_bottom_sheet.dart';
 import '../services/search_picker_service.dart';
-import '../views/search_picker_page.dart';
+import '../views/search_picker_page_with_dependencies.dart';
 
 /// Displays search field and a list inside modal bottom sheet with a background blur effect.
 ///
@@ -43,8 +43,7 @@ void showSearchPickerBottomSheet<T extends PickerItemModel>({
     context: context,
     configuration: modalConfiguration,
     onCancelPressed: () => Navigator.of(context).pop(),
-    builder: (context) => SearchPickerPage.withDependencies<T>(
-      context,
+    builder: (context) => SearchPickerPageWithDependencies<T>(
       title: title,
       hintText: hintText,
       retryText: retryText,

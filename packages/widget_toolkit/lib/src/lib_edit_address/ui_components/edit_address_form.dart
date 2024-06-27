@@ -123,29 +123,6 @@ class EditAddressForm<T extends PickerItemModel> extends StatelessWidget {
         ),
       );
 
-  static Widget withDependencies<T extends PickerItemModel>(
-    BuildContext context,
-    AddressModel addressModel,
-    OnAddressChange onAddressChange, {
-    required Function(Object error) translateError,
-    required EditAddressService<T> editAddressService,
-    final EditAddressLocalizedStrings? editAddressLocalizedStrings,
-    final SearchCountryCustomBuilders<T>? searchCountryCustomBuilders,
-    final TextFieldModalConfiguration textFieldsModalConfiguration =
-        const TextFieldModalConfiguration(),
-    final SearchPickerModalConfiguration countryPickerModalConfiguration =
-        const SearchPickerModalConfiguration(),
-  }) =>
-      EditAddressForm<T>(
-        onAddressChange: onAddressChange,
-        translateError: translateError,
-        editAddressService: editAddressService,
-        editAddressLocalizedStrings: editAddressLocalizedStrings,
-        searchCountryCustomBuilders: searchCountryCustomBuilders,
-        textFieldsModalConfiguration: textFieldsModalConfiguration,
-        countryPickerModalConfiguration: countryPickerModalConfiguration,
-      );
-
   EditFieldState _getProfileFieldState(
     bool? isEdited,
     bool? isLoading,

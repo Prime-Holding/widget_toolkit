@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:widget_toolkit/edit_address.dart';
-import 'package:widget_toolkit/language_picker.dart';
 import 'package:widget_toolkit/src/lib_edit_address/blocs/edit_address_bloc.dart';
 import 'package:widget_toolkit/src/lib_edit_address/services/city_service.dart';
 import 'package:widget_toolkit/src/lib_edit_address/services/street_service.dart';
 import 'package:widget_toolkit/src/lib_edit_address/views/edit_address_page.dart';
+import 'package:widget_toolkit/src/lib_edit_address/views/edit_address_page_with_dependencies.dart';
+import 'package:widget_toolkit/widget_toolkit.dart';
 
 import '../mock/edit_address_mock.dart';
 import '../service/city_service_mock.dart';
@@ -152,8 +152,7 @@ Widget editAddressSuccessPageFactory({
           ),
         ],
         child: Builder(
-          builder: (context) => EditAddressPage.withDependencies<CountryModel>(
-            context,
+          builder: (context) => EditAddressPageWithDependencies<CountryModel>(
             addressModel: address ??
                 const AddressModel(
                   addressType: AddressTypeModel.correspondence,
@@ -170,6 +169,9 @@ Widget editAddressSuccessPageFactory({
                 showError: showError ?? false),
             editAddressLocalizedStrings: EditAddressLocalizedStrings(context),
             onAddressSaved: (AddressModel addressModel) {},
+            textFieldsModalConfiguration: const TextFieldModalConfiguration(),
+            countryPickerModalConfiguration:
+                const SearchPickerModalConfiguration(),
           ),
         ),
       ),
