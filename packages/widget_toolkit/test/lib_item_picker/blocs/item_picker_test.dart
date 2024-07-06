@@ -55,7 +55,8 @@ void main() {
             Result<List<ItemPickerDataMock>>>(
         'test item_picker_bloc state getItems with error',
         build: () async {
-          when(service.getItems()).thenAnswer((_) => throw GenericErrorModel(''));
+          when(service.getItems())
+              .thenAnswer((_) => throw GenericErrorModel(''));
 
           return itemPickerBloc();
         },
