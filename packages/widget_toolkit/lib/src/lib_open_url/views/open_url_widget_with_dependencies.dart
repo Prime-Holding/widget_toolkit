@@ -27,7 +27,6 @@ class OpenUrlWidgetWithDependencies extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: OpenUrlDependencies.from().providers,
         child: OpenUrlWidget(
-          key: key,
           url: url,
           uriType: uriType,
           onTap: onTap,
