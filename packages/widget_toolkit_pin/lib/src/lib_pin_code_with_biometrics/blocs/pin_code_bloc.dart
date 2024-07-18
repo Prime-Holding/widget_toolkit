@@ -3,7 +3,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 
-import '../models/error_wrong_pin.dart';
 import '../services/pin_biometrics_service.dart';
 import '../services/pin_code_service.dart';
 
@@ -137,7 +136,7 @@ class PinCodeBloc extends $PinCodeBloc {
         }
       } else {
         _pinCode.value = '';
-        throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+        throw Exception('Wrong Pin');
       }
     }
     return false;

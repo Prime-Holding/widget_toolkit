@@ -116,20 +116,17 @@ class MyHomePage extends StatelessWidget {
   }
 
   void _onError(Object error, String strValue, BuildContext context) {
-    if (error is! ErrorWrongPin) {
-      showBlurredBottomSheet(
-        context: context,
-        configuration: const ModalConfiguration(safeAreaBottom: false),
-        builder: (context) => MessagePanelWidget(
-          message: _translateError(error),
-          messageState: MessagePanelState.important,
-        ),
-      );
-    }
+    showBlurredBottomSheet(
+      context: context,
+      configuration: const ModalConfiguration(safeAreaBottom: false),
+      builder: (context) => MessagePanelWidget(
+        message: _translateError(error),
+        messageState: MessagePanelState.important,
+      ),
+    );
   }
 
-  String _translateError(Object error) =>
-      error is ErrorWrongPin ? error.errorMessage : 'An error has occurred';
+  String _translateError(Object error) => 'An error has occurred';
 
   String _exampleMapBiometricMessageToString(BiometricsMessage message) {
     switch (message) {
