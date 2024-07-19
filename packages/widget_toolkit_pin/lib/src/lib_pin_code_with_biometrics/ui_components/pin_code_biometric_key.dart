@@ -22,7 +22,7 @@ class PinCodeBiometricKey extends StatefulWidget {
 class _PinCodeBiometricKeyState extends State<PinCodeBiometricKey> {
   @override
   Widget build(BuildContext context) => PinCodeKey(
-        onPressed: (_) => widget.onPressedDefault(_),
+        onPressed: (key) => widget.onPressedDefault(key),
         isFingerScan: widget.isFingerScan,
         isFaceScan: widget.isFaceScan,
         isLoading: widget.isLoading,

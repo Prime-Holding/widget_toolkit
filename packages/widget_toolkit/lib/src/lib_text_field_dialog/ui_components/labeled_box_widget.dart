@@ -30,16 +30,6 @@ class LabeledBoxWidget extends StatelessWidget {
   final LabeledBoxType type;
   final String optionalString;
 
-  LabeledBoxWidget withDependencies(BuildContext context,
-          {required String label,
-          required Function() onTap,
-          required String optionalString}) =>
-      LabeledBoxWidget(
-        label: label,
-        onTap: onTap,
-        optionalString: optionalString,
-      );
-
   @override
   Widget build(BuildContext context) => Material(
         shape: RoundedRectangleBorder(

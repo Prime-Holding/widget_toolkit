@@ -1,3 +1,8 @@
+## [0.1.0]
+### Breaking changes:
+- Removed static `.withDependencies` constructor from widgets
+- Added new widgets `*WithDependencies`
+
 ## [0.0.2]
 - Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
 ### Breaking changes:

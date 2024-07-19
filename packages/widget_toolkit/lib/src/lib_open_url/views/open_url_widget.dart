@@ -5,7 +5,6 @@ import 'package:rx_bloc/rx_bloc.dart';
 
 import '../../../ui_components.dart';
 import '../bloc/open_uri_bloc.dart';
-import '../di/open_url_dependencies.dart';
 import '../enums/uri_type_enum.dart';
 
 /// OpenUrlWidget is a simple wrapper widget which reacts to user input and
@@ -71,32 +70,6 @@ class OpenUrlWidget extends StatelessWidget {
           context.read<OpenUriBlocType>().events.openURI(url, type: uriType);
         },
         child: _buildLinkErrorListener(context),
-      );
-
-  /// Convenience builder method that initializes OpenUrlWidget dependencies
-  /// right above the widget.
-  static Widget withDependencies({
-    required String url,
-    required Widget child,
-    VoidCallback? onTap,
-    Function(BuildContext, Exception)? onError,
-    String Function(BuildContext, Exception)? translateError,
-    UriType uriType = UriType.https,
-    ModalConfiguration modalConfiguration = const ModalConfiguration(),
-    Key? key,
-  }) =>
-      MultiProvider(
-        providers: OpenUrlDependencies.from().providers,
-        child: OpenUrlWidget(
-          key: key,
-          url: url,
-          uriType: uriType,
-          onTap: onTap,
-          onError: onError,
-          translateError: translateError,
-          errorModalConfiguration: modalConfiguration,
-          child: child,
-        ),
       );
 
   Widget _buildLinkErrorListener(BuildContext context) =>

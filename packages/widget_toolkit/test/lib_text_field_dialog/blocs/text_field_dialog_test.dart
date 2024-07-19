@@ -69,7 +69,8 @@ void main() {
       state: (bloc) => bloc.states.submittedValue,
       expect: [
         Result<dynamic>.loading(),
-        Result<dynamic>.error(GenericErrorModel('server_side_message_length_error_key')),
+        Result<dynamic>.error(
+            GenericErrorModel('server_side_message_length_error_key')),
       ]);
 }
 
