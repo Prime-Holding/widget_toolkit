@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
-import 'package:provider/provider.dart';
 
 import '../../../ui_components.dart';
 import '../../base/models/item_builder.dart';
@@ -9,7 +8,6 @@ import '../../base/models/picker_item_model.dart';
 import '../../base/utils/easy_fade_transition.dart';
 import '../../lib_item_picker/ui_components/picker_list_item.dart';
 import '../blocs/search_picker_bloc.dart';
-import '../di/search_picker_dependencies.dart';
 import '../services/search_picker_service.dart';
 import '../theme/search_picker_theme.dart';
 import '../ui_components/search_picker_text_field.dart';
@@ -66,40 +64,6 @@ class SearchPickerPage<T extends PickerItemModel> extends StatelessWidget {
 
   /// Specify a custom loading item height
   final double loadingItemHeight;
-
-  static Widget withDependencies<T extends PickerItemModel>(
-    BuildContext context, {
-    required String title,
-    required String hintText,
-    required String retryText,
-    required SearchPickerService<T> service,
-    required double loadingItemHeight,
-    ItemPickerItemBuilder<T>? itemBuilder,
-    T? selectedItem,
-    Function(T?)? onItemTap,
-    Widget Function(Exception)? errorBuilder,
-    Widget Function()? emptyBuilder,
-    Widget Function(int)? separatorBuilder,
-    bool showEmptyWidgetWhenNoResultsAreFound = true,
-  }) =>
-      MultiProvider(
-        providers: SearchPickerDependencies<T>.from(context, service).providers,
-        child: SearchPickerPage(
-          title: title,
-          hintText: hintText,
-          retryText: retryText,
-          selectedItem: selectedItem,
-          onItemTap: onItemTap,
-          itemBuilder: itemBuilder,
-          errorBuilder: errorBuilder,
-          emptyBuilder: emptyBuilder,
-          separatorBuilder: separatorBuilder,
-          service: service,
-          showEmptyWidgetWhenNoResultsAreFound:
-              showEmptyWidgetWhenNoResultsAreFound,
-          loadingItemHeight: loadingItemHeight,
-        ),
-      );
 
   @override
   Widget build(BuildContext context) => Column(
