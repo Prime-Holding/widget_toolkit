@@ -1,3 +1,7 @@
+## [0.1.0]
+- Update `PinCodeService.verifyPinCode` to return a `Future<dynamic>` instead of a `bool`
+- Improvements to error handling
+
 ## [0.0.2]
 - Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
 ### Breaking changes:

@@ -47,7 +47,7 @@ class PinCodeComponent extends StatefulWidget {
   final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
   /// Returns the verification state of the input from the pin code value.
-  final VoidCallback? onAuthenticated;
+  final Function(dynamic)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
@@ -161,13 +161,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               _startErrorAnimation();
             },
           ),
-          RxBlocListener<PinCodeBlocType, void>(
+          RxBlocListener<PinCodeBlocType, dynamic>(
             state: (bloc) => bloc.states.authenticated,
-            listener: (context, auth) {
+            listener: (context, authValue) {
               setState(() {
                 authenticatedPin = true;
               });
-              widget.onAuthenticated?.call();
+
+              widget.onAuthenticated?.call(authValue);
             },
           ),
           _buildBuilders()

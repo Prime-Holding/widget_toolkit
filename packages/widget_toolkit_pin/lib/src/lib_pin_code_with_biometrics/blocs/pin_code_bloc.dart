@@ -31,7 +31,7 @@ abstract class PinCodeBlocStates {
   ConnectableStream<bool> get showBiometricsButton;
 
   ///Emits when user successfully authenticate (pin/biometrics)
-  ConnectableStream<void> get authenticated;
+  ConnectableStream<dynamic> get authenticated;
 
   /// The loading state
   Stream<bool> get isLoading;
@@ -56,9 +56,9 @@ class PinCodeBloc extends $PinCodeBloc {
   final String localizedReason;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
-  final BehaviorSubject<bool> _pinAuth = BehaviorSubject();
+  final BehaviorSubject<dynamic> _pinAuth = BehaviorSubject();
 
-  Future<bool> encryptAndVerify(String pinCode) async {
+  Future<dynamic> encryptAndVerify(String pinCode) async {
     final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
     final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
     return verifiedPin;
@@ -91,7 +91,7 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 
   @override
-  ConnectableStream<void> _mapToAuthenticatedState() => Rx.merge([
+  ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
         _$biometricsButtonPressedEvent.switchMap((_) =>
             biometricAuthenticationService
                 .authenticate(localizedReason)
@@ -127,16 +127,16 @@ class PinCodeBloc extends $PinCodeBloc {
   Future<bool> _checkPin(int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
     if (digits == storedPinLength) {
-      final isCorrectPin = await encryptAndVerify(_pinCode.value);
-      if (isCorrectPin) {
+      try {
+        final authValue = await encryptAndVerify(_pinCode.value);
         final isSaved = await pinCodeService.isPinCodeInSecureStorage();
         if (isSaved) {
-          _pinAuth.add(true);
+          _pinAuth.add(authValue);
           return true;
         }
-      } else {
+      } catch (_) {
         _pinCode.value = '';
-        throw Exception('Wrong Pin');
+        rethrow;
       }
     }
     return false;

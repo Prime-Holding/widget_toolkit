@@ -81,13 +81,13 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
       ) as _i2.ConnectableStream<bool>);
 
   @override
-  _i2.ConnectableStream<void> get authenticated => (super.noSuchMethod(
+  _i2.ConnectableStream<dynamic> get authenticated => (super.noSuchMethod(
         Invocation.getter(#authenticated),
-        returnValue: _FakeConnectableStream_0<void>(
+        returnValue: _FakeConnectableStream_0<dynamic>(
           this,
           Invocation.getter(#authenticated),
         ),
-      ) as _i2.ConnectableStream<void>);
+      ) as _i2.ConnectableStream<dynamic>);
 
   @override
   _i4.Stream<bool> get isLoading => (super.noSuchMethod(

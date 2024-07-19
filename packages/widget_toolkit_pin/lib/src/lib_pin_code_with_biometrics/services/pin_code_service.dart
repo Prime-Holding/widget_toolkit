@@ -4,8 +4,8 @@ abstract class PinCodeService {
   Future<bool> isPinCodeInSecureStorage();
 
   /// Receives the encrypted pinCode from user input.
-  /// Returns whether it was verified by the server
-  Future<bool> verifyPinCode(String pinCode);
+  /// Returns the value verified by the server
+  Future<dynamic> verifyPinCode(String pinCode);
 
   /// Returns the correct length from the backend,
   /// the length should be less than 10 digits
