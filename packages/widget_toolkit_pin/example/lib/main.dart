@@ -82,7 +82,9 @@ class MyHomePage extends StatelessWidget {
                       addDependencies: true,
                       // Optionally you can provide [onAuthenticated] where the
                       // function is invoked when the user is authenticated.
-                      onAuthenticated: (authValue) {
+                      // The callback accepts a dynamic value which is the
+                      // result returned from the [PinCodeService.verifyPinCode()]
+                      onAuthenticated: (dynamic result) {
                         _onAuthenticated(context);
                       },
 
