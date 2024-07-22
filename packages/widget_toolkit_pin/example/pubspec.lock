@@ -904,7 +904,7 @@ packages:
       path: "../../widget_toolkit"
       relative: true
     source: path
-    version: "0.0.2"
+    version: "0.1.0"
   widget_toolkit_biometrics:
     dependency: "direct main"
     description:
@@ -918,7 +918,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.2"
+    version: "0.1.0"
   win32:
     dependency: transitive
     description:

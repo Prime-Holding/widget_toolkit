@@ -72,7 +72,7 @@ class PinCodeKeyboard extends StatelessWidget {
   /// for the package
   final BiometricsLocalDataSource? biometricsLocalDataSource;
 
-  /// Called when a user is authenticated with biometrics successfully
+  /// Callback called when the user authentication succeeds
   final Function(dynamic)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button, shown when
