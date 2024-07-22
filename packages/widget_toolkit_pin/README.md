@@ -129,7 +129,7 @@ class AppPinCodeService implements PinCodeService {
   Future<int> getPinLength() => Future.value(3);
 
   @override
-  Future<bool> verifyPinCode(String pinCode) async {
+  Future<dynamic> verifyPinCode(String pinCode) async {
     var pinFromStorage =
     await flutterSecureStorage.read(key: _isPinCodeInStorage);
 
@@ -201,10 +201,11 @@ and implementation of the `LocalAuthentication`, `PinBiometricsAuthDataSource`, 
 addDependencies: false,
 ```
 
-Optionally you can provide `onAuthenticated` where the function is called 
-when the user is authenticated.
+Optionally you can provide `onAuthenticated` where the function is called when the user is
+authenticated. The `onAuthenticated` callback accepts a dynamic parameter, which is the value
+returned from the `PinCodeService.verifyPinCode()` function.
 ```dart
-onAuthenticated: () {
+onAuthenticated: (dynamic result) {
   // ...
 },
 ```
