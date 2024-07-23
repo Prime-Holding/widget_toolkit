@@ -2,6 +2,8 @@
 - Improvements to error handling
 ### Breaking changes:
 - Update `PinCodeService.verifyPinCode` to return a `Future<dynamic>` instead of a `bool`
+- Errors of type `ErrorModel` thrown by `PinCodeService` are now caught by the `PinCodeKeyboard.onError` callback
+- Update `PinCodeKeyboard.onAuthenticated` signature to accept a `dynamic` parameter passed from `PinCodeService.verifyPinCode` on authentication success
 
 ## [0.0.2]
 - Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
