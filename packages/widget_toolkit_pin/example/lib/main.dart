@@ -82,7 +82,9 @@ class MyHomePage extends StatelessWidget {
                       addDependencies: true,
                       // Optionally you can provide [onAuthenticated] where the
                       // function is invoked when the user is authenticated.
-                      onAuthenticated: () {
+                      // The callback accepts a dynamic value which is the
+                      // result returned from the [PinCodeService.verifyPinCode()]
+                      onAuthenticated: (dynamic result) {
                         _onAuthenticated(context);
                       },
 
@@ -116,20 +118,18 @@ class MyHomePage extends StatelessWidget {
   }
 
   void _onError(Object error, String strValue, BuildContext context) {
-    if (error is! ErrorWrongPin) {
-      showBlurredBottomSheet(
-        context: context,
-        configuration: const ModalConfiguration(safeAreaBottom: false),
-        builder: (context) => MessagePanelWidget(
-          message: _translateError(error),
-          messageState: MessagePanelState.important,
-        ),
-      );
-    }
+    showBlurredBottomSheet(
+      context: context,
+      configuration: const ModalConfiguration(safeAreaBottom: false),
+      builder: (context) => MessagePanelWidget(
+        message: _translateError(error),
+        messageState: MessagePanelState.important,
+      ),
+    );
   }
 
   String _translateError(Object error) =>
-      error is ErrorWrongPin ? error.errorMessage : 'An error has occurred';
+      error is ErrorModel ? error.toString() : 'An error has occurred';
 
   String _exampleMapBiometricMessageToString(BiometricsMessage message) {
     switch (message) {
@@ -159,7 +159,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
-    if (_pinCode == '111') {
+    if (_pinCode == '1111') {
       return Future.value(true);
     }
     return Future.value(false);
@@ -172,14 +172,15 @@ class AppPinCodeService implements PinCodeService {
   }
 
   @override
-  Future<int> getPinLength() async => Future.value(3);
+  Future<int> getPinLength() async => Future.value(4);
 
   @override
-  Future<bool> verifyPinCode(String pinCode) async {
-    if (pinCode == '111') {
-      return Future.value(true);
+  Future<dynamic> verifyPinCode(String pinCode) async {
+    if (pinCode != '1111') {
+      throw WrongPinCodeException(pinCode);
     }
-    return false;
+
+    return pinCode;
   }
 
   @override
@@ -206,4 +207,14 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
   @override
   Future<void> setBiometricsEnabled(bool enable) async =>
       _areBiometricsEnabled = enable;
+}
+
+/// Exception thrown when the pin code is wrong
+class WrongPinCodeException implements ErrorModel {
+  final String pinCode;
+
+  WrongPinCodeException(this.pinCode);
+
+  @override
+  String toString() => 'Invalid pin code: $pinCode';
 }

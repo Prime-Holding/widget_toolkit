@@ -72,8 +72,9 @@ class PinCodeKeyboard extends StatelessWidget {
   /// for the package
   final BiometricsLocalDataSource? biometricsLocalDataSource;
 
-  /// Called when a user is authenticated with biometrics successfully
-  final VoidCallback? onAuthenticated;
+  /// Callback called when the user authentication succeeds. It accepts a dynamic
+  /// value which is forwarded from the `verifyPinCode` method of the [pinCodeService].
+  final Function(dynamic)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button, shown when
   /// there is pin code input on the screen. Do not forget to make it clickable.

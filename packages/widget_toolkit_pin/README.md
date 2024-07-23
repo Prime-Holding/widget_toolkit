@@ -27,7 +27,7 @@ an automatic prompt of a platform dialog that asks you to enable or disable biom
 
 ## Diagram
 
-![Pin Biometrics Diagram][diagram]
+![Pin Biometrics Diagram][pin_biometrics_diagram]
 
 ## Setup
 
@@ -92,11 +92,16 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
 
 Step 6: Create an implementation of `PinCodeService`. In this example we use double encryption. The 
 pin code is first encrypted on application level and then the encrypted value is again encrypted on
-operating system level, by using the `FlutterSecureStorage` instance. In your implementation, you 
-are free to choose the types of encryption. In the example two other packages are used:
-[encrypt](https://pub.dev/packages/encrypt) and [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
-In order for the `flutter_secure_storage` plugin to work on your desired platforms, follow the 
-integration instructions.
+the level of the operating system, by using the `FlutterSecureStorage` instance. In your  
+implementation, you are free to choose the types of encryption. In the example two other packages
+are used: [encrypt](https://pub.dev/packages/encrypt) and [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage).
+
+> [!NOTE]
+> In order for the `flutter_secure_storage` plugin to work on your desired platforms, follow its integration instructions.
+
+> [!IMPORTANT]
+> Any exceptions thrown should inherit from the `ErrorModel` class.
+
 ```dart
 class AppPinCodeService implements PinCodeService {
   static const _isPinCodeInStorage = 'pinCode';
@@ -106,7 +111,7 @@ class AppPinCodeService implements PinCodeService {
   @override
   Future<bool> isPinCodeInSecureStorage() async {
     var isPinCodeInSecureStorage =
-    await flutterSecureStorage.read(key: _isPinCodeInStorage);
+      await flutterSecureStorage.read(key: _isPinCodeInStorage);
 
     return isPinCodeInSecureStorage != null;
   }
@@ -129,16 +134,27 @@ class AppPinCodeService implements PinCodeService {
   Future<int> getPinLength() => Future.value(3);
 
   @override
-  Future<bool> verifyPinCode(String pinCode) async {
+  Future<dynamic> verifyPinCode(String pinCode) async {
     var pinFromStorage =
-    await flutterSecureStorage.read(key: _isPinCodeInStorage);
-
-    return pinCode == pinFromStorage;
+      await flutterSecureStorage.read(key: _isPinCodeInStorage);
+    
+    // Throw an exception if the pin code is not in the storage 
+    // or the provided pin code is incorrect
+    if (pinFromStorage == null || pinFromStorage!=pinCode) {
+      throw const IncorrectPinCode();
+    }
+    
+    // Return the pin code if it is correct
+    return pinCode;
   }
 
   @override
   Future<String?> getPinCode() async =>
       await flutterSecureStorage.read(key: _isPinCodeInStorage);
+}
+
+class IncorrectPinCode extends ErrorModel {
+  const IncorrectPinCode() : super(errorMessage: 'Incorrect pin code');
 }
 ```
 
@@ -201,10 +217,11 @@ and implementation of the `LocalAuthentication`, `PinBiometricsAuthDataSource`, 
 addDependencies: false,
 ```
 
-Optionally you can provide `onAuthenticated` where the function is called 
-when the user is authenticated.
+Optionally you can provide `onAuthenticated` where the function is called when the user is
+authenticated (by entering the correct pin or via biometrics). The `onAuthenticated` callback
+accepts a dynamic parameter, which is the value returned from the `PinCodeService.verifyPinCode()`.
 ```dart
-onAuthenticated: () {
+onAuthenticated: (dynamic result) {
   // ...
 },
 ```
@@ -237,27 +254,33 @@ localizedReason: 'Activate the biometrics of your device',
 ## Functional specifications
 
 When the widget is loaded for the first time on the bottom right of the page, there is no button.
-At this point the biometrics for the app are still not enabled.
-After at least 1 number has been selected the delete button shows up. When the length of the input
-reached the pin code length the button icon disappears. The pin code is encrypted stored in the
-local device secure storage. Then, there is an auto submit of the selected
-pin code to the backend for verification. After the pin has been saved successfully in the secure
-storage, the biometrics icon appear on the bottom right. When you press it, it triggers enabling
-of the biometrics event. The local authentication from the local_auth package is triggered.
-The user is asked, if he/she wants to allow the app to use biometrics authentication. When you click
-ok, the biometrics authentication is triggered. When it is successful, on the screen is displayed
-a message that the biometrics are enabled. The next time when restart the app, because the pin code
-will be stored in the device secure storage, the biometrics authentication will be automatically
-triggered and the biometrics icon will be displayed on the bottom right. When you press it every 
-time it will trigger the biometric authentication. If a user types a wrong pin code and the error
-ErrorWrongPin is thrown from the service layer, then a shake animation is triggered on the masked
-pin code and then the text from the ErrorWrongPin's errorMessage is displayed in the place of the 
-pin code. Note: If `biometricsLocalDataSource`parameter is not provided to `PinCodeKeyboard` the 
-biometrics authentication feature cannot be used.
+At this point the biometrics for the app are still not enabled. After at least 1 number has been 
+selected the delete button shows up. When the length of the input reaches the pin code length, the 
+button icon disappears. The pin code is stored encrypted in the local device secure storage.
+Afterwards, the selected pin code is auto submitted to the backend for verification. 
+
+After the pin has been saved successfully in the secure storage, the biometrics icon will appear on
+the bottom right. Once pressed, it will trigger the enabling of the biometrics event. The local 
+authentication from the local_auth package is triggered. The user is asked if they want to allow
+the app to use biometrics authentication. Once ok is clicked, the biometrics authentication is
+triggered. When it is successful, a message is displayed on the screen saying that the biometrics
+are enabled.
+
+The next time when the app is restarted, since the pin code is now stored on the device using 
+secure storage, the biometrics authentication will be automatically triggered and the biometrics
+icon will be displayed on the bottom right. When pressed, every next time it will trigger the
+biometric authentication. If a user types a wrong pin code and the error is thrown from the service
+layer, then a shake animation is triggered on the masked pin code. Any error of the type `ErrorModel`
+thrown from the service layer will be displayed in place of the pin code.
+
+> [! NOTE]
+> In order for the biometrics authentication feature to be working, the `biometricsLocalDataSource` parameter should be provided to the `PinCodeKeyboard` widget.
+
+---
 
 [ci_badge_lnk]: https://github.com/Prime-Holding/widget_toolkit/workflows/CI/badge.svg
 [codecov_badge_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit/branch/master/graph/badge.svg
 [codecov_branch_lnk]: https://codecov.io/gh/Prime-Holding/widget_toolkit/packages/widget_toolkit_pin/branch/master
 [code_style_lnk]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
 [license_lnk]: https://img.shields.io/badge/license-MIT-purple.svg
-[diagram]: https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_pin/doc/assets/pin_biometrics_diagram.png
+[pin_biometrics_diagram]: https://raw.githubusercontent.com/Prime-Holding/widget_toolkit/master/packages/widget_toolkit_pin/doc/assets/pin_biometrics_diagram.png
