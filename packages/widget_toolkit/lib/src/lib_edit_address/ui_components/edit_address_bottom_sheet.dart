@@ -6,7 +6,7 @@ import '../../../models.dart';
 import '../../../search_picker.dart';
 import '../../../text_field_dialog.dart';
 import '../../../ui_components.dart';
-import '../views/edit_address_page.dart';
+import '../views/edit_address_page_with_dependencies.dart';
 
 Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
   BuildContext context, {
@@ -29,7 +29,7 @@ Future<AddressModel?> showEditAddressBottomSheet<T extends PickerItemModel>(
     await showBlurredBottomSheet<AddressModel?>(
       configuration: modalConfiguration,
       context: context,
-      builder: (ctx) => EditAddressPage.withDependencies<T>(context,
+      builder: (ctx) => EditAddressPageWithDependencies<T>(
           onAddressSaved: (AddressModel address) =>
               Navigator.of(ctx).pop(address),
           buttonText: buttonText,

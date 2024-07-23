@@ -47,7 +47,7 @@ class PinCodeComponent extends StatefulWidget {
   final String Function(BiometricsMessage message)? mapBiometricMessageToString;
 
   /// Returns the verification state of the input from the pin code value.
-  final VoidCallback? onAuthenticated;
+  final Function(dynamic)? onAuthenticated;
 
   /// Provide custom implementation for the most down left button. Do not forget
   /// to make it clickable. Default to LeftArrow.
@@ -153,21 +153,22 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           RxBlocListener<PinCodeBlocType, ErrorModel>(
             state: (bloc) => bloc.states.errors,
             listener: (context, errors) {
-              if (errors is ErrorWrongPin) {
-                _startErrorAnimation();
-              }
               if (errors is ErrorEnableBiometrics) {
                 _onStateChanged(context, errors.message);
+                return;
               }
+
+              _startErrorAnimation();
             },
           ),
-          RxBlocListener<PinCodeBlocType, void>(
+          RxBlocListener<PinCodeBlocType, dynamic>(
             state: (bloc) => bloc.states.authenticated,
-            listener: (context, auth) {
+            listener: (context, authValue) {
               setState(() {
                 authenticatedPin = true;
               });
-              widget.onAuthenticated?.call();
+
+              widget.onAuthenticated?.call(authValue);
             },
           ),
           _buildBuilders()
@@ -259,8 +260,8 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                   .call(child, animation);
             }
           },
-          child: hasErrorText && widget.error is ErrorWrongPin
-              ? _buildErrorText(context)
+          child: hasErrorText && widget.error != null
+              ? _buildErrorText(context, widget.error!)
               : RxBlocBuilder<PinCodeBlocType, int>(
                   state: (bloc) => bloc.states.digitsCount,
                   builder: (context, pinLength, bloc) =>
@@ -269,24 +270,19 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         ),
       );
 
-  Widget _buildErrorText(BuildContext context) => Text(
-        widget.translateError((widget.error as ErrorWrongPin)),
+  Widget _buildErrorText(BuildContext context, ErrorModel error) => Text(
+        widget.translateError(error),
         style: context.pinCodeTheme.captionBold
             .copyWith(color: context.pinCodeTheme.pinCodeErrorTextColor),
       );
 
   Future<void> _startErrorAnimation() async {
     await _controller.forward(from: 0);
-    if (widget.error is ErrorWrongPin) {
-      setState(() {
-        hasErrorText = true;
-        hideDelete = true;
-      });
-    }
-
-    if (widget.error is ErrorWrongPin) {
-      await Future.delayed(const Duration(seconds: 2));
-    }
+    setState(() {
+      hasErrorText = true;
+      hideDelete = true;
+    });
+    await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
       setState(() {
         hasErrorText = false;

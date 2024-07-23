@@ -3,7 +3,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:widget_toolkit/src/lib_item_picker/blocs/item_picker_bloc.dart';
-import 'package:widget_toolkit/src/lib_item_picker/views/item_picker_page.dart';
+import 'package:widget_toolkit/src/lib_item_picker/views/item_picker_page_with_dependencies.dart';
 
 import '../mock/item_picker_mock.dart';
 import '../models/item_picker_data_mock.dart';
@@ -25,8 +25,7 @@ Widget itemPickerFactory({
           ],
           child: Builder(
             builder: (context) {
-              return ItemPickerPage.withDependencies<ItemPickerDataMock>(
-                context,
+              return ItemPickerPageWithDependencies<ItemPickerDataMock>(
                 title: 'Testing',
                 saveButtonText: 'Save Button',
                 emptyBuilder: () => const Text('Empty'),
@@ -46,7 +45,7 @@ Widget itemPickerFactory({
                   color: Colors.grey[100],
                   child: Text('Item ${model?.value}'),
                 ),
-                selectedItems: [],
+                selectedItems: const [],
                 onTap: (data) {},
                 service: itemPickerServiceMock,
                 isMultiSelect: true,

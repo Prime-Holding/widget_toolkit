@@ -40,7 +40,7 @@ abstract class $PinCodeBloc extends RxBlocBase
       _mapToShowBiometricsButtonState();
 
   /// The state of [authenticated] implemented in [_mapToAuthenticatedState]
-  late final ConnectableStream<void> _authenticatedState =
+  late final ConnectableStream<dynamic> _authenticatedState =
       _mapToAuthenticatedState();
 
   /// The state of [isLoading] implemented in [_mapToIsLoadingState]
@@ -69,7 +69,7 @@ abstract class $PinCodeBloc extends RxBlocBase
       _showBiometricsButtonState;
 
   @override
-  ConnectableStream<void> get authenticated => _authenticatedState;
+  ConnectableStream<dynamic> get authenticated => _authenticatedState;
 
   @override
   Stream<bool> get isLoading => _isLoadingState;
@@ -81,7 +81,7 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   ConnectableStream<bool> _mapToShowBiometricsButtonState();
 
-  ConnectableStream<void> _mapToAuthenticatedState();
+  ConnectableStream<dynamic> _mapToAuthenticatedState();
 
   Stream<bool> _mapToIsLoadingState();
 

@@ -156,13 +156,13 @@ class MockPinCodeService extends _i1.Mock implements _i7.PinCodeService {
       ) as _i4.Future<bool>);
 
   @override
-  _i4.Future<bool> verifyPinCode(String? pinCode) => (super.noSuchMethod(
+  _i4.Future<dynamic> verifyPinCode(String? pinCode) => (super.noSuchMethod(
         Invocation.method(
           #verifyPinCode,
           [pinCode],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i4.Future<dynamic>.value(),
+      ) as _i4.Future<dynamic>);
 
   @override
   _i4.Future<int> getPinLength() => (super.noSuchMethod(

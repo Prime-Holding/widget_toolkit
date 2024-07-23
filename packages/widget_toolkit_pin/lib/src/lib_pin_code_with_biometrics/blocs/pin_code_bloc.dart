@@ -3,7 +3,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 
-import '../models/error_wrong_pin.dart';
 import '../services/pin_biometrics_service.dart';
 import '../services/pin_code_service.dart';
 
@@ -32,7 +31,7 @@ abstract class PinCodeBlocStates {
   ConnectableStream<bool> get showBiometricsButton;
 
   ///Emits when user successfully authenticate (pin/biometrics)
-  ConnectableStream<void> get authenticated;
+  ConnectableStream<dynamic> get authenticated;
 
   /// The loading state
   Stream<bool> get isLoading;
@@ -50,6 +49,13 @@ class PinCodeBloc extends $PinCodeBloc {
   }) {
     authenticated.connect().addTo(_compositeSubscription);
     showBiometricsButton.connect().addTo(_compositeSubscription);
+
+    _$biometricsButtonPressedEvent
+        .switchMap((_) => _authenticateWithBiometrics().asResultStream())
+        .setResultStateHandler(this)
+        .whereSuccess()
+        .listen((_) {})
+        .addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -57,21 +63,7 @@ class PinCodeBloc extends $PinCodeBloc {
   final String localizedReason;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
-  final BehaviorSubject<bool> _pinAuth = BehaviorSubject();
-
-  Future<bool> encryptAndVerify(String pinCode) async {
-    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
-    return verifiedPin;
-  }
-
-  Future<int> _addDigit(String digit) async {
-    final pinLength = await pinCodeService.getPinLength();
-    if (_pinCode.value.length < pinLength) {
-      _pinCode.add(_pinCode.value + digit);
-    }
-    return _pinCode.value.length;
-  }
+  final BehaviorSubject<dynamic> _authResponse = BehaviorSubject();
 
   @override
   Stream<int> _mapToDigitsCountState() => Rx.merge([
@@ -92,15 +84,31 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 
   @override
-  ConnectableStream<void> _mapToAuthenticatedState() => Rx.merge([
-        _$biometricsButtonPressedEvent.switchMap((_) =>
-            biometricAuthenticationService
-                .authenticate(localizedReason)
-                .asResultStream()),
-        _pinAuth.asResultStream(),
-      ]).whereSuccess().publish();
+  ConnectableStream<dynamic> _mapToAuthenticatedState() =>
+      _authResponse.publish();
 
-  Future<bool> getAreBiometricsEnabled() async {
+  @override
+  ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
+        _$checkIfPinIsStoredEvent.switchMap(
+            (_) => pinCodeService.isPinCodeInSecureStorage().asResultStream()),
+        _digitsCountState.switchMap((digitsCount) =>
+            _checkPin(_pinCode.value, digitsCount).asResultStream()),
+        _getAreBiometricsEnabled().asResultStream(),
+      ]).setResultStateHandler(this).whereSuccess().publish();
+
+  @override
+  void dispose() {
+    _authResponse.close();
+    _pinCode.close();
+    super.dispose();
+  }
+
+  /// region Private methods
+
+  /// Checks the conditions for when the biometrics button should be shown:
+  /// 1. The biometrics are supported by the device and are enabled
+  /// 2. The pin code is stored on-device
+  Future<bool> _getAreBiometricsEnabled() async {
     final isDeviceSupported =
         await biometricAuthenticationService.isDeviceSupported;
     final canCheckBiometrics =
@@ -116,37 +124,52 @@ class PinCodeBloc extends $PinCodeBloc {
         pinCode != null;
   }
 
-  @override
-  ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
-        _$checkIfPinIsStoredEvent.switchMap(
-            (_) => pinCodeService.isPinCodeInSecureStorage().asResultStream()),
-        _digitsCountState.switchMap(
-            (digitsCount) => _checkPin(digitsCount).asResultStream()),
-        getAreBiometricsEnabled().asResultStream(),
-      ]).setResultStateHandler(this).whereSuccess().publish();
+  /// Adds a digit to the pin code, returning the new length of the pin code
+  Future<int> _addDigit(String digit) async {
+    final pinLength = await pinCodeService.getPinLength();
+    if (_pinCode.value.length < pinLength) {
+      _pinCode.add(_pinCode.value + digit);
+    }
+    return _pinCode.value.length;
+  }
 
-  Future<bool> _checkPin(int digits) async {
+  /// Encrypts and verifies the provided pin code
+  Future<dynamic> _encryptAndVerify(String pinCode) async {
+    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
+    return verifiedPin;
+  }
+
+  /// Checks the validity of the pin code
+  Future<bool> _checkPin(String pinCode, int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
     if (digits == storedPinLength) {
-      final isCorrectPin = await encryptAndVerify(_pinCode.value);
-      if (isCorrectPin) {
+      try {
+        final authValue = await _encryptAndVerify(pinCode);
         final isSaved = await pinCodeService.isPinCodeInSecureStorage();
         if (isSaved) {
-          _pinAuth.add(true);
+          _authResponse.add(authValue);
           return true;
         }
-      } else {
+      } catch (_) {
         _pinCode.value = '';
-        throw ErrorWrongPin(errorMessage: 'Wrong Pin');
+        rethrow;
       }
     }
     return false;
   }
 
-  @override
-  void dispose() {
-    _pinAuth.close();
-    _pinCode.close();
-    super.dispose();
+  /// Authenticates the user with biometrics after which the pin code is
+  /// retrieved from the device and checked.
+  Future<bool> _authenticateWithBiometrics() async {
+    if (await biometricAuthenticationService.authenticate(localizedReason)) {
+      final pinCode = await pinCodeService.getPinCode();
+      if (pinCode != null) {
+        return await _checkPin(pinCode, pinCode.length);
+      }
+    }
+    return false;
   }
+
+  /// endregion
 }
