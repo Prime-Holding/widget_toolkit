@@ -61,6 +61,15 @@ class SmallButton extends StatelessWidget {
       colorGradientEnd,
     ]);
 
+    final icon = state == ButtonStateModel.loading
+        ? SizedLoadingIndicator.textButtonValue()
+        : DynamicIcon(
+            this.icon,
+            color: colorStyle?.activeButtonTextColor ??
+                getColorByType(color, context),
+            semanticLabel: tooltip,
+          );
+
     final text = Ink(
       padding: context.widgetToolkitTheme.smallButtonPadding,
       decoration: BoxDecoration(
@@ -75,12 +84,7 @@ class SmallButton extends StatelessWidget {
             : null,
         gradient: type == SmallButtonType.filled ? gradient : null,
       ),
-      child: DynamicIcon(
-        icon,
-        color:
-            colorStyle?.activeButtonTextColor ?? getColorByType(color, context),
-        semanticLabel: tooltip,
-      ),
+      child: icon,
     );
 
     return AnimatedSwitcher(
@@ -90,10 +94,6 @@ class SmallButton extends StatelessWidget {
   }
 
   Widget _buildChild(BuildContext context, Widget icon, Color primaryColor) {
-    if (state == ButtonStateModel.loading) {
-      return SizedLoadingIndicator.textButtonValue();
-    }
-
     switch (type) {
       case SmallButtonType.filled:
         return ElevatedButton(
