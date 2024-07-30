@@ -1,5 +1,5 @@
 ## [0.1.1]
- - Fixed loading state's loading indicator on `SmallButton` widget
+ - Fixed loading state of 'SmallButton' widget
 
 ## [0.1.0]
 ### Breaking changes:

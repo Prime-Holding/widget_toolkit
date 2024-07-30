@@ -21,9 +21,9 @@ class SmallButton extends StatelessWidget {
   final SmallButtonType type;
 
   SmallButton({
-    this.tooltip,
     required this.onPressed,
     required this.icon,
+    this.tooltip,
     this.type = SmallButtonType.outline,
     this.state = ButtonStateModel.enabled,
     this.colorStyle,
