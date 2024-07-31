@@ -7,7 +7,7 @@ import '../factory/small_button_factory.dart';
 
 void main() {
   runGoldenBuilderTests(
-    'SmallButton Golden Tests',
+    'small_button_golden_tests',
     surfaceSize: const Size(700, 350),
     matcherCustomPump: (widget) =>
         widget.pump(const Duration(milliseconds: 350)),
