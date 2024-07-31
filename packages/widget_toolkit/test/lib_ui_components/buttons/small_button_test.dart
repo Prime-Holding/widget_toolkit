@@ -8,16 +8,36 @@ import 'factory/small_button_factory.dart';
 void main() {
   runGoldenTests([
     generateDeviceBuilder(
-        widget: smallButtonFactory(state: ButtonStateModel.loading),
-        scenario: Scenario(name: 'small_button_loading')),
+        widget: smallButtonFactory(
+            state: ButtonStateModel.loading, type: SmallButtonType.outline),
+        scenario: Scenario(name: 'small_button_outlined_loading')),
     generateDeviceBuilder(
-        widget: smallButtonFactory(state: ButtonStateModel.enabled),
-        scenario: Scenario(name: 'small_button_enabled')),
+        widget: smallButtonFactory(
+            state: ButtonStateModel.enabled, type: SmallButtonType.outline),
+        scenario: Scenario(name: 'small_button_outlined_enabled')),
     generateDeviceBuilder(
-        widget: smallButtonFactory(state: ButtonStateModel.disabled),
-        scenario: Scenario(name: 'small_button_disabled')),
+        widget: smallButtonFactory(
+            state: ButtonStateModel.disabled, type: SmallButtonType.outline),
+        scenario: Scenario(name: 'small_button_outlined_disabled')),
     generateDeviceBuilder(
-        widget: smallButtonFactory(state: ButtonStateModel.pressed),
-        scenario: Scenario(name: 'small_button_pressed')),
+        widget: smallButtonFactory(
+            state: ButtonStateModel.pressed, type: SmallButtonType.outline),
+        scenario: Scenario(name: 'small_button_outlined_pressed')),
+    generateDeviceBuilder(
+        widget: smallButtonFactory(
+            state: ButtonStateModel.loading, type: SmallButtonType.filled),
+        scenario: Scenario(name: 'small_button_filled_loading')),
+    generateDeviceBuilder(
+        widget: smallButtonFactory(
+            state: ButtonStateModel.enabled, type: SmallButtonType.filled),
+        scenario: Scenario(name: 'small_button_filled_enabled')),
+    generateDeviceBuilder(
+        widget: smallButtonFactory(
+            state: ButtonStateModel.disabled, type: SmallButtonType.filled),
+        scenario: Scenario(name: 'small_button_filled_disabled')),
+    generateDeviceBuilder(
+        widget: smallButtonFactory(
+            state: ButtonStateModel.pressed, type: SmallButtonType.filled),
+        scenario: Scenario(name: 'small_button_filled_pressed')),
   ]);
 }
