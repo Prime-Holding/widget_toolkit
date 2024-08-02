@@ -208,3 +208,46 @@ Future<void> pumpDeviceBuilderWithMaterialApp(
     ),
   );
 }
+
+void runGoldenBuilderTests(
+  String testName, {
+  required Size surfaceSize,
+  required GoldenBuilder builder,
+  WidgetTesterCallback? act,
+  CustomPump? matcherCustomPump,
+}) {
+  for (final theme in Themes.values) {
+    final themeName = theme.name;
+    final directory = '${themeName}_theme';
+
+    testGoldens('$testName - $themeName', (tester) async {
+      await tester.pumpWidgetBuilder(
+        builder.build(),
+        wrapper: materialAppWrapper(
+          localizations: [
+            ...GlobalMaterialLocalizations.delegates,
+          ],
+          theme: theme == Themes.light
+              ? ThemeData(
+                  extensions: <ThemeExtension<dynamic>>[
+                    WidgetToolkitTheme.light(),
+                  ],
+                )
+              : ThemeData(
+                  extensions: <ThemeExtension<dynamic>>[
+                    WidgetToolkitTheme.dark(),
+                  ],
+                ),
+        ),
+        surfaceSize: surfaceSize,
+      );
+
+      if (act != null) {
+        await act.call(tester);
+      }
+
+      await screenMatchesGolden(tester, '$directory/$testName',
+          customPump: matcherCustomPump);
+    });
+  }
+}

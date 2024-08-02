@@ -1,4 +1,5 @@
 ## [0.1.0]
+- Fixed loading state of 'SmallButton' widget
 ### Breaking changes:
 - Removed static `.withDependencies` constructor from widgets
 - Added new widgets `*WithDependencies`
