@@ -123,14 +123,29 @@ class SmallButton extends StatelessWidget {
           child: icon,
         );
       case SmallButtonType.icon:
-        return IconButton(
-          style: IconButton.styleFrom(
-            padding: const EdgeInsets.all(0),
-            shape: const CircleBorder(),
-            fixedSize: const Size(48, 48),
+        return Material(
+          shape: CircleBorder(
+            side: BorderSide(
+              color: context.widgetToolkitTheme.smallButtonBackgroundColor,
+              width: 0,
+            ),
           ),
-          icon: icon,
-          onPressed: onPressed,
+          color: primaryColor,
+          child: Ink(
+            decoration: ShapeDecoration(
+              color: context.widgetToolkitTheme.smallButtonBackgroundColor,
+              shape: const CircleBorder(),
+            ),
+            child: IconButton(
+              style: IconButton.styleFrom(
+                padding: const EdgeInsets.all(0),
+                shape: const CircleBorder(),
+                fixedSize: const Size(48, 48),
+              ),
+              icon: icon,
+              onPressed: onPressed,
+            ),
+          ),
         );
     }
   }
