@@ -253,16 +253,6 @@ class CommonComponentsPage extends StatelessWidget {
                             onPressed: () {},
                             type: SmallButtonType.icon,
                             icon: Icons.home_work_outlined,
-                            colorStyle: const ButtonColorStyle(
-                              activeButtonTextColor: Colors.white,
-                              disabledButtonTextColor: Colors.grey,
-                              activeGradientColorStart: Colors.black,
-                              activeGradientColorEnd: Colors.black,
-                              shadowColor: Colors.grey,
-                              pressedColor: Colors.white,
-                              borderColor: Colors.white,
-                              backgroundColor: Colors.black,
-                            ),
                           ),
                         ),
                         SmallButton(
