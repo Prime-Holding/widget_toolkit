@@ -74,7 +74,7 @@ class SmallButton extends StatelessWidget {
       padding: context.widgetToolkitTheme.smallButtonPadding,
       decoration: BoxDecoration(
         color: state != ButtonStateModel.disabled
-            ? context.widgetToolkitTheme.smallButtonBackgroundColor
+            ? colorStyle?.backgroundColor
             : null,
         shape: BoxShape.circle,
         border: type == SmallButtonType.outline
@@ -98,9 +98,6 @@ class SmallButton extends StatelessWidget {
       case SmallButtonType.filled:
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            foregroundColor: primaryColor,
-            backgroundColor:
-                context.widgetToolkitTheme.smallButtonFilledBackgroundColor,
             padding: const EdgeInsets.all(0),
             shape: const CircleBorder(),
             fixedSize: const Size(48, 48),
@@ -123,29 +120,14 @@ class SmallButton extends StatelessWidget {
           child: icon,
         );
       case SmallButtonType.icon:
-        return Material(
-          shape: CircleBorder(
-            side: BorderSide(
-              color: context.widgetToolkitTheme.smallButtonBackgroundColor,
-              width: 0,
-            ),
+        return IconButton(
+          style: IconButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+            shape: const CircleBorder(),
+            fixedSize: const Size(48, 48),
           ),
-          color: primaryColor,
-          child: Ink(
-            decoration: ShapeDecoration(
-              color: context.widgetToolkitTheme.smallButtonBackgroundColor,
-              shape: const CircleBorder(),
-            ),
-            child: IconButton(
-              style: IconButton.styleFrom(
-                padding: const EdgeInsets.all(0),
-                shape: const CircleBorder(),
-                fixedSize: const Size(48, 48),
-              ),
-              icon: icon,
-              onPressed: onPressed,
-            ),
-          ),
+          icon: icon,
+          onPressed: onPressed,
         );
     }
   }
