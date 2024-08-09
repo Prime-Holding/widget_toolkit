@@ -244,9 +244,25 @@ class CommonComponentsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 15),
-                    child: SmallButton(
-                      onPressed: () {},
-                      icon: Icons.home_work_outlined,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SmallButton(
+                          onPressed: () {},
+                          type: SmallButtonType.icon,
+                          icon: Icons.home_work_outlined,
+                        ),
+                        SmallButton(
+                          onPressed: () {},
+                          type: SmallButtonType.outline,
+                          icon: Icons.home_work_outlined,
+                        ),
+                        SmallButton(
+                          onPressed: () {},
+                          type: SmallButtonType.filled,
+                          icon: Icons.home_work_outlined,
+                        ),
+                      ],
                     ),
                   ),
                 ],

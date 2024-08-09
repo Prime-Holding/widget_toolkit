@@ -1,3 +1,6 @@
+## [0.1.1]
+- Added `SmallButtonType.icon` type to `SmallButton` widget
+
 ## [0.1.0]
 - Fixed loading state of 'SmallButton' widget
 ### Breaking changes:

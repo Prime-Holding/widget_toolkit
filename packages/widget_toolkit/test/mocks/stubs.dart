@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:rx_bloc/rx_bloc.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
@@ -122,5 +123,15 @@ class Stubs {
     city: Stubs.city,
     streetAddress: Stubs.street,
     country: Stubs.countryModelBG,
+  );
+  static ButtonColorStyle buttonStyleDark = const ButtonColorStyle(
+    activeButtonTextColor: Colors.white,
+    disabledButtonTextColor: Colors.grey,
+    activeGradientColorStart: Colors.black,
+    activeGradientColorEnd: Colors.black,
+    shadowColor: Colors.grey,
+    pressedColor: Colors.white,
+    borderColor: Colors.white,
+    backgroundColor: Colors.black,
   );
 }

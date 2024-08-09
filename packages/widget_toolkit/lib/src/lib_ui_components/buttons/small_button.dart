@@ -8,7 +8,7 @@ import '../sized_loading_indicator.dart';
 import 'button_color_style.dart';
 import 'button_state.dart';
 
-enum SmallButtonType { filled, outline }
+enum SmallButtonType { filled, outline, icon }
 
 class SmallButton extends StatelessWidget {
   final String? tooltip;
@@ -74,7 +74,7 @@ class SmallButton extends StatelessWidget {
       padding: context.widgetToolkitTheme.smallButtonPadding,
       decoration: BoxDecoration(
         color: state != ButtonStateModel.disabled
-            ? context.widgetToolkitTheme.smallButtonBackgroundColor
+            ? colorStyle?.backgroundColor
             : null,
         shape: BoxShape.circle,
         border: type == SmallButtonType.outline
@@ -98,9 +98,6 @@ class SmallButton extends StatelessWidget {
       case SmallButtonType.filled:
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            foregroundColor: primaryColor,
-            backgroundColor:
-                context.widgetToolkitTheme.smallButtonFilledBackgroundColor,
             padding: const EdgeInsets.all(0),
             shape: const CircleBorder(),
             fixedSize: const Size(48, 48),
@@ -121,6 +118,16 @@ class SmallButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: icon,
+        );
+      case SmallButtonType.icon:
+        return IconButton(
+          style: IconButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+            shape: const CircleBorder(),
+            fixedSize: const Size(48, 48),
+          ),
+          icon: icon,
+          onPressed: onPressed,
         );
     }
   }
