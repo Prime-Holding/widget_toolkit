@@ -247,13 +247,10 @@ class CommonComponentsPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          color: Colors.white,
-                          child: SmallButton(
-                            onPressed: () {},
-                            type: SmallButtonType.icon,
-                            icon: Icons.home_work_outlined,
-                          ),
+                        SmallButton(
+                          onPressed: () {},
+                          type: SmallButtonType.icon,
+                          icon: Icons.home_work_outlined,
                         ),
                         SmallButton(
                           onPressed: () {},
