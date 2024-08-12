@@ -21,8 +21,6 @@ abstract class _$ButtonColorStyleCWProxy {
 
   ButtonColorStyle borderColor(Color borderColor);
 
-  ButtonColorStyle backgroundColor(Color backgroundColor);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -37,7 +35,6 @@ abstract class _$ButtonColorStyleCWProxy {
     Color? shadowColor,
     Color? pressedColor,
     Color? borderColor,
-    Color? backgroundColor,
   });
 }
 
@@ -76,10 +73,6 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
       this(borderColor: borderColor);
 
   @override
-  ButtonColorStyle backgroundColor(Color backgroundColor) =>
-      this(backgroundColor: backgroundColor);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -95,7 +88,6 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
     Object? shadowColor = const $CopyWithPlaceholder(),
     Object? pressedColor = const $CopyWithPlaceholder(),
     Object? borderColor = const $CopyWithPlaceholder(),
-    Object? backgroundColor = const $CopyWithPlaceholder(),
   }) {
     return ButtonColorStyle(
       activeButtonTextColor:
@@ -137,11 +129,6 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
               ? _value.borderColor
               // ignore: cast_nullable_to_non_nullable
               : borderColor as Color,
-      backgroundColor: backgroundColor == const $CopyWithPlaceholder() ||
-              backgroundColor == null
-          ? _value.backgroundColor
-          // ignore: cast_nullable_to_non_nullable
-          : backgroundColor as Color,
     );
   }
 }

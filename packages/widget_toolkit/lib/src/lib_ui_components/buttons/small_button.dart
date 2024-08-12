@@ -74,7 +74,7 @@ class SmallButton extends StatelessWidget {
       padding: context.widgetToolkitTheme.smallButtonPadding,
       decoration: BoxDecoration(
         color: state != ButtonStateModel.disabled
-            ? colorStyle?.backgroundColor
+            ? context.widgetToolkitTheme.smallButtonBackgroundColor
             : null,
         shape: BoxShape.circle,
         border: type == SmallButtonType.outline
@@ -98,6 +98,9 @@ class SmallButton extends StatelessWidget {
       case SmallButtonType.filled:
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
+            foregroundColor: primaryColor,
+            backgroundColor:
+                context.widgetToolkitTheme.smallButtonFilledBackgroundColor,
             padding: const EdgeInsets.all(0),
             shape: const CircleBorder(),
             fixedSize: const Size(48, 48),

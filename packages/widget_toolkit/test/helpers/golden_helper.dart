@@ -228,12 +228,12 @@ void runGoldenBuilderTests(
             ...GlobalMaterialLocalizations.delegates,
           ],
           theme: theme == Themes.light
-              ? ThemeData(
+              ? ThemeData.light().copyWith(
                   extensions: <ThemeExtension<dynamic>>[
                     WidgetToolkitTheme.light(),
                   ],
                 )
-              : ThemeData(
+              : ThemeData.dark().copyWith(
                   extensions: <ThemeExtension<dynamic>>[
                     WidgetToolkitTheme.dark(),
                   ],

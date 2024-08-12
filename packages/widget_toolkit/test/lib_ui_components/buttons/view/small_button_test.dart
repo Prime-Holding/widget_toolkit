@@ -3,13 +3,12 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:widget_toolkit/ui_components.dart';
 
 import '../../../helpers/golden_helper.dart';
-import '../../../mocks/stubs.dart';
 import '../factory/small_button_factory.dart';
 
 void main() {
   runGoldenBuilderTests(
     'small_button_golden_tests',
-    surfaceSize: const Size(900, 800),
+    surfaceSize: const Size(700, 500),
     matcherCustomPump: (widget) =>
         widget.pump(const Duration(milliseconds: 350)),
     builder: GoldenBuilder.grid(
@@ -49,44 +48,20 @@ void main() {
           smallButtonFactory(
               type: SmallButtonType.outline, state: ButtonStateModel.pressed))
       ..addScenario(
-          'loading icon light',
+          'loading icon',
           smallButtonFactory(
               type: SmallButtonType.icon, state: ButtonStateModel.loading))
       ..addScenario(
-          'enabled icon light',
+          'enabled icon',
           smallButtonFactory(
               type: SmallButtonType.icon, state: ButtonStateModel.enabled))
       ..addScenario(
-          'disabled icon light',
+          'disabled icon',
           smallButtonFactory(
               type: SmallButtonType.icon, state: ButtonStateModel.disabled))
       ..addScenario(
-          'pressed icon light',
+          'pressed icon',
           smallButtonFactory(
-              type: SmallButtonType.icon, state: ButtonStateModel.pressed))
-      ..addScenario(
-          'loading icon dark',
-          smallButtonFactory(
-              type: SmallButtonType.icon,
-              colorStyle: Stubs.buttonStyleDark,
-              state: ButtonStateModel.loading))
-      ..addScenario(
-          'enabled icon dark',
-          smallButtonFactory(
-              type: SmallButtonType.icon,
-              colorStyle: Stubs.buttonStyleDark,
-              state: ButtonStateModel.enabled))
-      ..addScenario(
-          'disabled icon dark',
-          smallButtonFactory(
-              type: SmallButtonType.icon,
-              colorStyle: Stubs.buttonStyleDark,
-              state: ButtonStateModel.disabled))
-      ..addScenario(
-          'pressed icon dark',
-          smallButtonFactory(
-              type: SmallButtonType.icon,
-              colorStyle: Stubs.buttonStyleDark,
-              state: ButtonStateModel.pressed)),
+              type: SmallButtonType.icon, state: ButtonStateModel.pressed)),
   );
 }

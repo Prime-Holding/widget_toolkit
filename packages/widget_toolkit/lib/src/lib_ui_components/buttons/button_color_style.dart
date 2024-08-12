@@ -16,7 +16,6 @@ class ButtonColorStyle {
     required this.shadowColor,
     required this.pressedColor,
     required this.borderColor,
-    required this.backgroundColor,
   });
 
   factory ButtonColorStyle.fromContext(
@@ -28,7 +27,6 @@ class ButtonColorStyle {
     Color? shadowColor,
     Color? pressedColor,
     Color? borderColor,
-    Color? backgroundColor,
   }) =>
       ButtonColorStyle(
         activeButtonTextColor: activeButtonTextColor ??
@@ -45,8 +43,6 @@ class ButtonColorStyle {
             pressedColor ?? context.widgetToolkitTheme.buttonPressedColor,
         borderColor:
             borderColor ?? context.widgetToolkitTheme.buttonBorderColor,
-        backgroundColor:
-            backgroundColor ?? context.widgetToolkitTheme.backgroundColor,
       );
 
   final Color activeButtonTextColor;
@@ -56,5 +52,4 @@ class ButtonColorStyle {
   final Color shadowColor;
   final Color pressedColor;
   final Color borderColor;
-  final Color backgroundColor;
 }
