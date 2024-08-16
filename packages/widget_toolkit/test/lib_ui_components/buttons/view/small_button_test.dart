@@ -8,7 +8,7 @@ import '../factory/small_button_factory.dart';
 void main() {
   runGoldenBuilderTests(
     'small_button_golden_tests',
-    surfaceSize: const Size(700, 350),
+    surfaceSize: const Size(700, 500),
     matcherCustomPump: (widget) =>
         widget.pump(const Duration(milliseconds: 350)),
     builder: GoldenBuilder.grid(
@@ -46,6 +46,22 @@ void main() {
       ..addScenario(
           'pressed outlined',
           smallButtonFactory(
-              type: SmallButtonType.outline, state: ButtonStateModel.pressed)),
+              type: SmallButtonType.outline, state: ButtonStateModel.pressed))
+      ..addScenario(
+          'loading icon',
+          smallButtonFactory(
+              type: SmallButtonType.icon, state: ButtonStateModel.loading))
+      ..addScenario(
+          'enabled icon',
+          smallButtonFactory(
+              type: SmallButtonType.icon, state: ButtonStateModel.enabled))
+      ..addScenario(
+          'disabled icon',
+          smallButtonFactory(
+              type: SmallButtonType.icon, state: ButtonStateModel.disabled))
+      ..addScenario(
+          'pressed icon',
+          smallButtonFactory(
+              type: SmallButtonType.icon, state: ButtonStateModel.pressed)),
   );
 }

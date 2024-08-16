@@ -8,7 +8,7 @@ import '../sized_loading_indicator.dart';
 import 'button_color_style.dart';
 import 'button_state.dart';
 
-enum SmallButtonType { filled, outline }
+enum SmallButtonType { filled, outline, icon }
 
 class SmallButton extends StatelessWidget {
   final String? tooltip;
@@ -121,6 +121,16 @@ class SmallButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: icon,
+        );
+      case SmallButtonType.icon:
+        return IconButton(
+          style: IconButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+            shape: const CircleBorder(),
+            fixedSize: const Size(48, 48),
+          ),
+          icon: icon,
+          onPressed: onPressed,
         );
     }
   }
