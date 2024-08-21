@@ -18,6 +18,13 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
+  patrol: ^3.6.1
+  test: any
+
+patrol:
+  app_name: example
+  android:
+    package_name: com.primeholding.example
 
 dependency_overrides:
   widget_toolkit:

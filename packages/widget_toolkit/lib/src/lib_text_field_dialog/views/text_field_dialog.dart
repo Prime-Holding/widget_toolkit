@@ -89,6 +89,8 @@ class TextFieldDialog<T> extends StatefulWidget {
     this.editFieldType = EditFieldType.editfield,
     this.modalConfiguration = const TextFieldModalConfiguration(),
     this.enabled = true,
+    this.textFormFieldKey,
+    this.saveButtonKey,
     super.key,
   }) : assert(editFieldCustomIcon == null ||
             editFieldCustomIcon is IconData ||
@@ -114,6 +116,8 @@ class TextFieldDialog<T> extends StatefulWidget {
   final EditFieldType editFieldType;
   final bool enabled;
   final TextFieldModalConfiguration modalConfiguration;
+  final Key? textFormFieldKey;
+  final Key? saveButtonKey;
 
   @override
   State<TextFieldDialog<T>> createState() => _TextFieldDialogState<T>();
@@ -187,6 +191,8 @@ class _TextFieldDialogState<T> extends State<TextFieldDialog<T>> {
               initialValue: _value,
             ).providers,
             child: TextFieldDialogPage<T>(
+              textFormFieldKey: widget.textFormFieldKey,
+              saveButtonKey: widget.saveButtonKey,
               translateError: widget.translateError,
               callback: (value) {
                 setState(() => _value = value);

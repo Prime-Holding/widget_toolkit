@@ -25,6 +25,7 @@ class GradientFillButton extends StatelessWidget {
     this.colorStyle,
     this.textStyle,
     this.areIconsClose = false,
+    this.buttonKey,
     super.key,
   });
 
@@ -60,6 +61,8 @@ class GradientFillButton extends StatelessWidget {
 
   /// The style of the [text]
   final TextStyle? textStyle;
+
+  final Key? buttonKey;
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +152,7 @@ class GradientFillButton extends StatelessWidget {
     Color primary,
   ) {
     return ElevatedButton(
+      key: buttonKey,
       style: ElevatedButton.styleFrom(
         backgroundColor: primary,
         padding: padding ?? EdgeInsets.zero,
