@@ -114,8 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //# region Showcase Pages
 class CommonComponentsPage extends StatelessWidget {
-  const CommonComponentsPage({required this.pageController, Key? key})
-      : super(key: key);
+  const CommonComponentsPage({required this.pageController, super.key});
 
   final PageController pageController;
 
@@ -274,7 +273,7 @@ class CommonComponentsPage extends StatelessWidget {
 }
 
 class PickersPage extends StatelessWidget {
-  const PickersPage({required this.pageController, Key? key}) : super(key: key);
+  const PickersPage({required this.pageController, super.key});
 
   final PageController pageController;
 
@@ -347,8 +346,7 @@ class PickersPage extends StatelessWidget {
 }
 
 class EditFieldsPage extends StatelessWidget {
-  const EditFieldsPage({required this.pageController, Key? key})
-      : super(key: key);
+  const EditFieldsPage({required this.pageController, super.key});
 
   final PageController pageController;
 
@@ -446,8 +444,7 @@ class WidgetSection extends StatelessWidget {
 }
 
 class LoadingStateSwitcher extends StatefulWidget {
-  const LoadingStateSwitcher({required this.builder, Key? key})
-      : super(key: key);
+  const LoadingStateSwitcher({required this.builder, super.key});
 
   final Widget Function(bool isDataLoading, void Function(bool value)) builder;
 
@@ -487,8 +484,8 @@ class UpdateStateOnSelection<T> extends StatefulWidget {
   const UpdateStateOnSelection({
     required this.builder,
     this.getString,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget Function(
       List<T> data, void Function(List<T> newData) updateState) builder;
@@ -533,14 +530,12 @@ class _UpdateStateOnSelectionState<T> extends State<UpdateStateOnSelection<T>> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ...localData
-                          .map(
-                            (e) => Text(
-                              '${widget.getString?.call(e) ?? e.toString()} ',
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                          )
-                          .toList(),
+                      ...localData.map(
+                        (e) => Text(
+                          '${widget.getString?.call(e) ?? e.toString()} ',
+                          style: const TextStyle(fontSize: 10),
+                        ),
+                      ),
                     ],
                   ),
                 ),
