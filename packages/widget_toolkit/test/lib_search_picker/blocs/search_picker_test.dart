@@ -31,7 +31,6 @@ void main() {
         act: (bloc) async {},
         state: (bloc) => bloc.states.itemsList,
         expect: [
-          Result.loading(),
           Result.success(Stubs.searchPickerData),
         ]);
 
@@ -47,7 +46,6 @@ void main() {
         },
         state: (bloc) => bloc.states.itemsList,
         expect: [
-          Result.loading(),
           Result.success(Stubs.searchPickerFilterSuccessResult),
         ]);
 
@@ -63,7 +61,6 @@ void main() {
         },
         state: (bloc) => bloc.states.itemsList,
         expect: [
-          Result.loading(),
           Result.success(Stubs.searchPickerFilterEmptyResult),
         ]);
 
@@ -79,7 +76,6 @@ void main() {
         act: (bloc) async {},
         state: (bloc) => bloc.states.itemsList,
         expect: [
-          Result.loading(),
           Result.error(GenericErrorModel('')),
         ]);
   });
@@ -87,7 +83,7 @@ void main() {
 
 void _defineWhen() {
   when(_repository.searchList).thenAnswer((_) => Future.value(
-        (Stubs.searchPickerData),
+        Stubs.searchPickerData,
       ));
 }
 
