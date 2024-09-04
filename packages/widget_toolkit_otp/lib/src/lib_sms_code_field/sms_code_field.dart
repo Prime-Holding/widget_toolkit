@@ -173,7 +173,6 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
 
   @override
   void dispose() {
-    _controller?.dispose();
     _smsRetriever?.dispose();
     super.dispose();
   }
