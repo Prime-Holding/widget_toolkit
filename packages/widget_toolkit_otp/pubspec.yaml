@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.0.5
   rx_bloc: ^6.0.0
   rxdart: ^0.28.0
+  smart_auth: ^2.0.0
   theme_tailor_annotation: ^3.0.0
   widget_toolkit: ^0.2.0
 

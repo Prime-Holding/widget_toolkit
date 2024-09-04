@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_auth/smart_auth.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
+import '../base/data_sources/sms_retriever.dart';
 import '../base/models/temporary_code_state.dart';
 import '../base/theme/sms_code_theme.dart';
 import '../base/utils/enums.dart' as enums;
@@ -147,8 +149,8 @@ class SmsCodeField extends StatefulWidget {
   /// Is the pin field enabled
   final bool? enabled;
 
-  /// Allow the communication between components of the Prime SMS Package. If
-  /// this field is set to `true`, the widget will perform a lookup up the
+  /// Allow the communication between components of the widget_toolkit Package.
+  /// If this field is set to `true`, the widget will perform a lookup up the
   /// widget tree. If the SmsCodeBlocType bloc is not part of the widget tree,
   /// the
   final bool useInternalCommunication;
@@ -159,22 +161,35 @@ class SmsCodeField extends StatefulWidget {
 
 class _SmsCodeFieldState extends State<SmsCodeField> {
   TextEditingController? _controller;
+  SmsRetriever? _smsRetriever;
 
   @override
   void initState() {
     _controller = widget.controller;
+    _smsRetriever = _smsAutofillMethod;
 
     super.initState();
   }
 
-  AndroidSmsAutofillMethod get _smsAutofillMethod {
+  @override
+  void dispose() {
+    _controller?.dispose();
+    _smsRetriever?.dispose();
+    super.dispose();
+  }
+
+  SmsRetrieverImpl? get _smsAutofillMethod {
     switch (widget.androidSmsAutofillMethod) {
-      case enums.AndroidSmsAutofillMethod.none:
-        return AndroidSmsAutofillMethod.none;
       case enums.AndroidSmsAutofillMethod.smsRetrieverApi:
-        return AndroidSmsAutofillMethod.smsRetrieverApi;
       case enums.AndroidSmsAutofillMethod.smsUserConsentApi:
-        return AndroidSmsAutofillMethod.smsUserConsentApi;
+        return SmsRetrieverImpl(
+          context.read() ?? SmartAuth(),
+          senderPhoneNumber: widget.senderPhoneNumber,
+          useUserConsentAPI: enums.AndroidSmsAutofillMethod.smsUserConsentApi ==
+              widget.androidSmsAutofillMethod,
+        );
+      case enums.AndroidSmsAutofillMethod.none:
+        return null;
     }
   }
 
@@ -242,7 +257,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         focusedPinTheme: _buildFocusedTheme(context),
         submittedPinTheme: _buildSubmittedTheme(context),
         followingPinTheme: _buildUnfilledStyleTheme(context),
-        //androidSmsAutofillMethod: _smsAutofillMethod,
+        smsRetriever: _smsRetriever,
         hapticFeedbackType: _hapticFeedbackType,
         pinAnimationType: _animationType,
         preFilledWidget: widget.prefilledWidget,
@@ -261,7 +276,6 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         onSubmitted: widget.onSubmitted,
         obscureText: widget.obscureText,
         obscuringWidget: widget.obscuringWidget,
-        // senderPhoneNumber: widget.senderPhoneNumber,
         pinContentAlignment: widget.pinContentAlignment,
         errorBuilder: widget.errorBuilder,
         forceErrorState: forceErrorState,
