@@ -1,3 +1,10 @@
+## [0.1.0]
+- Upgrade dependencies:
+* `rxdart` to `0.28.0`
+* `rx_bloc` to `6.0.0`
+* `flutter_bloc` to `8.0.0`
+* `widget_toolkit` to `0.2.0`
+
 ## [0.0.2]
 - Upgrade major versions of dependencies: `theme_tailor`, `theme_tailor_annotation`
 ### Breaking changes:
