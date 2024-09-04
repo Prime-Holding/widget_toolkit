@@ -1,3 +1,11 @@
+## [0.0.3]
+- Updated dependencies:
+* `rxdart` to `0.28.0`
+* `rx_bloc` to `6.0.0`
+* `flutter_rx_bloc` to `7.0.0`
+* `app_settings` to `5.1.1`
+* `local_auth` to `2.3.0`
+
 ## [0.0.2]
 - Update dependencies to use `widget_toolkit` version `0.0.2`
 
