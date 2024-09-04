@@ -15,7 +15,6 @@ import 'sms_code_theme_configuration.dart';
 /// SMS code field with a lot of customization also supporting sms code
 /// autofill and paste functionality.
 class SmsCodeField extends StatefulWidget {
-// class SmsCodeField extends StatelessWidget {
   const SmsCodeField({
     this.onChanged,
     this.onSubmitted,
@@ -136,23 +135,23 @@ class SmsCodeField extends StatefulWidget {
   /// [useInternalCommunication] is set to `true`.
   final bool forceErrorState;
 
-  /// Error builder accepting the error as the first parameter and the pin as
-  /// the second parameter
+  /// Error builder accepting the error as the first parameter and the last
+  /// entered pin as the second parameter
   final Widget Function(String? errorText, String pin)? errorBuilder;
 
   /// Configuration containing themes for different states of the pin field
   final SmsThemeConfiguration themeConfig;
 
-  /// Widget which will render between the pin fields
+  /// Widget which will render between the pin input fields
   final Widget? separator;
 
   /// Is the pin field enabled
   final bool? enabled;
 
-  /// Allow the communication between components of the widget_toolkit Package.
-  /// If this field is set to `true`, the widget will perform a lookup up the
-  /// widget tree. If the SmsCodeBlocType bloc is not part of the widget tree,
-  /// the
+  /// Allow the communication between components of the widget_toolkit_otp
+  /// package. If this field is set to `true`, the widget will perform a lookup
+  /// for the [SmsCodeBlocType] bloc up the widget tree and perform automatic
+  /// communication with the bloc.
   final bool useInternalCommunication;
 
   @override
