@@ -1,3 +1,9 @@
+## [0.2.0]
+- Updated dependencies:
+* `rxdart` to `0.28.0`
+* `rx_bloc` to `6.0.0`
+* `flutter_rx_bloc` to `7.0.0`
+
 ## [0.1.1]
 - Added `SmallButtonType.icon` type to `SmallButton` widget
 
