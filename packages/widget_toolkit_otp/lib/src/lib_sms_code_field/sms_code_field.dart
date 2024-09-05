@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_auth/smart_auth.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
+import '../base/data_sources/sms_retriever.dart';
 import '../base/models/temporary_code_state.dart';
 import '../base/theme/sms_code_theme.dart';
 import '../base/utils/enums.dart' as enums;
@@ -13,7 +15,6 @@ import 'sms_code_theme_configuration.dart';
 /// SMS code field with a lot of customization also supporting sms code
 /// autofill and paste functionality.
 class SmsCodeField extends StatefulWidget {
-// class SmsCodeField extends StatelessWidget {
   const SmsCodeField({
     this.onChanged,
     this.onSubmitted,
@@ -134,23 +135,23 @@ class SmsCodeField extends StatefulWidget {
   /// [useInternalCommunication] is set to `true`.
   final bool forceErrorState;
 
-  /// Error builder accepting the error as the first parameter and the pin as
-  /// the second parameter
+  /// Error builder accepting the error as the first parameter and the last
+  /// entered pin as the second parameter
   final Widget Function(String? errorText, String pin)? errorBuilder;
 
   /// Configuration containing themes for different states of the pin field
   final SmsThemeConfiguration themeConfig;
 
-  /// Widget which will render between the pin fields
+  /// Widget which will render between the pin input fields
   final Widget? separator;
 
   /// Is the pin field enabled
   final bool? enabled;
 
-  /// Allow the communication between components of the Prime SMS Package. If
-  /// this field is set to `true`, the widget will perform a lookup up the
-  /// widget tree. If the SmsCodeBlocType bloc is not part of the widget tree,
-  /// the
+  /// Allow the communication between components of the widget_toolkit_otp
+  /// package. If this field is set to `true`, the widget will perform a lookup
+  /// for the [SmsCodeBlocType] bloc up the widget tree and perform automatic
+  /// communication with the bloc.
   final bool useInternalCommunication;
 
   @override
@@ -159,22 +160,34 @@ class SmsCodeField extends StatefulWidget {
 
 class _SmsCodeFieldState extends State<SmsCodeField> {
   TextEditingController? _controller;
+  SmsRetriever? _smsRetriever;
 
   @override
   void initState() {
     _controller = widget.controller;
+    _smsRetriever = _smsAutofillMethod;
 
     super.initState();
   }
 
-  AndroidSmsAutofillMethod get _smsAutofillMethod {
+  @override
+  void dispose() {
+    _smsRetriever?.dispose();
+    super.dispose();
+  }
+
+  SmsRetrieverImpl? get _smsAutofillMethod {
     switch (widget.androidSmsAutofillMethod) {
-      case enums.AndroidSmsAutofillMethod.none:
-        return AndroidSmsAutofillMethod.none;
       case enums.AndroidSmsAutofillMethod.smsRetrieverApi:
-        return AndroidSmsAutofillMethod.smsRetrieverApi;
       case enums.AndroidSmsAutofillMethod.smsUserConsentApi:
-        return AndroidSmsAutofillMethod.smsUserConsentApi;
+        return SmsRetrieverImpl(
+          context.read() ?? SmartAuth(),
+          senderPhoneNumber: widget.senderPhoneNumber,
+          useUserConsentAPI: enums.AndroidSmsAutofillMethod.smsUserConsentApi ==
+              widget.androidSmsAutofillMethod,
+        );
+      case enums.AndroidSmsAutofillMethod.none:
+        return null;
     }
   }
 
@@ -242,7 +255,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         focusedPinTheme: _buildFocusedTheme(context),
         submittedPinTheme: _buildSubmittedTheme(context),
         followingPinTheme: _buildUnfilledStyleTheme(context),
-        androidSmsAutofillMethod: _smsAutofillMethod,
+        smsRetriever: _smsRetriever,
         hapticFeedbackType: _hapticFeedbackType,
         pinAnimationType: _animationType,
         preFilledWidget: widget.prefilledWidget,
@@ -261,7 +274,6 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         onSubmitted: widget.onSubmitted,
         obscureText: widget.obscureText,
         obscuringWidget: widget.obscuringWidget,
-        senderPhoneNumber: widget.senderPhoneNumber,
         pinContentAlignment: widget.pinContentAlignment,
         errorBuilder: widget.errorBuilder,
         forceErrorState: forceErrorState,

@@ -172,8 +172,9 @@ class _QRBarScannerCamera extends StatelessWidget {
       );
 
   Future<Widget> _getError(BuildContext context, String error) async {
+    final onErrorWidget = onError(context, error);
     return await Future.delayed(Duration.zero, () {
-      return onError(context, error) ?? const SizedBox();
+      return onErrorWidget ?? const SizedBox();
     });
   }
 }

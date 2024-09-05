@@ -6,4 +6,4 @@ dependency_overrides:
   widget_toolkit:
     path: ../../widget_toolkit
   widget_toolkit_biometrics:
-    path: ../../widget_toolkit_biometrics
+    path: ..
