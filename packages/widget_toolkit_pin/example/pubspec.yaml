@@ -14,8 +14,8 @@ dependencies:
   provider: ^6.0.5
   rx_bloc: ^6.0.0
   widget_toolkit: ^0.2.0
-  widget_toolkit_pin: ^0.1.1
-  widget_toolkit_biometrics: ^0.0.3
+  widget_toolkit_pin: ^0.2.0
+  widget_toolkit_biometrics: ^0.1.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

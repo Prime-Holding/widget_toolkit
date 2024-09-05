@@ -1,4 +1,4 @@
-## [0.0.3]
+## [0.1.0]
 - Updated dependencies:
 * `rxdart` to `0.28.0`
 * `rx_bloc` to `6.0.0`
