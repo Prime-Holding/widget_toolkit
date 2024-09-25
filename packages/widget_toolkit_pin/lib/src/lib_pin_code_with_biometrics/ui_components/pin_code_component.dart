@@ -391,9 +391,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 ),
               ),
               _buildPinCodeKey(context, 0, 0),
-              _buildBiometricsButton(context, pinLength
-                  // pin
-                  ),
+              _buildBiometricsButton(context, pinLength),
             ],
           ),
         ],

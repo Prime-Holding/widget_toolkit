@@ -2,7 +2,9 @@ import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
+import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
+import '../models/error_enable_biometrics.dart';
 import '../services/pin_biometrics_service.dart';
 import '../services/pin_code_service.dart';
 
@@ -162,6 +164,9 @@ class PinCodeBloc extends $PinCodeBloc {
   /// Authenticates the user with biometrics after which the pin code is
   /// retrieved from the device and checked.
   Future<bool> _authenticateWithBiometrics() async {
+    if (!await biometricAuthenticationService.isDeviceSupported) {
+      throw ErrorEnableBiometrics(BiometricsMessage.notSupported);
+    }
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {

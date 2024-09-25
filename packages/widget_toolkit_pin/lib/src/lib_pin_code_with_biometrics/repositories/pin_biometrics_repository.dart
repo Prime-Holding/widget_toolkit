@@ -5,7 +5,9 @@ import '../models/biometrics_authentication_type.dart';
 
 class PinBiometricsRepository extends BiometricsRepository {
   PinBiometricsRepository(
-      this.biometricAuthenticationDataSource, this.localDataSource);
+    this.biometricAuthenticationDataSource,
+    this.localDataSource,
+  );
 
   @override
   final PinBiometricsAuthDataSource biometricAuthenticationDataSource;

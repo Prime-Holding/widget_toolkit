@@ -137,7 +137,7 @@ class MyHomePage extends StatelessWidget {
         return 'To use biometrics, you need to turn it on in your device settings!';
 
       case BiometricsMessage.notSupported:
-        return 'You don\'t have biometric feature on your device!';
+        return 'Biometric features aren’t supported on this device!';
 
       case BiometricsMessage.enabled:
         return 'Your biometrics are enabled!';
