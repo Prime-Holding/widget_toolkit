@@ -57,6 +57,10 @@ class PinCodeComponent extends StatefulWidget {
   /// to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
 
+  /// The duration of the input label animation presenting the error or input dots
+  final Duration inputLabelAnimationDuration =
+      const Duration(milliseconds: 300);
+
   @override
   State<PinCodeComponent> createState() => _PinCodeComponentState();
 }
@@ -240,7 +244,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           child: child,
         ),
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
+          duration: widget.inputLabelAnimationDuration,
           switchInCurve: Curves.easeOut,
           switchOutCurve: Curves.easeOut,
           transitionBuilder: (child, animation) {
@@ -255,10 +259,13 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                   child: child,
                 ),
               );
-            } else {
-              return AnimatedSwitcher.defaultTransitionBuilder
-                  .call(child, animation);
             }
+            if (animation.value <= 0) {
+              print("Error: $hasErrorText Anim: ${animation.value}");
+            }
+
+            return AnimatedSwitcher.defaultTransitionBuilder
+                .call(child, animation);
           },
           child: hasErrorText && widget.error != null
               ? _buildErrorText(context, widget.error!)
