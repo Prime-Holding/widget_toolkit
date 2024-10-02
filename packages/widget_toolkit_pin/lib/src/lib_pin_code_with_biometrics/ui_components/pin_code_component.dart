@@ -260,9 +260,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 ),
               );
             }
-            if (animation.value <= 0) {
-              print("Error: $hasErrorText Anim: ${animation.value}");
-            }
 
             return AnimatedSwitcher.defaultTransitionBuilder
                 .call(child, animation);
