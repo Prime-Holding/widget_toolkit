@@ -77,6 +77,10 @@ class PinCodeBloc extends $PinCodeBloc {
             return Stream.value(_pinCode.value.length);
           },
         ).asResultStream(),
+        errorState
+            .delay(const Duration(milliseconds: 300))
+            .mapTo(0)
+            .asResultStream(),
       ]).whereSuccess().startWith(0).share();
 
   @override
