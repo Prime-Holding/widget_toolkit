@@ -436,16 +436,16 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         context,
         showButton,
       );
-    } else {
-      return Opacity(
-        opacity: isLoading ? 0.5 : 1,
-        child: _buildIconContent(
-          context,
-          showButton,
-          pinLength,
-        ),
-      );
     }
+
+    return Opacity(
+      opacity: isLoading ? 0.5 : 1,
+      child: _buildIconContent(
+        context,
+        showButton,
+        pinLength,
+      ),
+    );
   }
 
   Widget _buildIconContent(

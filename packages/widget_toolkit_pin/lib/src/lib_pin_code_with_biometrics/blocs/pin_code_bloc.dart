@@ -78,7 +78,7 @@ class PinCodeBloc extends $PinCodeBloc {
           },
         ).asResultStream(),
         errorState
-            .delay(const Duration(milliseconds: 300))
+            .delay(const Duration(milliseconds: 1000))
             .mapTo(0)
             .asResultStream(),
       ]).whereSuccess().startWith(0).share();
