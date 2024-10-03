@@ -1,3 +1,8 @@
+## [0.2.1]
+* Fixed a visual bug where held buttons would remain stuck in the pressed state
+* Fixed a visual bug where pin indicators wouldn't be displayed after an error is presented
+* Throw an error if biometrics aren't supported during biometrics authentication
+
 ## [0.2.0]
 - Updated dependencies:
 * `rxdart` to `0.28.0`

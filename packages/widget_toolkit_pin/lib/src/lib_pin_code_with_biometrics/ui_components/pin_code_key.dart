@@ -11,17 +11,30 @@ class PinCodeKey extends StatefulWidget {
     this.isFaceScan = false,
     this.isLoading = false,
     this.showDefaultIcon = false,
+    this.tintDuration = const Duration(milliseconds: 300),
     super.key,
   });
 
+  /// The number to be displayed on the key
   final int? number;
+
+  /// Shows the finger scan icon if it is set to true
   final bool isFingerScan;
+
+  /// Shows the face scan icon if it is set to true
   final bool isFaceScan;
+
+  /// Shows the loading state of the key
   final bool isLoading;
 
   /// Shows the face scan icon if it is set to true
   final bool showDefaultIcon;
+
+  /// Callback executed once the key is pressed
   final void Function(int?) onPressed;
+
+  /// The duration of the tint animation once a button is pressed/released
+  final Duration tintDuration;
 
   @override
   State<PinCodeKey> createState() => _PinCodeKeyState();
@@ -39,28 +52,14 @@ class _PinCodeKeyState extends State<PinCodeKey> {
                   isPressed = true;
                 });
                 if (widget.isFingerScan || widget.isFaceScan) {
-                  await Future.delayed(const Duration(milliseconds: 300));
+                  await Future.delayed(widget.tintDuration);
                 }
                 widget.onPressed(widget.number);
               },
-        onTapUp: widget.isLoading
-            ? null
-            : (_) async {
-                await Future.delayed(const Duration(milliseconds: 300));
-                setState(() {
-                  isPressed = false;
-                });
-              },
-        onHorizontalDragEnd: (_) {
-          setState(() {
-            isPressed = false;
-          });
-        },
-        onVerticalDragEnd: (_) {
-          setState(() {
-            isPressed = false;
-          });
-        },
+        onTapUp: widget.isLoading ? null : (_) => _delayedButtonRelease(),
+        onTapCancel: widget.isLoading ? null : _delayedButtonRelease,
+        onHorizontalDragEnd: (_) => _cancelPress(),
+        onVerticalDragEnd: (_) => _cancelPress(),
         child: widget.isFingerScan
             ? AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
@@ -108,4 +107,15 @@ class _PinCodeKeyState extends State<PinCodeKey> {
 
   double _calculateSize(BuildContext context) =>
       calculateKeyboardButtonSize(context);
+
+  void _cancelPress() {
+    setState(() {
+      isPressed = false;
+    });
+  }
+
+  void _delayedButtonRelease() async {
+    await Future.delayed(widget.tintDuration);
+    _cancelPress();
+  }
 }
