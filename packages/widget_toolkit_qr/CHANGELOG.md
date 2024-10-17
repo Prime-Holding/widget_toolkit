@@ -1,3 +1,6 @@
+## [0.2.0]
+- Change dependency from `flutter_qr_bar_scanner` to `mobile_scanner`
+
 ## [0.1.0]
 - Upgrade dependencies:
 * `rxdart` to `0.28.0`
