@@ -193,19 +193,12 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           child: RxBlocBuilder<PinCodeBlocType, int>(
             state: (bloc) => bloc.states.digitsCount,
             builder: (context, pinLength, bloc) => _buildPageContent(
-              pinLength: _pinLengthData(pinLength),
+              pinLength: pinLength.data ?? 0,
               context: context,
             ),
           ),
         ),
       );
-
-  int _pinLengthData(AsyncSnapshot<int> pinLength) {
-    if (pinLength.hasData && pinLength.data != null) {
-      return pinLength.data!;
-    }
-    return 0;
-  }
 
   Widget _buildPageContent({
     required int pinLength,
@@ -255,18 +248,14 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                   child: child,
                 ),
               );
-            } else {
-              return AnimatedSwitcher.defaultTransitionBuilder
-                  .call(child, animation);
             }
+
+            return AnimatedSwitcher.defaultTransitionBuilder
+                .call(child, animation);
           },
           child: hasErrorText && widget.error != null
               ? _buildErrorText(context, widget.error!)
-              : RxBlocBuilder<PinCodeBlocType, int>(
-                  state: (bloc) => bloc.states.digitsCount,
-                  builder: (context, pinLength, bloc) =>
-                      _buildMaskedKeysRow(context, pinLength.data ?? 0),
-                ),
+              : _buildMaskedKeysRow(context, pinLength),
         ),
       );
 
@@ -391,9 +380,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 ),
               ),
               _buildPinCodeKey(context, 0, 0),
-              _buildBiometricsButton(context, pinLength
-                  // pin
-                  ),
+              _buildBiometricsButton(context, pinLength),
             ],
           ),
         ],
@@ -449,16 +436,16 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         context,
         showButton,
       );
-    } else {
-      return Opacity(
-        opacity: isLoading ? 0.5 : 1,
-        child: _buildIconContent(
-          context,
-          showButton,
-          pinLength,
-        ),
-      );
     }
+
+    return Opacity(
+      opacity: isLoading ? 0.5 : 1,
+      child: _buildIconContent(
+        context,
+        showButton,
+        pinLength,
+      ),
+    );
   }
 
   Widget _buildIconContent(
