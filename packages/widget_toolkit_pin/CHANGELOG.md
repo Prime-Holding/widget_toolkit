@@ -1,3 +1,6 @@
+## [0.2.2]
+* Fixed a bug where a newly input pin could get deleted if the user starts typing again immediately after an error shake animation starts
+
 ## [0.2.1]
 * Fixed a visual bug where held buttons would remain stuck in the pressed state
 * Fixed a visual bug where pin indicators wouldn't be displayed after an error is presented
