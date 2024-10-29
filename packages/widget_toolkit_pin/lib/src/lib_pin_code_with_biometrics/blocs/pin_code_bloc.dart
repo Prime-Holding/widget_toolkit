@@ -95,10 +95,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   Stream<Result<bool>> _mapToShowBiometricsButtonState() =>
-      _getAreBiometricsEnabled()
-          .asResultStream()
-          .doOnData(print)
-          .shareReplay(maxSize: 1);
+      _getAreBiometricsEnabled().asResultStream().shareReplay(maxSize: 1);
 
   @override
   void dispose() {
