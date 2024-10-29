@@ -109,24 +109,17 @@ class PinCodeKeyboard extends StatelessWidget {
           listener: (context, error) =>
               onError?.call(error, translateError(error)),
           child: RxBlocBuilder<PinCodeBlocType, ErrorModel>(
-            state: (bloc) => bloc.states.errors,
-            builder: (context, errorSnapshot, bloc) =>
-                RxBlocBuilder<PinCodeBlocType, int>(
-              state: (bloc) => bloc.states.digitsCount,
-              builder: (context, snapshot, bloc) => snapshot.hasData
-                  ? PinCodeComponent(
-                      translateError: translateError,
-                      mapBiometricMessageToString: mapBiometricMessageToString,
-                      biometricsLocalDataSource: biometricsLocalDataSource,
-                      onAuthenticated: onAuthenticated,
-                      deleteKeyButton: deleteKeyButton,
-                      bottomRightKeyboardButton: bottomRightKeyboardButton,
-                      error: errorSnapshot.data,
-                      localizedReason: _enterPinWithBiometrics,
-                    )
-                  : Container(),
-            ),
-          ),
+              state: (bloc) => bloc.states.errors,
+              builder: (context, errorSnapshot, bloc) => PinCodeComponent(
+                    translateError: translateError,
+                    mapBiometricMessageToString: mapBiometricMessageToString,
+                    biometricsLocalDataSource: biometricsLocalDataSource,
+                    onAuthenticated: onAuthenticated,
+                    deleteKeyButton: deleteKeyButton,
+                    bottomRightKeyboardButton: bottomRightKeyboardButton,
+                    error: errorSnapshot.data,
+                    localizedReason: _enterPinWithBiometrics,
+                  )),
         ),
       );
 

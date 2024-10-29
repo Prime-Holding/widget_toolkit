@@ -28,15 +28,17 @@ abstract class $PinCodeBloc extends RxBlocBase
   /// Тhe [Subject] where events sink to by calling [biometricsButtonPressed]
   final _$biometricsButtonPressedEvent = PublishSubject<void>();
 
-  /// Тhe [Subject] where events sink to by calling [checkIfPinIsStored]
-  final _$checkIfPinIsStoredEvent = PublishSubject<void>();
-
   /// The state of [digitsCount] implemented in [_mapToDigitsCountState]
   late final Stream<int> _digitsCountState = _mapToDigitsCountState();
 
+  /// The state of [placeholderDigitsCount] implemented in
+  /// [_mapToPlaceholderDigitsCountState]
+  late final Stream<int> _placeholderDigitsCountState =
+      _mapToPlaceholderDigitsCountState();
+
   /// The state of [showBiometricsButton] implemented in
   /// [_mapToShowBiometricsButtonState]
-  late final ConnectableStream<bool> _showBiometricsButtonState =
+  late final Stream<Result<bool>> _showBiometricsButtonState =
       _mapToShowBiometricsButtonState();
 
   /// The state of [authenticated] implemented in [_mapToAuthenticatedState]
@@ -59,14 +61,13 @@ abstract class $PinCodeBloc extends RxBlocBase
   void biometricsButtonPressed() => _$biometricsButtonPressedEvent.add(null);
 
   @override
-  void checkIfPinIsStored() => _$checkIfPinIsStoredEvent.add(null);
-
-  @override
   Stream<int> get digitsCount => _digitsCountState;
 
   @override
-  ConnectableStream<bool> get showBiometricsButton =>
-      _showBiometricsButtonState;
+  Stream<int> get placeholderDigitsCount => _placeholderDigitsCountState;
+
+  @override
+  Stream<Result<bool>> get showBiometricsButton => _showBiometricsButtonState;
 
   @override
   ConnectableStream<dynamic> get authenticated => _authenticatedState;
@@ -79,7 +80,9 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   Stream<int> _mapToDigitsCountState();
 
-  ConnectableStream<bool> _mapToShowBiometricsButtonState();
+  Stream<int> _mapToPlaceholderDigitsCountState();
+
+  Stream<Result<bool>> _mapToShowBiometricsButtonState();
 
   ConnectableStream<dynamic> _mapToAuthenticatedState();
 
@@ -98,7 +101,6 @@ abstract class $PinCodeBloc extends RxBlocBase
     _$addDigitEvent.close();
     _$deleteDigitEvent.close();
     _$biometricsButtonPressedEvent.close();
-    _$checkIfPinIsStoredEvent.close();
     _compositeSubscription.dispose();
     super.dispose();
   }
