@@ -24,7 +24,7 @@ abstract class PinCodeBlocEvents {
 
 /// A contract class containing all states of the PinCodeBloc.
 abstract class PinCodeBlocStates {
-  /// Emits cyrrent PIN length to UI
+  /// Emits current PIN length to UI
   Stream<int> get digitsCount;
 
   /// Emits placeholder PIN length to UI
