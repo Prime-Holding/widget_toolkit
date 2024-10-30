@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
@@ -163,7 +162,7 @@ void main() {
         act: (bloc) async {
           bloc.events.addDigit(Stubs.pinCode);
         },
-        state: (bloc) => bloc.states.showBiometricsButton.whereSuccess(),
+        state: (bloc) => bloc.states.showBiometricsButton,
         expect: [true]);
 
     rxBlocTest<PinCodeBloc, bool>(
@@ -179,11 +178,11 @@ void main() {
           return pinCodeBloc();
         },
         act: (bloc) async {},
-        state: (bloc) => bloc.states.showBiometricsButton.whereSuccess(),
+        state: (bloc) => bloc.states.showBiometricsButton,
         expect: [false]);
 
     rxBlocTest<PinCodeBloc, Exception>(
-        'test pin_code_bloc_dart state showBiometricsButton error',
+        'test pin_code_bloc_dart state error with biometrics',
         build: () async {
           defineWhen(
             pinCode: Stubs.pinCode2,
@@ -196,7 +195,10 @@ void main() {
           return pinCodeBloc();
         },
         act: (bloc) async {},
-        state: (bloc) => bloc.states.showBiometricsButton.whereError(),
+        state: (bloc) {
+          bloc.states.showBiometricsButton.listen((_) {});
+          return bloc.states.errors;
+        },
         expect: [Stubs.error]);
   });
 

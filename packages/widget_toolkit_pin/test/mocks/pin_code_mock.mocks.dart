@@ -6,9 +6,8 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:rx_bloc/rx_bloc.dart' as _i5;
 import 'package:rxdart/rxdart.dart' as _i2;
-import 'package:widget_toolkit/models.dart' as _i6;
+import 'package:widget_toolkit/models.dart' as _i5;
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/blocs/pin_code_bloc.dart'
     as _i3;
 
@@ -79,10 +78,10 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
       ) as _i4.Stream<int>);
 
   @override
-  _i4.Stream<_i5.Result<bool>> get showBiometricsButton => (super.noSuchMethod(
+  _i4.Stream<bool> get showBiometricsButton => (super.noSuchMethod(
         Invocation.getter(#showBiometricsButton),
-        returnValue: _i4.Stream<_i5.Result<bool>>.empty(),
-      ) as _i4.Stream<_i5.Result<bool>>);
+        returnValue: _i4.Stream<bool>.empty(),
+      ) as _i4.Stream<bool>);
 
   @override
   _i2.ConnectableStream<dynamic> get authenticated => (super.noSuchMethod(
@@ -100,10 +99,10 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
       ) as _i4.Stream<bool>);
 
   @override
-  _i4.Stream<_i6.ErrorModel> get errors => (super.noSuchMethod(
+  _i4.Stream<_i5.ErrorModel> get errors => (super.noSuchMethod(
         Invocation.getter(#errors),
-        returnValue: _i4.Stream<_i6.ErrorModel>.empty(),
-      ) as _i4.Stream<_i6.ErrorModel>);
+        returnValue: _i4.Stream<_i5.ErrorModel>.empty(),
+      ) as _i4.Stream<_i5.ErrorModel>);
 }
 
 /// A class which mocks [PinCodeBlocEvents].

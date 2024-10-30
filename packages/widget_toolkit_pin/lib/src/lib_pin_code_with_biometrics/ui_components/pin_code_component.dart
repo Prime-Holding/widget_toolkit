@@ -4,8 +4,6 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:rx_bloc/rx_bloc.dart';
-import 'package:widget_toolkit/extensions.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit/shimmer.dart';
 import 'package:widget_toolkit/theme_data.dart';
@@ -136,15 +134,12 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         children: [
           RxBlocListener<PinCodeBlocType, ErrorModel>(
             state: (bloc) => bloc.states.errors,
-            listener: (context, errors) => _startErrorAnimation(),
-          ),
-          RxBlocListener<PinCodeBlocType, ErrorModel>(
-            state: (bloc) =>
-                bloc.states.showBiometricsButton.whereError().mapToErrorModel(),
-            listener: (context, error) {
-              if (error is ErrorEnableBiometrics) {
-                _onStateChanged(context, error.message);
+            listener: (context, errors) {
+              if (errors is ErrorEnableBiometrics) {
+                _onStateChanged(context, errors.message);
+                return;
               }
+              _startErrorAnimation();
             },
           ),
           RxBlocListener<PinCodeBlocType, dynamic>(
@@ -435,8 +430,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 child: RxBlocBuilder<PinCodeBlocType, bool>(
-                  state: (bloc) =>
-                      bloc.states.showBiometricsButton.whereSuccess(),
+                  state: (bloc) => bloc.states.showBiometricsButton,
                   builder: (context, showButton, bloc) => _buildButtonContent(
                     context,
                     showButton.hasData && showButton.data!,

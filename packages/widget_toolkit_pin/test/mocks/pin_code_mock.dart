@@ -1,6 +1,5 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
@@ -37,11 +36,9 @@ PinCodeBlocType pinCodeMockFactory({
     (_) {
       service.verifyPinCode(Stubs.pinCode3);
       service.isPinCodeInSecureStorage();
-      final state = error != null
-          ? Stream.value(Result<bool>.error(error))
-          : showBiometricsButton != null
-              ? Stream.value(Result<bool>.success(showBiometricsButton))
-              : Stream.value(Result<bool>.success(false));
+      final state = showBiometricsButton != null
+          ? Stream.value(showBiometricsButton)
+          : Stream.value(false);
 
       return state.publish()..connect();
     },
@@ -55,7 +52,8 @@ PinCodeBlocType pinCodeMockFactory({
   );
 
   when(statesMock.errors).thenAnswer(
-    (_) => const Stream<ErrorModel>.empty(),
+    (_) =>
+        error != null ? Stream.value(error) : const Stream<ErrorModel>.empty(),
   );
 
   when(service.getPinLength()).thenAnswer((_) async => Stubs.pinCode3.length);

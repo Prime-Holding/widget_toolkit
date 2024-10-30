@@ -38,7 +38,7 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   /// The state of [showBiometricsButton] implemented in
   /// [_mapToShowBiometricsButtonState]
-  late final Stream<Result<bool>> _showBiometricsButtonState =
+  late final Stream<bool> _showBiometricsButtonState =
       _mapToShowBiometricsButtonState();
 
   /// The state of [authenticated] implemented in [_mapToAuthenticatedState]
@@ -67,7 +67,7 @@ abstract class $PinCodeBloc extends RxBlocBase
   Stream<int> get placeholderDigitsCount => _placeholderDigitsCountState;
 
   @override
-  Stream<Result<bool>> get showBiometricsButton => _showBiometricsButtonState;
+  Stream<bool> get showBiometricsButton => _showBiometricsButtonState;
 
   @override
   ConnectableStream<dynamic> get authenticated => _authenticatedState;
@@ -82,7 +82,7 @@ abstract class $PinCodeBloc extends RxBlocBase
 
   Stream<int> _mapToPlaceholderDigitsCountState();
 
-  Stream<Result<bool>> _mapToShowBiometricsButtonState();
+  Stream<bool> _mapToShowBiometricsButtonState();
 
   ConnectableStream<dynamic> _mapToAuthenticatedState();
 

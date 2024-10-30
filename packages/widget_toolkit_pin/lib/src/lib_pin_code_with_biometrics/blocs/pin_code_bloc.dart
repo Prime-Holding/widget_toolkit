@@ -31,7 +31,7 @@ abstract class PinCodeBlocStates {
   Stream<int> get placeholderDigitsCount;
 
   ///Indicating the biometrics button must be presented
-  Stream<Result<bool>> get showBiometricsButton;
+  Stream<bool> get showBiometricsButton;
 
   ///Emits when user successfully authenticate (pin/biometrics)
   ConnectableStream<dynamic> get authenticated;
@@ -94,8 +94,12 @@ class PinCodeBloc extends $PinCodeBloc {
       ]).setResultStateHandler(this).whereSuccess().publish();
 
   @override
-  Stream<Result<bool>> _mapToShowBiometricsButtonState() =>
-      _getAreBiometricsEnabled().asResultStream().shareReplay(maxSize: 1);
+  Stream<bool> _mapToShowBiometricsButtonState() => const Stream.empty()
+      .startWith(null)
+      .switchMap((_) => _getAreBiometricsEnabled().asResultStream())
+      .setResultStateHandler(this)
+      .whereSuccess()
+      .shareReplay(maxSize: 1);
 
   @override
   void dispose() {
