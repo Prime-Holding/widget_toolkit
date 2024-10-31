@@ -20,17 +20,18 @@ abstract class PinCodeBlocEvents {
 
   ///Triggered when user tap on biometrics button
   void biometricsButtonPressed();
-
-  void checkIfPinIsStored();
 }
 
 /// A contract class containing all states of the PinCodeBloc.
 abstract class PinCodeBlocStates {
-  ///Indicating how much dots to present
+  /// Emits current PIN length to UI
   Stream<int> get digitsCount;
 
+  /// Emits placeholder PIN length to UI
+  Stream<int> get placeholderDigitsCount;
+
   ///Indicating the biometrics button must be presented
-  ConnectableStream<bool> get showBiometricsButton;
+  Stream<bool> get showBiometricsButton;
 
   ///Emits when user successfully authenticate (pin/biometrics)
   ConnectableStream<dynamic> get authenticated;
@@ -50,14 +51,6 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.localizedReason,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
-    showBiometricsButton.connect().addTo(_compositeSubscription);
-
-    _$biometricsButtonPressedEvent
-        .switchMap((_) => _authenticateWithBiometrics().asResultStream())
-        .setResultStateHandler(this)
-        .whereSuccess()
-        .listen((_) {})
-        .addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -65,7 +58,6 @@ class PinCodeBloc extends $PinCodeBloc {
   final String localizedReason;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
-  final BehaviorSubject<dynamic> _authResponse = BehaviorSubject();
 
   @override
   Stream<int> _mapToDigitsCountState() => Rx.merge([
@@ -77,11 +69,15 @@ class PinCodeBloc extends $PinCodeBloc {
             return Stream.value(_pinCode.value.length);
           },
         ).asResultStream(),
-        errorState
-            .delay(const Duration(milliseconds: 1000))
-            .mapTo(0)
-            .asResultStream(),
+        errorState.mapTo(0).asResultStream(),
       ]).whereSuccess().startWith(0).share();
+
+  @override
+  Stream<int> _mapToPlaceholderDigitsCountState() => pinCodeService
+      .getPinLength()
+      .asResultStream()
+      .setResultStateHandler(this)
+      .whereSuccess();
 
   @override
   Stream<bool> _mapToIsLoadingState() => loadingState;
@@ -90,21 +86,23 @@ class PinCodeBloc extends $PinCodeBloc {
   Stream<ErrorModel> _mapToErrorsState() => errorState.mapToErrorModel();
 
   @override
-  ConnectableStream<dynamic> _mapToAuthenticatedState() =>
-      _authResponse.publish();
-
-  @override
-  ConnectableStream<bool> _mapToShowBiometricsButtonState() => Rx.merge([
-        _$checkIfPinIsStoredEvent.switchMap(
-            (_) => pinCodeService.isPinCodeInSecureStorage().asResultStream()),
+  ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
         _digitsCountState.switchMap((digitsCount) =>
             _checkPin(_pinCode.value, digitsCount).asResultStream()),
-        _getAreBiometricsEnabled().asResultStream(),
+        _$biometricsButtonPressedEvent
+            .switchMap((_) => _authenticateWithBiometrics().asResultStream()),
       ]).setResultStateHandler(this).whereSuccess().publish();
 
   @override
+  Stream<bool> _mapToShowBiometricsButtonState() => const Stream.empty()
+      .startWith(null)
+      .switchMap((_) => _getAreBiometricsEnabled().asResultStream())
+      .setResultStateHandler(this)
+      .whereSuccess()
+      .shareReplay(maxSize: 1);
+
+  @override
   void dispose() {
-    _authResponse.close();
     _pinCode.close();
     super.dispose();
   }
@@ -147,15 +145,14 @@ class PinCodeBloc extends $PinCodeBloc {
   }
 
   /// Checks the validity of the pin code
-  Future<bool> _checkPin(String pinCode, int digits) async {
+  Future<dynamic> _checkPin(String pinCode, int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
-    if (digits == storedPinLength) {
+    if (storedPinLength != 0 && digits == storedPinLength) {
       try {
         final authValue = await _encryptAndVerify(pinCode);
         final isSaved = await pinCodeService.isPinCodeInSecureStorage();
         if (isSaved) {
-          _authResponse.add(authValue);
-          return true;
+          return authValue;
         }
       } catch (_) {
         _pinCode.value = '';
@@ -167,7 +164,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   /// Authenticates the user with biometrics after which the pin code is
   /// retrieved from the device and checked.
-  Future<bool> _authenticateWithBiometrics() async {
+  Future<bool?> _authenticateWithBiometrics() async {
     if (!await biometricAuthenticationService.isDeviceSupported) {
       throw ErrorEnableBiometrics(BiometricsMessage.notSupported);
     }

@@ -72,13 +72,16 @@ class MockPinCodeBlocStates extends _i1.Mock implements _i3.PinCodeBlocStates {
       ) as _i4.Stream<int>);
 
   @override
-  _i2.ConnectableStream<bool> get showBiometricsButton => (super.noSuchMethod(
+  _i4.Stream<int> get placeholderDigitsCount => (super.noSuchMethod(
+        Invocation.getter(#placeholderDigitsCount),
+        returnValue: _i4.Stream<int>.empty(),
+      ) as _i4.Stream<int>);
+
+  @override
+  _i4.Stream<bool> get showBiometricsButton => (super.noSuchMethod(
         Invocation.getter(#showBiometricsButton),
-        returnValue: _FakeConnectableStream_0<bool>(
-          this,
-          Invocation.getter(#showBiometricsButton),
-        ),
-      ) as _i2.ConnectableStream<bool>);
+        returnValue: _i4.Stream<bool>.empty(),
+      ) as _i4.Stream<bool>);
 
   @override
   _i2.ConnectableStream<dynamic> get authenticated => (super.noSuchMethod(
@@ -132,15 +135,6 @@ class MockPinCodeBlocEvents extends _i1.Mock implements _i3.PinCodeBlocEvents {
   void biometricsButtonPressed() => super.noSuchMethod(
         Invocation.method(
           #biometricsButtonPressed,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void checkIfPinIsStored() => super.noSuchMethod(
-        Invocation.method(
-          #checkIfPinIsStored,
           [],
         ),
         returnValueForMissingStub: null,

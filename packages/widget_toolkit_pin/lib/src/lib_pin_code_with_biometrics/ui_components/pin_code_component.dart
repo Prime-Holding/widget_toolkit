@@ -64,10 +64,9 @@ class PinCodeComponent extends StatefulWidget {
 class _PinCodeComponentState extends State<PinCodeComponent>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  bool isShakeAnimation = false;
   bool hasErrorText = false;
-  bool isLoading = false;
   bool authenticatedPin = false;
-  bool hideDelete = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -120,13 +119,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       duration: const Duration(milliseconds: 600),
       vsync: this,
     );
-    _shakeTweenSequence.animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.ease,
-      ),
-    );
-    context.read<PinCodeBlocType>().events.checkIfPinIsStored();
+
     super.initState();
   }
 
@@ -139,17 +132,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          RxBlocListener<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.isLoading,
-            listener: (
-              context,
-              isLoadingSnapshot,
-            ) {
-              setState(() {
-                isLoading = isLoadingSnapshot;
-              });
-            },
-          ),
           RxBlocListener<PinCodeBlocType, ErrorModel>(
             state: (bloc) => bloc.states.errors,
             listener: (context, errors) {
@@ -157,13 +139,17 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                 _onStateChanged(context, errors.message);
                 return;
               }
-
               _startErrorAnimation();
             },
           ),
           RxBlocListener<PinCodeBlocType, dynamic>(
             state: (bloc) => bloc.states.authenticated,
+            condition: (oldState, newState) => oldState != newState,
             listener: (context, authValue) {
+              if (authValue == false) {
+                return;
+              }
+
               setState(() {
                 authenticatedPin = true;
               });
@@ -190,11 +176,16 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.1,
               vertical: 20),
-          child: RxBlocBuilder<PinCodeBlocType, int>(
-            state: (bloc) => bloc.states.digitsCount,
-            builder: (context, pinLength, bloc) => _buildPageContent(
-              pinLength: pinLength.data ?? 0,
-              context: context,
+          child: RxBlocBuilder<PinCodeBlocType, bool>(
+            state: (bloc) => bloc.states.isLoading,
+            builder: (context, isLoading, bloc) =>
+                RxBlocBuilder<PinCodeBlocType, int>(
+              state: (bloc) => bloc.states.digitsCount,
+              builder: (context, pinLength, bloc) => _buildPageContent(
+                pinLength: pinLength.data ?? 0,
+                context: context,
+                isLoading: isLoading.data ?? false,
+              ),
             ),
           ),
         ),
@@ -203,18 +194,24 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   Widget _buildPageContent({
     required int pinLength,
     required BuildContext context,
+    bool isLoading = false,
   }) =>
       SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Spacer(flex: 4),
-            _buildAnimatedKeysBuilder(context, pinLength),
+            _buildAnimatedKeysBuilder(
+              context,
+              pinLength,
+              isLoading,
+            ),
             const Spacer(flex: 3),
             _buildKeyboard(
               verticalSpacing: MediaQuery.of(context).size.height / 45,
               context: context,
               pinLength: pinLength,
+              isLoading: isLoading,
             ),
           ],
         ),
@@ -222,7 +219,11 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   /// region Builders
 
-  Widget _buildAnimatedKeysBuilder(BuildContext context, int pinLength) =>
+  Widget _buildAnimatedKeysBuilder(
+    BuildContext context,
+    int pinLength,
+    bool isLoading,
+  ) =>
       AnimatedBuilder(
         animation: _controller,
         builder: (context, child) => Align(
@@ -255,7 +256,17 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           },
           child: hasErrorText && widget.error != null
               ? _buildErrorText(context, widget.error!)
-              : _buildMaskedKeysRow(context, pinLength),
+              : RxBlocBuilder<PinCodeBlocType, int>(
+                  state: (bloc) => bloc.states.placeholderDigitsCount,
+                  builder: (context, totalDigitsCount, bloc) =>
+                      _buildMaskedKeysRow(
+                    context,
+                    isShakeAnimation || isLoading
+                        ? totalDigitsCount.data ?? 4
+                        : pinLength,
+                    isLoading,
+                  ),
+                ),
         ),
       );
 
@@ -266,10 +277,11 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       );
 
   Future<void> _startErrorAnimation() async {
+    isShakeAnimation = true;
     await _controller.forward(from: 0);
     setState(() {
       hasErrorText = true;
-      hideDelete = true;
+      isShakeAnimation = false;
     });
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
@@ -279,16 +291,18 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     }
   }
 
-  Widget _buildMaskedKeysRow(BuildContext context, int pinLength) =>
+  Widget _buildMaskedKeysRow(
+    BuildContext context,
+    int pinLength,
+    bool isLoading,
+  ) =>
       IntrinsicWidth(
-        child: isLoading
-            ? ShimmerWrapper(
-                baseColor: context.pinCodeTheme.shimmerBaseColor,
-                highlightColor: context.pinCodeTheme.shimmerHighlightColor,
-                showShimmer: true,
-                child: _buildInLayout(pinLength),
-              )
-            : _buildInLayout(pinLength),
+        child: ShimmerWrapper(
+          baseColor: context.pinCodeTheme.shimmerBaseColor,
+          highlightColor: context.pinCodeTheme.shimmerHighlightColor,
+          showShimmer: isLoading,
+          child: _buildInLayout(pinLength),
+        ),
       );
 
   Widget _buildInLayout(int pinLength) => pinLength <= _calculateRowLength()
@@ -348,25 +362,26 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     required double verticalSpacing,
     required BuildContext context,
     required int pinLength,
+    bool isLoading = false,
   }) =>
       Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
-                3, (index) => _buildPinCodeKey(context, index, 1)),
+                3, (index) => _buildPinCodeKey(context, index, 1, isLoading)),
           ),
           SizedBox(height: verticalSpacing),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
-                3, (index) => _buildPinCodeKey(context, index, 4)),
+                3, (index) => _buildPinCodeKey(context, index, 4, isLoading)),
           ),
           SizedBox(height: verticalSpacing),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
-                3, (index) => _buildPinCodeKey(context, index, 7)),
+                3, (index) => _buildPinCodeKey(context, index, 7, isLoading)),
           ),
           SizedBox(height: verticalSpacing),
           Row(
@@ -379,14 +394,19 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                   child: Container(),
                 ),
               ),
-              _buildPinCodeKey(context, 0, 0),
-              _buildBiometricsButton(context, pinLength),
+              _buildPinCodeKey(context, 0, 0, isLoading),
+              _buildBiometricsButton(context, pinLength, isLoading),
             ],
           ),
         ],
       );
 
-  Widget _buildPinCodeKey(BuildContext context, int index, int number) =>
+  Widget _buildPinCodeKey(
+    BuildContext context,
+    int index,
+    int number,
+    bool isLoading,
+  ) =>
       PinCodeKey(
         number: index + number,
         isLoading: isLoading,
@@ -394,13 +414,13 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           if (!authenticatedPin) {
             context.read<PinCodeBlocType>().events.addDigit(key.toString());
           }
-          hideDelete = false;
         },
       );
 
   Widget _buildBiometricsButton(
     BuildContext context,
     int pinLength,
+    bool isLoading,
   ) =>
       SizedBox(
         height: calculateKeyboardButtonSize(context),
@@ -415,6 +435,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
                     context,
                     showButton.hasData && showButton.data!,
                     pinLength,
+                    isLoading,
                   ),
                 ),
               ),
@@ -423,18 +444,20 @@ class _PinCodeComponentState extends State<PinCodeComponent>
 
   Widget _buildButtonContent(
     BuildContext context,
-    bool showButton,
+    bool showBiometricsButton,
     int pinLength,
+    bool isLoading,
   ) {
-    if (!showButton && pinLength != 0 && !hideDelete) {
+    if (pinLength > 0) {
       return PinCodeDeleteKey(
         isLoading: isLoading,
         onTap: () => context.read<PinCodeBlocType>().events.deleteDigit(),
       );
-    } else if (showButton) {
+    } else if (showBiometricsButton) {
       return _buildEnableBiometricsButton(
         context,
-        showButton,
+        showBiometricsButton,
+        isLoading,
       );
     }
 
@@ -442,8 +465,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       opacity: isLoading ? 0.5 : 1,
       child: _buildIconContent(
         context,
-        showButton,
+        showBiometricsButton,
         pinLength,
+        isLoading,
       ),
     );
   }
@@ -452,8 +476,9 @@ class _PinCodeComponentState extends State<PinCodeComponent>
     BuildContext context,
     bool showBiometricsButton,
     int pin,
+    bool isLoading,
   ) {
-    if (pin > 0 && !hideDelete) {
+    if (pin > 0) {
       if (widget.deleteKeyButton != null) {
         return widget.deleteKeyButton!;
       } else {
@@ -468,6 +493,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
       return _buildEnableBiometricsButton(
         context,
         showBiometricsButton,
+        isLoading,
       );
     }
     return Container();
@@ -476,6 +502,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   Widget _buildEnableBiometricsButton(
     BuildContext context,
     bool showBiometricsButton,
+    bool isLoading,
   ) =>
       (widget.biometricsLocalDataSource != null && showBiometricsButton)
           ? PinCodeBiometricKey(
