@@ -47,6 +47,7 @@ class PinCodeKeyboard extends StatelessWidget {
     required this.pinCodeService,
     required this.translateError,
     this.biometricsLocalDataSource,
+    this.biometricsAuthDataSource,
     this.mapBiometricMessageToString,
     this.onAuthenticated,
     this.deleteKeyButton,
@@ -71,6 +72,11 @@ class PinCodeKeyboard extends StatelessWidget {
   /// If this parameter is not provided the biometrics authentication is disabled
   /// for the package
   final BiometricsLocalDataSource? biometricsLocalDataSource;
+
+  /// Provides a contract for custom biometrics authentication plugin. If this
+  /// parameter is not provided, a default one will be used featuring
+  /// [LocalAuthentication] from the local_auth package
+  final PinBiometricsAuthDataSource? biometricsAuthDataSource;
 
   /// Callback called when the user authentication succeeds. It accepts a dynamic
   /// value which is forwarded from the `verifyPinCode` method of the [pinCodeService].
@@ -129,6 +135,7 @@ class PinCodeKeyboard extends StatelessWidget {
             ...PinCodeDependencies.from(
               pinCodeService: pinCodeService,
               biometricsLocalDataSource: biometricsLocalDataSource,
+              biometricsAuthDataSource: biometricsAuthDataSource,
               localizedReason: localizedReason ?? _enterPinWithBiometrics,
             ).providers,
           ],
