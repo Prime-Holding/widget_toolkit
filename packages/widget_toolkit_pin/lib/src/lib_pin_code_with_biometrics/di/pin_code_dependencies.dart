@@ -5,7 +5,6 @@ import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 
 import '../../../widget_toolkit_pin.dart';
 import '../data_source/biometrics_disabled_local_data_source.dart';
-import '../data_source/pin_biometrics_auth_data_source.dart';
 import '../repositories/pin_biometrics_repository.dart';
 import '../services/pin_biometrics_service.dart';
 
@@ -14,22 +13,26 @@ class PinCodeDependencies {
     this.pinCodeService,
     this.biometricsLocalDataSource,
     this.localizedReason,
+    this.biometricsAuthDataSource,
   );
 
   factory PinCodeDependencies.from({
     required PinCodeService pinCodeService,
     required BiometricsLocalDataSource? biometricsLocalDataSource,
     required String localizedReason,
+    PinBiometricsAuthDataSource? biometricsAuthDataSource,
   }) =>
       PinCodeDependencies._(
         pinCodeService,
         biometricsLocalDataSource,
         localizedReason,
+        biometricsAuthDataSource,
       );
 
   final String localizedReason;
   final PinCodeService pinCodeService;
   final BiometricsLocalDataSource? biometricsLocalDataSource;
+  final PinBiometricsAuthDataSource? biometricsAuthDataSource;
 
   late List<SingleChildWidget> providers = [
     ..._localAuthentication,
@@ -47,9 +50,11 @@ class PinCodeDependencies {
 
   late final List<SingleChildWidget> _dataSources = [
     Provider<PinBiometricsAuthDataSource>(
-      create: (context) => PinBiometricsAuthDataSource(
-        localAuthentication: context.read<LocalAuthentication>(),
-      ),
+      create: (context) =>
+          biometricsAuthDataSource ??
+          PinBiometricsAuthDataSource(
+            localAuthentication: context.read<LocalAuthentication>(),
+          ),
     ),
     if (biometricsLocalDataSource == null)
       Provider<BiometricsLocalDataSource>(
