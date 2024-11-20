@@ -164,7 +164,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   /// Authenticates the user with biometrics after which the pin code is
   /// retrieved from the device and checked.
-  Future<bool?> _authenticateWithBiometrics() async {
+  Future<dynamic> _authenticateWithBiometrics() async {
     if (!await biometricAuthenticationService.isDeviceSupported) {
       throw ErrorEnableBiometrics(BiometricsMessage.notSupported);
     }

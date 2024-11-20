@@ -155,7 +155,7 @@ class AppPinCodeService implements PinCodeService {
 
   /// This pin is intended to be stored in the secured storage for production
   /// applications
-  String? _pinCode;
+  String? _pinCode = '1111';
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
@@ -199,10 +199,10 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
 
   /// This bool check is intended to be stored in the secured storage for production
   /// applications
-  bool? _areBiometricsEnabled;
+  bool _areBiometricsEnabled = true;
 
   @override
-  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled;
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async =>
