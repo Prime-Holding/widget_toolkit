@@ -1,4 +1,5 @@
-## [0.2.3]
+## [0.3.0]
+* Added `autoBiometricAuth` parameter to `PinCodeKeyboard` to automatically authenticate with biometrics if available
 * Fixed a bug where biometrics authentication would not work if encryption was used
 * Added biometrics authentication to the example application
 
