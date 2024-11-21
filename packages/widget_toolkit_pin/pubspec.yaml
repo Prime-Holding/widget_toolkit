@@ -1,7 +1,7 @@
 name: widget_toolkit_pin
 description: This package provide out of the box entering PIN code
   functionality, which can be used with biometric authentication.
-version: 0.2.2
+version: 0.2.3
 homepage: https://primeholding.com/
 
 environment:

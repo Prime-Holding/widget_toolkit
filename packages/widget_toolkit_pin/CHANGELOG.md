@@ -1,3 +1,7 @@
+## [0.2.3]
+* Fixed a bug where biometrics authentication would not work if encryption was used
+* Added biometrics authentication to the example application
+
 ## [0.2.2]
 * Fixed a bug where a newly input pin could get deleted if the user starts typing again immediately after an error shake animation starts
 
