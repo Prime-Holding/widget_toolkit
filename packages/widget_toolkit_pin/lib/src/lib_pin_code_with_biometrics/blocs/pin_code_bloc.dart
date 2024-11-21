@@ -88,7 +88,7 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
         _digitsCountState.switchMap((digitsCount) =>
-            _checkPin(_pinCode.value, digitsCount, null).asResultStream()),
+            _checkPin(_pinCode.value, digitsCount).asResultStream()),
         _$biometricsButtonPressedEvent
             .switchMap((_) => _authenticateWithBiometrics().asResultStream()),
       ]).setResultStateHandler(this).whereSuccess().publish();
@@ -145,12 +145,8 @@ class PinCodeBloc extends $PinCodeBloc {
   }
 
   /// Checks the validity of the pin code
-  Future<dynamic> _checkPin(
-    String pinCode,
-    int digits,
-    int? storedPinLength,
-  ) async {
-    storedPinLength != await pinCodeService.getPinLength();
+  Future<dynamic> _checkPin(String pinCode, int digits) async {
+    final storedPinLength = await pinCodeService.getPinLength();
     if (storedPinLength != 0 && digits == storedPinLength) {
       try {
         final authValue = await _encryptAndVerify(pinCode);
@@ -175,9 +171,26 @@ class PinCodeBloc extends $PinCodeBloc {
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
-        return await _checkPin(pinCode, pinCode.length, pinCode.length);
+        return _validateBiometricsPin(pinCode);
       }
     }
+    return false;
+  }
+
+  /// Checks the validity of the pin code retrieved from local storage
+  /// after biometric authentication is successful
+  Future<dynamic> _validateBiometricsPin(String pinCode) async {
+    try {
+      final authValue = await _encryptAndVerify(pinCode);
+      final isSaved = await pinCodeService.isPinCodeInSecureStorage();
+      if (isSaved) {
+        return authValue;
+      }
+    } catch (_) {
+      _pinCode.value = '';
+      rethrow;
+    }
+
     return false;
   }
 
