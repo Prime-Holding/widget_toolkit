@@ -181,7 +181,7 @@ class PinCodeBloc extends $PinCodeBloc {
   /// after biometric authentication is successful
   Future<dynamic> _validateBiometricsPin(String pinCode) async {
     try {
-      final authValue = await _encryptAndVerify(pinCode);
+      final authValue = await pinCodeService.verifyPinCode(pinCode);
       final isSaved = await pinCodeService.isPinCodeInSecureStorage();
       if (isSaved) {
         return authValue;
