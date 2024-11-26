@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_rx_bloc: ^7.0.0
-  flutter_svg: ^2.0.15
+  flutter_svg: ^2.0.10+1
   local_auth: ^2.3.0
   provider: ^6.1.2
   rx_bloc: ^6.0.0
