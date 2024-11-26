@@ -77,6 +77,7 @@ void main() {
         biometricAuthenticationService: biometricAuthenticationService,
         localizedReason: '',
         pinCodeService: pinCodeService,
+        autoBiometricAuth: false,
       );
 
   group('test pin_code_bloc_dart state digitsCount', () {

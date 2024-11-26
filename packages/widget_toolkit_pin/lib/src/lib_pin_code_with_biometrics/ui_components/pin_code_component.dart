@@ -27,7 +27,6 @@ class PinCodeComponent extends StatefulWidget {
     this.deleteKeyButton,
     this.bottomRightKeyboardButton,
     this.error,
-    this.autoBiometricAuth,
     super.key,
   });
 
@@ -57,9 +56,6 @@ class PinCodeComponent extends StatefulWidget {
   /// Provide custom implementation for the most down right button. Do not forget
   /// to make it clickable.
   final PinCodeCustomKey? bottomRightKeyboardButton;
-
-  /// Triggers the biometrics authentication process on the first screen load
-  final bool? autoBiometricAuth;
 
   @override
   State<PinCodeComponent> createState() => _PinCodeComponentState();
@@ -136,17 +132,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          RxBlocListener<PinCodeBlocType, bool>(
-            state: (bloc) => bloc.states.showBiometricsButton,
-            listener: (context, state) {
-              if (widget.autoBiometricAuth == true && state == true) {
-                context
-                    .read<PinCodeBlocType>()
-                    .events
-                    .biometricsButtonPressed();
-              }
-            },
-          ),
           RxBlocListener<PinCodeBlocType, ErrorModel>(
             state: (bloc) => bloc.states.errors,
             listener: (context, errors) {

@@ -132,7 +132,6 @@ class PinCodeKeyboard extends StatelessWidget {
                     bottomRightKeyboardButton: bottomRightKeyboardButton,
                     error: errorSnapshot.data,
                     localizedReason: _enterPinWithBiometrics,
-                    autoBiometricAuth: autoBiometricAuth,
                   )),
         ),
       );
@@ -145,6 +144,7 @@ class PinCodeKeyboard extends StatelessWidget {
               biometricsLocalDataSource: biometricsLocalDataSource,
               biometricsAuthDataSource: biometricsAuthDataSource,
               localizedReason: localizedReason ?? _enterPinWithBiometrics,
+              autoBiometricAuth: autoBiometricAuth,
             ).providers,
           ],
           child: child,

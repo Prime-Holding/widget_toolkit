@@ -17,7 +17,7 @@ dependencies:
   local_auth: ^2.3.0
   provider: ^6.1.2
   rx_bloc: ^6.0.0
-  rx_bloc_list: ^5.0.1
+  rx_bloc_list: ^5.0.0
   rxdart: ^0.28.0
   shared_preferences: ^2.3.3
   theme_tailor_annotation: ^3.0.1

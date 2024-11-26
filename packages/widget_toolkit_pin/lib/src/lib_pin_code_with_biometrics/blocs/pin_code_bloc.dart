@@ -49,6 +49,7 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.biometricAuthenticationService,
     required this.pinCodeService,
     required this.localizedReason,
+    required this.autoBiometricAuth,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
   }
@@ -56,6 +57,7 @@ class PinCodeBloc extends $PinCodeBloc {
   final PinBiometricsService biometricAuthenticationService;
   final PinCodeService pinCodeService;
   final String localizedReason;
+  final bool autoBiometricAuth;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
 
@@ -90,6 +92,14 @@ class PinCodeBloc extends $PinCodeBloc {
         _digitsCountState.switchMap((digitsCount) =>
             _checkPin(_pinCode.value, digitsCount).asResultStream()),
         _$biometricsButtonPressedEvent
+            .switchMap((_) => _authenticateWithBiometrics().asResultStream()),
+        Rx.combineLatest2<bool, bool, bool>(
+          showBiometricsButton,
+          Stream.value(autoBiometricAuth),
+          (showBiometricsButton, autoBiometricAuth) =>
+              showBiometricsButton && autoBiometricAuth,
+        )
+            .where((shouldAuthenticate) => shouldAuthenticate)
             .switchMap((_) => _authenticateWithBiometrics().asResultStream()),
       ]).setResultStateHandler(this).whereSuccess().publish();
 
@@ -190,7 +200,6 @@ class PinCodeBloc extends $PinCodeBloc {
       _pinCode.value = '';
       rethrow;
     }
-
     return false;
   }
 
