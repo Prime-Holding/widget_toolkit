@@ -154,7 +154,7 @@ class PinCodeBloc extends $PinCodeBloc {
     return verifiedPin;
   }
 
-  /// Checks the validity of the pin code
+  // Checks the validity of the pin code
   Future<dynamic> _checkPin(String pinCode, int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
     if (storedPinLength != 0 && digits == storedPinLength) {
@@ -181,24 +181,8 @@ class PinCodeBloc extends $PinCodeBloc {
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
-        return _validateBiometricsPin(pinCode);
+        return await pinCodeService.verifyPinCode(pinCode);
       }
-    }
-    return false;
-  }
-
-  /// Checks the validity of the pin code retrieved from local storage
-  /// after biometric authentication is successful
-  Future<dynamic> _validateBiometricsPin(String pinCode) async {
-    try {
-      final authValue = await pinCodeService.verifyPinCode(pinCode);
-      final isSaved = await pinCodeService.isPinCodeInSecureStorage();
-      if (isSaved) {
-        return authValue;
-      }
-    } catch (_) {
-      _pinCode.value = '';
-      rethrow;
     }
     return false;
   }
