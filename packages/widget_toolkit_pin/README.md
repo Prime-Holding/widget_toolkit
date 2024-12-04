@@ -251,10 +251,10 @@ to the user when they  are prompted to confirm that they want to enable biometri
 localizedReason: 'Activate the biometrics of your device',
 ```
 
-Optionally you can provide `autoBiometricAuth` and set it to true. In this case the biometrics authentication will
+Optionally you can provide `autoPromptBiometric` and set it to true. In this case the biometrics authentication will
 be triggered automatically when the keyboard is opened
 ```dart
-autoBiometricAuth: true,
+autoPromptBiometric: true,
 ```
 
 ## Functional specifications

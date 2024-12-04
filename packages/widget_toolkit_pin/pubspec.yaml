@@ -19,7 +19,7 @@ dependencies:
   rx_bloc: ^6.0.0
   rx_bloc_list: ^5.0.0
   rxdart: ^0.28.0
-  shared_preferences: ^2.3.3
+  shared_preferences: ^2.3.2
   theme_tailor_annotation: ^3.0.1
   widget_toolkit: ^0.2.0
   widget_toolkit_biometrics: ^0.1.0

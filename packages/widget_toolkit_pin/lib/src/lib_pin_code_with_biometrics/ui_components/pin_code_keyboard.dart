@@ -55,7 +55,7 @@ class PinCodeKeyboard extends StatelessWidget {
     this.localizedReason,
     this.addDependencies = true,
     this.onError,
-    this.autoBiometricAuth = false,
+    this.autoPromptBiometric = false,
     super.key,
   });
 
@@ -110,7 +110,7 @@ class PinCodeKeyboard extends StatelessWidget {
   /// when the widget is loaded, requires [biometricsLocalDataSource] to be provided
   /// otherwise the biometric authentication will be disabled
   /// Default to false
-  final bool autoBiometricAuth;
+  final bool autoPromptBiometric;
 
   static const String _enterPinWithBiometrics =
       'Enter your pin code by authenticating with biometrics';
@@ -144,7 +144,7 @@ class PinCodeKeyboard extends StatelessWidget {
               biometricsLocalDataSource: biometricsLocalDataSource,
               biometricsAuthDataSource: biometricsAuthDataSource,
               localizedReason: localizedReason ?? _enterPinWithBiometrics,
-              autoBiometricAuth: autoBiometricAuth,
+              autoPromptBiometric: autoPromptBiometric,
             ).providers,
           ],
           child: child,

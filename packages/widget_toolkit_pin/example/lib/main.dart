@@ -97,9 +97,9 @@ class MyHomePage extends StatelessWidget {
                       // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
                           _onError(error, translatedError, context),
-                      // Optionally you can provide [autoBiometricAuth] and set it to true.
+                      // Optionally you can provide [autoPromptBiometric] and set it to true.
                       // In this case the biometric authentication will be triggered automatically
-                      autoBiometricAuth: false,
+                      autoPromptBiometric: false,
                     ),
                   ),
                 ],
@@ -170,9 +170,6 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    if (_pinCode == pinCode) {
-      return Future.value(pinCode);
-    }
     return Future.value(pinCode);
   }
 
