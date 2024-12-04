@@ -1,4 +1,5 @@
 ## [0.3.0]
+* Added `savePinCodeInSecureStorage` to `PinCodeService` for saving the pin code in secure storage
 * Added `autoPromptBiometric` parameter to `PinCodeKeyboard` to automatically authenticate with biometrics if available
 * Fixed a bug where biometrics authentication would not work if encryption was used
 * Added biometrics authentication to the example application
