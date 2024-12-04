@@ -144,23 +144,14 @@ class PinCodeBloc extends $PinCodeBloc {
     return _pinCode.value.length;
   }
 
-  /// Encrypts and verifies the provided pin code
-  Future<dynamic> _encryptAndVerify(String pinCode) async {
-    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
-    return verifiedPin;
-  }
-
   // Checks the validity of the pin code
   Future<dynamic> _checkPin(String pinCode, int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
     if (storedPinLength != 0 && digits == storedPinLength) {
       try {
-        final authValue = await _encryptAndVerify(pinCode);
-        final isSaved = await pinCodeService.isPinCodeInSecureStorage();
-        if (isSaved) {
-          return authValue;
-        }
+        final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+        await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
+        return await pinCodeService.verifyPinCode(encryptedPin);
       } catch (_) {
         _pinCode.value = '';
         rethrow;

@@ -189,6 +189,11 @@ class AppPinCodeService implements PinCodeService {
   Future<String?> getPinCode() async {
     return Future.value(_pinCode);
   }
+
+  @override
+  Future<bool> savePinCodeInSecureStorage(String pinCode) async {
+    return true;
+  }
 }
 
 /// You have to implement and provide a [BiometricsLocalDataSource], you can

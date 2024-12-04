@@ -18,4 +18,7 @@ abstract class PinCodeService {
 
   /// Returns the pin code or null if it is not saved in the device memory yet.
   Future<String?> getPinCode();
+
+  /// Stores the encrypted pin code in the device secure storage.
+  Future<bool> savePinCodeInSecureStorage(String pinCode);
 }
