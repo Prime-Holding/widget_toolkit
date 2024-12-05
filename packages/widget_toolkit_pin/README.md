@@ -251,6 +251,12 @@ to the user when they  are prompted to confirm that they want to enable biometri
 localizedReason: 'Activate the biometrics of your device',
 ```
 
+Optionally you can provide `autoPromptBiometric` and set it to true. In this case the biometrics authentication will
+be triggered automatically when the keyboard is opened
+```dart
+autoPromptBiometric: true,
+```
+
 ## Functional specifications
 
 When the widget is loaded for the first time on the bottom right of the page, there is no button.

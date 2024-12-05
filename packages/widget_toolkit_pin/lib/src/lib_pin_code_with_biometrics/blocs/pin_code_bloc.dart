@@ -49,6 +49,7 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.biometricAuthenticationService,
     required this.pinCodeService,
     required this.localizedReason,
+    required this.autoPromptBiometric,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
   }
@@ -56,6 +57,7 @@ class PinCodeBloc extends $PinCodeBloc {
   final PinBiometricsService biometricAuthenticationService;
   final PinCodeService pinCodeService;
   final String localizedReason;
+  final bool autoPromptBiometric;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
 
@@ -90,7 +92,12 @@ class PinCodeBloc extends $PinCodeBloc {
         _digitsCountState.switchMap((digitsCount) =>
             _checkPin(_pinCode.value, digitsCount).asResultStream()),
         _$biometricsButtonPressedEvent
-            .switchMap((_) => _authenticateWithBiometrics().asResultStream()),
+            .mapTo(true)
+            .startWith(autoPromptBiometric)
+            .where((shouldPrompt) => shouldPrompt)
+            .asyncMap((_) => _getAreBiometricsEnabled())
+            .where((biometricsEnabled) => biometricsEnabled)
+            .switchMap((_) => _authenticateWithBiometrics().asResultStream())
       ]).setResultStateHandler(this).whereSuccess().publish();
 
   @override
@@ -137,23 +144,14 @@ class PinCodeBloc extends $PinCodeBloc {
     return _pinCode.value.length;
   }
 
-  /// Encrypts and verifies the provided pin code
-  Future<dynamic> _encryptAndVerify(String pinCode) async {
-    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-    final verifiedPin = await pinCodeService.verifyPinCode(encryptedPin);
-    return verifiedPin;
-  }
-
-  /// Checks the validity of the pin code
+  // Checks the validity of the pin code
   Future<dynamic> _checkPin(String pinCode, int digits) async {
     final storedPinLength = await pinCodeService.getPinLength();
     if (storedPinLength != 0 && digits == storedPinLength) {
       try {
-        final authValue = await _encryptAndVerify(pinCode);
-        final isSaved = await pinCodeService.isPinCodeInSecureStorage();
-        if (isSaved) {
-          return authValue;
-        }
+        final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+        await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
+        return await pinCodeService.verifyPinCode(encryptedPin);
       } catch (_) {
         _pinCode.value = '';
         rethrow;
@@ -164,14 +162,14 @@ class PinCodeBloc extends $PinCodeBloc {
 
   /// Authenticates the user with biometrics after which the pin code is
   /// retrieved from the device and checked.
-  Future<bool?> _authenticateWithBiometrics() async {
+  Future<dynamic> _authenticateWithBiometrics() async {
     if (!await biometricAuthenticationService.isDeviceSupported) {
       throw ErrorEnableBiometrics(BiometricsMessage.notSupported);
     }
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
-        return await _checkPin(pinCode, pinCode.length);
+        return await pinCodeService.verifyPinCode(pinCode);
       }
     }
     return false;

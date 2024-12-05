@@ -1,3 +1,9 @@
+## [0.3.0]
+* Added `savePinCodeInSecureStorage` to `PinCodeService` for saving the pin code in secure storage
+* Added `autoPromptBiometric` parameter to `PinCodeKeyboard` to automatically authenticate with biometrics if available
+* Fixed a bug where biometrics authentication would not work if encryption was used
+* Added biometrics authentication to the example application
+
 ## [0.2.2]
 * Fixed a bug where a newly input pin could get deleted if the user starts typing again immediately after an error shake animation starts
 

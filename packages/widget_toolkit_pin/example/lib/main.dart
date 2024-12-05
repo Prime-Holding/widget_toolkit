@@ -97,6 +97,9 @@ class MyHomePage extends StatelessWidget {
                       // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
                           _onError(error, translatedError, context),
+                      // Optionally you can provide [autoPromptBiometric] and set it to true.
+                      // In this case the biometric authentication will be triggered automatically
+                      autoPromptBiometric: false,
                     ),
                   ),
                 ],
@@ -155,7 +158,7 @@ class AppPinCodeService implements PinCodeService {
 
   /// This pin is intended to be stored in the secured storage for production
   /// applications
-  String? _pinCode;
+  final String _pinCode = '1111';
 
   @override
   Future<bool> isPinCodeInSecureStorage() async {
@@ -167,7 +170,6 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    _pinCode = pinCode;
     return Future.value(pinCode);
   }
 
@@ -185,10 +187,12 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() async {
-    if (_pinCode == null) {
-      return Future.value(null);
-    }
     return Future.value(_pinCode);
+  }
+
+  @override
+  Future<bool> savePinCodeInSecureStorage(String pinCode) async {
+    return true;
   }
 }
 
@@ -199,10 +203,10 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
 
   /// This bool check is intended to be stored in the secured storage for production
   /// applications
-  bool? _areBiometricsEnabled;
+  bool _areBiometricsEnabled = true;
 
   @override
-  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled;
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async =>
