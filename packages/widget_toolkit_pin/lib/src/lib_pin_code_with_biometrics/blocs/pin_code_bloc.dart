@@ -60,6 +60,7 @@ class PinCodeBloc extends $PinCodeBloc {
   final bool autoPromptBiometric;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
+  final BehaviorSubject<bool> isAuthenticated = BehaviorSubject.seeded(false);
 
   @override
   Stream<int> _mapToDigitsCountState() => Rx.merge([
@@ -72,6 +73,7 @@ class PinCodeBloc extends $PinCodeBloc {
           },
         ).asResultStream(),
         errorState.mapTo(0).asResultStream(),
+        isAuthenticated.mapTo(0).asResultStream(),
       ]).whereSuccess().startWith(0).share();
 
   @override
@@ -89,7 +91,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
-        _digitsCountState.switchMap((digitsCount) =>
+        digitsCount.switchMap((digitsCount) =>
             _checkPin(_pinCode.value, digitsCount).asResultStream()),
         _$biometricsButtonPressedEvent
             .mapTo(true)
@@ -111,6 +113,7 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   void dispose() {
     _pinCode.close();
+    isAuthenticated.close();
     super.dispose();
   }
 
@@ -151,7 +154,11 @@ class PinCodeBloc extends $PinCodeBloc {
       try {
         final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
         await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
-        return await pinCodeService.verifyPinCode(encryptedPin);
+        final verificationResult =
+            await pinCodeService.verifyPinCode(encryptedPin);
+        _pinCode.value = '';
+        isAuthenticated.add(true);
+        return verificationResult;
       } catch (_) {
         _pinCode.value = '';
         rethrow;
@@ -169,7 +176,9 @@ class PinCodeBloc extends $PinCodeBloc {
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
-        return await pinCodeService.verifyPinCode(pinCode);
+        final verificationResult = await pinCodeService.verifyPinCode(pinCode);
+        isAuthenticated.add(true);
+        return verificationResult;
       }
     }
     return false;
