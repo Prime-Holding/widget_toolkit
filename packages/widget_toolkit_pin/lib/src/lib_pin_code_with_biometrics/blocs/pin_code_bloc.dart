@@ -52,19 +52,14 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.autoPromptBiometric,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
-    _$deleteDigitEvent
-        .map((_) => _pinCode.add(_pinCode.value.substring(
-            0, _pinCode.value.isNotEmpty ? _pinCode.value.length - 1 : 0)))
-        .asResultStream()
-        .publishReplay()
-        .connect()
-        .addTo(_compositeSubscription);
-
-    _$addDigitEvent
-        .switchMap((digit) => _addDigit(digit).asResultStream())
-        .publishReplay()
-        .connect()
-        .addTo(_compositeSubscription);
+    Rx.merge([
+      _$addDigitEvent.map((digit) {
+        _pinCode.add(_pinCode.value + digit);
+      }),
+      _$deleteDigitEvent.map((_) => _pinCode.add(_pinCode.value.isNotEmpty
+          ? _pinCode.value.substring(0, _pinCode.value.length - 1)
+          : _pinCode.value))
+    ]).publishReplay().connect().addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -75,11 +70,11 @@ class PinCodeBloc extends $PinCodeBloc {
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
 
   @override
-  Stream<int> _mapToDigitsCountState() => Rx.merge([
-        _pinCode
-            .flatMap<int>((pinCode) => Stream.value(pinCode.length))
-            .asResultStream(),
-      ]).whereSuccess().share();
+  Stream<int> _mapToDigitsCountState() => _pinCode
+      .flatMap<int>((pinCode) => Stream.value(pinCode.length))
+      .asResultStream()
+      .whereSuccess()
+      .share();
 
   @override
   Stream<int> _mapToPlaceholderDigitsCountState() => pinCodeService
@@ -140,15 +135,6 @@ class PinCodeBloc extends $PinCodeBloc {
         canCheckBiometrics &&
         biometricsEnabled &&
         pinCode != null;
-  }
-
-  /// Adds a digit to the pin code, returning the new length of the pin code
-  Future<int> _addDigit(String digit) async {
-    final pinLength = await pinCodeService.getPinLength();
-    if (_pinCode.value.length < pinLength) {
-      _pinCode.add(_pinCode.value + digit);
-    }
-    return _pinCode.value.length;
   }
 
   // Checks the validity of the pin code
