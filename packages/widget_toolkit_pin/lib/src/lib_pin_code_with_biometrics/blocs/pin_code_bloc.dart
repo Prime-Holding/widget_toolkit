@@ -52,6 +52,19 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.autoPromptBiometric,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
+    _$deleteDigitEvent
+        .map((_) => _pinCode.add(_pinCode.value.substring(
+            0, _pinCode.value.isNotEmpty ? _pinCode.value.length - 1 : 0)))
+        .asResultStream()
+        .publishReplay()
+        .connect()
+        .addTo(_compositeSubscription);
+
+    _$addDigitEvent
+        .switchMap((digit) => _addDigit(digit).asResultStream())
+        .publishReplay()
+        .connect()
+        .addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -60,21 +73,13 @@ class PinCodeBloc extends $PinCodeBloc {
   final bool autoPromptBiometric;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
-  final BehaviorSubject<bool> isAuthenticated = BehaviorSubject.seeded(false);
 
   @override
   Stream<int> _mapToDigitsCountState() => Rx.merge([
-        _$addDigitEvent.switchMap((digit) => _addDigit(digit).asResultStream()),
-        _$deleteDigitEvent.switchMap(
-          (_) {
-            _pinCode.add(_pinCode.value.substring(
-                0, _pinCode.value.isNotEmpty ? _pinCode.value.length - 1 : 0));
-            return Stream.value(_pinCode.value.length);
-          },
-        ).asResultStream(),
-        errorState.mapTo(0).asResultStream(),
-        isAuthenticated.mapTo(0).asResultStream(),
-      ]).whereSuccess().startWith(0).share();
+        _pinCode
+            .flatMap<int>((pinCode) => Stream.value(pinCode.length))
+            .asResultStream(),
+      ]).whereSuccess().share();
 
   @override
   Stream<int> _mapToPlaceholderDigitsCountState() => pinCodeService
@@ -91,7 +96,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
-        digitsCount.switchMap((digitsCount) =>
+        digitsCount.flatMap((digitsCount) =>
             _checkPin(_pinCode.value, digitsCount).asResultStream()),
         _$biometricsButtonPressedEvent
             .mapTo(true)
@@ -113,7 +118,6 @@ class PinCodeBloc extends $PinCodeBloc {
   @override
   void dispose() {
     _pinCode.close();
-    isAuthenticated.close();
     super.dispose();
   }
 
@@ -157,7 +161,6 @@ class PinCodeBloc extends $PinCodeBloc {
         final verificationResult =
             await pinCodeService.verifyPinCode(encryptedPin);
         _pinCode.value = '';
-        isAuthenticated.add(true);
         return verificationResult;
       } catch (_) {
         _pinCode.value = '';
@@ -177,7 +180,6 @@ class PinCodeBloc extends $PinCodeBloc {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
         final verificationResult = await pinCodeService.verifyPinCode(pinCode);
-        isAuthenticated.add(true);
         return verificationResult;
       }
     }
