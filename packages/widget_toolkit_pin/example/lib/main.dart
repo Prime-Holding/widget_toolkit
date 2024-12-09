@@ -21,14 +21,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.light(),
+          PinCodeTheme.light().copyWith(
+            pinCodeKeyTextColorPressed: Colors.lightBlue.withOpacity(0.5),
+          ),
           WidgetToolkitTheme.light(),
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.dark(),
+          PinCodeTheme.dark().copyWith(
+            pinCodeKeyTextColorPressed: Colors.blue[700],
+          ),
           WidgetToolkitTheme.dark(),
         ],
       ),
@@ -56,6 +60,7 @@ class MyHomePage extends StatelessWidget {
           builder: (context) => Scaffold(
             appBar: AppBar(
               title: Text(title),
+              forceMaterialTransparency: true,
             ),
             extendBodyBehindAppBar: true,
             body: SizedBox(
@@ -178,6 +183,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<dynamic> verifyPinCode(String pinCode) async {
+    await Future.delayed(const Duration(seconds: 1));
     if (pinCode != '1111') {
       throw WrongPinCodeException(pinCode);
     }
