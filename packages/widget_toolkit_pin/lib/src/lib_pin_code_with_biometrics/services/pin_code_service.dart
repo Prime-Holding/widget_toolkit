@@ -1,8 +1,4 @@
 abstract class PinCodeService {
-  /// Reads from device internal storage and
-  /// returns the stored pin code to the bloc
-  Future<bool> isPinCodeInSecureStorage();
-
   /// Receives the encrypted pinCode from user input.
   /// Returns the value verified by the server
   Future<dynamic> verifyPinCode(String pinCode);
@@ -12,7 +8,7 @@ abstract class PinCodeService {
   Future<int> getPinLength();
 
   /// Encrypts the provided pin code and returns the encrypted string. It has a
-  /// default implementation to return what is the input. 
+  /// default implementation to return what is the input.
   Future<String> encryptPinCode(String pinCode) => Future.value(pinCode);
 
   /// Returns the pin code or null if it is not saved in the device memory yet.

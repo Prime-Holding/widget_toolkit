@@ -30,7 +30,6 @@ void main() {
     List<BiometricsAuthType>? biometrics,
     String pinCode = '',
     bool isPinVerified = true,
-    bool isPinCodeInSecureStorage = true,
     bool enableBiometrics = true,
     BiometricsMessage biometricsMessage = BiometricsMessage.enabled,
     ErrorModel? biometricsError,
@@ -61,9 +60,6 @@ void main() {
 
     when(pinCodeService.verifyPinCode(pinCode))
         .thenAnswer((_) => Future.value(isPinVerified));
-
-    when(pinCodeService.isPinCodeInSecureStorage())
-        .thenAnswer((_) => Future.value(isPinCodeInSecureStorage));
 
     when(pinCodeService.encryptPinCode(pinCode))
         .thenAnswer((_) => Future.value(pinCode));
@@ -135,7 +131,6 @@ void main() {
         build: () async {
           defineWhen(
             isDeviceSupported: true,
-            isPinCodeInSecureStorage: true,
             isPinVerified: true,
             canCheckBiometrics: true,
             pinCode: Stubs.pinCode,
@@ -157,7 +152,6 @@ void main() {
             pinCode: Stubs.pinCode,
             isPinVerified: true,
             enableBiometrics: true,
-            isPinCodeInSecureStorage: true,
           );
 
           return pinCodeBloc();
@@ -174,7 +168,6 @@ void main() {
           defineWhen(
             pinCode: Stubs.pinCode2,
             isPinVerified: false,
-            isPinCodeInSecureStorage: false,
             areBiometricsEnabled: false,
           );
 
@@ -190,7 +183,6 @@ void main() {
           defineWhen(
             pinCode: Stubs.pinCode2,
             isPinVerified: false,
-            isPinCodeInSecureStorage: false,
             areBiometricsEnabled: false,
             biometricsError: Stubs.error,
           );

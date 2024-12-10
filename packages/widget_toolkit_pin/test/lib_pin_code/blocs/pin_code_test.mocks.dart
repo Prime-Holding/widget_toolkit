@@ -147,15 +147,6 @@ class MockPinCodeService extends _i1.Mock implements _i7.PinCodeService {
   }
 
   @override
-  _i4.Future<bool> isPinCodeInSecureStorage() => (super.noSuchMethod(
-        Invocation.method(
-          #isPinCodeInSecureStorage,
-          [],
-        ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
-
-  @override
   _i4.Future<dynamic> verifyPinCode(String? pinCode) => (super.noSuchMethod(
         Invocation.method(
           #verifyPinCode,
@@ -196,4 +187,14 @@ class MockPinCodeService extends _i1.Mock implements _i7.PinCodeService {
         ),
         returnValue: _i4.Future<String?>.value(),
       ) as _i4.Future<String?>);
+
+  @override
+  _i4.Future<bool> savePinCodeInSecureStorage(String? pinCode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #savePinCodeInSecureStorage,
+          [pinCode],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 }
