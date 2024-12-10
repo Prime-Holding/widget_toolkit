@@ -35,7 +35,7 @@ PinCodeBlocType pinCodeMockFactory({
   when(statesMock.showBiometricsButton).thenAnswer(
     (_) {
       service.verifyPinCode(Stubs.pinCode3);
-      service.isPinCodeInSecureStorage();
+
       final state = showBiometricsButton != null
           ? Stream.value(showBiometricsButton)
           : Stream.value(false);
@@ -64,8 +64,6 @@ PinCodeBlocType pinCodeMockFactory({
   );
 
   when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
-
-  when(service.isPinCodeInSecureStorage()).thenAnswer((_) async => true);
 
   when(service.encryptPinCode(Stubs.pinCode3))
       .thenAnswer((_) async => Stubs.pinCode3);

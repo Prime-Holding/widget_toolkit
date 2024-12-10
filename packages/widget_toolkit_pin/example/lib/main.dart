@@ -97,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                       // or to show a notification, in practice this would only get called if the
                       // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],
                       // [BiometricsLocalDataSource.setBiometricsEnabled(enable)],
-                      // [PinCodeService.isPinCodeInSecureStorage()], [PinCodeService.encryptPinCode()],
+                      // [PinCodeService.encryptPinCode()],
                       // [PinCodeService.getPinLength()], [PinCodeService.verifyPinCode()],
                       // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
@@ -164,14 +164,6 @@ class AppPinCodeService implements PinCodeService {
   /// This pin is intended to be stored in the secured storage for production
   /// applications
   final String _pinCode = '1111';
-
-  @override
-  Future<bool> isPinCodeInSecureStorage() async {
-    if (_pinCode == '1111') {
-      return Future.value(true);
-    }
-    return Future.value(false);
-  }
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
