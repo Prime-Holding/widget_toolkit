@@ -62,7 +62,7 @@ class PinCodeBloc extends $PinCodeBloc {
           .map((data) => _pinCode.value + data.digit),
       _$deleteDigitEvent
           .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
-    ]).listen(_updatePinCode).addTo(_compositeSubscription);
+    ]).listen(_pinCode.add).addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -165,9 +165,6 @@ class PinCodeBloc extends $PinCodeBloc {
     }
     return false;
   }
-
-  /// Updates the pin code
-  void _updatePinCode(String pinCode) => _pinCode.add(pinCode);
 
   /// endregion
 }
