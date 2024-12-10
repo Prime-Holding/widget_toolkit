@@ -58,11 +58,6 @@ class MyHomePage extends StatelessWidget {
         ],
         child: Builder(
           builder: (context) => Scaffold(
-            appBar: AppBar(
-              title: Text(title),
-              forceMaterialTransparency: true,
-            ),
-            extendBodyBehindAppBar: true,
             body: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Column(
