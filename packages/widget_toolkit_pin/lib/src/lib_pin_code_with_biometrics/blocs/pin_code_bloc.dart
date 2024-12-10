@@ -53,10 +53,16 @@ class PinCodeBloc extends $PinCodeBloc {
   }) {
     authenticated.connect().addTo(_compositeSubscription);
     Rx.merge([
-      _$addDigitEvent.switchMap((digit) => _addDigit(digit).asStream()),
+      _$addDigitEvent
+          .asyncMap((digit) async => (
+                digit: digit,
+                allowedLength: await pinCodeService.getPinLength()
+              ))
+          .where((data) => _pinCode.value.length <= data.allowedLength)
+          .map((data) => _pinCode.value + data.digit),
       _$deleteDigitEvent
           .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
-    ]).listen((event) => _pinCode.value = event).addTo(_compositeSubscription);
+    ]).listen(_updatePinCode).addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -160,14 +166,8 @@ class PinCodeBloc extends $PinCodeBloc {
     return false;
   }
 
-  /// Adds a digit to the pin code value
-  Future<String> _addDigit(String digit) async {
-    final pinLength = await pinCodeService.getPinLength();
-    if (_pinCode.value.length < pinLength) {
-      return _pinCode.value + digit;
-    }
-    return _pinCode.value;
-  }
+  /// Updates the pin code
+  void _updatePinCode(String pinCode) => _pinCode.add(pinCode);
 
   /// endregion
 }
