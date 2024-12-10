@@ -56,11 +56,7 @@ class PinCodeBloc extends $PinCodeBloc {
       _$addDigitEvent.map((digit) => _pinCode.value + digit),
       _$deleteDigitEvent
           .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
-    ]).listen(
-      (event) {
-        _pinCode.value = event;
-      },
-    ).addTo(_compositeSubscription);
+    ]).listen((event) => _pinCode.value = event).addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -145,15 +141,10 @@ class PinCodeBloc extends $PinCodeBloc {
 
   // Checks the validity of the pin code
   Future<dynamic> _checkPin(String pinCode) async {
-    try {
-      final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-      await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
-      final verificationResult =
-          await pinCodeService.verifyPinCode(encryptedPin);
-      return verificationResult;
-    } catch (_) {
-      rethrow;
-    }
+    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
+    final verificationResult = await pinCodeService.verifyPinCode(encryptedPin);
+    return verificationResult;
   }
 
   /// Authenticates the user with biometrics after which the pin code is
