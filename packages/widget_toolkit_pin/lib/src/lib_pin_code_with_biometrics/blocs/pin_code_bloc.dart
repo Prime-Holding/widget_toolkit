@@ -53,7 +53,7 @@ class PinCodeBloc extends $PinCodeBloc {
   }) {
     authenticated.connect().addTo(_compositeSubscription);
     Rx.merge([
-      _$addDigitEvent.map((digit) => _pinCode.value + digit),
+      _$addDigitEvent.switchMap((digit) => _addDigit(digit).asStream()),
       _$deleteDigitEvent
           .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
     ]).listen((event) => _pinCode.value = event).addTo(_compositeSubscription);
@@ -67,11 +67,8 @@ class PinCodeBloc extends $PinCodeBloc {
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
 
   @override
-  Stream<int> _mapToDigitsCountState() => _pinCode
-      .map<int>((pinCode) => pinCode.length)
-      .asResultStream()
-      .whereSuccess()
-      .share();
+  Stream<int> _mapToDigitsCountState() =>
+      _pinCode.map<int>((pinCode) => pinCode.length).share();
 
   @override
   Stream<int> _mapToPlaceholderDigitsCountState() => pinCodeService
@@ -92,7 +89,7 @@ class PinCodeBloc extends $PinCodeBloc {
             .switchMap((_) => pinCodeService.getPinLength().asStream())
             .where(
                 (storedPinLength) => storedPinLength == _pinCode.value.length)
-            .flatMap((digitsCount) => _checkPin(_pinCode.value)
+            .switchMap((digitsCount) => _checkPin(_pinCode.value)
                 .asResultStream()
                 .doOnData((result) => _pinCode.add(''))),
         _$biometricsButtonPressedEvent
@@ -161,6 +158,15 @@ class PinCodeBloc extends $PinCodeBloc {
       }
     }
     return false;
+  }
+
+  /// Adds a digit to the pin code value
+  Future<String> _addDigit(String digit) async {
+    final pinLength = await pinCodeService.getPinLength();
+    if (_pinCode.value.length < pinLength) {
+      return _pinCode.value + digit;
+    }
+    return _pinCode.value;
   }
 
   /// endregion
