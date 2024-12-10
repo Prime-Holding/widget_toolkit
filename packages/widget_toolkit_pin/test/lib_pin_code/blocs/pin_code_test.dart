@@ -93,21 +93,23 @@ void main() {
         state: (bloc) => bloc.states.digitsCount,
         expect: [6]);
 
-    rxBlocTest<PinCodeBloc, int>(
+    rxBlocFakeAsyncTest<PinCodeBloc, int>(
         'test pin_code_bloc_dart state digitsCount with addDigit and deleteDigit event',
-        build: () async {
+        build: () {
           defineWhen();
           return pinCodeBloc();
         },
-        act: (bloc) async {
+        act: (bloc, fakeAsync) async {
           bloc.events.addDigit('1');
+          fakeAsync.elapse(const Duration(milliseconds: 1));
           bloc.events.deleteDigit();
           bloc.events.addDigit('2');
           bloc.events.addDigit('1');
+          fakeAsync.elapse(const Duration(milliseconds: 1));
           bloc.events.deleteDigit();
         },
         state: (bloc) => bloc.states.digitsCount,
-        expect: [0, 0, 2]);
+        expect: [0, 1, 0, 1, 2, 1]);
   });
 
   group('test pin_code_bloc_dart state authenticated', () {

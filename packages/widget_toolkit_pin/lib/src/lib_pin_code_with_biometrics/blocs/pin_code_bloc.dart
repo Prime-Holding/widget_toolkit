@@ -52,6 +52,17 @@ class PinCodeBloc extends $PinCodeBloc {
     required this.autoPromptBiometric,
   }) {
     authenticated.connect().addTo(_compositeSubscription);
+    Rx.merge([
+      _$addDigitEvent
+          .asyncMap((digit) async => (
+                digit: digit,
+                allowedLength: await pinCodeService.getPinLength()
+              ))
+          .where((data) => _pinCode.value.length <= data.allowedLength)
+          .map((data) => _pinCode.value + data.digit),
+      _$deleteDigitEvent
+          .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
+    ]).listen(_pinCode.add).addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -62,17 +73,8 @@ class PinCodeBloc extends $PinCodeBloc {
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
 
   @override
-  Stream<int> _mapToDigitsCountState() => Rx.merge([
-        _$addDigitEvent.switchMap((digit) => _addDigit(digit).asResultStream()),
-        _$deleteDigitEvent.switchMap(
-          (_) {
-            _pinCode.add(_pinCode.value.substring(
-                0, _pinCode.value.isNotEmpty ? _pinCode.value.length - 1 : 0));
-            return Stream.value(_pinCode.value.length);
-          },
-        ).asResultStream(),
-        errorState.mapTo(0).asResultStream(),
-      ]).whereSuccess().startWith(0).share();
+  Stream<int> _mapToDigitsCountState() =>
+      _pinCode.map<int>((pinCode) => pinCode.length).share();
 
   @override
   Stream<int> _mapToPlaceholderDigitsCountState() => pinCodeService
@@ -89,8 +91,13 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
-        _digitsCountState.switchMap((digitsCount) =>
-            _checkPin(_pinCode.value, digitsCount).asResultStream()),
+        digitsCount
+            .switchMap((_) => pinCodeService.getPinLength().asStream())
+            .where(
+                (storedPinLength) => storedPinLength == _pinCode.value.length)
+            .switchMap((digitsCount) => _checkPin(_pinCode.value)
+                .asResultStream()
+                .doOnData((result) => _pinCode.add(''))),
         _$biometricsButtonPressedEvent
             .mapTo(true)
             .startWith(autoPromptBiometric)
@@ -135,29 +142,12 @@ class PinCodeBloc extends $PinCodeBloc {
         pinCode != null;
   }
 
-  /// Adds a digit to the pin code, returning the new length of the pin code
-  Future<int> _addDigit(String digit) async {
-    final pinLength = await pinCodeService.getPinLength();
-    if (_pinCode.value.length < pinLength) {
-      _pinCode.add(_pinCode.value + digit);
-    }
-    return _pinCode.value.length;
-  }
-
   // Checks the validity of the pin code
-  Future<dynamic> _checkPin(String pinCode, int digits) async {
-    final storedPinLength = await pinCodeService.getPinLength();
-    if (storedPinLength != 0 && digits == storedPinLength) {
-      try {
-        final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-        await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
-        return await pinCodeService.verifyPinCode(encryptedPin);
-      } catch (_) {
-        _pinCode.value = '';
-        rethrow;
-      }
-    }
-    return false;
+  Future<dynamic> _checkPin(String pinCode) async {
+    final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+    await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
+    final verificationResult = await pinCodeService.verifyPinCode(encryptedPin);
+    return verificationResult;
   }
 
   /// Authenticates the user with biometrics after which the pin code is
@@ -169,7 +159,8 @@ class PinCodeBloc extends $PinCodeBloc {
     if (await biometricAuthenticationService.authenticate(localizedReason)) {
       final pinCode = await pinCodeService.getPinCode();
       if (pinCode != null) {
-        return await pinCodeService.verifyPinCode(pinCode);
+        final verificationResult = await pinCodeService.verifyPinCode(pinCode);
+        return verificationResult;
       }
     }
     return false;

@@ -66,7 +66,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
   late AnimationController _controller;
   bool isShakeAnimation = false;
   bool hasErrorText = false;
-  bool authenticatedPin = false;
   static final _shakeTweenSequence = TweenSequence(
     <TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -144,15 +143,10 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           ),
           RxBlocListener<PinCodeBlocType, dynamic>(
             state: (bloc) => bloc.states.authenticated,
-            condition: (oldState, newState) => oldState != newState,
             listener: (context, authValue) {
               if (authValue == false) {
                 return;
               }
-
-              setState(() {
-                authenticatedPin = true;
-              });
 
               widget.onAuthenticated?.call(authValue);
             },
@@ -411,9 +405,7 @@ class _PinCodeComponentState extends State<PinCodeComponent>
         number: index + number,
         isLoading: isLoading,
         onPressed: (key) {
-          if (!authenticatedPin) {
-            context.read<PinCodeBlocType>().events.addDigit(key.toString());
-          }
+          context.read<PinCodeBlocType>().events.addDigit(key.toString());
         },
       );
 
