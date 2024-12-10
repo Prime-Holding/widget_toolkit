@@ -53,13 +53,14 @@ class PinCodeBloc extends $PinCodeBloc {
   }) {
     authenticated.connect().addTo(_compositeSubscription);
     Rx.merge([
-      _$addDigitEvent.map((digit) {
-        _pinCode.add(_pinCode.value + digit);
-      }),
-      _$deleteDigitEvent.map((_) => _pinCode.add(_pinCode.value.isNotEmpty
-          ? _pinCode.value.substring(0, _pinCode.value.length - 1)
-          : _pinCode.value))
-    ]).publishReplay().connect().addTo(_compositeSubscription);
+      _$addDigitEvent.map((digit) => _pinCode.value + digit),
+      _$deleteDigitEvent
+          .map((_) => _pinCode.value.substring(0, _pinCode.value.length - 1)),
+    ]).listen(
+      (event) {
+        _pinCode.value = event;
+      },
+    ).addTo(_compositeSubscription);
   }
 
   final PinBiometricsService biometricAuthenticationService;
@@ -71,7 +72,7 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   Stream<int> _mapToDigitsCountState() => _pinCode
-      .flatMap<int>((pinCode) => Stream.value(pinCode.length))
+      .map<int>((pinCode) => pinCode.length)
       .asResultStream()
       .whereSuccess()
       .share();
@@ -91,8 +92,13 @@ class PinCodeBloc extends $PinCodeBloc {
 
   @override
   ConnectableStream<dynamic> _mapToAuthenticatedState() => Rx.merge([
-        digitsCount.flatMap((digitsCount) =>
-            _checkPin(_pinCode.value, digitsCount).asResultStream()),
+        digitsCount
+            .switchMap((_) => pinCodeService.getPinLength().asStream())
+            .where(
+                (storedPinLength) => storedPinLength == _pinCode.value.length)
+            .flatMap((digitsCount) => _checkPin(_pinCode.value)
+                .asResultStream()
+                .doOnData((result) => _pinCode.add(''))),
         _$biometricsButtonPressedEvent
             .mapTo(true)
             .startWith(autoPromptBiometric)
@@ -138,22 +144,16 @@ class PinCodeBloc extends $PinCodeBloc {
   }
 
   // Checks the validity of the pin code
-  Future<dynamic> _checkPin(String pinCode, int digits) async {
-    final storedPinLength = await pinCodeService.getPinLength();
-    if (storedPinLength != 0 && digits == storedPinLength) {
-      try {
-        final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
-        await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
-        final verificationResult =
-            await pinCodeService.verifyPinCode(encryptedPin);
-        _pinCode.value = '';
-        return verificationResult;
-      } catch (_) {
-        _pinCode.value = '';
-        rethrow;
-      }
+  Future<dynamic> _checkPin(String pinCode) async {
+    try {
+      final encryptedPin = await pinCodeService.encryptPinCode(pinCode);
+      await pinCodeService.savePinCodeInSecureStorage(encryptedPin);
+      final verificationResult =
+          await pinCodeService.verifyPinCode(encryptedPin);
+      return verificationResult;
+    } catch (_) {
+      rethrow;
     }
-    return false;
   }
 
   /// Authenticates the user with biometrics after which the pin code is

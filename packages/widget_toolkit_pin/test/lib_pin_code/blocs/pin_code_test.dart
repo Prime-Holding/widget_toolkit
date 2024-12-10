@@ -91,7 +91,7 @@ void main() {
           bloc.events.addDigit(Stubs.pinCode);
         },
         state: (bloc) => bloc.states.digitsCount,
-        expect: [0, 6, 0]);
+        expect: [6]);
 
     rxBlocFakeAsyncTest<PinCodeBloc, int>(
         'test pin_code_bloc_dart state digitsCount with addDigit and deleteDigit event',

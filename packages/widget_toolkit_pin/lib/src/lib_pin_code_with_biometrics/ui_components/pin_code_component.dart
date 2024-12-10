@@ -143,7 +143,6 @@ class _PinCodeComponentState extends State<PinCodeComponent>
           ),
           RxBlocListener<PinCodeBlocType, dynamic>(
             state: (bloc) => bloc.states.authenticated,
-            condition: (oldState, newState) => oldState != newState,
             listener: (context, authValue) {
               if (authValue == false) {
                 return;
