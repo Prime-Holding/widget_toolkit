@@ -21,26 +21,28 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.light(),
+          PinCodeTheme.light().copyWith(
+            pinCodeKeyTextColorPressed: Colors.lightBlue.withOpacity(0.5),
+          ),
           WidgetToolkitTheme.light(),
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
-          PinCodeTheme.dark(),
+          PinCodeTheme.dark().copyWith(
+            pinCodeKeyTextColorPressed: Colors.blue[700],
+          ),
           WidgetToolkitTheme.dark(),
         ],
       ),
-      home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) => MultiProvider(
@@ -54,10 +56,6 @@ class MyHomePage extends StatelessWidget {
         ],
         child: Builder(
           builder: (context) => Scaffold(
-            appBar: AppBar(
-              title: Text(title),
-            ),
-            extendBodyBehindAppBar: true,
             body: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Column(
@@ -92,11 +90,14 @@ class MyHomePage extends StatelessWidget {
                       // or to show a notification, in practice this would only get called if the
                       // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],
                       // [BiometricsLocalDataSource.setBiometricsEnabled(enable)],
-                      // [PinCodeService.isPinCodeInSecureStorage()], [PinCodeService.encryptPinCode()],
+                      // [PinCodeService.encryptPinCode()],
                       // [PinCodeService.getPinLength()], [PinCodeService.verifyPinCode()],
                       // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
                           _onError(error, translatedError, context),
+                      // Optionally you can provide [autoPromptBiometric] and set it to true.
+                      // In this case the biometric authentication will be triggered automatically
+                      autoPromptBiometric: false,
                     ),
                   ),
                 ],
@@ -155,19 +156,10 @@ class AppPinCodeService implements PinCodeService {
 
   /// This pin is intended to be stored in the secured storage for production
   /// applications
-  String? _pinCode;
-
-  @override
-  Future<bool> isPinCodeInSecureStorage() async {
-    if (_pinCode == '1111') {
-      return Future.value(true);
-    }
-    return Future.value(false);
-  }
+  final String _pinCode = '1111';
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
-    _pinCode = pinCode;
     return Future.value(pinCode);
   }
 
@@ -176,6 +168,7 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<dynamic> verifyPinCode(String pinCode) async {
+    await Future.delayed(const Duration(seconds: 1));
     if (pinCode != '1111') {
       throw WrongPinCodeException(pinCode);
     }
@@ -185,10 +178,12 @@ class AppPinCodeService implements PinCodeService {
 
   @override
   Future<String?> getPinCode() async {
-    if (_pinCode == null) {
-      return Future.value(null);
-    }
     return Future.value(_pinCode);
+  }
+
+  @override
+  Future<bool> savePinCodeInSecureStorage(String pinCode) async {
+    return true;
   }
 }
 
@@ -199,10 +194,10 @@ class ProfileLocalDataSource implements BiometricsLocalDataSource {
 
   /// This bool check is intended to be stored in the secured storage for production
   /// applications
-  bool? _areBiometricsEnabled;
+  bool _areBiometricsEnabled = true;
 
   @override
-  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled ?? false;
+  Future<bool> areBiometricsEnabled() async => _areBiometricsEnabled;
 
   @override
   Future<void> setBiometricsEnabled(bool enable) async =>

@@ -1,7 +1,7 @@
 name: widget_toolkit_pin
 description: This package provide out of the box entering PIN code
   functionality, which can be used with biometric authentication.
-version: 0.2.2
+version: 0.3.0
 homepage: https://primeholding.com/
 
 environment:
@@ -25,7 +25,7 @@ dependencies:
   widget_toolkit_biometrics: ^0.1.0
 
 dev_dependencies:
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   clean_coverage: ^0.0.3
   flutter_lints: ^4.0.0
   flutter_test:

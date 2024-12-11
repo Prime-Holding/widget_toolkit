@@ -107,15 +107,7 @@ class AppPinCodeService implements PinCodeService {
   static const _isPinCodeInStorage = 'pinCode';
 
   FlutterSecureStorage get flutterSecureStorage => const FlutterSecureStorage();
-
-  @override
-  Future<bool> isPinCodeInSecureStorage() async {
-    var isPinCodeInSecureStorage =
-      await flutterSecureStorage.read(key: _isPinCodeInStorage);
-
-    return isPinCodeInSecureStorage != null;
-  }
-
+  
   @override
   Future<String> encryptPinCode(String pinCode) async {
     // App specific encryption
@@ -192,7 +184,7 @@ mapBiometricMessageToString: (message) {
 
 Optionally you can provide `onError` to handle errors out of the package, or to show a notification,
 in practice this would only get called if the implementations of `BiometricsLocalDataSource.areBiometricsEnabled()`, 
-`BiometricsLocalDataSource.setBiometricsEnabled(enable)`,`PinCodeService.isPinCodeInSecureStorage()`, 
+`BiometricsLocalDataSource.setBiometricsEnabled(enable)`, 
 `PinCodeService.encryptPinCode()`, `PinCodeService.getPinLength()`, `PinCodeService.verifyPinCode()`, 
 `PinCodeService.getPinCode()`, throw.
 
@@ -249,6 +241,12 @@ Optionally you can provide a `localizedReason`, this should be a localized strin
 to the user when they  are prompted to confirm that they want to enable biometrics.
 ```dart
 localizedReason: 'Activate the biometrics of your device',
+```
+
+Optionally you can provide `autoPromptBiometric` and set it to true. In this case the biometrics authentication will
+be triggered automatically when the keyboard is opened
+```dart
+autoPromptBiometric: true,
 ```
 
 ## Functional specifications
