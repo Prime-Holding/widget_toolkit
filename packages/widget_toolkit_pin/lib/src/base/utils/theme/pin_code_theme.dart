@@ -68,152 +68,162 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
   /// region Themes
 
   PinCodeTheme.light()
-      : primaryColor = PrimeDesignSystem.light().colors.primaryColor,
-        backgroundColor = PrimeDesignSystem.light().colors.backgroundColor,
+      : primaryColor = PinCodeDesignSystem.light().colors.primaryColor,
+        backgroundColor = PinCodeDesignSystem.light().colors.backgroundColor,
         scaffoldBackgroundColor =
-            PrimeDesignSystem.light().colors.scaffoldBackgroundColor,
-        highlightColor = PrimeDesignSystem.light().colors.highlightColor,
-        primaryGradientStart = PrimeDesignSystem.light().colors.blue,
-        primaryGradientEnd = PrimeDesignSystem.light().colors.lightBlue,
-        transparentColor = PrimeDesignSystem.light().colors.lightBlue,
-        pinCodeKeyTextColorPressed = PrimeDesignSystem.light().colors.black,
-        pinCodeKeyTextColorDefault = PrimeDesignSystem.light().colors.white,
-        pinCodeErrorTextColor = PrimeDesignSystem.light().colors.lightRed,
-        pinKeyboardErrorPinColor = PrimeDesignSystem.light().colors.lightRed,
+            PinCodeDesignSystem.light().colors.scaffoldBackgroundColor,
+        highlightColor = PinCodeDesignSystem.light().colors.highlightColor,
+        primaryGradientStart = PinCodeDesignSystem.light().colors.blue,
+        primaryGradientEnd = PinCodeDesignSystem.light().colors.lightBlue,
+        transparentColor = PinCodeDesignSystem.light().colors.lightBlue,
+        pinCodeKeyTextColorPressed = PinCodeDesignSystem.light().colors.black,
+        pinCodeKeyTextColorDefault = PinCodeDesignSystem.light().colors.white,
+        pinCodeErrorTextColor = PinCodeDesignSystem.light().colors.lightRed,
+        pinKeyboardErrorPinColor = PinCodeDesignSystem.light().colors.lightRed,
         pinKeyboardBottomButtonTextColor =
-            PrimeDesignSystem.light().colors.textColorWhite,
-        appBarButtonIconColor = PrimeDesignSystem.light().colors.textColorWhite,
-        shimmerBaseColor = PrimeDesignSystem.light().colors.white,
+            PinCodeDesignSystem.light().colors.textColorWhite,
+        appBarButtonIconColor =
+            PinCodeDesignSystem.light().colors.textColorWhite,
+        shimmerBaseColor = PinCodeDesignSystem.light().colors.white,
         shimmerHighlightColor =
-            PrimeDesignSystem.light().colors.white.withValues(alpha: 0.4),
+            PinCodeDesignSystem.light().colors.white.withValues(alpha: 0.4),
         titleButtonIconBorderColor =
-            PrimeDesignSystem.light().colors.white.withValues(alpha: 0.4),
+            PinCodeDesignSystem.light().colors.white.withValues(alpha: 0.4),
         pinCodeKeyBackgroundColor =
-            PrimeDesignSystem.light().colors.textColorWhite,
+            PinCodeDesignSystem.light().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
-            PrimeDesignSystem.light().colors.lightBlue,
+            PinCodeDesignSystem.light().colors.lightBlue,
         pinKeyboardMaskedKeyColor =
-            PrimeDesignSystem.light().colors.textColorWhite,
+            PinCodeDesignSystem.light().colors.textColorWhite,
         descriptionBoldTextStyle =
-            PrimeDesignSystem.light().typography.descriptionBold.copyWith(
-                  color: PrimeDesignSystem.light().colors.white,
+            PinCodeDesignSystem.light().typography.descriptionBold.copyWith(
+                  color: PinCodeDesignSystem.light().colors.white,
                 ),
         appBarTitleDescriptionBoldTextStyle =
-            PrimeDesignSystem.light().typography.descriptionBold.copyWith(
-                  color: PrimeDesignSystem.light().colors.white,
+            PinCodeDesignSystem.light().typography.descriptionBold.copyWith(
+                  color: PinCodeDesignSystem.light().colors.white,
                 ),
-        captionBold = PrimeDesignSystem.light().typography.captionBold,
-        subtitleBold = PrimeDesignSystem.light().typography.h2Semibold16,
-        pinCodeKeyTextStyle = PrimeDesignSystem.light().typography.h2Semibold16,
-        descriptionBold = PrimeDesignSystem.light().typography.descriptionBold,
-        titleBold = PrimeDesignSystem.light().typography.titleBold,
-        descriptionThin = PrimeDesignSystem.light().typography.descriptionThin,
-        errorTitle = PrimeDesignSystem.light().typography.errorTitle,
+        captionBold = PinCodeDesignSystem.light().typography.captionBold,
+        subtitleBold = PinCodeDesignSystem.light().typography.h2Semibold16,
+        pinCodeKeyTextStyle =
+            PinCodeDesignSystem.light().typography.h2Semibold16,
+        descriptionBold =
+            PinCodeDesignSystem.light().typography.descriptionBold,
+        titleBold = PinCodeDesignSystem.light().typography.titleBold,
+        descriptionThin =
+            PinCodeDesignSystem.light().typography.descriptionThin,
+        errorTitle = PinCodeDesignSystem.light().typography.errorTitle,
         pinKeyboardBottomButtonTextStyle =
-            PrimeDesignSystem.light().typography.captionBold,
-        spacingXSS1 = PrimeDesignSystem.light().spacings.xss1,
-        spacingXS = PrimeDesignSystem.light().spacings.xs,
-        spacingXS1 = PrimeDesignSystem.light().spacings.xs1,
-        spacingS = PrimeDesignSystem.light().spacings.s,
-        spacingM = PrimeDesignSystem.light().spacings.m,
-        spacingL = PrimeDesignSystem.light().spacings.l,
-        spacingXL = PrimeDesignSystem.light().spacings.xl,
-        spacingXXL = PrimeDesignSystem.light().spacings.xxl,
-        spacingXXXL = PrimeDesignSystem.light().spacings.xxxl,
-        spacingXXXXL1 = PrimeDesignSystem.light().spacings.xxxxl1,
-        spacing1 = PrimeDesignSystem.light().spacings.m,
-        spacing2 = PrimeDesignSystem.light().spacings.xs1,
-        spacing3 = PrimeDesignSystem.light().spacings.xs,
-        spacing4 = PrimeDesignSystem.light().spacings.xxl,
-        spacing5 = PrimeDesignSystem.light().spacings.s,
-        spacing6 = PrimeDesignSystem.light().spacings.m,
-        pinDeleteActionIcon = PrimeDesignSystem.dark().icons.pinDeleteAction,
-        pinDeleteDefaultIcon = PrimeDesignSystem.dark().icons.pinDeleteDefault,
-        faceScanDefaultIcon = PrimeDesignSystem.dark().icons.faceScanDefault,
-        faceScanInvertedIcon = PrimeDesignSystem.dark().icons.faceScanInverted,
-        faceScanPressedIcon = PrimeDesignSystem.dark().icons.faceScanPressed,
+            PinCodeDesignSystem.light().typography.captionBold,
+        spacingXSS1 = PinCodeDesignSystem.light().spacings.xss1,
+        spacingXS = PinCodeDesignSystem.light().spacings.xs,
+        spacingXS1 = PinCodeDesignSystem.light().spacings.xs1,
+        spacingS = PinCodeDesignSystem.light().spacings.s,
+        spacingM = PinCodeDesignSystem.light().spacings.m,
+        spacingL = PinCodeDesignSystem.light().spacings.l,
+        spacingXL = PinCodeDesignSystem.light().spacings.xl,
+        spacingXXL = PinCodeDesignSystem.light().spacings.xxl,
+        spacingXXXL = PinCodeDesignSystem.light().spacings.xxxl,
+        spacingXXXXL1 = PinCodeDesignSystem.light().spacings.xxxxl1,
+        spacing1 = PinCodeDesignSystem.light().spacings.m,
+        spacing2 = PinCodeDesignSystem.light().spacings.xs1,
+        spacing3 = PinCodeDesignSystem.light().spacings.xs,
+        spacing4 = PinCodeDesignSystem.light().spacings.xxl,
+        spacing5 = PinCodeDesignSystem.light().spacings.s,
+        spacing6 = PinCodeDesignSystem.light().spacings.m,
+        pinDeleteActionIcon = PinCodeDesignSystem.dark().icons.pinDeleteAction,
+        pinDeleteDefaultIcon =
+            PinCodeDesignSystem.dark().icons.pinDeleteDefault,
+        faceScanDefaultIcon = PinCodeDesignSystem.dark().icons.faceScanDefault,
+        faceScanInvertedIcon =
+            PinCodeDesignSystem.dark().icons.faceScanInverted,
+        faceScanPressedIcon = PinCodeDesignSystem.dark().icons.faceScanPressed,
         fingerScanDefaultIcon =
-            PrimeDesignSystem.dark().icons.fingerScanDefault,
+            PinCodeDesignSystem.dark().icons.fingerScanDefault,
         fingerScanInvertedIcon =
-            PrimeDesignSystem.dark().icons.fingerScanInverted,
+            PinCodeDesignSystem.dark().icons.fingerScanInverted,
         fingerScanPressedIcon =
-            PrimeDesignSystem.dark().icons.fingerScanPressed,
-        appBarTitleLeadingWidth = PrimeDesignSystem.light().spacings.xxxxl1 +
-            PrimeDesignSystem.light().spacings.m;
+            PinCodeDesignSystem.dark().icons.fingerScanPressed,
+        appBarTitleLeadingWidth = PinCodeDesignSystem.light().spacings.xxxxl1 +
+            PinCodeDesignSystem.light().spacings.m;
 
   PinCodeTheme.dark()
-      : primaryColor = PrimeDesignSystem.dark().colors.primaryColor,
-        backgroundColor = PrimeDesignSystem.dark().colors.backgroundColor,
+      : primaryColor = PinCodeDesignSystem.dark().colors.primaryColor,
+        backgroundColor = PinCodeDesignSystem.dark().colors.backgroundColor,
         scaffoldBackgroundColor =
-            PrimeDesignSystem.dark().colors.scaffoldBackgroundColor,
-        highlightColor = PrimeDesignSystem.dark().colors.highlightColor,
-        primaryGradientStart = PrimeDesignSystem.dark().colors.darkBlue,
-        primaryGradientEnd = PrimeDesignSystem.dark().colors.blue,
-        transparentColor = PrimeDesignSystem.dark().colors.blue,
-        pinCodeKeyTextColorPressed = PrimeDesignSystem.dark().colors.black,
-        pinCodeKeyTextColorDefault = PrimeDesignSystem.dark().colors.white,
-        pinCodeErrorTextColor = PrimeDesignSystem.dark().colors.lightRed,
-        pinKeyboardErrorPinColor = PrimeDesignSystem.dark().colors.lightRed,
+            PinCodeDesignSystem.dark().colors.scaffoldBackgroundColor,
+        highlightColor = PinCodeDesignSystem.dark().colors.highlightColor,
+        primaryGradientStart = PinCodeDesignSystem.dark().colors.darkBlue,
+        primaryGradientEnd = PinCodeDesignSystem.dark().colors.blue,
+        transparentColor = PinCodeDesignSystem.dark().colors.blue,
+        pinCodeKeyTextColorPressed = PinCodeDesignSystem.dark().colors.black,
+        pinCodeKeyTextColorDefault = PinCodeDesignSystem.dark().colors.white,
+        pinCodeErrorTextColor = PinCodeDesignSystem.dark().colors.lightRed,
+        pinKeyboardErrorPinColor = PinCodeDesignSystem.dark().colors.lightRed,
         pinKeyboardBottomButtonTextColor =
-            PrimeDesignSystem.dark().colors.textColorWhite,
-        appBarButtonIconColor = PrimeDesignSystem.dark().colors.textColorWhite,
-        shimmerBaseColor = PrimeDesignSystem.dark().colors.white,
+            PinCodeDesignSystem.dark().colors.textColorWhite,
+        appBarButtonIconColor =
+            PinCodeDesignSystem.dark().colors.textColorWhite,
+        shimmerBaseColor = PinCodeDesignSystem.dark().colors.white,
         shimmerHighlightColor =
-            PrimeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
+            PinCodeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
         titleButtonIconBorderColor =
-            PrimeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
+            PinCodeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
         pinCodeKeyBackgroundColor =
-            PrimeDesignSystem.dark().colors.textColorWhite,
+            PinCodeDesignSystem.dark().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
-            PrimeDesignSystem.dark().colors.lightBlue,
+            PinCodeDesignSystem.dark().colors.lightBlue,
         pinKeyboardMaskedKeyColor =
-            PrimeDesignSystem.dark().colors.textColorWhite,
+            PinCodeDesignSystem.dark().colors.textColorWhite,
         descriptionBoldTextStyle =
-            PrimeDesignSystem.dark().typography.descriptionBold.copyWith(
-                  color: PrimeDesignSystem.dark().colors.white,
+            PinCodeDesignSystem.dark().typography.descriptionBold.copyWith(
+                  color: PinCodeDesignSystem.dark().colors.white,
                 ),
         appBarTitleDescriptionBoldTextStyle =
-            PrimeDesignSystem.dark().typography.descriptionBold.copyWith(
-                  color: PrimeDesignSystem.dark().colors.white,
+            PinCodeDesignSystem.dark().typography.descriptionBold.copyWith(
+                  color: PinCodeDesignSystem.dark().colors.white,
                 ),
-        captionBold = PrimeDesignSystem.dark().typography.captionBold,
-        subtitleBold = PrimeDesignSystem.dark().typography.h2Semibold16,
-        pinCodeKeyTextStyle = PrimeDesignSystem.dark().typography.h2Semibold16,
-        descriptionBold = PrimeDesignSystem.dark().typography.descriptionBold,
-        titleBold = PrimeDesignSystem.dark().typography.titleBold,
-        descriptionThin = PrimeDesignSystem.dark().typography.descriptionThin,
-        errorTitle = PrimeDesignSystem.dark().typography.errorTitle,
+        captionBold = PinCodeDesignSystem.dark().typography.captionBold,
+        subtitleBold = PinCodeDesignSystem.dark().typography.h2Semibold16,
+        pinCodeKeyTextStyle =
+            PinCodeDesignSystem.dark().typography.h2Semibold16,
+        descriptionBold = PinCodeDesignSystem.dark().typography.descriptionBold,
+        titleBold = PinCodeDesignSystem.dark().typography.titleBold,
+        descriptionThin = PinCodeDesignSystem.dark().typography.descriptionThin,
+        errorTitle = PinCodeDesignSystem.dark().typography.errorTitle,
         pinKeyboardBottomButtonTextStyle =
-            PrimeDesignSystem.dark().typography.captionBold,
-        spacingXSS1 = PrimeDesignSystem.dark().spacings.xss1,
-        spacingXS = PrimeDesignSystem.dark().spacings.xs,
-        spacingXS1 = PrimeDesignSystem.dark().spacings.xs1,
-        spacingS = PrimeDesignSystem.dark().spacings.s,
-        spacingM = PrimeDesignSystem.dark().spacings.m,
-        spacingL = PrimeDesignSystem.dark().spacings.l,
-        spacingXL = PrimeDesignSystem.dark().spacings.xl,
-        spacingXXL = PrimeDesignSystem.dark().spacings.xxl,
-        spacingXXXL = PrimeDesignSystem.dark().spacings.xxxl,
-        spacingXXXXL1 = PrimeDesignSystem.dark().spacings.xxxxl1,
-        spacing1 = PrimeDesignSystem.dark().spacings.m,
-        spacing2 = PrimeDesignSystem.dark().spacings.xs1,
-        spacing3 = PrimeDesignSystem.dark().spacings.xs,
-        spacing4 = PrimeDesignSystem.dark().spacings.xxl,
-        spacing5 = PrimeDesignSystem.dark().spacings.s,
-        spacing6 = PrimeDesignSystem.dark().spacings.m,
-        pinDeleteActionIcon = PrimeDesignSystem.light().icons.pinDeleteAction,
-        pinDeleteDefaultIcon = PrimeDesignSystem.light().icons.pinDeleteDefault,
-        faceScanDefaultIcon = PrimeDesignSystem.light().icons.faceScanDefault,
-        faceScanInvertedIcon = PrimeDesignSystem.light().icons.faceScanInverted,
-        faceScanPressedIcon = PrimeDesignSystem.light().icons.faceScanPressed,
+            PinCodeDesignSystem.dark().typography.captionBold,
+        spacingXSS1 = PinCodeDesignSystem.dark().spacings.xss1,
+        spacingXS = PinCodeDesignSystem.dark().spacings.xs,
+        spacingXS1 = PinCodeDesignSystem.dark().spacings.xs1,
+        spacingS = PinCodeDesignSystem.dark().spacings.s,
+        spacingM = PinCodeDesignSystem.dark().spacings.m,
+        spacingL = PinCodeDesignSystem.dark().spacings.l,
+        spacingXL = PinCodeDesignSystem.dark().spacings.xl,
+        spacingXXL = PinCodeDesignSystem.dark().spacings.xxl,
+        spacingXXXL = PinCodeDesignSystem.dark().spacings.xxxl,
+        spacingXXXXL1 = PinCodeDesignSystem.dark().spacings.xxxxl1,
+        spacing1 = PinCodeDesignSystem.dark().spacings.m,
+        spacing2 = PinCodeDesignSystem.dark().spacings.xs1,
+        spacing3 = PinCodeDesignSystem.dark().spacings.xs,
+        spacing4 = PinCodeDesignSystem.dark().spacings.xxl,
+        spacing5 = PinCodeDesignSystem.dark().spacings.s,
+        spacing6 = PinCodeDesignSystem.dark().spacings.m,
+        pinDeleteActionIcon = PinCodeDesignSystem.light().icons.pinDeleteAction,
+        pinDeleteDefaultIcon =
+            PinCodeDesignSystem.light().icons.pinDeleteDefault,
+        faceScanDefaultIcon = PinCodeDesignSystem.light().icons.faceScanDefault,
+        faceScanInvertedIcon =
+            PinCodeDesignSystem.light().icons.faceScanInverted,
+        faceScanPressedIcon = PinCodeDesignSystem.light().icons.faceScanPressed,
         fingerScanDefaultIcon =
-            PrimeDesignSystem.light().icons.fingerScanDefault,
+            PinCodeDesignSystem.light().icons.fingerScanDefault,
         fingerScanInvertedIcon =
-            PrimeDesignSystem.light().icons.fingerScanInverted,
+            PinCodeDesignSystem.light().icons.fingerScanInverted,
         fingerScanPressedIcon =
-            PrimeDesignSystem.light().icons.fingerScanPressed,
-        appBarTitleLeadingWidth = PrimeDesignSystem.dark().spacings.xxxxl1 +
-            PrimeDesignSystem.light().spacings.m;
+            PinCodeDesignSystem.light().icons.fingerScanPressed,
+        appBarTitleLeadingWidth = PinCodeDesignSystem.dark().spacings.xxxxl1 +
+            PinCodeDesignSystem.light().spacings.m;
 
   /// endregion
 
