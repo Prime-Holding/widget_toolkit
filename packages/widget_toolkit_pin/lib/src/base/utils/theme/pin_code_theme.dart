@@ -85,9 +85,9 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
         appBarButtonIconColor = PrimeDesignSystem.light().colors.textColorWhite,
         shimmerBaseColor = PrimeDesignSystem.light().colors.white,
         shimmerHighlightColor =
-            PrimeDesignSystem.light().colors.white.withOpacity(0.4),
+            PrimeDesignSystem.light().colors.white.withValues(alpha: 0.4),
         titleButtonIconBorderColor =
-            PrimeDesignSystem.light().colors.white.withOpacity(0.4),
+            PrimeDesignSystem.light().colors.white.withValues(alpha: 0.4),
         pinCodeKeyBackgroundColor =
             PrimeDesignSystem.light().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
@@ -159,9 +159,9 @@ class PinCodeTheme extends ThemeExtension<PinCodeTheme>
         appBarButtonIconColor = PrimeDesignSystem.dark().colors.textColorWhite,
         shimmerBaseColor = PrimeDesignSystem.dark().colors.white,
         shimmerHighlightColor =
-            PrimeDesignSystem.dark().colors.white.withOpacity(0.4),
+            PrimeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
         titleButtonIconBorderColor =
-            PrimeDesignSystem.dark().colors.white.withOpacity(0.4),
+            PrimeDesignSystem.dark().colors.white.withValues(alpha: 0.4),
         pinCodeKeyBackgroundColor =
             PrimeDesignSystem.dark().colors.textColorWhite,
         pinKeyboardMaskedKeyBorderColor =
