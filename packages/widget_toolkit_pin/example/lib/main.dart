@@ -36,15 +36,13 @@ class MyApp extends StatelessWidget {
           WidgetToolkitTheme.dark(),
         ],
       ),
-      home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) => MultiProvider(
