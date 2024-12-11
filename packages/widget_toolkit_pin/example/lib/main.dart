@@ -36,15 +36,13 @@ class MyApp extends StatelessWidget {
           WidgetToolkitTheme.dark(),
         ],
       ),
-      home: const MyHomePage(title: 'Widget Toolkit Pin Demo'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) => MultiProvider(
@@ -58,11 +56,6 @@ class MyHomePage extends StatelessWidget {
         ],
         child: Builder(
           builder: (context) => Scaffold(
-            appBar: AppBar(
-              title: Text(title),
-              forceMaterialTransparency: true,
-            ),
-            extendBodyBehindAppBar: true,
             body: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Column(
@@ -97,7 +90,7 @@ class MyHomePage extends StatelessWidget {
                       // or to show a notification, in practice this would only get called if the
                       // implementations of [BiometricsLocalDataSource.areBiometricsEnabled()],
                       // [BiometricsLocalDataSource.setBiometricsEnabled(enable)],
-                      // [PinCodeService.isPinCodeInSecureStorage()], [PinCodeService.encryptPinCode()],
+                      // [PinCodeService.encryptPinCode()],
                       // [PinCodeService.getPinLength()], [PinCodeService.verifyPinCode()],
                       // [PinCodeService.getPinCode()], throw.
                       onError: (error, translatedError) =>
@@ -164,14 +157,6 @@ class AppPinCodeService implements PinCodeService {
   /// This pin is intended to be stored in the secured storage for production
   /// applications
   final String _pinCode = '1111';
-
-  @override
-  Future<bool> isPinCodeInSecureStorage() async {
-    if (_pinCode == '1111') {
-      return Future.value(true);
-    }
-    return Future.value(false);
-  }
 
   @override
   Future<String> encryptPinCode(String pinCode) async {
