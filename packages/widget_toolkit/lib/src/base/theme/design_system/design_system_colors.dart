@@ -24,7 +24,7 @@ class DesignSystemColors {
         scaffoldBackgroundColor = Colors.black,
         highlightColor = Colors.white,
         errorTitleColor = Colors.white,
-        bottomSheetBarrierColor = Colors.black.withOpacity(0.5),
+        bottomSheetBarrierColor = Colors.black.withValues(alpha:0.5),
         shimmerBaseColor = const Color(0xff9da2a6),
         shimmerHighlightColor = const Color(0xffF0F0F2);
 

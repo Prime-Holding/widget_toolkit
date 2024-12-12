@@ -1,6 +1,6 @@
 name: widget_toolkit
 description: The Widget Toolkit package consists of several lightweight and customisable UI components that boost productivity and reduce the development time.
-version: 0.2.0
+version: 0.2.1
 repository: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit
 issue_tracker: https://github.com/orgs/Prime-Holding/projects/6
 homepage: https://www.primeholding.com
@@ -9,7 +9,7 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
-  copy_with_extension: ^5.0.3
+  copy_with_extension: ^6.0.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
