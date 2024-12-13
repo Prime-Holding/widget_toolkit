@@ -131,7 +131,6 @@ class _CountdownComponentState extends State<CountdownComponent> {
         _controller._state = _CountdownControllerState.normal;
         break;
       case _CountdownControllerState.normal:
-      default:
         break;
     }
   }
