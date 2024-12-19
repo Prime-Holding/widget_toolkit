@@ -130,7 +130,7 @@ class GradientFillButton extends StatelessWidget {
   Color getPressedInnerBackgroundColor(BuildContext context) =>
       (colorStyle?.pressedColor ??
               context.widgetToolkitTheme.filledButtonBackgroundColorPressed)
-          .withOpacity(0.5);
+          .withValues(alpha: 0.5);
 
   /// region Builders
 
@@ -156,7 +156,7 @@ class GradientFillButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
         ),
         elevation: activeState() ? elevation : 0,
-        shadowColor: activeGradientColorStart(context).withOpacity(0.2),
+        shadowColor: activeGradientColorStart(context).withValues(alpha: 0.2),
       ),
       onPressed: (state == ButtonStateModel.loading) ? null : onPressed,
       child: text,

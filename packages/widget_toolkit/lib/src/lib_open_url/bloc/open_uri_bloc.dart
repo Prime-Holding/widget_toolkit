@@ -52,7 +52,6 @@ class OpenUriBloc extends $OpenUriBloc {
         formattedUri = 'file:${args.uri}';
         break;
       case UriType.https:
-      default:
         formattedUri = args.uri;
         if (!formattedUri.startsWith('https:') &&
             !formattedUri.startsWith('http:')) {

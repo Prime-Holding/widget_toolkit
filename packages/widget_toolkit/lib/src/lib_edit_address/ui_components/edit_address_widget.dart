@@ -7,7 +7,7 @@ import 'permanent_address_bottom_sheet.dart';
 
 /// [translateError] provide a function which maps the city and street validation
 /// errors from the [service] service to the appropriate
-/// RxFieldException<String>, which is an ui error with text.
+/// RxFieldException`<String>`, which is an ui error with text.
 ///
 /// [service] receives an implementation of the [EditAddressService] class.
 /// The API of the class provides methods for the logic for the main save address
