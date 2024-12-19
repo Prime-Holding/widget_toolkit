@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(),
         extensions: [
           PinCodeTheme.light().copyWith(
-            pinCodeKeyTextColorPressed: Colors.lightBlue.withOpacity(0.5),
+            pinCodeKeyTextColorPressed: Colors.lightBlue.withValues(alpha:0.5),
           ),
           WidgetToolkitTheme.light(),
         ],

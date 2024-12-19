@@ -1,3 +1,7 @@
+## [0.3.1]
+* Removed deprecated use of `.withOpacity()`
+* Updated example project
+
 ## [0.3.0]
 Fixes and improvements:
 * Fixed a bug where biometrics authentication would not work if encryption was used
