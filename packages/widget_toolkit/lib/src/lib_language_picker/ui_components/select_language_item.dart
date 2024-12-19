@@ -187,7 +187,7 @@ class SelectLanguageItem extends StatelessWidget {
   Color getPressedInnerBackgroundColor(BuildContext context) =>
       (colorStyle?.pressedColor ??
               context.widgetToolkitTheme.filledButtonBackgroundColorPressed)
-          .withOpacity(0.5);
+          .withValues(alpha: 0.5);
 
   Color getInnerButtonColor(BuildContext context) =>
       (state != ButtonStateModel.disabled)
@@ -229,7 +229,7 @@ class SelectLanguageItem extends StatelessWidget {
                 BoxShadow(
                   color: colorStyle?.shadowColor ??
                       context.languagePickerTheme.boxShadowColor
-                          .withOpacity(0.2),
+                          .withValues(alpha: 0.2),
                   blurRadius: context.languagePickerTheme.spacingS,
                   spreadRadius: 0,
                   offset: const Offset(0, 4),

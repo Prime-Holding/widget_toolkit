@@ -45,7 +45,7 @@ class SmallButton extends StatelessWidget {
         //pressed or normal
         (colorStyle?.activeGradientColorStart ??
                 context.widgetToolkitTheme.primaryGradientStart)
-            .withOpacity(state == ButtonStateModel.pressed ? 0.5 : 1.0)
+            .withValues(alpha: state == ButtonStateModel.pressed ? 0.5 : 1.0)
 
         //disabled
         : context.widgetToolkitTheme.filledButtonTextColorDisabled;
@@ -53,7 +53,7 @@ class SmallButton extends StatelessWidget {
     final colorGradientEnd = state != ButtonStateModel.disabled
         ? (colorStyle?.activeGradientColorEnd ??
                 context.widgetToolkitTheme.primaryGradientEnd)
-            .withOpacity(state == ButtonStateModel.pressed ? 0.5 : 1.0)
+            .withValues(alpha: state == ButtonStateModel.pressed ? 0.5 : 1.0)
         : context.widgetToolkitTheme.filledButtonTextColorDisabled;
 
     var gradient = LinearGradient(colors: [

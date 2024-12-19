@@ -123,7 +123,9 @@ class InputTextFieldState extends State<InputTextField> {
         child: GestureDetector(
           onTap: () {
             if (currentState == InputTextFieldStateModel.defaultDisabled ||
-                currentState == InputTextFieldStateModel.disabled) return;
+                currentState == InputTextFieldStateModel.disabled) {
+              return;
+            }
 
             if (currentState != InputTextFieldStateModel.defaultField) {
               _focusNode.requestFocus();
