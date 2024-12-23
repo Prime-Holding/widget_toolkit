@@ -1,3 +1,7 @@
+## [0.2.1]
+* Removed deprecated use of `.withOpacity()`
+* Updated `copy_with_extension` to `6.0.0`
+
 ## [0.2.0]
 - Updated dependencies:
 * `rxdart` to `0.28.0`

@@ -26,7 +26,6 @@ String convertRemainingTime(
           ':${_formatToDoubleDigitValue(secs)}';
       break;
     case CountdownTimeFormat.seconds:
-    default:
       output = time.toString();
   }
   return output;

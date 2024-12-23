@@ -21,8 +21,8 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.5.3
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
       - run: dart --version
@@ -49,12 +49,12 @@ jobs:
         working-directory: ${{ matrix.folder }}
         run: flutter pub run clean_coverage clean --exclusions '**/.g.dart','**repository.dart','**rxb.g.dart','**_dependencies.dart' coverage/lcov.info
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v2
+        uses: VeryGoodOpenSource/very_good_coverage@v3
         with:
           path: "${{ matrix.folder }}/coverage/lcov.info"
           min_coverage: 58
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           directory: ${{ matrix.folder }}/coverage
           token: ${{ secrets.CODECOV_TOKEN }}
