@@ -43,14 +43,14 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
   SmsCodeTheme.light()
       : primaryColor = const Color(0xff2196f3),
         defaultBackgroundColor = const Color.fromRGBO(222, 231, 240, .57),
-        defaultBorderColor = Colors.black54.withOpacity(0.4),
+        defaultBorderColor = Colors.black54.withValues(alpha: 0.4),
         defaultBorderWidth = 1.5,
         defaultBorderRadius = const BorderRadius.all(Radius.circular(8)),
         defaultTextStyle = const TextStyle(
           fontSize: 18,
           color: Colors.black,
         ),
-        errorBackgroundColor = Colors.redAccent.withOpacity(0.3),
+        errorBackgroundColor = Colors.redAccent.withValues(alpha: 0.3),
         errorBorderColor = Colors.red,
         errorBorderWidth = 2,
         errorBorderRadius = const BorderRadius.all(Radius.circular(8)),
@@ -62,7 +62,7 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
             const TextStyle(fontSize: 14, color: Colors.black, height: 1.6),
         validityTitleTextStyle =
             const TextStyle(fontSize: 14, color: Colors.black, height: 1.6),
-        successBackgroundColor = Colors.greenAccent.withOpacity(0.3),
+        successBackgroundColor = Colors.greenAccent.withValues(alpha: 0.3),
         successBorderColor = Colors.green,
         successBorderWidth = 2,
         successTextStyle = const TextStyle(
@@ -96,14 +96,14 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
   SmsCodeTheme.dark()
       : primaryColor = const Color(0xffce93d8),
         defaultBackgroundColor = const Color.fromRGBO(222, 231, 240, .9),
-        defaultBorderColor = Colors.black54.withOpacity(0.4),
+        defaultBorderColor = Colors.black54.withValues(alpha: 0.4),
         defaultBorderWidth = 1.5,
         defaultBorderRadius = const BorderRadius.all(Radius.circular(8)),
         defaultTextStyle = const TextStyle(
           fontSize: 18,
           color: Colors.white,
         ),
-        errorBackgroundColor = Colors.redAccent.withOpacity(0.3),
+        errorBackgroundColor = Colors.redAccent.withValues(alpha: 0.3),
         errorBorderColor = Colors.red,
         errorBorderWidth = 2,
         errorBorderRadius = const BorderRadius.all(Radius.circular(8)),
@@ -115,7 +115,7 @@ class SmsCodeTheme extends ThemeExtension<SmsCodeTheme>
             const TextStyle(fontSize: 14, color: Colors.white, height: 1.6),
         validityTitleTextStyle =
             const TextStyle(fontSize: 14, color: Colors.white, height: 1.6),
-        successBackgroundColor = Colors.greenAccent.withOpacity(0.3),
+        successBackgroundColor = Colors.greenAccent.withValues(alpha: 0.3),
         successBorderColor = Colors.green,
         successBorderWidth = 2,
         successTextStyle = const TextStyle(

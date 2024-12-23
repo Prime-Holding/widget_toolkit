@@ -30,14 +30,17 @@ PinCodeBlocType pinCodeMockFactory({
   when(blocMock.events).thenReturn(eventsMock);
   when(blocMock.states).thenReturn(statesMock);
 
+  when(statesMock.placeholderDigitsCount).thenAnswer((_) => Stream.value(4));
+
   when(statesMock.showBiometricsButton).thenAnswer(
     (_) {
       service.verifyPinCode(Stubs.pinCode3);
-      service.isPinCodeInSecureStorage();
-      return showBiometricsButton != null
-          ? Stream.value(showBiometricsButton).publishReplay(maxSize: 1)
-          : Stream.value(false).publishReplay(maxSize: 1)
-        ..connect();
+
+      final state = showBiometricsButton != null
+          ? Stream.value(showBiometricsButton)
+          : Stream.value(false);
+
+      return state.publish()..connect();
     },
   );
 
@@ -61,8 +64,6 @@ PinCodeBlocType pinCodeMockFactory({
   );
 
   when(service.verifyPinCode(Stubs.pinCode3)).thenAnswer((_) async => true);
-
-  when(service.isPinCodeInSecureStorage()).thenAnswer((_) async => true);
 
   when(service.encryptPinCode(Stubs.pinCode3))
       .thenAnswer((_) async => Stubs.pinCode3);

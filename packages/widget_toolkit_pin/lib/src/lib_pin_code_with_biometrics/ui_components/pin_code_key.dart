@@ -79,8 +79,8 @@ class _PinCodeKeyState extends State<PinCodeKey> {
                     height: _calculateSize(context),
                     decoration: BoxDecoration(
                       color: context.pinCodeTheme.pinCodeKeyBackgroundColor
-                          .withOpacity(
-                        widget.isLoading
+                          .withValues(
+                        alpha: widget.isLoading
                             ? 0.1
                             : isPressed
                                 ? 1.0
@@ -101,7 +101,7 @@ class _PinCodeKeyState extends State<PinCodeKey> {
           color: isPressed
               ? context.pinCodeTheme.pinCodeKeyTextColorPressed
               : context.pinCodeTheme.pinCodeKeyTextColorDefault
-                  .withOpacity(widget.isLoading ? 0.5 : 1.0),
+                  .withValues(alpha: widget.isLoading ? 0.5 : 1.0),
         ),
       );
 

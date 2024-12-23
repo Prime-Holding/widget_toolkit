@@ -1,3 +1,20 @@
+## [0.3.1]
+* Removed deprecated use of `.withOpacity()`
+* Updated example project
+
+## [0.3.0]
+Fixes and improvements:
+* Fixed a bug where biometrics authentication would not work if encryption was used
+* Added biometrics authentication to the example application
+* Added `autoPromptBiometric` parameter to `PinCodeKeyboard` to automatically authenticate with biometrics if available
+
+Breaking changes:
+* Added `savePinCodeInSecureStorage` to `PinCodeService` for saving the pin code in secure storage
+* Removed `isPinCodeInSecureStorage` method from `PinCodeService`. Now this flag is set automatically when the pin code is saved in secure storage and accessed through the `getPinCode` method
+
+## [0.2.2]
+* Fixed a bug where a newly input pin could get deleted if the user starts typing again immediately after an error shake animation starts
+
 ## [0.2.1]
 * Fixed a visual bug where held buttons would remain stuck in the pressed state
 * Fixed a visual bug where pin indicators wouldn't be displayed after an error is presented

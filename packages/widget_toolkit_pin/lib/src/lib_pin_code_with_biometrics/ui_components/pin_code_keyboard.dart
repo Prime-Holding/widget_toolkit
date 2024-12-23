@@ -47,6 +47,7 @@ class PinCodeKeyboard extends StatelessWidget {
     required this.pinCodeService,
     required this.translateError,
     this.biometricsLocalDataSource,
+    this.biometricsAuthDataSource,
     this.mapBiometricMessageToString,
     this.onAuthenticated,
     this.deleteKeyButton,
@@ -54,6 +55,7 @@ class PinCodeKeyboard extends StatelessWidget {
     this.localizedReason,
     this.addDependencies = true,
     this.onError,
+    this.autoPromptBiometric = false,
     super.key,
   });
 
@@ -71,6 +73,11 @@ class PinCodeKeyboard extends StatelessWidget {
   /// If this parameter is not provided the biometrics authentication is disabled
   /// for the package
   final BiometricsLocalDataSource? biometricsLocalDataSource;
+
+  /// Provides a contract for custom biometrics authentication plugin. If this
+  /// parameter is not provided, a default one will be used featuring
+  /// [LocalAuthentication] from the local_auth package
+  final PinBiometricsAuthDataSource? biometricsAuthDataSource;
 
   /// Callback called when the user authentication succeeds. It accepts a dynamic
   /// value which is forwarded from the `verifyPinCode` method of the [pinCodeService].
@@ -99,6 +106,12 @@ class PinCodeKeyboard extends StatelessWidget {
   /// [onError] is optional function that enable error handling out of the package
   final Function(Object error, String translatedError)? onError;
 
+  /// If set to true the biometric authentication will be triggered automatically
+  /// when the widget is loaded, requires [biometricsLocalDataSource] to be provided
+  /// otherwise the biometric authentication will be disabled
+  /// Default to false
+  final bool autoPromptBiometric;
+
   static const String _enterPinWithBiometrics =
       'Enter your pin code by authenticating with biometrics';
 
@@ -109,24 +122,17 @@ class PinCodeKeyboard extends StatelessWidget {
           listener: (context, error) =>
               onError?.call(error, translateError(error)),
           child: RxBlocBuilder<PinCodeBlocType, ErrorModel>(
-            state: (bloc) => bloc.states.errors,
-            builder: (context, errorSnapshot, bloc) =>
-                RxBlocBuilder<PinCodeBlocType, int>(
-              state: (bloc) => bloc.states.digitsCount,
-              builder: (context, snapshot, bloc) => snapshot.hasData
-                  ? PinCodeComponent(
-                      translateError: translateError,
-                      mapBiometricMessageToString: mapBiometricMessageToString,
-                      biometricsLocalDataSource: biometricsLocalDataSource,
-                      onAuthenticated: onAuthenticated,
-                      deleteKeyButton: deleteKeyButton,
-                      bottomRightKeyboardButton: bottomRightKeyboardButton,
-                      error: errorSnapshot.data,
-                      localizedReason: _enterPinWithBiometrics,
-                    )
-                  : Container(),
-            ),
-          ),
+              state: (bloc) => bloc.states.errors,
+              builder: (context, errorSnapshot, bloc) => PinCodeComponent(
+                    translateError: translateError,
+                    mapBiometricMessageToString: mapBiometricMessageToString,
+                    biometricsLocalDataSource: biometricsLocalDataSource,
+                    onAuthenticated: onAuthenticated,
+                    deleteKeyButton: deleteKeyButton,
+                    bottomRightKeyboardButton: bottomRightKeyboardButton,
+                    error: errorSnapshot.data,
+                    localizedReason: _enterPinWithBiometrics,
+                  )),
         ),
       );
 
@@ -136,7 +142,9 @@ class PinCodeKeyboard extends StatelessWidget {
             ...PinCodeDependencies.from(
               pinCodeService: pinCodeService,
               biometricsLocalDataSource: biometricsLocalDataSource,
+              biometricsAuthDataSource: biometricsAuthDataSource,
               localizedReason: localizedReason ?? _enterPinWithBiometrics,
+              autoPromptBiometric: autoPromptBiometric,
             ).providers,
           ],
           child: child,

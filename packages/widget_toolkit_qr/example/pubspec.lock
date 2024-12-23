@@ -99,14 +99,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_qr_bar_scanner:
-    dependency: transitive
-    description:
-      name: flutter_qr_bar_scanner
-      sha256: "32f8f8dc93e308f177ce8c0379f575a9a14c2d7cb98d6a136c0108e67e7ac379"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
   flutter_rx_bloc:
     dependency: transitive
     description:
@@ -221,14 +213,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.0"
-  native_device_orientation:
+  mobile_scanner:
     dependency: transitive
     description:
-      name: native_device_orientation
-      sha256: "744a03030fad5a332a54833cd34f1e2ee51ae9acf477b4ef85bacc8823af9937"
+      name: mobile_scanner
+      sha256: e93461298494a3e5475dd2b41068012823b8fe2caf8d47ba545faca2aa3767d6
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "6.0.1"
   nested:
     dependency: transitive
     description:
@@ -518,10 +510,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: f652077d0bdf60abe4c1f6377448e8655008eef28f128bc023f7b5e8dfeb48fc
+      sha256: "5c5f338a667b4c644744b661f309fb8080bb94b18a7e91ef1dbd343bed00ed6d"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.4"
+    version: "14.2.5"
   web:
     dependency: transitive
     description:
@@ -543,7 +535,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.2.0"
   xml:
     dependency: transitive
     description:

@@ -1,3 +1,6 @@
+## [0.1.1]
+* Removed deprecated use of `.withOpacity()`
+
 ## [0.1.0]
 - Update dependencies:
 * `rxbloc` to `0.28.0`

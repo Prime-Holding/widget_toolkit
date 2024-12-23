@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_bloc_test/rx_bloc_test.dart';
+import 'package:widget_toolkit/models.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/models/biometrics_authentication_type.dart';
 import 'package:widget_toolkit_pin/src/lib_pin_code_with_biometrics/services/pin_biometrics_service.dart';
 import 'package:widget_toolkit_pin/widget_toolkit_pin.dart';
@@ -29,9 +30,9 @@ void main() {
     List<BiometricsAuthType>? biometrics,
     String pinCode = '',
     bool isPinVerified = true,
-    bool isPinCodeInSecureStorage = true,
     bool enableBiometrics = true,
     BiometricsMessage biometricsMessage = BiometricsMessage.enabled,
+    ErrorModel? biometricsError,
   }) {
     when(biometricAuthenticationService.isDeviceSupported)
         .thenAnswer((_) => Future.value(isDeviceSupported));
@@ -39,8 +40,13 @@ void main() {
     when(biometricAuthenticationService.canCheckBiometrics)
         .thenAnswer((_) => Future.value(canCheckBiometrics));
 
-    when(biometricAuthenticationService.areBiometricsEnabled())
-        .thenAnswer((_) => Future.value(areBiometricsEnabled));
+    if (biometricsError == null) {
+      when(biometricAuthenticationService.areBiometricsEnabled())
+          .thenAnswer((_) => Future.value(areBiometricsEnabled));
+    } else {
+      when(biometricAuthenticationService.areBiometricsEnabled())
+          .thenThrow(biometricsError);
+    }
 
     when(biometricAuthenticationService.availableBiometrics).thenAnswer(
         (_) => Future.value(biometrics ?? [BiometricsAuthType.fingerprint]));
@@ -55,9 +61,6 @@ void main() {
     when(pinCodeService.verifyPinCode(pinCode))
         .thenAnswer((_) => Future.value(isPinVerified));
 
-    when(pinCodeService.isPinCodeInSecureStorage())
-        .thenAnswer((_) => Future.value(isPinCodeInSecureStorage));
-
     when(pinCodeService.encryptPinCode(pinCode))
         .thenAnswer((_) => Future.value(pinCode));
 
@@ -70,6 +73,7 @@ void main() {
         biometricAuthenticationService: biometricAuthenticationService,
         localizedReason: '',
         pinCodeService: pinCodeService,
+        autoPromptBiometric: false,
       );
 
   group('test pin_code_bloc_dart state digitsCount', () {
@@ -85,21 +89,23 @@ void main() {
         state: (bloc) => bloc.states.digitsCount,
         expect: [6]);
 
-    rxBlocTest<PinCodeBloc, int>(
+    rxBlocFakeAsyncTest<PinCodeBloc, int>(
         'test pin_code_bloc_dart state digitsCount with addDigit and deleteDigit event',
-        build: () async {
+        build: () {
           defineWhen();
           return pinCodeBloc();
         },
-        act: (bloc) async {
+        act: (bloc, fakeAsync) async {
           bloc.events.addDigit('1');
+          fakeAsync.elapse(const Duration(milliseconds: 1));
           bloc.events.deleteDigit();
           bloc.events.addDigit('2');
           bloc.events.addDigit('1');
+          fakeAsync.elapse(const Duration(milliseconds: 1));
           bloc.events.deleteDigit();
         },
         state: (bloc) => bloc.states.digitsCount,
-        expect: [0, 0, 2]);
+        expect: [0, 1, 0, 1, 2, 1]);
   });
 
   group('test pin_code_bloc_dart state authenticated', () {
@@ -125,7 +131,6 @@ void main() {
         build: () async {
           defineWhen(
             isDeviceSupported: true,
-            isPinCodeInSecureStorage: true,
             isPinVerified: true,
             canCheckBiometrics: true,
             pinCode: Stubs.pinCode,
@@ -147,7 +152,6 @@ void main() {
             pinCode: Stubs.pinCode,
             isPinVerified: true,
             enableBiometrics: true,
-            isPinCodeInSecureStorage: true,
           );
 
           return pinCodeBloc();
@@ -156,7 +160,6 @@ void main() {
           bloc.events.addDigit(Stubs.pinCode);
         },
         state: (bloc) => bloc.states.showBiometricsButton,
-        skip: 1,
         expect: [true]);
 
     rxBlocTest<PinCodeBloc, bool>(
@@ -165,7 +168,7 @@ void main() {
           defineWhen(
             pinCode: Stubs.pinCode2,
             isPinVerified: false,
-            isPinCodeInSecureStorage: true,
+            areBiometricsEnabled: false,
           );
 
           return pinCodeBloc();
@@ -173,6 +176,25 @@ void main() {
         act: (bloc) async {},
         state: (bloc) => bloc.states.showBiometricsButton,
         expect: [false]);
+
+    rxBlocTest<PinCodeBloc, Exception>(
+        'test pin_code_bloc_dart state error with biometrics',
+        build: () async {
+          defineWhen(
+            pinCode: Stubs.pinCode2,
+            isPinVerified: false,
+            areBiometricsEnabled: false,
+            biometricsError: Stubs.error,
+          );
+
+          return pinCodeBloc();
+        },
+        act: (bloc) async {},
+        state: (bloc) {
+          bloc.states.showBiometricsButton.listen((_) {});
+          return bloc.states.errors;
+        },
+        expect: [Stubs.error]);
   });
 
   test('dispose test', () {

@@ -9,7 +9,7 @@ import '../../../language_picker.dart';
 /// [getAll] method returns the list of all language that the app will use.
 ///
 /// [getLanguageList] returns the list of all languages and marks the currently
-/// selected language as selected in the List<SelectedLanguageModel>.
+/// selected language as selected in the List`<SelectedLanguageModel>`.
 ///
 /// [getCurrent] returns the currently selected language.
 ///

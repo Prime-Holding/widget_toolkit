@@ -4,8 +4,8 @@
 **Widget Toolkit QR** package helps developers to add a QR scanner functionality into their applications. It can be used
 in the authentication process of an application.
 
-This package is a wrapper of [flutter_qr_bar_scanner](https://pub.dev/packages/flutter_qr_bar_scanner),
-for more information about the `flutter_qr_bar_scanner` package, check out its documentation.
+This package is a wrapper of [mobile_scanner](https://pub.dev/packages/mobile_scanner),
+for more information about the `mobile_scanner` package, check out its documentation.
 
 Support iOS and Android
 
@@ -44,7 +44,7 @@ sheet, that displays the error returned from the `onError` method of `QrScannerW
 **Step 1:** Configure your project by adding to `your_project_root/android/app/build.gradle`:
 ```
     android {
-        compileSdkVersion 33
+        compileSdkVersion 34
     }
 ```
 **Step 2:** Add in `your_project_root/android/gradle.properties`:
@@ -62,7 +62,7 @@ sheet, that displays the error returned from the `onError` method of `QrScannerW
 
 **For iOS**
 
-**Step 1:** Open the `Info.plist` file in your `ios/Runner` directory and add the following permissions:
+Open the `Info.plist` file in your `ios/Runner` directory and add the following permissions:
 
 ```
     ...
@@ -70,27 +70,6 @@ sheet, that displays the error returned from the `onError` method of `QrScannerW
     <string>Your message to user when the camera is accessed for the first time</string>
     ...
 
-```
-
-
-**Step 2:** Open the `Podfile` file in your `ios` directory and add the following permissions:
-```
-    ...
-     post_install do |installer|
-      installer.pods_project.targets.each do |target|
-        flutter_additional_ios_build_settings(target)
-        target.build_configurations.each do |config|
-            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-            #  Preprocessor definitions can be found in: https://github.com/Baseflow/flutter-permission-handler/blob/master/permission_handler/ios/Classes/PermissionHandlerEnums.h
-            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
-              '$(inherited)',
-              ## dart: PermissionGroup.camera
-              'PERMISSION_CAMERA=1',
-            ]
-        end
-      end
-    end
-    ...
 ```
 
 ## Usage

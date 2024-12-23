@@ -35,9 +35,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('widget_toolkit_otp Example'),
-        ),
         body: SafeArea(
           child: SmsCodeProvider(
             sentNewCodeActivationTime: 2,

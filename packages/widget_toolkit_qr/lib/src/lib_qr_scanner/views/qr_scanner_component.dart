@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_qr_bar_scanner/flutter_qr_bar_scanner.dart';
-import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:provider/provider.dart';
 import 'package:widget_toolkit/widget_toolkit.dart';
 
@@ -11,7 +10,7 @@ import '../../base/theme/qr_scanner_theme.dart';
 import '../blocs/qr_scanner_bloc.dart';
 import 'camera_permission.dart';
 
-class QrScannerComponent<T> extends StatelessWidget {
+class QrScannerComponent<T> extends StatefulWidget {
   const QrScannerComponent({
     this.onCodeScanned,
     this.onError,
@@ -37,17 +36,36 @@ class QrScannerComponent<T> extends StatelessWidget {
   final double? spaceBetweenScannerAndLoadingWidget;
 
   @override
+  State<QrScannerComponent<T>> createState() => _QrScannerComponentState<T>();
+}
+
+class _QrScannerComponentState<T> extends State<QrScannerComponent<T>> {
+  late final MobileScannerController controller;
+
+  @override
+  void initState() {
+    controller = MobileScannerController(formats: [BarcodeFormat.qrCode]);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           RxBlocListener<QrScannerBlocType<T>, T?>(
               state: (bloc) => bloc.states.scannedValue,
               listener: (context, scannedValue) =>
-                  onCodeValidated?.call(scannedValue)),
+                  widget.onCodeValidated?.call(scannedValue)),
           RxBlocListener<QrScannerBlocType<T>, Exception?>(
               state: (bloc) => bloc.states.errors,
               condition: (oldError, newError) => newError != null,
-              listener: (context, error) => onError?.call(error!)),
+              listener: (context, error) => widget.onError?.call(error!)),
           AspectRatio(
             aspectRatio: 1,
             child: Stack(
@@ -65,39 +83,37 @@ class QrScannerComponent<T> extends StatelessWidget {
                               .events
                               .requestCameraPermission(),
                           cameraPermissionButtonText:
-                              cameraPermissionButtonText,
-                          cameraAccessTitleText: cameraAccessTitleText,
-                          cameraAccessLabelText: cameraAccessLabelText,
+                              widget.cameraPermissionButtonText,
+                          cameraAccessTitleText: widget.cameraAccessTitleText,
+                          cameraAccessLabelText: widget.cameraAccessLabelText,
                           cameraPermissionBottomSheetConfiguration:
-                              cameraPermissionBottomSheetConfiguration ??
+                              widget.cameraPermissionBottomSheetConfiguration ??
                                   const QrScannerConfiguration(),
                         );
                       }
                     },
                     child: RxBlocBuilder<QrScannerBlocType<T>, bool>(
                       state: (bloc) => bloc.states.hasCameraPermission,
-                      builder: (ctx, permission, bloc) =>
-                          permission.hasData && permission.data == true
-                              ? _QRBarScannerCamera(
-                                  formats: const [
-                                    BarcodeFormats.QR_CODE,
-                                  ],
-                                  onError: (ctx, error) {
-                                    if (error != null && onError != null) {
-                                      onError!(error);
-                                    }
-                                    return null;
-                                  },
-                                  qrCodeCallback: (code) {
-                                    if (code != null) {
-                                      onCodeScanned?.call(code);
-                                      bloc.events.validateQRCode(code);
-                                    }
-                                  },
-                                  offscreenBuilder: (ctx) => const SizedBox(),
-                                  notStartedBuilder: (ctx) => const SizedBox(),
-                                )
-                              : const SizedBox(),
+                      builder: (ctx, permission, bloc) => permission.hasData &&
+                              permission.data == true
+                          ? _QRBarScannerCamera(
+                              controller: controller,
+                              onError: (ctx, error) {
+                                if (error != null && widget.onError != null) {
+                                  widget.onError!(error);
+                                }
+                                return null;
+                              },
+                              onDetect: (code) {
+                                final barcode =
+                                    code.barcodes.firstOrNull?.rawValue;
+                                if (barcode != null) {
+                                  widget.onCodeScanned?.call(barcode);
+                                  bloc.events.validateQRCode(barcode);
+                                }
+                              },
+                            )
+                          : const SizedBox(),
                     ),
                   ),
                 ),
@@ -108,9 +124,9 @@ class QrScannerComponent<T> extends StatelessWidget {
               ],
             ),
           ),
-          if (isLoadingIndicatorVisible) ...[
+          if (widget.isLoadingIndicatorVisible) ...[
             SizedBox(
-              height: spaceBetweenScannerAndLoadingWidget ??
+              height: widget.spaceBetweenScannerAndLoadingWidget ??
                   context.widgetToolkitTheme.spacingL,
             ),
             RxBlocBuilder<QrScannerBlocType<T>, bool>(
@@ -144,38 +160,25 @@ typedef AppErrorCallback = Widget? Function(
 
 class _QRBarScannerCamera extends StatelessWidget {
   const _QRBarScannerCamera({
-    required this.qrCodeCallback,
+    this.controller,
     required this.onError,
-    this.formats,
-    this.notStartedBuilder,
-    this.offscreenBuilder,
+    required this.onDetect,
   });
 
-  final WidgetBuilder? notStartedBuilder;
-  final WidgetBuilder? offscreenBuilder;
-  final ValueChanged<String?> qrCodeCallback;
   final AppErrorCallback onError;
-  final List<BarcodeFormats>? formats;
+  final MobileScannerController? controller;
+  final Function(BarcodeCapture)? onDetect;
 
   @override
-  Widget build(BuildContext context) => QRBarScannerCamera(
-        formats: formats,
-        onError: (ctx, error) => FutureBuilder(
-          future: _getError(ctx, error.toString()),
-          initialData: const SizedBox(),
-          builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) =>
-              snapshot.data!,
-        ),
-        notStartedBuilder: notStartedBuilder,
-        offscreenBuilder: offscreenBuilder,
-        qrCodeCallback: (code) => qrCodeCallback(code),
+  Widget build(BuildContext context) => MobileScanner(
+        controller: controller,
+        onDetect: onDetect,
+        errorBuilder: (context, error, widget) => _getError(context, error),
       );
 
-  Future<Widget> _getError(BuildContext context, String error) async {
-    final onErrorWidget = onError(context, error);
-    return await Future.delayed(Duration.zero, () {
-      return onErrorWidget ?? const SizedBox();
-    });
+  // QRBarScannerCamera(
+  Widget _getError(BuildContext context, MobileScannerException error) {
+    return onError(context, error.errorDetails?.message) ?? const SizedBox();
   }
 }
 
