@@ -123,4 +123,6 @@ class Stubs {
     streetAddress: Stubs.street,
     country: Stubs.countryModelBG,
   );
+
+  static const String messagePanelText = 'Value message panel';
 }

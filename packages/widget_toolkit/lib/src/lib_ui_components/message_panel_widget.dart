@@ -56,12 +56,11 @@ class MessagePanelWidget extends StatelessWidget {
                       width: context.widgetToolkitTheme.spacingXXL,
                       height: context.widgetToolkitTheme.spacingXXL,
                     ))
-                : const SizedBox(),
-            _IconWidget(
-              state: messageState,
-              color: color,
-              errorPanelIcon: errorPanelIcon,
-            ),
+                : _IconWidget(
+                    state: messageState,
+                    color: color,
+                    errorPanelIcon: errorPanelIcon,
+                  ),
             SizedBox(
               width: context.widgetToolkitTheme.spacingM,
             ),
