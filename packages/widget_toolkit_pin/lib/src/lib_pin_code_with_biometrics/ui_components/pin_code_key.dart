@@ -48,9 +48,12 @@ class _PinCodeKeyState extends State<PinCodeKey> {
         onTapDown: widget.isLoading
             ? null
             : (_) async {
-                setState(() {
-                  isPressed = true;
-                });
+                if (mounted) {
+                  setState(() {
+                    isPressed = true;
+                  });
+                }
+
                 if (widget.isFingerScan || widget.isFaceScan) {
                   await Future.delayed(widget.tintDuration);
                 }
@@ -109,9 +112,11 @@ class _PinCodeKeyState extends State<PinCodeKey> {
       calculateKeyboardButtonSize(context);
 
   void _cancelPress() {
-    setState(() {
-      isPressed = false;
-    });
+    if (mounted) {
+      setState(() {
+        isPressed = false;
+      });
+    }
   }
 
   void _delayedButtonRelease() async {
