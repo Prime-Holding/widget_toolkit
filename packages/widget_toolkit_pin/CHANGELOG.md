@@ -1,3 +1,6 @@
+## [0.3.2]
+* Fixed a bug where the pin code buttons would throw a setState error
+
 ## [0.3.1]
 * Removed deprecated use of `.withOpacity()`
 * Updated example project
