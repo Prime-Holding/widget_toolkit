@@ -21,24 +21,26 @@ abstract class _$ButtonColorStyleCWProxy {
 
   ButtonColorStyle borderColor(Color borderColor);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ButtonColorStyle(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ButtonColorStyle(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ButtonColorStyle call({
-    Color? activeButtonTextColor,
-    Color? disabledButtonTextColor,
-    Color? activeGradientColorStart,
-    Color? activeGradientColorEnd,
-    Color? shadowColor,
-    Color? pressedColor,
-    Color? borderColor,
+    Color activeButtonTextColor,
+    Color disabledButtonTextColor,
+    Color activeGradientColorStart,
+    Color activeGradientColorEnd,
+    Color shadowColor,
+    Color pressedColor,
+    Color borderColor,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfButtonColorStyle.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfButtonColorStyle.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfButtonColorStyle.copyWith(...)` or call `instanceOfButtonColorStyle.copyWith.fieldName(value)` for a single field.
 class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
   const _$ButtonColorStyleCWProxyImpl(this._value);
 
@@ -46,40 +48,41 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
 
   @override
   ButtonColorStyle activeButtonTextColor(Color activeButtonTextColor) =>
-      this(activeButtonTextColor: activeButtonTextColor);
+      call(activeButtonTextColor: activeButtonTextColor);
 
   @override
   ButtonColorStyle disabledButtonTextColor(Color disabledButtonTextColor) =>
-      this(disabledButtonTextColor: disabledButtonTextColor);
+      call(disabledButtonTextColor: disabledButtonTextColor);
 
   @override
   ButtonColorStyle activeGradientColorStart(Color activeGradientColorStart) =>
-      this(activeGradientColorStart: activeGradientColorStart);
+      call(activeGradientColorStart: activeGradientColorStart);
 
   @override
   ButtonColorStyle activeGradientColorEnd(Color activeGradientColorEnd) =>
-      this(activeGradientColorEnd: activeGradientColorEnd);
+      call(activeGradientColorEnd: activeGradientColorEnd);
 
   @override
   ButtonColorStyle shadowColor(Color shadowColor) =>
-      this(shadowColor: shadowColor);
+      call(shadowColor: shadowColor);
 
   @override
   ButtonColorStyle pressedColor(Color pressedColor) =>
-      this(pressedColor: pressedColor);
+      call(pressedColor: pressedColor);
 
   @override
   ButtonColorStyle borderColor(Color borderColor) =>
-      this(borderColor: borderColor);
+      call(borderColor: borderColor);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ButtonColorStyle(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ButtonColorStyle(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ButtonColorStyle(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ButtonColorStyle call({
     Object? activeButtonTextColor = const $CopyWithPlaceholder(),
     Object? disabledButtonTextColor = const $CopyWithPlaceholder(),
@@ -134,7 +137,8 @@ class _$ButtonColorStyleCWProxyImpl implements _$ButtonColorStyleCWProxy {
 }
 
 extension $ButtonColorStyleCopyWith on ButtonColorStyle {
-  /// Returns a callable class that can be used as follows: `instanceOfButtonColorStyle.copyWith(...)` or like so:`instanceOfButtonColorStyle.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfButtonColorStyle.copyWith(...)` or `instanceOfButtonColorStyle.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ButtonColorStyleCWProxy get copyWith => _$ButtonColorStyleCWProxyImpl(this);
 }

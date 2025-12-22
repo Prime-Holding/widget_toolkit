@@ -11,19 +11,21 @@ abstract class _$CountryModelCWProxy {
 
   CountryModel countryName(String countryName);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CountryModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CountryModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CountryModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CountryModel call({
-    String? countryCode,
-    String? countryName,
+    String countryCode,
+    String countryName,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCountryModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCountryModel.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCountryModel.copyWith(...)` or call `instanceOfCountryModel.copyWith.fieldName(value)` for a single field.
 class _$CountryModelCWProxyImpl implements _$CountryModelCWProxy {
   const _$CountryModelCWProxyImpl(this._value);
 
@@ -31,20 +33,21 @@ class _$CountryModelCWProxyImpl implements _$CountryModelCWProxy {
 
   @override
   CountryModel countryCode(String countryCode) =>
-      this(countryCode: countryCode);
+      call(countryCode: countryCode);
 
   @override
   CountryModel countryName(String countryName) =>
-      this(countryName: countryName);
+      call(countryName: countryName);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CountryModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CountryModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CountryModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CountryModel call({
     Object? countryCode = const $CopyWithPlaceholder(),
     Object? countryName = const $CopyWithPlaceholder(),
@@ -65,7 +68,8 @@ class _$CountryModelCWProxyImpl implements _$CountryModelCWProxy {
 }
 
 extension $CountryModelCopyWith on CountryModel {
-  /// Returns a callable class that can be used as follows: `instanceOfCountryModel.copyWith(...)` or like so:`instanceOfCountryModel.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCountryModel.copyWith(...)` or `instanceOfCountryModel.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CountryModelCWProxy get copyWith => _$CountryModelCWProxyImpl(this);
 }

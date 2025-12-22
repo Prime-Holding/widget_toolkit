@@ -15,21 +15,23 @@ abstract class _$AddressModelCWProxy {
 
   AddressModel country(CountryModel country);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressModel call({
-    AddressTypeModel? addressType,
-    String? city,
-    String? streetAddress,
-    CountryModel? country,
+    AddressTypeModel addressType,
+    String city,
+    String streetAddress,
+    CountryModel country,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAddressModel.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressModel.copyWith(...)` or call `instanceOfAddressModel.copyWith.fieldName(value)` for a single field.
 class _$AddressModelCWProxyImpl implements _$AddressModelCWProxy {
   const _$AddressModelCWProxyImpl(this._value);
 
@@ -37,26 +39,27 @@ class _$AddressModelCWProxyImpl implements _$AddressModelCWProxy {
 
   @override
   AddressModel addressType(AddressTypeModel addressType) =>
-      this(addressType: addressType);
+      call(addressType: addressType);
 
   @override
-  AddressModel city(String city) => this(city: city);
+  AddressModel city(String city) => call(city: city);
 
   @override
   AddressModel streetAddress(String streetAddress) =>
-      this(streetAddress: streetAddress);
+      call(streetAddress: streetAddress);
 
   @override
-  AddressModel country(CountryModel country) => this(country: country);
+  AddressModel country(CountryModel country) => call(country: country);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressModel call({
     Object? addressType = const $CopyWithPlaceholder(),
     Object? city = const $CopyWithPlaceholder(),
@@ -87,7 +90,8 @@ class _$AddressModelCWProxyImpl implements _$AddressModelCWProxy {
 }
 
 extension $AddressModelCopyWith on AddressModel {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressModel.copyWith(...)` or like so:`instanceOfAddressModel.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressModel.copyWith(...)` or `instanceOfAddressModel.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AddressModelCWProxy get copyWith => _$AddressModelCWProxyImpl(this);
 }
