@@ -919,7 +919,7 @@ packages:
       path: "../../widget_toolkit_biometrics"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.1"
   widget_toolkit_pin:
     dependency: "direct main"
     description:
