@@ -1,6 +1,6 @@
 name: widget_toolkit_biometrics
 description: A Flutter package that helps users to handle enabling and disabling biometrics in an application
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/Prime-Holding/widget_toolkit/tree/master/packages/widget_toolkit_biometrics
 issue_tracker: https://github.com/orgs/Prime-Holding/projects/6
 homepage: https://primeholding.com/
@@ -27,7 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.4.4
-  rx_bloc_generator: ^8.0.0
+  rx_bloc_generator: ^9.0.0
   rx_bloc_test: ^5.0.0
 
 flutter:

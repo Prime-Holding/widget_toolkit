@@ -13,20 +13,22 @@ abstract class _$SelectedLanguageModelCWProxy {
 
   SelectedLanguageModel isLoading(bool isLoading);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SelectedLanguageModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SelectedLanguageModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SelectedLanguageModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   SelectedLanguageModel call({
-    LanguageModel? language,
-    bool? selected,
-    bool? isLoading,
+    LanguageModel language,
+    bool selected,
+    bool isLoading,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSelectedLanguageModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSelectedLanguageModel.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSelectedLanguageModel.copyWith(...)` or call `instanceOfSelectedLanguageModel.copyWith.fieldName(value)` for a single field.
 class _$SelectedLanguageModelCWProxyImpl
     implements _$SelectedLanguageModelCWProxy {
   const _$SelectedLanguageModelCWProxyImpl(this._value);
@@ -35,22 +37,23 @@ class _$SelectedLanguageModelCWProxyImpl
 
   @override
   SelectedLanguageModel language(LanguageModel language) =>
-      this(language: language);
+      call(language: language);
 
   @override
-  SelectedLanguageModel selected(bool selected) => this(selected: selected);
+  SelectedLanguageModel selected(bool selected) => call(selected: selected);
 
   @override
-  SelectedLanguageModel isLoading(bool isLoading) => this(isLoading: isLoading);
+  SelectedLanguageModel isLoading(bool isLoading) => call(isLoading: isLoading);
 
   @override
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SelectedLanguageModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SelectedLanguageModel(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SelectedLanguageModel(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   SelectedLanguageModel call({
     Object? language = const $CopyWithPlaceholder(),
     Object? selected = const $CopyWithPlaceholder(),
@@ -74,7 +77,8 @@ class _$SelectedLanguageModelCWProxyImpl
 }
 
 extension $SelectedLanguageModelCopyWith on SelectedLanguageModel {
-  /// Returns a callable class that can be used as follows: `instanceOfSelectedLanguageModel.copyWith(...)` or like so:`instanceOfSelectedLanguageModel.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSelectedLanguageModel.copyWith(...)` or `instanceOfSelectedLanguageModel.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$SelectedLanguageModelCWProxy get copyWith =>
       _$SelectedLanguageModelCWProxyImpl(this);

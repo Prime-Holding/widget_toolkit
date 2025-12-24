@@ -1,3 +1,7 @@
+## [0.2.1]
+- Upgrade dependencies:
+* `rx_bloc_generator` to `9.0.0`
+
 ## [0.2.0]
 - Change dependency from `flutter_qr_bar_scanner` to `mobile_scanner`
 

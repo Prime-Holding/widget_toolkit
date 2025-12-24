@@ -1,3 +1,8 @@
+## [0.2.3]
+* Updated dependencies:
+  * `copy_with_extension` and `copy_with_extension_gen` to `10.0.0`
+  * `rx_bloc_generator` to `9.0.0`
+
 ## [0.2.2]
 * Fix `MessagePanelWidget` showing icon in loading state
 

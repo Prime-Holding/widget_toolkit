@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // Generator: RxBlocGeneratorForAnnotation
@@ -40,10 +41,7 @@ abstract class $BiometricsBloc extends RxBlocBase
       _mapToAreBiometricsEnabledState();
 
   @override
-  void setBiometrics(
-    bool enabled,
-    String localizedReason,
-  ) =>
+  void setBiometrics(bool enabled, String localizedReason) =>
       _$setBiometricsEvent.add((
         enabled: enabled,
         localizedReason: localizedReason,
