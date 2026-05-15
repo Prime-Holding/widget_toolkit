@@ -1,3 +1,6 @@
+## [0.1.3]
+* Improved documentation
+
 ## [0.1.2]
 - Upgrade dependencies:
 * `rx_bloc_generator` to `9.0.0`
