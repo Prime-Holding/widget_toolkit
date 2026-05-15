@@ -3,16 +3,18 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 
 import '../bloc/sms_code_bloc.dart';
 
-/// SmsPhoneNumberField  is wrapper that helps users to build a field to present
-/// the currently saved phone number and option to update it.It depends on SmsCodeBlocType,
-/// so make sure you have that bloc provided in the context above this widget.
-/// Use [builder] method to create UI component, such as PrimeTextFieldDialog.
+/// Presents the phone number line and routes edits through [SmsCodeBlocType],
+/// so place [SmsCodeProvider] above this widget in the tree. The [builder] should
+/// construct UI such as a dialog field while forwarding mutations through the
+/// supplied update callback.
 class SmsPhoneNumberField extends StatelessWidget {
   const SmsPhoneNumberField({
     required this.builder,
     super.key,
   });
 
+  /// Renders the phone presentation and wires the second callback argument to
+  /// [SmsCodeBlocEvents.updatePhoneNumber] inside `sms_phone_number_field.dart`.
   final Widget Function(BuildContext context, String? phoneNumber,
       void Function(String newNumber) updatePhoneNumber) builder;
 

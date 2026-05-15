@@ -36,12 +36,10 @@ import 'pin_code_component.dart';
 /// will be stored in the device secure storage, the biometrics authentication
 /// will be automatically triggered and the biometrics icon will be displayed
 /// on the bottom right. When you press it every time it will trigger the
-/// biometric authentication. Note: If [biometricsLocalDataSource] parameter is
-/// not provided to `PinCodeKeyboard` the biometrics authentication feature
-/// cannot be used.
-///
-/// For more information on how the widgets work check the functional specification
-/// section in the README.md file.
+/// biometric authentication. Note: If [biometricsLocalDataSource] is
+/// not provided to [PinCodeKeyboard] the biometrics authentication feature
+/// cannot be used. For more information on how the widgets work check the functional specification
+/// section in the `README.md` file.
 class PinCodeKeyboard extends StatelessWidget {
   const PinCodeKeyboard({
     required this.pinCodeService,

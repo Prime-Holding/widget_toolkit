@@ -6,5 +6,8 @@ import 'package:widget_toolkit_biometrics/widget_toolkit_biometrics.dart';
 /// to the user with the appropriate message
 class ErrorEnableBiometrics extends ErrorModel {
   ErrorEnableBiometrics(this.message);
+  /// Payload translated through [PinCodeKeyboard.mapBiometricMessageToString] or
+  /// [BiometricsMessage.translate] before the blurred bottom sheet presents guidance in
+  /// `pin_code_component.dart`.
   final BiometricsMessage message;
 }

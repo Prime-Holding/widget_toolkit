@@ -11,6 +11,9 @@ class LocalizedStrings {
 
   static LocalizedStrings? _instance;
 
+  /// Mirrors the [BuildContext] captured by [LocalizedStrings.of] so getters on
+  /// this class can reach [Theme], directionality, and other dependencies while
+  /// resolving English fallbacks.
   final BuildContext context;
 
   /// Text displayed during the enabled state of the button

@@ -7,6 +7,9 @@ import 'design_system/widget_toolkit_design_system.dart';
 part 'widget_toolkit_theme.tailor.dart';
 
 @TailorMixinComponent()
+/// Toolkit-wide branding, spacing, typography, icon, and shimmer tokens read from the BuildContext extension accessor declared at the bottom of this file.
+///
+/// Register this extension alongside feature themes such as [EditAddressTheme] or [LanguagePickerTheme] so shared UI widgets receive consistent styling.
 class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
     with _$WidgetToolkitThemeTailorMixin {
   const WidgetToolkitTheme({
@@ -502,224 +505,333 @@ class WidgetToolkitTheme extends ThemeExtension<WidgetToolkitTheme>
 
   /// endregion
 
+  /// Canonical brand hue that apps typically mirror onto ThemeData.primaryColor or ColorScheme.primary so surrounding Material chrome matches toolkit gradients sourced from related fields below.
   @override
   final Color primaryColor;
+  /// Typical canvas tint that hosts align with ThemeData scaffold or dialog backgrounds when embedding blurred sheets powered by these tokens.
   @override
   final Color backgroundColor;
+  /// Preferred scaffold wash that aligns host pages before presenting flows that reuse [showBlurredBottomSheet].
   @override
   final Color scaffoldBackgroundColor;
+  /// High-contrast ink applied to inline icons when [EditAddressWidget] recolors SVG assets for neutral info actions.
   @override
   final Color highlightColor;
+  /// Leading stops for primary gradients inside [GradientFillButton], [SmallButton], and [IconTextButton] affordances.
   @override
   final Color primaryGradientStart;
+  /// Trailing stops for those gradients and for muted controls that still need a brand accent in `show_blurred_bottom_sheet.dart`.
   @override
   final Color primaryGradientEnd;
+  /// Idle search icon stroke on [SearchPickerTextField] before the field focuses.
   @override
   final Color searchTextFieldIconColor;
+  /// Active search icon stroke after the observer marks the query field focused in `search_picker_text_field.dart`.
   @override
   final Color searchTextFieldIconColorActive;
+  /// Default field wash behind picker search outlines in `search_picker_text_field.dart`.
   @override
   final Color searchTextFieldBackgroundColor;
+  /// Alternate wash conveying focus or typing state for the same widget.
   @override
   final Color searchTextFieldBackgroundColorActive;
+  /// Corner rounding shared by the bordered search capsule in `search_picker_text_field.dart`.
   @override
   final double searchTextFieldBorderRadius;
+  /// Outline specification matched to the capsule border painting in `search_picker_text_field.dart`.
   @override
   final BoxBorder searchTextFieldBorderType;
+  /// Insets translating search icons away from typography within `search_picker_text_field.dart`.
   @override
   final EdgeInsets searchTextFieldIconEdgeInsets;
+  /// Hint style before operators type inside `search_picker_text_field.dart`.
   @override
   final TextStyle searchTextFieldHintStyle;
+  /// Composed query style rendered once text populates `search_picker_text_field.dart`.
   @override
   final TextStyle searchTextFieldTextStyle;
+  /// Inner padding wrapping label text on every [PickerListItem] row in `picker_list_item.dart`.
   @override
   final EdgeInsets pickerListItemInnerEdgeInsets;
+  /// Outer padding spacing consecutive list rows in `picker_list_item.dart`.
   @override
   final EdgeInsets pickerListItemOuterEdgeInsets;
+  /// Corner radius animating focus states on [PickerListItem].
   @override
   final double pickerListItemBorderRadius;
+  /// Fill when a row reports itself selected within `picker_list_item.dart`.
   @override
   final Color pickerListItemSelectedColor;
+  /// Fill when the row idles without selection in `picker_list_item.dart`.
   @override
   final Color pickerListItemUnselectedColor;
+  /// Typography for item titles inside `picker_list_item.dart`.
   @override
   final TextStyle pickerListItemTextStyle;
+  /// Uppercase caption treatment embedded in [MessagePanelWidget] skeletons and loading rows.
   @override
   final TextStyle captionBold;
+  /// Baseline label style for [IconTextButton] before hosts override with custom TextStyle parameters.
   @override
   final TextStyle textButtonTextStyle;
+  /// Icon tint inside [ErrorCardWidget] leading artwork.
   @override
   final Color errorCardIconColor;
+  /// Card surface fill behind error summaries in `error_card_widget.dart`.
   @override
   final Color errorCardBackgroundColor;
+  /// Panel wash when [MessagePanelWidget] renders MessagePanelState.important backgrounds.
   @override
   final Color messagePanelBackgroundColorImportant;
+  /// Panel wash for informative states on [MessagePanelWidget].
   @override
   final Color messagePanelBackgroundColorInformative;
+  /// Panel wash for positive reinforcement states on [MessagePanelWidget].
   @override
   final Color messagePanelBackgroundColorPositive;
+  /// Body text color on [ErrorCardWidget] once warnings materialize.
   @override
   final Color errorCardTextColor;
+  /// Dimming layer shown behind modal sheets opened through [showBlurredBottomSheet].
   @override
   final Color bottomSheetBarrierColor;
+  /// Default neutral wash for [MessagePanelWidget] when states fall back to generic messaging.
   @override
   final Color messagePanelBackgroundColor;
+  /// Hairline separator color between header chrome and body content in `show_blurred_bottom_sheet.dart`.
   @override
   final Color bottomSheetLineColor;
+  /// Primary sheet surface fill for [showBlurredBottomSheet] containers and footers.
   @override
   final Color bottomSheetBackgroundColor;
+  /// Border stroke available for hosts customizing sheet outlines that should stay on palette with toolkit defaults.
   @override
   final Color bottomSheetBorderColor;
+  /// Stroke on [SizedLoadingIndicator] when callers rely on the themed default color.
   @override
   final Color loadingIndicatorColor;
+  /// Semibold body copy on [ErrorCardWidget] and [GradientFillButton] labels.
   @override
   final TextStyle descriptionBold;
+  /// Title style available for host-authored chrome that should align with toolkit heading cadence.
   @override
   final TextStyle titleBold;
+  /// Supporting body style available for host-authored helper copy adjacent to toolkit flows.
   @override
   final TextStyle descriptionThin;
+  /// Emphasis style reserved for error headings that hosts render beside toolkit sheets.
   @override
   final TextStyle errorTitle;
+  /// Disabled fill for outline actions such as the dismiss control in `show_blurred_bottom_sheet.dart`.
   @override
   final Color disabledFilledButtonBackgroundColor;
+  /// Flat fill for disabled [GradientFillButton] variants while gradients rest.
   @override
   final Color filledButtonBackgroundColorDisabled;
+  /// Pressed-state fill for gradient buttons and language rows referencing [GradientFillButton] behavior.
   @override
   final Color filledButtonBackgroundColorPressed;
+  /// Label color when gradient buttons cannot accept input in `gradient_fill_button.dart`.
   @override
   final Color filledButtonTextColorDisabled;
+  /// Muted label color for disabled [IconTextButton] rows in `icon_text_button.dart`.
   @override
   final Color textButtonTextColorDisabled;
+  /// Transparent wash keeping text buttons visually flat in `icon_text_button.dart`.
   @override
   final Color textButtonBackgroundColor;
+  /// Enabled label color on [GradientFillButton].
   @override
   final Color filledButtonTextColorEnabled;
+  /// Fill for idle [SmallButton] outline variants in `small_button.dart`.
   @override
   final Color smallButtonBackgroundColor;
+  /// Shared label pigment for compact buttons inside `small_button.dart`.
   @override
   final Color buttonTextColor;
+  /// Base shimmer band for [ShimmerWrapper], [ShimmerPlaceholderWidget], and panel skeletons inside [MessagePanelWidget].
   @override
   final Color shimmerBaseColor;
+  /// Moving highlight layered on top of shimmer placeholders in those same surfaces.
   @override
   final Color shimmerHighlightColor;
+  /// Foreground tone for neutral message states while icons stay monochrome in [MessagePanelWidget].
   @override
   final Color messagePanelColorNeutral;
+  /// Cool gradient stop paired with primary blues on outlined buttons and language tiles when hosts align elevated actions.
   @override
   final Color buttonBlueGradientEnd;
+  /// Surface fill that hosts align with ThemeData elevated buttons wrapping toolkit modals.
   @override
   final Color elevatedButtonBackgroundColor;
+  /// Solid fill for filled [SmallButton] treatments in `small_button.dart`.
   @override
   final Color smallButtonFilledBackgroundColor;
+  /// Stroke around outlined [SmallButton] frames in `small_button.dart`.
   @override
   final Color smallButtonOutlinedBorderColor;
+  /// Text color for bilingual selection buttons that hosts style next to [LanguagePickerTheme] tiles.
   @override
   final Color activeButtonLanguageTextColor;
+  /// Enabled label color for [IconTextButton] and components built with [ButtonColorStyle.fromContext].
   @override
   final Color activeButtonTextColor;
+  /// Disabled label color within [ButtonColorStyle] inactive states.
   @override
   final Color disabledButtonTextColor;
+  /// Confident text color used when shimmer rows in [MessagePanelWidget] exit placeholder mode.
   @override
   final Color shimmerTextColor;
+  /// Leading color for multi-stop gradients inside [ButtonColorStyle] active treatments.
   @override
   final Color activeGradientColorStart;
+  /// Trailing color finishing those gradients in `button_color_style.dart`.
   @override
   final Color activeGradientColorEnd;
+  /// Ambient shadow pigment for elevated chips that hosts render next to toolkit buttons.
   @override
   final Color boxShadowColor;
+  /// Background wash paired with neutral message states in [MessagePanelWidget].
   @override
   final Color messagePanelBackgroundColorNeutral;
+  /// Foreground emphasis for MessagePanelState.lessImportant pathways in `message_panel_widget.dart`.
   @override
   final Color messagePanelColorLessImportant;
+  /// Panel fill variant for MessagePanelState.lessImportant in `message_panel_widget.dart`.
   @override
   final Color messagePanelBackgroundColorLessImportant;
+  /// Foreground tone for informative states in `message_panel_widget.dart`.
   @override
   final Color messagePanelColorInformative;
+  /// Foreground tone for urgent states in `message_panel_widget.dart`.
   @override
   final Color messagePanelColorImportant;
+  /// Foreground tone for positive states in `message_panel_widget.dart`.
   @override
   final Color messagePanelColorPositive;
+  /// Spinner color that hosts apply to trailing progress indicators on text buttons mirroring toolkit behavior.
   @override
   final Color textButtonLoadingIndicatorColor;
+  /// Drop shadow pigment for elevated [ButtonColorStyle] surfaces.
   @override
   final Color buttonShadowColor;
+  /// Pressed overlay pigment for gradient and outline interactions within [ButtonColorStyle].
   @override
   final Color buttonPressedColor;
+  /// Outline stroke shared by [ButtonColorStyle] wrappers.
   @override
   final Color buttonBorderColor;
+  /// Interior padding for [OutlineFillButton] rows in `outline_fill_button.dart`.
   @override
   final EdgeInsets outlineButtonContentPadding;
+  /// Primary label typography on [OutlineFillButton].
   @override
   final TextStyle outlineButtonTextStyle;
+  /// Secondary descriptive typography beneath titles on [OutlineFillButton].
   @override
   final TextStyle outlineButtonDescriptionTextStyle;
+  /// Idle surface fill for [OutlineFillButton].
   @override
   final Color outlineButtonBackgroundColor;
+  /// Icon and gradient foreground color on [OutlineFillButton].
   @override
   final Color outlineButtonForegroundColor;
+  /// Border stroke on idle [OutlineFillButton] frames.
   @override
   final Color outlineButtonBorderColor;
+  /// Pressed fill for [OutlineFillButton] highlights in `outline_fill_button.dart`.
   @override
   final Color outlineButtonPressedColor;
+  /// Enabled text color on [OutlineFillButton].
   @override
   final Color outlineButtonTextColor;
+  /// Disabled text color on [OutlineFillButton].
   @override
   final Color outlineButtonTextColorDisabled;
+  /// Left inset aligning sheet titles with drag handles in `show_blurred_bottom_sheet.dart`.
   @override
   final EdgeInsets bottomSheetHeaderPadding;
+  /// Top inset positioning close controls on modal headers in `show_blurred_bottom_sheet.dart`.
   @override
   final EdgeInsets bottomSheetCloseButtonPadding;
+  /// Primary body padding inside draggable sheets opened through [showBlurredBottomSheet].
   @override
   final EdgeInsets bottomSheetContentPadding;
+  /// Bottom inset before error rows meet sibling widgets; hosts pair it with [MessagePanelError] outside this package when they need matching rhythm.
   @override
   final EdgeInsets messagePanelErrorEdgeInsets;
+  /// Title padding within [showErrorBlurredBottomSheet] error presentations.
   @override
   final EdgeInsets errorModalContentTitleInsets;
+  /// Uniform padding for compact [SmallButton] hit targets in `small_button.dart`.
   @override
   final EdgeInsets smallButtonPadding;
+  /// Default padding for [GradientFillButton] labels when callers omit explicit inset overrides.
   @override
   final EdgeInsets gradientFillButtonDefaultPadding;
+  /// Outer padding wrapping [MessagePanelWidget] cards.
   @override
   final EdgeInsets messagePanelEdgeInsets;
+  /// Alternate sheet padding hosts can apply when creating custom sheet bodies that still need harmony with toolkit defaults.
   @override
   final EdgeInsets bottomSheetPaddingAlternative;
 
+  /// Extra-tight rhythm for skeleton bars and inline dividers inside [MessagePanelWidget].
   @override
   final double spacingXS;
+  /// Separator width beside [OutlineFillButton] iconography in `outline_fill_button.dart`.
   @override
   final double spacingS;
+  /// Mid-scale spacing increment for companion layouts hosts mount next to toolkit pages.
   @override
   final double spacingL;
+  /// Standard gutter separating iconography from typography in [MessagePanelWidget].
   @override
   final double spacingM;
+  /// Width and height modulus for shimmer placeholders in `message_panel_widget.dart`.
   @override
   final double spacingXL;
+  /// Square sizing for shimmering avatar placeholders inside [MessagePanelWidget].
   @override
   final double spacingXXL;
+  /// Large vertical rhythm hosts reuse when stacking sections above toolkit modals.
   @override
   final double spacingXXXXL;
 
+  /// Spacing between trailing icons and labels on [IconTextButton].
   @override
   final double textButtonIconRightPadding;
+  /// Horizontal padding wrapping [IconTextButton] content.
   @override
   final double textButtonPadding;
+  /// Trailing inset for toolbar-styled [IconTextButton] placements in `icon_text_button.dart`.
   @override
   final double appBarTextButtonPadding;
+  /// Spacer height before bottom safe areas on modal sheets configured in `show_blurred_bottom_sheet.dart`.
   @override
   final double bottomSheetBottomPadding;
+  /// Success glyph hosts can pair with bilingual pickers or custom confirmation rows that follow [SelectLanguageItem] visual language.
   @override
   final SvgFile checkIcon;
+  /// Positive status artwork for neutral success states inside [MessagePanelWidget].
   @override
   final SvgFile checkCircleIcon;
+  /// Dismiss artwork hosts mount on custom modal headers aligned with toolkit affordances.
   @override
   final SvgFile closeIcon;
+  /// Error-state vector for MessagePanelState.important inside [MessagePanelWidget].
   @override
   final SvgFile dangerIcon;
+  /// Education-state vector for MessagePanelState.informative inside [MessagePanelWidget].
   @override
   final SvgFile educateIcon;
+  /// Celebration-state vector for MessagePanelState.positive inside [MessagePanelWidget].
   @override
   final SvgFile greatNewsIcon;
+  /// Neutral info vector carried by MessagePanelState paths in `message_panel_widget.dart` and recolored in `edit_address_widget.dart`.
   @override
   final SvgFile infoCircleIcon;
+  /// General messaging vector for MessagePanelState.neutral variants in `message_panel_widget.dart`.
   @override
   final SvgFile messageIcon;
 }

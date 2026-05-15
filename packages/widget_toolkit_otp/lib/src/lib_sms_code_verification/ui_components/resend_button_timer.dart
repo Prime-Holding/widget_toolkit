@@ -5,10 +5,8 @@ import '../../base/utils/enums.dart';
 import '../../lib_countdown_widget/di/countdown_widget.dart';
 import '../bloc/sms_code_bloc.dart';
 
-/// ResendButtonTimer presents how long the resendCode button will be disabled.
-/// It depends on SmsCodeBlocType, so make sure you have that bloc provided in the
-/// context above this widget. It can be customised a bit or implemented on your
-/// own way using [builder] method.
+/// ResendButtonTimer presents how long the resendCode button stays throttled. Provide
+/// [SmsCodeBlocType] above this widget, typically via [SmsCodeProvider].
 class ResendButtonTimer extends StatelessWidget {
   const ResendButtonTimer({
     this.title,
@@ -19,20 +17,22 @@ class ResendButtonTimer extends StatelessWidget {
     super.key,
   });
 
-  /// Text to be displayed on top of the counter
+  /// Optional heading shown above whichever child replaces the default layout.
   final String? title;
 
-  /// Use [builder] method to overwrite the widget appearance
+  /// Supplies a bespoke countdown while exposing the second callback, which calls
+  /// [SmsCodeBlocEvents.enableResendButton] in `resend_button_timer.dart`.
   final Widget Function(int remainingTime, void Function() expireValidity)?
       builder;
 
-  /// Widget to be displayed if there is no data from the bloc
+  /// Shown until the bloc stream in `resend_button_timer.dart` yields a positive throttle sample.
   final Widget? placeholder;
 
-  /// Define how to style the counter numbers
+  /// Styles the default [CountdownWidget] built inside `resend_button_timer.dart`.
   final TextStyle? textStyle;
 
-  /// How to format the time. Choose from predefined values
+  /// Picks seconds, minutes, or hour formatting before the widget forwards values to
+  /// [CountdownWidget] in `resend_button_timer.dart`.
   final CountdownTimeFormat? timeFormat;
 
   @override

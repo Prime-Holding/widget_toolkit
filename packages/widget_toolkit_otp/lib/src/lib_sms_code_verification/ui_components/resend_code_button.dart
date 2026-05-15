@@ -8,6 +8,8 @@ import '../../base/theme/sms_code_theme.dart';
 import '../../base/utils/localized_strings.dart';
 import '../bloc/sms_code_bloc.dart';
 
+/// Resend control wired to [SmsCodeBlocType] when [useInternalCommunication] is
+/// true, or a standalone [IconTextButton] when you drive [state] yourself.
 class ResendCodeButton extends StatelessWidget {
   const ResendCodeButton({
     this.label,
@@ -45,39 +47,57 @@ class ResendCodeButton extends StatelessWidget {
                 disabledStateIcon == null,
             'Provide Widget, IconData or null for errorStateIcon.');
 
+  /// Overrides the label for the enabled or loading path when
+  /// [useInternalCommunication] is false; when the bloc drives the widget, the
+  /// label comes from [LocalizedStrings] unless [strings] supplies an override.
   final String? label;
 
+  /// Runs after the bloc’s [SmsCodeBlocEvents.sendNewCode] call when
+  /// [useInternalCommunication] is true, and is the sole tap handler when you
+  /// manage [state] yourself.
   final void Function()? onPressed;
 
-  /// Enable splash effect on the button
+  /// When true, the button shows the Material splash on press in `resend_code_button.dart`.
   final bool splashEffectEnabled;
 
-  /// Use this to provide a custom textStyle for button labels
+  /// Overrides the label typography on the nested [IconTextButton].
   final TextStyle? textStyle;
 
-  /// The style of the button
+  /// Overrides gradient, text, disabled, and pressed colors; otherwise
+  /// [ButtonColorStyle.fromContext] consumes [SmsCodeTheme] resend tokens.
   final ButtonColorStyle? buttonColorStyle;
 
-  /// If button labels will be capitalized, defaults to true
+  /// Uppercases labels before rendering when true, which matches the stock UX
+  /// for call-to-action copy on resend.
   final bool capitalizeLabels;
 
-  /// Localized strings used for text within the widget
+  /// Supplies copy overrides ahead of [BuildContext.getLocalizedStrings] for
+  /// send, sent, and error labels.
   final LocalizedStrings? strings;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget shown while the control is in the enabled state in `resend_code_button.dart`.
   final dynamic activeStateIcon;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget shown while the bloc reports a loading result for resend,
+  /// or the custom [state] is loading, in `resend_code_button.dart`.
   final dynamic loadingStateIcon;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget shown during the pressed or sent acknowledgement state in
+  /// `resend_code_button.dart`.
   final dynamic pressedStateIcon;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget shown when throttling disables interaction but the layout
+  /// still shows the trailing affordance in `resend_code_button.dart`.
   final dynamic disabledStateIcon;
 
+  /// When true, the widget listens to [SmsCodeBlocType] streams in
+  /// `resend_code_button.dart` and forwards taps through
+  /// [SmsCodeBlocEvents.sendNewCode]; when false, rendering follows [state] and
+  /// [onPressed] only.
   final bool useInternalCommunication;
 
+  /// Visual and interaction mode for the button when
+  /// [useInternalCommunication] is false.
   final ButtonStateModel state;
 
   @override

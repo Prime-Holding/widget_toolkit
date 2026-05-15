@@ -26,13 +26,32 @@ class SmsCodeProvider extends StatelessWidget {
     super.key,
   });
 
+  /// Supplies phone actions, timers, and verification hooks consumed by
+  /// [SmsCodeBloc] inside `sms_code_provider.dart`.
   final SmsCodeService smsCodeService;
+
+  /// Overrides the default [CountdownServiceImpl] wired into [SmsCodeBloc] for
+  /// validity and throttle timers.
   final CountdownService? countdownService;
+
+  /// Seeds [SmsCodeBlocStates.phoneNumber] so the field stack starts with a
+  /// known MSISDN before [SmsCodeService.getFullPhoneNumber] runs.
   final String? initialPhoneNumber;
+
+  /// Seconds to wait after sending a code before [SmsCodeBlocStates.isSendNewCodeEnabled]
+  /// allows another resend, aligning with [SmsCodeService.getResendButtonThrottleTime].
   final int sentNewCodeActivationTime;
 
+  /// Builds the OTP subtree that reads [TemporaryCodeState] from
+  /// [SmsCodeWidget] after the bloc emits verification updates.
   final Widget Function(TemporaryCodeState? codeState) builder;
+
+  /// Receives [SmsCodeBlocStates.errors] through the listener inside
+  /// `sms_code_widget.dart`.
   final void Function(BuildContext, ErrorModel?)? onError;
+
+  /// Receives payloads from [SmsCodeBlocStates.result] after
+  /// [SmsCodeService.confirmPhoneCode] finishes.
   final void Function(BuildContext, dynamic)? onResult;
 
   List<SingleChildWidget> get _blocs => [

@@ -6,7 +6,7 @@ import '../base/theme/sms_code_theme.dart';
 import '../base/utils/localized_strings.dart';
 import '../lib_countdown_widget/di/countdown_widget.dart';
 
-/// ResendCodeButton maintains its own statuses. Once the button is being
+/// AutomatedResendCodeButton maintains its own statuses. Once the button is being
 /// pressed, it goes through a few stats (loading, codeSent, disabled, active,
 /// error). The button is enabled only in active state. When pressed, it goes in
 /// loading state while the [onPressed] is being executed. Loading indicator and
@@ -17,9 +17,7 @@ import '../lib_countdown_widget/di/countdown_widget.dart';
 /// button displays countDown instead of icon and [strings.resendButtonDisabledStateLabel].
 /// After [disabledDuration] time past, the button gets back in active state
 /// with [activeStateIcon] and [strings.resendButtonActiveStateLabel]. Right
-/// after that, the button will be switched back to the enabled state.
-///
-/// If an error occur while [onPressed] is executed, the button get in error
+/// after that, the button will be switched back to the enabled state. If an error occur while [onPressed] is executed, the button get in error
 /// state instead of codeSent state. [errorStateIcon] and [strings.resendButtonErrorStateLabel]
 /// are displayed for [errorStateDuration] seconds. [onError] callback will be
 /// executed if provided.
@@ -70,33 +68,35 @@ class AutomatedResendCodeButton extends StatefulWidget {
   /// The style of the button
   final ButtonColorStyle? buttonColorStyle;
 
-  /// By default if the button is in loading state a CircularProgressIndicator
-  /// will be displayed instead of icon. If you want to change this,
-  /// set [overwriteLoadingIcon] to true and provide [loadingStateIcon]
+  /// When true, the shared resend builder in `automated_resend_code_button.dart` swaps the default
+  /// [SizedLoadingIndicator] for [loadingStateIcon] during the loading phase; when false, the
+  /// tailored loading indicator keeps guiding users while the Future from [onPressed] runs.
   final bool overwriteLoadingIcon;
 
-  /// Localized strings used for text within the widget
+  /// Localized copy overrides for every visual state rendered by
+  /// `automated_resend_code_button.dart`, falling back to [BuildContext.getLocalizedStrings]
+  /// when a getter is not replaced.
   final LocalizedStrings? strings;
 
-  /// Set in seconds how long the button will stay in disabled state after the
-  /// callback is executed. While that state a countdown counter will be
-  /// presented instead an icon.
+  /// Seconds the control spends in the disabled branch after [onPressed] resolves,
+  /// during which the disabled-state layout embeds [CountdownWidget] instead of a static icon.
   final int disabledDuration;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget for the idle, tappable state in `automated_resend_code_button.dart`.
   final dynamic activeStateIcon;
 
-  /// Provide an IconData or other widget. Won't be used if [overwriteLoadingIcon]
-  /// is false
+  /// Icon or widget presented during loading whenever [overwriteLoadingIcon] enables custom media
+  /// in `automated_resend_code_button.dart`.
   final dynamic loadingStateIcon;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget presented after a successful send in `automated_resend_code_button.dart`.
   final dynamic codeSentStateIcon;
 
-  /// Provide an IconData or other widget
+  /// Icon or widget shown while the error copy is visible in `automated_resend_code_button.dart`.
   final dynamic errorStateIcon;
 
-  /// Enable splash effect on the button
+  /// When true, tap feedback uses the Material splash configured on [IconTextButton] in
+  /// `automated_resend_code_button.dart`.
   final bool splashEffectEnabled;
 
   @override

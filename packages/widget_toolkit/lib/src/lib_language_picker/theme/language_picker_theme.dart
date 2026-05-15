@@ -39,62 +39,89 @@ class LanguagePickerTheme extends ThemeExtension<LanguagePickerTheme>
     required this.messagePanelErrorEdgeInsets,
   });
 
+  /// Wrapper padding around the scrolling column assembled in `change_language.dart`.
   @override
   final EdgeInsets changeLanguagePadding;
+  /// Bottom inset applied between consecutive language rows and surrounding layout in `change_language.dart`.
   @override
   final EdgeInsets chooseLanguagePadding;
+  /// Horizontal and vertical inset for tiles built through [SelectLanguageItem.selected] inside `select_language_item.dart`.
   @override
   final EdgeInsets chooseLanguageActiveEdgeInsets;
+  /// Matching inset for [SelectLanguageItem.unSelected] states so tapped and idle tiles share footprint in `select_language_item.dart`.
   @override
   final EdgeInsets chooseLanguageInactiveEdgeInsets;
 
+  /// Body typography for translated descriptions rendered on rows inside `select_language_item.dart`.
   @override
   final TextStyle descriptionThin;
+  /// Heading typography hosts can reuse when composing custom headers beside presentations created by [showChangeLanguageBottomSheet].
   @override
   final TextStyle titleBold;
+  /// Emphasized typography for uppercase language codes on rows rendered in `select_language_item.dart`.
   @override
   final TextStyle languageCodeInLanguagePickerTitleBold;
 
+  /// Rhythm token driving shadow blurRadius on selectable rows and other tight vertical gaps in `select_language_item.dart`.
   @override
   final double spacingS;
+  /// Trailing spacer after the stacked languages before footer actions toward the bottom of `change_language.dart`.
   @override
   final double changeLanguageSizedBox;
+  /// Horizontal gutters between bilingual columns rendered in `select_language_item.dart`.
   @override
   final double spacingM;
+  /// Fixed height reserved for shimmering skeleton rows mimicking selectable tiles rendered in `select_language_item.dart`.
   @override
   final double spacingXXXXL;
+  /// Padding forwarded to [MessagePanelError] so error summaries align visually with padded list content constructed in `change_language.dart`.
   @override
   final EdgeInsets messagePanelErrorEdgeInsets;
 
+  /// Foreground color on idle tiles when [ChangeLanguageWidget] builds [SelectLanguageItem.unSelected] rows with button color helpers from `change_language.dart`.
   @override
   final Color activeButtonLanguageTextColor;
+  /// Gradient start surrogate paired with [activeGradientEnd] on the muted footer [SmallButton] that dismisses `change_language.dart`.
   @override
   final Color disabledFilledButtonBackgroundColor;
+  /// Gradient end color completing that footer [SmallButton] outline treatment in `change_language.dart`.
   @override
   final Color activeGradientEnd;
+  /// Leading bilingual gradient stop for active selection gradients painted in `select_language_item.dart`.
   @override
   final Color languageGradientStart;
+  /// Trailing color finishing those gradients inside `select_language_item.dart`.
   @override
   final Color languageGradientEnd;
+  /// Gradient fill for shimmering loading placeholders on selectable rows in `select_language_item.dart`.
   @override
   final Color filledButtonBackgroundColorDisabled;
+  /// High-contrast text color layered on bilingual gradient rails when selections highlight rows in `select_language_item.dart`.
   @override
   final Color buttonTextColor;
+  /// Muted label color paired with inactive gradient stops while rows wait for selection in `select_language_item.dart`.
   @override
   final Color filledButtonTextColorDisabled;
+  /// Light typography fill applied once bilingual gradients saturate rows in `select_language_item.dart`.
   @override
   final Color textColorWhite;
+  /// Shadow tint blended under bilingual rows that elevate above list content inside `select_language_item.dart`.
   @override
   final Color boxShadowColor;
+  /// Body text tint for dormant row labels contrasting against outlined buttons rendered in `select_language_item.dart`.
   @override
   final Color bodyTextColor;
+  /// Icon foreground on bilingual buttons elevated above inactive rows rendered in `select_language_item.dart`.
   @override
   final Color elevatedButtonForegroundColor;
+  /// Surface wash behind bilingual buttons elevated alongside list tiles in `select_language_item.dart`.
   @override
   final Color elevatedButtonBackgroundColor;
+  /// Flat outline button wash framing dormant tiles ahead of bilingual gradients inside `select_language_item.dart`.
   @override
   final Color outlineButtonBackgroundColor;
 
+  /// Confirmation glyph on the trailing edge when [SelectLanguageItem.selected] marks the active locale in `select_language_item.dart`.
   @override
   final SvgFile checkIcon;
 

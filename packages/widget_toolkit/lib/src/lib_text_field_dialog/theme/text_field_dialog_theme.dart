@@ -402,181 +402,264 @@ class TextFieldDialogTheme extends ThemeExtension<TextFieldDialogTheme>
 
   /// endregion
 
+  /// Highlight fill signaling a completed edit journey on [EditFieldWidget] capsules inside `edit_field_widget.dart`.
   @override
   final Color editFieldSuccessBackground;
+  /// Neutral fill for dormant edit capsules before reviewers expand them inside `edit_field_widget.dart`.
   @override
   final Color editFieldRegularBackground;
+  /// Success halo applied to textured input canvases whenever [InputTextFieldStateModel.success] activates in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundSuccessColor;
+  /// Surfaces beneath optional labeled rows inside `labeled_box_widget.dart`.
   @override
   final Color labelBoxOptionalBackground;
+  /// Surfaces beneath required labeled rows that expect primary emphasis inside `labeled_box_widget.dart`.
   @override
   final Color labelBoxFilledBackground;
 
+  /// Corner rounding shared by capsule editors and bordered inputs orchestrated inside `edit_field_widget.dart`.
   @override
   final double editFieldBorderRadius;
+  /// Tight gutters around dot separators and intra-row gaps in `labeled_box_widget.dart` and `input_text_field.dart`.
   @override
   final double spacingXS;
+  /// Micro vertical rhythm between captions and glyphs within `edit_field_widget.dart`.
   @override
   final double spacingXSS;
+  /// Comfortable horizontal gutters between adornments managed in `edit_field_widget.dart` and `input_text_field.dart`.
   @override
   final double spacingS;
+  /// Larger rhythm for dialog curvature math on `text_field_dialog_page.dart` when computing sheet corner radii.
   @override
   final double spacingM;
+  /// Dialog-scale spacing token mirrored from the xl step on [DesignSystemSpacings] for hosts customizing stacked sections around `text_field_dialog_page.dart`.
   @override
   final double spacingXL;
+  /// Hairline separators inside `labeled_box_widget.dart`.
   @override
   final double spacingXXXS;
 
+  /// Auxiliary body style reused for hinted values on `edit_field_widget.dart` and subdued rows in form summaries.
   @override
   final TextStyle descriptionThin;
+  /// Title treatment for headline rows on `text_field_dialog_page.dart`.
   @override
   final TextStyle titleBold;
+  /// Semi-bold explanatory copy on `labeled_box_widget.dart` headings and anchored labels.
   @override
   final TextStyle descriptionBold;
+  /// Caption labels on `labeled_box_widget.dart` chips and adornment badges.
   @override
   final TextStyle captionBold;
+  /// Compact secondary copy leveraged for helper lines under validators in `input_text_field.dart`.
   @override
   final TextStyle smallThin;
 
+  /// Disabled primary button fill surfaced when companion actions sit beside dialogs that collect field data.
   @override
   final Color disabledFilledButtonBackgroundColor;
+  /// Tint applied to inline SVG glyphs such as the edit affordance rendered on `text_field_dialog_page.dart` and `text_field_dialog.dart`.
   @override
   final Color textFieldDialogIconColor;
+  /// Outline stroke mapped to problematic validation transitions on `input_text_field.dart`.
   @override
   final Color inputFieldBorderErrorColor;
+  /// Outline stroke when fields await structured input types inside `input_text_field.dart`.
   @override
   final Color inputFieldBorderTypeColor;
+  /// Outline stroke for disabled-but-visible rows within `input_text_field.dart`.
   @override
   final Color inputFieldBorderDisabledColor;
+  /// Outline stroke while spinner adornments occupy trailing slots inside `input_text_field.dart`.
   @override
   final Color inputFieldBorderLoadingColor;
+  /// Outline stroke warning path before operators confirm risky edits in `input_text_field.dart`.
   @override
   final Color inputFieldBorderWarningColor;
+  /// Value text tint for untouched enabled fields surfaced through `edit_field_widget.dart`.
   @override
   final Color inputFieldValueColor;
+  /// Value tint when reviewers cannot mutate the row inside `edit_field_widget.dart`.
   @override
   final Color inputFieldValueDisabledColor;
 
+  /// Leading label pigment for optional [LabeledBoxWidget] headings via `labeled_box_widget.dart`.
   @override
   final Color labelBoxOptionalPrimary;
+  /// Leading label pigment for required headings within `labeled_box_widget.dart`.
   @override
   final Color labelBoxFilledPrimary;
+  /// Secondary label pigment clarifying subtitles on optional headings in `labeled_box_widget.dart`.
   @override
   final Color labelBoxOptionalSecondary;
+  /// Matching secondary pigment for filled headings inside `labeled_box_widget.dart`.
   @override
   final Color labelBoxFilledSecondary;
+  /// Border stroke distinguishing optional bordered panels in `labeled_box_widget.dart`.
   @override
   final Color labelBoxOptionalBorder;
+  /// Border stroke around emphasized filled headings in `labeled_box_widget.dart`.
   @override
   final Color labelBoxFilledBorder;
 
+  /// Explicit override tint for captions after edits finalize; defaults to null so rows inherit typography-only styling within `edit_field_widget.dart`.
   @override
   final Color? editFieldLabelEditedColor;
+  /// Label pigment when reviewers have yet to mutate a row inside `edit_field_widget.dart`.
   @override
   final Color editFieldLabelNotEditedColor;
+  /// Label pigment while bloc-driven loading freezes interaction in `edit_field_widget.dart`.
   @override
   final Color editFieldLabelLoadingColor;
+  /// Label pigment once validation glows green in `edit_field_widget.dart`.
   @override
   final Color editFieldLabelSuccessColor;
+  /// Inline value pigment highlighting unsaved deltas in `edit_field_widget.dart`.
   @override
   final Color editFieldValueEditedColor;
+  /// Baseline value pigment before edits begin in `edit_field_widget.dart`.
   @override
   final Color editFieldValueNotEditedColor;
+  /// Value pigment while asynchronous work streams into the row in `edit_field_widget.dart`.
   @override
   final Color editFieldValueLoadingColor;
+  /// Value pigment after server confirmation matches local edits in `edit_field_widget.dart`.
   @override
   final Color editFieldValueSuccessColor;
 
+  /// Typography for edited captions within `edit_field_widget.dart`.
   @override
   final TextStyle editFieldTextEditedTextStyle;
+  /// Typography for idle captions ahead of edits in `edit_field_widget.dart`.
   @override
   final TextStyle editFieldTextNotEditedTextStyle;
+  /// Typography for spinner-backed captions in `edit_field_widget.dart`.
   @override
   final TextStyle editFieldTextLoadingTextStyle;
+  /// Typography for success captions in `edit_field_widget.dart`.
   @override
   final TextStyle editFieldTextSuccessTextStyle;
 
+  /// Default typography color inside enabled structured fields surfaced through extension methods on [InputTextFieldStateModel] near the bottom of `input_text_field.dart`.
   @override
   final Color inputFieldTextDefaultFieldColor;
+  /// Disabled structured field typography color resolved through the same [InputTextFieldStateModel] extension in `input_text_field.dart`.
   @override
   final Color inputFieldTextDefaultDisabledColor;
+  /// Muted typography for rows that temporarily lose interactivity modeled through those [InputTextFieldStateModel] helpers in `input_text_field.dart`.
   @override
   final Color inputFieldTextDisabledColor;
+  /// Typography when validators fail, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextErrorColor;
+  /// Typography when rows collect committed values, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextFilledColor;
+  /// Typography while loaders borrow the row chrome, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextLoadingColor;
+  /// Typography on success transitions, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextSuccessColor;
+  /// Typography for typed-but-uncommitted states, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextTypeColor;
+  /// Typography for advisory warnings, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextWarningColor;
+  /// Typography for plain unstructured rows, as returned from the color mapping on [InputTextFieldStateModel] in `input_text_field.dart`.
   @override
   final Color inputFieldTextPlainColor;
 
+  /// Background wash when structured fields accumulate user input according to the background selector on the [InputTextFieldStateModel] extension in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundFilledColor;
+  /// Background wash for unstructured rows from the same helper in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundPlainColor;
+  /// Elevated baseline fill tied to untouched structured rows from the same helper in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundDefaultFieldColor;
+  /// Baseline fill for disabled structured rows from the same helper in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundDefaultDisabledColor;
+  /// Neutral fill for default states before that helper resolves specialty colors in `input_text_field.dart`.
   @override
   final Color inputFieldBackgroundDefaultColor;
 
+  /// Hint copy tone inside text areas orchestrated by `input_text_field.dart`.
   @override
   final Color inputFieldHintColor;
+  /// Inline validation copy tone under fields within `input_text_field.dart`.
   @override
   final Color inputFieldErrorTextColor;
 
+  /// Hosts override this asset when adding custom leading dismiss actions that should match toolkit dialog iconography.
   @override
   final SvgFile closeIcon;
+  /// Asset mapped to destructive validator rows in `input_text_field.dart`.
   @override
   final SvgFile dangerIcon;
+  /// Active trailing add affordance within `input_text_field.dart`.
   @override
   final SvgFile addIcon;
+  /// Disabled trailing add affordance paired with locked rows in `input_text_field.dart`.
   @override
   final SvgFile addDisabledIcon;
+  /// Directional affordance on idle edit capsules before reviewers commit inside `edit_field_widget.dart`.
   @override
   final SvgFile arrowRightSquareIcon;
+  /// Primary inline edit glyph on `text_field_dialog_page.dart` and `edit_field_widget.dart`.
   @override
   final SvgFile editPenIcon;
+  /// Advisory icon treatment for warning rows in `input_text_field.dart`.
   @override
   final SvgFile infoCircleIcon;
+  /// Spinner replacement while submissions stream through `input_text_field.dart`.
   @override
   final SvgFile loadingIcon;
+  /// Positive confirmation glyph when structured rows finish successfully within `input_text_field.dart`.
   @override
   final SvgFile tickCircleSuccessIcon;
 
+  /// Outermost padding wrapping the scrollable column on `text_field_dialog_page.dart`.
   @override
   final EdgeInsets textFieldDialogPadding;
+  /// Padding framing CTA rows under the field stack on `text_field_dialog_page.dart`.
   @override
   final EdgeInsets textFieldDialogButtonPadding;
+  /// Padding aligning title rows and inline actions on `text_field_dialog_page.dart`.
   @override
   final EdgeInsets textFieldDialogHeaderPadding;
+  /// Interior padding for text and icons inside `labeled_box_widget.dart`.
   @override
   final EdgeInsets labeledBoxWidgetContentPadding;
+  /// Trailing inset before optional icons on `labeled_box_widget.dart`.
   @override
   final EdgeInsets labeledBoxWidgetIconPadding;
+  /// Trailing inset before optional helper copy on `labeled_box_widget.dart`.
   @override
   final EdgeInsets labeledBoxWidgetOptionalTextPadding;
+  /// Offset for inline validation copy below editors within `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldErrorPadding;
+  /// Trailing padding hosting active add icons on `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldIconPadding;
+  /// Padding variant when add icons appear disabled on `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldIconDisabledPadding;
+  /// Slot padding while loader icons spin within `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldPaddingLoading;
+  /// Slot padding when success icons appear within `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldPaddingSuccess;
+  /// Slot padding when warning icons appear within `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldPaddingWarning;
+  /// Slot padding when danger icons appear within `input_text_field.dart`.
   @override
   final EdgeInsets inputTextFieldPaddingError;
 }

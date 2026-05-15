@@ -39,12 +39,16 @@ class SearchPickerTheme extends ThemeExtension<SearchPickerTheme>
 
   /// endregion
 
+  /// Padding applied to the page title preceding the sticky search chrome in `search_picker_page.dart`.
   @override
   final EdgeInsets titlePadding;
+  /// Typography for that title in `search_picker_page.dart`.
   @override
   final TextStyle titleStyle;
+  /// Outer insets framing the themed [SearchPickerTextField] so the embedded field matches toolkit search affordances in `search_picker_page.dart`.
   @override
   final EdgeInsets searchFieldOuterEdgeInsets;
+  /// Insets reused for error rows and shimmer placeholders beneath the title in `search_picker_page.dart` so states share consistent breathing room.
   @override
   final EdgeInsets errorEdgeInsets;
 }

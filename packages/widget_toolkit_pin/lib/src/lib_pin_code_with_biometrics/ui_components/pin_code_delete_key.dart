@@ -10,7 +10,11 @@ class PinCodeDeleteKey extends StatefulWidget {
     super.key,
   });
 
+  /// When true, the key renders with reduced opacity while [PinCodeService.verifyPinCode] or
+  /// related work keeps the [PinCodeKeyboard] in a busy state.
   final bool isLoading;
+  /// Handler invoked on tap down; the bloc subtracts the last digit when this widget replaces
+  /// the bottom-right affordance during entry in `pin_code_component.dart`.
   final void Function() onTap;
 
   @override
