@@ -1,5 +1,5 @@
 /// {@category Search Picker}
-library search_picker;
+library;
 
 export 'src/lib_search_picker/services/search_picker_service.dart';
 export 'src/lib_search_picker/theme/search_picker_theme.dart';

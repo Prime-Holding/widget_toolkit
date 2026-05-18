@@ -6,7 +6,7 @@ class LocalizedStrings {
   LocalizedStrings(this.context);
   LocalizedStrings._(this.context);
 
-  factory LocalizedStrings.of(context) =>
+  factory LocalizedStrings.of(BuildContext context) =>
       _instance != null ? _instance! : _instance = LocalizedStrings._(context);
 
   static LocalizedStrings? _instance;

@@ -1,5 +1,5 @@
 // Export libraries
-library widget_toolkit;
+library;
 
 export 'edit_address.dart';
 export 'extensions.dart';

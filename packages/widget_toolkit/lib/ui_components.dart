@@ -1,5 +1,5 @@
 /// {@category UI Components}
-library ui_components;
+library;
 
 export 'src/lib_ui_components/buttons/button_color_style.dart';
 export 'src/lib_ui_components/buttons/button_state.dart';
