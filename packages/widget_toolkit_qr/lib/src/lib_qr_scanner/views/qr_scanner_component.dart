@@ -173,7 +173,7 @@ class _QRBarScannerCamera extends StatelessWidget {
   Widget build(BuildContext context) => MobileScanner(
         controller: controller,
         onDetect: onDetect,
-        errorBuilder: (context, error, widget) => _getError(context, error),
+        errorBuilder: (context, error) => _getError(context, error),
       );
 
   // QRBarScannerCamera(
@@ -192,9 +192,23 @@ class QrScannerConfiguration {
     this.isDismissible = true,
   });
 
+  /// Whether the blurred permission sheet shows a close control in its chrome.
+  /// `camera_permission.dart` passes this value to [ModalConfiguration.showCloseButton].
   final bool showCloseButton;
+
+  /// Whether the permission sheet expands to a full-screen presentation.
+  /// `camera_permission.dart` passes this value to [ModalConfiguration.fullScreen].
   final bool fullScreen;
+
+  /// Whether the sheet respects the bottom safe area inset on notched devices.
+  /// `camera_permission.dart` passes this value to [ModalConfiguration.safeAreaBottom].
   final bool safeAreaBottom;
+
+  /// Whether the sheet shows the draggable header pill above its content.
+  /// `camera_permission.dart` passes this value to [ModalConfiguration.showHeaderPill].
   final bool showHeaderPill;
+
+  /// Whether the user can dismiss the sheet by tapping outside its bounds.
+  /// `camera_permission.dart` passes this value to [ModalConfiguration.isDismissible].
   final bool isDismissible;
 }
