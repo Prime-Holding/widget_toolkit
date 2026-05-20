@@ -181,7 +181,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
       case enums.AndroidSmsAutofillMethod.smsRetrieverApi:
       case enums.AndroidSmsAutofillMethod.smsUserConsentApi:
         return SmsRetrieverImpl(
-          context.read() ?? SmartAuth(),
+          context.read() ?? SmartAuth.instance,
           senderPhoneNumber: widget.senderPhoneNumber,
           useUserConsentAPI: enums.AndroidSmsAutofillMethod.smsUserConsentApi ==
               widget.androidSmsAutofillMethod,

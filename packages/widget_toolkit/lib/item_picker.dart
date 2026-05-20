@@ -1,5 +1,5 @@
 /// {@category Item Picker}
-library item_picker;
+library;
 
 export 'src/lib_item_picker/service/item_picker_service.dart';
 export 'src/lib_item_picker/theme/item_picker_theme.dart';

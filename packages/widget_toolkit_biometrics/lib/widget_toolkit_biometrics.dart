@@ -1,4 +1,4 @@
-library widget_toolkit_biometrics;
+library;
 
 export 'package:widget_toolkit_biometrics/src/data_sources/biometrics_auth_data_source.dart';
 export 'package:widget_toolkit_biometrics/src/data_sources/biometrics_local_data_source.dart';

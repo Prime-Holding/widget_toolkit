@@ -26,20 +26,16 @@ class SmsRetrieverImpl implements SmsRetriever {
   final bool checkForMultipleSms;
 
   @override
-  Future<void> dispose() {
-    return smartAuth.removeSmsListener();
-  }
+  Future<void> dispose() async {}
 
   @override
   Future<String?> getSmsCode() async {
-    final res = await smartAuth.getSmsCode(
-      senderPhoneNumber: senderPhoneNumber,
-      useUserConsentApi: useUserConsentAPI,
-    );
-    if (res.succeed && res.codeFound) {
-      return res.code!;
-    }
-    return null;
+    final res = await (useUserConsentAPI
+        ? smartAuth.getSmsWithUserConsentApi(
+            senderPhoneNumber: senderPhoneNumber,
+          )
+        : smartAuth.getSmsWithRetrieverApi());
+    return res.data?.code;
   }
 
   @override

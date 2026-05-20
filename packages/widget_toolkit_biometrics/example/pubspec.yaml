@@ -7,18 +7,18 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
-  app_settings: ^5.0.0
+  app_settings: ^7.0.0
   flutter:
     sdk: flutter
   flutter_rx_bloc: ^7.0.0
-  provider: ^6.0.5
+  provider: ^6.1.5
   rxdart: ^0.28.0
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.5.5
   widget_toolkit: ^0.2.0
   widget_toolkit_biometrics: ^0.1.0
 
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 

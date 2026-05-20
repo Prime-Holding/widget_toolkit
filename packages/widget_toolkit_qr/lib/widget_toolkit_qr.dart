@@ -1,4 +1,4 @@
-library widget_toolkit_qr;
+library;
 
 export 'src/base/theme/qr_scanner_theme.dart';
 export 'src/lib_qr_scanner/blocs/qr_scanner_bloc.dart';

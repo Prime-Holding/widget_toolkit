@@ -1,5 +1,5 @@
 /// {@category URL Launcher}
-library open_url;
+library;
 
 export 'src/base/models/errors/error_model.dart';
 export 'src/lib_open_url/bloc/open_uri_bloc.dart';

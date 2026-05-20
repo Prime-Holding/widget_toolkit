@@ -1,5 +1,5 @@
 /// {@category Edit Address}
-library edit_address;
+library;
 
 export 'src/lib_edit_address/models/address_model.dart';
 export 'src/lib_edit_address/models/address_type_model.dart';
