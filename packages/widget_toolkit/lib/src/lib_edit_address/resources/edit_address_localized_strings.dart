@@ -42,9 +42,10 @@ class EditAddressLocalizedStrings {
 
   EditAddressLocalizedStrings._(this.context);
 
-  factory EditAddressLocalizedStrings.of(context) => _instance != null
-      ? _instance!
-      : _instance = EditAddressLocalizedStrings._(context);
+  factory EditAddressLocalizedStrings.of(BuildContext context) =>
+      _instance != null
+          ? _instance!
+          : _instance = EditAddressLocalizedStrings._(context);
 
   static EditAddressLocalizedStrings? _instance;
 

@@ -1,5 +1,5 @@
 /// {@category Text Field Dialog}
-library text_field_dialog;
+library;
 
 export 'asset_classes.dart';
 export 'src/base/models/errors/error_model.dart';

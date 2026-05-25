@@ -1,5 +1,5 @@
 /// {@category Language Picker}
-library language_picker;
+library;
 
 export 'asset_classes.dart';
 export 'src/base/models/errors/error_model.dart';

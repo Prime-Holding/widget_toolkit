@@ -1,4 +1,4 @@
-library widget_toolkit_pin;
+library;
 
 export 'src/base/utils/theme/pin_code_theme.dart';
 export 'src/lib_pin_code_with_biometrics/blocs/pin_code_bloc.dart';

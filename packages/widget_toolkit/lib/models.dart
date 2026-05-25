@@ -1,4 +1,4 @@
-library models;
+library;
 
 export 'src/base/models/errors/error_model.dart';
 export 'src/base/models/message_panel_state.dart';

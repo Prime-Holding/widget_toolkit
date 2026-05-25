@@ -40,16 +40,13 @@ class PinBiometricsAuthDataSource extends BiometricsAuthDataSource {
       _localAuthentication.canCheckBiometrics;
 
   @override
-  Future<bool> get isDeviceSupported =>
-      _localAuthentication.isDeviceSupported();
-
-  @override
   Future<bool> authenticate(String localizedReason) =>
       _localAuthentication.authenticate(
         localizedReason: localizedReason,
-        options: const AuthenticationOptions(
-          biometricOnly: false,
-          useErrorDialogs: false,
-        ),
+        biometricOnly: false,
       );
+
+  @override
+  Future<bool> get isDeviceSupported =>
+      _localAuthentication.isDeviceSupported();
 }

@@ -198,7 +198,7 @@ class _QRBarScannerCamera extends StatelessWidget {
   Widget build(BuildContext context) => MobileScanner(
         controller: controller,
         onDetect: onDetect,
-        errorBuilder: (context, error, widget) => _getError(context, error),
+        errorBuilder: (context, error) => _getError(context, error),
       );
 
   // QRBarScannerCamera(

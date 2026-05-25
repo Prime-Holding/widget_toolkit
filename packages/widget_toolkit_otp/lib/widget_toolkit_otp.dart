@@ -1,4 +1,4 @@
-library widget_toolkit_otp;
+library;
 
 export 'src/base/models/temporary_code_state.dart';
 export 'src/base/theme/sms_code_theme.dart';
