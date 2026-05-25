@@ -1,7 +1,7 @@
 ## [0.1.3]
 * `SmsCodeField`: added `SmsCodeFieldController` for programmatic clear/reset
 * `SmsCodeField`: loading overlay during input verification
-* `SmsCodeField`: optional `clearOnError`, `isLoading`, `loadingWidget`, and `loadingStyle` theme
+* `SmsCodeField`: optional `clearOnError` and `clearOnErrorDelay`, `isLoading`, `loadingWidget`, and `loadingStyle` theme
 * Improved documentation
 
 ## [0.1.2]

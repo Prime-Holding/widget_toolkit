@@ -53,6 +53,7 @@ class SmsCodeField extends StatefulWidget {
     this.loadingWidget,
     this.loadingOverlayColor,
     this.clearOnError = false,
+    this.clearOnErrorDelay = const Duration(milliseconds: 600),
     super.key,
   });
 
@@ -181,8 +182,13 @@ class SmsCodeField extends StatefulWidget {
   final Color? loadingOverlayColor;
 
   /// When `true` and [useInternalCommunication] is enabled, clears the PIN and
-  /// returns to an idle state after [TemporaryCodeState.wrong].
+  /// returns to an idle state after [clearOnErrorDelay] once
+  /// [TemporaryCodeState.wrong] is received.
   final bool clearOnError;
+
+  /// How long to wait after a failed verification before clearing the PIN when
+  /// [clearOnError] is enabled.
+  final Duration clearOnErrorDelay;
 
   @override
   State<SmsCodeField> createState() => _SmsCodeFieldState();
@@ -210,8 +216,16 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
   @override
   void didUpdateWidget(covariant SmsCodeField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.smsCodeFieldController != widget.smsCodeFieldController) {
-      oldWidget.smsCodeFieldController?.unbind();
+    final controllerChanged = oldWidget.controller != widget.controller;
+    final internalCommunicationChanged = oldWidget.useInternalCommunication != widget.useInternalCommunication;
+
+    if (controllerChanged || internalCommunicationChanged) {
+      if (controllerChanged){
+        oldWidget.smsCodeFieldController?.unbind();
+      }
+      else{
+        widget.smsCodeFieldController?.unbind();
+      }
       _bindSmsCodeFieldController();
     }
   }
@@ -245,11 +259,14 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
     }
 
     if (widget.clearOnError && state == TemporaryCodeState.wrong) {
-      _clearPin();
-      context
-          .read<SmsCodeBlocType>()
-          .events
-          .setTemporaryCodeState(TemporaryCodeState.inactive);
+      Future.delayed(widget.clearOnErrorDelay, () {
+        if (!mounted) return;
+        _clearPin();
+        context
+            .read<SmsCodeBlocType>()
+            .events
+            .setTemporaryCodeState(TemporaryCodeState.inactive);
+      });
     }
   }
 
@@ -314,6 +331,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
             enabled: widget.enabled ?? true,
             isLoading: widget.isLoading,
             onCompleted: widget.onCompleted,
+            readOnly: widget.readOnly,
           ),
         );
 
@@ -445,7 +463,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
               decoration: BoxDecoration(
                 color: widget.loadingOverlayColor ??
                     Colors.black.withValues(alpha: 0.04),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: context.smsCodeTheme.defaultBorderRadius,
               ),
               child: Center(child: _buildLoadingIndicator(context)),
             ),

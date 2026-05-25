@@ -211,6 +211,7 @@ void main() {
     testWidgets('clearOnError clears PIN and sets inactive', (tester) async {
       final bloc = buildBloc();
       final textController = TextEditingController();
+      const clearDelay = Duration(milliseconds: 400);
 
       await pumpSmsCodeField(
         tester,
@@ -218,6 +219,7 @@ void main() {
         field: SmsCodeField(
           controller: textController,
           clearOnError: true,
+          clearOnErrorDelay: clearDelay,
           pinLength: 4,
         ),
       );
@@ -225,6 +227,10 @@ void main() {
       textController.text = '1234';
       bloc.events.setTemporaryCodeState(TemporaryCodeState.wrong);
       await tester.pump();
+
+      expect(textController.text, '1234');
+
+      await tester.pump(clearDelay);
 
       expect(textController.text, isEmpty);
     });
