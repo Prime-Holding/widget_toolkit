@@ -5,6 +5,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:widget_toolkit/models.dart';
 
 import '../../base/models/temporary_code_state.dart';
+import '../../base/utils/localized_strings.dart';
 import '../../lib_countdown_widget/services/countdown_service.dart';
 import '../../lib_countdown_widget/services/countdown_service_impl.dart';
 import '../bloc/sms_code_bloc.dart';
@@ -21,6 +22,7 @@ class SmsCodeProvider extends StatelessWidget {
     required this.builder,
     this.countdownService,
     this.initialPhoneNumber,
+    this.localization,
     this.onError,
     this.onResult,
     super.key,
@@ -38,6 +40,10 @@ class SmsCodeProvider extends StatelessWidget {
   /// known MSISDN before [SmsCodeService.getFullPhoneNumber] runs.
   final String? initialPhoneNumber;
 
+  /// Supplies copy overrides for OTP widgets below this provider. Pass a
+  /// subclass of [LocalizedStrings] to replace the default English labels.
+  final LocalizedStrings? localization;
+
   /// Seconds to wait after sending a code before [SmsCodeBlocStates.isSendNewCodeEnabled]
   /// allows another resend, aligning with [SmsCodeService.getResendButtonThrottleTime].
   final int sentNewCodeActivationTime;
@@ -54,7 +60,7 @@ class SmsCodeProvider extends StatelessWidget {
   /// [SmsCodeService.confirmPhoneCode] finishes.
   final void Function(BuildContext, dynamic)? onResult;
 
-  List<SingleChildWidget> get _blocs => [
+  List<SingleChildWidget> get _providers => [
         RxBlocProvider<SmsCodeBlocType>(
           create: (context) => SmsCodeBloc(
               service: smsCodeService,
@@ -62,11 +68,12 @@ class SmsCodeProvider extends StatelessWidget {
               initialPhoneNumber: initialPhoneNumber,
               sentNewCodeActivationTime: sentNewCodeActivationTime),
         ),
+        Provider<LocalizedStrings?>.value(value: localization),
       ];
 
   @override
   Widget build(BuildContext context) => MultiProvider(
-        providers: [..._blocs],
+        providers: [..._providers],
         child: SmsCodeWidget(
           builder: builder,
           onError: onError,
