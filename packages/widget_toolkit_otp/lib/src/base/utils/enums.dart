@@ -27,21 +27,43 @@ enum AndroidSmsAutofillMethod {
   smsUserConsentApi,
 }
 
-/// The animation type if Pin item
+/// The animation applied to each PIN cell inside [SmsCodeField] when it forwards
+/// settings to Pinput in `sms_code_field.dart`.
 enum PinAnimationType {
+  /// Keeps transitions off while still honoring focus and validation coloring.
   none,
+
+  /// Scales the cell slightly on input, matching the default option on [SmsCodeField].
   scale,
+
+  /// Fades between idle and active appearances per keystroke.
   fade,
+
+  /// Slides characters into view along the primary axis of the PIN row.
   slide,
+
+  /// Rotates the cell briefly to acknowledge input.
   rotation,
 }
 
-/// The vibration type when user types
+/// Drives haptic responses for each keystroke inside [SmsCodeField] through the
+/// mapped Pinput configuration in `sms_code_field.dart`.
 enum HapticFeedbackType {
+  /// Skips platform haptics so OTP entry stays silent.
   disabled,
+
+  /// Light impact suitable for subtle confirmation taps.
   lightImpact,
+
+  /// Medium impact for more noticeable feedback on each digit.
   mediumImpact,
+
+  /// Heavy impact for pronounced tactile acknowledgement.
   heavyImpact,
+
+  /// Uses the platform selection click for discrete step feedback.
   selectionClick,
+
+  /// Triggers a short vibrate pattern where the platform supports it.
   vibrate,
 }

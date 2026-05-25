@@ -5,9 +5,8 @@ import 'package:widget_toolkit/models.dart';
 import '../../base/models/temporary_code_state.dart';
 import '../bloc/sms_code_bloc.dart';
 
-/// SmsCodeWidget is a wrapper widget which provides all the necessary
-/// dependencies for the SmsCodeBloc which will be accessible for the underlying
-/// [builder] widget.
+/// Orchestrates [RxBlocListener] and [RxBlocBuilder] wiring for [SmsCodeBlocType]
+/// while exposing verification state to the supplied [builder].
 class SmsCodeWidget extends StatelessWidget {
   const SmsCodeWidget({
     required this.builder,
@@ -16,9 +15,16 @@ class SmsCodeWidget extends StatelessWidget {
     super.key,
   });
 
-  /// The child widget [builder]
+  /// Builds the visible OTP subtree whenever [SmsCodeBlocStates.onCodeVerificationResult]
+  /// publishes a new [TemporaryCodeState].
   final Widget Function(TemporaryCodeState? codeState) builder;
+
+  /// Handles error emissions from [SmsCodeBlocStates.errors] inside this
+  /// widget's [RxBlocListener] column in `sms_code_widget.dart`.
   final void Function(BuildContext, ErrorModel?)? onError;
+
+  /// Handles success payloads from [SmsCodeBlocStates.result] inside the paired
+  /// listener in `sms_code_widget.dart`.
   final void Function(BuildContext, dynamic)? onResult;
 
   @override

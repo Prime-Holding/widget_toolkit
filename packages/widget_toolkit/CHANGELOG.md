@@ -1,3 +1,6 @@
+## [0.2.4]
+* Improved documentation
+
 ## [0.2.3]
 * Updated dependencies:
   * `copy_with_extension` and `copy_with_extension_gen` to `10.0.0`

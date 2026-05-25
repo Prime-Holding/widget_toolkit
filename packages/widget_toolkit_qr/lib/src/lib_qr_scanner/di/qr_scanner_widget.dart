@@ -8,36 +8,10 @@ import '../services/qr_validation_service.dart';
 import '../services/system_permissions_service.dart';
 import '../views/qr_scanner_component.dart';
 
-/// [QrScannerWidget<T>] is the widget, which displays a qr scanner and a loading
-/// indicator bellow it.
-///
-/// [onCodeScanned] A callback, which receives the value of the
-/// scanned QR code as String parameter. This method is called before the QR is validated.
-///
-/// [onError] a callback receiving an error from [QRBarScannerCamera]
-/// widget and any possible error that occurred during the QR validation.
-///
-/// [onCodeValidated] a callback which returns a generic value.
-///
-/// [cameraPermissionBottomSheetConfiguration] configuration for camera
-/// permission bottom sheet, displayed when the user has not yet provided
-/// access for the application to the device's camera.
-///
-/// [cameraPermissionButtonText] the text in the button, which is in the camera
-/// permission bottom modal sheet, displayed when there is still no access given
-/// to the device's camera. The default value is 'Grant access'.
-///
-/// [cameraAccessTitleText] the text value
-/// it is used in the  [_CameraPermissionWidget], the default value is
-/// 'Camera access'
-///
-/// [cameraAccessLabelText] A label text for the bottom error modal sheet
-///
-/// [spaceBetweenScannerAndLoadingWidget] a double value used to set the space
-/// between the qr scanner widget and the loading widget
-///
-/// [isLoadingIndicatorVisible]
-/// specifies if the loading indicator should be visible. It has default value `true`.
+/// Root widget that wires [QrValidationService], permission services, and
+/// [QrScannerBloc] around [QrScannerComponent], showing the square camera viewport,
+/// scan-area overlay, optional loading bar, and camera-permission bottom sheet when
+/// access is missing.
 class QrScannerWidget<T> extends StatelessWidget {
   const QrScannerWidget({
     required QrValidationService<T> qrValidationService,
@@ -55,15 +29,45 @@ class QrScannerWidget<T> extends StatelessWidget {
 
   final QrValidationService<T> _qrValidationService;
 
+  /// Notifies listeners when the embedded camera or QR validation pipeline surfaces an
+  /// error object that should be presented with host-specific UI such as a snackbar or
+  /// the blurred sheet helper in `lib/src/lib_qr_scanner/views/qr_scanner_error_sheet.dart`.
   final Function(Object)? onError;
+
+  /// Receives the raw QR payload string as soon as the device decoder observes it,
+  /// before [QrValidationService.validateQrCode] runs on that value through the bloc.
   final Function(String)? onCodeScanned;
+
+  /// Delivers the typed validation result emitted after [QrValidationService.validateQrCode]
+  /// completes successfully inside [QrScannerBloc], mirroring the bloc stream fed by
+  /// validateQRCode events.
   final Function(T?)? onCodeValidated;
+
+  /// When true, [QrScannerComponent] keeps the linear progress region under the camera
+  /// stack aligned with bloc loading states; set false if the host renders progress
+  /// elsewhere.
   final bool isLoadingIndicatorVisible;
 
+  /// Label for the primary button inside showAppCameraPermissionBottomSheet that asks the
+  /// user to grant camera access (defaults to Grant access when null).
   final String? cameraPermissionButtonText;
+
+  /// Headline shown above the explanation row in the permission sheet (defaults to Camera
+  /// access when null).
   final String? cameraAccessTitleText;
+
+  /// Supporting copy beside [QrScannerTheme.cameraIcon] in the bordered permission card (defaults to the
+  /// package string describing why camera access is required when null).
   final String? cameraAccessLabelText;
+
+  /// Modal chrome for showAppCameraPermissionBottomSheet (close affordance, fullscreen,
+  /// safe-area behavior, header pill, dismissibility), forwarded into widget_toolkit
+  /// ModalConfiguration when permission is denied.
   final QrScannerConfiguration? cameraPermissionBottomSheetConfiguration;
+
+  /// Vertical gap inserted between the scanner square and the loading indicator inside
+  /// [QrScannerComponent]; when null the widget falls back to spacingL from
+  /// widgetToolkitTheme.
   final double? spaceBetweenScannerAndLoadingWidget;
 
   List<Provider> get _repositories => [
@@ -101,7 +105,7 @@ class QrScannerWidget<T> extends StatelessWidget {
           onCodeValidated: onCodeValidated,
           onError: onError,
           cameraPermissionButtonText: cameraPermissionButtonText,
-          cameraAccessTitleText: cameraAccessLabelText,
+          cameraAccessTitleText: cameraAccessTitleText,
           cameraAccessLabelText: cameraAccessLabelText,
           cameraPermissionBottomSheetConfiguration:
               cameraPermissionBottomSheetConfiguration,

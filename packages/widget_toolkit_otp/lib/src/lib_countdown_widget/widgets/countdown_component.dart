@@ -10,27 +10,20 @@ import '../bloc/countdown_bloc.dart';
 
 part 'countdown_controller.dart';
 
-/// Countdown widget used to keep track of and present the remaining time.
-///
-/// An [onCountdownTick] callback can be provided to keep track of any changes
+/// Countdown widget used to keep track of and present the remaining time. An
+/// [onCountdownTick] callback can be provided to keep track of any changes
 /// happening. This callback accepts the remaining countdown time to which the
-/// user of the widget can react. This callback is triggered after the frame
-/// has been rendered in order to prevent any potential setStates happening and
-/// modifying the widget during its build phase.
-///
-/// You can also access the remaining time, as well as the elapsed time of the
-/// countdown via a [controller]. The [controller] also gives you the
-/// possibility to reset the countdown and start it from a custom time (provided
-/// in seconds).
-///
+/// user of the widget can react, and it is triggered after the frame has been
+/// rendered in order to prevent any potential setStates that would modify the
+/// widget during its build phase. You can also access the remaining time and the
+/// elapsed time of the countdown via a [controller]. The [controller] also gives you the
+/// possibility to reset the countdown and start it from a custom time in seconds.
 /// By default, every countdown is presented in the format of remaining seconds.
 /// However, you can change this to include minutes and hours by changing the
-/// [timeFormat] parameter of the widget.
-///
-/// By default, the highest number (minutes in the minutes format, hours in the
+/// [timeFormat] parameter of the widget. By default, the highest number (minutes in the minutes format, hours in the
 /// hours format) will be displayed with double digits (even if a single digit
 /// number is presented). In case you want to disable this behaviour, you can
-/// set the [preferDoubleDigitsForTime] parameter to `false`.
+/// set the [preferDoubleDigitsForTime] parameter to false.
 class CountdownComponent extends StatefulWidget {
   const CountdownComponent({
     this.onCountdownTick,
@@ -56,18 +49,16 @@ class CountdownComponent extends StatefulWidget {
   /// The time format used for displaying the countdown
   final CountdownTimeFormat timeFormat;
 
-  /// Use double digits for minutes and hours when one would be used instead
-  ///
-  /// example:
-  /// 0:15 -> 00:15
-  /// 10:30 -> 10:30
-  /// 1:13:28 -> 01:13:28
-  /// 52:20:09 -> 52:20:09
+  /// When true, minute and hour segments keep a leading zero so values such as
+  /// one minute and fifteen seconds read as 00:15 instead of 0:15, matching the
+  /// default formatting branch in `util_methods.dart`.
   final bool preferDoubleDigitsForTime;
 
   /// Text style of the countdown text
   final TextStyle? textStyle;
 
+  /// Maps the bloc error into human-readable text for [ErrorCardWidget] inside the error branch of
+  /// `countdown_component.dart`, falling back to [Object.toString] when this is null.
   final String Function(Object error)? translateError;
 
   @override

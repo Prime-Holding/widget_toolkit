@@ -17,6 +17,9 @@ import 'pin_code_biometric_key.dart';
 import 'pin_code_delete_key.dart';
 import 'pin_code_key.dart';
 
+/// Stateful presentation layer for the gradient PIN pad, masked dots, keyboard, and biometric
+/// affordances. [PinCodeKeyboard] wraps it with providers and error listeners, while hosts can
+/// embed it directly only if they already expose [PinCodeBlocType] above this subtree.
 class PinCodeComponent extends StatefulWidget {
   const PinCodeComponent({
     required this.translateError,

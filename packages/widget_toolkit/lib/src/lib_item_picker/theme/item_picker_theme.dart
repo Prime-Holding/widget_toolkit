@@ -40,14 +40,19 @@ class ItemPickerTheme extends ThemeExtension<ItemPickerTheme>
 
   /// endregion
 
+  /// Padding wrapping the picker title Text in `item_picker_page.dart`.
   @override
   final EdgeInsets titlePadding;
+  /// Typography for the picker title applied in `item_picker_page.dart`.
   @override
   final TextStyle titleStyle;
+  /// Padding wrapping the asynchronous error branch of `item_picker_page.dart` when failures surface above the list.
   @override
   final EdgeInsets errorPadding;
+  /// Padding injected around the scrolling list container that hosts each [PickerListItem] in `item_picker_page.dart`.
   @override
   final EdgeInsets contentListPadding;
+  /// Padding separating the pinned footer controls from preceding content in `item_picker_page.dart`.
   @override
   final EdgeInsets footerPadding;
 }

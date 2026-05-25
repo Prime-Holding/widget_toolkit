@@ -8,9 +8,9 @@ import '../../base/utils/localized_strings.dart';
 import '../../base/utils/util_methods.dart';
 import '../bloc/sms_code_bloc.dart';
 
-/// ValidityWidget presents how long a code is valid. It depends on SmsCodeBlocType,
-/// so make sure you have that bloc provided in the context above this widget.
-/// It can be customised a bit or implemented on your own way using [builder] method.
+/// ValidityWidget presents how long a code is valid. It depends on [SmsCodeBlocType],
+/// so place [SmsCodeProvider] above this widget in the tree. Hosts may replace the
+/// layout with [builder] while still reading the same countdown stream.
 class ValidityWidget extends StatelessWidget {
   const ValidityWidget({
     this.title,
@@ -21,19 +21,23 @@ class ValidityWidget extends StatelessWidget {
     super.key,
   });
 
-  /// Text to be displayed on top of the counter
+  /// Heading rendered above the countdown column in the default layout from `validity_widget.dart`,
+  /// defaulting to [LocalizedStrings.codeValidity] when null.
   final String? title;
 
-  /// Use [builder] method to overwrite the widget appearance
+  /// Builds a custom row or card while receiving the remaining seconds emitted by
+  /// [SmsCodeBlocStates.validityTime] in `validity_widget.dart`.
   final Widget Function(int remainingTime)? builder;
 
-  /// Widget to be displayed if there is no data from the bloc
+  /// Shown until the bloc publishes the first validity sample in `validity_widget.dart`.
   final Widget? placeholder;
 
-  /// Define how to style the counter numbers
+  /// Overrides the numeric line in the default column while leaving the title
+  /// on [SmsCodeTheme.validityTitleTextStyle].
   final TextStyle? textStyle;
 
-  /// How to format the time. Choose from predefined values
+  /// Chooses how the default layout formats seconds before it appends
+  /// [LocalizedStrings.minutes] in `validity_widget.dart`.
   final CountdownTimeFormat? timeFormat;
 
   @override

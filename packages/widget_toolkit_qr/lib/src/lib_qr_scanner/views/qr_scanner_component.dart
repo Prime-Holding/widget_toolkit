@@ -10,6 +10,9 @@ import '../../base/theme/qr_scanner_theme.dart';
 import '../blocs/qr_scanner_bloc.dart';
 import 'camera_permission.dart';
 
+/// Column layout that hosts [MobileScanner] behind the scan-area SVG from [QrScannerTheme],
+/// wires bloc listeners for permission gating and QR validation, and optionally renders
+/// [PrimeLinearProgressIndicator] below the viewport while validation runs.
 class QrScannerComponent<T> extends StatefulWidget {
   const QrScannerComponent({
     this.onCodeScanned,
@@ -24,15 +27,37 @@ class QrScannerComponent<T> extends StatefulWidget {
     super.key,
   });
 
+  /// Forwards camera pipeline or validation failures to host widgets so they can log,
+  /// present recovery UI, or halt scanning without crashing the subtree.
   final Function(Object)? onError;
+
+  /// Receives decoded QR strings from [MobileScanner.onDetect] prior to throttled calls into
+  /// [QrScannerBlocEvents.validateQRCode].
   final Function(String)? onCodeScanned;
+
+  /// Surfaces successful generic validation results emitted by [QrScannerBlocStates.scannedValue].
   final Function(T?)? onCodeValidated;
+
+  /// Controls whether the bloc-driven loading strip rendered by [PrimeLinearProgressIndicator]
+  /// appears beneath the square viewport while [QrScannerBlocStates.isLoading] stays true.
   final bool isLoadingIndicatorVisible;
 
+  /// Forwarded into showAppCameraPermissionBottomSheet as the primary call-to-action label when
+  /// [QrScannerBlocStates.hasCameraPermission] becomes false.
   final String? cameraPermissionButtonText;
+
+  /// Forwarded into the bordered permission card as the headline styled with [QrScannerTheme.captionBold].
   final String? cameraAccessTitleText;
+
+  /// Forwarded into the explanatory paragraph styled with [QrScannerTheme.descriptionThin].
   final String? cameraAccessLabelText;
+
+  /// Modal chrome applied when the listener opens showAppCameraPermissionBottomSheet; defaults to an
+  /// empty [QrScannerConfiguration] when absent so callers still configure dismissal behavior explicitly.
   final QrScannerConfiguration? cameraPermissionBottomSheetConfiguration;
+
+  /// Overrides the vertical spacer above [PrimeLinearProgressIndicator]; when null this widget
+  /// reads spacingL from the host Widget Toolkit theme via widgetToolkitTheme on [BuildContext].
   final double? spaceBetweenScannerAndLoadingWidget;
 
   @override
@@ -182,7 +207,8 @@ class _QRBarScannerCamera extends StatelessWidget {
   }
 }
 
-/// Configuration class for the bottom sheet of the camera permission
+/// Values forwarded into widget_toolkit ModalConfiguration when presenting camera permission UI from
+/// `camera_permission.dart`.
 class QrScannerConfiguration {
   const QrScannerConfiguration({
     this.showCloseButton = true,
@@ -192,23 +218,18 @@ class QrScannerConfiguration {
     this.isDismissible = true,
   });
 
-  /// Whether the blurred permission sheet shows a close control in its chrome.
-  /// `camera_permission.dart` passes this value to [ModalConfiguration.showCloseButton].
+  /// Requests the blurred sheet renderer to show the standard close icon alongside header chrome.
   final bool showCloseButton;
 
-  /// Whether the permission sheet expands to a full-screen presentation.
-  /// `camera_permission.dart` passes this value to [ModalConfiguration.fullScreen].
+  /// Expands the sheet to occupy the full viewport height similar to other Widget Toolkit immersive flows.
   final bool fullScreen;
 
-  /// Whether the sheet respects the bottom safe area inset on notched devices.
-  /// `camera_permission.dart` passes this value to [ModalConfiguration.safeAreaBottom].
+  /// Applies bottom safe-area padding within the modal scaffold when hosting controls near the home indicator.
   final bool safeAreaBottom;
 
-  /// Whether the sheet shows the draggable header pill above its content.
-  /// `camera_permission.dart` passes this value to [ModalConfiguration.showHeaderPill].
+  /// Toggles the grabber-style pill rendered above sheet content for modal affordance cues.
   final bool showHeaderPill;
 
-  /// Whether the user can dismiss the sheet by tapping outside its bounds.
-  /// `camera_permission.dart` passes this value to [ModalConfiguration.isDismissible].
+  /// Allows swipe-to-dismiss and barrier taps to close the sheet when true; hosts disable this when flows must remain modal until permission resolves.
   final bool isDismissible;
 }

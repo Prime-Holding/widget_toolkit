@@ -201,80 +201,116 @@ class EditAddressTheme extends ThemeExtension<EditAddressTheme>
 
   /// endregion
 
+  /// Default medium spacing notch applied between stacked rows and dividers throughout `edit_address_form.dart`.
   @override
   final double spacingM;
+  /// Extra-small spacing increment mirrored from [DesignSystemSpacings] so host-built adornments around address rows can stay on the shared modular scale.
   @override
   final double spacingXSS;
+  /// Compact horizontal rhythm increment with the same intent as [spacingXSS] for grid alignment next to toolkit tiles.
   @override
   final double spacingXS;
+  /// Narrow gap token dedicated to shimmering address tiles inside `edit_address_widget.dart`.
   @override
   final double editAddressWidgetSpacingXS;
+  /// Shared tight gap reused when placeholder copy sits beside summaries in `_buildAddressTiles` sequences within `edit_address_widget.dart`.
   @override
   final double addressWidgetSpacingXS;
+  /// Small spacing notch from [DesignSystemSpacings.s] intended for supplementary rows hosts mount alongside toolkit lists without re-deriving raw pixel values.
   @override
   final double spacingS;
+  /// Large spacing notch from [DesignSystemSpacings.l] intended for supplementary sections padded around the scaffolded flows in this library.
   @override
   final double spacingL;
+  /// Extra-large vertical spacer after success messaging on `edit_address_page.dart` when `_buildLanguagesList`-style scaffolding is not loading.
   @override
   final double spacingXL;
+  /// Host-facing rhythm notch mapped from [DesignSystemSpacings.xxl] so companion columns rendered next to toolkit pages inherit the same ladder as production widgets.
   @override
   final double spacingXXL;
+  /// Square measure sizing circular info glyphs and hero treatments in `permanent_address_bottom_sheet.dart`.
   @override
   final double spacingXXXL;
 
+  /// Caption emphasis for inline labels on address tiles and bottom sheet copy in `edit_address_widget.dart` and `permanent_address_bottom_sheet.dart`.
   @override
   final TextStyle captionBold;
+  /// Secondary body style for human-readable address lines while placeholders shimmer in `edit_address_widget.dart`.
   @override
   final TextStyle descriptionThin;
+  /// Title style for page chrome on `edit_address_page.dart` and headlines inside `permanent_address_bottom_sheet.dart`.
   @override
   final TextStyle titleBold;
 
+  /// Shimmer base tone for placeholder text while street or city lines resolve inside `edit_address_widget.dart`.
   @override
   final Color shimmerTextBaseColor;
+  /// Tile fill and border wash for each `EditAddressWidget` card in `edit_address_widget.dart`.
   @override
   final Color editAddressWidgetColor;
+  /// Shimmer highlight that runs across placeholder rows in `edit_address_widget.dart`.
   @override
   final Color shimmerTextHighlightColor;
+  /// Icon stroke for status accents resolved through `user_profile_card_types_extension.dart` and secondary affordances.
   @override
   final Color iconColorSecondary;
+  /// Primary icon stroke for neutral info moments, including recolored SVG assets in `permanent_address_bottom_sheet.dart` and `edit_address_widget.dart`.
   @override
   final Color iconColorPrimary;
+  /// Page backdrop color on `edit_address_page.dart` wrapping the overall editor experience.
   @override
   final Color editAddressPageBackgroundColor;
+  /// Lightened blue wash behind permanent-address hero rows within `permanent_address_bottom_sheet.dart`.
   @override
   final Color permanentAddressBlueLightColor;
+  /// Fill for disabled primary buttons that confirm address saves when validation blocks progress.
   @override
   final Color disabledFilledButtonBackgroundColor;
+  /// Highlight overlay for `EditAddressWidget` ink responses to keep contrast predictable in `edit_address_widget.dart`.
   @override
   final Color editAddressWidgetHighlightTransparent;
+  /// Splash overlay for interactive tiles so touches stay subtle on `edit_address_widget.dart`.
   @override
   final Color editAddressWidgetSplashTransparent;
 
+  /// Outermost padding wrapping the scaffold body on `edit_address_page.dart`.
   @override
   final EdgeInsets editAddressPageOuterMostPadding;
+  /// Padding pairing the instructional column after saves complete on `edit_address_page.dart`.
   @override
   final EdgeInsets editAddressPageOnAddressSavedPadding;
+  /// Bottom inset before error panels butt against sibling content on `edit_address_page.dart`.
   @override
   final EdgeInsets editAddressPageErrorPanelPadding;
+  /// Root padding wrapping the draggable sheet scaffold in `permanent_address_bottom_sheet.dart`.
   @override
   final EdgeInsets permanentAddressBottomSheetPadding;
+  /// Top inset offsetting sheet grabbers and headings inside `permanent_address_bottom_sheet.dart`.
   @override
   final EdgeInsets permanentAddressBottomSheetDecorationPadding;
+  /// Insets framing copy and actions within the draggable surface in `permanent_address_bottom_sheet.dart`.
   @override
   final EdgeInsets permanentAddressBottomSheetContentPadding;
+  /// Bottom inset anchoring oversized info icons preceding explanatory text inside `permanent_address_bottom_sheet.dart`.
   @override
   final EdgeInsets permanentAddressIconPadding;
+  /// Separator padding beneath tile headers before values begin inside `edit_address_widget.dart`.
   @override
   final EdgeInsets editAddressWidgetDecorationPadding;
+  /// Interior padding guarding value text and placeholders within each `edit_address_widget.dart` tile.
   @override
   final EdgeInsets editAddressWidgetContentPadding;
+  /// Vertical padding enclosing shimmer bars while placeholders animate in `edit_address_widget.dart`.
   @override
   final EdgeInsets editAddressWidgetShimmerPadding;
+  /// Leading inset positioning icons beside stacked labels inside `edit_address_widget.dart`.
   @override
   final EdgeInsets editAddressWidgetIconPadding;
 
+  /// Pencil glyph for editable rows when summaries expose inline edit entry points inside `edit_address_widget.dart`.
   @override
   final SvgFile editPenIcon;
+  /// Circular info glyph tinted with [iconColorPrimary] for permanent-address education moments in `permanent_address_bottom_sheet.dart`.
   @override
   final SvgFile infoCircleIcon;
 }

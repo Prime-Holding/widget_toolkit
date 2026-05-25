@@ -16,10 +16,18 @@ import '../repositories/biometrics_repository_impl.dart';
 import '../resources/constants.dart';
 import '../services/biometrics_service.dart';
 
-/// Builds Material Design switch to enable or disable biometrics for a specific
-/// need as per application. Might be overwritten using [builder] function.
-/// Displays customizable notification on success switching.
+/// Presents biometric opt-in as a stock [Switch] or a custom control from
+/// [builder], with [BiometricsService] and [BiometricsBloc] driving enrollment.
+/// When [onStateChanged] is null, confirmations use [showBlurredBottomSheet],
+/// [MessagePanelWidget], and [SmallButton] from widget_toolkit, and the sheet
+/// layout reads padding from [WidgetToolkitTheme.bottomSheetPaddingAlternative]
+/// and [WidgetToolkitTheme.bottomSheetCloseButtonPadding], while outline buttons
+/// blend [WidgetToolkitTheme.disabledFilledButtonBackgroundColor] into
+/// [WidgetToolkitTheme.primaryGradientEnd] through [ButtonColorStyle.fromContext].
 class BiometricsSwitch extends StatelessWidget {
+  /// Installs [LocalAuthentication], data-source providers, [BiometricsRepositoryImpl],
+  /// [BiometricsService], and [BiometricsBloc] around this subtree so the widget
+  /// works without upstream dependency injection.
   const BiometricsSwitch({
     required this.biometricsLocalDataSource,
     this.localizedReason,
@@ -30,6 +38,10 @@ class BiometricsSwitch extends StatelessWidget {
     super.key,
   }) : _addDependencies = true;
 
+  /// Skips creating providers so hosts can register [LocalAuthentication],
+  /// [BiometricsAuthDataSource], [BiometricsRepository], [BiometricsService],
+  /// and [BiometricsBloc] once near the app root or route, which mirrors the
+  /// list built by the default constructor but keeps graph ownership explicit.
   const BiometricsSwitch.withoutDependencies({
     required this.biometricsLocalDataSource,
     this.localizedReason,
@@ -40,41 +52,43 @@ class BiometricsSwitch extends StatelessWidget {
     super.key,
   }) : _addDependencies = false;
 
-  /// [biometricsLocalDataSource] is an interface that the user of this widget
-  /// is required to implement in order to be able to save the state of approval
-  /// to use the biometrics.
+  /// Interface the host implements so approvals persist; the default constructor
+  /// wires the same instance into [BiometricsRepositoryImpl], and the bloc stream
+  /// of areBiometricsEnabled seeds the switch value during build.
   final BiometricsLocalDataSource biometricsLocalDataSource;
 
-  /// [localizedReason] is the message to show to user while prompting them
-  /// for authentication while enabling biometrics. This is typically along the lines of: 'Please scan
-  /// your finger to access MyApp.'. Defaults to 'Activate the biometrics of your device'
+  /// Shown in the system biometric prompt while enabling; when null, the
+  /// activateBiometrics constant from `constants.dart` feeds
+  /// [BiometricsService.enableBiometrics] instead.
   final String? localizedReason;
 
-  /// Use [onStateChanged] to execute custom callback or present custom notification
-  /// to the user whenever the biometrics are enabled or disabled successfully.
-  ///
-  /// If you have defined [mapMessageToString] the result from that would be
-  /// passed in as [localizedMessage], otherwise the default mapping of the
-  /// message to an english string would be passed in.
+  /// Runs after a non-null [BiometricsMessage] from the bloc when you would
+  /// rather own toasts or navigation than the default bottom sheet; receives
+  /// [BiometricsMessage] plus the localized string resolved through
+  /// [mapMessageToString] when you supply that mapper, otherwise through
+  /// [ReadableMessage.translate].
   final void Function(
     BuildContext context,
     BiometricsMessage message,
     String localizedMessage,
   )? onStateChanged;
 
-  /// By default this element will display Material Design switch. provide [builder]
-  /// if you want to build the element on your own way using the implemented business logic.
+  /// Replaces the default [Switch] while reusing the bloc; call the provided
+  /// setter with the desired value so the bloc receives the same localized
+  /// reason path as the stock control.
   final Widget Function(
     BuildContext context,
     bool isEnabled,
     void Function(bool newValue) setBiometrics,
   )? builder;
 
-  /// [mapMessageToString] will be used to translate the [BiometricsMessage]
-  /// to human readable text and will be used into the default notification
+  /// Turns each [BiometricsMessage] into host copy for notifications,
+  /// including the strings passed to [onStateChanged] and the default sheet.
   final String Function(BiometricsMessage message)? mapMessageToString;
 
-  /// [onError] is optional function that enable error handling out of the package
+  /// Invoked from the bloc error listener when the bloc publishes an [ErrorModel],
+  /// which lets hosts surface permission or platform errors beside biometric
+  /// outcomes.
   final void Function(ErrorModel)? onError;
 
   final bool _addDependencies;

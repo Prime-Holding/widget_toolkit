@@ -65,9 +65,17 @@ class PinCodeBloc extends $PinCodeBloc {
     ]).listen(_pinCode.add).addTo(_compositeSubscription);
   }
 
+  /// Biometrics gateway used to check device support, prompt [BiometricsLocalDataSource], and
+  /// complete sign-in after the encrypted PIN is available on the device.
   final PinBiometricsService biometricAuthenticationService;
+  /// Host-supplied implementation for encryption, length discovery, verification, and secure
+  /// storage that drives digit states in [PinCodeBlocStates].
   final PinCodeService pinCodeService;
+  /// Reason string forwarded to the platform biometric dialog when enabling or unlocking with
+  /// Face ID, fingerprint, or device PIN, matching the parameter on [PinCodeKeyboard].
   final String localizedReason;
+  /// When true, the bloc eagerly triggers the same biometric authentication path as a manual
+  /// button press as soon as listeners attach, provided local biometrics are enabled.
   final bool autoPromptBiometric;
 
   final BehaviorSubject<String> _pinCode = BehaviorSubject.seeded('');
