@@ -7,6 +7,7 @@ class SmsThemeConfiguration {
     this.errorStyle,
     this.successStyle,
     this.disabledStyle,
+    this.loadingStyle,
     this.focusedStyle,
     this.submittedStyle,
     this.unfilledStyle,
@@ -24,6 +25,9 @@ class SmsThemeConfiguration {
   /// Style of the sms fields when disabled
   final SmsFieldTheme? disabledStyle;
 
+  /// Style of the sms fields while verification is in progress
+  final SmsFieldTheme? loadingStyle;
+
   /// Style of the currently focused sms field
   final SmsFieldTheme? focusedStyle;
 
@@ -38,6 +42,7 @@ class SmsThemeConfiguration {
     SmsFieldTheme? errorStyle,
     SmsFieldTheme? successStyle,
     SmsFieldTheme? disabledStyle,
+    SmsFieldTheme? loadingStyle,
     SmsFieldTheme? focusedStyle,
     SmsFieldTheme? submittedStyle,
     SmsFieldTheme? unfilledStyle,
@@ -47,6 +52,7 @@ class SmsThemeConfiguration {
         errorStyle: errorStyle ?? this.errorStyle,
         successStyle: successStyle ?? this.successStyle,
         disabledStyle: disabledStyle ?? this.disabledStyle,
+        loadingStyle: loadingStyle ?? this.loadingStyle,
         focusedStyle: focusedStyle ?? this.focusedStyle,
         submittedStyle: submittedStyle ?? this.submittedStyle,
         unfilledStyle: unfilledStyle ?? this.unfilledStyle,
