@@ -9,6 +9,7 @@ export 'src/lib_countdown_widget/services/countdown_service.dart';
 export 'src/lib_countdown_widget/widgets/countdown_component.dart';
 export 'src/lib_resend_code_button/automated_resend_code_button.dart';
 export 'src/lib_sms_code_field/sms_code_field.dart';
+export 'src/lib_sms_code_field/sms_code_field_controller.dart';
 export 'src/lib_sms_code_field/sms_code_theme_configuration.dart';
 export 'src/lib_sms_code_verification/di/sms_code_provider.dart';
 export 'src/lib_sms_code_verification/services/sms_code_service.dart';

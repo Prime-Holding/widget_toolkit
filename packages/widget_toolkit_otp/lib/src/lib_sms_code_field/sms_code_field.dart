@@ -10,6 +10,7 @@ import '../base/models/temporary_code_state.dart';
 import '../base/theme/sms_code_theme.dart';
 import '../base/utils/enums.dart' as enums;
 import '../lib_sms_code_verification/bloc/sms_code_bloc.dart';
+import 'sms_code_field_controller.dart';
 import 'sms_code_theme_configuration.dart';
 
 /// SMS code field with a lot of customization also supporting sms code
@@ -21,6 +22,7 @@ class SmsCodeField extends StatefulWidget {
     this.onCompleted,
     this.onFieldTap,
     this.controller,
+    this.smsCodeFieldController,
     this.focusNode,
     this.validator,
     this.cursor,
@@ -46,6 +48,12 @@ class SmsCodeField extends StatefulWidget {
     this.hapticFeedbackType = enums.HapticFeedbackType.disabled,
     this.androidSmsAutofillMethod = enums.AndroidSmsAutofillMethod.none,
     this.useInternalCommunication = true,
+    this.isLoading = false,
+    this.showLoadingIndicator = true,
+    this.loadingWidget,
+    this.loadingOverlayColor,
+    this.clearOnError = false,
+    this.clearOnErrorDelay = const Duration(milliseconds: 600),
     super.key,
   });
 
@@ -75,6 +83,9 @@ class SmsCodeField extends StatefulWidget {
 
   /// Pin field controller
   final TextEditingController? controller;
+
+  /// Programmatic control for clearing or resetting the PIN input.
+  final SmsCodeFieldController? smsCodeFieldController;
 
   /// Hide text input
   final bool obscureText;
@@ -154,26 +165,109 @@ class SmsCodeField extends StatefulWidget {
   /// communication with the bloc.
   final bool useInternalCommunication;
 
+  /// When [useInternalCommunication] is `false`, set to `true` while the OTP is
+  /// being processed to show [showLoadingIndicator] and block further input.
+  final bool isLoading;
+
+  /// Whether a loading overlay is shown while verification is in progress.
+  /// Defaults to `true`. Ignored when both internal loading and [isLoading] are
+  /// false.
+  final bool showLoadingIndicator;
+
+  /// Custom widget shown over the PIN field during loading. Defaults to a themed
+  /// [SizedLoadingIndicator] from `widget_toolkit`.
+  final Widget? loadingWidget;
+
+  /// Background color of the loading overlay. Defaults to a light scrim.
+  final Color? loadingOverlayColor;
+
+  /// When `true` and [useInternalCommunication] is enabled, clears the PIN and
+  /// returns to an idle state after [clearOnErrorDelay] once
+  /// [TemporaryCodeState.wrong] is received.
+  final bool clearOnError;
+
+  /// How long to wait after a failed verification before clearing the PIN when
+  /// [clearOnError] is enabled.
+  final Duration clearOnErrorDelay;
+
   @override
   State<SmsCodeField> createState() => _SmsCodeFieldState();
 }
 
 class _SmsCodeFieldState extends State<SmsCodeField> {
-  TextEditingController? _controller;
+  late final TextEditingController _controller;
+  late final bool _ownsController;
   SmsRetriever? _smsRetriever;
 
   @override
   void initState() {
-    _controller = widget.controller;
+    _ownsController = widget.controller == null;
+    _controller = widget.controller ?? TextEditingController();
     _smsRetriever = _smsAutofillMethod;
-
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bindSmsCodeFieldController();
+  }
+
+  @override
+  void didUpdateWidget(covariant SmsCodeField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final controllerChanged = oldWidget.controller != widget.controller;
+    final internalCommunicationChanged = oldWidget.useInternalCommunication != widget.useInternalCommunication;
+
+    if (controllerChanged || internalCommunicationChanged) {
+      if (controllerChanged){
+        oldWidget.smsCodeFieldController?.unbind();
+      }
+      else{
+        widget.smsCodeFieldController?.unbind();
+      }
+      _bindSmsCodeFieldController();
+    }
+  }
+
+  @override
   void dispose() {
+    widget.smsCodeFieldController?.unbind();
     _smsRetriever?.dispose();
+    if (_ownsController) {
+      _controller.dispose();
+    }
     super.dispose();
+  }
+
+  void _bindSmsCodeFieldController() {
+    widget.smsCodeFieldController?.bind(
+      textController: _controller,
+      setBlocState: widget.useInternalCommunication
+          ? (state) =>
+              context.read<SmsCodeBlocType>().events.setTemporaryCodeState(state)
+          : null,
+    );
+  }
+
+  void _clearPin() => _controller.clear();
+
+  void _handleVerificationStateChange(TemporaryCodeState? state) {
+    if (state == TemporaryCodeState.reset) {
+      _clearPin();
+      return;
+    }
+
+    if (widget.clearOnError && state == TemporaryCodeState.wrong) {
+      Future.delayed(widget.clearOnErrorDelay, () {
+        if (!mounted) return;
+        _clearPin();
+        context
+            .read<SmsCodeBlocType>()
+            .events
+            .setTemporaryCodeState(TemporaryCodeState.inactive);
+      });
+    }
   }
 
   SmsRetrieverImpl? get _smsAutofillMethod {
@@ -226,12 +320,20 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
   @override
   Widget build(BuildContext context) => widget.useInternalCommunication
       ? _buildPinFieldWithBuilder(context)
-      : _buildPinField(context,
-          forceErrorState: widget.forceErrorState,
-          errorText: widget.errorText,
-          pinLength: widget.pinLength,
-          enabled: widget.enabled ?? true,
-          onCompleted: widget.onCompleted);
+      : _wrapWithLoadingOverlay(
+          context,
+          isLoading: widget.isLoading,
+          child: _buildPinField(
+            context,
+            forceErrorState: widget.forceErrorState,
+            errorText: widget.errorText,
+            pinLength: widget.pinLength,
+            enabled: widget.enabled ?? true,
+            isLoading: widget.isLoading,
+            onCompleted: widget.onCompleted,
+            readOnly: widget.readOnly,
+          ),
+        );
 
   /// region Builders
 
@@ -242,6 +344,7 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
     bool forceErrorState = false,
     bool forceSuccessState = false,
     bool enabled = true,
+    bool isLoading = false,
     required int pinLength,
     void Function(String)? onCompleted,
     bool readOnly = false,
@@ -249,9 +352,11 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
       Pinput(
         defaultPinTheme: _buildDefaultTheme(context),
         errorPinTheme: _buildErrorTheme(context),
-        disabledPinTheme: forceSuccessState
-            ? _buildSuccessTheme(context)
-            : _buildDisabledTheme(context),
+        disabledPinTheme: isLoading
+            ? _buildLoadingTheme(context)
+            : forceSuccessState
+                ? _buildSuccessTheme(context)
+                : _buildDisabledTheme(context),
         focusedPinTheme: _buildFocusedTheme(context),
         submittedPinTheme: _buildSubmittedTheme(context),
         followingPinTheme: _buildUnfilledStyleTheme(context),
@@ -265,8 +370,8 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
         readOnly: readOnly,
         autofocus: widget.autofocus,
         focusNode: widget.focusNode,
-        showCursor: widget.showCursor,
-        enabled: enabled,
+        showCursor: widget.showCursor && !isLoading,
+        enabled: enabled && !isLoading,
         errorText: errorText,
         onTap: widget.onFieldTap,
         onChanged: widget.onChanged,
@@ -297,37 +402,89 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
 
   /// Widget built when [widget.useInternalCommunication] is enabled
   Widget _buildPinFieldWithBuilder(BuildContext context) =>
-      RxBlocBuilder<SmsCodeBlocType, TemporaryCodeState>(
+      RxBlocListener<SmsCodeBlocType, TemporaryCodeState>(
         state: (bloc) => bloc.states.onCodeVerificationResult,
-        builder: (context, verificationResult, bloc) =>
-            RxBlocBuilder<SmsCodeBlocType, int>(
-          state: (bloc) => bloc.states.pinLength,
-          builder: (context, pinLength, bloc) {
-            if (verificationResult.data == TemporaryCodeState.reset) {
-              _controller ??= TextEditingController();
-              _controller?.clear();
-            }
+        listener: (context, state) => _handleVerificationStateChange(state),
+        child: RxBlocBuilder<SmsCodeBlocType, TemporaryCodeState>(
+          state: (bloc) => bloc.states.onCodeVerificationResult,
+          builder: (context, verificationResult, bloc) =>
+              RxBlocBuilder<SmsCodeBlocType, int>(
+            state: (bloc) => bloc.states.pinLength,
+            builder: (context, pinLength, bloc) {
+              final verificationState = verificationResult.data;
+              final isLoading =
+                  verificationState == TemporaryCodeState.loading;
 
-            return _buildPinField(
-              context,
-              forceErrorState:
-                  verificationResult.data == TemporaryCodeState.wrong,
-              forceSuccessState:
-                  verificationResult.data == TemporaryCodeState.correct,
-              pinLength: pinLength.data ?? 6,
-              readOnly: verificationResult.data == TemporaryCodeState.correct ||
-                  verificationResult.data == TemporaryCodeState.loading ||
-                  verificationResult.data == TemporaryCodeState.disabled,
-              enabled: (widget.enabled != null && widget.enabled == false) ||
-                      verificationResult.data == TemporaryCodeState.disabled
-                  ? false
-                  : verificationResult.data != TemporaryCodeState.correct,
-              onCompleted: (value) =>
-                  context.read<SmsCodeBlocType>().events.verifyCode(value),
-            );
-          },
+              return _wrapWithLoadingOverlay(
+                context,
+                isLoading: isLoading,
+                child: _buildPinField(
+                  context,
+                  forceErrorState: verificationState == TemporaryCodeState.wrong,
+                  forceSuccessState:
+                      verificationState == TemporaryCodeState.correct,
+                  pinLength: pinLength.data ?? 6,
+                  isLoading: isLoading,
+                  readOnly: verificationState == TemporaryCodeState.correct ||
+                      verificationState == TemporaryCodeState.loading ||
+                      verificationState == TemporaryCodeState.disabled,
+                  enabled: (widget.enabled != null && widget.enabled == false) ||
+                          verificationState == TemporaryCodeState.disabled
+                      ? false
+                      : verificationState != TemporaryCodeState.correct,
+                  onCompleted: (value) => context
+                      .read<SmsCodeBlocType>()
+                      .events
+                      .verifyCode(value),
+                ),
+              );
+            },
+          ),
         ),
       );
+
+  Widget _wrapWithLoadingOverlay(
+    BuildContext context, {
+    required bool isLoading,
+    required Widget child,
+  }) {
+    if (!isLoading || !widget.showLoadingIndicator) {
+      return child;
+    }
+
+    return Stack(
+      alignment: Alignment.center,
+      clipBehavior: Clip.none,
+      children: [
+        child,
+        Positioned.fill(
+          child: AbsorbPointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: widget.loadingOverlayColor ??
+                    Colors.black.withValues(alpha: 0.04),
+                borderRadius: context.smsCodeTheme.defaultBorderRadius,
+              ),
+              child: Center(child: _buildLoadingIndicator(context)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLoadingIndicator(BuildContext context) {
+    if (widget.loadingWidget != null) {
+      return widget.loadingWidget!;
+    }
+
+    final indicatorSize = context.smsCodeTheme.resendButtonLoadingIndicatorSize;
+    return SizedLoadingIndicator(
+      padding: EdgeInsets.zero,
+      size: Size(indicatorSize * 2, indicatorSize * 2),
+      strokeWidth: 2,
+    );
+  }
 
   /// endregion
 
@@ -380,6 +537,11 @@ class _SmsCodeFieldState extends State<SmsCodeField> {
               bgColor: context.smsCodeTheme.disabledBackgroundColor,
               textStyle: context.smsCodeTheme.disabledTextStyle,
             );
+
+  PinTheme _buildLoadingTheme(BuildContext context) =>
+      widget.themeConfig.loadingStyle != null
+          ? _buildThemeFromConfigStyle(widget.themeConfig.loadingStyle!)
+          : _buildDisabledTheme(context);
 
   PinTheme _buildFocusedTheme(BuildContext context) =>
       widget.themeConfig.focusedStyle != null
