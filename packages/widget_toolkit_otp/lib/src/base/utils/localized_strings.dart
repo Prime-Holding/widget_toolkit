@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Use this class to translate all labels used in the package. If not
 /// overridden, default values in English will be used.
@@ -6,8 +7,21 @@ class LocalizedStrings {
   LocalizedStrings(this.context);
   LocalizedStrings._(this.context);
 
-  factory LocalizedStrings.of(BuildContext context) =>
-      _instance != null ? _instance! : _instance = LocalizedStrings._(context);
+  factory LocalizedStrings.of(BuildContext context) {
+    final provided = _fromProvider(context);
+    if (provided != null) {
+      return provided;
+    }
+    return _instance != null ? _instance! : _instance = LocalizedStrings._(context);
+  }
+
+  static LocalizedStrings? _fromProvider(BuildContext context) {
+    try {
+      return Provider.of<LocalizedStrings?>(context, listen: false);
+    } on ProviderNotFoundException {
+      return null;
+    }
+  }
 
   static LocalizedStrings? _instance;
 
